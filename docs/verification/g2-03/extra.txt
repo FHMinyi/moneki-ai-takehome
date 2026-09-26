@@ -1,0 +1,30 @@
+.F....                                                                   [100%]
+=================================== FAILURES ===================================
+_ test_rewritten_chat_search_is_reproducible[\uff12\uff10\uff12\uff16\uff0f\uff10\uff16\uff0f\uff11\uff14\u5f53\u65f6\u7684\u5916\u5356\u9000\u6b3e\u653f\u7b56\u89c4\u5b9a] _
+
+rt = <test_retrieval.Runtime object at 0x1093689e0>, q = '２０２６／０６／１４当时的外卖退款政策规定'
+
+    @pytest.mark.parametrize('q',[
+     '2026年6月14日当时的外卖退款政策规定',
+     '２０２６／０６／１４当时的外卖退款政策规定',
+     '现在S02的退款政策规定',
+    ])
+    def test_rewritten_chat_search_is_reproducible(rt,q):
+        original(rt)
+        with rt.serve() as request:
+            chat=request('/api/chat',dict(session_id='rewritten',question=q))
+            trace=request('/api/trace/'+chat['trace_id'])
+            searches=[s['detail'] for s in trace['steps'] if s['step']=='search']
+            assert searches,trace
+            search=searches[0]
+            direct=get(request,search['query'])
+>       assert direct['diagnostics']['hits']==search['hits']
+E       AssertionError: assert [{'doc_id': '...: False, ...}] == [{'doc_id': '...: False, ...}]
+E         
+E         At index 0 diff: {'doc_id': 'KB-012', 'chunk_id': 'KB-012#2', 'score': 18.9581, 'padded': False, 'exclusion_reason': None, 'dropped_instructions': []} != {'doc_id': 'KB-013', 'chunk_id': 'KB-013#1', 'score': 19.8389, 'padded': False, 'exclusion_reason': None, 'dropped_instructions': []}
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:235: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-03/test_retrieval.py::test_rewritten_chat_search_is_reproducible[\uff12\uff10\uff12\uff16\uff0f\uff10\uff16\uff0f\uff11\uff14\u5f53\u65f6\u7684\u5916\u5356\u9000\u6b3e\u653f\u7b56\u89c4\u5b9a]
+1 failed, 5 passed, 41 deselected in 3.96s

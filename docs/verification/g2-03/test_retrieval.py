@@ -217,3 +217,57 @@ def test_gold_chunk_contains_support_not_only_heading(rt,query,gold,required):
     with rt.serve() as request:
         r=get(request,query)
     assert any(h['doc_id']==gold and required in h['text'] for h in evidence(r)),r
+
+@pytest.mark.parametrize('q',[
+ '2026年6月14日当时的外卖退款政策规定',
+ '２０２６／０６／１４当时的外卖退款政策规定',
+ '现在S02的退款政策规定',
+])
+def test_rewritten_chat_search_is_reproducible(rt,q):
+    original(rt)
+    with rt.serve() as request:
+        chat=request('/api/chat',dict(session_id='rewritten',question=q))
+        trace=request('/api/trace/'+chat['trace_id'])
+        searches=[s['detail'] for s in trace['steps'] if s['step']=='search']
+        assert searches,trace
+        search=searches[0]
+        direct=get(request,search['query'])
+    assert direct['diagnostics']['hits']==search['hits']
+    assert direct['diagnostics']['scope']==search['scope']
+    if '14' in q or '１４' in q:
+        assert search['scope']['as_of']=='2026-06-14'
+
+
+def test_actual_store_scope_and_incidental_examples(rt):
+    original(rt)
+    with rt.serve() as request:
+        r=get(request,'S02排烟管道整改停业通知',50)
+        incidental=get(request,'S02净营业额退款口径',5)
+    assert 'KB-020' not in {h['doc_id'] for h in evidence(r)}
+    assert any(f['doc_id']=='KB-020' and 'S03' in f['reason'] for f in r['diagnostics']['filtered'])
+    assert 'KB-001' in {h['doc_id'] for h in evidence(incidental)}
+
+
+def test_tool_uses_only_eligible_evidence(rt):
+    write(rt,901,'cobaltsecret 规章规定领取17枚硬币。','stores: [S01]')
+    rt.build()
+    script='''import json
+from kbqa.service import Service
+s=Service()
+print(json.dumps({'api':s.retrieve('S02 cobaltsecret规章规定'), 'tool':s.run_tool('search_kb',{'query':'S02 cobaltsecret规章规定'})},ensure_ascii=False))
+'''
+    p=subprocess.run([sys.executable,'-c',script],cwd=rt.source,env=rt.env,text=True,capture_output=True)
+    assert p.returncode==0,p.stderr
+    value=json.loads(p.stdout)
+    rt.records.append(dict(command=[sys.executable,'-c',script],result=value))
+    assert value['api']['results'] and not value['tool']['results']
+
+
+def test_unknown_chinese_keeps_low_coverage(rt):
+    original(rt)
+    with rt.serve() as request:
+        r=get(request,'量子纠缠宇宙飞船跃迁引擎规定')
+        empty=get(request,'？！',500)
+    assert r['diagnostics']['coverage']<.25
+    assert not evidence(empty) and empty['diagnostics']['coverage']==0
+    assert len(empty['results'])==215
