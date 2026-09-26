@@ -41,10 +41,10 @@ class Service:
             build_clean_db(settings.source_db, settings.clean_db)
         self.tools = DataTools(settings.clean_db)
         self.index = load_index(settings.kb_dir, settings.index_path, rebuild=not only_if_missing)
-        self.retriever = Retriever(self.index, settings.today)
         self.catalog = Catalog(
             stores=self.tools.stores(), products=self.tools.products(), aliases=self.index.aliases
         )
+        self.retriever = Retriever(self.index, settings.today, self.catalog)
         self.data_period = self.tools.data_period()
         self.facts = DocFacts(self.index)
         self.answerer = Answerer(
@@ -93,7 +93,7 @@ class Service:
         """
         wanted = max(1, min(int(top_k or 5), len(self.index.chunks) or 1))
         result = self.retriever.search(query or "", top_k=wanted)
-        return {"results": [hit.as_result() for hit in result.hits]}
+        return {"results": [hit.as_result() for hit in result.hits], "diagnostics": result.as_trace()}
 
     # -- 工具执行（live 模式下由模型驱动） ---------------------------------------
 
@@ -125,7 +125,9 @@ class Service:
                 return {"error": "缺少必填参数 %s" % key}
         try:
             if name == "search_kb":
-                return self.retrieve(cleaned["query"], cleaned.get("top_k", 5))
+                response = self.retrieve(cleaned["query"], cleaned.get("top_k", 5))
+                # Tool consumers receive evidence only, never count-contract fillers.
+                return {"results": [h for h in response["results"] if h["evidence_eligible"]]}
             return getattr(self.tools, name)(**cleaned)
         except (TypeError, ValueError) as exc:
             return {"error": "工具 %s 执行失败：%s" % (name, exc)}

@@ -9,7 +9,7 @@ from pathlib import Path
 from html.parser import HTMLParser
 from typing import Optional
 
-LOADER_VERSION = "loader-2"
+LOADER_VERSION = "loader-3"
 SUPPORTED_SUFFIXES = {".md", ".markdown", ".txt", ".html"}
 
 #: 文件名开头的编号就是 doc_id，与文件格式无关（契约 §0）。
@@ -64,7 +64,7 @@ class Document:
             "doc_id": self.doc_id,
             "title": self.title,
             "type": self.doc_type,
-            "state": self.status,
+            "status": self.status,
             "effective_from": self.effective_from.isoformat() if self.effective_from else None,
             "superseded_by": self.superseded_by,
             "stores": self.stores,
