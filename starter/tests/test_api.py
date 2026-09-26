@@ -86,3 +86,14 @@ def test_chat_trace_id(client):
 
 def test_trace_unknown(client):
     assert client.get("/api/trace/nope").status_code == 404
+
+
+def test_quality_ledger_matches_health(client):
+    quality = client.get('/api/data_quality').json()
+    health = client.get('/api/health').json()
+    report = quality['cleaning_report']
+    assert report == health['cleaning_report']
+    assert report['kept_rows'] == health['valid_sales_rows'] == 18290
+    assert report['removed_rows'] == sum(report['removed'].values()) == 338
+    assert report['raw_rows'] == report['kept_rows'] + report['removed_rows']
+    assert quality['data_period'] == health['data_period'] == {'start':'2026-05-01','end':'2026-08-31'}
