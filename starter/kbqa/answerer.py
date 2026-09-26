@@ -319,6 +319,7 @@ class Answerer(HybridAnswers):
         explain cells but receive their own continuous citation.
         """
         candidates, rejected = [], []
+        attributes = self.facts.requested_attribute(plan.standalone)
         for hit in self.answerable_hits(plan, result):
             source = self.retriever.index.texts[hit.doc_id]
             start = len(re.sub(r"\s+", "", source[:hit.source_start]))
@@ -328,16 +329,19 @@ class Answerer(HybridAnswers):
                 if is_instruction_like(unit.text):
                     rejected.append({"doc_id": hit.doc_id, "reason": "document_instruction", "text": unit.text})
             ranked = self.facts.rank(plan.search_query, hit.doc_id, limit=5,
-                                     require_value=True, units=units)
+                                     require_value=not attributes, units=units)
             for score, unit in ranked:
                 if is_instruction_like(unit.text) or not (start <= unit.start < unit.end <= end):
+                    continue
+                if not self.facts.supports_attribute(attributes, unit.text + " " + " ".join(unit.header)):
+                    rejected.append({"doc_id": hit.doc_id, "reason": "unsupported_attribute",
+                                     "required_terms": attributes, "text": unit.text})
                     continue
                 candidates.append(dict(score=score * (hit.score / result.ranked[0].score) ** .5,
                                        unit=unit, hit=hit))
         candidates.sort(key=lambda c: (-c["score"], -(int((c["hit"].meta.get("effective_from") or "0000-00-00").replace("-", "")))))
         selected, citations, body = [], [], []
-        # One best supported proposition is safer than adding a second near-topic
-        # document. Multi-fact/mixed questions belong to the later orchestration.
+        # Select the strongest supported span without appending near-topic facts.
         for candidate in candidates:
             unit, hit = candidate["unit"], candidate["hit"]
             cite = self.facts.cite(hit.doc_id, unit.text)
@@ -387,7 +391,7 @@ class Answerer(HybridAnswers):
                 notes=[reason or "没有可以逐字引用的原文"],
             )
         if plan.slots.get("underspecified") and top_score < CLARIFY_SCORE:
-            # 问得太泛、检索也没有明显命中：宁可反问，也不要拿一段不相干的原文充数。
+            # 相关性仍弱时如实说明证据不足，不把近主题片段当成答案。
             return Answer(
                 answer="检索到的相关资料不足以确认这个问题的答案，知识库里没有找到可靠的支持。",
                 answer_type="refusal",

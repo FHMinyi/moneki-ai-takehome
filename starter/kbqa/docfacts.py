@@ -6,7 +6,7 @@ import re
 from typing import Optional
 
 from .entities import focus_kinds
-from .tokenizer import STOP_CHARS, content_tokens, tokenize
+from .tokenizer import STOP_CHARS, content_tokens, tokenize, normalise
 from .units import MAX_QUOTE, Unit, UnitIndex
 from .sanitize import is_instruction_like
 
@@ -86,6 +86,29 @@ class DocFacts:
                 weight *= 0.5
             weights[term] = weight
         return weights
+
+    def requested_attribute(self, query: str) -> list[str]:
+        """Boolean constraints must occur in the cited fact, not just its topic.
+
+        Keep the final content term even when absent from the corpus: dropping
+        unknown attributes would turn a missing answer into a topical match.
+        """
+        match = re.search(r"(?:是否|能否|能不能|可不可以|需不需要|要不要|可以(?=.+吗))(.+)", normalise(query))
+        if not match:
+            return []
+        tail = re.sub(r"^(?:(?:需要|可以|必须|提供|提交|出示|使用|顾客|员工)|[用含有与和])+", "", match[1])
+        terms = [t for t in content_tokens(tail) if len(t) > 1 and not any(c in STOP_CHARS for c in t)]
+        if not terms:
+            return []
+        known = [t for t in terms if self.index.doc_freq.get(t)]
+        return list(dict.fromkeys((known or terms) + [terms[-1]]))
+
+    @staticmethod
+    def supports_attribute(terms: list[str], text: str) -> bool:
+        if not terms:
+            return True
+        text = normalise(text)
+        return terms[-1] in text and sum(t in text for t in terms) / len(terms) >= 0.6
 
     def focus_of(self, unit: Unit, kinds: list[str]) -> float:
         """这句话满足了几个焦点。
