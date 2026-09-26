@@ -56,3 +56,54 @@ make rebuild DATA_DIR=/path/to/data KB_DIR=/path/to/knowledge_base
 没有 Key 时服务照常启动，`/api/chat` 不会 500。
 
 交接说明见 `HANDOVER.md`。
+
+## G1-01：数据质量工作区
+
+前端位于仓库根目录 `frontend/`，需要 Node.js 20.19+ 或 22.12+。
+从根目录安装、检查并构建：
+
+```bash
+npm --prefix frontend ci
+npm --prefix frontend run typecheck
+npm --prefix frontend run build
+```
+
+先构建前端，再启动 FastAPI；它在启动时挂载 `frontend/dist/`，浏览器打开
+<http://127.0.0.1:8000/>。本关只显示全量清洗质量，不提供尚未实现的指标或聊天入口。
+
+在 `starter/` 目录执行以下命令，隔离本次产物并明确禁用真实模型：
+
+```bash
+LLM_API_KEY= LLM_BASE_URL= LLM_MODEL= VAR_DIR=var/g1-01 make rebuild
+LLM_API_KEY= LLM_BASE_URL= LLM_MODEL= VAR_DIR=var/g1-01 make run
+```
+
+更换原始数据后执行同一重建命令，**重启服务**后再刷新页面。
+`data/pos.db` 以 SQLite `mode=ro` 打开；清洗结果单独生成，成功写完后原子替换，
+禁止把源库设为目标库。重建命令仍执行 starter 原有索引流程，本关没有修复索引缓存或文档计数。
+
+开发模式：先在 8000 端口启动后端，再从根目录执行
+`npm --prefix frontend run dev`，打开 <http://127.0.0.1:5173/>。
+Vite 将 `/api` 代理到 8000；生产页面使用同源相对路径。
+
+验证（从根目录）：
+
+```bash
+LLM_API_KEY= LLM_BASE_URL= LLM_MODEL= starter/.venv/bin/python -m pytest starter/tests -q
+python3 docs/verification/g1-01/audit_sample.py
+# 浏览器验证要求上面的 8000 服务正在运行，且使用提供的原始样本。
+cd frontend
+npx playwright install chromium
+npm run test:browser
+# 可选：同时启动 Vite 后核对开发代理
+BROWSER_BASE_URL=http://127.0.0.1:5173 npm run test:browser -- --grep 'real API ledger at 1280px'
+```
+
+证据位于 `docs/verification/g1-01/`，调试记录见根目录 `DEBUG_LOG.md`。
+浏览器正常状态使用真实 API；加载、503 和空状态使用 Playwright 的网络响应控制，
+不代表原始数据为空。空数据库行为另有后端测试。
+`/api/data_quality.cleaning_report.removed` 只包含六类互斥剔除原因，
+新增 `removed_rows` 是这六项之和；`data_period` 从清洗表取最小/最大日期，空表为两个 `null`。
+
+KB-001 未定义非空且非数字金额的处置：这类记录若通过前五项检查，重建明确报错并保留旧产物，
+不填 0、不扩展剔除口径。零金额不属于销售或退款，但不被六条规则剔除。

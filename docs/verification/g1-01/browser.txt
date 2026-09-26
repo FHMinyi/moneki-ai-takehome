@@ -1,0 +1,14 @@
+npm notice run moneki-workspace@0.1.0 test:browser
+npm notice run playwright test
+
+Running 5 tests using 1 worker
+
+(node:33932) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/workspace.spec.ts:4:3 › real API ledger at 1280px (637ms)
+  ✓  2 tests/workspace.spec.ts:4:3 › real API ledger at 1440px (230ms)
+  ✓  3 tests/workspace.spec.ts:4:3 › real API ledger at 390px (658ms)
+  ✓  4 tests/workspace.spec.ts:39:1 › loading, failure and retry are visible (294ms)
+  ✓  5 tests/workspace.spec.ts:54:1 › empty ledger and rejected inconsistent response (607ms)
+
+  5 passed (2.7s)
