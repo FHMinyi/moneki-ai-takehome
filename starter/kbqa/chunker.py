@@ -7,7 +7,7 @@ import re
 from .loader import Document
 
 # Bump when parsing/layout semantics change; parameters also enter the cache key.
-CHUNKER_VERSION = "chunker-3"
+CHUNKER_VERSION = "chunker-4"
 CHUNK_SIZE = 300
 CHUNK_OVERLAP = 60
 _HEADING = re.compile(r"^(#{1,6})\s+(.+)")
@@ -77,6 +77,13 @@ def chunk_document(document: Document) -> list[Chunk]:
         return {'start': a, 'end': b, 'text': text[a:b]}
 
     def emit(a, b, table_header=None, header_span=None):
+        if chunks and not text[a:b].strip():
+            # Keep boundary whitespace covered without making it a ranked fact.
+            previous = chunks[-1]
+            previous.source_end = b
+            previous.source_text += text[a:b]
+            previous.text += text[a:b]
+            return
         context = [entry[2] for entry in headings]
         if header_span:
             context = context + [header_span]
@@ -100,9 +107,7 @@ def chunk_document(document: Document) -> list[Chunk]:
             level = len(match[1])
             headings = [entry for entry in headings if entry[0] < level]
             headings.append((level, match[2].strip(), span(offsets[i], offsets[i+1])))
-            emit(offsets[i], offsets[i+1])
-            i += 1
-        elif i + 1 < len(lines) and '|' in lines[i] and _SEPARATOR.fullmatch(lines[i+1].strip()):
+        if i + 1 < len(lines) and '|' in lines[i] and _SEPARATOR.fullmatch(lines[i+1].strip()):
             j = i + 2
             while j < len(lines) and '|' in lines[j] and lines[j].strip():
                 j += 1
