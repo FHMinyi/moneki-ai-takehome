@@ -1,0 +1,169 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R04_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R04_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R04_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 c49a550f620b\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R04_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R04_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55957"
+      ],
+      "pid": 89809,
+      "port": 55957,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "c49a550f620b",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "三文鱼那次断供供应商赔了多少钱",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-041",
+                "chunk_id": "KB-041#2",
+                "score": 22.8053,
+                "text": "| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n| Tasman Cold Chain Seafood | 冷链海产 | 三文鱼poke、吞拿鱼三明治 | 3 天 | 每周二、五各一次 | Daniel Whitcombe | 021-5555-0201 | 夜间发车、次日清晨到货；到货必须随车温度记录，中心温度高于 5℃ 拒收 |\n",
+                "retrieval_text": "供应商名录\n# 供应商名录\n| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n| Tasman Cold Chain Seafood | 冷链海产 | 三文鱼poke、吞拿鱼三明治 | 3 天 | 每周二、五各一次 | Daniel Whitcombe | 021-5555-0201 | 夜间发车、次日清晨到货；到货必须随车温度记录，中心温度高于 5℃ 拒收 |\n",
+                "source_start": 124,
+                "source_end": 359,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 8,
+                    "text": "# 供应商名录\n"
+                  },
+                  {
+                    "start": 124,
+                    "end": 215,
+                    "text": "| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-021",
+                "chunk_id": "KB-021#3",
+                "score": 22.3482,
+                "text": "5. 停售期间鸡肉poke 的备货量按平时的 1.5 倍准备，S02 按 2 倍准备；估计不够的，提前一天报供应链部补货。\n6. 顾客询问时统一口径：到货质检不合格，不合格的原料我们不会做给顾客，是主动下架。不展开谈技术细节，不评价供应商。\n\n质检不合格的具体情况与供应商的处理结果，详见供应商邮件 KB-022，由供应链部对接，门店不对外解释。\n恢复销售前一天，运营部会另发一条恢复通知，门店收到后再上架。",
+                "retrieval_text": "三文鱼poke 临时停售通知\n# 三文鱼poke 临时停售通知\n5. 停售期间鸡肉poke 的备货量按平时的 1.5 倍准备，S02 按 2 倍准备；估计不够的，提前一天报供应链部补货。\n6. 顾客询问时统一口径：到货质检不合格，不合格的原料我们不会做给顾客，是主动下架。不展开谈技术细节，不评价供应商。\n\n质检不合格的具体情况与供应商的处理结果，详见供应商邮件 KB-022，由供应链部对接，门店不对外解释。\n恢复销售前一天，运营部会另发一条恢复通知，门店收到后再上架。",
+                "source_start": 330,
+                "source_end": 534,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 17,
+                    "text": "# 三文鱼poke 临时停售通知\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-029",
+                "chunk_id": "KB-029#5",
+                "score": 18.3909,
+                "text": "陆颂平说明，三文鱼供应已经恢复，7 月下半月到货正常，没有再出现拒收。供应商对本次事件的处理和后续保障措施已经书面回复过，相关邮件在供应链部归档，门店有疑问走供应链部，不要自行联系供应商。\n从 8 月起，收货环节做两点加强：一是到货测温必须两人在场，测温记录当场拍照上传，不接受事后补记；二是每周五由店长抽一次冷柜温度记录做自查，交品控部。品控部另外安排 8 月内到每家店做一次收货流程的现场辅导。\n关于备货，林知夏提出三文鱼的周备货量一直按旺季口径报，停售那一周暴露出损耗控制得不够细。陆颂平回应，从 8 月第二周起改成两天一报，先在 S02、S05 试一个月。\n\n",
+                "retrieval_text": "2026 年 8 月运营例会纪要\n# 2026 年 8 月运营例会纪要\n## 议题二：三文鱼供应恢复后的备货与质检\n陆颂平说明，三文鱼供应已经恢复，7 月下半月到货正常，没有再出现拒收。供应商对本次事件的处理和后续保障措施已经书面回复过，相关邮件在供应链部归档，门店有疑问走供应链部，不要自行联系供应商。\n从 8 月起，收货环节做两点加强：一是到货测温必须两人在场，测温记录当场拍照上传，不接受事后补记；二是每周五由店长抽一次冷柜温度记录做自查，交品控部。品控部另外安排 8 月内到每家店做一次收货流程的现场辅导。\n关于备货，林知夏提出三文鱼的周备货量一直按旺季口径报，停售那一周暴露出损耗控制得不够细。陆颂平回应，从 8 月第二周起改成两天一报，先在 S02、S05 试一个月。\n\n",
+                "source_start": 551,
+                "source_end": 835,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 19,
+                    "text": "# 2026 年 8 月运营例会纪要\n"
+                  },
+                  {
+                    "start": 528,
+                    "end": 550,
+                    "text": "## 议题二：三文鱼供应恢复后的备货与质检\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-022",
+                "chunk_id": "KB-022#9",
+                "score": 14.0913,
+                "text": "4. SUPPLY RESUMPTION\n\n",
+                "retrieval_text": "[Tasman Cold Chain Seafood] Salmon delivery of 2026-07-04 - reefer failure, all 3 pallets rejected\n4. SUPPLY RESUMPTION\n\n",
+                "source_start": 1785,
+                "source_end": 1807,
+                "context_spans": []
+              },
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#3",
+                "score": 13.3713,
+                "text": "| P04 | 三文鱼poke | — | ✓ | ✓ | — | — | — | ✓ | — | — |\n| P05 | 鸡肉poke | — | ✓ | — | — | — | — | ✓ | — | — |\n| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |\n| P07 | 小笼包 | ✓ | ✓ | — | — | — | — | — | — | — |\n| P08 | 灌汤包 | ✓ | ✓ | — | ✓ | — | — | — | — | — |\n",
+                "retrieval_text": "过敏原对照表\n# 过敏原对照表\n| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| P04 | 三文鱼poke | — | ✓ | ✓ | — | — | — | ✓ | — | — |\n| P05 | 鸡肉poke | — | ✓ | — | — | — | — | ✓ | — | — |\n| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |\n| P07 | 小笼包 | ✓ | ✓ | — | — | — | — | — | — | — |\n| P08 | 灌汤包 | ✓ | ✓ | — | ✓ | — | — | — | — | — |\n",
+                "source_start": 386,
+                "source_end": 646,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 9,
+                    "text": "# 过敏原对照表\n"
+                  },
+                  {
+                    "start": 127,
+                    "end": 233,
+                    "text": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

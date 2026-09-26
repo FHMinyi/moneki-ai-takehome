@@ -1,0 +1,174 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R01_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R01_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R01_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 fccfebf247ec\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R01_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R01_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55934"
+      ],
+      "pid": 89785,
+      "port": 55934,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "fccfebf247ec",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "外卖订单多久内可以申请退款",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-012",
+                "chunk_id": "KB-012#2",
+                "score": 42.0986,
+                "text": "## 一、受理条件\n\n1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。\n2. 没有小票、也无法在小程序里查到对应订单的，不予退款。\n3. 已经食用超过三分之一的商品不予退款，由店员现场判断。\n\n",
+                "retrieval_text": "退款政策 v1\n# 退款政策 v1\n## 一、受理条件\n\n1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。\n2. 没有小票、也无法在小程序里查到对应订单的，不予退款。\n3. 已经食用超过三分之一的商品不予退款，由店员现场判断。\n\n",
+                "source_start": 63,
+                "source_end": 174,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v1\n"
+                  },
+                  {
+                    "start": 63,
+                    "end": 73,
+                    "text": "## 一、受理条件\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#5",
+                "score": 20.4541,
+                "text": "## 四、余额退回\n\n1. 未消费的储值本金余额，自最后一次充值之日起 30 天内可无理由申请退回，原路退到原支付渠道。\n2. 充值时赠送的金额不退；本金退回后，本次充值产生的积分相应扣减。\n3. 申请在小程序提交，会员客服在 3 个工作日内处理，门店不受理现场退款。\n4. 超过 30 天的余额不再受理退回，可继续消费，不设有效期。\n\n",
+                "retrieval_text": "会员储值政策 v2\n# 会员储值政策 v2\n## 四、余额退回\n\n1. 未消费的储值本金余额，自最后一次充值之日起 30 天内可无理由申请退回，原路退到原支付渠道。\n2. 充值时赠送的金额不退；本金退回后，本次充值产生的积分相应扣减。\n3. 申请在小程序提交，会员客服在 3 个工作日内处理，门店不受理现场退款。\n4. 超过 30 天的余额不再受理退回，可继续消费，不设有效期。\n\n",
+                "source_start": 439,
+                "source_end": 608,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 会员储值政策 v2\n"
+                  },
+                  {
+                    "start": 439,
+                    "end": 449,
+                    "text": "## 四、余额退回\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#2",
+                "score": 18.5216,
+                "text": "## 一、受理窗口\n\n1. 堂食订单须当场提出，顾客离店后不再受理。\n2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。\n3. 自提订单比照堂食处理，取餐离店后不再受理。\n4. 无论哪种渠道，都要能在 POS 或小程序里查到对应订单。\n\n",
+                "retrieval_text": "退款政策 v2\n# 退款政策 v2\n## 一、受理窗口\n\n1. 堂食订单须当场提出，顾客离店后不再受理。\n2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。\n3. 自提订单比照堂食处理，取餐离店后不再受理。\n4. 无论哪种渠道，都要能在 POS 或小程序里查到对应订单。\n\n",
+                "source_start": 109,
+                "source_end": 237,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v2\n"
+                  },
+                  {
+                    "start": 109,
+                    "end": 119,
+                    "text": "## 一、受理窗口\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-061",
+                "chunk_id": "KB-061#3",
+                "score": 11.4564,
+                "text": "可以预订座位吗？\n预订\n小桌不接受预订，到店取号。8 人以上的聚餐可以提前一天电话预订，由门店安排拼桌，门店电话见“门店”页面。\n东西落在店里了怎么办？\n失物\n请尽快联系门店。拾到的物品由门店登记保管 7 天，贵重物品会交商场服务台或就近派出所，领取时需要说明物品特征。\n可以用会员储值余额在外卖平台付款吗？\n会员\n不可以。第三方外卖平台的订单只能用平台自己的支付方式，会员储值余额可以在门店堂食、自提和小程序自营外卖使用。\n",
+                "retrieval_text": "常见问题 FAQ - 合味餐饮\n可以预订座位吗？\n预订\n小桌不接受预订，到店取号。8 人以上的聚餐可以提前一天电话预订，由门店安排拼桌，门店电话见“门店”页面。\n东西落在店里了怎么办？\n失物\n请尽快联系门店。拾到的物品由门店登记保管 7 天，贵重物品会交商场服务台或就近派出所，领取时需要说明物品特征。\n可以用会员储值余额在外卖平台付款吗？\n会员\n不可以。第三方外卖平台的订单只能用平台自己的支付方式，会员储值余额可以在门店堂食、自提和小程序自营外卖使用。\n",
+                "source_start": 588,
+                "source_end": 801,
+                "context_spans": []
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#18",
+                "score": 11.258,
+                "text": "1. 带 `¥` 的金额是可以恢复的脏值，去掉符号之后照常参与统计，不要把整行丢掉。\n2. 门店编号大小写不一致、前后带空格，都属于可恢复的写法，要先规范化再判断是不是脏外键，顺序反了会误删真实订单。\n3. 同一个订单号出现多行时，先比对全部字段：字段完全一样的是重复行，只留一条；商品不一样的是一张订单里点的多个菜，必须全部保留，订单数仍然只算 1 单。\n4. 退款行的日期是操作退款那一天，不是原订单那一天。算某一天、某一家门店的数时，按退款行自己的日期归属，不要挪回原单。\n",
+                "retrieval_text": "指标口径手册 v3\n# 指标口径手册 v3\n## 7. 几个最容易搞错的地方\n1. 带 `¥` 的金额是可以恢复的脏值，去掉符号之后照常参与统计，不要把整行丢掉。\n2. 门店编号大小写不一致、前后带空格，都属于可恢复的写法，要先规范化再判断是不是脏外键，顺序反了会误删真实订单。\n3. 同一个订单号出现多行时，先比对全部字段：字段完全一样的是重复行，只留一条；商品不一样的是一张订单里点的多个菜，必须全部保留，订单数仍然只算 1 单。\n4. 退款行的日期是操作退款那一天，不是原订单那一天。算某一天、某一家门店的数时，按退款行自己的日期归属，不要挪回原单。\n",
+                "source_start": 2216,
+                "source_end": 2456,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 指标口径手册 v3\n"
+                  },
+                  {
+                    "start": 2198,
+                    "end": 2215,
+                    "text": "## 7. 几个最容易搞错的地方\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

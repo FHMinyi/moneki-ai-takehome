@@ -7,11 +7,16 @@ from datetime import date
 from pathlib import Path
 from typing import Optional
 
-from .entities import wants_historical
+from .entities import Catalog, focus_kinds, wants_historical
+from .docfacts import carries
+from .timeparse import parse_time
 from .index import BM25Index, load_index
-from .tokenizer import content_tokens, tokenize
+from .tokenizer import content_tokens, normalise, tokenize
 
-ALIAS_WEIGHT = 0.6
+# A known alias denotes the same concept: score it like a literal query term.
+ALIAS_WEIGHT = 1.0
+# Prefer a source passage carrying the requested fact shape over title-only matches.
+SOURCE_FOCUS_BOOST = 1.5
 #: 单字（“月”“日”“店”）在二元组的世界里基本是噪声，降权但不丢弃。
 SINGLE_CHAR_WEIGHT = 0.3
 YEAR_PENALTY = 0.25
@@ -45,6 +50,7 @@ class Hit:
     source_start: int = 0
     source_end: int = 0
     context_spans: list[dict] = field(default_factory=list)
+    exclusion_reason: Optional[str] = None
     padded: bool = False
     """凑数补上的：契约 §4 要求恰好返回 top_k 条，但问答链路不会用它作答。"""
 
@@ -58,6 +64,9 @@ class Hit:
             "source_start": self.source_start,
             "source_end": self.source_end,
             "context_spans": self.context_spans,
+            "padded": self.padded,
+            "evidence_eligible": not self.padded and self.score > 0 and not self.exclusion_reason,
+            "exclusion_reason": self.exclusion_reason,
         }
 
 
@@ -69,15 +78,20 @@ class SearchResult:
     expansions: list[str]
     filtered: list[dict]
     coverage: float = 0.0
+    candidates: list[dict] = field(default_factory=list)
+    scope: dict = field(default_factory=dict)
 
     @property
     def ranked(self) -> list[Hit]:
         """真正命中的片段（不含为了凑满 top_k 补上的那些）。"""
-        return [hit for hit in self.hits if not hit.padded]
+        return [hit for hit in self.hits if not hit.padded and hit.score > 0 and not hit.exclusion_reason]
 
     def as_trace(self) -> dict:
         return {
             "query": self.query,
+            "terms": self.terms,
+            "scope": self.scope,
+            "candidates": self.candidates,
             "expansions": self.expansions,
             "coverage": round(self.coverage, 3),
             "hits": [
@@ -86,6 +100,7 @@ class SearchResult:
                     "chunk_id": hit.chunk_id,
                     "score": round(hit.score, 4),
                     "padded": hit.padded,
+                    "exclusion_reason": hit.exclusion_reason,
                     "dropped_instructions": hit.dropped_instructions,
                 }
                 for hit in self.hits
@@ -95,27 +110,30 @@ class SearchResult:
 
 
 class Retriever:
-    def __init__(self, index: BM25Index, today: date) -> None:
+    def __init__(self, index: BM25Index, today: date, catalog: Optional[Catalog] = None) -> None:
         self.index = index
         self.today = today
+        codes = set(index.aliases.store_code_of.values())
+        codes.update(code for meta in index.docs_meta.values() for code in meta.get("stores", []))
+        self.catalog = catalog or Catalog(
+            stores=[{"store_id": code, "store_name": index.aliases.by_store_code(code) or code}
+                    for code in sorted(codes)], aliases=index.aliases)
+
         self._effective_to: dict[str, Optional[str]] = {}
-        self._in_chain: set[str] = set()
         for doc_id, meta in index.docs_meta.items():
             successor = meta.get("superseded_by")
             if successor and successor in index.docs_meta:
                 self._effective_to[doc_id] = index.docs_meta[successor].get("effective_from")
-                self._in_chain.add(doc_id)
-                self._in_chain.add(successor)
 
     # -- 元数据过滤 -------------------------------------------------------------
 
     def _eligible(
         self, doc_id: str, as_of: date, store_id: Optional[str], historical: bool = False
     ) -> Optional[str]:
-        """返回排除原因；返回 None 表示这篇文档可以进入打分。
+        """版本区间为 [effective_from, successor.effective_from)。
 
-        问的就是“以前那一版”时（`historical`），不再按生效时间过滤：
-        否则已废止的文档永远取不回来，而它恰恰是答案。
+        只有无明确日期的“旧版”探索允许跨版本；归档报告本身不等于失效。
+        stores_explicit 区分声明范围与正文举例。
         """
         meta = self.index.docs_meta.get(doc_id, {})
         if store_id and meta.get("stores_explicit") and store_id not in (meta.get("stores") or []):
@@ -123,12 +141,13 @@ class Retriever:
         if historical:
             return None
         ends = self._effective_to.get(doc_id)
-        # 只有标了“已废止”的才按取代关系挡掉，别的版本照常参与打分。
-        if meta.get("status") == "已废止" and ends and as_of.isoformat() >= ends:
+        if ends and as_of.isoformat() >= ends:
             return "该版本自 %s 起已被 %s 取代" % (ends, meta.get("superseded_by"))
         starts = meta.get("effective_from")
-        if starts and starts > as_of.isoformat() and doc_id in self._in_chain:
+        if starts and starts > as_of.isoformat():
             return "该版本自 %s 起才生效，晚于问题所指的 %s" % (starts, as_of.isoformat())
+        if meta.get("status") == "已废止" and not ends and as_of == self.today:
+            return "文档已废止，且缺少可判定历史区间的取代日期"
         return None
 
     def _multiplier(
@@ -202,7 +221,7 @@ class Retriever:
         import re
 
         found = []
-        for code in re.findall(r"\bs\d{2}\b", query.lower()):
+        for code in re.findall(r"(?<![a-z0-9])s\d{2}(?![a-z0-9])", normalise(query)):
             canonical = self.index.aliases.by_store_code(code)
             if canonical:
                 found.append(canonical)
@@ -223,6 +242,7 @@ class Retriever:
             source_end=chunk.source_end,
             context_spans=chunk.context_spans,
             padded=padded,
+            exclusion_reason=next((f["reason"] for f in filtered if f["doc_id"] == chunk.doc_id), None),
         )
 
     def search(
@@ -236,10 +256,20 @@ class Retriever:
         numeric: bool = False,
         historical: Optional[bool] = None,
     ) -> SearchResult:
-        as_of = as_of or self.today
+        query = normalise(query)
+        time = parse_time(query, self.today)
+        explicit_as_of = as_of is not None and as_of != self.today
+        as_of = as_of or time.as_of or self.today
+        year = year or time.year
+        if store_id is None:
+            known, unknown = self.catalog.find_store(query)
+            store_id = known or unknown
+        if store_id:
+            store_id = normalise(store_id).strip().upper()
         if historical is None:
-            # `/api/retrieve` 没有规划器，问句里的“旧口径/以前”只能在这里认。
             historical = wants_historical(query)
+        # A date always constrains versions, including questions containing 当时/以前.
+        historical = bool(historical and not time.windows and not explicit_as_of)
         filtered: list[dict] = []
         excluded: set[str] = set()
         for doc_id in self.index.docs_meta:
@@ -247,7 +277,8 @@ class Retriever:
             if reason:
                 excluded.add(doc_id)
                 filtered.append({"doc_id": doc_id, "reason": reason})
-        allowed = set(range(len(self.index.chunks)))
+        allowed = {i for i, chunk in enumerate(self.index.chunks) if chunk.doc_id not in excluded}
+        top_k = max(1, min(top_k, len(self.index.chunks) or 1))
 
         scores = self.index.score_terms(self._weights(query), allowed)
         concepts, expansions = self._concept_scores(query, allowed)
@@ -257,6 +288,12 @@ class Retriever:
         for position, score in scores.items():
             doc_id = self.index.chunks[position].doc_id
             best_of_doc[doc_id] = max(best_of_doc.get(doc_id, 0.0), score)
+        kinds = focus_kinds(query)
+        focus_boost = {
+            position: SOURCE_FOCUS_BOOST if any(carries(kind, self.index.chunks[position].source_text)
+                                              for kind in kinds) else 1.0
+            for position in scores
+        }
         adjusted: list[tuple[float, int]] = []
         for position, score in scores.items():
             doc_id = self.index.chunks[position].doc_id
@@ -265,7 +302,8 @@ class Retriever:
                 (
                     total
                     * self._multiplier(doc_id, as_of, store_id, year, window, numeric)
-                    * self._history_factor(doc_id, historical),
+                    * self._history_factor(doc_id, historical)
+                    * focus_boost[position],
                     position,
                 ),
             )
@@ -310,8 +348,16 @@ class Retriever:
             # 契约 §4 还要求“按相关性从高到低”：补齐之后整体再排一次。
             # 每篇文档只占一格是挑片段的规则，不是排序的规则。
             hits.sort(key=lambda hit: -hit.score)
-        # 取够 top-k 之后，再把过滤掉的那些版本去掉。
-        hits = [hit for hit in hits if hit.doc_id not in excluded]
+        # Only after eligible candidates are exhausted may excluded chunks fill the
+        # API's count contract. Their applicability-adjusted relevance is zero;
+        # ranked and the answer tool never expose these as factual evidence.
+        if len(hits) < top_k:
+            for position, chunk in enumerate(self.index.chunks):
+                if chunk.doc_id in excluded:
+                    hits.append(self._hit(position, 0.0, filtered, padded=True))
+                    if len(hits) >= top_k:
+                        break
+        hits.sort(key=lambda hit: -hit.score)
 
         return SearchResult(
             hits=hits,
@@ -320,6 +366,16 @@ class Retriever:
             expansions=expansions,
             filtered=filtered,
             coverage=self._coverage(query, adjusted, top_k),
+            scope={"as_of": as_of.isoformat(), "store_id": store_id,
+                   "year": year, "historical": historical, "window": window},
+            candidates=[{"chunk_id": self.index.chunks[position].chunk_id,
+                         "doc_id": self.index.chunks[position].doc_id,
+                         "score": round(score, 4),
+                         "lexical_score": round(scores[position], 4),
+                         "source_focus_boost": focus_boost[position],
+                         "matched_terms": sorted(set(content_tokens(query)) &
+                                                 set(self.index._tokens_of(self.index.chunks[position])))}
+                        for score, position in adjusted],
         )
 
     def _coverage(self, query: str, adjusted: list[tuple[float, int]], top_k: int) -> float:

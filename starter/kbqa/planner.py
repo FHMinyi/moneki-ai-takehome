@@ -80,6 +80,13 @@ class Planner:
     def plan(self, question: str, history: Optional[list[dict]] = None) -> Plan:
         standalone, inherited = self.followups.resolve(question, history or [])
         plan = Plan(question=question, standalone=standalone, search_query=standalone)
+        # Inspect the complete user request before retrieval-based routing. A
+        # business preamble must not hide a later write or system-probing request.
+        if E.is_destructive(question) or E.is_prompt_probe(question):
+            plan.intent, plan.kind = "refusal", "prohibited_request"
+            plan.refusal = "无法执行修改数据或披露系统内部信息的请求。可以查询经营数据或业务规定。"
+            plan.notes.append("完整用户问题命中现有写操作或系统探测规则，在检索前拒绝。")
+            return plan
         history = history or []
         if not history and E.looks_like_follow_up(question) and len(question.strip()) <= 12:
             plan.intent, plan.kind = "clarify", "need_context"

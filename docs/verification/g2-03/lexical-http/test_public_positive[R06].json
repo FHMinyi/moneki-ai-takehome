@@ -1,0 +1,185 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_public_positive_R06_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_public_positive_R06_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_public_positive_R06_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 6c5aa3392540\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_public_positive_R06_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_public_positive_R06_0/starter/.cache/index.json（0.2 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55747"
+      ],
+      "pid": 89543,
+      "port": 55747,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "6c5aa3392540",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "净营业额怎么算，退款算不算进去",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#9",
+                "score": 20.9867,
+                "text": "- **退款行**：通过上述剔除规则后 `amount < 0` 的行。\n- **销售行**：通过上述剔除规则后 `amount > 0` 的行。\n- **净营业额** = 销售行金额之和 + 退款行金额之和。退款行的金额本身是负数，所以实际效果是相减。\n- **退款金额** = 退款行金额之和的绝对值。\n- **有效订单数** = 销售行中不同 `order_id` 的个数。多行订单算 1 单；退款行不单独计为订单。\n- **客单价** = 净营业额 ÷ 有效订单数，四舍五入保留 2 位小数。\n- **销量** = 销售行 `qty` 之和减去退款行 `qty` 之和。\n",
+                "retrieval_text": "指标口径手册 v3\n# 指标口径手册 v3\n## 4. 指标定义\n- **退款行**：通过上述剔除规则后 `amount < 0` 的行。\n- **销售行**：通过上述剔除规则后 `amount > 0` 的行。\n- **净营业额** = 销售行金额之和 + 退款行金额之和。退款行的金额本身是负数，所以实际效果是相减。\n- **退款金额** = 退款行金额之和的绝对值。\n- **有效订单数** = 销售行中不同 `order_id` 的个数。多行订单算 1 单；退款行不单独计为订单。\n- **客单价** = 净营业额 ÷ 有效订单数，四舍五入保留 2 位小数。\n- **销量** = 销售行 `qty` 之和减去退款行 `qty` 之和。\n",
+                "source_start": 1136,
+                "source_end": 1426,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 指标口径手册 v3\n"
+                  },
+                  {
+                    "start": 1124,
+                    "end": 1135,
+                    "text": "## 4. 指标定义\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-002",
+                "chunk_id": "KB-002#3",
+                "score": 11.1398,
+                "text": "## 2. 剔除\n\n按下列顺序执行：\n\n1. 日期无法解析的行。\n2. `qty ≤ 0` 的行。\n3. 规范化后 `store_id` 不在 `stores` 表里的行。\n4. 规范化后 `product_id` 不在 `products` 表里的行。\n5. 规范化后所有字段完全相同的重复行，只保留 1 条。\n6. `amount` 小于 0 的退款行。退款不计入营业额，在清洗阶段直接剔除；退款金额由财务在退款台账里单独统计，不进经营报表。\n\n",
+                "retrieval_text": "指标口径手册 v2\n# 指标口径手册 v2\n## 2. 剔除\n\n按下列顺序执行：\n\n1. 日期无法解析的行。\n2. `qty ≤ 0` 的行。\n3. 规范化后 `store_id` 不在 `stores` 表里的行。\n4. 规范化后 `product_id` 不在 `products` 表里的行。\n5. 规范化后所有字段完全相同的重复行，只保留 1 条。\n6. `amount` 小于 0 的退款行。退款不计入营业额，在清洗阶段直接剔除；退款金额由财务在退款台账里单独统计，不进经营报表。\n\n",
+                "source_start": 247,
+                "source_end": 472,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 指标口径手册 v2\n"
+                  },
+                  {
+                    "start": 247,
+                    "end": 256,
+                    "text": "## 2. 剔除\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-051",
+                "chunk_id": "KB-051#4",
+                "score": 11.1293,
+                "text": "## 问题\n\n1. 停业期间的鲜货是提前停的，没有浪费，但半成品倒掉了一些，下次可以再早一天开始减量。\n2. 施工那几天后厨断断续续没法用，员工午饭是在外面吃的，这部分怎么算请人事给个说法。\n3. 蒸箱有一个门封条施工时被压到，已经换了新的。\n\n",
+                "retrieval_text": "S03 店长周报 2026-06-08 至 2026-06-14\n# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n## 问题\n\n1. 停业期间的鲜货是提前停的，没有浪费，但半成品倒掉了一些，下次可以再早一天开始减量。\n2. 施工那几天后厨断断续续没法用，员工午饭是在外面吃的，这部分怎么算请人事给个说法。\n3. 蒸箱有一个门封条施工时被压到，已经换了新的。\n\n",
+                "source_start": 443,
+                "source_end": 566,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 50,
+                    "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n"
+                  },
+                  {
+                    "start": 443,
+                    "end": 449,
+                    "text": "## 问题\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-012",
+                "chunk_id": "KB-012#4",
+                "score": 6.6853,
+                "text": "## 三、事后复核\n\n1. 店长每天闭店时核对当天的退款登记本与 POS 退款记录，两边条数要对得上。\n2. 单店当月退款笔数超过 20 笔的，运营部会找店长了解原因。\n3. 退款登记本按月装订，保存一年。\n\n",
+                "retrieval_text": "退款政策 v1\n# 退款政策 v1\n## 三、事后复核\n\n1. 店长每天闭店时核对当天的退款登记本与 POS 退款记录，两边条数要对得上。\n2. 单店当月退款笔数超过 20 笔的，运营部会找店长了解原因。\n3. 退款登记本按月装订，保存一年。\n\n",
+                "source_start": 309,
+                "source_end": 414,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v1\n"
+                  },
+                  {
+                    "start": 309,
+                    "end": 319,
+                    "text": "## 三、事后复核\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#4",
+                "score": 6.6217,
+                "text": "## 三、系统记录\n\n1. 退款在 POS 中以负金额行记录，并沿用原订单号，不新开订单号。\n2. 退款行的商品、数量与原订单一致，`amount` 为原金额的相反数。\n3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。\n4. 不允许用“新开一笔负数订单”“现金找零”等方式绕开系统退款。\n\n",
+                "retrieval_text": "退款政策 v2\n# 退款政策 v2\n## 三、系统记录\n\n1. 退款在 POS 中以负金额行记录，并沿用原订单号，不新开订单号。\n2. 退款行的商品、数量与原订单一致，`amount` 为原金额的相反数。\n3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。\n4. 不允许用“新开一笔负数订单”“现金找零”等方式绕开系统退款。\n\n",
+                "source_start": 363,
+                "source_end": 540,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v2\n"
+                  },
+                  {
+                    "start": 363,
+                    "end": 373,
+                    "text": "## 三、系统记录\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

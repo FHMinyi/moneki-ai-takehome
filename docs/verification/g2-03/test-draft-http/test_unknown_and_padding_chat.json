@@ -1,0 +1,122 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_unknown_and_padding_chat0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_unknown_and_padding_chat0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_unknown_and_padding_chat0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：1 篇文档，1 个片段，缓存键 5bb6e3ce8fc7\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_unknown_and_padding_chat0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_unknown_and_padding_chat0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55271"
+      ],
+      "pid": 88839,
+      "port": 55271,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 1,
+            "kb_chunks": 1,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "5bb6e3ce8fc7",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "S02 cobaltsecret规章规定",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#1",
+                "score": 0.0,
+                "text": "cobaltsecret 规章规定领取17枚硬币。",
+                "retrieval_text": "cobaltsecret 规章规定领取17枚硬币。\ncobaltsecret 规章规定领取17枚硬币。",
+                "source_start": 0,
+                "source_end": 25,
+                "context_spans": []
+              }
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "session_id": "none",
+            "question": "S02 cobaltsecret规章规定"
+          },
+          "response": {
+            "answer": "知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "zzzxylophoneqqq",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#1",
+                "score": 0.0,
+                "text": "cobaltsecret 规章规定领取17枚硬币。",
+                "retrieval_text": "cobaltsecret 规章规定领取17枚硬币。\ncobaltsecret 规章规定领取17枚硬币。",
+                "source_start": 0,
+                "source_end": 25,
+                "context_spans": []
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

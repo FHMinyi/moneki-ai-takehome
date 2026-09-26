@@ -1,0 +1,185 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R08_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R08_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R08_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 f4d653771953\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R08_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R08_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "54985"
+      ],
+      "pid": 88526,
+      "port": 54985,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "f4d653771953",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "现在单笔充值 500 送多少",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-010",
+                "chunk_id": "KB-010#3",
+                "score": 7.5825,
+                "text": "## 二、储值与赠送\n\n1. 单笔充值满 500 元，赠送 50 元。赠送金额即时到账，与本金放在同一个余额里，不单独计息、不单独统计。\n2. 单笔 500 元以下的充值不赠送。\n3. 赠送金额只能用于消费，不可提现、不可开票。\n4. 充值在小程序或门店收银台均可办理，门店办理时由店员核对会员手机号后四位。\n\n",
+                "retrieval_text": "会员储值政策 v1\n# 会员储值政策 v1\n## 二、储值与赠送\n\n1. 单笔充值满 500 元，赠送 50 元。赠送金额即时到账，与本金放在同一个余额里，不单独计息、不单独统计。\n2. 单笔 500 元以下的充值不赠送。\n3. 赠送金额只能用于消费，不可提现、不可开票。\n4. 充值在小程序或门店收银台均可办理，门店办理时由店员核对会员手机号后四位。\n\n",
+                "source_start": 146,
+                "source_end": 302,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 会员储值政策 v1\n"
+                  },
+                  {
+                    "start": 146,
+                    "end": 157,
+                    "text": "## 二、储值与赠送\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-010",
+                "chunk_id": "KB-010#4",
+                "score": 5.6036,
+                "text": "## 三、积分\n\n1. 每消费 1 元积 1 分，不足 1 元的部分不积分。\n2. 积分在小程序“我的积分”里查看，满 500 分可兑换指定饮料一杯。\n3. 积分有效期至次年 12 月 31 日，过期清零，系统在到期前 30 天推送提醒。\n\n",
+                "retrieval_text": "会员储值政策 v1\n# 会员储值政策 v1\n## 三、积分\n\n1. 每消费 1 元积 1 分，不足 1 元的部分不积分。\n2. 积分在小程序“我的积分”里查看，满 500 分可兑换指定饮料一杯。\n3. 积分有效期至次年 12 月 31 日，过期清零，系统在到期前 30 天推送提醒。\n\n",
+                "source_start": 302,
+                "source_end": 423,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 会员储值政策 v1\n"
+                  },
+                  {
+                    "start": 302,
+                    "end": 310,
+                    "text": "## 三、积分\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#3",
+                "score": 5.1724,
+                "text": "## 二、储值与赠送\n\n1. 单笔充值满 500 元，赠送 60 元。\n2. 单笔充值满 1000 元，赠送 150 元。\n3. 赠送档位不叠加，按单笔充值金额就高不就低；500 元以下的充值不赠送。\n4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。\n\n",
+                "retrieval_text": "会员储值政策 v2\n# 会员储值政策 v2\n## 二、储值与赠送\n\n1. 单笔充值满 500 元，赠送 60 元。\n2. 单笔充值满 1000 元，赠送 150 元。\n3. 赠送档位不叠加，按单笔充值金额就高不就低；500 元以下的充值不赠送。\n4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。\n\n",
+                "source_start": 146,
+                "source_end": 290,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 会员储值政策 v2\n"
+                  },
+                  {
+                    "start": 146,
+                    "end": 157,
+                    "text": "## 二、储值与赠送\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#4",
+                "score": 4.8601,
+                "text": "## 三、积分\n\n1. 每消费 1 元积 2 分，不足 1 元的部分不积分。\n2. 积分在小程序“我的积分”里查看，满 500 分可兑换指定饮料一杯。\n3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。\n4. 积分有效期至次年 12 月 31 日，过期清零。\n\n",
+                "retrieval_text": "会员储值政策 v2\n# 会员储值政策 v2\n## 三、积分\n\n1. 每消费 1 元积 2 分，不足 1 元的部分不积分。\n2. 积分在小程序“我的积分”里查看，满 500 分可兑换指定饮料一杯。\n3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。\n4. 积分有效期至次年 12 月 31 日，过期清零。\n\n",
+                "source_start": 290,
+                "source_end": 439,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 会员储值政策 v2\n"
+                  },
+                  {
+                    "start": 290,
+                    "end": 298,
+                    "text": "## 三、积分\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-027",
+                "chunk_id": "KB-027#6",
+                "score": 4.4601,
+                "text": "## 三、改进\n\n1. 门店常备零钱由 500 元提高到 1,500 元，由店长每周一核对。\n2. 增加一台 4G 移动收款终端作为备份，由 IT 部在 8 月内配置到位，每月月初测试一次。\n3. 商场再有网络升级，要求物业提前 3 个工作日书面通知门店，运营部已与物业沟通并写进沟通纪要。\n4. 只收现金的告知模板由市场部统一做好存档，门店随时可打印。",
+                "retrieval_text": "S05 Super Tetsudo POS 终端故障报告\n# S05 Super Tetsudo POS 终端故障报告\n## 三、改进\n\n1. 门店常备零钱由 500 元提高到 1,500 元，由店长每周一核对。\n2. 增加一台 4G 移动收款终端作为备份，由 IT 部在 8 月内配置到位，每月月初测试一次。\n3. 商场再有网络升级，要求物业提前 3 个工作日书面通知门店，运营部已与物业沟通并写进沟通纪要。\n4. 只收现金的告知模板由市场部统一做好存档，门店随时可打印。",
+                "source_start": 622,
+                "source_end": 799,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 31,
+                    "text": "# S05 Super Tetsudo POS 终端故障报告\n"
+                  },
+                  {
+                    "start": 622,
+                    "end": 630,
+                    "text": "## 三、改进\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

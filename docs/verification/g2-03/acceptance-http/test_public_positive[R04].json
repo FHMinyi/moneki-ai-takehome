@@ -1,0 +1,920 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-102/test_public_positive_R04_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-102/test_public_positive_R04_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-102/test_public_positive_R04_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 4ac35e14b600\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-102/test_public_positive_R04_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-102/test_public_positive_R04_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "60071"
+      ],
+      "pid": 98089,
+      "port": 60071,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "4ac35e14b600",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "三文鱼那次断供供应商赔了多少钱",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-021",
+                "chunk_id": "KB-021#1",
+                "score": 26.3857,
+                "text": "# 三文鱼poke 临时停售通知\n\n发布部门：总部供应链部 / 运营部\n发布日期：2026-07-05\n\n本批次三文鱼到货质检不合格，原料已全部拒收，短期内无法补货。现决定：\n\n",
+                "retrieval_text": "三文鱼poke 临时停售通知\n# 三文鱼poke 临时停售通知\n\n发布部门：总部供应链部 / 运营部\n发布日期：2026-07-05\n\n本批次三文鱼到货质检不合格，原料已全部拒收，短期内无法补货。现决定：\n\n",
+                "source_start": 0,
+                "source_end": 89,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 17,
+                    "text": "# 三文鱼poke 临时停售通知\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-041",
+                "chunk_id": "KB-041#2",
+                "score": 25.7744,
+                "text": "| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n| Tasman Cold Chain Seafood | 冷链海产 | 三文鱼poke、吞拿鱼三明治 | 3 天 | 每周二、五各一次 | Daniel Whitcombe | 021-5555-0201 | 夜间发车、次日清晨到货；到货必须随车温度记录，中心温度高于 5℃ 拒收 |\n",
+                "retrieval_text": "供应商名录\n# 供应商名录\n| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n| Tasman Cold Chain Seafood | 冷链海产 | 三文鱼poke、吞拿鱼三明治 | 3 天 | 每周二、五各一次 | Daniel Whitcombe | 021-5555-0201 | 夜间发车、次日清晨到货；到货必须随车温度记录，中心温度高于 5℃ 拒收 |\n",
+                "source_start": 124,
+                "source_end": 359,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 8,
+                    "text": "# 供应商名录\n"
+                  },
+                  {
+                    "start": 124,
+                    "end": 215,
+                    "text": "| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-022",
+                "chunk_id": "KB-022#8",
+                "score": 21.9974,
+                "text": "We will issue a credit note of CNY 8,600 against your July account. This\ncovers the full value of the rejected consignment. There is nothing for you to\npay and nothing for you to claim separately. The credit note will be raised on\n6 July and should appear on your statement the same week.\n\n",
+                "retrieval_text": "[Tasman Cold Chain Seafood] Salmon delivery of 2026-07-04 - reefer failure, all 3 pallets rejected\nWe will issue a credit note of CNY 8,600 against your July account. This\ncovers the full value of the rejected consignment. There is nothing for you to\npay and nothing for you to claim separately. The credit note will be raised on\n6 July and should appear on your statement the same week.\n\n",
+                "source_start": 1495,
+                "source_end": 1785,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-029",
+                "chunk_id": "KB-029#5",
+                "score": 20.8115,
+                "text": "陆颂平说明，三文鱼供应已经恢复，7 月下半月到货正常，没有再出现拒收。供应商对本次事件的处理和后续保障措施已经书面回复过，相关邮件在供应链部归档，门店有疑问走供应链部，不要自行联系供应商。\n从 8 月起，收货环节做两点加强：一是到货测温必须两人在场，测温记录当场拍照上传，不接受事后补记；二是每周五由店长抽一次冷柜温度记录做自查，交品控部。品控部另外安排 8 月内到每家店做一次收货流程的现场辅导。\n关于备货，林知夏提出三文鱼的周备货量一直按旺季口径报，停售那一周暴露出损耗控制得不够细。陆颂平回应，从 8 月第二周起改成两天一报，先在 S02、S05 试一个月。\n\n",
+                "retrieval_text": "2026 年 8 月运营例会纪要\n# 2026 年 8 月运营例会纪要\n## 议题二：三文鱼供应恢复后的备货与质检\n陆颂平说明，三文鱼供应已经恢复，7 月下半月到货正常，没有再出现拒收。供应商对本次事件的处理和后续保障措施已经书面回复过，相关邮件在供应链部归档，门店有疑问走供应链部，不要自行联系供应商。\n从 8 月起，收货环节做两点加强：一是到货测温必须两人在场，测温记录当场拍照上传，不接受事后补记；二是每周五由店长抽一次冷柜温度记录做自查，交品控部。品控部另外安排 8 月内到每家店做一次收货流程的现场辅导。\n关于备货，林知夏提出三文鱼的周备货量一直按旺季口径报，停售那一周暴露出损耗控制得不够细。陆颂平回应，从 8 月第二周起改成两天一报，先在 S02、S05 试一个月。\n\n",
+                "source_start": 551,
+                "source_end": 835,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 19,
+                    "text": "# 2026 年 8 月运营例会纪要\n"
+                  },
+                  {
+                    "start": 528,
+                    "end": 550,
+                    "text": "## 议题二：三文鱼供应恢复后的备货与质检\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#3",
+                "score": 17.6876,
+                "text": "| P04 | 三文鱼poke | — | ✓ | ✓ | — | — | — | ✓ | — | — |\n| P05 | 鸡肉poke | — | ✓ | — | — | — | — | ✓ | — | — |\n| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |\n| P07 | 小笼包 | ✓ | ✓ | — | — | — | — | — | — | — |\n| P08 | 灌汤包 | ✓ | ✓ | — | ✓ | — | — | — | — | — |\n",
+                "retrieval_text": "过敏原对照表\n# 过敏原对照表\n| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| P04 | 三文鱼poke | — | ✓ | ✓ | — | — | — | ✓ | — | — |\n| P05 | 鸡肉poke | — | ✓ | — | — | — | — | ✓ | — | — |\n| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |\n| P07 | 小笼包 | ✓ | ✓ | — | — | — | — | — | — | — |\n| P08 | 灌汤包 | ✓ | ✓ | — | ✓ | — | — | — | — | — |\n",
+                "source_start": 386,
+                "source_end": 646,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 9,
+                    "text": "# 过敏原对照表\n"
+                  },
+                  {
+                    "start": 127,
+                    "end": 233,
+                    "text": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "三文鱼那次断供供应商赔了多少钱",
+              "terms": [
+                "三文",
+                "文鱼",
+                "鱼那",
+                "那次",
+                "次断",
+                "断供",
+                "供供",
+                "供应",
+                "应商",
+                "商赔",
+                "赔了",
+                "少钱"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-021#1",
+                  "doc_id": "KB-021",
+                  "score": 26.3857,
+                  "lexical_score": 19.545,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "供应",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-021#3",
+                  "doc_id": "KB-021",
+                  "score": 26.0298,
+                  "lexical_score": 19.189,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "供应",
+                    "应商",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#2",
+                  "doc_id": "KB-041",
+                  "score": 25.7744,
+                  "lexical_score": 19.0922,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "供应",
+                    "应商",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-021#2",
+                  "doc_id": "KB-021",
+                  "score": 22.5011,
+                  "lexical_score": 15.6604,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#8",
+                  "doc_id": "KB-022",
+                  "score": 21.9974,
+                  "lexical_score": 9.905,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#5",
+                  "doc_id": "KB-029",
+                  "score": 20.8115,
+                  "lexical_score": 15.4159,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "供应",
+                    "应商",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#4",
+                  "doc_id": "KB-029",
+                  "score": 19.7025,
+                  "lexical_score": 14.3069,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "供应",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#9",
+                  "doc_id": "KB-022",
+                  "score": 18.3598,
+                  "lexical_score": 13.5998,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#4",
+                  "doc_id": "KB-041",
+                  "score": 17.7543,
+                  "lexical_score": 11.0721,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "供应",
+                    "应商"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#3",
+                  "doc_id": "KB-040",
+                  "score": 17.6876,
+                  "lexical_score": 13.1019,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#4",
+                  "doc_id": "KB-003",
+                  "score": 17.4439,
+                  "lexical_score": 25.8428,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "供应",
+                    "应商",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#2",
+                  "doc_id": "KB-022",
+                  "score": 16.8815,
+                  "lexical_score": 12.1216,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#1",
+                  "doc_id": "KB-041",
+                  "score": 16.6342,
+                  "lexical_score": 9.9519,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "供应",
+                    "应商"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#7",
+                  "doc_id": "KB-022",
+                  "score": 16.5792,
+                  "lexical_score": 11.8193,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#3",
+                  "doc_id": "KB-041",
+                  "score": 16.3377,
+                  "lexical_score": 9.6555,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "供应",
+                    "应商"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#5",
+                  "doc_id": "KB-041",
+                  "score": 16.2957,
+                  "lexical_score": 9.6134,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "供应",
+                    "应商"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#15",
+                  "doc_id": "KB-022",
+                  "score": 16.153,
+                  "lexical_score": 11.3931,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#11",
+                  "doc_id": "KB-022",
+                  "score": 15.9513,
+                  "lexical_score": 11.1913,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#12",
+                  "doc_id": "KB-022",
+                  "score": 15.6931,
+                  "lexical_score": 10.9332,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#1",
+                  "doc_id": "KB-022",
+                  "score": 15.6304,
+                  "lexical_score": 10.8705,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#6",
+                  "doc_id": "KB-022",
+                  "score": 15.5072,
+                  "lexical_score": 10.7472,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#13",
+                  "doc_id": "KB-022",
+                  "score": 15.5072,
+                  "lexical_score": 10.7472,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#3",
+                  "doc_id": "KB-022",
+                  "score": 15.4466,
+                  "lexical_score": 10.6867,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#10",
+                  "doc_id": "KB-022",
+                  "score": 15.3275,
+                  "lexical_score": 10.5675,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#4",
+                  "doc_id": "KB-022",
+                  "score": 15.2689,
+                  "lexical_score": 10.5089,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#14",
+                  "doc_id": "KB-022",
+                  "score": 14.9306,
+                  "lexical_score": 10.1707,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#5",
+                  "doc_id": "KB-022",
+                  "score": 14.8763,
+                  "lexical_score": 10.1164,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#8",
+                  "doc_id": "KB-060",
+                  "score": 13.1107,
+                  "lexical_score": 9.7116,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-031#3",
+                  "doc_id": "KB-031",
+                  "score": 12.6345,
+                  "lexical_score": 9.3589,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#6",
+                  "doc_id": "KB-060",
+                  "score": 11.6995,
+                  "lexical_score": 8.3004,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-031#4",
+                  "doc_id": "KB-031",
+                  "score": 11.2018,
+                  "lexical_score": 7.9262,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-027#5",
+                  "doc_id": "KB-027",
+                  "score": 11.1654,
+                  "lexical_score": 8.2707,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-060#3",
+                  "doc_id": "KB-060",
+                  "score": 11.1525,
+                  "lexical_score": 7.7534,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#3",
+                  "doc_id": "KB-029",
+                  "score": 10.7299,
+                  "lexical_score": 5.3343,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-015#3",
+                  "doc_id": "KB-015",
+                  "score": 9.7702,
+                  "lexical_score": 7.2372,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-015#2",
+                  "doc_id": "KB-015",
+                  "score": 8.6042,
+                  "lexical_score": 6.0712,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "供应",
+                    "应商"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#7",
+                  "doc_id": "KB-040",
+                  "score": 7.9831,
+                  "lexical_score": 3.3974,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "供应",
+                    "应商"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#3",
+                  "doc_id": "KB-003",
+                  "score": 7.775,
+                  "lexical_score": 6.505,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-029#1",
+                  "doc_id": "KB-029",
+                  "score": 7.6739,
+                  "lexical_score": 2.2783,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "供应"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-033#4",
+                  "doc_id": "KB-033",
+                  "score": 7.4123,
+                  "lexical_score": 5.4906,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "供应",
+                    "应商"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#1",
+                  "doc_id": "KB-003",
+                  "score": 6.9252,
+                  "lexical_score": 4.8055,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "供应",
+                    "应商"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-025#1",
+                  "doc_id": "KB-025",
+                  "score": 6.8297,
+                  "lexical_score": 5.059,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "供应"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#8",
+                  "doc_id": "KB-003",
+                  "score": 6.6931,
+                  "lexical_score": 4.3412,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "供应",
+                    "应商"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-050#2",
+                  "doc_id": "KB-050",
+                  "score": 6.4504,
+                  "lexical_score": 4.778,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-031#1",
+                  "doc_id": "KB-031",
+                  "score": 6.2387,
+                  "lexical_score": 2.9631,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-031#2",
+                  "doc_id": "KB-031",
+                  "score": 5.9279,
+                  "lexical_score": 2.6523,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-003#7",
+                  "doc_id": "KB-003",
+                  "score": 5.4262,
+                  "lexical_score": 1.8074,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-024#3",
+                  "doc_id": "KB-024",
+                  "score": 5.3798,
+                  "lexical_score": 10.6268,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-025#2",
+                  "doc_id": "KB-025",
+                  "score": 5.2601,
+                  "lexical_score": 1.7361,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-025#4",
+                  "doc_id": "KB-025",
+                  "score": 4.1904,
+                  "lexical_score": 2.4197,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "供应"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-051#3",
+                  "doc_id": "KB-051",
+                  "score": 4.138,
+                  "lexical_score": 3.0652,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-050#1",
+                  "doc_id": "KB-050",
+                  "score": 3.776,
+                  "lexical_score": 2.1037,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-023#3",
+                  "doc_id": "KB-023",
+                  "score": 3.3906,
+                  "lexical_score": 1.6007,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-050#5",
+                  "doc_id": "KB-050",
+                  "score": 3.3701,
+                  "lexical_score": 1.6978,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-061#2",
+                  "doc_id": "KB-061",
+                  "score": 3.1748,
+                  "lexical_score": 2.3517,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-050#4",
+                  "doc_id": "KB-050",
+                  "score": 3.0387,
+                  "lexical_score": 1.3664,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-050#3",
+                  "doc_id": "KB-050",
+                  "score": 2.9696,
+                  "lexical_score": 1.2973,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-024#5",
+                  "doc_id": "KB-024",
+                  "score": 2.8165,
+                  "lexical_score": 7.5468,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "三文",
+                    "文鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-023#4",
+                  "doc_id": "KB-023",
+                  "score": 2.5445,
+                  "lexical_score": 1.8848,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-023#2",
+                  "doc_id": "KB-023",
+                  "score": 2.4994,
+                  "lexical_score": 1.8398,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-042#2",
+                  "doc_id": "KB-042",
+                  "score": 2.2794,
+                  "lexical_score": 1.6885,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-061#1",
+                  "doc_id": "KB-061",
+                  "score": 1.9748,
+                  "lexical_score": 1.1517,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-028#5",
+                  "doc_id": "KB-028",
+                  "score": 1.9667,
+                  "lexical_score": 1.4568,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-023#5",
+                  "doc_id": "KB-023",
+                  "score": 1.782,
+                  "lexical_score": 1.1224,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                }
+              ],
+              "expansions": [
+                "三文鱼poke",
+                "鲑鱼波奇饭",
+                "Salmon Poke"
+              ],
+              "coverage": 0.158,
+              "hits": [
+                {
+                  "doc_id": "KB-021",
+                  "chunk_id": "KB-021#1",
+                  "score": 26.3857,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-041",
+                  "chunk_id": "KB-041#2",
+                  "score": 25.7744,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-022",
+                  "chunk_id": "KB-022#8",
+                  "score": 21.9974,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-029",
+                  "chunk_id": "KB-029#5",
+                  "score": 20.8115,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-040",
+                  "chunk_id": "KB-040#3",
+                  "score": 17.6876,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-002",
+                  "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                },
+                {
+                  "doc_id": "KB-010",
+                  "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                },
+                {
+                  "doc_id": "KB-012",
+                  "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

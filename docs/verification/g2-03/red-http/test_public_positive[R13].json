@@ -1,0 +1,154 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_public_positive_R13_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_public_positive_R13_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_public_positive_R13_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 4be979d61e23\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_public_positive_R13_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_public_positive_R13_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55401"
+      ],
+      "pid": 89157,
+      "port": 55401,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "4be979d61e23",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "台风那天几点提前闭店",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#1",
+                "score": 0.0,
+                "text": "# 指标口径手册 v3\n\n适用范围：总部运营部、财务部、各门店店长，以及所有基于 POS 导出数据出具的经营报表与对外口径。\n本手册自 2026-05-01 起生效，取代 v2（KB-002）。此前的模板、表格、月报里凡与本手册不一致的算法，一律以本手册为准。\n\n",
+                "retrieval_text": "指标口径手册 v3\n# 指标口径手册 v3\n\n适用范围：总部运营部、财务部、各门店店长，以及所有基于 POS 导出数据出具的经营报表与对外口径。\n本手册自 2026-05-01 起生效，取代 v2（KB-002）。此前的模板、表格、月报里凡与本手册不一致的算法，一律以本手册为准。\n\n",
+                "source_start": 0,
+                "source_end": 132,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 指标口径手册 v3\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-002",
+                "chunk_id": "KB-002#1",
+                "score": 0.0,
+                "text": "# 指标口径手册 v2\n\n> 本版本已废止，现行版本见 KB-001。\n\n适用范围：总部运营部、财务部，以及各门店的月度经营报表。\n本手册自 2025-09-01 起生效。\n\n",
+                "retrieval_text": "指标口径手册 v2\n# 指标口径手册 v2\n\n> 本版本已废止，现行版本见 KB-001。\n\n适用范围：总部运营部、财务部，以及各门店的月度经营报表。\n本手册自 2025-09-01 起生效。\n\n",
+                "source_start": 0,
+                "source_end": 88,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 指标口径手册 v2\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-003",
+                "chunk_id": "KB-003#1",
+                "score": 0.0,
+                "text": "# 商品与门店别名词典\n\n店长口头汇报、顾客留言、外卖平台后台、供应商邮件里，对同一样东西经常有好几种叫法，查数和写报表的时候很容易对不上。\n下面两张表把常见叫法统一到数据库里的标准写法。检索、统计、出报表时一律以“数据库写法”这一列为准，其余写法视为同一个对象的别名。\n\n",
+                "retrieval_text": "商品与门店别名词典\n# 商品与门店别名词典\n\n店长口头汇报、顾客留言、外卖平台后台、供应商邮件里，对同一样东西经常有好几种叫法，查数和写报表的时候很容易对不上。\n下面两张表把常见叫法统一到数据库里的标准写法。检索、统计、出报表时一律以“数据库写法”这一列为准，其余写法视为同一个对象的别名。\n\n",
+                "source_start": 0,
+                "source_end": 137,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 商品与门店别名词典\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-062",
+                "chunk_id": "KB-062#1",
+                "score": 0.0,
+                "text": "==========================================================\n  合味餐饮管理（上海）有限公司   OA 公文系统   导出文件\n  导出时间：2026-08-12 09:41:07\n  导出人：运营部 徐敏（工号 A0117）\n  文号：运营通字〔2026〕047 号\n  密级：内部\n==========================================================\n\n标题：关于 Super Souper 门店营业时间调整的通知\n\n主送：各门店\n抄送：人事行政部、市场部、IT 部\n\n正文：\n\n",
+                "retrieval_text": "合味餐饮管理（上海）有限公司   OA 公文系统   导出文件\n==========================================================\n  合味餐饮管理（上海）有限公司   OA 公文系统   导出文件\n  导出时间：2026-08-12 09:41:07\n  导出人：运营部 徐敏（工号 A0117）\n  文号：运营通字〔2026〕047 号\n  密级：内部\n==========================================================\n\n标题：关于 Super Souper 门店营业时间调整的通知\n\n主送：各门店\n抄送：人事行政部、市场部、IT 部\n\n正文：\n\n",
+                "source_start": 0,
+                "source_end": 295,
+                "context_spans": []
+              },
+              {
+                "doc_id": "KB-020",
+                "chunk_id": "KB-020#1",
+                "score": 0.0,
+                "text": "# S03 Juicy Bao Bao 临时停业通知\n\n发布部门：总部运营部\n发布日期：2026-06-06\n\n浦东新区市场监管所于 2026-06-05 到 Juicy Bao Bao（S03，上海·浦东）做日常检查，指出后厨排烟管道油垢堆积、局部风管接口密封不严，要求限期整改。\n整改需要停火作业并拆装部分风管，无法在营业时间内穿插完成。经与商场物业、施工方确认，现决定：\n\n",
+                "retrieval_text": "S03 Juicy Bao Bao 临时停业通知\n# S03 Juicy Bao Bao 临时停业通知\n\n发布部门：总部运营部\n发布日期：2026-06-06\n\n浦东新区市场监管所于 2026-06-05 到 Juicy Bao Bao（S03，上海·浦东）做日常检查，指出后厨排烟管道油垢堆积、局部风管接口密封不严，要求限期整改。\n整改需要停火作业并拆装部分风管，无法在营业时间内穿插完成。经与商场物业、施工方确认，现决定：\n\n",
+                "source_start": 0,
+                "source_end": 190,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "# S03 Juicy Bao Bao 临时停业通知\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

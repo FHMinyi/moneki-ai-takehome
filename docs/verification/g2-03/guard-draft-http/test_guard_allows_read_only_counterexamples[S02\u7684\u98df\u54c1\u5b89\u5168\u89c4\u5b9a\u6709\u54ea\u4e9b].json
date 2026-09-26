@@ -1,0 +1,965 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-98/test_guard_allows_read_only_co4/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-98/test_guard_allows_read_only_co4/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-98/test_guard_allows_read_only_co4/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 c2b9027be22c\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-98/test_guard_allows_read_only_co4/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-98/test_guard_allows_read_only_co4/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "59128"
+      ],
+      "pid": 95460,
+      "port": 59128,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "c2b9027be22c",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "session_id": "readonly",
+            "question": "S02的食品安全规定有哪些"
+          },
+          "response": {
+            "answer": "门店档案 S02 Makai Poke\n# 门店档案：S02 Makai Poke\n\n\n门店档案 S02 Makai Poke\n# 门店档案：S02 Makai Poke\n| 项目 | 内容 |\n|---|---|\n| 门店编号 | S02 |\n| 门店名称 | Makai Poke |\n| 品类 | 轻食 |\n| 商圈 | 上海·静安 |\n| 地址 | 上海市静安区康定路 555 号 B1 层 12 号铺 |\n| 店长 | 谭可欣 |\n| 联系电话 | 021-5555-0102 |\n| 标准营业时间 | 10:00–21:00 |\n| 座位数 | 28 |\n| 开业日期 | 2022-05-20 |\n\n\n门店档案 S02 Makai Poke\n# 门店档案：S02 Makai Poke\n## 特色\n\n以波奇饭为主力的轻食店，三文鱼poke、鸡肉poke、牛肉poke 是三个主推，配菜可以自选两样。\n客群以周边办公楼的白领为主，午市外带比例高，晚市偏安静，周末客流明显下降。\n店面在地下一层，紧邻地铁通道口，动线短、翻台快，但后厨面积小，冷柜容量有限，备货只能做到当天量，隔天的鲜货一律不留。\n出餐台和打包台是分开的，外带单从侧口取，堂食顾客不用和外卖骑手挤在一起。\n\n\n门店档案 S02 Makai Poke\n# 门店档案：S02 Makai Poke\n## 备注\n\n- 常用简称：Makai，别名对照见 KB-003。\n- 座位以两人卡座为主，无包间，不接待 10 人以上团餐。\n- 五家店里唯一一家全天都能做波奇饭三个口味的门店，也是活动最常落地的试点店。\n- 营业时间如有临时调整，以最新通知为准。\nKB-023《2026 年 618 活动方案》（2026-06-18 起生效）：**当天牛肉poke 目标销量 120 份。\nKB-060《顾客反馈汇总 2026 年 7 月》（2026-08-03 起生效）：- 07-08 S02 外卖平台评价：三文鱼poke 一直显示售罄，换了鸡肉的，味道还行，但还是想吃三文鱼，什么时候能恢复。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-023",
+                "quote": "**当天牛肉poke 目标销量 120 份。"
+              },
+              {
+                "doc_id": "KB-060",
+                "quote": "- 07-08 S02 外卖平台评价：三文鱼poke 一直显示售罄，换了鸡肉的，味道还行，但还是想吃三文鱼，什么时候能恢复。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "readonly",
+            "question": "S02的食品安全规定有哪些",
+            "started_at": "2026-09-27T03:57:09.253",
+            "total_ms": 34.3,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 12.6,
+                "took_ms": 12.6,
+                "detail": {
+                  "question": "S02的食品安全规定有哪些",
+                  "standalone_question": "S02的食品安全规定有哪些",
+                  "search_query": "S02的食品安全规定有哪些 S02 Makai Poke",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": "S02",
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=S02 商品=全部 时间=未指定"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 24.5,
+                "took_ms": 11.9,
+                "detail": {
+                  "query": "s02的食品安全规定有哪些 s02 makai poke",
+                  "terms": [
+                    "s02",
+                    "的食",
+                    "食品",
+                    "品安",
+                    "安全",
+                    "全规",
+                    "规定",
+                    "定有",
+                    "s02",
+                    "makai",
+                    "poke"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": "S02",
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-031#1",
+                      "doc_id": "KB-031",
+                      "score": 65.0659,
+                      "lexical_score": 41.9104,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-031#2",
+                      "doc_id": "KB-031",
+                      "score": 60.0107,
+                      "lexical_score": 37.5146,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-031#4",
+                      "doc_id": "KB-031",
+                      "score": 55.0197,
+                      "lexical_score": 33.1745,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-031#3",
+                      "doc_id": "KB-031",
+                      "score": 50.2381,
+                      "lexical_score": 29.0167,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#1",
+                      "doc_id": "KB-050",
+                      "score": 49.0114,
+                      "lexical_score": 31.5694,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#5",
+                      "doc_id": "KB-050",
+                      "score": 42.5832,
+                      "lexical_score": 25.9796,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#2",
+                      "doc_id": "KB-023",
+                      "score": 40.3985,
+                      "lexical_score": 26.0216,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#4",
+                      "doc_id": "KB-050",
+                      "score": 37.1847,
+                      "lexical_score": 21.2852,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#2",
+                      "doc_id": "KB-042",
+                      "score": 37.0762,
+                      "lexical_score": 23.8816,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#2",
+                      "doc_id": "KB-050",
+                      "score": 36.5564,
+                      "lexical_score": 20.7389,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#3",
+                      "doc_id": "KB-050",
+                      "score": 36.04,
+                      "lexical_score": 20.2899,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#6",
+                      "doc_id": "KB-060",
+                      "score": 29.609,
+                      "lexical_score": 19.0718,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#3",
+                      "doc_id": "KB-060",
+                      "score": 29.3583,
+                      "lexical_score": 18.8538,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#1",
+                      "doc_id": "KB-015",
+                      "score": 23.347,
+                      "lexical_score": 17.2941,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "品安",
+                        "安全",
+                        "食品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#7",
+                      "doc_id": "KB-003",
+                      "score": 23.2852,
+                      "lexical_score": 29.997,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#4",
+                      "doc_id": "KB-015",
+                      "score": 20.685,
+                      "lexical_score": 14.632,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "品安",
+                        "安全",
+                        "食品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#4",
+                      "doc_id": "KB-023",
+                      "score": 19.1438,
+                      "lexical_score": 7.5392,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#3",
+                      "doc_id": "KB-015",
+                      "score": 18.7461,
+                      "lexical_score": 12.6932,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "品安",
+                        "安全",
+                        "食品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#3",
+                      "doc_id": "KB-021",
+                      "score": 18.5416,
+                      "lexical_score": 11.943,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#5",
+                      "doc_id": "KB-015",
+                      "score": 18.4585,
+                      "lexical_score": 12.4055,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "品安",
+                        "安全",
+                        "食品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#3",
+                      "doc_id": "KB-023",
+                      "score": 17.8369,
+                      "lexical_score": 6.4028,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#2",
+                      "doc_id": "KB-015",
+                      "score": 17.8113,
+                      "lexical_score": 11.7584,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "品安",
+                        "安全",
+                        "食品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#1",
+                      "doc_id": "KB-061",
+                      "score": 17.1885,
+                      "lexical_score": 12.7322,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "makai",
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#2",
+                      "doc_id": "KB-021",
+                      "score": 16.5096,
+                      "lexical_score": 10.1761,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#8",
+                      "doc_id": "KB-060",
+                      "score": 16.4739,
+                      "lexical_score": 7.65,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke",
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#1",
+                      "doc_id": "KB-021",
+                      "score": 15.9677,
+                      "lexical_score": 9.7049,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#5",
+                      "doc_id": "KB-023",
+                      "score": 15.6365,
+                      "lexical_score": 4.4894,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#3",
+                      "doc_id": "KB-040",
+                      "score": 15.5745,
+                      "lexical_score": 11.5367,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#4",
+                      "doc_id": "KB-041",
+                      "score": 14.5578,
+                      "lexical_score": 10.7835,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke",
+                        "食品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#4",
+                      "doc_id": "KB-003",
+                      "score": 11.942,
+                      "lexical_score": 10.2698,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#9",
+                      "doc_id": "KB-022",
+                      "score": 11.9302,
+                      "lexical_score": 8.8372,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#9",
+                      "doc_id": "KB-060",
+                      "score": 11.7078,
+                      "lexical_score": 3.5056,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#2",
+                      "doc_id": "KB-022",
+                      "score": 10.9697,
+                      "lexical_score": 7.8766,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#7",
+                      "doc_id": "KB-022",
+                      "score": 10.7732,
+                      "lexical_score": 7.6802,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#15",
+                      "doc_id": "KB-022",
+                      "score": 10.4963,
+                      "lexical_score": 7.4033,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#11",
+                      "doc_id": "KB-022",
+                      "score": 10.3652,
+                      "lexical_score": 7.2722,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#3",
+                      "doc_id": "KB-003",
+                      "score": 10.3577,
+                      "lexical_score": 7.5145,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#12",
+                      "doc_id": "KB-029",
+                      "score": 10.2777,
+                      "lexical_score": 6.6201,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "品安",
+                        "安全",
+                        "食品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#12",
+                      "doc_id": "KB-022",
+                      "score": 10.1974,
+                      "lexical_score": 7.1044,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#1",
+                      "doc_id": "KB-022",
+                      "score": 10.1567,
+                      "lexical_score": 7.0637,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#6",
+                      "doc_id": "KB-022",
+                      "score": 10.0766,
+                      "lexical_score": 6.9836,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#13",
+                      "doc_id": "KB-022",
+                      "score": 10.0766,
+                      "lexical_score": 6.9836,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#3",
+                      "doc_id": "KB-022",
+                      "score": 10.0372,
+                      "lexical_score": 6.9442,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#10",
+                      "doc_id": "KB-022",
+                      "score": 9.9598,
+                      "lexical_score": 6.8668,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#4",
+                      "doc_id": "KB-022",
+                      "score": 9.9218,
+                      "lexical_score": 6.8287,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#2",
+                      "doc_id": "KB-041",
+                      "score": 9.9215,
+                      "lexical_score": 6.1472,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#14",
+                      "doc_id": "KB-022",
+                      "score": 9.702,
+                      "lexical_score": 6.6089,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#5",
+                      "doc_id": "KB-022",
+                      "score": 9.6667,
+                      "lexical_score": 6.5737,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#8",
+                      "doc_id": "KB-022",
+                      "score": 9.5293,
+                      "lexical_score": 6.4363,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#2",
+                      "doc_id": "KB-025",
+                      "score": 9.3747,
+                      "lexical_score": 6.9442,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#1",
+                      "doc_id": "KB-025",
+                      "score": 8.487,
+                      "lexical_score": 6.0566,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#3",
+                      "doc_id": "KB-041",
+                      "score": 8.487,
+                      "lexical_score": 4.7127,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#5",
+                      "doc_id": "KB-028",
+                      "score": 7.8669,
+                      "lexical_score": 5.8274,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#1",
+                      "doc_id": "KB-029",
+                      "score": 7.5842,
+                      "lexical_score": 4.2779,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#2",
+                      "doc_id": "KB-061",
+                      "score": 7.4754,
+                      "lexical_score": 3.0191,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-029#3",
+                      "doc_id": "KB-029",
+                      "score": 6.6508,
+                      "lexical_score": 3.4662,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#6",
+                      "doc_id": "KB-029",
+                      "score": 5.9267,
+                      "lexical_score": 2.8367,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#5",
+                      "doc_id": "KB-029",
+                      "score": 5.6507,
+                      "lexical_score": 2.5967,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s02"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#2",
+                      "doc_id": "KB-014",
+                      "score": 4.9566,
+                      "lexical_score": 3.6716,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "的食"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#5",
+                      "doc_id": "KB-014",
+                      "score": 4.7622,
+                      "lexical_score": 3.4772,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "的食"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#1",
+                      "doc_id": "KB-026",
+                      "score": 4.2211,
+                      "lexical_score": 3.1268,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "安全"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#3",
+                      "doc_id": "KB-026",
+                      "score": 3.6416,
+                      "lexical_score": 2.5472,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "安全"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#3",
+                      "doc_id": "KB-024",
+                      "score": 2.6801,
+                      "lexical_score": 6.9053,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "poke"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#4",
+                      "doc_id": "KB-024",
+                      "score": 2.4327,
+                      "lexical_score": 6.0446,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s02"
+                      ]
+                    }
+                  ],
+                  "expansions": [
+                    "Makai Poke",
+                    "Makai",
+                    "Makai Poke",
+                    "Makai",
+                    "Makai Poke",
+                    "Makai"
+                  ],
+                  "coverage": 0.168,
+                  "hits": [
+                    {
+                      "doc_id": "KB-031",
+                      "chunk_id": "KB-031#1",
+                      "score": 65.0659,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-050",
+                      "chunk_id": "KB-050#1",
+                      "score": 49.0114,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-023",
+                      "chunk_id": "KB-023#2",
+                      "score": 40.3985,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-042",
+                      "chunk_id": "KB-042#2",
+                      "score": 37.0762,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-060",
+                      "chunk_id": "KB-060#6",
+                      "score": 29.609,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-020",
+                      "reason": "文档声明只适用于 S03，与问题里的 S02 不符"
+                    },
+                    {
+                      "doc_id": "KB-027",
+                      "reason": "文档声明只适用于 S05，与问题里的 S02 不符"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    },
+                    {
+                      "doc_id": "KB-051",
+                      "reason": "文档声明只适用于 S03，与问题里的 S02 不符"
+                    },
+                    {
+                      "doc_id": "KB-052",
+                      "reason": "文档声明只适用于 S05，与问题里的 S02 不符"
+                    },
+                    {
+                      "doc_id": "KB-053",
+                      "reason": "文档声明只适用于 S01，与问题里的 S02 不符"
+                    },
+                    {
+                      "doc_id": "KB-030",
+                      "reason": "文档声明只适用于 S01，与问题里的 S02 不符"
+                    },
+                    {
+                      "doc_id": "KB-032",
+                      "reason": "文档声明只适用于 S03，与问题里的 S02 不符"
+                    },
+                    {
+                      "doc_id": "KB-033",
+                      "reason": "文档声明只适用于 S04，与问题里的 S02 不符"
+                    },
+                    {
+                      "doc_id": "KB-034",
+                      "reason": "文档声明只适用于 S05，与问题里的 S02 不符"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 34.2,
+                "took_ms": 21.6,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 34.3,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions_2026_06_14_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions_2026_06_14_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions_2026_06_14_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 f7203dc0c99c\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions_2026_06_14_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions_2026_06_14_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56263"
+      ],
+      "pid": 90171,
+      "port": 56263,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "f7203dc0c99c",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "2026-06-14当时的外卖退款规定",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-051",
+                "chunk_id": "KB-051#1",
+                "score": 16.2325,
+                "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n\n店长：鲍一鸣\n提交日期：2026-06-15\n\n",
+                "retrieval_text": "S03 店长周报 2026-06-08 至 2026-06-14\n# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n\n店长：鲍一鸣\n提交日期：2026-06-15\n\n",
+                "source_start": 0,
+                "source_end": 75,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 50,
+                    "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-026",
+                "chunk_id": "KB-026#2",
+                "score": 12.7845,
+                "text": "1. **全部门店（S01 至 S05）于 2026 年 7 月 24 日 14:00 提前闭店**，14:00 起不再接单，店内顾客请于 14:30 前离店。\n2. 第三方外卖平台与自营外卖 13:30 起关闭接单，已接的单子做完再关，骑手取餐超时的直接取消并致歉。\n3. **2026 年 7 月 25 日恢复正常营业**，各店按标准营业时间开店。\n4. 闭店前检查：外摆桌椅、立牌、遮阳棚全部收回室内；门窗紧闭；地漏与排水口清理干净；冷柜、制冰机保持通电，其余设备断电。\n5. 现金当天全部带走或入保险柜，不留在收银抽屉。\n",
+                "retrieval_text": "台风“白鹭”提前闭店通知\n# 台风“白鹭”提前闭店通知\n1. **全部门店（S01 至 S05）于 2026 年 7 月 24 日 14:00 提前闭店**，14:00 起不再接单，店内顾客请于 14:30 前离店。\n2. 第三方外卖平台与自营外卖 13:30 起关闭接单，已接的单子做完再关，骑手取餐超时的直接取消并致歉。\n3. **2026 年 7 月 25 日恢复正常营业**，各店按标准营业时间开店。\n4. 闭店前检查：外摆桌椅、立牌、遮阳棚全部收回室内；门窗紧闭；地漏与排水口清理干净；冷柜、制冰机保持通电，其余设备断电。\n5. 现金当天全部带走或入保险柜，不留在收银抽屉。\n",
+                "source_start": 124,
+                "source_end": 389,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 15,
+                    "text": "# 台风“白鹭”提前闭店通知\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-062",
+                "chunk_id": "KB-062#3",
+                "score": 11.7252,
+                "text": "　　三、小程序、地图、外卖平台上登记的营业时间，由市场部于 2026 年 8 月 14 日前\n同步更新，延长时段的外卖接单时间一并顺延。\n\n　　四、延长时段的供餐范围与平时一致，22:00 后停止接收堂食新单，只完成已下单的\n出品与外带；收档、清洁按原流程执行，不得压缩。\n\n　　五、本次调整执行至另行通知为止。运营部将在 9 月下旬评估延长时段的客流与\n人力投入，再决定后续安排。\n\n　　特此通知。\n\n",
+                "retrieval_text": "合味餐饮管理（上海）有限公司   OA 公文系统   导出文件\n　　三、小程序、地图、外卖平台上登记的营业时间，由市场部于 2026 年 8 月 14 日前\n同步更新，延长时段的外卖接单时间一并顺延。\n\n　　四、延长时段的供餐范围与平时一致，22:00 后停止接收堂食新单，只完成已下单的\n出品与外带；收档、清洁按原流程执行，不得压缩。\n\n　　五、本次调整执行至另行通知为止。运营部将在 9 月下旬评估延长时段的客流与\n人力投入，再决定后续安排。\n\n　　特此通知。\n\n",
+                "source_start": 569,
+                "source_end": 771,
+                "context_spans": []
+              },
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#1",
+                "score": 9.6706,
+                "text": "# 退款政策 v2\n\n制定部门：总部运营部\n生效日期：2026-06-15\n\nv1 的受理窗口在执行中争议很多：隔了好几天再回来要退的单子，既核不了餐品状态，也对不上当班人员。从本版起收紧受理窗口，并明确审批门槛。\n\n",
+                "retrieval_text": "退款政策 v2\n# 退款政策 v2\n\n制定部门：总部运营部\n生效日期：2026-06-15\n\nv1 的受理窗口在执行中争议很多：隔了好几天再回来要退的单子，既核不了餐品状态，也对不上当班人员。从本版起收紧受理窗口，并明确审批门槛。\n\n",
+                "source_start": 0,
+                "source_end": 109,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v2\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-050",
+                "chunk_id": "KB-050#1",
+                "score": 9.3513,
+                "text": "# S02 Makai Poke 店长周报（2026-06-15 至 2026-06-21）\n\n店长：谭可欣\n提交日期：2026-06-22\n\n",
+                "retrieval_text": "S02 店长周报 2026-06-15 至 2026-06-21\n# S02 Makai Poke 店长周报（2026-06-15 至 2026-06-21）\n\n店长：谭可欣\n提交日期：2026-06-22\n\n",
+                "source_start": 0,
+                "source_end": 72,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 47,
+                    "text": "# S02 Makai Poke 店长周报（2026-06-15 至 2026-06-21）\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

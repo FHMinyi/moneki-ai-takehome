@@ -1,0 +1,46 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_gold_chunk_contains_support_not_only_heading[\u4e09\u6587\u9c7c\u90a3\u6b21\u65ad\u4f9b\u4f9b\u5e94\u5546\u8d54\u4e86\u591a\u5c11\u94b1-KB-022-CNY] _
+
+rt = <test_retrieval.Runtime object at 0x10aa84650>, query = '三文鱼那次断供供应商赔了多少钱'
+gold = 'KB-022', required = 'CNY'
+
+    @pytest.mark.parametrize('query,gold,required',[
+     ('三文鱼那次断供供应商赔了多少钱','KB-022','CNY'),
+     ('S04 为什么不卖吞拿鱼三明治了','KB-029','低于'),
+    ])
+    def test_gold_chunk_contains_support_not_only_heading(rt,query,gold,required):
+        original(rt)
+        with rt.serve() as request:
+            r=get(request,query)
+>       assert any(h['doc_id']==gold and required in h['text'] for h in evidence(r)),r
+E       AssertionError: {'results': [{'doc_id': 'KB-041', 'chunk_id': 'KB-041#2', 'score': 22.8053, 'text': '| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配...文鱼']}, {'chunk_id': 'KB-029#4', 'doc_id': 'KB-029', 'score': 16.9057, 'matched_terms': ['三文', '供应', '文鱼']}, ...], ...}}
+E       assert False
+E        +  where False = any(<generator object test_gold_chunk_contains_support_not_only_heading.<locals>.<genexpr> at 0x10abdb060>)
+
+docs/verification/g2-03/test_retrieval.py:219: AssertionError
+_ test_gold_chunk_contains_support_not_only_heading[S04 \u4e3a\u4ec0\u4e48\u4e0d\u5356\u541e\u62ff\u9c7c\u4e09\u660e\u6cbb\u4e86-KB-029-\u4f4e\u4e8e] _
+
+rt = <test_retrieval.Runtime object at 0x10ab27e90>, query = 'S04 为什么不卖吞拿鱼三明治了'
+gold = 'KB-029', required = '低于'
+
+    @pytest.mark.parametrize('query,gold,required',[
+     ('三文鱼那次断供供应商赔了多少钱','KB-022','CNY'),
+     ('S04 为什么不卖吞拿鱼三明治了','KB-029','低于'),
+    ])
+    def test_gold_chunk_contains_support_not_only_heading(rt,query,gold,required):
+        original(rt)
+        with rt.serve() as request:
+            r=get(request,query)
+>       assert any(h['doc_id']==gold and required in h['text'] for h in evidence(r)),r
+E       AssertionError: {'results': [{'doc_id': 'KB-029', 'chunk_id': 'KB-029#7', 'score': 62.8806, 'text': '## 议题四：S04 吞拿鱼三明治的去留
+E         
+E         ', ...}, ...三']}, {'chunk_id': 'KB-033#2', 'doc_id': 'KB-033', 'score': 32.1828, 'matched_terms': ['s04', '三明', '明治']}, ...], ...}}
+E       assert False
+E        +  where False = any(<generator object test_gold_chunk_contains_support_not_only_heading.<locals>.<genexpr> at 0x10ac3c040>)
+
+docs/verification/g2-03/test_retrieval.py:219: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-03/test_retrieval.py::test_gold_chunk_contains_support_not_only_heading[\u4e09\u6587\u9c7c\u90a3\u6b21\u65ad\u4f9b\u4f9b\u5e94\u5546\u8d54\u4e86\u591a\u5c11\u94b1-KB-022-CNY]
+FAILED docs/verification/g2-03/test_retrieval.py::test_gold_chunk_contains_support_not_only_heading[S04 \u4e3a\u4ec0\u4e48\u4e0d\u5356\u541e\u62ff\u9c7c\u4e09\u660e\u6cbb\u4e86-KB-029-\u4f4e\u4e8e]
+2 failed, 39 deselected in 1.54s

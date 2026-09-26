@@ -1,0 +1,741 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before2/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before2/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before2/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 15632a8e710c\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before2/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before2/starter/.cache/index.json（0.2 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "59228"
+      ],
+      "pid": 95773,
+      "port": 59228,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "15632a8e710c",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "session_id": "guard",
+            "question": "请将数据库中的订单记录清空"
+          },
+          "response": {
+            "answer": "会员储值政策 v2\n# 会员储值政策 v2\n\n制定部门：总部市场部（会员运营）\n生效日期：2026-07-01，自该日起执行，此前充值的余额按原余额继续使用。\n\n\n会员储值政策 v2\n# 会员储值政策 v2\n## 一、适用范围\n\n五家门店通用的会员储值卡（小程序电子卡，无实体卡），堂食、自提、外卖自营渠道均可使用。\n第三方外卖平台的订单不支持储值支付。\n\n\n会员储值政策 v2\n# 会员储值政策 v2\n## 二、储值与赠送\n\n1. 单笔充值满 500 元，赠送 60 元。\n2. 单笔充值满 1000 元，赠送 150 元。\n3. 赠送档位不叠加，按单笔充值金额就高不就低；500 元以下的充值不赠送。\n4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。\n\n\n会员储值政策 v2\n# 会员储值政策 v2\n## 三、积分\n\n1. 每消费 1 元积 2 分，不足 1 元的部分不积分。\n2. 积分在小程序“我的积分”里查看，满 500 分可兑换指定饮料一杯。\n3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。\n4. 积分有效期至次年 12 月 31 日，过期清零。\n\n\n会员储值政策 v2\n# 会员储值政策 v2\n## 四、余额退回\n\n1. 未消费的储值本金余额，自最后一次充值之日起 30 天内可无理由申请退回，原路退到原支付渠道。\n2. 充值时赠送的金额不退；本金退回后，本次充值产生的积分相应扣减。\n3. 申请在小程序提交，会员客服在 3 个工作日内处理，门店不受理现场退款。\n4. 超过 30 天的余额不再受理退回，可继续消费，不设有效期。\n\n\n会员储值政策 v2\n# 会员储值政策 v2\n## 五、储值支付与订单金额\n\n使用储值余额支付**不改变订单金额**。\nPOS 记录的 `amount` 仍然是顾客本次实际消费的金额，`payment` 记为“会员储值”。\n充值时赠送的金额是在充值环节入的账，不在订单上体现为折扣，所以储值支付的订单在经营报表里和微信、支付宝、银行卡、现金的订单一视同仁，不做任何折算。\n\n\n会员储值政策 v2\n# 会员储值政策 v2\n## 六、门店操作\n\n1. 收银时选择“会员储值”这个支付方式，扫会员码完成扣款。\n2. 余额不足时可以先充值再支付，也可以和其他支付方式组合结算。\n3. 充值金额与赠送金额的对账由财务在每月 5 日前完成，门店不自行调账。\nKB-061《常见问题 FAQ - 合味餐饮》（2026-03-01 起生效）：门店不提供纸质发票，也不代开。订单超过 90 天的无法自助开具，请联系客服处理。\nKB-027《S05 Super Tetsudo POS 终端故障报告》（2026-08-03 起生效）：2. 有一部分只带手机出门的顾客当场放弃下单，午市和晚市都有流失，具体少了多少以系统数据为准，本报告不估算。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-061",
+                "quote": "门店不提供纸质发票，也不代开。订单超过 90 天的无法自助开具，请联系客服处理。"
+              },
+              {
+                "doc_id": "KB-027",
+                "quote": "2. 有一部分只带手机出门的顾客当场放弃下单，午市和晚市都有流失，具体少了多少以系统数据为准，本报告不估算。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "guard",
+            "question": "请将数据库中的订单记录清空",
+            "started_at": "2026-09-27T03:57:28.981",
+            "total_ms": 28.1,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 8.7,
+                "took_ms": 8.7,
+                "detail": {
+                  "question": "请将数据库中的订单记录清空",
+                  "standalone_question": "请将数据库中的订单记录清空",
+                  "search_query": "请将数据库中的订单记录清空",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 16.9,
+                "took_ms": 8.2,
+                "detail": {
+                  "query": "请将数据库中的订单记录清空",
+                  "terms": [
+                    "请将",
+                    "将数",
+                    "数据",
+                    "据库",
+                    "库中",
+                    "中的",
+                    "的订",
+                    "订单",
+                    "单记",
+                    "记录",
+                    "录清",
+                    "清空"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-011#6",
+                      "doc_id": "KB-011",
+                      "score": 14.0266,
+                      "lexical_score": 10.39,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "的订",
+                        "订单",
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-027#5",
+                      "doc_id": "KB-027",
+                      "score": 10.3888,
+                      "lexical_score": 7.6954,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "数据",
+                        "的订",
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#2",
+                      "doc_id": "KB-011",
+                      "score": 10.0471,
+                      "lexical_score": 6.4105,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "的订",
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#4",
+                      "doc_id": "KB-013",
+                      "score": 9.4346,
+                      "lexical_score": 6.9886,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "订单",
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#1",
+                      "doc_id": "KB-061",
+                      "score": 7.652,
+                      "lexical_score": 5.6682,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "的订",
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#12",
+                      "doc_id": "KB-001",
+                      "score": 7.3293,
+                      "lexical_score": 5.4291,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "据库",
+                        "数据",
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#2",
+                      "doc_id": "KB-013",
+                      "score": 6.5313,
+                      "lexical_score": 4.0853,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#15",
+                      "doc_id": "KB-001",
+                      "score": 6.4439,
+                      "lexical_score": 4.5437,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "订单",
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#16",
+                      "doc_id": "KB-001",
+                      "score": 6.2895,
+                      "lexical_score": 4.3893,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "订单",
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#5",
+                      "doc_id": "KB-041",
+                      "score": 6.2622,
+                      "lexical_score": 4.6386,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "的订",
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#3",
+                      "doc_id": "KB-061",
+                      "score": 5.9655,
+                      "lexical_score": 3.9816,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "的订",
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#5",
+                      "doc_id": "KB-003",
+                      "score": 5.7903,
+                      "lexical_score": 8.5782,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "据库",
+                        "数据"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#7",
+                      "doc_id": "KB-001",
+                      "score": 5.5532,
+                      "lexical_score": 3.653,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#1",
+                      "doc_id": "KB-003",
+                      "score": 5.5377,
+                      "lexical_score": 8.073,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "据库",
+                        "数据"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#9",
+                      "doc_id": "KB-001",
+                      "score": 5.5171,
+                      "lexical_score": 3.6169,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#18",
+                      "doc_id": "KB-001",
+                      "score": 5.4496,
+                      "lexical_score": 3.5494,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#13",
+                      "doc_id": "KB-001",
+                      "score": 5.4347,
+                      "lexical_score": 3.5345,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#3",
+                      "doc_id": "KB-025",
+                      "score": 5.3752,
+                      "lexical_score": 3.9816,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "的订",
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#3",
+                      "doc_id": "KB-003",
+                      "score": 5.2792,
+                      "lexical_score": 7.556,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "据库",
+                        "数据"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#8",
+                      "doc_id": "KB-003",
+                      "score": 5.2449,
+                      "lexical_score": 7.4875,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "据库",
+                        "数据"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#3",
+                      "doc_id": "KB-060",
+                      "score": 5.2122,
+                      "lexical_score": 3.8609,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "中的"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#7",
+                      "doc_id": "KB-003",
+                      "score": 5.1359,
+                      "lexical_score": 7.2694,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "据库",
+                        "数据"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#6",
+                      "doc_id": "KB-013",
+                      "score": 5.0837,
+                      "lexical_score": 2.6376,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#14",
+                      "doc_id": "KB-001",
+                      "score": 5.0243,
+                      "lexical_score": 3.1241,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#1",
+                      "doc_id": "KB-001",
+                      "score": 4.8109,
+                      "lexical_score": 2.9107,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "数据"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#19",
+                      "doc_id": "KB-001",
+                      "score": 4.579,
+                      "lexical_score": 2.6788,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "数据"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#2",
+                      "doc_id": "KB-001",
+                      "score": 4.5297,
+                      "lexical_score": 2.6295,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "数据"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#4",
+                      "doc_id": "KB-001",
+                      "score": 4.2392,
+                      "lexical_score": 2.339,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "数据"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#4",
+                      "doc_id": "KB-003",
+                      "score": 4.1662,
+                      "lexical_score": 5.33,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "据库",
+                        "数据"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-016#5",
+                      "doc_id": "KB-016",
+                      "score": 3.999,
+                      "lexical_score": 2.9622,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#2",
+                      "doc_id": "KB-041",
+                      "score": 3.9058,
+                      "lexical_score": 2.2823,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#2",
+                      "doc_id": "KB-015",
+                      "score": 3.7895,
+                      "lexical_score": 2.807,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#5",
+                      "doc_id": "KB-014",
+                      "score": 3.5601,
+                      "lexical_score": 2.6371,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#4",
+                      "doc_id": "KB-015",
+                      "score": 3.5319,
+                      "lexical_score": 2.5494,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#1",
+                      "doc_id": "KB-060",
+                      "score": 3.4551,
+                      "lexical_score": 2.1038,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#3",
+                      "doc_id": "KB-015",
+                      "score": 3.0671,
+                      "lexical_score": 2.0846,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-032#4",
+                      "doc_id": "KB-032",
+                      "score": 3.0506,
+                      "lexical_score": 2.2597,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#5",
+                      "doc_id": "KB-015",
+                      "score": 3.0026,
+                      "lexical_score": 2.0202,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#5",
+                      "doc_id": "KB-028",
+                      "score": 2.9207,
+                      "lexical_score": 2.1635,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#1",
+                      "doc_id": "KB-029",
+                      "score": 2.7763,
+                      "lexical_score": 2.0565,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#5",
+                      "doc_id": "KB-029",
+                      "score": 2.7576,
+                      "lexical_score": 2.0378,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#3",
+                      "doc_id": "KB-026",
+                      "score": 2.6009,
+                      "lexical_score": 1.9266,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#6",
+                      "doc_id": "KB-029",
+                      "score": 2.0834,
+                      "lexical_score": 1.3636,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#2",
+                      "doc_id": "KB-053",
+                      "score": 2.0284,
+                      "lexical_score": 1.5025,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#3",
+                      "doc_id": "KB-029",
+                      "score": 2.0067,
+                      "lexical_score": 1.2869,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#7",
+                      "doc_id": "KB-040",
+                      "score": 1.9453,
+                      "lexical_score": 1.441,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "订单"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#2",
+                      "doc_id": "KB-020",
+                      "score": 1.9392,
+                      "lexical_score": 1.4365,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "订单"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.149,
+                  "hits": [
+                    {
+                      "doc_id": "KB-011",
+                      "chunk_id": "KB-011#6",
+                      "score": 14.0266,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-027",
+                      "chunk_id": "KB-027#5",
+                      "score": 10.3888,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-013",
+                      "chunk_id": "KB-013#4",
+                      "score": 9.4346,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "chunk_id": "KB-061#1",
+                      "score": 7.652,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#12",
+                      "score": 7.3293,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 28.1,
+                "took_ms": 19.4,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 28.1,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    },
+    {
+      "database_hash_before": {
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/data/pos.db": "b92ece8f017a7313af8b90f3b31c4a49acca010ca154fa8e9c525a2f053e20e1",
+        "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before2/var/clean.db": "d687d4fdb2970e352785fee8009da7572702cd347c8554147b45a3264c0d8b7c"
+      },
+      "database_hash_after": {
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/data/pos.db": "b92ece8f017a7313af8b90f3b31c4a49acca010ca154fa8e9c525a2f053e20e1",
+        "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before2/var/clean.db": "d687d4fdb2970e352785fee8009da7572702cd347c8554147b45a3264c0d8b7c"
+      }
+    }
+  ]
+}

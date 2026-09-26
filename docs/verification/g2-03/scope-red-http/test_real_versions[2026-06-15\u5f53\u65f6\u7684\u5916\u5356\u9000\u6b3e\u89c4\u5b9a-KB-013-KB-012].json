@@ -1,0 +1,165 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions_2026_06_15_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions_2026_06_15_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions_2026_06_15_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 7cf34e09d8d1\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions_2026_06_15_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions_2026_06_15_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56270"
+      ],
+      "pid": 90180,
+      "port": 56270,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "7cf34e09d8d1",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "2026-06-15当时的外卖退款规定",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-050",
+                "chunk_id": "KB-050#1",
+                "score": 16.2823,
+                "text": "# S02 Makai Poke 店长周报（2026-06-15 至 2026-06-21）\n\n店长：谭可欣\n提交日期：2026-06-22\n\n",
+                "retrieval_text": "S02 店长周报 2026-06-15 至 2026-06-21\n# S02 Makai Poke 店长周报（2026-06-15 至 2026-06-21）\n\n店长：谭可欣\n提交日期：2026-06-22\n\n",
+                "source_start": 0,
+                "source_end": 72,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 47,
+                    "text": "# S02 Makai Poke 店长周报（2026-06-15 至 2026-06-21）\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-051",
+                "chunk_id": "KB-051#1",
+                "score": 14.7127,
+                "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n\n店长：鲍一鸣\n提交日期：2026-06-15\n\n",
+                "retrieval_text": "S03 店长周报 2026-06-08 至 2026-06-14\n# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n\n店长：鲍一鸣\n提交日期：2026-06-15\n\n",
+                "source_start": 0,
+                "source_end": 75,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 50,
+                    "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#1",
+                "score": 13.8805,
+                "text": "# 退款政策 v2\n\n制定部门：总部运营部\n生效日期：2026-06-15\n\nv1 的受理窗口在执行中争议很多：隔了好几天再回来要退的单子，既核不了餐品状态，也对不上当班人员。从本版起收紧受理窗口，并明确审批门槛。\n\n",
+                "retrieval_text": "退款政策 v2\n# 退款政策 v2\n\n制定部门：总部运营部\n生效日期：2026-06-15\n\nv1 的受理窗口在执行中争议很多：隔了好几天再回来要退的单子，既核不了餐品状态，也对不上当班人员。从本版起收紧受理窗口，并明确审批门槛。\n\n",
+                "source_start": 0,
+                "source_end": 109,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v2\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-020",
+                "chunk_id": "KB-020#2",
+                "score": 9.0939,
+                "text": "1. **S03 自 2026-06-08 起停业 4 天，即 6 月 8 日至 6 月 11 日不营业**，堂食、外卖、预订全部暂停。\n2. **2026-06-12 起恢复正常营业**，营业时间不变。\n3. 停业期间外卖平台门店状态置为“休息中”，由市场部提前一天在会员群和门店公众号说明，不做促销预告。\n4. 已收的预订单由店长逐一电话联系，可改期或全额退款，改期的备注在预订本上。\n5. 鲜货备货从 6 月 7 日起暂停，包子馅料与点心半成品按保质期处理，不得留用到复业当天。\n6. 门店员工不放假，按原排班到岗，配合施工方做清洁与复位；复业前完成一次全店卫生自查并拍照留档。\n\n",
+                "retrieval_text": "S03 Juicy Bao Bao 临时停业通知\n# S03 Juicy Bao Bao 临时停业通知\n1. **S03 自 2026-06-08 起停业 4 天，即 6 月 8 日至 6 月 11 日不营业**，堂食、外卖、预订全部暂停。\n2. **2026-06-12 起恢复正常营业**，营业时间不变。\n3. 停业期间外卖平台门店状态置为“休息中”，由市场部提前一天在会员群和门店公众号说明，不做促销预告。\n4. 已收的预订单由店长逐一电话联系，可改期或全额退款，改期的备注在预订本上。\n5. 鲜货备货从 6 月 7 日起暂停，包子馅料与点心半成品按保质期处理，不得留用到复业当天。\n6. 门店员工不放假，按原排班到岗，配合施工方做清洁与复位；复业前完成一次全店卫生自查并拍照留档。\n\n",
+                "source_start": 190,
+                "source_end": 484,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "# S03 Juicy Bao Bao 临时停业通知\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-012",
+                "chunk_id": "KB-012#5",
+                "score": 9.0189,
+                "text": "## 四、常见情形\n\n- 出餐错误、漏配、洒漏：现场核实后直接退或重做，由顾客选择，重做的不再另外补偿。\n- 口味不满意：首次可退，第二次起劝退不退，由当班店员记录在案。\n- 顾客点错、临时不要了：出餐前可退，已经出餐的原则上不退，视排队情况和商品状态灵活处理。\n- 外卖平台内的退款按平台规则走，门店不重复退款；自营外卖的退款按本政策执行。\n- 团体订单、预订单的退款由店长处理，不走普通流程。\n\n",
+                "retrieval_text": "退款政策 v1\n# 退款政策 v1\n## 四、常见情形\n\n- 出餐错误、漏配、洒漏：现场核实后直接退或重做，由顾客选择，重做的不再另外补偿。\n- 口味不满意：首次可退，第二次起劝退不退，由当班店员记录在案。\n- 顾客点错、临时不要了：出餐前可退，已经出餐的原则上不退，视排队情况和商品状态灵活处理。\n- 外卖平台内的退款按平台规则走，门店不重复退款；自营外卖的退款按本政策执行。\n- 团体订单、预订单的退款由店长处理，不走普通流程。\n\n",
+                "source_start": 414,
+                "source_end": 614,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v1\n"
+                  },
+                  {
+                    "start": 414,
+                    "end": 424,
+                    "text": "## 四、常见情形\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

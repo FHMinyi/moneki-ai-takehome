@@ -1,0 +1,232 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-95/test_tail_fact_http0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-95/test_tail_fact_http0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-95/test_tail_fact_http0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：1 篇文档，6 个片段，缓存键 1f548fb3ecb7\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-95/test_tail_fact_http0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-95/test_tail_fact_http0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "57821"
+      ],
+      "pid": 93099,
+      "port": 57821,
+      "kb_dir": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-95/test_tail_fact_http0/kb",
+      "health": {
+        "status": "ok",
+        "llm_mode": "mock",
+        "kb_docs": 1,
+        "kb_chunks": 6,
+        "valid_sales_rows": 18290,
+        "today": "2026-09-01",
+        "data_period": {
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "cleaning_report": {
+          "raw_rows": 18628,
+          "removed": {
+            "1_unparseable_date": 8,
+            "2_empty_amount": 150,
+            "3_qty_le_zero": 30,
+            "4_store_not_in_stores": 10,
+            "5_product_not_in_products": 40,
+            "6_duplicate_row": 100
+          },
+          "removed_rows": 338,
+          "kept_rows": 18290,
+          "kept_sales_rows": 18196,
+          "kept_refund_rows": 94
+        },
+        "index_key": "1f548fb3ecb7",
+        "kb_warnings": []
+      },
+      "retrieval": {
+        "tailtoken": {
+          "results": [
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#6",
+              "score": 2.0754,
+              "text": " text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text \n\n尾段事实： tailtoken 关闭前核对温度 7 度。",
+              "retrieval_text": "Procedure\n# Procedure\n text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text \n\n尾段事实： tailtoken 关闭前核对温度 7 度。",
+              "source_start": 973,
+              "source_end": 1163,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 12,
+                  "text": "# Procedure\n"
+                }
+              ],
+              "padded": false,
+              "evidence_eligible": true,
+              "exclusion_reason": null
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#1",
+              "score": 0.0,
+              "text": "# Procedure\n\n",
+              "retrieval_text": "Procedure\n# Procedure\n\n",
+              "source_start": 0,
+              "source_end": 13,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 12,
+                  "text": "# Procedure\n"
+                }
+              ],
+              "padded": true,
+              "evidence_eligible": false,
+              "exclusion_reason": null
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#2",
+              "score": 0.0,
+              "text": "ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordina",
+              "retrieval_text": "Procedure\n# Procedure\nordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordina",
+              "source_start": 13,
+              "source_end": 313,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 12,
+                  "text": "# Procedure\n"
+                }
+              ],
+              "padded": true,
+              "evidence_eligible": false,
+              "exclusion_reason": null
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#3",
+              "score": 0.0,
+              "text": "dinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary",
+              "retrieval_text": "Procedure\n# Procedure\ndinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary",
+              "source_start": 253,
+              "source_end": 553,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 12,
+                  "text": "# Procedure\n"
+                }
+              ],
+              "padded": true,
+              "evidence_eligible": false,
+              "exclusion_reason": null
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#4",
+              "score": 0.0,
+              "text": "nary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary t",
+              "retrieval_text": "Procedure\n# Procedure\nnary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary text ordinary t",
+              "source_start": 493,
+              "source_end": 793,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 12,
+                  "text": "# Procedure\n"
+                }
+              ],
+              "padded": true,
+              "evidence_eligible": false,
+              "exclusion_reason": null
+            }
+          ],
+          "diagnostics": {
+            "query": "tailtoken",
+            "terms": [
+              "tailtoken"
+            ],
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "candidates": [
+              {
+                "chunk_id": "KB-901#6",
+                "doc_id": "KB-901",
+                "score": 2.0754,
+                "lexical_score": 1.5373,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "tailtoken"
+                ]
+              }
+            ],
+            "expansions": [],
+            "coverage": 1.0,
+            "hits": [
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#6",
+                "score": 2.0754,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#1",
+                "score": 0.0,
+                "padded": true,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#2",
+                "score": 0.0,
+                "padded": true,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#3",
+                "score": 0.0,
+                "padded": true,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#4",
+                "score": 0.0,
+                "padded": true,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": []
+          }
+        }
+      },
+      "stopped": true
+    }
+  ]
+}

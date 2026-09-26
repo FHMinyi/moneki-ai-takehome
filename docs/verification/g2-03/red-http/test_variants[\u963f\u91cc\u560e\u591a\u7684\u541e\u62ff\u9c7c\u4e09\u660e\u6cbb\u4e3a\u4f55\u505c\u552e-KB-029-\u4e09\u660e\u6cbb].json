@@ -1,0 +1,174 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_variants__u963f_u91cc_u560/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_variants__u963f_u91cc_u560/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_variants__u963f_u91cc_u560/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 b052a9544aef\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_variants__u963f_u91cc_u560/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_variants__u963f_u91cc_u560/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55462"
+      ],
+      "pid": 89223,
+      "port": 55462,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "b052a9544aef",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "阿里嘎多的吞拿鱼三明治为何停售",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-033",
+                "chunk_id": "KB-033#1",
+                "score": 14.1461,
+                "text": "# 门店档案：S04 Arigato Sando\n\n",
+                "retrieval_text": "门店档案 S04 Arigato Sando\n# 门店档案：S04 Arigato Sando\n\n",
+                "source_start": 0,
+                "source_end": 26,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 25,
+                    "text": "# 门店档案：S04 Arigato Sando\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-060",
+                "chunk_id": "KB-060#3",
+                "score": 5.9963,
+                "text": "1. **S04 Arigato Sando 出餐慢，12 条**，是本月最集中的一类问题，集中在工作日 12:00 至 13:00，投诉里出现最多的说法是“排队比吃饭时间长”。\n2. **S02 Makai Poke 三文鱼缺货，9 条**，全部集中在 7 月 6 日至 7 月 12 日停售期间，有 3 条明确表示接受鸡肉poke 的替代方案，其余是失望但没有升级。\n3. **S05 Super Tetsudo 本月好评最多**，好评集中在环境、吧台服务和晚市酒水，多条提到“服务员记得上次点的东西”。\n",
+                "retrieval_text": "顾客反馈汇总 2026 年 7 月\n# 顾客反馈汇总（2026 年 7 月）\n## 一、本月要点\n1. **S04 Arigato Sando 出餐慢，12 条**，是本月最集中的一类问题，集中在工作日 12:00 至 13:00，投诉里出现最多的说法是“排队比吃饭时间长”。\n2. **S02 Makai Poke 三文鱼缺货，9 条**，全部集中在 7 月 6 日至 7 月 12 日停售期间，有 3 条明确表示接受鸡肉poke 的替代方案，其余是失望但没有升级。\n3. **S05 Super Tetsudo 本月好评最多**，好评集中在环境、吧台服务和晚市酒水，多条提到“服务员记得上次点的东西”。\n",
+                "source_start": 166,
+                "source_end": 421,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 21,
+                    "text": "# 顾客反馈汇总（2026 年 7 月）\n"
+                  },
+                  {
+                    "start": 155,
+                    "end": 165,
+                    "text": "## 一、本月要点\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-042",
+                "chunk_id": "KB-042#2",
+                "score": 4.6894,
+                "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "retrieval_text": "门店营业时间总表\n# 门店营业时间总表\n| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "source_start": 61,
+                "source_end": 319,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 11,
+                    "text": "# 门店营业时间总表\n"
+                  },
+                  {
+                    "start": 61,
+                    "end": 118,
+                    "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-022",
+                "chunk_id": "KB-022#11",
+                "score": 2.8753,
+                "text": "leaves a gap of about a week in your menu and I am sorry for it. Please treat\n13 July as firm; I will call you myself if anything moves.\n\n5. CORRECTIVE ACTION\n\n",
+                "retrieval_text": "[Tasman Cold Chain Seafood] Salmon delivery of 2026-07-04 - reefer failure, all 3 pallets rejected\nleaves a gap of about a week in your menu and I am sorry for it. Please treat\n13 July as firm; I will call you myself if anything moves.\n\n5. CORRECTIVE ACTION\n\n",
+                "source_start": 2038,
+                "source_end": 2198,
+                "context_spans": []
+              },
+              {
+                "doc_id": "KB-003",
+                "chunk_id": "KB-003#7",
+                "score": 2.6162,
+                "text": "| 数据库写法 | 门店编号 | 常见别名 |\n|---|---|---|\n| Super Souper | S01 | SS、汤面店 |\n| Makai Poke | S02 | Makai |\n| Juicy Bao Bao | S03 | JBB、包包店 |\n| Arigato Sando | S04 | 阿里嘎多、AS |\n| Super Tetsudo | S05 | 铁道、ST |\n\n",
+                "retrieval_text": "商品与门店别名词典\n# 商品与门店别名词典\n## 二、门店\n| 数据库写法 | 门店编号 | 常见别名 |\n|---|---|---|\n| Super Souper | S01 | SS、汤面店 |\n| Makai Poke | S02 | Makai |\n| Juicy Bao Bao | S03 | JBB、包包店 |\n| Arigato Sando | S04 | 阿里嘎多、AS |\n| Super Tetsudo | S05 | 铁道、ST |\n\n",
+                "source_start": 709,
+                "source_end": 909,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 商品与门店别名词典\n"
+                  },
+                  {
+                    "start": 700,
+                    "end": 708,
+                    "text": "## 二、门店\n"
+                  },
+                  {
+                    "start": 709,
+                    "end": 747,
+                    "text": "| 数据库写法 | 门店编号 | 常见别名 |\n|---|---|---|\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

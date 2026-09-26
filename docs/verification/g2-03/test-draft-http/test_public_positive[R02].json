@@ -1,0 +1,180 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R02_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R02_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R02_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 558e90d50395\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R02_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R02_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "54941"
+      ],
+      "pid": 88502,
+      "port": 54941,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "558e90d50395",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "牛肉poke 含哪些过敏原",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-003",
+                "chunk_id": "KB-003#3",
+                "score": 4.1443,
+                "text": "| 数据库写法 | 常见别名 | 说明 |\n|---|---|---|\n| 味增拉面 | 味噌拉面、Miso Ramen | 数据库里的写法是“味增拉面”，这是早年录入时留下的写法。菜单、物料、外卖平台上印的都是“味噌拉面”，两者是同一个商品，从来没有改过名，查数时两种写法都要命中 |\n| 豚骨拉面 | Tonkotsu Ramen、白汤拉面 | |\n| 牛肉poke | 牛肉波奇饭、Beef Poke | 顾客口头也常说“牛肉饭”，但这和照烧鸡饭不是一回事，接待时要问清楚 |\n",
+                "retrieval_text": "商品与门店别名词典\n# 商品与门店别名词典\n## 一、商品\n| 数据库写法 | 常见别名 | 说明 |\n|---|---|---|\n| 味增拉面 | 味噌拉面、Miso Ramen | 数据库里的写法是“味增拉面”，这是早年录入时留下的写法。菜单、物料、外卖平台上印的都是“味噌拉面”，两者是同一个商品，从来没有改过名，查数时两种写法都要命中 |\n| 豚骨拉面 | Tonkotsu Ramen、白汤拉面 | |\n| 牛肉poke | 牛肉波奇饭、Beef Poke | 顾客口头也常说“牛肉饭”，但这和照烧鸡饭不是一回事，接待时要问清楚 |\n",
+                "source_start": 146,
+                "source_end": 388,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 商品与门店别名词典\n"
+                  },
+                  {
+                    "start": 137,
+                    "end": 145,
+                    "text": "## 一、商品\n"
+                  },
+                  {
+                    "start": 146,
+                    "end": 182,
+                    "text": "| 数据库写法 | 常见别名 | 说明 |\n|---|---|---|\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-031",
+                "chunk_id": "KB-031#1",
+                "score": 3.9298,
+                "text": "# 门店档案：S02 Makai Poke\n\n",
+                "retrieval_text": "门店档案 S02 Makai Poke\n# 门店档案：S02 Makai Poke\n\n",
+                "source_start": 0,
+                "source_end": 23,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 22,
+                    "text": "# 门店档案：S02 Makai Poke\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#3",
+                "score": 3.2494,
+                "text": "| P04 | 三文鱼poke | — | ✓ | ✓ | — | — | — | ✓ | — | — |\n| P05 | 鸡肉poke | — | ✓ | — | — | — | — | ✓ | — | — |\n| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |\n| P07 | 小笼包 | ✓ | ✓ | — | — | — | — | — | — | — |\n| P08 | 灌汤包 | ✓ | ✓ | — | ✓ | — | — | — | — | — |\n",
+                "retrieval_text": "过敏原对照表\n# 过敏原对照表\n| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| P04 | 三文鱼poke | — | ✓ | ✓ | — | — | — | ✓ | — | — |\n| P05 | 鸡肉poke | — | ✓ | — | — | — | — | ✓ | — | — |\n| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |\n| P07 | 小笼包 | ✓ | ✓ | — | — | — | — | — | — | — |\n| P08 | 灌汤包 | ✓ | ✓ | — | ✓ | — | — | — | — | — |\n",
+                "source_start": 386,
+                "source_end": 646,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 9,
+                    "text": "# 过敏原对照表\n"
+                  },
+                  {
+                    "start": 127,
+                    "end": 233,
+                    "text": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-050",
+                "chunk_id": "KB-050#1",
+                "score": 2.708,
+                "text": "# S02 Makai Poke 店长周报（2026-06-15 至 2026-06-21）\n\n店长：谭可欣\n提交日期：2026-06-22\n\n",
+                "retrieval_text": "S02 店长周报 2026-06-15 至 2026-06-21\n# S02 Makai Poke 店长周报（2026-06-15 至 2026-06-21）\n\n店长：谭可欣\n提交日期：2026-06-22\n\n",
+                "source_start": 0,
+                "source_end": 72,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 47,
+                    "text": "# S02 Makai Poke 店长周报（2026-06-15 至 2026-06-21）\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-060",
+                "chunk_id": "KB-060#3",
+                "score": 1.6658,
+                "text": "1. **S04 Arigato Sando 出餐慢，12 条**，是本月最集中的一类问题，集中在工作日 12:00 至 13:00，投诉里出现最多的说法是“排队比吃饭时间长”。\n2. **S02 Makai Poke 三文鱼缺货，9 条**，全部集中在 7 月 6 日至 7 月 12 日停售期间，有 3 条明确表示接受鸡肉poke 的替代方案，其余是失望但没有升级。\n3. **S05 Super Tetsudo 本月好评最多**，好评集中在环境、吧台服务和晚市酒水，多条提到“服务员记得上次点的东西”。\n",
+                "retrieval_text": "顾客反馈汇总 2026 年 7 月\n# 顾客反馈汇总（2026 年 7 月）\n## 一、本月要点\n1. **S04 Arigato Sando 出餐慢，12 条**，是本月最集中的一类问题，集中在工作日 12:00 至 13:00，投诉里出现最多的说法是“排队比吃饭时间长”。\n2. **S02 Makai Poke 三文鱼缺货，9 条**，全部集中在 7 月 6 日至 7 月 12 日停售期间，有 3 条明确表示接受鸡肉poke 的替代方案，其余是失望但没有升级。\n3. **S05 Super Tetsudo 本月好评最多**，好评集中在环境、吧台服务和晚市酒水，多条提到“服务员记得上次点的东西”。\n",
+                "source_start": 166,
+                "source_end": 421,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 21,
+                    "text": "# 顾客反馈汇总（2026 年 7 月）\n"
+                  },
+                  {
+                    "start": 155,
+                    "end": 165,
+                    "text": "## 一、本月要点\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

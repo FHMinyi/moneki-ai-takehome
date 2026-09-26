@@ -1,0 +1,666 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-88/test_variants__u541e_u62ff_u9c0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-88/test_variants__u541e_u62ff_u9c0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-88/test_variants__u541e_u62ff_u9c0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 f4f03c285466\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-88/test_variants__u541e_u62ff_u9c0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-88/test_variants__u541e_u62ff_u9c0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56578"
+      ],
+      "pid": 90599,
+      "port": 56578,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "f4f03c285466",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "吞拿鱼三明治在Ｓ０４停售的原因",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-029",
+                "chunk_id": "KB-029#7",
+                "score": 62.8806,
+                "text": "## 议题四：S04 吞拿鱼三明治的去留\n\n",
+                "retrieval_text": "2026 年 8 月运营例会纪要\n# 2026 年 8 月运营例会纪要\n## 议题四：S04 吞拿鱼三明治的去留\n\n",
+                "source_start": 1127,
+                "source_end": 1149,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 19,
+                    "text": "# 2026 年 8 月运营例会纪要\n"
+                  },
+                  {
+                    "start": 1127,
+                    "end": 1148,
+                    "text": "## 议题四：S04 吞拿鱼三明治的去留\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#4",
+                "score": 49.5274,
+                "text": "| P09 | 煎饺 | ✓ | ✓ | — | — | — | — | ✓ | — | — |\n| P10 | 照烧三明治 | ✓ | ✓ | — | — | ✓ | ✓ | ✓ | — | — |\n| P11 | 吞拿鱼三明治 | ✓ | — | ✓ | — | ✓ | ✓ | — | — | — |\n| P12 | 味增汤 | — | ✓ | ✓ | — | — | — | — | — | — |\n| P13 | 炸鸡块 | ✓ | ✓ | — | — | ✓ | — | — | — | — |\n",
+                "retrieval_text": "过敏原对照表\n# 过敏原对照表\n| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| P09 | 煎饺 | ✓ | ✓ | — | — | — | — | ✓ | — | — |\n| P10 | 照烧三明治 | ✓ | ✓ | — | — | ✓ | ✓ | ✓ | — | — |\n| P11 | 吞拿鱼三明治 | ✓ | — | ✓ | — | ✓ | ✓ | — | — | — |\n| P12 | 味增汤 | — | ✓ | ✓ | — | — | — | — | — | — |\n| P13 | 炸鸡块 | ✓ | ✓ | — | — | ✓ | — | — | — | — |\n",
+                "source_start": 646,
+                "source_end": 900,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 9,
+                    "text": "# 过敏原对照表\n"
+                  },
+                  {
+                    "start": 127,
+                    "end": 233,
+                    "text": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-041",
+                "chunk_id": "KB-041#2",
+                "score": 35.363,
+                "text": "| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n| Tasman Cold Chain Seafood | 冷链海产 | 三文鱼poke、吞拿鱼三明治 | 3 天 | 每周二、五各一次 | Daniel Whitcombe | 021-5555-0201 | 夜间发车、次日清晨到货；到货必须随车温度记录，中心温度高于 5℃ 拒收 |\n",
+                "retrieval_text": "供应商名录\n# 供应商名录\n| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n| Tasman Cold Chain Seafood | 冷链海产 | 三文鱼poke、吞拿鱼三明治 | 3 天 | 每周二、五各一次 | Daniel Whitcombe | 021-5555-0201 | 夜间发车、次日清晨到货；到货必须随车温度记录，中心温度高于 5℃ 拒收 |\n",
+                "source_start": 124,
+                "source_end": 359,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 8,
+                    "text": "# 供应商名录\n"
+                  },
+                  {
+                    "start": 124,
+                    "end": 215,
+                    "text": "| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-033",
+                "chunk_id": "KB-033#2",
+                "score": 32.1828,
+                "text": "| 项目 | 内容 |\n|---|---|\n| 门店编号 | S04 |\n| 门店名称 | Arigato Sando |\n| 品类 | 三明治 |\n| 商圈 | 上海·长宁 |\n| 地址 | 上海市长宁区定西路 76 号沿街 1 层 |\n| 店长 | 林知夏 |\n| 联系电话 | 021-5555-0104 |\n| 标准营业时间 | 08:00–20:00 |\n| 座位数 | 18 |\n| 开业日期 | 2023-04-01 |\n\n",
+                "retrieval_text": "门店档案 S04 Arigato Sando\n# 门店档案：S04 Arigato Sando\n| 项目 | 内容 |\n|---|---|\n| 门店编号 | S04 |\n| 门店名称 | Arigato Sando |\n| 品类 | 三明治 |\n| 商圈 | 上海·长宁 |\n| 地址 | 上海市长宁区定西路 76 号沿街 1 层 |\n| 店长 | 林知夏 |\n| 联系电话 | 021-5555-0104 |\n| 标准营业时间 | 08:00–20:00 |\n| 座位数 | 18 |\n| 开业日期 | 2023-04-01 |\n\n",
+                "source_start": 26,
+                "source_end": 245,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 25,
+                    "text": "# 门店档案：S04 Arigato Sando\n"
+                  },
+                  {
+                    "start": 26,
+                    "end": 48,
+                    "text": "| 项目 | 内容 |\n|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-003",
+                "chunk_id": "KB-003#4",
+                "score": 28.0083,
+                "text": "| 三文鱼poke | 鲑鱼波奇饭、Salmon Poke | 供应商邮件里一律写 Salmon，原料单上写“鲑鱼” |\n| 鸡肉poke | Chicken Poke | |\n| 吞拿鱼三明治 | 金枪鱼三明治、Tuna Sando | |\n| 照烧三明治 | 照烧鸡三明治、Teriyaki Sando | |\n| 小笼包 | XLB、汤包 | 和灌汤包是两个商品，不要混 |\n| 灌汤包 | 蟹粉灌汤包 | |\n| 冷萃乌龙茶 | 冷萃乌龙、Cold Brew Oolong | 2026 年 8 月上市的新品 |\n| 抹茶拿铁 | Matcha Latte | |\n",
+                "retrieval_text": "商品与门店别名词典\n# 商品与门店别名词典\n## 一、商品\n| 数据库写法 | 常见别名 | 说明 |\n|---|---|---|\n| 三文鱼poke | 鲑鱼波奇饭、Salmon Poke | 供应商邮件里一律写 Salmon，原料单上写“鲑鱼” |\n| 鸡肉poke | Chicken Poke | |\n| 吞拿鱼三明治 | 金枪鱼三明治、Tuna Sando | |\n| 照烧三明治 | 照烧鸡三明治、Teriyaki Sando | |\n| 小笼包 | XLB、汤包 | 和灌汤包是两个商品，不要混 |\n| 灌汤包 | 蟹粉灌汤包 | |\n| 冷萃乌龙茶 | 冷萃乌龙、Cold Brew Oolong | 2026 年 8 月上市的新品 |\n| 抹茶拿铁 | Matcha Latte | |\n",
+                "source_start": 388,
+                "source_end": 675,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 商品与门店别名词典\n"
+                  },
+                  {
+                    "start": 137,
+                    "end": 145,
+                    "text": "## 一、商品\n"
+                  },
+                  {
+                    "start": 146,
+                    "end": 182,
+                    "text": "| 数据库写法 | 常见别名 | 说明 |\n|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "吞拿鱼三明治在s04停售的原因",
+              "terms": [
+                "吞拿",
+                "拿鱼",
+                "鱼三",
+                "三明",
+                "明治",
+                "治在",
+                "s04",
+                "停售",
+                "售的",
+                "的原",
+                "原因"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": "S04",
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-029#7",
+                  "doc_id": "KB-029",
+                  "score": 62.8806,
+                  "matched_terms": [
+                    "s04",
+                    "三明",
+                    "吞拿",
+                    "拿鱼",
+                    "明治",
+                    "鱼三"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#8",
+                  "doc_id": "KB-029",
+                  "score": 59.6696,
+                  "matched_terms": [
+                    "s04",
+                    "三明",
+                    "吞拿",
+                    "拿鱼",
+                    "明治",
+                    "鱼三"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#9",
+                  "doc_id": "KB-029",
+                  "score": 57.4919,
+                  "matched_terms": [
+                    "s04",
+                    "三明",
+                    "吞拿",
+                    "拿鱼",
+                    "明治",
+                    "鱼三"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#4",
+                  "doc_id": "KB-040",
+                  "score": 49.5274,
+                  "matched_terms": [
+                    "三明",
+                    "吞拿",
+                    "拿鱼",
+                    "明治",
+                    "鱼三"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#2",
+                  "doc_id": "KB-041",
+                  "score": 35.363,
+                  "matched_terms": [
+                    "三明",
+                    "吞拿",
+                    "拿鱼",
+                    "明治",
+                    "鱼三"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-033#2",
+                  "doc_id": "KB-033",
+                  "score": 32.1828,
+                  "matched_terms": [
+                    "s04",
+                    "三明",
+                    "明治"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-033#3",
+                  "doc_id": "KB-033",
+                  "score": 28.0705,
+                  "matched_terms": [
+                    "s04",
+                    "三明",
+                    "明治"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#4",
+                  "doc_id": "KB-003",
+                  "score": 28.0083,
+                  "matched_terms": [
+                    "三明",
+                    "吞拿",
+                    "拿鱼",
+                    "明治",
+                    "鱼三"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-033#1",
+                  "doc_id": "KB-033",
+                  "score": 26.6309,
+                  "matched_terms": [
+                    "s04"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-042#2",
+                  "doc_id": "KB-042",
+                  "score": 26.0525,
+                  "matched_terms": [
+                    "s04",
+                    "三明",
+                    "明治"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#10",
+                  "doc_id": "KB-029",
+                  "score": 25.7366,
+                  "matched_terms": [
+                    "s04",
+                    "三明",
+                    "明治"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-033#4",
+                  "doc_id": "KB-033",
+                  "score": 25.3922,
+                  "matched_terms": [
+                    "s04"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#7",
+                  "doc_id": "KB-040",
+                  "score": 21.754,
+                  "matched_terms": [
+                    "三明",
+                    "明治"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#3",
+                  "doc_id": "KB-029",
+                  "score": 20.8961,
+                  "matched_terms": [
+                    "停售"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#1",
+                  "doc_id": "KB-029",
+                  "score": 18.9817,
+                  "matched_terms": [
+                    "s04"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#5",
+                  "doc_id": "KB-029",
+                  "score": 18.477,
+                  "matched_terms": [
+                    "停售"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#1",
+                  "doc_id": "KB-040",
+                  "score": 17.9793,
+                  "matched_terms": [
+                    "售的"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#3",
+                  "doc_id": "KB-041",
+                  "score": 15.9859,
+                  "matched_terms": [
+                    "三明",
+                    "明治"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#7",
+                  "doc_id": "KB-003",
+                  "score": 15.8563,
+                  "matched_terms": [
+                    "s04"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#3",
+                  "doc_id": "KB-060",
+                  "score": 13.7211,
+                  "matched_terms": [
+                    "s04",
+                    "停售"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#8",
+                  "doc_id": "KB-060",
+                  "score": 12.8262,
+                  "matched_terms": [
+                    "s04",
+                    "三明",
+                    "明治"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#6",
+                  "doc_id": "KB-060",
+                  "score": 11.8791,
+                  "matched_terms": [
+                    "s04"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-028#5",
+                  "doc_id": "KB-028",
+                  "score": 11.3808,
+                  "matched_terms": [
+                    "三明",
+                    "明治"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-021#3",
+                  "doc_id": "KB-021",
+                  "score": 10.3717,
+                  "matched_terms": [
+                    "停售",
+                    "的原"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#8",
+                  "doc_id": "KB-003",
+                  "score": 9.109,
+                  "matched_terms": [
+                    "的原"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#10",
+                  "doc_id": "KB-060",
+                  "score": 8.7654,
+                  "matched_terms": [
+                    "s04",
+                    "停售"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-021#1",
+                  "doc_id": "KB-021",
+                  "score": 8.1472,
+                  "matched_terms": [
+                    "停售"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-021#2",
+                  "doc_id": "KB-021",
+                  "score": 7.9898,
+                  "matched_terms": [
+                    "停售"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#9",
+                  "doc_id": "KB-060",
+                  "score": 5.7529,
+                  "matched_terms": [
+                    "s04"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-061#1",
+                  "doc_id": "KB-061",
+                  "score": 5.7283,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-001#19",
+                  "doc_id": "KB-001",
+                  "score": 4.5697,
+                  "matched_terms": [
+                    "原因"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-026#3",
+                  "doc_id": "KB-026",
+                  "score": 4.5389,
+                  "matched_terms": [
+                    "的原"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#11",
+                  "doc_id": "KB-022",
+                  "score": 4.0643,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-016#3",
+                  "doc_id": "KB-016",
+                  "score": 4.023,
+                  "matched_terms": [
+                    "原因"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-014#5",
+                  "doc_id": "KB-014",
+                  "score": 3.6883,
+                  "matched_terms": [
+                    "原因"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-024#4",
+                  "doc_id": "KB-024",
+                  "score": 1.2777,
+                  "matched_terms": [
+                    "s04"
+                  ]
+                }
+              ],
+              "expansions": [
+                "吞拿鱼三明治",
+                "金枪鱼三明治",
+                "Tuna Sando",
+                "Arigato Sando",
+                "阿里嘎多",
+                "AS"
+              ],
+              "coverage": 0.458,
+              "hits": [
+                {
+                  "doc_id": "KB-029",
+                  "chunk_id": "KB-029#7",
+                  "score": 62.8806,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-040",
+                  "chunk_id": "KB-040#4",
+                  "score": 49.5274,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-041",
+                  "chunk_id": "KB-041#2",
+                  "score": 35.363,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-033",
+                  "chunk_id": "KB-033#2",
+                  "score": 32.1828,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-003",
+                  "chunk_id": "KB-003#4",
+                  "score": 28.0083,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-002",
+                  "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                },
+                {
+                  "doc_id": "KB-020",
+                  "reason": "文档声明只适用于 S03，与问题里的 S04 不符"
+                },
+                {
+                  "doc_id": "KB-023",
+                  "reason": "文档声明只适用于 S02，与问题里的 S04 不符"
+                },
+                {
+                  "doc_id": "KB-027",
+                  "reason": "文档声明只适用于 S05，与问题里的 S04 不符"
+                },
+                {
+                  "doc_id": "KB-010",
+                  "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                },
+                {
+                  "doc_id": "KB-012",
+                  "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                },
+                {
+                  "doc_id": "KB-050",
+                  "reason": "文档声明只适用于 S02，与问题里的 S04 不符"
+                },
+                {
+                  "doc_id": "KB-051",
+                  "reason": "文档声明只适用于 S03，与问题里的 S04 不符"
+                },
+                {
+                  "doc_id": "KB-052",
+                  "reason": "文档声明只适用于 S05，与问题里的 S04 不符"
+                },
+                {
+                  "doc_id": "KB-053",
+                  "reason": "文档声明只适用于 S01，与问题里的 S04 不符"
+                },
+                {
+                  "doc_id": "KB-030",
+                  "reason": "文档声明只适用于 S01，与问题里的 S04 不符"
+                },
+                {
+                  "doc_id": "KB-031",
+                  "reason": "文档声明只适用于 S02，与问题里的 S04 不符"
+                },
+                {
+                  "doc_id": "KB-032",
+                  "reason": "文档声明只适用于 S03，与问题里的 S04 不符"
+                },
+                {
+                  "doc_id": "KB-034",
+                  "reason": "文档声明只适用于 S05，与问题里的 S04 不符"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

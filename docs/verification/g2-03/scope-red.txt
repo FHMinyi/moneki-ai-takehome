@@ -1,0 +1,298 @@
+FFFFFFFFFF.FF                                                            [100%]
+=================================== FAILURES ===================================
+_ test_real_versions[\u73b0\u5728\u5916\u5356\u9000\u6b3e\u7684\u653f\u7b56\u89c4\u5b9a-KB-013-KB-012] _
+
+rt = <test_retrieval.Runtime object at 0x10af4bc50>, query = '现在外卖退款的政策规定'
+gold = 'KB-013', excluded = 'KB-012'
+
+    @pytest.mark.parametrize('query,gold,excluded',[
+     ('现在外卖退款的政策规定','KB-013','KB-012'),
+     ('2026-06-14当时的外卖退款规定','KB-012','KB-013'),
+     ('2026-06-15当时的外卖退款规定','KB-013','KB-012'),
+    ])
+    def test_real_versions(rt,query,gold,excluded):
+        original(rt)
+        with rt.serve() as request:
+            r=get(request,query)
+        ids={h['doc_id'] for h in evidence(r)}
+>       assert gold in ids and excluded not in ids, r
+E       AssertionError: {'results': [{'doc_id': 'KB-013', 'chunk_id': 'KB-013#4', 'score': 16.3211, 'text': '## 三、系统记录
+E         
+E         1. 退款在 POS 中以负金额行记录，...物品会交商场服务台或就近派出所，领取时需要说明物品特征。
+E         可以用会员储值余额在外卖平台付款吗？
+E         会员
+E         不可以。第三方外卖平台的订单只能用平台自己的支付方式，会员储值余额可以在门店堂食、自提和小程序自营外卖使用。
+E         ', ...}]}
+E       assert ('KB-013' in {'KB-010', 'KB-011', 'KB-012', 'KB-013', 'KB-061'} and 'KB-012' not in {'KB-010', 'KB-011', 'KB-012', 'KB-013', 'KB-061'})
+
+docs/verification/g2-03/test_retrieval.py:127: AssertionError
+_ test_real_versions[2026-06-14\u5f53\u65f6\u7684\u5916\u5356\u9000\u6b3e\u89c4\u5b9a-KB-012-KB-013] _
+
+rt = <test_retrieval.Runtime object at 0x10ae696d0>
+query = '2026-06-14当时的外卖退款规定', gold = 'KB-012', excluded = 'KB-013'
+
+    @pytest.mark.parametrize('query,gold,excluded',[
+     ('现在外卖退款的政策规定','KB-013','KB-012'),
+     ('2026-06-14当时的外卖退款规定','KB-012','KB-013'),
+     ('2026-06-15当时的外卖退款规定','KB-013','KB-012'),
+    ])
+    def test_real_versions(rt,query,gold,excluded):
+        original(rt)
+        with rt.serve() as request:
+            r=get(request,query)
+        ids={h['doc_id'] for h in evidence(r)}
+>       assert gold in ids and excluded not in ids, r
+E       AssertionError: {'results': [{'doc_id': 'KB-051', 'chunk_id': 'KB-051#1', 'score': 16.2325, 'text': '# S03 Juicy Bao Bao 店长周报（2026-06-...50#1', 'score': 9.3513, 'text': '# S02 Makai Poke 店长周报（2026-06-15 至 2026-06-21）
+E         
+E         店长：谭可欣
+E         提交日期：2026-06-22
+E         
+E         ', ...}]}
+E       assert ('KB-012' in {'KB-013', 'KB-026', 'KB-050', 'KB-051', 'KB-062'})
+
+docs/verification/g2-03/test_retrieval.py:127: AssertionError
+_ test_real_versions[2026-06-15\u5f53\u65f6\u7684\u5916\u5356\u9000\u6b3e\u89c4\u5b9a-KB-013-KB-012] _
+
+rt = <test_retrieval.Runtime object at 0x10af833b0>
+query = '2026-06-15当时的外卖退款规定', gold = 'KB-013', excluded = 'KB-012'
+
+    @pytest.mark.parametrize('query,gold,excluded',[
+     ('现在外卖退款的政策规定','KB-013','KB-012'),
+     ('2026-06-14当时的外卖退款规定','KB-012','KB-013'),
+     ('2026-06-15当时的外卖退款规定','KB-013','KB-012'),
+    ])
+    def test_real_versions(rt,query,gold,excluded):
+        original(rt)
+        with rt.serve() as request:
+            r=get(request,query)
+        ids={h['doc_id'] for h in evidence(r)}
+>       assert gold in ids and excluded not in ids, r
+E       AssertionError: {'results': [{'doc_id': 'KB-050', 'chunk_id': 'KB-050#1', 'score': 16.2823, 'text': '# S02 Makai Poke 店长周报（2026-06-15 ...时不要了：出餐前可退，已经出餐的原则上不退，视排队情况和商品状态灵活处理。
+E         - 外卖平台内的退款按平台规则走，门店不重复退款；自营外卖的退款按本政策执行。
+E         - 团体订单、预订单的退款由店长处理，不走普通流程。
+E         
+E         ', ...}]}
+E       assert ('KB-013' in {'KB-012', 'KB-013', 'KB-020', 'KB-050', 'KB-051'} and 'KB-012' not in {'KB-012', 'KB-013', 'KB-020', 'KB-050', 'KB-051'})
+
+docs/verification/g2-03/test_retrieval.py:127: AssertionError
+_ test_version_boundaries[\u73b0\u5728refundtoken\u9000\u6b3e\u89c4\u5b9a-KB-902] _
+
+rt = <test_retrieval.Runtime object at 0x10af81370>, query = '现在refundtoken退款规定'
+gold = 'KB-902'
+
+    @pytest.mark.parametrize('query,gold',[
+     ('现在refundtoken退款规定','KB-902'),
+     ('2026-05-31当时refundtoken退款规定','KB-901'),
+     ('2026-06-01当时refundtoken退款规定','KB-902'),
+    ])
+    def test_version_boundaries(rt,query,gold):
+        write(rt,901,'refundtoken退款申请限时9小时。','status: 已被取代\neffective_from: 2026-01-01\nsuperseded_by: KB-902')
+        write(rt,902,'refundtoken退款申请限时7小时。','status: 现行\neffective_from: 2026-06-01')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,query,5)
+        assert len(r['results'])==len(payload['chunks'])
+>       assert {h['doc_id'] for h in evidence(r)}=={gold}, r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 0.7032, 'text': 'refundtoken退款申请限时9小时。', ...}, {'doc_id': 'KB-902', 'chunk_id': 'KB-902#1', 'score': 0.7032, 'text': 'refundtoken退款申请限时7小时。', ...}]}
+E       assert {'KB-901', 'KB-902'} == {'KB-902'}
+E         
+E         Extra items in the left set:
+E         'KB-901'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:141: AssertionError
+_ test_version_boundaries[2026-05-31\u5f53\u65f6refundtoken\u9000\u6b3e\u89c4\u5b9a-KB-901] _
+
+rt = <test_retrieval.Runtime object at 0x10afd47a0>
+query = '2026-05-31当时refundtoken退款规定', gold = 'KB-901'
+
+    @pytest.mark.parametrize('query,gold',[
+     ('现在refundtoken退款规定','KB-902'),
+     ('2026-05-31当时refundtoken退款规定','KB-901'),
+     ('2026-06-01当时refundtoken退款规定','KB-902'),
+    ])
+    def test_version_boundaries(rt,query,gold):
+        write(rt,901,'refundtoken退款申请限时9小时。','status: 已被取代\neffective_from: 2026-01-01\nsuperseded_by: KB-902')
+        write(rt,902,'refundtoken退款申请限时7小时。','status: 现行\neffective_from: 2026-06-01')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,query,5)
+        assert len(r['results'])==len(payload['chunks'])
+>       assert {h['doc_id'] for h in evidence(r)}=={gold}, r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 0.7032, 'text': 'refundtoken退款申请限时9小时。', ...}, {'doc_id': 'KB-902', 'chunk_id': 'KB-902#1', 'score': 0.7032, 'text': 'refundtoken退款申请限时7小时。', ...}]}
+E       assert {'KB-901', 'KB-902'} == {'KB-901'}
+E         
+E         Extra items in the left set:
+E         'KB-902'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:141: AssertionError
+_ test_version_boundaries[2026-06-01\u5f53\u65f6refundtoken\u9000\u6b3e\u89c4\u5b9a-KB-902] _
+
+rt = <test_retrieval.Runtime object at 0x10afd57f0>
+query = '2026-06-01当时refundtoken退款规定', gold = 'KB-902'
+
+    @pytest.mark.parametrize('query,gold',[
+     ('现在refundtoken退款规定','KB-902'),
+     ('2026-05-31当时refundtoken退款规定','KB-901'),
+     ('2026-06-01当时refundtoken退款规定','KB-902'),
+    ])
+    def test_version_boundaries(rt,query,gold):
+        write(rt,901,'refundtoken退款申请限时9小时。','status: 已被取代\neffective_from: 2026-01-01\nsuperseded_by: KB-902')
+        write(rt,902,'refundtoken退款申请限时7小时。','status: 现行\neffective_from: 2026-06-01')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,query,5)
+        assert len(r['results'])==len(payload['chunks'])
+>       assert {h['doc_id'] for h in evidence(r)}=={gold}, r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 0.7032, 'text': 'refundtoken退款申请限时9小时。', ...}, {'doc_id': 'KB-902', 'chunk_id': 'KB-902#1', 'score': 0.7032, 'text': 'refundtoken退款申请限时7小时。', ...}]}
+E       assert {'KB-901', 'KB-902'} == {'KB-902'}
+E         
+E         Extra items in the left set:
+E         'KB-901'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:141: AssertionError
+____________________ test_filter_before_topk_and_padding[1] ____________________
+
+rt = <test_retrieval.Runtime object at 0x10afd78c0>, k = 1
+
+    @pytest.mark.parametrize('k',[1,2,5,100])
+    def test_filter_before_topk_and_padding(rt,k):
+        write(rt,901,'cooltoken cooltoken refrigeration规定4度。','stores: [S01]')
+        write(rt,902,'cooltoken refrigeration规定8度。','stores: [S02]')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,'S02 cooltoken refrigeration规定',k)
+            chat=request('/api/chat',dict(session_id='scope',question='S02 cooltoken refrigeration规定'))
+            trace=request('/api/trace/'+chat['trace_id'])
+        assert len(r['results'])==min(k,len(payload['chunks']))
+>       assert {h['doc_id'] for h in evidence(r)}=={'KB-902'},r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 1.1226, 'text': 'cooltoken cooltoken refrigeration规定4度。', ...}]}
+E       assert {'KB-901'} == {'KB-902'}
+E         
+E         Extra items in the left set:
+E         'KB-901'
+E         Extra items in the right set:
+E         'KB-902'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:155: AssertionError
+____________________ test_filter_before_topk_and_padding[2] ____________________
+
+rt = <test_retrieval.Runtime object at 0x10b00d6a0>, k = 2
+
+    @pytest.mark.parametrize('k',[1,2,5,100])
+    def test_filter_before_topk_and_padding(rt,k):
+        write(rt,901,'cooltoken cooltoken refrigeration规定4度。','stores: [S01]')
+        write(rt,902,'cooltoken refrigeration规定8度。','stores: [S02]')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,'S02 cooltoken refrigeration规定',k)
+            chat=request('/api/chat',dict(session_id='scope',question='S02 cooltoken refrigeration规定'))
+            trace=request('/api/trace/'+chat['trace_id'])
+        assert len(r['results'])==min(k,len(payload['chunks']))
+>       assert {h['doc_id'] for h in evidence(r)}=={'KB-902'},r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 1.1226, 'text': 'cooltoken cooltoken refrigeration规定4度。', ...}, {'doc_id': 'KB-902', 'chunk_id': 'KB-902#1', 'score': 1.0866, 'text': 'cooltoken refrigeration规定8度。', ...}]}
+E       assert {'KB-901', 'KB-902'} == {'KB-902'}
+E         
+E         Extra items in the left set:
+E         'KB-901'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:155: AssertionError
+____________________ test_filter_before_topk_and_padding[5] ____________________
+
+rt = <test_retrieval.Runtime object at 0x10b00f6b0>, k = 5
+
+    @pytest.mark.parametrize('k',[1,2,5,100])
+    def test_filter_before_topk_and_padding(rt,k):
+        write(rt,901,'cooltoken cooltoken refrigeration规定4度。','stores: [S01]')
+        write(rt,902,'cooltoken refrigeration规定8度。','stores: [S02]')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,'S02 cooltoken refrigeration规定',k)
+            chat=request('/api/chat',dict(session_id='scope',question='S02 cooltoken refrigeration规定'))
+            trace=request('/api/trace/'+chat['trace_id'])
+        assert len(r['results'])==min(k,len(payload['chunks']))
+>       assert {h['doc_id'] for h in evidence(r)}=={'KB-902'},r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 1.1226, 'text': 'cooltoken cooltoken refrigeration规定4度。', ...}, {'doc_id': 'KB-902', 'chunk_id': 'KB-902#1', 'score': 1.0866, 'text': 'cooltoken refrigeration规定8度。', ...}]}
+E       assert {'KB-901', 'KB-902'} == {'KB-902'}
+E         
+E         Extra items in the left set:
+E         'KB-901'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:155: AssertionError
+___________________ test_filter_before_topk_and_padding[100] ___________________
+
+rt = <test_retrieval.Runtime object at 0x10b045400>, k = 100
+
+    @pytest.mark.parametrize('k',[1,2,5,100])
+    def test_filter_before_topk_and_padding(rt,k):
+        write(rt,901,'cooltoken cooltoken refrigeration规定4度。','stores: [S01]')
+        write(rt,902,'cooltoken refrigeration规定8度。','stores: [S02]')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,'S02 cooltoken refrigeration规定',k)
+            chat=request('/api/chat',dict(session_id='scope',question='S02 cooltoken refrigeration规定'))
+            trace=request('/api/trace/'+chat['trace_id'])
+        assert len(r['results'])==min(k,len(payload['chunks']))
+>       assert {h['doc_id'] for h in evidence(r)}=={'KB-902'},r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 1.1226, 'text': 'cooltoken cooltoken refrigeration规定4度。', ...}, {'doc_id': 'KB-902', 'chunk_id': 'KB-902#1', 'score': 1.0866, 'text': 'cooltoken refrigeration规定8度。', ...}]}
+E       assert {'KB-901', 'KB-902'} == {'KB-902'}
+E         
+E         Extra items in the left set:
+E         'KB-901'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:155: AssertionError
+________________________ test_unknown_and_padding_chat _________________________
+
+rt = <test_retrieval.Runtime object at 0x10b047980>
+
+    def test_unknown_and_padding_chat(rt):
+        write(rt,901,'cobaltsecret 规章规定领取17枚硬币。','stores: [S01]')
+        rt.build()
+        with rt.serve() as request:
+            r=get(request,'S02 cobaltsecret规章规定',5)
+            chat=request('/api/chat',dict(session_id='none',question='S02 cobaltsecret规章规定'))
+            unknown=get(request,'zzzxylophoneqqq')
+>       assert not evidence(r),r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 2.2193, 'text': 'cobaltsecret 规章规定领取17枚硬币。', ...}]}
+E       assert not [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 2.2193, 'text': 'cobaltsecret 规章规定领取17枚硬币。', ...}]
+E        +  where [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 2.2193, 'text': 'cobaltsecret 规章规定领取17枚硬币。', ...}] = evidence({'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 2.2193, 'text': 'cobaltsecret 规章规定领取17枚硬币。', ...}]})
+
+docs/verification/g2-03/test_retrieval.py:177: AssertionError
+_______________________ test_same_search_http_and_trace ________________________
+
+rt = <test_retrieval.Runtime object at 0x10b046930>
+
+    def test_same_search_http_and_trace(rt):
+        original(rt)
+        with rt.serve() as request:
+            q='2026-06-14当时的外卖退款政策规定'
+            r=get(request,q)
+            chat=request('/api/chat',dict(session_id='same',question=q))
+            trace=request('/api/trace/'+chat['trace_id'])
+        searches=[s['detail'] for s in trace['steps'] if s['step']=='search']
+        assert searches,trace
+>       assert r['diagnostics']['terms']
+               ^^^^^^^^^^^^^^^^
+E       KeyError: 'diagnostics'
+
+docs/verification/g2-03/test_retrieval.py:192: KeyError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-03/test_retrieval.py::test_real_versions[\u73b0\u5728\u5916\u5356\u9000\u6b3e\u7684\u653f\u7b56\u89c4\u5b9a-KB-013-KB-012]
+FAILED docs/verification/g2-03/test_retrieval.py::test_real_versions[2026-06-14\u5f53\u65f6\u7684\u5916\u5356\u9000\u6b3e\u89c4\u5b9a-KB-012-KB-013]
+FAILED docs/verification/g2-03/test_retrieval.py::test_real_versions[2026-06-15\u5f53\u65f6\u7684\u5916\u5356\u9000\u6b3e\u89c4\u5b9a-KB-013-KB-012]
+FAILED docs/verification/g2-03/test_retrieval.py::test_version_boundaries[\u73b0\u5728refundtoken\u9000\u6b3e\u89c4\u5b9a-KB-902]
+FAILED docs/verification/g2-03/test_retrieval.py::test_version_boundaries[2026-05-31\u5f53\u65f6refundtoken\u9000\u6b3e\u89c4\u5b9a-KB-901]
+FAILED docs/verification/g2-03/test_retrieval.py::test_version_boundaries[2026-06-01\u5f53\u65f6refundtoken\u9000\u6b3e\u89c4\u5b9a-KB-902]
+FAILED docs/verification/g2-03/test_retrieval.py::test_filter_before_topk_and_padding[1]
+FAILED docs/verification/g2-03/test_retrieval.py::test_filter_before_topk_and_padding[2]
+FAILED docs/verification/g2-03/test_retrieval.py::test_filter_before_topk_and_padding[5]
+FAILED docs/verification/g2-03/test_retrieval.py::test_filter_before_topk_and_padding[100]
+FAILED docs/verification/g2-03/test_retrieval.py::test_unknown_and_padding_chat
+FAILED docs/verification/g2-03/test_retrieval.py::test_same_search_http_and_trace
+12 failed, 1 passed, 26 deselected in 7.94s
