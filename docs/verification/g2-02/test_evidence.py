@@ -102,14 +102,33 @@ def test_offsets_context_and_cache_layout(runtime):
     first = rt.build()
     assert rt.build() == first
     assert all('source_start' in c and 'source_end' in c for c in first['chunks'])
-    legacy = json.loads(Path(__file__).with_name('legacy-layout.json').read_text())
-    # Rebase only input-directory identity so this is testing the layout version gate.
-    old_key_code = "from kbqa import index; index.CHUNKER_VERSION='chunker-2'; print(index.content_key(__import__('pathlib').Path(__import__('os').environ['KB_DIR'])))"
-    legacy['key'] = subprocess.check_output([sys.executable, '-c', old_key_code], cwd=rt.source, env=rt.env, text=True).strip()
-    rt.cache.write_text(json.dumps(legacy))
+    # Generate the real previous product cache in this same runtime/directory.
+    modules = ['index.py', 'chunker.py']
+    current = {name: (rt.source / 'kbqa' / name).read_bytes() for name in modules}
+    try:
+        for name in modules:
+            old = subprocess.check_output(['git', 'show',
+                '8b72f47f712eab309bcc5e65841acfce45f0e17e:starter/kbqa/' + name], cwd=ROOT)
+            (rt.source / 'kbqa' / name).write_bytes(old)
+        legacy = rt.build()
+    finally:
+        for name, data in current.items():
+            (rt.source / 'kbqa' / name).write_bytes(data)
     assert legacy['key'] != first['key']
+    assert 'tailtoken' not in ''.join(c['source_text'] for c in legacy['chunks'])
     rt.http(['tailtoken'])  # automatic load, not forced rebuild
     assert json.loads(rt.cache.read_text()) == first
+    # Layout parameter changes also invalidate automatic loading without manual version bumps.
+    code = ("from kbqa import chunker, index; from pathlib import Path; import os; "
+            "chunker.CHUNK_SIZE=180; "
+            "value=index.load_index(Path(os.environ['KB_DIR']), Path('.cache/index.json')); "
+            "print(value.key)")
+    changed = subprocess.check_output([sys.executable, '-c', code], cwd=rt.source, env=rt.env, text=True).strip()
+    assert changed != first['key']
+    assert json.loads(rt.cache.read_text())['chunks'] != first['chunks']
+    rt.http(['tailtoken'])
+    assert json.loads(rt.cache.read_text()) == first
+
 
 
 def assert_identity(rt, payload, query):
@@ -157,3 +176,40 @@ def test_original_r08_r10_identity_http(runtime):
     for q in questions:
         if q['id'] in ('R08', 'R10'):
             assert_identity(rt, payload, q['query'])
+
+
+def test_context_is_local_and_rows_are_atomic(tmp_path):
+    body = ('# First\n\n' + 'a' * 250 + '\n\n' + '事实完整 ' * 15 + '\n\n'
+            '# Second\n| Key | Value |\n|---|---|\n| longrow | ' + 'b' * 500 + ' |\n'
+            '\n## Child\nendtoken 最后事实\n')
+    doc = Document('KB-901', 'Title', body, Path('KB-901.md'), 'md')
+    chunks = chunk_document(doc)
+    assert coverage(doc, chunks) == 0
+    assert any('事实完整 ' * 15 in c.source_text for c in chunks)
+    row = next(c for c in chunks if 'longrow' in c.source_text)
+    assert 'b' * 500 in row.source_text and 'Second' in row.heading and 'First' not in row.heading
+    last = chunks[-1]
+    assert 'Child' in last.heading and 'Second' in last.heading and 'First' not in last.heading
+    assert not last.table_header and 'Key' not in last.text
+    assert [c.as_dict() for c in chunks] == [c.as_dict() for c in chunk_document(doc)]
+
+
+def test_actual_all_retrieval_identity_and_rebuild_stability(runtime):
+    rt = runtime
+    rt.env['KB_DIR'] = str(ROOT / 'knowledge_base')
+    first = rt.build()
+    assert rt.build() == first
+    from kbqa.retriever import Retriever
+    index = load_index(ROOT / 'knowledge_base', rt.cache)
+    questions = [json.loads(line) for line in (ROOT / 'eval/public_questions.jsonl').read_text().splitlines()]
+    queries = [q['query'] for q in questions if q['category'] == 'retrieval']
+    _, responses = rt.http(queries)
+    by_id = {c.chunk_id: c for c in index.chunks}
+    for query in queries:
+        hits = Retriever(index, date(2026, 9, 1)).search(query).hits
+        assert responses[query]['results'] == [h.as_result() for h in hits]
+        for h in hits:
+            c = by_id[h.chunk_id]
+            assert h.doc_id == c.doc_id == h.meta['doc_id']
+            assert h.source_text == index.texts[h.doc_id][c.source_start:c.source_end]
+            assert h.text == c.text
