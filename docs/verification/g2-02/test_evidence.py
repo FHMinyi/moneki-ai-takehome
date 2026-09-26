@@ -213,3 +213,12 @@ def test_actual_all_retrieval_identity_and_rebuild_stability(runtime):
             assert h.doc_id == c.doc_id == h.meta['doc_id']
             assert h.source_text == index.texts[h.doc_id][c.source_start:c.source_end]
             assert h.text == c.text
+
+
+def test_headings_and_spacing_stay_with_body():
+    body = '# Heading\n\n可操作事实。\n\n## Subheading\n\n| A | B |\n|---|---|\n| item | 12 |\n\n'
+    doc = Document('KB-901', 'Title', body, Path('KB-901.md'), 'md')
+    chunks = chunk_document(doc)
+    assert coverage(doc, chunks) == 0
+    assert all(c.source_text.strip() for c in chunks)
+    assert any('# Heading\n\n可操作事实。' in c.source_text for c in chunks)
