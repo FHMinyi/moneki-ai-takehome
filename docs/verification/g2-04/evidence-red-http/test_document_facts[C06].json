@@ -1,0 +1,771 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-108/test_document_facts_C06_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-108/test_document_facts_C06_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-108/test_document_facts_C06_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 2a1738e2c80a\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-108/test_document_facts_C06_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-108/test_document_facts_C06_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "51547"
+      ],
+      "pid": 19484,
+      "port": 51547,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "2a1738e2c80a",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "退款在净营业额里是怎么算的？",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "指标口径手册 v3\n# 指标口径手册 v3\n\n适用范围：总部运营部、财务部、各门店店长，以及所有基于 POS 导出数据出具的经营报表与对外口径。\n本手册自 2026-05-01 起生效，取代 v2（KB-002）。此前的模板、表格、月报里凡与本手册不一致的算法，一律以本手册为准。\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 1. 数据来源\n\n经营数字的唯一来源是 POS 每日导出的销售明细表 `sales`，配合门店维表 `stores` 与商品维表 `products`。\n`sales` 的字段为：`order_id`、`date`、`store_id`、`product_id`、`qty`、`amount`、`payment`。\n导出文件不做任何人工修改，所有清洗动作都写在本手册里由系统统一执行，门店和总部都不得先改数再报数。\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 2. 规范化\n\n在做任何筛选和汇总之前，先按下面四条把字段规范化。\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 2. 规范化\n1. `store_id`、`product_id`：去掉首尾空白，并转为大写。`s01`、`S01 `、` s03` 这类写法规范化之后都是合法的编号，不要当成脏数据扔掉。\n2. `date`：接受三种格式，`YYYY-MM-DD`、`YYYY/M/D`、`DD-MM-YYYY`。\n   第三种是旧 POS 的导出格式，**日在前、月在后**：`25-07-2026` 是 2026 年 7 月 25 日，`07-06-2026` 是 2026 年 6 月 7 日。\n   这一类里会出现“日”大于 12 的样本，正好可以用来验证解析方向有没有搞反。\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 2. 规范化\n3. `amount`：去掉 `¥` 前缀与首尾空白之后按数字解析。`¥38.00` 与 `38.00` 是同一个金额，带符号的行是可恢复的，必须保留。\n4. `qty`：按整数解析。\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 3. 剔除（按顺序执行）\n\n1. 日期无法解析的行。\n2. `amount` 为空的行。**不回填**，直接剔除。\n3. `qty ≤ 0` 的行。\n4. 规范化后 `store_id` 不在 `stores` 表里的行。\n5. 规范化后 `product_id` 不在 `products` 表里的行。\n6. 规范化后所有字段完全相同的重复行，只保留 1 条。\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 3. 剔除（按顺序执行）\n关于第 6 条要特别说明：只有订单号、日期、门店、商品、数量、金额、支付方式这七个字段规范化之后**完全一致**的行，才算重复行。\n一张订单点了两个不同商品时会出现两行明细，它们共用同一个 `order_id`、同一个日期、同一家门店、同一种支付方式，只有商品不同，这是合法的多行订单，必须全部保留。\n一句话：完全相同的重复行要去掉，共用订单号的不同商品行要留下。\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 4. 指标定义\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 4. 指标定义\n- **退款行**：通过上述剔除规则后 `amount < 0` 的行。\n- **销售行**：通过上述剔除规则后 `amount > 0` 的行。\n- **净营业额** = 销售行金额之和 + 退款行金额之和。退款行的金额本身是负数，所以实际效果是相减。\n- **退款金额** = 退款行金额之和的绝对值。\n- **有效订单数** = 销售行中不同 `order_id` 的个数。多行订单算 1 单；退款行不单独计为订单。\n- **客单价** = 净营业额 ÷ 有效订单数，四舍五入保留 2 位小数。\n- **销量** = 销售行 `qty` 之和减去退款行 `qty` 之和。\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 4. 指标定义\n- 按日期、门店、商品筛选时，退款行按**退款行自己的日期**归属，不回溯到原单日期。\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 5. 数字来源优先级\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 5. 数字来源优先级\n1. 凡涉及营业额、订单数、销量、客单价等经营数字，一律以数据库按本手册口径计算的结果为准。\n2. 周报、会议纪要、活动复盘里的数字是店长和运营的人工估算，只能当背景参考，不能当作答案，更不能拿去对外。\n3. 商品的现行售价以调价通知为准。`products` 表里的 `unit_price` 是建档价，由财务在月底统一更新，可能滞后于实际售价，不能用它当作某一天的成交价。\n   **金额以实收为准**：`amount` 记的是顾客当时实际付掉的钱，活动特价、调价当天的差异都已经体现在 `amount` 里，不要用建档价反推金额，也不要用建档价去覆盖 `amount`。\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 6. 变更记录\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 6. 变更记录\n| 版本 | 生效日期 | 状态 |\n|---|---|---|\n| v3 | 2026-05-01 | 现行 |\n| v2 | 2025-09-01 | 已被 v3 取代 |\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 6. 变更记录\n\nv3 相对 v2 改了三个地方，都会直接改变算出来的数字，做同比同环比时请注意：\n\n1. 退款行改为计入净营业额。v2 把负金额行在清洗阶段直接剔除，只统计正向销售，退款另走财务台账。\n2. `amount` 为空的行改为直接剔除。v2 是按 `qty × unit_price` 回填后继续参与统计。\n3. 客单价的分母改为有效订单数。v2 用的是明细行数，多行订单会被算成多单，客单价偏低。\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 6. 变更记录\n另外 v3 新增了四段说明：`DD-MM-YYYY` 日在前的解析方向、“金额以实收为准”、合法多行订单与重复行的区分、以及第 5 节的数字来源优先级。\n这几段在 v2 里没有对应内容，不属于口径变更，属于把原来靠口口相传的做法写进手册。\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 7. 几个最容易搞错的地方\n\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 7. 几个最容易搞错的地方\n1. 带 `¥` 的金额是可以恢复的脏值，去掉符号之后照常参与统计，不要把整行丢掉。\n2. 门店编号大小写不一致、前后带空格，都属于可恢复的写法，要先规范化再判断是不是脏外键，顺序反了会误删真实订单。\n3. 同一个订单号出现多行时，先比对全部字段：字段完全一样的是重复行，只留一条；商品不一样的是一张订单里点的多个菜，必须全部保留，订单数仍然只算 1 单。\n4. 退款行的日期是操作退款那一天，不是原订单那一天。算某一天、某一家门店的数时，按退款行自己的日期归属，不要挪回原单。\n\n指标口径手册 v3\n# 指标口径手册 v3\n## 7. 几个最容易搞错的地方\n5. 某个商品在某一天的成交单价和建档价对不上时，以 `amount` 为准，不要去“修正”它，也不要因此把这些行当成脏数据。\n6. 报表数字和门店口头汇报对不上时，先按本手册重算一遍，再谈差异原因，不要直接采信任何一边。\nKB-014《员工餐与员工折扣制度》（2025-07-01 起生效）：4. 员工餐的食材成本按月归集到门店，不计入营业成本以外的科目，由财务在月度结算时核对。\nKB-013《退款政策 v2》（2026-06-15 起生效）：3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-014",
+                "quote": "4. 员工餐的食材成本按月归集到门店，不计入营业成本以外的科目，由财务在月度结算时核对。"
+              },
+              {
+                "doc_id": "KB-013",
+                "quote": "3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "single",
+            "question": "退款在净营业额里是怎么算的？",
+            "started_at": "2026-09-27T04:20:43.077",
+            "total_ms": 22.9,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 9.0,
+                "took_ms": 9.0,
+                "detail": {
+                  "question": "退款在净营业额里是怎么算的？",
+                  "standalone_question": "退款在净营业额里是怎么算的？",
+                  "search_query": "退款在净营业额里是怎么算的？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=net_revenue 门店=全部 商品=全部 时间=未指定"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 18.0,
+                "took_ms": 9.0,
+                "detail": {
+                  "query": "退款在净营业额里是怎么算的?",
+                  "terms": [
+                    "退款",
+                    "款在",
+                    "在净",
+                    "净营",
+                    "营业",
+                    "业额",
+                    "额里",
+                    "里是",
+                    "么算",
+                    "算的"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-001#9",
+                      "doc_id": "KB-001",
+                      "score": 31.48,
+                      "lexical_score": 15.5457,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业额",
+                        "净营",
+                        "营业",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#15",
+                      "doc_id": "KB-001",
+                      "score": 23.6823,
+                      "lexical_score": 10.3472,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业额",
+                        "净营",
+                        "营业",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#4",
+                      "doc_id": "KB-013",
+                      "score": 18.8997,
+                      "lexical_score": 9.3332,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "款在",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#12",
+                      "doc_id": "KB-001",
+                      "score": 17.6182,
+                      "lexical_score": 6.3045,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业额",
+                        "算的",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#4",
+                      "doc_id": "KB-051",
+                      "score": 11.1293,
+                      "lexical_score": 8.2439,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "么算"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#10",
+                      "doc_id": "KB-001",
+                      "score": 9.6275,
+                      "lexical_score": 4.1865,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#1",
+                      "doc_id": "KB-060",
+                      "score": 8.8007,
+                      "lexical_score": 4.346,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业额",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#18",
+                      "doc_id": "KB-001",
+                      "score": 8.5442,
+                      "lexical_score": 3.1032,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#6",
+                      "doc_id": "KB-013",
+                      "score": 7.9797,
+                      "lexical_score": 4.7131,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#3",
+                      "doc_id": "KB-013",
+                      "score": 7.6857,
+                      "lexical_score": 4.4191,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#2",
+                      "doc_id": "KB-014",
+                      "score": 7.6409,
+                      "lexical_score": 3.7733,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业额",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#5",
+                      "doc_id": "KB-013",
+                      "score": 7.6117,
+                      "lexical_score": 4.3451,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#1",
+                      "doc_id": "KB-013",
+                      "score": 6.9277,
+                      "lexical_score": 3.661,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#2",
+                      "doc_id": "KB-013",
+                      "score": 6.7723,
+                      "lexical_score": 3.5057,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#3",
+                      "doc_id": "KB-051",
+                      "score": 6.2872,
+                      "lexical_score": 1.3061,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#3",
+                      "doc_id": "KB-011",
+                      "score": 6.0133,
+                      "lexical_score": 4.4543,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "额里"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#3",
+                      "doc_id": "KB-029",
+                      "score": 5.3834,
+                      "lexical_score": 2.6585,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业额",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#9",
+                      "doc_id": "KB-060",
+                      "score": 5.0024,
+                      "lexical_score": 3.4813,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "业额",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#2",
+                      "doc_id": "KB-020",
+                      "score": 4.9522,
+                      "lexical_score": 3.6683,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#2",
+                      "doc_id": "KB-050",
+                      "score": 4.806,
+                      "lexical_score": 3.56,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "业额",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#3",
+                      "doc_id": "KB-042",
+                      "score": 4.3681,
+                      "lexical_score": 3.2356,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#1",
+                      "doc_id": "KB-061",
+                      "score": 4.2913,
+                      "lexical_score": 3.1787,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-042#1",
+                      "doc_id": "KB-042",
+                      "score": 4.2495,
+                      "lexical_score": 3.117,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#3",
+                      "doc_id": "KB-061",
+                      "score": 4.1224,
+                      "lexical_score": 3.0099,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-051#2",
+                      "doc_id": "KB-051",
+                      "score": 4.0771,
+                      "lexical_score": 1.1917,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#2",
+                      "doc_id": "KB-042",
+                      "score": 4.07,
+                      "lexical_score": 2.9375,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#4",
+                      "doc_id": "KB-042",
+                      "score": 4.0672,
+                      "lexical_score": 2.9348,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#1",
+                      "doc_id": "KB-062",
+                      "score": 3.9558,
+                      "lexical_score": 1.723,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#5",
+                      "doc_id": "KB-014",
+                      "score": 3.9105,
+                      "lexical_score": 1.2864,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#2",
+                      "doc_id": "KB-023",
+                      "score": 3.6751,
+                      "lexical_score": 2.7223,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#5",
+                      "doc_id": "KB-011",
+                      "score": 3.6302,
+                      "lexical_score": 2.0712,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-052#2",
+                      "doc_id": "KB-052",
+                      "score": 3.6298,
+                      "lexical_score": 2.6888,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "业额",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#2",
+                      "doc_id": "KB-062",
+                      "score": 3.5264,
+                      "lexical_score": 2.6122,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#14",
+                      "doc_id": "KB-029",
+                      "score": 3.0184,
+                      "lexical_score": 1.0818,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#1",
+                      "doc_id": "KB-020",
+                      "score": 2.773,
+                      "lexical_score": 1.4891,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-016#2",
+                      "doc_id": "KB-016",
+                      "score": 2.5447,
+                      "lexical_score": 1.885,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-034#2",
+                      "doc_id": "KB-034",
+                      "score": 2.5312,
+                      "lexical_score": 1.8749,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#2",
+                      "doc_id": "KB-026",
+                      "score": 2.5168,
+                      "lexical_score": 1.8643,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-031#2",
+                      "doc_id": "KB-031",
+                      "score": 2.5036,
+                      "lexical_score": 1.8545,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-033#2",
+                      "doc_id": "KB-033",
+                      "score": 2.5036,
+                      "lexical_score": 1.8545,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#2",
+                      "doc_id": "KB-030",
+                      "score": 2.4766,
+                      "lexical_score": 1.8345,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-032#2",
+                      "doc_id": "KB-032",
+                      "score": 2.4501,
+                      "lexical_score": 1.8149,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-034#4",
+                      "doc_id": "KB-034",
+                      "score": 2.4148,
+                      "lexical_score": 1.7586,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-033#4",
+                      "doc_id": "KB-033",
+                      "score": 2.3808,
+                      "lexical_score": 1.7317,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-031#4",
+                      "doc_id": "KB-031",
+                      "score": 2.3378,
+                      "lexical_score": 1.6887,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-032#4",
+                      "doc_id": "KB-032",
+                      "score": 2.3156,
+                      "lexical_score": 1.6804,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#4",
+                      "doc_id": "KB-030",
+                      "score": 2.2741,
+                      "lexical_score": 1.632,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#3",
+                      "doc_id": "KB-062",
+                      "score": 2.2305,
+                      "lexical_score": 1.3162,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#15",
+                      "doc_id": "KB-029",
+                      "score": 2.2072,
+                      "lexical_score": 1.2767,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#10",
+                      "doc_id": "KB-029",
+                      "score": 2.1434,
+                      "lexical_score": 1.213,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#12",
+                      "doc_id": "KB-029",
+                      "score": 2.1057,
+                      "lexical_score": 1.1752,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#2",
+                      "doc_id": "KB-024",
+                      "score": 0.7387,
+                      "lexical_score": 2.1886,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.266,
+                  "hits": [
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 31.48,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-013",
+                      "chunk_id": "KB-013#4",
+                      "score": 18.8997,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-051",
+                      "chunk_id": "KB-051#4",
+                      "score": 11.1293,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-060",
+                      "chunk_id": "KB-060#1",
+                      "score": 8.8007,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "chunk_id": "KB-014#2",
+                      "score": 7.6409,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 22.9,
+                "took_ms": 13.9,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 22.9,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}
