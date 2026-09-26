@@ -1,0 +1,919 @@
+{
+  "source": "/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_guard_allows_read_only_co1/starter",
+  "records": [
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_guard_allows_read_only_co1/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-u99qwxp5/source/data\n知识库目录：/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_guard_allows_read_only_co1/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 e8137ca472f1\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_guard_allows_read_only_co1/var/clean.db、/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_guard_allows_read_only_co1/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "64324"
+      ],
+      "pid": 85618,
+      "port": 64324,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "e8137ca472f1",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "session_id": "readonly",
+            "question": "调价通知规定了哪些商品价格"
+          },
+          "response": {
+            "answer": "KB-025《2026 年 7 月调价通知》：**牛肉poke 售价由 ¥42 调整为 ¥45，自 2026 年 7 月 1 日起执行**，五家门店同步，堂食、自提、外卖自营渠道一致。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-025",
+                "quote": "**牛肉poke 售价由 ¥42 调整为 ¥45，自 2026 年 7 月 1 日起执行**，五家门店同步，堂食、自提、外卖自营渠道一致。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "readonly",
+            "question": "调价通知规定了哪些商品价格",
+            "started_at": "2026-09-27T05:22:15.798",
+            "total_ms": 22.9,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 10.0,
+                "took_ms": 10.0,
+                "detail": {
+                  "question": "调价通知规定了哪些商品价格",
+                  "standalone_question": "调价通知规定了哪些商品价格",
+                  "search_query": "调价通知规定了哪些商品价格",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 20.0,
+                "took_ms": 10.0,
+                "detail": {
+                  "query": "调价通知规定了哪些商品价格",
+                  "terms": [
+                    "调价",
+                    "价通",
+                    "通知",
+                    "知规",
+                    "规定",
+                    "定了",
+                    "些商",
+                    "商品",
+                    "品价",
+                    "价格"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-025#2",
+                      "doc_id": "KB-025",
+                      "score": 55.2535,
+                      "lexical_score": 27.2857,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "价格",
+                        "价通",
+                        "品价",
+                        "商品",
+                        "调价",
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#3",
+                      "doc_id": "KB-025",
+                      "score": 23.8697,
+                      "lexical_score": 14.3197,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "价格",
+                        "价通",
+                        "调价",
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#1",
+                      "doc_id": "KB-025",
+                      "score": 22.4909,
+                      "lexical_score": 12.9409,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "价通",
+                        "调价",
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#4",
+                      "doc_id": "KB-025",
+                      "score": 21.4455,
+                      "lexical_score": 11.8955,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "价通",
+                        "调价",
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#12",
+                      "doc_id": "KB-001",
+                      "score": 10.8796,
+                      "lexical_score": 8.059,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "价通",
+                        "商品",
+                        "调价",
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#2",
+                      "doc_id": "KB-028",
+                      "score": 10.2848,
+                      "lexical_score": 5.0789,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "商品",
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#8",
+                      "doc_id": "KB-003",
+                      "score": 8.7391,
+                      "lexical_score": 12.9469,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "价格",
+                        "价通",
+                        "商品",
+                        "调价",
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#2",
+                      "doc_id": "KB-061",
+                      "score": 8.1516,
+                      "lexical_score": 6.0382,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-001#7",
+                      "doc_id": "KB-001",
+                      "score": 5.8413,
+                      "lexical_score": 3.0207,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#8",
+                      "doc_id": "KB-029",
+                      "score": 5.5258,
+                      "lexical_score": 4.0931,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "价格",
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#10",
+                      "doc_id": "KB-001",
+                      "score": 5.2701,
+                      "lexical_score": 2.4495,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#6",
+                      "doc_id": "KB-028",
+                      "score": 4.7105,
+                      "lexical_score": 2.9329,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#12",
+                      "doc_id": "KB-029",
+                      "score": 4.6234,
+                      "lexical_score": 3.1908,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品",
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#19",
+                      "doc_id": "KB-001",
+                      "score": 4.5929,
+                      "lexical_score": 1.7723,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#2",
+                      "doc_id": "KB-001",
+                      "score": 4.5603,
+                      "lexical_score": 1.7397,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#6",
+                      "doc_id": "KB-040",
+                      "score": 4.4422,
+                      "lexical_score": 3.2905,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#3",
+                      "doc_id": "KB-028",
+                      "score": 4.4226,
+                      "lexical_score": 2.645,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#2",
+                      "doc_id": "KB-040",
+                      "score": 4.386,
+                      "lexical_score": 3.2343,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#1",
+                      "doc_id": "KB-028",
+                      "score": 4.3833,
+                      "lexical_score": 2.6057,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#5",
+                      "doc_id": "KB-040",
+                      "score": 4.345,
+                      "lexical_score": 3.1933,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#3",
+                      "doc_id": "KB-040",
+                      "score": 4.3316,
+                      "lexical_score": 3.1799,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#4",
+                      "doc_id": "KB-040",
+                      "score": 4.292,
+                      "lexical_score": 3.1403,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#4",
+                      "doc_id": "KB-028",
+                      "score": 4.2631,
+                      "lexical_score": 2.4855,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#2",
+                      "doc_id": "KB-003",
+                      "score": 4.18,
+                      "lexical_score": 3.8287,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#5",
+                      "doc_id": "KB-028",
+                      "score": 4.1616,
+                      "lexical_score": 2.384,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#5",
+                      "doc_id": "KB-003",
+                      "score": 4.0996,
+                      "lexical_score": 3.6678,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#6",
+                      "doc_id": "KB-003",
+                      "score": 4.0341,
+                      "lexical_score": 3.5367,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#18",
+                      "doc_id": "KB-001",
+                      "score": 4.0236,
+                      "lexical_score": 1.2029,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#1",
+                      "doc_id": "KB-026",
+                      "score": 3.959,
+                      "lexical_score": 2.9326,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#4",
+                      "doc_id": "KB-003",
+                      "score": 3.8421,
+                      "lexical_score": 3.1529,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#3",
+                      "doc_id": "KB-003",
+                      "score": 3.8006,
+                      "lexical_score": 3.0697,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#7",
+                      "doc_id": "KB-003",
+                      "score": 3.7613,
+                      "lexical_score": 2.9913,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#1",
+                      "doc_id": "KB-021",
+                      "score": 3.7255,
+                      "lexical_score": 2.7596,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#1",
+                      "doc_id": "KB-003",
+                      "score": 3.4981,
+                      "lexical_score": 2.4649,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#7",
+                      "doc_id": "KB-040",
+                      "score": 3.4469,
+                      "lexical_score": 2.2952,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品",
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#3",
+                      "doc_id": "KB-021",
+                      "score": 3.3688,
+                      "lexical_score": 2.4029,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#3",
+                      "doc_id": "KB-020",
+                      "score": 3.2969,
+                      "lexical_score": 2.4422,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#3",
+                      "doc_id": "KB-026",
+                      "score": 3.2167,
+                      "lexical_score": 2.1902,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#1",
+                      "doc_id": "KB-020",
+                      "score": 3.1084,
+                      "lexical_score": 2.2536,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#1",
+                      "doc_id": "KB-040",
+                      "score": 3.0484,
+                      "lexical_score": 1.8967,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#4",
+                      "doc_id": "KB-042",
+                      "score": 2.9474,
+                      "lexical_score": 2.1832,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#2",
+                      "doc_id": "KB-026",
+                      "score": 2.9465,
+                      "lexical_score": 1.9201,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#2",
+                      "doc_id": "KB-021",
+                      "score": 2.9235,
+                      "lexical_score": 1.9577,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-027#6",
+                      "doc_id": "KB-027",
+                      "score": 2.8672,
+                      "lexical_score": 1.4159,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#3",
+                      "doc_id": "KB-062",
+                      "score": 2.7747,
+                      "lexical_score": 2.0553,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#15",
+                      "doc_id": "KB-029",
+                      "score": 2.7475,
+                      "lexical_score": 1.3149,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#2",
+                      "doc_id": "KB-062",
+                      "score": 2.688,
+                      "lexical_score": 1.9687,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#2",
+                      "doc_id": "KB-020",
+                      "score": 2.6024,
+                      "lexical_score": 1.7477,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#2",
+                      "doc_id": "KB-041",
+                      "score": 2.5478,
+                      "lexical_score": 1.8872,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#1",
+                      "doc_id": "KB-062",
+                      "score": 2.4939,
+                      "lexical_score": 1.7746,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-034#4",
+                      "doc_id": "KB-034",
+                      "score": 2.4452,
+                      "lexical_score": 1.8113,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-033#4",
+                      "doc_id": "KB-033",
+                      "score": 2.4079,
+                      "lexical_score": 1.7836,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-031#4",
+                      "doc_id": "KB-031",
+                      "score": 2.3481,
+                      "lexical_score": 1.7393,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-032#4",
+                      "doc_id": "KB-032",
+                      "score": 2.3365,
+                      "lexical_score": 1.7307,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#4",
+                      "doc_id": "KB-041",
+                      "score": 2.3237,
+                      "lexical_score": 1.6632,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#4",
+                      "doc_id": "KB-030",
+                      "score": 2.2692,
+                      "lexical_score": 1.6809,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#4",
+                      "doc_id": "KB-013",
+                      "score": 2.2065,
+                      "lexical_score": 1.6344,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#3",
+                      "doc_id": "KB-041",
+                      "score": 2.1074,
+                      "lexical_score": 1.4468,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#4",
+                      "doc_id": "KB-053",
+                      "score": 2.0796,
+                      "lexical_score": 1.5404,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#3",
+                      "doc_id": "KB-014",
+                      "score": 2.0554,
+                      "lexical_score": 1.5226,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "商品"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#3",
+                      "doc_id": "KB-051",
+                      "score": 1.8161,
+                      "lexical_score": 1.3452,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-016#2",
+                      "doc_id": "KB-016",
+                      "score": 1.6986,
+                      "lexical_score": 1.2583,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#2",
+                      "doc_id": "KB-053",
+                      "score": 1.6899,
+                      "lexical_score": 1.1508,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "通知"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.44,
+                  "hits": [
+                    {
+                      "doc_id": "KB-025",
+                      "chunk_id": "KB-025#2",
+                      "score": 55.2535,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#12",
+                      "score": 10.8796,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-028",
+                      "chunk_id": "KB-028#2",
+                      "score": 10.2848,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-003",
+                      "chunk_id": "KB-003#8",
+                      "score": 8.7391,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "chunk_id": "KB-061#2",
+                      "score": 8.1516,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 22.9,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [
+                    {
+                      "doc_id": "KB-025",
+                      "chunk_id": "KB-025#2",
+                      "score": 0.29078458909154015,
+                      "text": "**牛肉poke 售价由 ¥42 调整为 ¥45，自 2026 年 7 月 1 日起执行**，五家门店同步，堂食、自提、外卖自营渠道一致。"
+                    },
+                    {
+                      "doc_id": "KB-028",
+                      "chunk_id": "KB-028#2",
+                      "score": 0.08875098568146682,
+                      "text": "2. **商品编号 P21，商品名“冷萃乌龙茶”，售价 ¥16**，归入饮料品类。"
+                    }
+                  ],
+                  "rejected": [],
+                  "selected": [
+                    {
+                      "doc_id": "KB-025",
+                      "chunk_id": "KB-025#2",
+                      "score": 0.29078458909154015,
+                      "source_start": 147,
+                      "source_end": 249,
+                      "quote": "**牛肉poke 售价由 ¥42 调整为 ¥45，自 2026 年 7 月 1 日起执行**，五家门店同步，堂食、自提、外卖自营渠道一致。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 22.9,
+                "took_ms": 12.9,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 22.9,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

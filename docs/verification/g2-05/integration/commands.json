@@ -1,0 +1,85 @@
+[
+  {
+    "args": [
+      "make",
+      "rebuild"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-u99qwxp5/source",
+    "environment": {},
+    "exit_code": 0,
+    "log": "rebuild-original.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+      "eval/run_eval.py",
+      "--base-url",
+      "http://127.0.0.1:63327",
+      "--questions",
+      "eval/public_questions.jsonl",
+      "--out",
+      "/private/tmp/moneki-g2-05-rag-01/eval"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-u99qwxp5/source",
+    "environment": {},
+    "exit_code": 0,
+    "log": "eval.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+      "docs/verification/g2-02/audit.py",
+      "/private/tmp/moneki-g2-05-rag-01",
+      "/private/tmp/moneki-g2-05-rag-01/g2-02-audit.json"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-u99qwxp5/source",
+    "environment": {},
+    "exit_code": 0,
+    "log": "g2-02-audit.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+      "docs/verification/g2-03/audit.py",
+      "/private/tmp/moneki-g2-05-rag-01",
+      "/private/tmp/moneki-g2-05-rag-01/g2-03-audit.json"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-u99qwxp5/source",
+    "environment": {},
+    "exit_code": 0,
+    "log": "g2-03-audit.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+      "-m",
+      "pytest",
+      "docs/verification/g2-01/test_ingestion.py",
+      "docs/verification/g2-02/test_evidence.py",
+      "docs/verification/g2-03/test_retrieval.py",
+      "docs/verification/g2-04/test_doc_qa.py",
+      "-q",
+      "--basetemp",
+      "/private/tmp/moneki-g2-05-rag-01/pytest-temp"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-u99qwxp5/source",
+    "environment": {
+      "G2_EVIDENCE": "/private/tmp/moneki-g2-05-rag-01/rag-http",
+      "G2_HISTORY_FIXTURE": "/private/tmp/moneki-g2-05-rag-01/history-fixture"
+    },
+    "exit_code": 0,
+    "log": "rag-regressions.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+      "docs/verification/g2-04/audit.py",
+      "/private/tmp/moneki-g2-05-rag-01/rag-http",
+      "/private/tmp/moneki-g2-05-rag-01/answer-audit.json"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-u99qwxp5/source",
+    "environment": {},
+    "exit_code": 1,
+    "log": "answer-audit.txt"
+  }
+]

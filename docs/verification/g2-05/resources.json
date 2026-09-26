@@ -1,0 +1,1388 @@
+{
+  "services": [
+    {
+      "pid": 85700,
+      "port": 64401,
+      "stopped": true,
+      "evidence": "kb-first-failure/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86805,
+      "port": 65350,
+      "stopped": true,
+      "evidence": "heading-control/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86894,
+      "port": 65365,
+      "stopped": true,
+      "evidence": "heading-control/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 88231,
+      "port": 49334,
+      "stopped": true,
+      "evidence": "heading-script-attempt/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 88250,
+      "port": 49347,
+      "stopped": true,
+      "evidence": "heading-script-attempt/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 87714,
+      "port": 49176,
+      "stopped": true,
+      "evidence": "kb-lifecycle/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 87738,
+      "port": 49191,
+      "stopped": true,
+      "evidence": "kb-lifecycle/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 87753,
+      "port": 49203,
+      "stopped": true,
+      "evidence": "kb-lifecycle/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 87758,
+      "port": 49215,
+      "stopped": true,
+      "evidence": "kb-lifecycle/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 87772,
+      "port": 49226,
+      "stopped": true,
+      "evidence": "kb-lifecycle/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 88761,
+      "port": 49489,
+      "stopped": true,
+      "evidence": "heading-repro/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 88775,
+      "port": 49502,
+      "stopped": true,
+      "evidence": "heading-repro/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86399,
+      "port": 65025,
+      "stopped": true,
+      "evidence": "canonical-control/http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86320,
+      "port": 64957,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_missing_attribute[has-ingredient].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85148,
+      "port": 63906,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_variants[Beef Poke\\u91cc\\u9762\\u6709\\u54ea\\u4e9b\\u8fc7\\u654f\\u539f\\uff1f-KB-040-\\u725b\\u8089].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86258,
+      "port": 64904,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_quote_normalized_limit.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85265,
+      "port": 63987,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_real_versions[\\u73b0\\u5728\\u5916\\u5356\\u9000\\u6b3e\\u7684\\u653f\\u7b56\\u89c4\\u5b9a-KB-013-KB-012].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85193,
+      "port": 63939,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_variants[\\u963f\\u91cc\\u560e\\u591a\\u7684\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u4e3a\\u4f55\\u505c\\u552e-KB-029-\\u4e09\\u660e\\u6cbb].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86404,
+      "port": 65042,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_supported_attribute[can-stack].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86001,
+      "port": 64667,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_history_boundary[2026-06-15\\u5f53\\u65f6\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u7533\\u8bf7\\u9000\\u6b3e\\uff1f-KB-013-KB-012-24 \\u5c0f\\u65f6].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85033,
+      "port": 63790,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R07].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85650,
+      "port": 64354,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_guard_allows_read_only_counterexamples[S02\\u7684\\u98df\\u54c1\\u5b89\\u5168\\u89c4\\u5b9a\\u6709\\u54ea\\u4e9b].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85874,
+      "port": 64547,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_facts[C06].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85854,
+      "port": 64528,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_facts[C04].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85611,
+      "port": 64312,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_guard_allows_read_only_counterexamples[\\u5916\\u5356\\u8ba2\\u5355\\u7684\\u9000\\u6b3e\\u653f\\u7b56\\u89c4\\u5b9a\\u662f\\u4ec0\\u4e48].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86566,
+      "port": 65177,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_elliptical_missing_claim[id-bare].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84693,
+      "port": 63477,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_lifecycle_rebuild_restart_http[add].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84696,
+      "port": 63484,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_lifecycle_rebuild_restart_http[add].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86385,
+      "port": 65016,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_supported_attribute[need-approval].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85009,
+      "port": 63773,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R05].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86529,
+      "port": 65145,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_elliptical_missing_claim[id-question].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86139,
+      "port": 64790,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_replacement_tail_and_instruction[html].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86155,
+      "port": 64804,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_replacement_tail_and_instruction[html].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85584,
+      "port": 64291,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_prohibited_request_before_retrieval[guard-05].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85937,
+      "port": 64609,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_near_topic_missing[\\u5916\\u5356\\u9000\\u6b3e\\u9700\\u8981\\u7f34\\u7eb3\\u591a\\u5c11\\u5143\\u624b\\u7eed\\u8d39\\uff1f].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85397,
+      "port": 64115,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_replacement_alias_and_fact.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85406,
+      "port": 64123,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_replacement_alias_and_fact.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85798,
+      "port": 64484,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_route[S01].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84838,
+      "port": 63610,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_metadata_alias_public_rebuild_restart.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84842,
+      "port": 63619,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_metadata_alias_public_rebuild_restart.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84857,
+      "port": 63628,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_metadata_alias_public_rebuild_restart.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85539,
+      "port": 64252,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_prohibited_request_before_retrieval[guard-01].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84742,
+      "port": 63523,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84745,
+      "port": 63530,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84760,
+      "port": 63540,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85126,
+      "port": 63888,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_variants[\\u8bf7\\u8bf4\\u660e\\u5916\\u5356\\u9000\\u6b3e\\u7684\\u7533\\u8bf7\\u65f6\\u9650-KB-013-\\u9000\\u6b3e].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85358,
+      "port": 64073,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_filter_before_topk_and_padding[100].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84979,
+      "port": 63738,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R01].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86432,
+      "port": 65050,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_supported_attribute[can-withdraw].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85001,
+      "port": 63755,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R03].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85444,
+      "port": 64161,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_rewritten_chat_search_is_reproducible[\\uff12\\uff10\\uff12\\uff16\\uff0f\\uff10\\uff16\\uff0f\\uff11\\uff14\\u5f53\\u65f6\\u7684\\u5916\\u5356\\u9000\\u6b3e\\u653f\\u7b56\\u89c4\\u5b9a].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85913,
+      "port": 64588,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_facts[V02].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85969,
+      "port": 64637,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_error_trace[plan].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86324,
+      "port": 64967,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_missing_attribute[need-or-not].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85820,
+      "port": 64504,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_facts[C02].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85145,
+      "port": 63899,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_variants[\\u5458\\u5de5\\u4e70\\u9910\\u6298\\u6263\\u80fd\\u4e0e\\u4fc3\\u9500\\u53e0\\u52a0\\u5417-KB-014-\\u6298].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84935,
+      "port": 63696,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_original_r08_r10_identity_http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84943,
+      "port": 63706,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_original_r08_r10_identity_http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85565,
+      "port": 64272,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_prohibited_request_before_retrieval[guard-03].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85217,
+      "port": 63965,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_variants[\\u5f00\\u5177\\u7535\\u5b50\\u53d1\\u7968\\u7684\\u64cd\\u4f5c\\u6d41\\u7a0b-KB-061-\\u53d1\\u7968].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86045,
+      "port": 64697,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_history_boundary[\\uff12\\uff10\\uff12\\uff16\\u5e74\\uff16\\u6708\\uff13\\uff10\\u65e5\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1\\uff15\\uff10\\uff10\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-010-KB-011-50 \\u5143].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85003,
+      "port": 63763,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R04].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85315,
+      "port": 64034,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_version_boundaries[2026-06-01\\u5f53\\u65f6refundtoken\\u9000\\u6b3e\\u89c4\\u5b9a-KB-902].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85856,
+      "port": 64536,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_facts[C05].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85574,
+      "port": 64283,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_prohibited_request_before_retrieval[guard-04].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85618,
+      "port": 64324,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_guard_allows_read_only_counterexamples[\\u8c03\\u4ef7\\u901a\\u77e5\\u89c4\\u5b9a\\u4e86\\u54ea\\u4e9b\\u5546\\u54c1\\u4ef7\\u683c].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86577,
+      "port": 65187,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_elliptical_missing_claim[offset-bare].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86483,
+      "port": 65102,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_supported_attribute[is-it].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85380,
+      "port": 64102,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_same_search_http_and_trace.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85950,
+      "port": 64618,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_near_topic_missing[\\u5458\\u5de5\\u8fdf\\u5230\\u7533\\u8bc9\\u9700\\u8981\\u51e0\\u5929\\u529e\\u7ed3\\uff1f].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84791,
+      "port": 63573,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_empty_and_non_document_health.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84807,
+      "port": 63582,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_empty_and_non_document_health.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85589,
+      "port": 64302,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_prohibited_request_before_retrieval[guard-06].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85979,
+      "port": 64646,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_error_trace[evidence].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86304,
+      "port": 64945,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_missing_attribute[can-offset].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86090,
+      "port": 64737,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_rephrasing[\\u5f00\\u5177\\u7535\\u5b50\\u53d1\\u7968\\u7684\\u64cd\\u4f5c\\u6d41\\u7a0b-KB-061-\\u5c0f\\u7a0b\\u5e8f].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86064,
+      "port": 64717,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_rephrasing[Beef Poke\\u91cc\\u9762\\u6709\\u54ea\\u4e9b\\u8fc7\\u654f\\u539f\\uff1f-KB-040-\\u829d\\u9ebb].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85884,
+      "port": 64557,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_facts[C07].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85029,
+      "port": 63780,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R06].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86275,
+      "port": 64915,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_existing_payment_explanation_regression[8 \\u6708 3 \\u65e5 S05 \\u7684\\u73b0\\u91d1\\u652f\\u4ed8\\u5360\\u6bd4\\u662f\\u591a\\u5c11\\uff1f\\u4e3a\\u4ec0\\u4e48\\u4f1a\\u8fd9\\u6837\\uff1f].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86616,
+      "port": 65219,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_elliptical_supported_claim[stack-bare].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86015,
+      "port": 64677,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_history_boundary[2026-06-30\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1500\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-010-KB-011-50 \\u5143].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85196,
+      "port": 63946,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_variants[\\u6c64\\u9762\\u5e97\\u5468\\u4e94\\u51e0\\u70b9\\u5173\\u95e8-KB-062-\\u5468\\u4e94].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85490,
+      "port": 64196,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_unknown_chinese_keeps_low_coverage.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85837,
+      "port": 64516,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_facts[C03].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86116,
+      "port": 64769,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_replacement_tail_and_instruction[md].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86131,
+      "port": 64782,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_replacement_tail_and_instruction[md].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86464,
+      "port": 65082,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_supported_attribute[has-or-not].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86645,
+      "port": 65247,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_elliptical_supported_claim[negative-permission].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86625,
+      "port": 65227,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_elliptical_supported_claim[sesame-bare].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84981,
+      "port": 63745,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R02].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85996,
+      "port": 64657,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_history_boundary[2026-06-14\\u5f53\\u65f6\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u7533\\u8bf7\\u9000\\u6b3e\\uff1f-KB-012-KB-013-7 \\u5929].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85563,
+      "port": 64263,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_prohibited_request_before_retrieval[guard-02].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86477,
+      "port": 65091,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_supported_attribute[negative-particle].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85537,
+      "port": 64244,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_prohibited_request_before_retrieval[guard-00].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85760,
+      "port": 64451,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_route[C08].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86654,
+      "port": 65258,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_existing_wh_question_regression[version-first-turn].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85903,
+      "port": 64576,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_facts[V01].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85423,
+      "port": 64134,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_gold_chunk_contains_support_not_only_heading[\\u4e09\\u6587\\u9c7c\\u90a3\\u6b21\\u65ad\\u4f9b\\u4f9b\\u5e94\\u5546\\u8d54\\u4e86\\u591a\\u5c11\\u94b1-KB-022-CNY].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85811,
+      "port": 64493,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_facts[C01].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85924,
+      "port": 64596,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_facts[S01].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86277,
+      "port": 64925,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_existing_payment_explanation_regression[S05\\u57282026-08-03\\u73b0\\u91d1\\u652f\\u4ed8\\u5360\\u6bd4\\u591a\\u5c11\\uff0c\\u539f\\u56e0\\u662f\\u4ec0\\u4e48\\uff1f].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85332,
+      "port": 64052,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_filter_before_topk_and_padding[2].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85283,
+      "port": 63998,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_real_versions[2026-06-14\\u5f53\\u65f6\\u7684\\u5916\\u5356\\u9000\\u6b3e\\u89c4\\u5b9a-KB-012-KB-013].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85460,
+      "port": 64174,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_rewritten_chat_search_is_reproducible[\\u73b0\\u5728S02\\u7684\\u9000\\u6b3e\\u653f\\u7b56\\u89c4\\u5b9a].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86548,
+      "port": 65166,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_elliptical_missing_claim[ingredient-question].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85294,
+      "port": 64017,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_version_boundaries[\\u73b0\\u5728refundtoken\\u9000\\u6b3e\\u89c4\\u5b9a-KB-902].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86070,
+      "port": 64728,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_rephrasing[\\u6c64\\u9762\\u5e97\\u5468\\u4e94\\u51e0\\u70b9\\u5173\\u95e8-KB-062-23:00].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86256,
+      "port": 64895,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_supported_attribute[\\u5916\\u5356\\u9000\\u6b3e\\u7533\\u8bf7\\u662f\\u5426\\u9700\\u8981\\u5ba1\\u6279\\uff1f-KB-013-\\u5ba1\\u6279].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85117,
+      "port": 63881,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R15].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85699,
+      "port": 64399,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_route[C04].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85378,
+      "port": 64093,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_unknown_and_padding_chat.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86231,
+      "port": 64883,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_supported_attribute[\\u4f1a\\u5458\\u8d60\\u9001\\u91d1\\u989d\\u662f\\u5426\\u53ef\\u4ee5\\u63d0\\u73b0\\uff1f-KB-011-\\u4e0d\\u53ef\\u63d0\\u73b0].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85364,
+      "port": 64085,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_incidental_store_is_not_scope.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85741,
+      "port": 64431,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_route[C06].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86050,
+      "port": 64708,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_rephrasing[\\u8bf7\\u8bf4\\u660e\\u5916\\u5356\\u9000\\u6b3e\\u7684\\u7533\\u8bf7\\u65f6\\u9650-KB-013-24].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84677,
+      "port": 63469,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_format_through_rebuild_http[html-<p>mailtoken \\u7f51\\u9875\\u6b63\\u6587<_p><script>hiddenjs<_script>].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86025,
+      "port": 64689,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_history_boundary[2026-07-01\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1500\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-011-KB-010-60 \\u5143].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86192,
+      "port": 64842,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_missing_attribute[\\u5916\\u5356\\u9000\\u6b3e\\u7533\\u8bf7\\u662f\\u5426\\u9700\\u8981\\u987e\\u5ba2\\u63d0\\u4f9b\\u8eab\\u4efd\\u8bc1\\uff1f].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85953,
+      "port": 64626,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_near_topic_missing[\\u725b\\u8089poke\\u7684\\u82b1\\u751f\\u542b\\u91cf\\u662f\\u591a\\u5c11\\u514b\\uff1f].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85434,
+      "port": 64152,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_rewritten_chat_search_is_reproducible[2026\\u5e746\\u670814\\u65e5\\u5f53\\u65f6\\u7684\\u5916\\u5356\\u9000\\u6b3e\\u653f\\u7b56\\u89c4\\u5b9a].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86671,
+      "port": 65267,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_existing_wh_question_regression[substitution-second-turn].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85677,
+      "port": 64377,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_route[C02].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86301,
+      "port": 64937,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_missing_attribute[need-id].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85098,
+      "port": 63862,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R13].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85786,
+      "port": 64472,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_route[V02].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86180,
+      "port": 64832,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_unretrieved_fact_not_borrowed.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84810,
+      "port": 63589,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_first_start_and_legacy_cache_upgrade.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84823,
+      "port": 63601,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_first_start_and_legacy_cache_upgrade.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86634,
+      "port": 65238,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_elliptical_supported_claim[negative-can].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86350,
+      "port": 64987,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_missing_attribute[contains-or-not].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85165,
+      "port": 63917,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_variants[\\uff22\\uff45\\uff45\\uff46\\u3000\\uff30\\uff4f\\uff4b\\uff45\\uff1a\\u8fc7\\u654f\\u539f\\uff1f-KB-040-\\u725b\\u8089].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84715,
+      "port": 63495,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84723,
+      "port": 63502,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84727,
+      "port": 63516,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86109,
+      "port": 64757,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_rephrasing[\\u9c91\\u9c7c\\u6ce2\\u5947\\u996d\\u65ad\\u4f9b\\u540e\\u4f9b\\u5e94\\u5546\\u8d54\\u4ed8\\u91d1\\u989d\\u662f\\u591a\\u5c11-KB-022-8,600].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85076,
+      "port": 63824,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R11].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85048,
+      "port": 63798,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R08].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86597,
+      "port": 65199,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_elliptical_missing_claim[ingredient-bare].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85311,
+      "port": 64025,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_version_boundaries[2026-05-31\\u5f53\\u65f6refundtoken\\u9000\\u6b3e\\u89c4\\u5b9a-KB-901].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84875,
+      "port": 63645,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_table_context_and_contiguous_quotes_http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85167,
+      "port": 63926,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_variants[\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u5728\\uff33\\uff10\\uff14\\u505c\\u552e\\u7684\\u539f\\u56e0-KB-029-\\u4e09\\u660e\\u6cbb].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85758,
+      "port": 64443,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_route[C07].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84671,
+      "port": 63459,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_format_through_rebuild_http[txt-mailtoken \\u90ae\\u4ef6\\u6b63\\u6587].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86599,
+      "port": 65207,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_elliptical_supported_claim[approval-bare].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86346,
+      "port": 64976,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_missing_attribute[is-it-ok].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84887,
+      "port": 63652,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_offsets_context_and_cache_layout.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84898,
+      "port": 63664,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_offsets_context_and_cache_layout.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85631,
+      "port": 64333,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_guard_allows_read_only_counterexamples[7\\u6708\\u6574\\u4f53\\u7684\\u51c0\\u8425\\u4e1a\\u989d\\u662f\\u591a\\u5c11\\uff1f].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86496,
+      "port": 65111,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_boolean_subject_and_replacement.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86507,
+      "port": 65123,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_boolean_subject_and_replacement.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85330,
+      "port": 64043,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_filter_before_topk_and_padding[1].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85285,
+      "port": 64005,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_real_versions[2026-06-15\\u5f53\\u65f6\\u7684\\u5916\\u5356\\u9000\\u6b3e\\u89c4\\u5b9a-KB-013-KB-012].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85425,
+      "port": 64142,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_gold_chunk_contains_support_not_only_heading[S04 \\u4e3a\\u4ec0\\u4e48\\u4e0d\\u5356\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u4e86-KB-029-\\u4f4e\\u4e8e].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86527,
+      "port": 65135,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_boolean_subject_cannot_cross_clauses.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86436,
+      "port": 65061,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_supported_attribute[can-or-not].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85518,
+      "port": 64222,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_shape_rerank_replacement_and_no_lexical_match.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85523,
+      "port": 64235,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_shape_rerank_replacement_and_no_lexical_match.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85215,
+      "port": 63957,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_variants[S01\\u5468\\u4e94\\u51e0\\u70b9\\u5173\\u95e8-KB-062-\\u5468\\u4e94].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84770,
+      "port": 63547,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84779,
+      "port": 63558,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84788,
+      "port": 63565,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85724,
+      "port": 64422,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_route[C05].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86365,
+      "port": 64996,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_missing_attribute[negative-particle].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85103,
+      "port": 63873,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R14].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86161,
+      "port": 64812,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_replacement_tail_and_instruction[gbk].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86170,
+      "port": 64823,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_replacement_tail_and_instruction[gbk].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85471,
+      "port": 64185,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_actual_store_scope_and_incidental_examples.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85067,
+      "port": 63816,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R10].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85516,
+      "port": 64215,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_supported_variants[\\u963f\\u91cc\\u560e\\u591a\\u4e0b\\u67b6\\u91d1\\u67aa\\u9c7c\\u4e09\\u660e\\u6cbb\\u662f\\u4ec0\\u4e48\\u539f\\u56e0-KB-029-\\u4f4e\\u4e8e].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85664,
+      "port": 64369,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_route[C01].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86546,
+      "port": 65158,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_elliptical_missing_claim[offset-question].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85784,
+      "port": 64464,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_route[V01].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86225,
+      "port": 64874,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_supported_attribute[\\u5458\\u5de5\\u6298\\u6263\\u662f\\u5426\\u53ef\\u4ee5\\u548c\\u4fc3\\u9500\\u6d3b\\u52a8\\u53e0\\u52a0\\uff1f-KB-014-\\u53e0\\u52a0].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85635,
+      "port": 64345,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_guard_allows_read_only_counterexamples[\\u51c0\\u8425\\u4e1a\\u989d\\u7684\\u53e3\\u5f84\\u600e\\u4e48\\u8ba1\\u7b97].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86451,
+      "port": 65071,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_supported_attribute[has-sesame].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86369,
+      "port": 65006,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_natural_missing_attribute[has-or-not].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85050,
+      "port": 63805,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R09].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85893,
+      "port": 64568,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_facts[C08].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85234,
+      "port": 63975,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_variants[\\u53f0\\u98ce\\u5bfc\\u81f4\\u63d0\\u524d\\u95ed\\u5e97\\u7684\\u5177\\u4f53\\u65f6\\u95f4-KB-026-\\u95ed\\u5e97].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85349,
+      "port": 64064,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_filter_before_topk_and_padding[5].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86099,
+      "port": 64748,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_rephrasing[\\u963f\\u91cc\\u560e\\u591a\\u7684\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u4e3a\\u4f55\\u505c\\u552e-KB-029-35%].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84955,
+      "port": 63713,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_actual_all_retrieval_identity_and_rebuild_stability.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86208,
+      "port": 64861,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_missing_attribute[\\u725b\\u8089poke\\u662f\\u5426\\u542b\\u82b1\\u751f\\uff1f].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 86206,
+      "port": 64852,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_missing_attribute[\\u5458\\u5de5\\u8fdf\\u5230\\u53ef\\u4ee5\\u7528\\u79ef\\u5206\\u62b5\\u6263\\u5417\\uff1f].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85492,
+      "port": 64205,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_supported_variants[\\u9c91\\u9c7c\\u6ce2\\u5947\\u996d\\u65ad\\u4f9b\\u7684\\u8d54\\u4ed8\\u91d1\\u989d\\u662f\\u591a\\u5c11-KB-022-CNY].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84908,
+      "port": 63671,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_duplicate_rerank_padding_identity_http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84910,
+      "port": 63678,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_duplicate_rerank_padding_identity_http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84933,
+      "port": 63688,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_duplicate_rerank_padding_identity_http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85087,
+      "port": 63854,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_public_positive[R12].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84859,
+      "port": 63635,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_tail_fact_http.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 85683,
+      "port": 64388,
+      "stopped": true,
+      "evidence": "integration/rag-http/test_document_route[C03].json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 82933,
+      "port": 8015,
+      "evidence": "clean-delivery/process-8015.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 83257,
+      "port": 8016,
+      "evidence": "clean-delivery/process-8016.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 83528,
+      "port": 8017,
+      "evidence": "clean-delivery/process-8017.json",
+      "pid_currently_exists": false
+    },
+    {
+      "pid": 84626,
+      "port": 63327,
+      "evidence": "integration/environment.json",
+      "pid_currently_exists": false
+    }
+  ],
+  "unique_pids": 196,
+  "all_recorded_pids_absent": true,
+  "worktree": "/Volumes/MACPSSD/project/moneki-ai-takehome",
+  "branch": "codex/g2-05-acceptance",
+  "managed_worktrees_created": 0,
+  "temporary_directories": [
+    "/tmp/moneki-g1-05-u99qwxp5",
+    "/tmp/moneki-g2-05-rag-01",
+    "/tmp/moneki-g2-05-kb-01",
+    "/tmp/moneki-g2-05-kb-02",
+    "/tmp/moneki-g2-05-kb-control",
+    "/tmp/moneki-g2-05-heading-control",
+    "/tmp/moneki-g2-05-heading-repro",
+    "/tmp/moneki-g2-05-heading-final"
+  ],
+  "cleanup": "Retained pending main-thread instruction"
+}

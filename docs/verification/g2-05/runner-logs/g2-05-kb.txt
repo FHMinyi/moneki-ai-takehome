@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g2-05/verify_kb.py", line 56, in <module>
+    check('initial',{'KB-970':aliases('Ivory Bowl'),'KB-971':initial},[('Ivory Bowl的配送时限是多少分钟？','KB-971','31')])
+  File "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g2-05/verify_kb.py", line 36, in check
+    assert answer['answer_type']=='doc' and fact in answer['answer'],answer
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], 'trace_id': 't-20260901-0001'}

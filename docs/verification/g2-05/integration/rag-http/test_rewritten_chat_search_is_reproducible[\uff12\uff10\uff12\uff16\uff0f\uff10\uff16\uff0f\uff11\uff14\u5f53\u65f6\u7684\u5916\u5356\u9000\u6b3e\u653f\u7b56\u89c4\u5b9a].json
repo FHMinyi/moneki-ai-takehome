@@ -1,0 +1,1533 @@
+{
+  "source": "/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_rewritten_chat_search_is_1/starter",
+  "records": [
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_rewritten_chat_search_is_1/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-u99qwxp5/source/data\n知识库目录：/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_rewritten_chat_search_is_1/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 6c07909e7d61\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_rewritten_chat_search_is_1/var/clean.db、/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_rewritten_chat_search_is_1/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "64161"
+      ],
+      "pid": 85444,
+      "port": 64161,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "6c07909e7d61",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "session_id": "rewritten",
+            "question": "２０２６／０６／１４当时的外卖退款政策规定"
+          },
+          "response": {
+            "answer": "KB-012《退款政策 v1》：1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-012",
+                "quote": "1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "rewritten",
+            "question": "２０２６／０６／１４当时的外卖退款政策规定",
+            "started_at": "2026-09-27T05:22:05.387",
+            "total_ms": 17.1,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 6.5,
+                "took_ms": 6.5,
+                "detail": {
+                  "question": "２０２６／０６／１４当时的外卖退款政策规定",
+                  "standalone_question": "２０２６／０６／１４当时的外卖退款政策规定",
+                  "search_query": "２０２６／０６／１４当时的外卖退款政策规定",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-06-14",
+                    "2026-06-14"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-06-14",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=['2026/06/14']"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 12.7,
+                "took_ms": 6.2,
+                "detail": {
+                  "query": "2026/06/14当时的外卖退款政策规定",
+                  "terms": [
+                    "2026",
+                    "06",
+                    "14",
+                    "当时",
+                    "时的",
+                    "的外",
+                    "外卖",
+                    "卖退",
+                    "退款",
+                    "款政",
+                    "政策",
+                    "策规",
+                    "规定"
+                  ],
+                  "scope": {
+                    "as_of": "2026-06-14",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-012#2",
+                      "doc_id": "KB-012",
+                      "score": 18.9581,
+                      "lexical_score": 14.043,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖",
+                        "政策",
+                        "款政",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-012#1",
+                      "doc_id": "KB-012",
+                      "score": 18.2204,
+                      "lexical_score": 13.3053,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "政策",
+                        "款政",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-012#5",
+                      "doc_id": "KB-012",
+                      "score": 18.1434,
+                      "lexical_score": 13.2283,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖",
+                        "政策",
+                        "款政",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-012#4",
+                      "doc_id": "KB-012",
+                      "score": 17.3993,
+                      "lexical_score": 12.4842,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "政策",
+                        "款政",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-012#3",
+                      "doc_id": "KB-012",
+                      "score": 16.6672,
+                      "lexical_score": 11.7522,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "政策",
+                        "款政",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-012#6",
+                      "doc_id": "KB-012",
+                      "score": 16.4862,
+                      "lexical_score": 11.5712,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "政策",
+                        "款政",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#2",
+                      "doc_id": "KB-020",
+                      "score": 9.0939,
+                      "lexical_score": 6.7362,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "06",
+                        "2026",
+                        "外卖",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-010#2",
+                      "doc_id": "KB-010",
+                      "score": 8.4893,
+                      "lexical_score": 6.2884,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖",
+                        "政策"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#1",
+                      "doc_id": "KB-020",
+                      "score": 7.1945,
+                      "lexical_score": 4.8368,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "06",
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-010#1",
+                      "doc_id": "KB-010",
+                      "score": 6.9607,
+                      "lexical_score": 4.7598,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "2026",
+                        "政策"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#9",
+                      "doc_id": "KB-001",
+                      "score": 6.2207,
+                      "lexical_score": 4.6079,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#10",
+                      "doc_id": "KB-001",
+                      "score": 5.7993,
+                      "lexical_score": 4.1865,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-010#4",
+                      "doc_id": "KB-010",
+                      "score": 5.3833,
+                      "lexical_score": 3.1823,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "政策"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-010#5",
+                      "doc_id": "KB-010",
+                      "score": 5.3833,
+                      "lexical_score": 3.1823,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "政策"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-010#3",
+                      "doc_id": "KB-010",
+                      "score": 5.0112,
+                      "lexical_score": 2.8102,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "政策"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-010#6",
+                      "doc_id": "KB-010",
+                      "score": 4.993,
+                      "lexical_score": 2.7921,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "政策"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#4",
+                      "doc_id": "KB-001",
+                      "score": 4.9754,
+                      "lexical_score": 3.3626,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "06",
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#18",
+                      "doc_id": "KB-001",
+                      "score": 4.716,
+                      "lexical_score": 3.1032,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#4",
+                      "doc_id": "KB-061",
+                      "score": 4.6448,
+                      "lexical_score": 3.4406,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "2026",
+                        "政策"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-032#3",
+                      "doc_id": "KB-032",
+                      "score": 4.6242,
+                      "lexical_score": 3.4253,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "的外"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#15",
+                      "doc_id": "KB-001",
+                      "score": 4.5741,
+                      "lexical_score": 2.9614,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#12",
+                      "doc_id": "KB-001",
+                      "score": 4.5557,
+                      "lexical_score": 2.9429,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "当时"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#2",
+                      "doc_id": "KB-014",
+                      "score": 3.8945,
+                      "lexical_score": 2.8848,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "时的"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#2",
+                      "doc_id": "KB-061",
+                      "score": 3.7822,
+                      "lexical_score": 2.578,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#3",
+                      "doc_id": "KB-061",
+                      "score": 3.7405,
+                      "lexical_score": 2.5363,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#1",
+                      "doc_id": "KB-042",
+                      "score": 3.1439,
+                      "lexical_score": 2.3288,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#14",
+                      "doc_id": "KB-001",
+                      "score": 2.733,
+                      "lexical_score": 1.1202,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#4",
+                      "doc_id": "KB-042",
+                      "score": 2.7114,
+                      "lexical_score": 1.8964,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#4",
+                      "doc_id": "KB-030",
+                      "score": 2.45,
+                      "lexical_score": 1.8148,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#1",
+                      "doc_id": "KB-001",
+                      "score": 2.4478,
+                      "lexical_score": 0.835,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-031#3",
+                      "doc_id": "KB-031",
+                      "score": 1.9991,
+                      "lexical_score": 1.4808,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-033#3",
+                      "doc_id": "KB-033",
+                      "score": 1.8607,
+                      "lexical_score": 1.3783,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#1",
+                      "doc_id": "KB-061",
+                      "score": 1.8175,
+                      "lexical_score": 0.6133,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#1",
+                      "doc_id": "KB-015",
+                      "score": 1.3226,
+                      "lexical_score": 0.9797,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#1",
+                      "doc_id": "KB-024",
+                      "score": 1.2091,
+                      "lexical_score": 3.5827,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "06"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#5",
+                      "doc_id": "KB-024",
+                      "score": 1.1718,
+                      "lexical_score": 3.4332,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "时的"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#1",
+                      "doc_id": "KB-003",
+                      "score": 1.1376,
+                      "lexical_score": 1.6854,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#3",
+                      "doc_id": "KB-003",
+                      "score": 1.0655,
+                      "lexical_score": 1.5412,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#3",
+                      "doc_id": "KB-024",
+                      "score": 1.0384,
+                      "lexical_score": 2.8995,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#4",
+                      "doc_id": "KB-003",
+                      "score": 0.6478,
+                      "lexical_score": 0.7057,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#6",
+                      "doc_id": "KB-024",
+                      "score": 0.5527,
+                      "lexical_score": 0.9568,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.2,
+                  "hits": [
+                    {
+                      "doc_id": "KB-012",
+                      "chunk_id": "KB-012#2",
+                      "score": 18.9581,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-020",
+                      "chunk_id": "KB-020#2",
+                      "score": 9.0939,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "chunk_id": "KB-010#2",
+                      "score": 8.4893,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 6.2207,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "chunk_id": "KB-061#4",
+                      "score": 4.6448,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-062",
+                      "reason": "该版本自 2026-08-15 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-021",
+                      "reason": "该版本自 2026-07-06 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-022",
+                      "reason": "该版本自 2026-07-04 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-023",
+                      "reason": "该版本自 2026-06-18 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-025",
+                      "reason": "该版本自 2026-07-01 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-026",
+                      "reason": "该版本自 2026-07-24 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-027",
+                      "reason": "该版本自 2026-08-03 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-028",
+                      "reason": "该版本自 2026-08-01 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-029",
+                      "reason": "该版本自 2026-08-05 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-011",
+                      "reason": "该版本自 2026-07-01 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-013",
+                      "reason": "该版本自 2026-06-15 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-040",
+                      "reason": "该版本自 2026-08-01 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-060",
+                      "reason": "该版本自 2026-08-03 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-050",
+                      "reason": "该版本自 2026-06-22 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-051",
+                      "reason": "该版本自 2026-06-15 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-052",
+                      "reason": "该版本自 2026-08-10 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-053",
+                      "reason": "该版本自 2026-07-27 起才生效，晚于问题所指的 2026-06-14"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 17.0,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [
+                    {
+                      "doc_id": "KB-012",
+                      "chunk_id": "KB-012#2",
+                      "score": 0.23345163732598176,
+                      "text": "1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "chunk_id": "KB-012#2",
+                      "score": 0.17652696243496896,
+                      "text": "2. 没有小票、也无法在小程序里查到对应订单的，不予退款。"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "chunk_id": "KB-012#2",
+                      "score": 0.17652696243496896,
+                      "text": "3. 已经食用超过三分之一的商品不予退款，由店员现场判断。"
+                    },
+                    {
+                      "doc_id": "KB-020",
+                      "chunk_id": "KB-020#2",
+                      "score": 0.10827580480855056,
+                      "text": "1. **S03 自 2026-06-08 起停业 4 天，即 6 月 8 日至 6 月 11 日不营业**，堂食、外卖、预订全部暂停。"
+                    },
+                    {
+                      "doc_id": "KB-020",
+                      "chunk_id": "KB-020#2",
+                      "score": 0.07876742253119266,
+                      "text": "2. **2026-06-12 起恢复正常营业**，营业时间不变。"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "chunk_id": "KB-010#2",
+                      "score": 0.07147339141374805,
+                      "text": "第三方外卖平台的订单不支持储值支付。"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "chunk_id": "KB-010#2",
+                      "score": 0.06572165689382792,
+                      "text": "五家门店通用的会员储值卡（小程序电子卡，无实体卡），堂食、自提、外卖自营渠道均可使用。"
+                    },
+                    {
+                      "doc_id": "KB-020",
+                      "chunk_id": "KB-020#2",
+                      "score": 0.05767844662336232,
+                      "text": "4. 已收的预订单由店长逐一电话联系，可改期或全额退款，改期的备注在预订本上。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 0.0510289653323866,
+                      "text": "- **净营业额** = 销售行金额之和 + 退款行金额之和。退款行的金额本身是负数，所以实际效果是相减。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 0.0510289653323866,
+                      "text": "- **有效订单数** = 销售行中不同 `order_id` 的个数。多行订单算 1 单；退款行不单独计为订单。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 0.050785388928122205,
+                      "text": "- **退款金额** = 退款行金额之和的绝对值。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 0.04939374358574289,
+                      "text": "- **净营业额** = 销售行金额之和 + 退款行金额之和。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 0.04831749803526303,
+                      "text": "- **退款行**：通过上述剔除规则后 `amount < 0` 的行。"
+                    },
+                    {
+                      "doc_id": "KB-020",
+                      "chunk_id": "KB-020#2",
+                      "score": 0.041931052350313476,
+                      "text": "3. 停业期间外卖平台门店状态置为“休息中”，由市场部提前一天在会员群和门店公众号说明，不做促销预告。"
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "chunk_id": "KB-061#4",
+                      "score": 0.03733607077455236,
+                      "text": "© 2026 合味餐饮管理（上海）有限公司 关于我们 加盟合作 人才招聘 媒体中心 隐私政策 用户协议 网站地图 沪ICP备 20260318 号-1 沪公网安备 31010402000000 号 客服热线 021-5555-0100（09:00-21:00）"
+                    }
+                  ],
+                  "rejected": [],
+                  "selected": [
+                    {
+                      "doc_id": "KB-012",
+                      "chunk_id": "KB-012#2",
+                      "score": 0.23345163732598176,
+                      "source_start": 63,
+                      "source_end": 174,
+                      "quote": "1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 17.1,
+                "took_ms": 10.5,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 17.1,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "2026/06/14当时的外卖退款政策规定",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-012",
+                "chunk_id": "KB-012#2",
+                "score": 18.9581,
+                "text": "## 一、受理条件\n\n1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。\n2. 没有小票、也无法在小程序里查到对应订单的，不予退款。\n3. 已经食用超过三分之一的商品不予退款，由店员现场判断。\n\n",
+                "retrieval_text": "退款政策 v1\n# 退款政策 v1\n## 一、受理条件\n\n1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。\n2. 没有小票、也无法在小程序里查到对应订单的，不予退款。\n3. 已经食用超过三分之一的商品不予退款，由店员现场判断。\n\n",
+                "source_start": 63,
+                "source_end": 174,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v1\n"
+                  },
+                  {
+                    "start": 63,
+                    "end": 73,
+                    "text": "## 一、受理条件\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-020",
+                "chunk_id": "KB-020#2",
+                "score": 9.0939,
+                "text": "1. **S03 自 2026-06-08 起停业 4 天，即 6 月 8 日至 6 月 11 日不营业**，堂食、外卖、预订全部暂停。\n2. **2026-06-12 起恢复正常营业**，营业时间不变。\n3. 停业期间外卖平台门店状态置为“休息中”，由市场部提前一天在会员群和门店公众号说明，不做促销预告。\n4. 已收的预订单由店长逐一电话联系，可改期或全额退款，改期的备注在预订本上。\n5. 鲜货备货从 6 月 7 日起暂停，包子馅料与点心半成品按保质期处理，不得留用到复业当天。\n6. 门店员工不放假，按原排班到岗，配合施工方做清洁与复位；复业前完成一次全店卫生自查并拍照留档。\n\n",
+                "retrieval_text": "S03 Juicy Bao Bao 临时停业通知\n# S03 Juicy Bao Bao 临时停业通知\n1. **S03 自 2026-06-08 起停业 4 天，即 6 月 8 日至 6 月 11 日不营业**，堂食、外卖、预订全部暂停。\n2. **2026-06-12 起恢复正常营业**，营业时间不变。\n3. 停业期间外卖平台门店状态置为“休息中”，由市场部提前一天在会员群和门店公众号说明，不做促销预告。\n4. 已收的预订单由店长逐一电话联系，可改期或全额退款，改期的备注在预订本上。\n5. 鲜货备货从 6 月 7 日起暂停，包子馅料与点心半成品按保质期处理，不得留用到复业当天。\n6. 门店员工不放假，按原排班到岗，配合施工方做清洁与复位；复业前完成一次全店卫生自查并拍照留档。\n\n",
+                "source_start": 190,
+                "source_end": 484,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "# S03 Juicy Bao Bao 临时停业通知\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-010",
+                "chunk_id": "KB-010#2",
+                "score": 8.4893,
+                "text": "## 一、适用范围\n\n五家门店通用的会员储值卡（小程序电子卡，无实体卡），堂食、自提、外卖自营渠道均可使用。\n第三方外卖平台的订单不支持储值支付。\n\n",
+                "retrieval_text": "会员储值政策 v1\n# 会员储值政策 v1\n## 一、适用范围\n\n五家门店通用的会员储值卡（小程序电子卡，无实体卡），堂食、自提、外卖自营渠道均可使用。\n第三方外卖平台的订单不支持储值支付。\n\n",
+                "source_start": 71,
+                "source_end": 146,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 会员储值政策 v1\n"
+                  },
+                  {
+                    "start": 71,
+                    "end": 81,
+                    "text": "## 一、适用范围\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#9",
+                "score": 6.2207,
+                "text": "- **退款行**：通过上述剔除规则后 `amount < 0` 的行。\n- **销售行**：通过上述剔除规则后 `amount > 0` 的行。\n- **净营业额** = 销售行金额之和 + 退款行金额之和。退款行的金额本身是负数，所以实际效果是相减。\n- **退款金额** = 退款行金额之和的绝对值。\n- **有效订单数** = 销售行中不同 `order_id` 的个数。多行订单算 1 单；退款行不单独计为订单。\n- **客单价** = 净营业额 ÷ 有效订单数，四舍五入保留 2 位小数。\n- **销量** = 销售行 `qty` 之和减去退款行 `qty` 之和。\n",
+                "retrieval_text": "指标口径手册 v3\n# 指标口径手册 v3\n## 4. 指标定义\n- **退款行**：通过上述剔除规则后 `amount < 0` 的行。\n- **销售行**：通过上述剔除规则后 `amount > 0` 的行。\n- **净营业额** = 销售行金额之和 + 退款行金额之和。退款行的金额本身是负数，所以实际效果是相减。\n- **退款金额** = 退款行金额之和的绝对值。\n- **有效订单数** = 销售行中不同 `order_id` 的个数。多行订单算 1 单；退款行不单独计为订单。\n- **客单价** = 净营业额 ÷ 有效订单数，四舍五入保留 2 位小数。\n- **销量** = 销售行 `qty` 之和减去退款行 `qty` 之和。\n",
+                "source_start": 1136,
+                "source_end": 1426,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 指标口径手册 v3\n"
+                  },
+                  {
+                    "start": 1124,
+                    "end": 1135,
+                    "text": "## 4. 指标定义\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-061",
+                "chunk_id": "KB-061#4",
+                "score": 4.6448,
+                "text": "© 2026 合味餐饮管理（上海）有限公司 关于我们 加盟合作 人才招聘 媒体中心 隐私政策 用户协议 网站地图 沪ICP备 20260318 号-1 沪公网安备 31010402000000 号 客服热线 021-5555-0100（09:00-21:00）",
+                "retrieval_text": "常见问题 FAQ - 合味餐饮\n© 2026 合味餐饮管理（上海）有限公司 关于我们 加盟合作 人才招聘 媒体中心 隐私政策 用户协议 网站地图 沪ICP备 20260318 号-1 沪公网安备 31010402000000 号 客服热线 021-5555-0100（09:00-21:00）",
+                "source_start": 801,
+                "source_end": 931,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "2026/06/14当时的外卖退款政策规定",
+              "terms": [
+                "2026",
+                "06",
+                "14",
+                "当时",
+                "时的",
+                "的外",
+                "外卖",
+                "卖退",
+                "退款",
+                "款政",
+                "政策",
+                "策规",
+                "规定"
+              ],
+              "scope": {
+                "as_of": "2026-06-14",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-012#2",
+                  "doc_id": "KB-012",
+                  "score": 18.9581,
+                  "lexical_score": 14.043,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖",
+                    "政策",
+                    "款政",
+                    "退款"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-012#1",
+                  "doc_id": "KB-012",
+                  "score": 18.2204,
+                  "lexical_score": 13.3053,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "政策",
+                    "款政",
+                    "退款"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-012#5",
+                  "doc_id": "KB-012",
+                  "score": 18.1434,
+                  "lexical_score": 13.2283,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖",
+                    "政策",
+                    "款政",
+                    "退款"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-012#4",
+                  "doc_id": "KB-012",
+                  "score": 17.3993,
+                  "lexical_score": 12.4842,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "政策",
+                    "款政",
+                    "退款"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-012#3",
+                  "doc_id": "KB-012",
+                  "score": 16.6672,
+                  "lexical_score": 11.7522,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "政策",
+                    "款政",
+                    "退款"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-012#6",
+                  "doc_id": "KB-012",
+                  "score": 16.4862,
+                  "lexical_score": 11.5712,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "政策",
+                    "款政",
+                    "退款"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-020#2",
+                  "doc_id": "KB-020",
+                  "score": 9.0939,
+                  "lexical_score": 6.7362,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "06",
+                    "2026",
+                    "外卖",
+                    "退款"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-010#2",
+                  "doc_id": "KB-010",
+                  "score": 8.4893,
+                  "lexical_score": 6.2884,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖",
+                    "政策"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-020#1",
+                  "doc_id": "KB-020",
+                  "score": 7.1945,
+                  "lexical_score": 4.8368,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "06",
+                    "2026"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-010#1",
+                  "doc_id": "KB-010",
+                  "score": 6.9607,
+                  "lexical_score": 4.7598,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "2026",
+                    "政策"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#9",
+                  "doc_id": "KB-001",
+                  "score": 6.2207,
+                  "lexical_score": 4.6079,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "退款"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#10",
+                  "doc_id": "KB-001",
+                  "score": 5.7993,
+                  "lexical_score": 4.1865,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "退款"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-010#4",
+                  "doc_id": "KB-010",
+                  "score": 5.3833,
+                  "lexical_score": 3.1823,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "政策"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-010#5",
+                  "doc_id": "KB-010",
+                  "score": 5.3833,
+                  "lexical_score": 3.1823,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "政策"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-010#3",
+                  "doc_id": "KB-010",
+                  "score": 5.0112,
+                  "lexical_score": 2.8102,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "政策"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-010#6",
+                  "doc_id": "KB-010",
+                  "score": 4.993,
+                  "lexical_score": 2.7921,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "政策"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#4",
+                  "doc_id": "KB-001",
+                  "score": 4.9754,
+                  "lexical_score": 3.3626,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "06",
+                    "2026"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#18",
+                  "doc_id": "KB-001",
+                  "score": 4.716,
+                  "lexical_score": 3.1032,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "退款"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-061#4",
+                  "doc_id": "KB-061",
+                  "score": 4.6448,
+                  "lexical_score": 3.4406,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "2026",
+                    "政策"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-032#3",
+                  "doc_id": "KB-032",
+                  "score": 4.6242,
+                  "lexical_score": 3.4253,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "的外"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#15",
+                  "doc_id": "KB-001",
+                  "score": 4.5741,
+                  "lexical_score": 2.9614,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "退款"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#12",
+                  "doc_id": "KB-001",
+                  "score": 4.5557,
+                  "lexical_score": 2.9429,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "当时"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-014#2",
+                  "doc_id": "KB-014",
+                  "score": 3.8945,
+                  "lexical_score": 2.8848,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "时的"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-061#2",
+                  "doc_id": "KB-061",
+                  "score": 3.7822,
+                  "lexical_score": 2.578,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-061#3",
+                  "doc_id": "KB-061",
+                  "score": 3.7405,
+                  "lexical_score": 2.5363,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-042#1",
+                  "doc_id": "KB-042",
+                  "score": 3.1439,
+                  "lexical_score": 2.3288,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#14",
+                  "doc_id": "KB-001",
+                  "score": 2.733,
+                  "lexical_score": 1.1202,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "2026"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-042#4",
+                  "doc_id": "KB-042",
+                  "score": 2.7114,
+                  "lexical_score": 1.8964,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-030#4",
+                  "doc_id": "KB-030",
+                  "score": 2.45,
+                  "lexical_score": 1.8148,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#1",
+                  "doc_id": "KB-001",
+                  "score": 2.4478,
+                  "lexical_score": 0.835,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "2026"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-031#3",
+                  "doc_id": "KB-031",
+                  "score": 1.9991,
+                  "lexical_score": 1.4808,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-033#3",
+                  "doc_id": "KB-033",
+                  "score": 1.8607,
+                  "lexical_score": 1.3783,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-061#1",
+                  "doc_id": "KB-061",
+                  "score": 1.8175,
+                  "lexical_score": 0.6133,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "2026"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-015#1",
+                  "doc_id": "KB-015",
+                  "score": 1.3226,
+                  "lexical_score": 0.9797,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "2026"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-024#1",
+                  "doc_id": "KB-024",
+                  "score": 1.2091,
+                  "lexical_score": 3.5827,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "06"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-024#5",
+                  "doc_id": "KB-024",
+                  "score": 1.1718,
+                  "lexical_score": 3.4332,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "时的"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#1",
+                  "doc_id": "KB-003",
+                  "score": 1.1376,
+                  "lexical_score": 1.6854,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#3",
+                  "doc_id": "KB-003",
+                  "score": 1.0655,
+                  "lexical_score": 1.5412,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-024#3",
+                  "doc_id": "KB-024",
+                  "score": 1.0384,
+                  "lexical_score": 2.8995,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "外卖"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#4",
+                  "doc_id": "KB-003",
+                  "score": 0.6478,
+                  "lexical_score": 0.7057,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "2026"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-024#6",
+                  "doc_id": "KB-024",
+                  "score": 0.5527,
+                  "lexical_score": 0.9568,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "2026"
+                  ]
+                }
+              ],
+              "expansions": [],
+              "coverage": 0.2,
+              "hits": [
+                {
+                  "doc_id": "KB-012",
+                  "chunk_id": "KB-012#2",
+                  "score": 18.9581,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-020",
+                  "chunk_id": "KB-020#2",
+                  "score": 9.0939,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-010",
+                  "chunk_id": "KB-010#2",
+                  "score": 8.4893,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-001",
+                  "chunk_id": "KB-001#9",
+                  "score": 6.2207,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-061",
+                  "chunk_id": "KB-061#4",
+                  "score": 4.6448,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-002",
+                  "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                },
+                {
+                  "doc_id": "KB-062",
+                  "reason": "该版本自 2026-08-15 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-021",
+                  "reason": "该版本自 2026-07-06 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-022",
+                  "reason": "该版本自 2026-07-04 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-023",
+                  "reason": "该版本自 2026-06-18 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-025",
+                  "reason": "该版本自 2026-07-01 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-026",
+                  "reason": "该版本自 2026-07-24 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-027",
+                  "reason": "该版本自 2026-08-03 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-028",
+                  "reason": "该版本自 2026-08-01 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-029",
+                  "reason": "该版本自 2026-08-05 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-011",
+                  "reason": "该版本自 2026-07-01 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-013",
+                  "reason": "该版本自 2026-06-15 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-040",
+                  "reason": "该版本自 2026-08-01 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-060",
+                  "reason": "该版本自 2026-08-03 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-050",
+                  "reason": "该版本自 2026-06-22 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-051",
+                  "reason": "该版本自 2026-06-15 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-052",
+                  "reason": "该版本自 2026-08-10 起才生效，晚于问题所指的 2026-06-14"
+                },
+                {
+                  "doc_id": "KB-053",
+                  "reason": "该版本自 2026-07-27 起才生效，晚于问题所指的 2026-06-14"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

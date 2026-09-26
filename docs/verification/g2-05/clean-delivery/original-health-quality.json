@@ -1,0 +1,59 @@
+{
+  "health": {
+    "status": "ok",
+    "llm_mode": "mock",
+    "kb_docs": 35,
+    "kb_chunks": 215,
+    "valid_sales_rows": 18290,
+    "today": "2026-09-01",
+    "data_period": {
+      "start": "2026-05-01",
+      "end": "2026-08-31"
+    },
+    "cleaning_report": {
+      "raw_rows": 18628,
+      "removed": {
+        "1_unparseable_date": 8,
+        "2_empty_amount": 150,
+        "3_qty_le_zero": 30,
+        "4_store_not_in_stores": 10,
+        "5_product_not_in_products": 40,
+        "6_duplicate_row": 100
+      },
+      "removed_rows": 338,
+      "kept_rows": 18290,
+      "kept_sales_rows": 18196,
+      "kept_refund_rows": 94
+    },
+    "index_key": "74c5683bacfd",
+    "kb_warnings": [
+      "跳过没有 KB 编号的文件：README.md",
+      "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+    ]
+  },
+  "quality": {
+    "cleaning_report": {
+      "raw_rows": 18628,
+      "removed": {
+        "1_unparseable_date": 8,
+        "2_empty_amount": 150,
+        "3_qty_le_zero": 30,
+        "4_store_not_in_stores": 10,
+        "5_product_not_in_products": 40,
+        "6_duplicate_row": 100
+      },
+      "removed_rows": 338,
+      "kept_rows": 18290,
+      "kept_sales_rows": 18196,
+      "kept_refund_rows": 94
+    },
+    "data_period": {
+      "start": "2026-05-01",
+      "end": "2026-08-31"
+    },
+    "kb_warnings": [
+      "跳过没有 KB 编号的文件：README.md",
+      "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+    ]
+  }
+}

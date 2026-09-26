@@ -1,0 +1,35 @@
+[
+  {
+    "stage": "no-heading",
+    "question": "翡翠饭的配送时限是多少分钟？",
+    "expected": "翡翠饭的配送时限为31分钟。",
+    "retrieve_passed": true,
+    "chat_passed": false
+  },
+  {
+    "stage": "no-heading",
+    "question": "Ivory Bowl的配送时限是多少分钟？",
+    "expected": "翡翠饭的配送时限为31分钟。",
+    "retrieve_passed": true,
+    "chat_passed": false
+  },
+  {
+    "stage": "explicit-heading",
+    "question": "翡翠饭的配送时限是多少分钟？",
+    "expected": "翡翠饭的配送时限为31分钟。",
+    "retrieve_passed": true,
+    "chat_passed": true
+  },
+  {
+    "stage": "explicit-heading",
+    "question": "Ivory Bowl的配送时限是多少分钟？",
+    "expected": "翡翠饭的配送时限为31分钟。",
+    "retrieve_passed": true,
+    "chat_passed": true
+  }
+]
+Traceback (most recent call last):
+  File "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g2-05/reproduce_heading.py", line 32, in <module>
+    assert all(r['retrieve_passed'] and r['chat_passed'] for r in results), 'Real prose was rejected in the recorded no-heading case'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Real prose was rejected in the recorded no-heading case
