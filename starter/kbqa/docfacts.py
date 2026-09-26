@@ -102,8 +102,10 @@ class DocFacts:
             r"(?:不)?(?:是否|需要|可以|必须|应当|支持|允许|包含|含有|具备|提供|出示|提交|使用|能|要|需|可|有|含|用)"
         )
         open_question = re.search(r"多少|多久|几[点天次时个折]|什么|哪[个些天家种里]|何时|为何|为什么|怎么|怎样|如何", text)
-        closed = bool(explicit or re.search(r"[吗么不没]$", text) or
-                      (re.search(relation_pattern, text) and not open_question))
+        # “什么/怎么”的末字不是独立语气词“么”。开放疑问优先。
+        closed = not open_question and bool(
+            explicit or re.search(r"[吗么不没]$", text) or re.search(relation_pattern, text)
+        )
         if not closed:
             return None
         text = re.sub(r"^(?:请问|请说明|麻烦问一下)", "", text)
