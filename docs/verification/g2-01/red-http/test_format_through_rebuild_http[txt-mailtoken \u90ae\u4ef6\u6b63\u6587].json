@@ -1,0 +1,66 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_format_through_rebuild_ht0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_format_through_rebuild_ht0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_format_through_rebuild_ht0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：0 篇文档，0 个片段，缓存键 8651fac326e2\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_format_through_rebuild_ht0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_format_through_rebuild_ht0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "51129"
+      ],
+      "pid": 80385,
+      "port": 51129,
+      "kb_dir": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_format_through_rebuild_ht0/kb",
+      "health": {
+        "status": "ok",
+        "llm_mode": "mock",
+        "kb_docs": 1,
+        "kb_chunks": 0,
+        "valid_sales_rows": 18290,
+        "today": "2026-09-01",
+        "data_period": {
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "cleaning_report": {
+          "raw_rows": 18628,
+          "removed": {
+            "1_unparseable_date": 8,
+            "2_empty_amount": 150,
+            "3_qty_le_zero": 30,
+            "4_store_not_in_stores": 10,
+            "5_product_not_in_products": 40,
+            "6_duplicate_row": 100
+          },
+          "removed_rows": 338,
+          "kept_rows": 18290,
+          "kept_sales_rows": 18196,
+          "kept_refund_rows": 94
+        },
+        "index_key": "8651fac326e2",
+        "kb_warnings": []
+      },
+      "retrieval": {
+        "mailtoken": {
+          "results": []
+        }
+      },
+      "stopped": true
+    }
+  ]
+}

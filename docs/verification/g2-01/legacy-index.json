@@ -1,0 +1,42 @@
+{
+  "key": "8651fac326e24579cc7211a1dba52144e93a5947868c193e0c8391dd25a0ca21",
+  "version": "bm25-3",
+  "docs": {
+    "KB-999": {
+      "doc_id": "KB-999",
+      "title": "oldtoken stalefact",
+      "type": "文档",
+      "state": "现行",
+      "effective_from": null,
+      "superseded_by": null,
+      "stores": [],
+      "stores_explicit": false,
+      "updated_at": null,
+      "estimates_only": false,
+      "title_year": null,
+      "format": "md",
+      "filename": "KB-999.md"
+    }
+  },
+  "aliases": {
+    "canonical_of": {},
+    "aliases_of": {},
+    "store_code_of": {},
+    "source_doc": ""
+  },
+  "warnings": [],
+  "texts": {
+    "KB-999": "oldtoken stalefact"
+  },
+  "chunks": [
+    {
+      "doc_id": "KB-999",
+      "chunk_id": "KB-999#1",
+      "text": "oldtoken stalefact",
+      "source_text": "oldtoken stalefact",
+      "heading": "oldtoken stalefact",
+      "kind": "text",
+      "table_header": []
+    }
+  ]
+}

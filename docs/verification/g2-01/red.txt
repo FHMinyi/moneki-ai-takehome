@@ -1,0 +1,458 @@
+FFFFFFFFFFFFFFF                                                          [100%]
+=================================== FAILURES ===================================
+______________________ test_original_identity_and_formats ______________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_original_identity_and_for0')
+
+    def test_original_identity_and_formats(tmp_path):
+        kb = ROOT / 'knowledge_base'
+        expected = {p.name.split('_')[0] for p in kb.rglob('KB-*') if p.is_file()}
+        index = load_index(kb, tmp_path / 'index.json')
+>       assert set(index.docs_meta) == expected
+E       AssertionError: assert {'KB-001', 'K...'KB-012', ...} == {'KB-001', 'K...'KB-012', ...}
+E         
+E         Extra items in the right set:
+E         'KB-062'
+E         'KB-022'
+E         'KB-061'
+E         Use -v to get more diff
+
+docs/verification/g2-01/test_ingestion.py:28: AssertionError
+____________________ test_filename_identity_not_frontmatter ____________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_filename_identity_not_fro0')
+
+    def test_filename_identity_not_frontmatter(tmp_path):
+        p = tmp_path / 'KB-901.md'
+        p.write_text('---\ndoc_id: KB-999\n---\nidentity')
+>       assert load_document(p).doc_id == 'KB-901'
+E       AssertionError: assert 'KB-999' == 'KB-901'
+E         
+E         - KB-901
+E         + KB-999
+
+docs/verification/g2-01/test_ingestion.py:34: AssertionError
+__________________________ test_actual_gbk_exact_text __________________________
+
+    def test_actual_gbk_exact_text():
+        p = next((ROOT / 'knowledge_base').rglob('KB-062*'))
+>       assert load_document(p).text == p.read_bytes().decode('gbk').strip('\n')
+E       AssertionError: assert '============...-------------' == '============...-------------'
+E         
+E         Skipping 51 identical leading characters in diff, use -v to show
+E           =======
+E         -   合味餐饮管理（上海）有限公司   OA 公文系统   导出文件
+E         +   ζϺ޹˾   OA ϵͳ   ļ
+E         -   导出时间：2026-08-12 09:41:07
+E         ?   ^^^^^...
+E         
+E         ...Full output truncated (74 lines hidden), use '-vv' to show
+
+docs/verification/g2-01/test_ingestion.py:42: AssertionError
+_______________ test_invalid_encoding_never_silently_drops_bytes _______________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_invalid_encoding_never_si0')
+
+    def test_invalid_encoding_never_silently_drops_bytes(tmp_path):
+        p = tmp_path / 'KB-901.txt'
+        p.write_bytes(b'bad\xff')
+>       with pytest.raises(UnicodeError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE UnicodeError
+
+docs/verification/g2-01/test_ingestion.py:48: Failed
+________________________ test_actual_html_visible_text _________________________
+
+    def test_actual_html_visible_text():
+        doc = load_document(next((ROOT / 'knowledge_base').rglob('KB-061*')))
+        assert '发票在小程序“我的订单”里自助开具。' in doc.text
+>       assert 'window.dataLayer' not in doc.text
+E       assert 'window.dataLayer' not in '<!DOCTYPE h...dy>\n</html>'
+E         
+E         'window.dataLayer' is contained here:
+E           script>
+E             window.dataLayer = window.dataLayer || [];
+E             function hwTrack(evt, props) {
+E               try {
+E                 window.dataLayer.push(Object.assign({ event: evt, ts: Date.now(), page: "faq" }, props || {}));...
+E         
+E         ...Full output truncated (114 lines hidden), use '-vv' to show
+
+docs/verification/g2-01/test_ingestion.py:55: AssertionError
+______________________ test_html_paragraphs_and_entities _______________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_html_paragraphs_and_entit0')
+
+    def test_html_paragraphs_and_entities(tmp_path):
+        p = tmp_path / 'KB-901.html'
+        p.write_text('<head><title>FAQ</title><style>hiddenstyle</style></head>'
+                     '<body><p>alpha &amp; beta</p><p>第二段<br>换行</p>'
+                     '<script>hiddenjs</script></body>')
+        doc = load_document(p)
+        assert doc.title == 'FAQ'
+>       assert doc.text == 'alpha & beta\n第二段\n换行'
+E       AssertionError: assert '<head><title...cript></body>' == 'alpha & beta\n第二段\n换行'
+E         
+E         + <head><title>FAQ</title><style>hiddenstyle</style></head><body><p>alpha &amp; beta</p><p>第二段<br>换行</p><script>hiddenjs</script></body>
+E         - alpha & beta
+E         - 第二段
+E         - 换行
+
+docs/verification/g2-01/test_ingestion.py:67: AssertionError
+___ test_format_through_rebuild_http[txt-mailtoken \u90ae\u4ef6\u6b63\u6587] ___
+
+runtime = <test_ingestion.Runtime object at 0x10afc85c0>, suffix = 'txt'
+body = 'mailtoken 邮件正文'
+
+    @pytest.mark.parametrize('suffix,body', [
+        ('txt', 'mailtoken 邮件正文'),
+        ('html', '<p>mailtoken 网页正文</p><script>hiddenjs</script>'),
+    ])
+    def test_format_through_rebuild_http(runtime, suffix, body):
+        rt = runtime
+        (rt.kb / ('KB-901.' + suffix)).write_text(body)
+        payload = rt.build()
+        expected = 'mailtoken 邮件正文' if suffix == 'txt' else 'mailtoken 网页正文'
+>       assert_snapshot(rt, payload, {'KB-901': expected}, {'mailtoken': expected})
+
+docs/verification/g2-01/test_ingestion.py:168: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rt = <test_ingestion.Runtime object at 0x10afc85c0>
+payload = {'key': '8651fac326e24579cc7211a1dba52144e93a5947868c193e0c8391dd25a0ca21', 'version': 'bm25-3', 'docs': {}, 'aliases': {'canonical_of': {}, 'aliases_of': {}, 'store_code_of': {}, 'source_doc': ''}, ...}
+expected = {'KB-901': 'mailtoken 邮件正文'}
+queries = {'mailtoken': 'mailtoken 邮件正文'}
+
+    def assert_snapshot(rt, payload, expected, queries=()):
+        health, responses = rt.http(queries)
+        assert health['llm_mode'] == 'mock'
+>       assert health['kb_docs'] == len(payload['docs']) == len(expected)
+E       assert 1 == 0
+E        +  where 0 = len({})
+
+docs/verification/g2-01/test_ingestion.py:150: AssertionError
+_ test_format_through_rebuild_http[html-<p>mailtoken \u7f51\u9875\u6b63\u6587</p><script>hiddenjs</script>] _
+
+runtime = <test_ingestion.Runtime object at 0x10afe81a0>, suffix = 'html'
+body = '<p>mailtoken 网页正文</p><script>hiddenjs</script>'
+
+    @pytest.mark.parametrize('suffix,body', [
+        ('txt', 'mailtoken 邮件正文'),
+        ('html', '<p>mailtoken 网页正文</p><script>hiddenjs</script>'),
+    ])
+    def test_format_through_rebuild_http(runtime, suffix, body):
+        rt = runtime
+        (rt.kb / ('KB-901.' + suffix)).write_text(body)
+        payload = rt.build()
+        expected = 'mailtoken 邮件正文' if suffix == 'txt' else 'mailtoken 网页正文'
+>       assert_snapshot(rt, payload, {'KB-901': expected}, {'mailtoken': expected})
+
+docs/verification/g2-01/test_ingestion.py:168: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rt = <test_ingestion.Runtime object at 0x10afe81a0>
+payload = {'key': '8651fac326e24579cc7211a1dba52144e93a5947868c193e0c8391dd25a0ca21', 'version': 'bm25-3', 'docs': {}, 'aliases': {'canonical_of': {}, 'aliases_of': {}, 'store_code_of': {}, 'source_doc': ''}, ...}
+expected = {'KB-901': 'mailtoken 网页正文'}
+queries = {'mailtoken': 'mailtoken 网页正文'}
+
+    def assert_snapshot(rt, payload, expected, queries=()):
+        health, responses = rt.http(queries)
+        assert health['llm_mode'] == 'mock'
+>       assert health['kb_docs'] == len(payload['docs']) == len(expected)
+E       assert 1 == 0
+E        +  where 0 = len({})
+
+docs/verification/g2-01/test_ingestion.py:150: AssertionError
+___________________ test_lifecycle_rebuild_restart_http[add] ___________________
+
+runtime = <test_ingestion.Runtime object at 0x10afe9430>, change = 'add'
+
+    @pytest.mark.parametrize('change', ['add', 'modify', 'delete', 'switch'])
+    def test_lifecycle_rebuild_restart_http(runtime, change):
+        rt = runtime
+        p = rt.kb / 'KB-901.md'
+        p.write_text('oldtoken oldfact')
+        first = rt.build()
+        assert_snapshot(rt, first, {'KB-901': 'oldtoken oldfact'}, {'oldtoken': 'oldfact'})
+        if change == 'add':
+            (rt.kb / 'KB-902.md').write_text('newtoken newfact')
+            expected = {'KB-901': 'oldtoken oldfact', 'KB-902': 'newtoken newfact'}
+        elif change == 'modify':
+            p.write_text('newtoken newfact')
+            expected = {'KB-901': 'newtoken newfact'}
+        elif change == 'delete':
+            p.unlink()
+            expected = {}
+        else:
+            other = rt.root / 'other'
+            other.mkdir()
+            (other / 'KB-903.md').write_text('newtoken newfact')
+            rt.env['KB_DIR'] = str(other)
+            expected = {'KB-903': 'newtoken newfact'}
+        second = rt.build()
+>       responses = assert_snapshot(rt, second, expected, {'newtoken': 'newfact'} if expected else {})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-01/test_ingestion.py:194: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rt = <test_ingestion.Runtime object at 0x10afe9430>
+payload = {'key': '8651fac326e24579cc7211a1dba52144e93a5947868c193e0c8391dd25a0ca21', 'version': 'bm25-3', 'docs': {'KB-901': {'...', 'state': '现行', ...}}, 'aliases': {'canonical_of': {}, 'aliases_of': {}, 'store_code_of': {}, 'source_doc': ''}, ...}
+expected = {'KB-901': 'oldtoken oldfact', 'KB-902': 'newtoken newfact'}
+queries = {'newtoken': 'newfact'}
+
+    def assert_snapshot(rt, payload, expected, queries=()):
+        health, responses = rt.http(queries)
+        assert health['llm_mode'] == 'mock'
+>       assert health['kb_docs'] == len(payload['docs']) == len(expected)
+E       AssertionError: assert 2 == 1
+E        +  where 1 = len({'KB-901': {'doc_id': 'KB-901', 'title': 'oldtoken oldfact', 'type': '文档', 'state': '现行', ...}})
+
+docs/verification/g2-01/test_ingestion.py:150: AssertionError
+_________________ test_lifecycle_rebuild_restart_http[modify] __________________
+
+runtime = <test_ingestion.Runtime object at 0x10afeb5f0>, change = 'modify'
+
+    @pytest.mark.parametrize('change', ['add', 'modify', 'delete', 'switch'])
+    def test_lifecycle_rebuild_restart_http(runtime, change):
+        rt = runtime
+        p = rt.kb / 'KB-901.md'
+        p.write_text('oldtoken oldfact')
+        first = rt.build()
+        assert_snapshot(rt, first, {'KB-901': 'oldtoken oldfact'}, {'oldtoken': 'oldfact'})
+        if change == 'add':
+            (rt.kb / 'KB-902.md').write_text('newtoken newfact')
+            expected = {'KB-901': 'oldtoken oldfact', 'KB-902': 'newtoken newfact'}
+        elif change == 'modify':
+            p.write_text('newtoken newfact')
+            expected = {'KB-901': 'newtoken newfact'}
+        elif change == 'delete':
+            p.unlink()
+            expected = {}
+        else:
+            other = rt.root / 'other'
+            other.mkdir()
+            (other / 'KB-903.md').write_text('newtoken newfact')
+            rt.env['KB_DIR'] = str(other)
+            expected = {'KB-903': 'newtoken newfact'}
+        second = rt.build()
+>       responses = assert_snapshot(rt, second, expected, {'newtoken': 'newfact'} if expected else {})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-01/test_ingestion.py:194: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rt = <test_ingestion.Runtime object at 0x10afeb5f0>
+payload = {'key': '8651fac326e24579cc7211a1dba52144e93a5947868c193e0c8391dd25a0ca21', 'version': 'bm25-3', 'docs': {'KB-901': {'...', 'state': '现行', ...}}, 'aliases': {'canonical_of': {}, 'aliases_of': {}, 'store_code_of': {}, 'source_doc': ''}, ...}
+expected = {'KB-901': 'newtoken newfact'}, queries = {'newtoken': 'newfact'}
+
+    def assert_snapshot(rt, payload, expected, queries=()):
+        health, responses = rt.http(queries)
+        assert health['llm_mode'] == 'mock'
+        assert health['kb_docs'] == len(payload['docs']) == len(expected)
+        assert health['kb_chunks'] == len(payload['chunks'])
+>       assert payload['texts'] == expected
+E       AssertionError: assert {'KB-901': 'oldtoken oldfact'} == {'KB-901': 'newtoken newfact'}
+E         
+E         Differing items:
+E         {'KB-901': 'oldtoken oldfact'} != {'KB-901': 'newtoken newfact'}
+E         Use -v to get more diff
+
+docs/verification/g2-01/test_ingestion.py:152: AssertionError
+_________________ test_lifecycle_rebuild_restart_http[delete] __________________
+
+runtime = <test_ingestion.Runtime object at 0x10aff52b0>, change = 'delete'
+
+    @pytest.mark.parametrize('change', ['add', 'modify', 'delete', 'switch'])
+    def test_lifecycle_rebuild_restart_http(runtime, change):
+        rt = runtime
+        p = rt.kb / 'KB-901.md'
+        p.write_text('oldtoken oldfact')
+        first = rt.build()
+        assert_snapshot(rt, first, {'KB-901': 'oldtoken oldfact'}, {'oldtoken': 'oldfact'})
+        if change == 'add':
+            (rt.kb / 'KB-902.md').write_text('newtoken newfact')
+            expected = {'KB-901': 'oldtoken oldfact', 'KB-902': 'newtoken newfact'}
+        elif change == 'modify':
+            p.write_text('newtoken newfact')
+            expected = {'KB-901': 'newtoken newfact'}
+        elif change == 'delete':
+            p.unlink()
+            expected = {}
+        else:
+            other = rt.root / 'other'
+            other.mkdir()
+            (other / 'KB-903.md').write_text('newtoken newfact')
+            rt.env['KB_DIR'] = str(other)
+            expected = {'KB-903': 'newtoken newfact'}
+        second = rt.build()
+>       responses = assert_snapshot(rt, second, expected, {'newtoken': 'newfact'} if expected else {})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-01/test_ingestion.py:194: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rt = <test_ingestion.Runtime object at 0x10aff52b0>
+payload = {'key': '8651fac326e24579cc7211a1dba52144e93a5947868c193e0c8391dd25a0ca21', 'version': 'bm25-3', 'docs': {'KB-901': {'...', 'state': '现行', ...}}, 'aliases': {'canonical_of': {}, 'aliases_of': {}, 'store_code_of': {}, 'source_doc': ''}, ...}
+expected = {}, queries = {}
+
+    def assert_snapshot(rt, payload, expected, queries=()):
+        health, responses = rt.http(queries)
+        assert health['llm_mode'] == 'mock'
+>       assert health['kb_docs'] == len(payload['docs']) == len(expected)
+E       AssertionError: assert 0 == 1
+E        +  where 1 = len({'KB-901': {'doc_id': 'KB-901', 'title': 'oldtoken oldfact', 'type': '文档', 'state': '现行', ...}})
+
+docs/verification/g2-01/test_ingestion.py:150: AssertionError
+_________________ test_lifecycle_rebuild_restart_http[switch] __________________
+
+runtime = <test_ingestion.Runtime object at 0x10aff7200>, change = 'switch'
+
+    @pytest.mark.parametrize('change', ['add', 'modify', 'delete', 'switch'])
+    def test_lifecycle_rebuild_restart_http(runtime, change):
+        rt = runtime
+        p = rt.kb / 'KB-901.md'
+        p.write_text('oldtoken oldfact')
+        first = rt.build()
+        assert_snapshot(rt, first, {'KB-901': 'oldtoken oldfact'}, {'oldtoken': 'oldfact'})
+        if change == 'add':
+            (rt.kb / 'KB-902.md').write_text('newtoken newfact')
+            expected = {'KB-901': 'oldtoken oldfact', 'KB-902': 'newtoken newfact'}
+        elif change == 'modify':
+            p.write_text('newtoken newfact')
+            expected = {'KB-901': 'newtoken newfact'}
+        elif change == 'delete':
+            p.unlink()
+            expected = {}
+        else:
+            other = rt.root / 'other'
+            other.mkdir()
+            (other / 'KB-903.md').write_text('newtoken newfact')
+            rt.env['KB_DIR'] = str(other)
+            expected = {'KB-903': 'newtoken newfact'}
+        second = rt.build()
+>       responses = assert_snapshot(rt, second, expected, {'newtoken': 'newfact'} if expected else {})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-01/test_ingestion.py:194: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rt = <test_ingestion.Runtime object at 0x10aff7200>
+payload = {'key': '8651fac326e24579cc7211a1dba52144e93a5947868c193e0c8391dd25a0ca21', 'version': 'bm25-3', 'docs': {'KB-901': {'...', 'state': '现行', ...}}, 'aliases': {'canonical_of': {}, 'aliases_of': {}, 'store_code_of': {}, 'source_doc': ''}, ...}
+expected = {'KB-903': 'newtoken newfact'}, queries = {'newtoken': 'newfact'}
+
+    def assert_snapshot(rt, payload, expected, queries=()):
+        health, responses = rt.http(queries)
+        assert health['llm_mode'] == 'mock'
+        assert health['kb_docs'] == len(payload['docs']) == len(expected)
+        assert health['kb_chunks'] == len(payload['chunks'])
+>       assert payload['texts'] == expected
+E       AssertionError: assert {'KB-901': 'oldtoken oldfact'} == {'KB-903': 'newtoken newfact'}
+E         
+E         Left contains 1 more item:
+E         {'KB-901': 'oldtoken oldfact'}
+E         Right contains 1 more item:
+E         {'KB-903': 'newtoken newfact'}
+E         Use -v to get more diff
+
+docs/verification/g2-01/test_ingestion.py:152: AssertionError
+_________ test_metadata_alias_refresh_and_automatic_cache_invalidation _________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_metadata_alias_refresh_an0')
+
+    def test_metadata_alias_refresh_and_automatic_cache_invalidation(tmp_path):
+        kb = tmp_path / 'kb'
+        kb.mkdir()
+        p = kb / 'KB-901.md'
+        def document(title, alias):
+            return f'---\ntitle: {title}\nstores: [S01]\n---\n|canonical|alias|\n|---|---|\n|product|{alias}|'
+        p.write_text(document('oldtitle', 'oldalias'))
+        cache = tmp_path / 'index.json'
+        before = load_index(kb, cache)
+        p.write_text(document('newtitle', 'newalias'))
+        after = load_index(kb, cache)
+>       assert after.docs_meta['KB-901']['title'] == 'newtitle'
+E       AssertionError: assert 'oldtitle' == 'newtitle'
+E         
+E         - newtitle
+E         + oldtitle
+
+docs/verification/g2-01/test_ingestion.py:213: AssertionError
+______________________ test_empty_and_non_document_health ______________________
+
+runtime = <test_ingestion.Runtime object at 0x10aff6db0>
+
+    def test_empty_and_non_document_health(runtime):
+        rt = runtime
+        (rt.kb / 'README.md').write_text('not a knowledge document')
+>       assert_snapshot(rt, rt.build(), {})
+
+docs/verification/g2-01/test_ingestion.py:222: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rt = <test_ingestion.Runtime object at 0x10aff6db0>
+payload = {'key': '8651fac326e24579cc7211a1dba52144e93a5947868c193e0c8391dd25a0ca21', 'version': 'bm25-3', 'docs': {}, 'aliases': {'canonical_of': {}, 'aliases_of': {}, 'store_code_of': {}, 'source_doc': ''}, ...}
+expected = {}, queries = ()
+
+    def assert_snapshot(rt, payload, expected, queries=()):
+        health, responses = rt.http(queries)
+        assert health['llm_mode'] == 'mock'
+>       assert health['kb_docs'] == len(payload['docs']) == len(expected)
+E       assert 1 == 0
+E        +  where 0 = len({})
+
+docs/verification/g2-01/test_ingestion.py:150: AssertionError
+__________________ test_first_start_and_legacy_cache_upgrade ___________________
+
+runtime = <test_ingestion.Runtime object at 0x10afeb0b0>
+
+    def test_first_start_and_legacy_cache_upgrade(runtime):
+        rt = runtime
+        (rt.kb / 'KB-901.md').write_text('newtoken newfact')
+        assert not rt.cache.exists()
+        health, responses = rt.http(['newtoken'])
+        assert health['kb_docs'] == 1 and responses['newtoken']['results'][0]['score'] > 0
+        # Real cache schema/key generated by the starting baseline, not a fake retriever.
+        shutil.copyfile(Path(__file__).with_name('legacy-index.json'), rt.cache)
+        payload = rt.build()
+>       assert_snapshot(rt, payload, {'KB-901': 'newtoken newfact'}, {'newtoken': 'newfact'})
+
+docs/verification/g2-01/test_ingestion.py:237: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rt = <test_ingestion.Runtime object at 0x10afeb0b0>
+payload = {'key': '8651fac326e24579cc7211a1dba52144e93a5947868c193e0c8391dd25a0ca21', 'version': 'bm25-3', 'docs': {'KB-999': {'...', 'state': '现行', ...}}, 'aliases': {'canonical_of': {}, 'aliases_of': {}, 'store_code_of': {}, 'source_doc': ''}, ...}
+expected = {'KB-901': 'newtoken newfact'}, queries = {'newtoken': 'newfact'}
+
+    def assert_snapshot(rt, payload, expected, queries=()):
+        health, responses = rt.http(queries)
+        assert health['llm_mode'] == 'mock'
+        assert health['kb_docs'] == len(payload['docs']) == len(expected)
+        assert health['kb_chunks'] == len(payload['chunks'])
+>       assert payload['texts'] == expected
+E       AssertionError: assert {'KB-999': 'o...en stalefact'} == {'KB-901': 'newtoken newfact'}
+E         
+E         Left contains 1 more item:
+E         {'KB-999': 'oldtoken stalefact'}
+E         Right contains 1 more item:
+E         {'KB-901': 'newtoken newfact'}
+E         Use -v to get more diff
+
+docs/verification/g2-01/test_ingestion.py:152: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-01/test_ingestion.py::test_original_identity_and_formats
+FAILED docs/verification/g2-01/test_ingestion.py::test_filename_identity_not_frontmatter
+FAILED docs/verification/g2-01/test_ingestion.py::test_actual_gbk_exact_text
+FAILED docs/verification/g2-01/test_ingestion.py::test_invalid_encoding_never_silently_drops_bytes
+FAILED docs/verification/g2-01/test_ingestion.py::test_actual_html_visible_text
+FAILED docs/verification/g2-01/test_ingestion.py::test_html_paragraphs_and_entities
+FAILED docs/verification/g2-01/test_ingestion.py::test_format_through_rebuild_http[txt-mailtoken \u90ae\u4ef6\u6b63\u6587]
+FAILED docs/verification/g2-01/test_ingestion.py::test_format_through_rebuild_http[html-<p>mailtoken \u7f51\u9875\u6b63\u6587</p><script>hiddenjs</script>]
+FAILED docs/verification/g2-01/test_ingestion.py::test_lifecycle_rebuild_restart_http[add]
+FAILED docs/verification/g2-01/test_ingestion.py::test_lifecycle_rebuild_restart_http[modify]
+FAILED docs/verification/g2-01/test_ingestion.py::test_lifecycle_rebuild_restart_http[delete]
+FAILED docs/verification/g2-01/test_ingestion.py::test_lifecycle_rebuild_restart_http[switch]
+FAILED docs/verification/g2-01/test_ingestion.py::test_metadata_alias_refresh_and_automatic_cache_invalidation
+FAILED docs/verification/g2-01/test_ingestion.py::test_empty_and_non_document_health
+FAILED docs/verification/g2-01/test_ingestion.py::test_first_start_and_legacy_cache_upgrade
+15 failed in 7.37s
