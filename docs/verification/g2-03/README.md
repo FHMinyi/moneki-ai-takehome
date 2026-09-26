@@ -90,7 +90,7 @@ starter/.venv/bin/python docs/verification/g2-03/audit.py /tmp/g2-03-review-inte
 
 ## 自查、保护及资源
 
-逐项比对Issue及固定点源码diff：业务仅7文件，111新增/33删除；未修改answerer/chunker、公开评分器/题库或原始输入。新增诊断与来源审计验证补位、实际引用映射和同源调用。`git diff --check`通过。自查发现的标题证据、全角时间、别名权重、拒答边界问题均保留红灯修复；最终没有已知本项合并阻塞，主会话仍需独立核验。
+逐项比对Issue及固定点源码diff：业务仅7文件，111新增/33删除；未修改answerer/chunker、公开评分器/题库或原始输入。新增诊断与来源审计验证补位、实际引用映射和同源调用。业务代码和Markdown的`git diff 4a076864 HEAD --check`通过；完整diff的两份原始integration stdout仅提示末尾额外空行，保留原输出未修剪。自查发现的标题证据、全角时间、别名权重、拒答边界问题均保留红灯修复；最终没有已知本项合并阻塞，主会话仍需独立核验。
 
 - checkout：`/Volumes/MACPSSD/project/moneki-ai-takehome`；分支`codex/g2-03-retrieval`，未新建worktree，未动另三个管理checkout。等待主会话明确清理，不自行合并或删除分支。
 - `preservation.json`：272个原始数据/KB/公开评测/旧基线/诊断/前序证据/未提交材料哈希不变。原有未跟踪`docs/baseline/2026-09-26-followup-draft.md`、`docs/research/`原样保留。
