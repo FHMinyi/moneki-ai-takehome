@@ -7,12 +7,15 @@ from datetime import date
 from pathlib import Path
 from typing import Optional
 
-from .entities import Catalog, wants_historical
+from .entities import Catalog, focus_kinds, wants_historical
+from .docfacts import carries
 from .timeparse import parse_time
 from .index import BM25Index, load_index
 from .tokenizer import content_tokens, normalise, tokenize
 
 ALIAS_WEIGHT = 0.6
+# Prefer a source passage carrying the requested fact shape over title-only matches.
+SOURCE_FOCUS_BOOST = 1.5
 #: 单字（“月”“日”“店”）在二元组的世界里基本是噪声，降权但不丢弃。
 SINGLE_CHAR_WEIGHT = 0.3
 YEAR_PENALTY = 0.25
@@ -284,6 +287,12 @@ class Retriever:
         for position, score in scores.items():
             doc_id = self.index.chunks[position].doc_id
             best_of_doc[doc_id] = max(best_of_doc.get(doc_id, 0.0), score)
+        kinds = focus_kinds(query)
+        focus_boost = {
+            position: SOURCE_FOCUS_BOOST if any(carries(kind, self.index.chunks[position].source_text)
+                                              for kind in kinds) else 1.0
+            for position in scores
+        }
         adjusted: list[tuple[float, int]] = []
         for position, score in scores.items():
             doc_id = self.index.chunks[position].doc_id
@@ -292,7 +301,8 @@ class Retriever:
                 (
                     total
                     * self._multiplier(doc_id, as_of, store_id, year, window, numeric)
-                    * self._history_factor(doc_id, historical),
+                    * self._history_factor(doc_id, historical)
+                    * focus_boost[position],
                     position,
                 ),
             )
@@ -360,6 +370,8 @@ class Retriever:
             candidates=[{"chunk_id": self.index.chunks[position].chunk_id,
                          "doc_id": self.index.chunks[position].doc_id,
                          "score": round(score, 4),
+                         "lexical_score": round(scores[position], 4),
+                         "source_focus_boost": focus_boost[position],
                          "matched_terms": sorted(set(content_tokens(query)) &
                                                  set(self.index._tokens_of(self.index.chunks[position])))}
                         for score, position in adjusted],

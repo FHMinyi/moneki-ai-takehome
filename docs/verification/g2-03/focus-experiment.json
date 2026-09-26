@@ -1,0 +1,662 @@
+[
+  {
+    "weight": 1.0,
+    "query": "三文鱼那次断供供应商赔了多少钱",
+    "kinds": [
+      "money"
+    ],
+    "candidates": [
+      {
+        "chunk_id": "KB-022#9",
+        "score": 14.0913,
+        "base": 14.0913,
+        "matches": 0,
+        "text": "4. SUPPLY RESUMPTION\n\n"
+      },
+      {
+        "chunk_id": "KB-022#2",
+        "score": 12.9567,
+        "base": 12.9567,
+        "matches": 0,
+        "text": "Subject: [Tasman Cold Chain Seafood] Salmon delivery of 2026-07-04 - reefer failure, all 3 pallets rejected\n\nDear Xu Min,\n\n"
+      },
+      {
+        "chunk_id": "KB-022#7",
+        "score": 12.7247,
+        "base": 12.7247,
+        "matches": 0,
+        "text": "re-routed to any other customer. The whole consignment has been destroyed and\nthe destruction certificate is attached to this mail.\n\n3. COMMERCIAL SETTLEMENT\n\n"
+      },
+      {
+        "chunk_id": "KB-022#15",
+        "score": 12.3976,
+        "base": 12.3976,
+        "matches": 0,
+        "text": "--\nThis message and any attachments are confidential and intended solely for the\naddressees. If you have received it in error, please notify the sender and\ndelete it from your system."
+      },
+      {
+        "chunk_id": "KB-022#11",
+        "score": 12.2428,
+        "base": 12.2428,
+        "matches": 0,
+        "text": "leaves a gap of about a week in your menu and I am sorry for it. Please treat\n13 July as firm; I will call you myself if anything moves.\n\n5. CORRECTIVE ACTION\n\n"
+      },
+      {
+        "chunk_id": "KB-022#12",
+        "score": 12.0446,
+        "base": 12.0446,
+        "matches": 0,
+        "text": "Effective immediately, every truck carrying product to your stores will run two\nindependent temperature loggers instead of one, with the second logger placed\ninside the pallet rather than in the cabin. Readings will be sent to your\n"
+      },
+      {
+        "chunk_id": "KB-022#1",
+        "score": 11.9965,
+        "base": 11.9965,
+        "matches": 0,
+        "text": "From: Daniel Whitcombe <d.whitcombe@tasmancoldchain.example>\nTo: Xu Min <xu.min@hewei-catering.example>\nCc: Procurement Team <procurement@hewei-catering.example>; Lu Songping <lu.songping@hewei-catering.example>\nDate: Sat, 04 Jul 2026 19:42:11 +0800\n"
+      },
+      {
+        "chunk_id": "KB-022#6",
+        "score": 11.9019,
+        "base": 11.9019,
+        "matches": 0,
+        "text": "Your receiving team measured the core temperature on arrival and refused the\ndelivery on the spot. That was the correct decision and we fully support it.\nAll 3 pallets were rejected and returned to us; none of the product was\n"
+      },
+      {
+        "chunk_id": "KB-022#13",
+        "score": 11.9019,
+        "base": 11.9019,
+        "matches": 0,
+        "text": "procurement mailbox before the truck leaves our yard and again on arrival. The\nfailed unit on HU-8842 has been taken out of service pending overhaul, and we\nhave brought forward the servicing schedule for the rest of the fleet.\n\n"
+      },
+      {
+        "chunk_id": "KB-022#3",
+        "score": 11.8554,
+        "base": 11.8554,
+        "matches": 0,
+        "text": "Following our call this afternoon, I am confirming in writing what happened to\nthe salmon shipment that was scheduled to reach your central kitchen on the\nmorning of 4 July 2026, and what we are doing about it.\n\n1. WHAT HAPPENED\n\n"
+      },
+      {
+        "chunk_id": "KB-022#10",
+        "score": 11.764,
+        "base": 11.764,
+        "matches": 0,
+        "text": "We cannot cover your salmon requirement from the current stock rotation. The\nnext qualified lot arrives in our cold store on 11 July, and after quality\nrelease we will be able to deliver to you again from 13 July 2026. I know this\n"
+      },
+      {
+        "chunk_id": "KB-022#4",
+        "score": 11.719,
+        "base": 11.719,
+        "matches": 0,
+        "text": "The consignment left our Shanghai cold store at 21:10 on 3 July 2026 in truck\nHU-8842. The refrigeration unit on that truck failed in transit during the\nnight. The driver noticed the alarm only at the second rest stop, and by then\n"
+      },
+      {
+        "chunk_id": "KB-022#14",
+        "score": 11.4594,
+        "base": 11.4594,
+        "matches": 0,
+        "text": "I am available on my mobile all weekend if you want to go through any of this.\nAgain, my apologies for the disruption to your stores.\n\nBest regards,\n\nDaniel Whitcombe\nKey Account Manager\nTasman Cold Chain Seafood\nMobile: +86 138 5555 0212\nOffice: 021-5555-0201\nd.whitcombe@tasmancoldchain.example\n\n"
+      },
+      {
+        "chunk_id": "KB-022#5",
+        "score": 11.4177,
+        "base": 11.4177,
+        "matches": 0,
+        "text": "the on-board logger had recorded a cargo temperature above 8 degrees Celsius\nfor 6 hours continuously. Our standard for this product is 0 to 4 degrees\nCelsius at all times, so the cold chain was broken well beyond any tolerance\nwe are willing to argue about.\n\n2. WHAT WE DID\n\n"
+      },
+      {
+        "chunk_id": "KB-022#8",
+        "score": 11.2555,
+        "base": 11.2555,
+        "matches": 1,
+        "text": "We will issue a credit note of CNY 8,600 against your July account. This\ncovers the full value of the rejected consignment. There is nothing for you to\npay and nothing for you to claim separately. The credit note will be raised on\n6 July and should appear on your statement the same week.\n\n"
+      }
+    ]
+  },
+  {
+    "weight": 1.0,
+    "query": "S04 为什么不卖吞拿鱼三明治了",
+    "kinds": [
+      "reason"
+    ],
+    "candidates": [
+      {
+        "chunk_id": "KB-029#7",
+        "score": 62.8806,
+        "base": 62.8806,
+        "matches": 0,
+        "text": "## 议题四：S04 吞拿鱼三明治的去留\n\n"
+      },
+      {
+        "chunk_id": "KB-029#8",
+        "score": 59.6696,
+        "base": 59.6696,
+        "matches": 1,
+        "text": "林知夏汇报了吞拿鱼三明治的情况。这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。\n何静补充，从成本结构看，短期内原料价格没有下行的空间，靠调整分量来拉毛利会影响口感，不建议这么做。项怡说菜单改版本来就排在 9 月，可以顺势处理。\n"
+      },
+      {
+        "chunk_id": "KB-029#9",
+        "score": 57.4919,
+        "base": 57.4919,
+        "matches": 0,
+        "text": "会议决定，S04 自 2026 年 8 月 10 日起下架吞拿鱼三明治，不再销售。现有库存在 8 月 9 日前用完，剩余部分做员工餐消化，不做促销清货；8 月 10 日当天由店长在 POS 和外卖平台同步下架，菜单贴纸由市场部 8 月 8 日前寄到。顾客询问时说明为菜单调整，推荐照烧三明治。其余四家门店本次不动，是否跟进放到 9 月菜单改版里一起评估。\n\n"
+      },
+      {
+        "chunk_id": "KB-029#10",
+        "score": 25.7366,
+        "base": 25.7366,
+        "matches": 1,
+        "text": "## 议题五：设备采购与维保\n\n赵拓汇报了设备清单。本月要采购的有：S01 的制冰机（现有机器制冰量在午市高峰跟不上）、S04 的三明治压烤机（用了三年，温控漂移）、S05 的备用 4G 收款终端（8 月 3 日 POS 故障之后确定要配）。三项合计走一次采购流程，预算由财务部在本周内批复。\n维保方面，五家店的冷柜年度保养排在 8 月中下旬，具体时间由物业和维保商约，原则是避开午市和晚市，不影响营业。各店提前一天把冷柜里的货腾挪好。\n\n"
+      },
+      {
+        "chunk_id": "KB-029#3",
+        "score": 24.7058,
+        "base": 24.7058,
+        "matches": 1,
+        "text": "何静先过了一遍 7 月的整体情况。7 月受两件事影响比较明显：一是 7 月 6 日至 7 月 12 日三文鱼poke 停售，轻食这条线的结构被打乱了一周；二是 7 月 24 日台风“白鹭”全部门店 14:00 提前闭店，当天五家店都只做了半天。\n沈望舒提醒各位，纪要里不写具体的营业额和订单数，各部门要数字一律到系统报表里取，口径按 KB-001，不要在群里互相转发手工统计的版本，更不要拿门店现场清点的数字去对外。\n店长普遍反映停售那一周替代品的接受度比预想好，但客诉集中在“为什么不提前说”。市场部认领：下次再出现同类停售，提前一天在会员群和外卖平台门店公告里同步说明，话术由市场部统一给。\n\n"
+      },
+      {
+        "chunk_id": "KB-029#1",
+        "score": 18.9817,
+        "base": 18.9817,
+        "matches": 0,
+        "text": "# 2026 年 8 月运营例会纪要\n\n会议时间：2026 年 8 月 5 日 14:00 至 16:40\n会议地点：总部三楼会议室，五家门店店长线上接入\n主持人：运营总监 沈望舒\n参会人：运营部 徐敏、供应链部 陆颂平、财务部 何静、市场部 项怡、IT 部 赵拓；门店店长 周岚（S01）、谭可欣（S02）、鲍一鸣（S03）、林知夏（S04）、高远（S05）\n记录：运营部 徐敏\n分发范围：与会人员、总部各部门负责人\n\n"
+      }
+    ]
+  },
+  {
+    "weight": 1.5,
+    "query": "三文鱼那次断供供应商赔了多少钱",
+    "kinds": [
+      "money"
+    ],
+    "candidates": [
+      {
+        "chunk_id": "KB-022#8",
+        "score": 16.88325,
+        "base": 11.2555,
+        "matches": 1,
+        "text": "We will issue a credit note of CNY 8,600 against your July account. This\ncovers the full value of the rejected consignment. There is nothing for you to\npay and nothing for you to claim separately. The credit note will be raised on\n6 July and should appear on your statement the same week.\n\n"
+      },
+      {
+        "chunk_id": "KB-022#9",
+        "score": 14.0913,
+        "base": 14.0913,
+        "matches": 0,
+        "text": "4. SUPPLY RESUMPTION\n\n"
+      },
+      {
+        "chunk_id": "KB-022#2",
+        "score": 12.9567,
+        "base": 12.9567,
+        "matches": 0,
+        "text": "Subject: [Tasman Cold Chain Seafood] Salmon delivery of 2026-07-04 - reefer failure, all 3 pallets rejected\n\nDear Xu Min,\n\n"
+      },
+      {
+        "chunk_id": "KB-022#7",
+        "score": 12.7247,
+        "base": 12.7247,
+        "matches": 0,
+        "text": "re-routed to any other customer. The whole consignment has been destroyed and\nthe destruction certificate is attached to this mail.\n\n3. COMMERCIAL SETTLEMENT\n\n"
+      },
+      {
+        "chunk_id": "KB-022#15",
+        "score": 12.3976,
+        "base": 12.3976,
+        "matches": 0,
+        "text": "--\nThis message and any attachments are confidential and intended solely for the\naddressees. If you have received it in error, please notify the sender and\ndelete it from your system."
+      },
+      {
+        "chunk_id": "KB-022#11",
+        "score": 12.2428,
+        "base": 12.2428,
+        "matches": 0,
+        "text": "leaves a gap of about a week in your menu and I am sorry for it. Please treat\n13 July as firm; I will call you myself if anything moves.\n\n5. CORRECTIVE ACTION\n\n"
+      },
+      {
+        "chunk_id": "KB-022#12",
+        "score": 12.0446,
+        "base": 12.0446,
+        "matches": 0,
+        "text": "Effective immediately, every truck carrying product to your stores will run two\nindependent temperature loggers instead of one, with the second logger placed\ninside the pallet rather than in the cabin. Readings will be sent to your\n"
+      },
+      {
+        "chunk_id": "KB-022#1",
+        "score": 11.9965,
+        "base": 11.9965,
+        "matches": 0,
+        "text": "From: Daniel Whitcombe <d.whitcombe@tasmancoldchain.example>\nTo: Xu Min <xu.min@hewei-catering.example>\nCc: Procurement Team <procurement@hewei-catering.example>; Lu Songping <lu.songping@hewei-catering.example>\nDate: Sat, 04 Jul 2026 19:42:11 +0800\n"
+      },
+      {
+        "chunk_id": "KB-022#6",
+        "score": 11.9019,
+        "base": 11.9019,
+        "matches": 0,
+        "text": "Your receiving team measured the core temperature on arrival and refused the\ndelivery on the spot. That was the correct decision and we fully support it.\nAll 3 pallets were rejected and returned to us; none of the product was\n"
+      },
+      {
+        "chunk_id": "KB-022#13",
+        "score": 11.9019,
+        "base": 11.9019,
+        "matches": 0,
+        "text": "procurement mailbox before the truck leaves our yard and again on arrival. The\nfailed unit on HU-8842 has been taken out of service pending overhaul, and we\nhave brought forward the servicing schedule for the rest of the fleet.\n\n"
+      },
+      {
+        "chunk_id": "KB-022#3",
+        "score": 11.8554,
+        "base": 11.8554,
+        "matches": 0,
+        "text": "Following our call this afternoon, I am confirming in writing what happened to\nthe salmon shipment that was scheduled to reach your central kitchen on the\nmorning of 4 July 2026, and what we are doing about it.\n\n1. WHAT HAPPENED\n\n"
+      },
+      {
+        "chunk_id": "KB-022#10",
+        "score": 11.764,
+        "base": 11.764,
+        "matches": 0,
+        "text": "We cannot cover your salmon requirement from the current stock rotation. The\nnext qualified lot arrives in our cold store on 11 July, and after quality\nrelease we will be able to deliver to you again from 13 July 2026. I know this\n"
+      },
+      {
+        "chunk_id": "KB-022#4",
+        "score": 11.719,
+        "base": 11.719,
+        "matches": 0,
+        "text": "The consignment left our Shanghai cold store at 21:10 on 3 July 2026 in truck\nHU-8842. The refrigeration unit on that truck failed in transit during the\nnight. The driver noticed the alarm only at the second rest stop, and by then\n"
+      },
+      {
+        "chunk_id": "KB-022#14",
+        "score": 11.4594,
+        "base": 11.4594,
+        "matches": 0,
+        "text": "I am available on my mobile all weekend if you want to go through any of this.\nAgain, my apologies for the disruption to your stores.\n\nBest regards,\n\nDaniel Whitcombe\nKey Account Manager\nTasman Cold Chain Seafood\nMobile: +86 138 5555 0212\nOffice: 021-5555-0201\nd.whitcombe@tasmancoldchain.example\n\n"
+      },
+      {
+        "chunk_id": "KB-022#5",
+        "score": 11.4177,
+        "base": 11.4177,
+        "matches": 0,
+        "text": "the on-board logger had recorded a cargo temperature above 8 degrees Celsius\nfor 6 hours continuously. Our standard for this product is 0 to 4 degrees\nCelsius at all times, so the cold chain was broken well beyond any tolerance\nwe are willing to argue about.\n\n2. WHAT WE DID\n\n"
+      }
+    ]
+  },
+  {
+    "weight": 1.5,
+    "query": "S04 为什么不卖吞拿鱼三明治了",
+    "kinds": [
+      "reason"
+    ],
+    "candidates": [
+      {
+        "chunk_id": "KB-029#8",
+        "score": 89.5044,
+        "base": 59.6696,
+        "matches": 1,
+        "text": "林知夏汇报了吞拿鱼三明治的情况。这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。\n何静补充，从成本结构看，短期内原料价格没有下行的空间，靠调整分量来拉毛利会影响口感，不建议这么做。项怡说菜单改版本来就排在 9 月，可以顺势处理。\n"
+      },
+      {
+        "chunk_id": "KB-029#7",
+        "score": 62.8806,
+        "base": 62.8806,
+        "matches": 0,
+        "text": "## 议题四：S04 吞拿鱼三明治的去留\n\n"
+      },
+      {
+        "chunk_id": "KB-029#9",
+        "score": 57.4919,
+        "base": 57.4919,
+        "matches": 0,
+        "text": "会议决定，S04 自 2026 年 8 月 10 日起下架吞拿鱼三明治，不再销售。现有库存在 8 月 9 日前用完，剩余部分做员工餐消化，不做促销清货；8 月 10 日当天由店长在 POS 和外卖平台同步下架，菜单贴纸由市场部 8 月 8 日前寄到。顾客询问时说明为菜单调整，推荐照烧三明治。其余四家门店本次不动，是否跟进放到 9 月菜单改版里一起评估。\n\n"
+      },
+      {
+        "chunk_id": "KB-029#10",
+        "score": 38.6049,
+        "base": 25.7366,
+        "matches": 1,
+        "text": "## 议题五：设备采购与维保\n\n赵拓汇报了设备清单。本月要采购的有：S01 的制冰机（现有机器制冰量在午市高峰跟不上）、S04 的三明治压烤机（用了三年，温控漂移）、S05 的备用 4G 收款终端（8 月 3 日 POS 故障之后确定要配）。三项合计走一次采购流程，预算由财务部在本周内批复。\n维保方面，五家店的冷柜年度保养排在 8 月中下旬，具体时间由物业和维保商约，原则是避开午市和晚市，不影响营业。各店提前一天把冷柜里的货腾挪好。\n\n"
+      },
+      {
+        "chunk_id": "KB-029#3",
+        "score": 37.0587,
+        "base": 24.7058,
+        "matches": 1,
+        "text": "何静先过了一遍 7 月的整体情况。7 月受两件事影响比较明显：一是 7 月 6 日至 7 月 12 日三文鱼poke 停售，轻食这条线的结构被打乱了一周；二是 7 月 24 日台风“白鹭”全部门店 14:00 提前闭店，当天五家店都只做了半天。\n沈望舒提醒各位，纪要里不写具体的营业额和订单数，各部门要数字一律到系统报表里取，口径按 KB-001，不要在群里互相转发手工统计的版本，更不要拿门店现场清点的数字去对外。\n店长普遍反映停售那一周替代品的接受度比预想好，但客诉集中在“为什么不提前说”。市场部认领：下次再出现同类停售，提前一天在会员群和外卖平台门店公告里同步说明，话术由市场部统一给。\n\n"
+      },
+      {
+        "chunk_id": "KB-029#1",
+        "score": 18.9817,
+        "base": 18.9817,
+        "matches": 0,
+        "text": "# 2026 年 8 月运营例会纪要\n\n会议时间：2026 年 8 月 5 日 14:00 至 16:40\n会议地点：总部三楼会议室，五家门店店长线上接入\n主持人：运营总监 沈望舒\n参会人：运营部 徐敏、供应链部 陆颂平、财务部 何静、市场部 项怡、IT 部 赵拓；门店店长 周岚（S01）、谭可欣（S02）、鲍一鸣（S03）、林知夏（S04）、高远（S05）\n记录：运营部 徐敏\n分发范围：与会人员、总部各部门负责人\n\n"
+      }
+    ]
+  },
+  {
+    "weight": 2.0,
+    "query": "三文鱼那次断供供应商赔了多少钱",
+    "kinds": [
+      "money"
+    ],
+    "candidates": [
+      {
+        "chunk_id": "KB-022#8",
+        "score": 22.511,
+        "base": 11.2555,
+        "matches": 1,
+        "text": "We will issue a credit note of CNY 8,600 against your July account. This\ncovers the full value of the rejected consignment. There is nothing for you to\npay and nothing for you to claim separately. The credit note will be raised on\n6 July and should appear on your statement the same week.\n\n"
+      },
+      {
+        "chunk_id": "KB-022#9",
+        "score": 14.0913,
+        "base": 14.0913,
+        "matches": 0,
+        "text": "4. SUPPLY RESUMPTION\n\n"
+      },
+      {
+        "chunk_id": "KB-022#2",
+        "score": 12.9567,
+        "base": 12.9567,
+        "matches": 0,
+        "text": "Subject: [Tasman Cold Chain Seafood] Salmon delivery of 2026-07-04 - reefer failure, all 3 pallets rejected\n\nDear Xu Min,\n\n"
+      },
+      {
+        "chunk_id": "KB-022#7",
+        "score": 12.7247,
+        "base": 12.7247,
+        "matches": 0,
+        "text": "re-routed to any other customer. The whole consignment has been destroyed and\nthe destruction certificate is attached to this mail.\n\n3. COMMERCIAL SETTLEMENT\n\n"
+      },
+      {
+        "chunk_id": "KB-022#15",
+        "score": 12.3976,
+        "base": 12.3976,
+        "matches": 0,
+        "text": "--\nThis message and any attachments are confidential and intended solely for the\naddressees. If you have received it in error, please notify the sender and\ndelete it from your system."
+      },
+      {
+        "chunk_id": "KB-022#11",
+        "score": 12.2428,
+        "base": 12.2428,
+        "matches": 0,
+        "text": "leaves a gap of about a week in your menu and I am sorry for it. Please treat\n13 July as firm; I will call you myself if anything moves.\n\n5. CORRECTIVE ACTION\n\n"
+      },
+      {
+        "chunk_id": "KB-022#12",
+        "score": 12.0446,
+        "base": 12.0446,
+        "matches": 0,
+        "text": "Effective immediately, every truck carrying product to your stores will run two\nindependent temperature loggers instead of one, with the second logger placed\ninside the pallet rather than in the cabin. Readings will be sent to your\n"
+      },
+      {
+        "chunk_id": "KB-022#1",
+        "score": 11.9965,
+        "base": 11.9965,
+        "matches": 0,
+        "text": "From: Daniel Whitcombe <d.whitcombe@tasmancoldchain.example>\nTo: Xu Min <xu.min@hewei-catering.example>\nCc: Procurement Team <procurement@hewei-catering.example>; Lu Songping <lu.songping@hewei-catering.example>\nDate: Sat, 04 Jul 2026 19:42:11 +0800\n"
+      },
+      {
+        "chunk_id": "KB-022#6",
+        "score": 11.9019,
+        "base": 11.9019,
+        "matches": 0,
+        "text": "Your receiving team measured the core temperature on arrival and refused the\ndelivery on the spot. That was the correct decision and we fully support it.\nAll 3 pallets were rejected and returned to us; none of the product was\n"
+      },
+      {
+        "chunk_id": "KB-022#13",
+        "score": 11.9019,
+        "base": 11.9019,
+        "matches": 0,
+        "text": "procurement mailbox before the truck leaves our yard and again on arrival. The\nfailed unit on HU-8842 has been taken out of service pending overhaul, and we\nhave brought forward the servicing schedule for the rest of the fleet.\n\n"
+      },
+      {
+        "chunk_id": "KB-022#3",
+        "score": 11.8554,
+        "base": 11.8554,
+        "matches": 0,
+        "text": "Following our call this afternoon, I am confirming in writing what happened to\nthe salmon shipment that was scheduled to reach your central kitchen on the\nmorning of 4 July 2026, and what we are doing about it.\n\n1. WHAT HAPPENED\n\n"
+      },
+      {
+        "chunk_id": "KB-022#10",
+        "score": 11.764,
+        "base": 11.764,
+        "matches": 0,
+        "text": "We cannot cover your salmon requirement from the current stock rotation. The\nnext qualified lot arrives in our cold store on 11 July, and after quality\nrelease we will be able to deliver to you again from 13 July 2026. I know this\n"
+      },
+      {
+        "chunk_id": "KB-022#4",
+        "score": 11.719,
+        "base": 11.719,
+        "matches": 0,
+        "text": "The consignment left our Shanghai cold store at 21:10 on 3 July 2026 in truck\nHU-8842. The refrigeration unit on that truck failed in transit during the\nnight. The driver noticed the alarm only at the second rest stop, and by then\n"
+      },
+      {
+        "chunk_id": "KB-022#14",
+        "score": 11.4594,
+        "base": 11.4594,
+        "matches": 0,
+        "text": "I am available on my mobile all weekend if you want to go through any of this.\nAgain, my apologies for the disruption to your stores.\n\nBest regards,\n\nDaniel Whitcombe\nKey Account Manager\nTasman Cold Chain Seafood\nMobile: +86 138 5555 0212\nOffice: 021-5555-0201\nd.whitcombe@tasmancoldchain.example\n\n"
+      },
+      {
+        "chunk_id": "KB-022#5",
+        "score": 11.4177,
+        "base": 11.4177,
+        "matches": 0,
+        "text": "the on-board logger had recorded a cargo temperature above 8 degrees Celsius\nfor 6 hours continuously. Our standard for this product is 0 to 4 degrees\nCelsius at all times, so the cold chain was broken well beyond any tolerance\nwe are willing to argue about.\n\n2. WHAT WE DID\n\n"
+      }
+    ]
+  },
+  {
+    "weight": 2.0,
+    "query": "S04 为什么不卖吞拿鱼三明治了",
+    "kinds": [
+      "reason"
+    ],
+    "candidates": [
+      {
+        "chunk_id": "KB-029#8",
+        "score": 119.3392,
+        "base": 59.6696,
+        "matches": 1,
+        "text": "林知夏汇报了吞拿鱼三明治的情况。这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。\n何静补充，从成本结构看，短期内原料价格没有下行的空间，靠调整分量来拉毛利会影响口感，不建议这么做。项怡说菜单改版本来就排在 9 月，可以顺势处理。\n"
+      },
+      {
+        "chunk_id": "KB-029#7",
+        "score": 62.8806,
+        "base": 62.8806,
+        "matches": 0,
+        "text": "## 议题四：S04 吞拿鱼三明治的去留\n\n"
+      },
+      {
+        "chunk_id": "KB-029#9",
+        "score": 57.4919,
+        "base": 57.4919,
+        "matches": 0,
+        "text": "会议决定，S04 自 2026 年 8 月 10 日起下架吞拿鱼三明治，不再销售。现有库存在 8 月 9 日前用完，剩余部分做员工餐消化，不做促销清货；8 月 10 日当天由店长在 POS 和外卖平台同步下架，菜单贴纸由市场部 8 月 8 日前寄到。顾客询问时说明为菜单调整，推荐照烧三明治。其余四家门店本次不动，是否跟进放到 9 月菜单改版里一起评估。\n\n"
+      },
+      {
+        "chunk_id": "KB-029#10",
+        "score": 51.4732,
+        "base": 25.7366,
+        "matches": 1,
+        "text": "## 议题五：设备采购与维保\n\n赵拓汇报了设备清单。本月要采购的有：S01 的制冰机（现有机器制冰量在午市高峰跟不上）、S04 的三明治压烤机（用了三年，温控漂移）、S05 的备用 4G 收款终端（8 月 3 日 POS 故障之后确定要配）。三项合计走一次采购流程，预算由财务部在本周内批复。\n维保方面，五家店的冷柜年度保养排在 8 月中下旬，具体时间由物业和维保商约，原则是避开午市和晚市，不影响营业。各店提前一天把冷柜里的货腾挪好。\n\n"
+      },
+      {
+        "chunk_id": "KB-029#3",
+        "score": 49.4116,
+        "base": 24.7058,
+        "matches": 1,
+        "text": "何静先过了一遍 7 月的整体情况。7 月受两件事影响比较明显：一是 7 月 6 日至 7 月 12 日三文鱼poke 停售，轻食这条线的结构被打乱了一周；二是 7 月 24 日台风“白鹭”全部门店 14:00 提前闭店，当天五家店都只做了半天。\n沈望舒提醒各位，纪要里不写具体的营业额和订单数，各部门要数字一律到系统报表里取，口径按 KB-001，不要在群里互相转发手工统计的版本，更不要拿门店现场清点的数字去对外。\n店长普遍反映停售那一周替代品的接受度比预想好，但客诉集中在“为什么不提前说”。市场部认领：下次再出现同类停售，提前一天在会员群和外卖平台门店公告里同步说明，话术由市场部统一给。\n\n"
+      },
+      {
+        "chunk_id": "KB-029#1",
+        "score": 18.9817,
+        "base": 18.9817,
+        "matches": 0,
+        "text": "# 2026 年 8 月运营例会纪要\n\n会议时间：2026 年 8 月 5 日 14:00 至 16:40\n会议地点：总部三楼会议室，五家门店店长线上接入\n主持人：运营总监 沈望舒\n参会人：运营部 徐敏、供应链部 陆颂平、财务部 何静、市场部 项怡、IT 部 赵拓；门店店长 周岚（S01）、谭可欣（S02）、鲍一鸣（S03）、林知夏（S04）、高远（S05）\n记录：运营部 徐敏\n分发范围：与会人员、总部各部门负责人\n\n"
+      }
+    ]
+  },
+  {
+    "weight": 3.0,
+    "query": "三文鱼那次断供供应商赔了多少钱",
+    "kinds": [
+      "money"
+    ],
+    "candidates": [
+      {
+        "chunk_id": "KB-022#8",
+        "score": 33.7665,
+        "base": 11.2555,
+        "matches": 1,
+        "text": "We will issue a credit note of CNY 8,600 against your July account. This\ncovers the full value of the rejected consignment. There is nothing for you to\npay and nothing for you to claim separately. The credit note will be raised on\n6 July and should appear on your statement the same week.\n\n"
+      },
+      {
+        "chunk_id": "KB-022#9",
+        "score": 14.0913,
+        "base": 14.0913,
+        "matches": 0,
+        "text": "4. SUPPLY RESUMPTION\n\n"
+      },
+      {
+        "chunk_id": "KB-022#2",
+        "score": 12.9567,
+        "base": 12.9567,
+        "matches": 0,
+        "text": "Subject: [Tasman Cold Chain Seafood] Salmon delivery of 2026-07-04 - reefer failure, all 3 pallets rejected\n\nDear Xu Min,\n\n"
+      },
+      {
+        "chunk_id": "KB-022#7",
+        "score": 12.7247,
+        "base": 12.7247,
+        "matches": 0,
+        "text": "re-routed to any other customer. The whole consignment has been destroyed and\nthe destruction certificate is attached to this mail.\n\n3. COMMERCIAL SETTLEMENT\n\n"
+      },
+      {
+        "chunk_id": "KB-022#15",
+        "score": 12.3976,
+        "base": 12.3976,
+        "matches": 0,
+        "text": "--\nThis message and any attachments are confidential and intended solely for the\naddressees. If you have received it in error, please notify the sender and\ndelete it from your system."
+      },
+      {
+        "chunk_id": "KB-022#11",
+        "score": 12.2428,
+        "base": 12.2428,
+        "matches": 0,
+        "text": "leaves a gap of about a week in your menu and I am sorry for it. Please treat\n13 July as firm; I will call you myself if anything moves.\n\n5. CORRECTIVE ACTION\n\n"
+      },
+      {
+        "chunk_id": "KB-022#12",
+        "score": 12.0446,
+        "base": 12.0446,
+        "matches": 0,
+        "text": "Effective immediately, every truck carrying product to your stores will run two\nindependent temperature loggers instead of one, with the second logger placed\ninside the pallet rather than in the cabin. Readings will be sent to your\n"
+      },
+      {
+        "chunk_id": "KB-022#1",
+        "score": 11.9965,
+        "base": 11.9965,
+        "matches": 0,
+        "text": "From: Daniel Whitcombe <d.whitcombe@tasmancoldchain.example>\nTo: Xu Min <xu.min@hewei-catering.example>\nCc: Procurement Team <procurement@hewei-catering.example>; Lu Songping <lu.songping@hewei-catering.example>\nDate: Sat, 04 Jul 2026 19:42:11 +0800\n"
+      },
+      {
+        "chunk_id": "KB-022#6",
+        "score": 11.9019,
+        "base": 11.9019,
+        "matches": 0,
+        "text": "Your receiving team measured the core temperature on arrival and refused the\ndelivery on the spot. That was the correct decision and we fully support it.\nAll 3 pallets were rejected and returned to us; none of the product was\n"
+      },
+      {
+        "chunk_id": "KB-022#13",
+        "score": 11.9019,
+        "base": 11.9019,
+        "matches": 0,
+        "text": "procurement mailbox before the truck leaves our yard and again on arrival. The\nfailed unit on HU-8842 has been taken out of service pending overhaul, and we\nhave brought forward the servicing schedule for the rest of the fleet.\n\n"
+      },
+      {
+        "chunk_id": "KB-022#3",
+        "score": 11.8554,
+        "base": 11.8554,
+        "matches": 0,
+        "text": "Following our call this afternoon, I am confirming in writing what happened to\nthe salmon shipment that was scheduled to reach your central kitchen on the\nmorning of 4 July 2026, and what we are doing about it.\n\n1. WHAT HAPPENED\n\n"
+      },
+      {
+        "chunk_id": "KB-022#10",
+        "score": 11.764,
+        "base": 11.764,
+        "matches": 0,
+        "text": "We cannot cover your salmon requirement from the current stock rotation. The\nnext qualified lot arrives in our cold store on 11 July, and after quality\nrelease we will be able to deliver to you again from 13 July 2026. I know this\n"
+      },
+      {
+        "chunk_id": "KB-022#4",
+        "score": 11.719,
+        "base": 11.719,
+        "matches": 0,
+        "text": "The consignment left our Shanghai cold store at 21:10 on 3 July 2026 in truck\nHU-8842. The refrigeration unit on that truck failed in transit during the\nnight. The driver noticed the alarm only at the second rest stop, and by then\n"
+      },
+      {
+        "chunk_id": "KB-022#14",
+        "score": 11.4594,
+        "base": 11.4594,
+        "matches": 0,
+        "text": "I am available on my mobile all weekend if you want to go through any of this.\nAgain, my apologies for the disruption to your stores.\n\nBest regards,\n\nDaniel Whitcombe\nKey Account Manager\nTasman Cold Chain Seafood\nMobile: +86 138 5555 0212\nOffice: 021-5555-0201\nd.whitcombe@tasmancoldchain.example\n\n"
+      },
+      {
+        "chunk_id": "KB-022#5",
+        "score": 11.4177,
+        "base": 11.4177,
+        "matches": 0,
+        "text": "the on-board logger had recorded a cargo temperature above 8 degrees Celsius\nfor 6 hours continuously. Our standard for this product is 0 to 4 degrees\nCelsius at all times, so the cold chain was broken well beyond any tolerance\nwe are willing to argue about.\n\n2. WHAT WE DID\n\n"
+      }
+    ]
+  },
+  {
+    "weight": 3.0,
+    "query": "S04 为什么不卖吞拿鱼三明治了",
+    "kinds": [
+      "reason"
+    ],
+    "candidates": [
+      {
+        "chunk_id": "KB-029#8",
+        "score": 179.0088,
+        "base": 59.6696,
+        "matches": 1,
+        "text": "林知夏汇报了吞拿鱼三明治的情况。这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。\n何静补充，从成本结构看，短期内原料价格没有下行的空间，靠调整分量来拉毛利会影响口感，不建议这么做。项怡说菜单改版本来就排在 9 月，可以顺势处理。\n"
+      },
+      {
+        "chunk_id": "KB-029#10",
+        "score": 77.2098,
+        "base": 25.7366,
+        "matches": 1,
+        "text": "## 议题五：设备采购与维保\n\n赵拓汇报了设备清单。本月要采购的有：S01 的制冰机（现有机器制冰量在午市高峰跟不上）、S04 的三明治压烤机（用了三年，温控漂移）、S05 的备用 4G 收款终端（8 月 3 日 POS 故障之后确定要配）。三项合计走一次采购流程，预算由财务部在本周内批复。\n维保方面，五家店的冷柜年度保养排在 8 月中下旬，具体时间由物业和维保商约，原则是避开午市和晚市，不影响营业。各店提前一天把冷柜里的货腾挪好。\n\n"
+      },
+      {
+        "chunk_id": "KB-029#3",
+        "score": 74.1174,
+        "base": 24.7058,
+        "matches": 1,
+        "text": "何静先过了一遍 7 月的整体情况。7 月受两件事影响比较明显：一是 7 月 6 日至 7 月 12 日三文鱼poke 停售，轻食这条线的结构被打乱了一周；二是 7 月 24 日台风“白鹭”全部门店 14:00 提前闭店，当天五家店都只做了半天。\n沈望舒提醒各位，纪要里不写具体的营业额和订单数，各部门要数字一律到系统报表里取，口径按 KB-001，不要在群里互相转发手工统计的版本，更不要拿门店现场清点的数字去对外。\n店长普遍反映停售那一周替代品的接受度比预想好，但客诉集中在“为什么不提前说”。市场部认领：下次再出现同类停售，提前一天在会员群和外卖平台门店公告里同步说明，话术由市场部统一给。\n\n"
+      },
+      {
+        "chunk_id": "KB-029#7",
+        "score": 62.8806,
+        "base": 62.8806,
+        "matches": 0,
+        "text": "## 议题四：S04 吞拿鱼三明治的去留\n\n"
+      },
+      {
+        "chunk_id": "KB-029#9",
+        "score": 57.4919,
+        "base": 57.4919,
+        "matches": 0,
+        "text": "会议决定，S04 自 2026 年 8 月 10 日起下架吞拿鱼三明治，不再销售。现有库存在 8 月 9 日前用完，剩余部分做员工餐消化，不做促销清货；8 月 10 日当天由店长在 POS 和外卖平台同步下架，菜单贴纸由市场部 8 月 8 日前寄到。顾客询问时说明为菜单调整，推荐照烧三明治。其余四家门店本次不动，是否跟进放到 9 月菜单改版里一起评估。\n\n"
+      },
+      {
+        "chunk_id": "KB-029#1",
+        "score": 18.9817,
+        "base": 18.9817,
+        "matches": 0,
+        "text": "# 2026 年 8 月运营例会纪要\n\n会议时间：2026 年 8 月 5 日 14:00 至 16:40\n会议地点：总部三楼会议室，五家门店店长线上接入\n主持人：运营总监 沈望舒\n参会人：运营部 徐敏、供应链部 陆颂平、财务部 何静、市场部 项怡、IT 部 赵拓；门店店长 周岚（S01）、谭可欣（S02）、鲍一鸣（S03）、林知夏（S04）、高远（S05）\n记录：运营部 徐敏\n分发范围：与会人员、总部各部门负责人\n\n"
+      }
+    ]
+  }
+]
