@@ -39,3 +39,8 @@ var/
 *~
 .DS_Store
 Thumbs.db
+
+# Frontend dependencies and browser output
+node_modules/
+test-results/
+playwright-report/
