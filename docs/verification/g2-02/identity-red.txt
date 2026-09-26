@@ -1,0 +1,94 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_________________ test_duplicate_rerank_padding_identity_http __________________
+
+runtime = <ingestion_runtime.Runtime object at 0x10a7fe6c0>
+
+    def test_duplicate_rerank_padding_identity_http(runtime):
+        rt = runtime
+        (rt.kb / 'KB-901.md').write_text(('dupetoken '*25 + '\n\n') * 5)
+        (rt.kb / 'KB-902.md').write_text('dupetoken secondsource ' + 'filler '*20)
+        (rt.kb / 'KB-903.md').write_text('unrelated thirdsource')
+        payload = rt.build()
+        # Multiple high-scoring candidates from 901 make deduplication observable.
+        idx = load_index(rt.kb, rt.cache)
+        scores = idx.score_terms({'dupetoken': 1})
+        assert sum(idx.chunks[p].doc_id == 'KB-901' for p in scores) >= 3
+>       result = assert_identity(rt, payload, 'dupetoken')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-02/test_evidence.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rt = <ingestion_runtime.Runtime object at 0x10a7fe6c0>
+payload = {'key': 'f7f8a42bb3d114497372673bf9784ea1e915a51704fd9e8b3fe8dbce51d6a4df', 'version': 'bm25-4', 'docs': {'KB-901': {'...', 'state': '现行', ...}}, 'aliases': {'canonical_of': {}, 'aliases_of': {}, 'store_code_of': {}, 'source_doc': ''}, ...}
+query = 'dupetoken'
+
+    def assert_identity(rt, payload, query):
+        from kbqa.retriever import Retriever
+        index = load_index(Path(rt.env['KB_DIR']), rt.cache)
+        result = Retriever(index, date(2026, 9, 1)).search(query, top_k=5)
+        health, responses = rt.http([query])
+        api = responses[query]['results']
+        assert health['kb_chunks'] == len(payload['chunks'])
+        assert len(api) == min(5, len(index.chunks))
+        assert api == [h.as_result() for h in result.hits]
+        by_id = {c.chunk_id: c for c in index.chunks}
+        for hit, public in zip(result.hits, api):
+            chunk = by_id[hit.chunk_id]
+>           assert hit.doc_id == chunk.doc_id == public['doc_id'], (query, hit.chunk_id, hit.doc_id, chunk.doc_id)
+E           AssertionError: ('dupetoken', 'KB-902#1', 'KB-901', 'KB-902')
+E           assert 'KB-901' == 'KB-902'
+E             
+E             - KB-902
+E             ?      ^
+E             + KB-901
+E             ?      ^
+
+docs/verification/g2-02/test_evidence.py:127: AssertionError
+_____________________ test_original_r08_r10_identity_http ______________________
+
+runtime = <ingestion_runtime.Runtime object at 0x10a7b82f0>
+
+    def test_original_r08_r10_identity_http(runtime):
+        rt = runtime
+        rt.env['KB_DIR'] = str(ROOT / 'knowledge_base')
+        payload = rt.build()
+        questions = [json.loads(line) for line in (ROOT / 'eval/public_questions.jsonl').read_text().splitlines()]
+        for q in questions:
+            if q['id'] in ('R08', 'R10'):
+>               assert_identity(rt, payload, q['query'])
+
+docs/verification/g2-02/test_evidence.py:159: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rt = <ingestion_runtime.Runtime object at 0x10a7b82f0>
+payload = {'key': '56d0bc5ef4581936c07d7d7775ec7f4ac9de0c7bd198372f330bfce8946e555b', 'version': 'bm25-4', 'docs': {'KB-001': {'...ouper': 'S01', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', ...}, 'source_doc': 'KB-003'}, ...}
+query = '现在单笔充值 500 送多少'
+
+    def assert_identity(rt, payload, query):
+        from kbqa.retriever import Retriever
+        index = load_index(Path(rt.env['KB_DIR']), rt.cache)
+        result = Retriever(index, date(2026, 9, 1)).search(query, top_k=5)
+        health, responses = rt.http([query])
+        api = responses[query]['results']
+        assert health['kb_chunks'] == len(payload['chunks'])
+        assert len(api) == min(5, len(index.chunks))
+        assert api == [h.as_result() for h in result.hits]
+        by_id = {c.chunk_id: c for c in index.chunks}
+        for hit, public in zip(result.hits, api):
+            chunk = by_id[hit.chunk_id]
+>           assert hit.doc_id == chunk.doc_id == public['doc_id'], (query, hit.chunk_id, hit.doc_id, chunk.doc_id)
+E           AssertionError: ('现在单笔充值 500 送多少', 'KB-011#6', 'KB-010', 'KB-011')
+E           assert 'KB-010' == 'KB-011'
+E             
+E             - KB-011
+E             ?      ^
+E             + KB-010
+E             ?      ^
+
+docs/verification/g2-02/test_evidence.py:127: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-02/test_evidence.py::test_duplicate_rerank_padding_identity_http
+FAILED docs/verification/g2-02/test_evidence.py::test_original_r08_r10_identity_http
+2 failed, 14 deselected in 1.28s

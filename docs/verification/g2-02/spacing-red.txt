@@ -1,0 +1,17 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________________ test_headings_and_spacing_stay_with_body ___________________
+
+    def test_headings_and_spacing_stay_with_body():
+        body = '# Heading\n\n可操作事实。\n\n## Subheading\n\n| A | B |\n|---|---|\n| item | 12 |\n\n'
+        doc = Document('KB-901', 'Title', body, Path('KB-901.md'), 'md')
+        chunks = chunk_document(doc)
+        assert coverage(doc, chunks) == 0
+>       assert all(c.source_text.strip() for c in chunks)
+E       assert False
+E        +  where False = all(<generator object test_headings_and_spacing_stay_with_body.<locals>.<genexpr> at 0x10885d700>)
+
+docs/verification/g2-02/test_evidence.py:223: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-02/test_evidence.py::test_headings_and_spacing_stay_with_body
+1 failed, 18 deselected in 0.04s

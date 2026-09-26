@@ -1,0 +1,51 @@
+{
+  "key": "df4685878f5cc5bf0af12a54bc3413c69631db3e52683f69f2bca39223b0cb98",
+  "version": "bm25-4",
+  "docs": {
+    "KB-901": {
+      "doc_id": "KB-901",
+      "title": "legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacyto",
+      "type": "文档",
+      "state": "现行",
+      "effective_from": null,
+      "superseded_by": null,
+      "stores": [],
+      "stores_explicit": false,
+      "updated_at": null,
+      "estimates_only": false,
+      "title_year": null,
+      "format": "md",
+      "filename": "KB-901.md"
+    }
+  },
+  "aliases": {
+    "canonical_of": {},
+    "aliases_of": {},
+    "store_code_of": {},
+    "source_doc": ""
+  },
+  "warnings": [],
+  "texts": {
+    "KB-901": "legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken tailtoken"
+  },
+  "chunks": [
+    {
+      "doc_id": "KB-901",
+      "chunk_id": "KB-901#1",
+      "text": "legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken ",
+      "source_text": "legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken ",
+      "heading": "legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacyto",
+      "kind": "text",
+      "table_header": []
+    },
+    {
+      "doc_id": "KB-901",
+      "chunk_id": "KB-901#2",
+      "text": "legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken ",
+      "source_text": "legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken ",
+      "heading": "legacytoken legacytoken legacytoken legacytoken legacytoken legacytoken legacyto",
+      "kind": "text",
+      "table_header": []
+    }
+  ]
+}

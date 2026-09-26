@@ -1,0 +1,339 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_original_r08_r10_identity0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_original_r08_r10_identity0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/Volumes/MACPSSD/project/moneki-ai-takehome/knowledge_base\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 733dfe580e40\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_original_r08_r10_identity0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_original_r08_r10_identity0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "53558"
+      ],
+      "pid": 85342,
+      "port": 53558,
+      "kb_dir": "/Volumes/MACPSSD/project/moneki-ai-takehome/knowledge_base",
+      "health": {
+        "status": "ok",
+        "llm_mode": "mock",
+        "kb_docs": 35,
+        "kb_chunks": 215,
+        "valid_sales_rows": 18290,
+        "today": "2026-09-01",
+        "data_period": {
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "cleaning_report": {
+          "raw_rows": 18628,
+          "removed": {
+            "1_unparseable_date": 8,
+            "2_empty_amount": 150,
+            "3_qty_le_zero": 30,
+            "4_store_not_in_stores": 10,
+            "5_product_not_in_products": 40,
+            "6_duplicate_row": 100
+          },
+          "removed_rows": 338,
+          "kept_rows": 18290,
+          "kept_sales_rows": 18196,
+          "kept_refund_rows": 94
+        },
+        "index_key": "733dfe580e40",
+        "kb_warnings": [
+          "跳过没有 KB 编号的文件：README.md",
+          "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+        ]
+      },
+      "retrieval": {
+        "现在单笔充值 500 送多少": {
+          "results": [
+            {
+              "doc_id": "KB-010",
+              "chunk_id": "KB-010#3",
+              "score": 7.5825,
+              "text": "## 二、储值与赠送\n\n1. 单笔充值满 500 元，赠送 50 元。赠送金额即时到账，与本金放在同一个余额里，不单独计息、不单独统计。\n2. 单笔 500 元以下的充值不赠送。\n3. 赠送金额只能用于消费，不可提现、不可开票。\n4. 充值在小程序或门店收银台均可办理，门店办理时由店员核对会员手机号后四位。\n\n",
+              "retrieval_text": "会员储值政策 v1\n# 会员储值政策 v1\n## 二、储值与赠送\n\n1. 单笔充值满 500 元，赠送 50 元。赠送金额即时到账，与本金放在同一个余额里，不单独计息、不单独统计。\n2. 单笔 500 元以下的充值不赠送。\n3. 赠送金额只能用于消费，不可提现、不可开票。\n4. 充值在小程序或门店收银台均可办理，门店办理时由店员核对会员手机号后四位。\n\n",
+              "source_start": 146,
+              "source_end": 302,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 12,
+                  "text": "# 会员储值政策 v1\n"
+                },
+                {
+                  "start": 146,
+                  "end": 157,
+                  "text": "## 二、储值与赠送\n"
+                }
+              ]
+            },
+            {
+              "doc_id": "KB-010",
+              "chunk_id": "KB-010#4",
+              "score": 5.6036,
+              "text": "## 三、积分\n\n1. 每消费 1 元积 1 分，不足 1 元的部分不积分。\n2. 积分在小程序“我的积分”里查看，满 500 分可兑换指定饮料一杯。\n3. 积分有效期至次年 12 月 31 日，过期清零，系统在到期前 30 天推送提醒。\n\n",
+              "retrieval_text": "会员储值政策 v1\n# 会员储值政策 v1\n## 三、积分\n\n1. 每消费 1 元积 1 分，不足 1 元的部分不积分。\n2. 积分在小程序“我的积分”里查看，满 500 分可兑换指定饮料一杯。\n3. 积分有效期至次年 12 月 31 日，过期清零，系统在到期前 30 天推送提醒。\n\n",
+              "source_start": 302,
+              "source_end": 423,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 12,
+                  "text": "# 会员储值政策 v1\n"
+                },
+                {
+                  "start": 302,
+                  "end": 310,
+                  "text": "## 三、积分\n"
+                }
+              ]
+            },
+            {
+              "doc_id": "KB-011",
+              "chunk_id": "KB-011#3",
+              "score": 5.1724,
+              "text": "## 二、储值与赠送\n\n1. 单笔充值满 500 元，赠送 60 元。\n2. 单笔充值满 1000 元，赠送 150 元。\n3. 赠送档位不叠加，按单笔充值金额就高不就低；500 元以下的充值不赠送。\n4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。\n\n",
+              "retrieval_text": "会员储值政策 v2\n# 会员储值政策 v2\n## 二、储值与赠送\n\n1. 单笔充值满 500 元，赠送 60 元。\n2. 单笔充值满 1000 元，赠送 150 元。\n3. 赠送档位不叠加，按单笔充值金额就高不就低；500 元以下的充值不赠送。\n4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。\n\n",
+              "source_start": 146,
+              "source_end": 290,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 12,
+                  "text": "# 会员储值政策 v2\n"
+                },
+                {
+                  "start": 146,
+                  "end": 157,
+                  "text": "## 二、储值与赠送\n"
+                }
+              ]
+            },
+            {
+              "doc_id": "KB-011",
+              "chunk_id": "KB-011#4",
+              "score": 4.8601,
+              "text": "## 三、积分\n\n1. 每消费 1 元积 2 分，不足 1 元的部分不积分。\n2. 积分在小程序“我的积分”里查看，满 500 分可兑换指定饮料一杯。\n3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。\n4. 积分有效期至次年 12 月 31 日，过期清零。\n\n",
+              "retrieval_text": "会员储值政策 v2\n# 会员储值政策 v2\n## 三、积分\n\n1. 每消费 1 元积 2 分，不足 1 元的部分不积分。\n2. 积分在小程序“我的积分”里查看，满 500 分可兑换指定饮料一杯。\n3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。\n4. 积分有效期至次年 12 月 31 日，过期清零。\n\n",
+              "source_start": 290,
+              "source_end": 439,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 12,
+                  "text": "# 会员储值政策 v2\n"
+                },
+                {
+                  "start": 290,
+                  "end": 298,
+                  "text": "## 三、积分\n"
+                }
+              ]
+            },
+            {
+              "doc_id": "KB-027",
+              "chunk_id": "KB-027#6",
+              "score": 4.4601,
+              "text": "## 三、改进\n\n1. 门店常备零钱由 500 元提高到 1,500 元，由店长每周一核对。\n2. 增加一台 4G 移动收款终端作为备份，由 IT 部在 8 月内配置到位，每月月初测试一次。\n3. 商场再有网络升级，要求物业提前 3 个工作日书面通知门店，运营部已与物业沟通并写进沟通纪要。\n4. 只收现金的告知模板由市场部统一做好存档，门店随时可打印。",
+              "retrieval_text": "S05 Super Tetsudo POS 终端故障报告\n# S05 Super Tetsudo POS 终端故障报告\n## 三、改进\n\n1. 门店常备零钱由 500 元提高到 1,500 元，由店长每周一核对。\n2. 增加一台 4G 移动收款终端作为备份，由 IT 部在 8 月内配置到位，每月月初测试一次。\n3. 商场再有网络升级，要求物业提前 3 个工作日书面通知门店，运营部已与物业沟通并写进沟通纪要。\n4. 只收现金的告知模板由市场部统一做好存档，门店随时可打印。",
+              "source_start": 622,
+              "source_end": 799,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 31,
+                  "text": "# S05 Super Tetsudo POS 终端故障报告\n"
+                },
+                {
+                  "start": 622,
+                  "end": 630,
+                  "text": "## 三、改进\n"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "stopped": true
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "53566"
+      ],
+      "pid": 85343,
+      "port": 53566,
+      "kb_dir": "/Volumes/MACPSSD/project/moneki-ai-takehome/knowledge_base",
+      "health": {
+        "status": "ok",
+        "llm_mode": "mock",
+        "kb_docs": 35,
+        "kb_chunks": 215,
+        "valid_sales_rows": 18290,
+        "today": "2026-09-01",
+        "data_period": {
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "cleaning_report": {
+          "raw_rows": 18628,
+          "removed": {
+            "1_unparseable_date": 8,
+            "2_empty_amount": 150,
+            "3_qty_le_zero": 30,
+            "4_store_not_in_stores": 10,
+            "5_product_not_in_products": 40,
+            "6_duplicate_row": 100
+          },
+          "removed_rows": 338,
+          "kept_rows": 18290,
+          "kept_sales_rows": 18196,
+          "kept_refund_rows": 94
+        },
+        "index_key": "733dfe580e40",
+        "kb_warnings": [
+          "跳过没有 KB 编号的文件：README.md",
+          "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+        ]
+      },
+      "retrieval": {
+        "S04 为什么不卖吞拿鱼三明治了": {
+          "results": [
+            {
+              "doc_id": "KB-033",
+              "chunk_id": "KB-033#1",
+              "score": 19.9179,
+              "text": "# 门店档案：S04 Arigato Sando\n\n",
+              "retrieval_text": "门店档案 S04 Arigato Sando\n# 门店档案：S04 Arigato Sando\n\n",
+              "source_start": 0,
+              "source_end": 26,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 25,
+                  "text": "# 门店档案：S04 Arigato Sando\n"
+                }
+              ]
+            },
+            {
+              "doc_id": "KB-042",
+              "chunk_id": "KB-042#2",
+              "score": 7.1066,
+              "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+              "retrieval_text": "门店营业时间总表\n# 门店营业时间总表\n| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+              "source_start": 61,
+              "source_end": 319,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 11,
+                  "text": "# 门店营业时间总表\n"
+                },
+                {
+                  "start": 61,
+                  "end": 118,
+                  "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n"
+                }
+              ]
+            },
+            {
+              "doc_id": "KB-060",
+              "chunk_id": "KB-060#6",
+              "score": 6.0945,
+              "text": "| 门店 | 反馈条数 | 主要类型 |\n|---|---|---|\n| S01 Super Souper | 14 | 汤底偏咸 3 条，等位 3 条，其余为好评 |\n| S02 Makai Poke | 21 | 三文鱼缺货 9 条，配菜分量 4 条，其余为好评 |\n| S03 Juicy Bao Bao | 12 | 早餐出品稳定，好评为主，2 条反映座位不够 |\n| S04 Arigato Sando | 22 | 出餐慢 12 条，面包偏干 3 条，其余为好评 |\n| S05 Super Tetsudo | 18 | 好评为主，2 条反映晚市噪音 |\n\n",
+              "retrieval_text": "顾客反馈汇总 2026 年 7 月\n# 顾客反馈汇总（2026 年 7 月）\n## 二、分店情况\n| 门店 | 反馈条数 | 主要类型 |\n|---|---|---|\n| S01 Super Souper | 14 | 汤底偏咸 3 条，等位 3 条，其余为好评 |\n| S02 Makai Poke | 21 | 三文鱼缺货 9 条，配菜分量 4 条，其余为好评 |\n| S03 Juicy Bao Bao | 12 | 早餐出品稳定，好评为主，2 条反映座位不够 |\n| S04 Arigato Sando | 22 | 出餐慢 12 条，面包偏干 3 条，其余为好评 |\n| S05 Super Tetsudo | 18 | 好评为主，2 条反映晚市噪音 |\n\n",
+              "source_start": 489,
+              "source_end": 774,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 21,
+                  "text": "# 顾客反馈汇总（2026 年 7 月）\n"
+                },
+                {
+                  "start": 478,
+                  "end": 488,
+                  "text": "## 二、分店情况\n"
+                },
+                {
+                  "start": 489,
+                  "end": 524,
+                  "text": "| 门店 | 反馈条数 | 主要类型 |\n|---|---|---|\n"
+                }
+              ]
+            },
+            {
+              "doc_id": "KB-029",
+              "chunk_id": "KB-029#8",
+              "score": 4.5354,
+              "text": "林知夏汇报了吞拿鱼三明治的情况。这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。\n何静补充，从成本结构看，短期内原料价格没有下行的空间，靠调整分量来拉毛利会影响口感，不建议这么做。项怡说菜单改版本来就排在 9 月，可以顺势处理。\n",
+              "retrieval_text": "2026 年 8 月运营例会纪要\n# 2026 年 8 月运营例会纪要\n## 议题四：S04 吞拿鱼三明治的去留\n林知夏汇报了吞拿鱼三明治的情况。这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。\n何静补充，从成本结构看，短期内原料价格没有下行的空间，靠调整分量来拉毛利会影响口感，不建议这么做。项怡说菜单改版本来就排在 9 月，可以顺势处理。\n",
+              "source_start": 1149,
+              "source_end": 1336,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 19,
+                  "text": "# 2026 年 8 月运营例会纪要\n"
+                },
+                {
+                  "start": 1127,
+                  "end": 1148,
+                  "text": "## 议题四：S04 吞拿鱼三明治的去留\n"
+                }
+              ]
+            },
+            {
+              "doc_id": "KB-003",
+              "chunk_id": "KB-003#7",
+              "score": 3.9648,
+              "text": "| 数据库写法 | 门店编号 | 常见别名 |\n|---|---|---|\n| Super Souper | S01 | SS、汤面店 |\n| Makai Poke | S02 | Makai |\n| Juicy Bao Bao | S03 | JBB、包包店 |\n| Arigato Sando | S04 | 阿里嘎多、AS |\n| Super Tetsudo | S05 | 铁道、ST |\n\n",
+              "retrieval_text": "商品与门店别名词典\n# 商品与门店别名词典\n## 二、门店\n| 数据库写法 | 门店编号 | 常见别名 |\n|---|---|---|\n| Super Souper | S01 | SS、汤面店 |\n| Makai Poke | S02 | Makai |\n| Juicy Bao Bao | S03 | JBB、包包店 |\n| Arigato Sando | S04 | 阿里嘎多、AS |\n| Super Tetsudo | S05 | 铁道、ST |\n\n",
+              "source_start": 709,
+              "source_end": 909,
+              "context_spans": [
+                {
+                  "start": 0,
+                  "end": 12,
+                  "text": "# 商品与门店别名词典\n"
+                },
+                {
+                  "start": 700,
+                  "end": 708,
+                  "text": "## 二、门店\n"
+                },
+                {
+                  "start": 709,
+                  "end": 747,
+                  "text": "| 数据库写法 | 门店编号 | 常见别名 |\n|---|---|---|\n"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "stopped": true
+    }
+  ]
+}

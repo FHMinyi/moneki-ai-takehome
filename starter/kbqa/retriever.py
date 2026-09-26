@@ -42,6 +42,9 @@ class Hit:
     kind: str = "text"
     table_header: list[str] = field(default_factory=list)
     dropped_instructions: list[str] = field(default_factory=list)
+    source_start: int = 0
+    source_end: int = 0
+    context_spans: list[dict] = field(default_factory=list)
     padded: bool = False
     """凑数补上的：契约 §4 要求恰好返回 top_k 条，但问答链路不会用它作答。"""
 
@@ -50,7 +53,11 @@ class Hit:
             "doc_id": self.doc_id,
             "chunk_id": self.chunk_id,
             "score": round(self.score, 4),
-            "text": self.text,
+            "text": self.source_text,
+            "retrieval_text": self.text,
+            "source_start": self.source_start,
+            "source_end": self.source_end,
+            "context_spans": self.context_spans,
         }
 
 
@@ -212,6 +219,9 @@ class Retriever:
             meta=self.index.docs_meta.get(chunk.doc_id, {}),
             kind=chunk.kind,
             table_header=chunk.table_header,
+            source_start=chunk.source_start,
+            source_end=chunk.source_end,
+            context_spans=chunk.context_spans,
             padded=padded,
         )
 
@@ -261,7 +271,6 @@ class Retriever:
             )
         adjusted.sort(key=lambda item: (-item[0], item[1]))
 
-        ordered = [self.index.chunks[position] for _, position in adjusted]
         hits: list[Hit] = []
         taken: set[int] = set()
         per_doc: dict[str, int] = {}
@@ -272,8 +281,6 @@ class Retriever:
             per_doc[chunk.doc_id] = per_doc.get(chunk.doc_id, 0) + 1
             taken.add(position)
             hit = self._hit(position, score, filtered)
-            # 第几条命中就取排序里的第几篇文档。
-            hit.doc_id = ordered[len(hits)].doc_id
             hits.append(hit)
             if len(hits) >= top_k:
                 break

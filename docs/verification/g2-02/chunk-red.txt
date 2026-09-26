@@ -1,0 +1,197 @@
+F...FFFFFFFFFF                                                           [100%]
+=================================== FAILURES ===================================
+________________________ test_boundary_full_coverage[0] ________________________
+
+length = 0
+
+    @pytest.mark.parametrize('length', [0, 1, 299, 300, 301, 599, 600, 601, 900, 901])
+    def test_boundary_full_coverage(length):
+        text = ''.join(chr(0x4e00 + i) for i in range(length))
+        doc = Document('KB-901', 'metadata title', text, Path('KB-901.md'), 'md')
+>       assert coverage(doc, chunk_document(doc)) == 0
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-02/test_evidence.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+doc = Document(doc_id='KB-901', title='metadata title', text='', path=PosixPath('KB-901.md'), fmt='md', doc_type='', status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[])
+chunks = [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='metadata title', source_text='metadata title', heading='metadata title', kind='text', table_header=[])]
+
+    def coverage(doc, chunks):
+        covered = set()
+        for chunk in chunks:
+            # Pre-fix implementation has no offsets; still expose actual lost characters.
+            start = getattr(chunk, 'source_start', doc.text.find(chunk.source_text))
+            end = getattr(chunk, 'source_end', start + len(chunk.source_text))
+>           assert start >= 0 and chunk.source_text == doc.text[start:end]
+E           assert (-1 >= 0)
+
+docs/verification/g2-02/test_evidence.py:42: AssertionError
+_______________________ test_boundary_full_coverage[301] _______________________
+
+length = 301
+
+    @pytest.mark.parametrize('length', [0, 1, 299, 300, 301, 599, 600, 601, 900, 901])
+    def test_boundary_full_coverage(length):
+        text = ''.join(chr(0x4e00 + i) for i in range(length))
+        doc = Document('KB-901', 'metadata title', text, Path('KB-901.md'), 'md')
+>       assert coverage(doc, chunk_document(doc)) == 0
+E       AssertionError: assert 1 == 0
+E        +  where 1 = coverage(Document(doc_id='KB-901', title='metadata title', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽..., status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[]), [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂...仰仱仲仳仴仵件价仸仹仺任仼份仾仿伀企伂伃伄伅伆伇伈伉伊伋伌伍伎伏伐休伒伓伔伕伖众优伙会伛伜伝伞伟传伡伢伣伤伥伦伧伨伩伪伫', heading='metadata title', kind='text', table_header=[])])
+E        +    where [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂...仰仱仲仳仴仵件价仸仹仺任仼份仾仿伀企伂伃伄伅伆伇伈伉伊伋伌伍伎伏伐休伒伓伔伕伖众优伙会伛伜伝伞伟传伡伢伣伤伥伦伧伨伩伪伫', heading='metadata title', kind='text', table_header=[])] = chunk_document(Document(doc_id='KB-901', title='metadata title', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽..., status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[]))
+
+docs/verification/g2-02/test_evidence.py:51: AssertionError
+_______________________ test_boundary_full_coverage[599] _______________________
+
+length = 599
+
+    @pytest.mark.parametrize('length', [0, 1, 299, 300, 301, 599, 600, 601, 900, 901])
+    def test_boundary_full_coverage(length):
+        text = ''.join(chr(0x4e00 + i) for i in range(length))
+        doc = Document('KB-901', 'metadata title', text, Path('KB-901.md'), 'md')
+>       assert coverage(doc, chunk_document(doc)) == 0
+E       AssertionError: assert 299 == 0
+E        +  where 299 = coverage(Document(doc_id='KB-901', title='metadata title', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽..., status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[]), [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂...仰仱仲仳仴仵件价仸仹仺任仼份仾仿伀企伂伃伄伅伆伇伈伉伊伋伌伍伎伏伐休伒伓伔伕伖众优伙会伛伜伝伞伟传伡伢伣伤伥伦伧伨伩伪伫', heading='metadata title', kind='text', table_header=[])])
+E        +    where [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂...仰仱仲仳仴仵件价仸仹仺任仼份仾仿伀企伂伃伄伅伆伇伈伉伊伋伌伍伎伏伐休伒伓伔伕伖众优伙会伛伜伝伞伟传伡伢伣伤伥伦伧伨伩伪伫', heading='metadata title', kind='text', table_header=[])] = chunk_document(Document(doc_id='KB-901', title='metadata title', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽..., status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[]))
+
+docs/verification/g2-02/test_evidence.py:51: AssertionError
+_______________________ test_boundary_full_coverage[600] _______________________
+
+length = 600
+
+    @pytest.mark.parametrize('length', [0, 1, 299, 300, 301, 599, 600, 601, 900, 901])
+    def test_boundary_full_coverage(length):
+        text = ''.join(chr(0x4e00 + i) for i in range(length))
+        doc = Document('KB-901', 'metadata title', text, Path('KB-901.md'), 'md')
+>       assert coverage(doc, chunk_document(doc)) == 0
+E       AssertionError: assert 300 == 0
+E        +  where 300 = coverage(Document(doc_id='KB-901', title='metadata title', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽..., status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[]), [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂...仰仱仲仳仴仵件价仸仹仺任仼份仾仿伀企伂伃伄伅伆伇伈伉伊伋伌伍伎伏伐休伒伓伔伕伖众优伙会伛伜伝伞伟传伡伢伣伤伥伦伧伨伩伪伫', heading='metadata title', kind='text', table_header=[])])
+E        +    where [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂...仰仱仲仳仴仵件价仸仹仺任仼份仾仿伀企伂伃伄伅伆伇伈伉伊伋伌伍伎伏伐休伒伓伔伕伖众优伙会伛伜伝伞伟传伡伢伣伤伥伦伧伨伩伪伫', heading='metadata title', kind='text', table_header=[])] = chunk_document(Document(doc_id='KB-901', title='metadata title', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽..., status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[]))
+
+docs/verification/g2-02/test_evidence.py:51: AssertionError
+_______________________ test_boundary_full_coverage[601] _______________________
+
+length = 601
+
+    @pytest.mark.parametrize('length', [0, 1, 299, 300, 301, 599, 600, 601, 900, 901])
+    def test_boundary_full_coverage(length):
+        text = ''.join(chr(0x4e00 + i) for i in range(length))
+        doc = Document('KB-901', 'metadata title', text, Path('KB-901.md'), 'md')
+>       assert coverage(doc, chunk_document(doc)) == 0
+E       AssertionError: assert 1 == 0
+E        +  where 1 = coverage(Document(doc_id='KB-901', title='metadata title', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽..., status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[]), [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂...倜倝倞借倠倡倢倣値倥倦倧倨倩倪倫倬倭倮倯倰倱倲倳倴倵倶倷倸倹债倻值倽倾倿偀偁偂偃偄偅偆假偈偉偊偋偌偍偎偏偐偑偒偓偔偕偖偗', heading='metadata title', kind='text', table_header=[])])
+E        +    where [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂...倜倝倞借倠倡倢倣値倥倦倧倨倩倪倫倬倭倮倯倰倱倲倳倴倵倶倷倸倹债倻值倽倾倿偀偁偂偃偄偅偆假偈偉偊偋偌偍偎偏偐偑偒偓偔偕偖偗', heading='metadata title', kind='text', table_header=[])] = chunk_document(Document(doc_id='KB-901', title='metadata title', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽..., status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[]))
+
+docs/verification/g2-02/test_evidence.py:51: AssertionError
+_______________________ test_boundary_full_coverage[900] _______________________
+
+length = 900
+
+    @pytest.mark.parametrize('length', [0, 1, 299, 300, 301, 599, 600, 601, 900, 901])
+    def test_boundary_full_coverage(length):
+        text = ''.join(chr(0x4e00 + i) for i in range(length))
+        doc = Document('KB-901', 'metadata title', text, Path('KB-901.md'), 'md')
+>       assert coverage(doc, chunk_document(doc)) == 0
+E       AssertionError: assert 300 == 0
+E        +  where 300 = coverage(Document(doc_id='KB-901', title='metadata title', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽..., status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[]), [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂...倜倝倞借倠倡倢倣値倥倦倧倨倩倪倫倬倭倮倯倰倱倲倳倴倵倶倷倸倹债倻值倽倾倿偀偁偂偃偄偅偆假偈偉偊偋偌偍偎偏偐偑偒偓偔偕偖偗', heading='metadata title', kind='text', table_header=[])])
+E        +    where [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂...倜倝倞借倠倡倢倣値倥倦倧倨倩倪倫倬倭倮倯倰倱倲倳倴倵倶倷倸倹债倻值倽倾倿偀偁偂偃偄偅偆假偈偉偊偋偌偍偎偏偐偑偒偓偔偕偖偗', heading='metadata title', kind='text', table_header=[])] = chunk_document(Document(doc_id='KB-901', title='metadata title', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽..., status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[]))
+
+docs/verification/g2-02/test_evidence.py:51: AssertionError
+_______________________ test_boundary_full_coverage[901] _______________________
+
+length = 901
+
+    @pytest.mark.parametrize('length', [0, 1, 299, 300, 301, 599, 600, 601, 900, 901])
+    def test_boundary_full_coverage(length):
+        text = ''.join(chr(0x4e00 + i) for i in range(length))
+        doc = Document('KB-901', 'metadata title', text, Path('KB-901.md'), 'md')
+>       assert coverage(doc, chunk_document(doc)) == 0
+E       AssertionError: assert 1 == 0
+E        +  where 1 = coverage(Document(doc_id='KB-901', title='metadata title', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽..., status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[]), [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂...先光兊克兌免兎兏児兑兒兓兔兕兖兗兘兙党兛兜兝兞兟兠兡兢兣兤入兦內全兩兪八公六兮兯兰共兲关兴兵其具典兹兺养兼兽兾兿冀冁冂冃', heading='metadata title', kind='text', table_header=[])])
+E        +    where [Chunk(doc_id='KB-901', chunk_id='KB-901#1', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂...先光兊克兌免兎兏児兑兒兓兔兕兖兗兘兙党兛兜兝兞兟兠兡兢兣兤入兦內全兩兪八公六兮兯兰共兲关兴兵其具典兹兺养兼兽兾兿冀冁冂冃', heading='metadata title', kind='text', table_header=[])] = chunk_document(Document(doc_id='KB-901', title='metadata title', text='一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰丱串丳临丵丶丷丸丹为主丼丽..., status='现行', effective_from=None, superseded_by=None, stores=[], stores_explicit=False, updated_at=None, warnings=[]))
+
+docs/verification/g2-02/test_evidence.py:51: AssertionError
+_________________________ test_actual_corpus_coverage __________________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-72/test_actual_corpus_coverage0')
+
+    def test_actual_corpus_coverage(tmp_path):
+        docs, _ = load_knowledge_base(ROOT / 'knowledge_base')
+        audit = {d.doc_id: coverage(d, chunk_document(d)) for d in docs}
+        if os.environ.get('G2_EVIDENCE'):
+            out = Path(os.environ['G2_EVIDENCE']); out.mkdir(parents=True, exist_ok=True)
+            (out / 'coverage.json').write_text(json.dumps(audit, indent=2))
+>       assert all(value == 0 for value in audit.values()), audit
+E       AssertionError: {'KB-001': 167, 'KB-002': 71, 'KB-003': 174, 'KB-062': 158, ...}
+E       assert False
+E        +  where False = all(<generator object test_actual_corpus_coverage.<locals>.<genexpr> at 0x108397370>)
+
+docs/verification/g2-02/test_evidence.py:60: AssertionError
+_____________________________ test_tail_fact_http ______________________________
+
+runtime = <ingestion_runtime.Runtime object at 0x10841b650>
+
+    def test_tail_fact_http(runtime):
+        rt = runtime
+        body = '# Procedure\n\n' + ('ordinary text ' * 80) + '\n\n尾段事实： tailtoken 关闭前核对温度 7 度。'
+        (rt.kb / 'KB-901.md').write_text(body)
+        payload = rt.build()
+        health, responses = rt.http(['tailtoken'])
+        assert health['kb_chunks'] == len(payload['chunks'])
+>       assert any(h['score'] > 0 and '关闭前核对温度 7 度' in h['text'] for h in responses['tailtoken']['results'])
+E       assert False
+E        +  where False = any(<generator object test_tail_fact_http.<locals>.<genexpr> at 0x1084f1970>)
+
+docs/verification/g2-02/test_evidence.py:70: AssertionError
+________________ test_table_context_and_contiguous_quotes_http _________________
+
+runtime = <ingestion_runtime.Runtime object at 0x1084e2e40>
+
+    def test_table_context_and_contiguous_quotes_http(runtime):
+        rt = runtime
+        rows = [f'| row{i:02} | {i} | 明细说明 |\n' for i in range(40)]
+        rows[-1] = '| rowtoken | 77 | 最后一行事实 |\n'
+        body = '# 调拨规则\n\n| Item | Count | Note |\n|---|---|---|\n' + ''.join(rows)
+        (rt.kb / 'KB-901.md').write_text(body)
+        payload = rt.build()
+        _, responses = rt.http(['rowtoken'])
+        hits = [h for h in responses['rowtoken']['results'] if h['score'] > 0 and '| rowtoken | 77 |' in h['text']]
+>       assert hits, responses
+E       AssertionError: {'rowtoken': {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 0.0, 'text': '# 调拨规则
+E         
+E         | Item | Count... | 34 | 明细说明 |
+E         | row35 | 35 | 明细说明 |
+E         | row36 | 36 | 明细说明 |
+E         | row37 | 37 | 明细说明 |
+E         | row38 | 38 | 明细说明 |
+E         | rowt'}]}}
+E       assert []
+
+docs/verification/g2-02/test_evidence.py:82: AssertionError
+____________________ test_offsets_context_and_cache_layout _____________________
+
+runtime = <ingestion_runtime.Runtime object at 0x108502480>
+
+    def test_offsets_context_and_cache_layout(runtime):
+        rt = runtime
+        (rt.kb / 'KB-901.md').write_text('legacytoken '*65+'tailtoken')
+        first = rt.build()
+        assert rt.build() == first
+>       assert all('source_start' in c and 'source_end' in c for c in first['chunks'])
+E       assert False
+E        +  where False = all(<generator object test_offsets_context_and_cache_layout.<locals>.<genexpr> at 0x1084f5a40>)
+
+docs/verification/g2-02/test_evidence.py:104: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-02/test_evidence.py::test_boundary_full_coverage[0]
+FAILED docs/verification/g2-02/test_evidence.py::test_boundary_full_coverage[301]
+FAILED docs/verification/g2-02/test_evidence.py::test_boundary_full_coverage[599]
+FAILED docs/verification/g2-02/test_evidence.py::test_boundary_full_coverage[600]
+FAILED docs/verification/g2-02/test_evidence.py::test_boundary_full_coverage[601]
+FAILED docs/verification/g2-02/test_evidence.py::test_boundary_full_coverage[900]
+FAILED docs/verification/g2-02/test_evidence.py::test_boundary_full_coverage[901]
+FAILED docs/verification/g2-02/test_evidence.py::test_actual_corpus_coverage
+FAILED docs/verification/g2-02/test_evidence.py::test_tail_fact_http - assert...
+FAILED docs/verification/g2-02/test_evidence.py::test_table_context_and_contiguous_quotes_http
+FAILED docs/verification/g2-02/test_evidence.py::test_offsets_context_and_cache_layout
+11 failed, 3 passed in 1.79s

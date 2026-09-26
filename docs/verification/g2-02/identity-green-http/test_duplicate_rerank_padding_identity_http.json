@@ -1,0 +1,330 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：3 篇文档，7 个片段，缓存键 db928c01a588\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "52943"
+      ],
+      "pid": 84419,
+      "port": 52943,
+      "kb_dir": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/kb",
+      "health": {
+        "status": "ok",
+        "llm_mode": "mock",
+        "kb_docs": 3,
+        "kb_chunks": 7,
+        "valid_sales_rows": 18290,
+        "today": "2026-09-01",
+        "data_period": {
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "cleaning_report": {
+          "raw_rows": 18628,
+          "removed": {
+            "1_unparseable_date": 8,
+            "2_empty_amount": 150,
+            "3_qty_le_zero": 30,
+            "4_store_not_in_stores": 10,
+            "5_product_not_in_products": 40,
+            "6_duplicate_row": 100
+          },
+          "removed_rows": 338,
+          "kept_rows": 18290,
+          "kept_sales_rows": 18196,
+          "kept_refund_rows": 94
+        },
+        "index_key": "db928c01a588",
+        "kb_warnings": []
+      },
+      "retrieval": {
+        "dupetoken": {
+          "results": [
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#1",
+              "score": 0.6672,
+              "text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "retrieval_text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken\ndupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "source_start": 0,
+              "source_end": 252,
+              "context_spans": []
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#2",
+              "score": 0.6672,
+              "text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "retrieval_text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken\ndupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "source_start": 252,
+              "source_end": 504,
+              "context_spans": []
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#3",
+              "score": 0.6672,
+              "text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "retrieval_text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken\ndupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "source_start": 504,
+              "source_end": 756,
+              "context_spans": []
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#4",
+              "score": 0.6672,
+              "text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "retrieval_text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken\ndupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "source_start": 756,
+              "source_end": 1008,
+              "context_spans": []
+            },
+            {
+              "doc_id": "KB-902",
+              "chunk_id": "KB-902#1",
+              "score": 0.3828,
+              "text": "dupetoken secondsource filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler ",
+              "retrieval_text": "dupetoken secondsource filler filler filler filler filler filler filler filler f\ndupetoken secondsource filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler ",
+              "source_start": 0,
+              "source_end": 163,
+              "context_spans": []
+            }
+          ]
+        }
+      },
+      "stopped": true
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "52950"
+      ],
+      "pid": 84429,
+      "port": 52950,
+      "kb_dir": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/kb",
+      "health": {
+        "status": "ok",
+        "llm_mode": "mock",
+        "kb_docs": 3,
+        "kb_chunks": 7,
+        "valid_sales_rows": 18290,
+        "today": "2026-09-01",
+        "data_period": {
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "cleaning_report": {
+          "raw_rows": 18628,
+          "removed": {
+            "1_unparseable_date": 8,
+            "2_empty_amount": 150,
+            "3_qty_le_zero": 30,
+            "4_store_not_in_stores": 10,
+            "5_product_not_in_products": 40,
+            "6_duplicate_row": 100
+          },
+          "removed_rows": 338,
+          "kept_rows": 18290,
+          "kept_sales_rows": 18196,
+          "kept_refund_rows": 94
+        },
+        "index_key": "db928c01a588",
+        "kb_warnings": []
+      },
+      "retrieval": {
+        "unmatchedzero": {
+          "results": [
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#1",
+              "score": 0.0,
+              "text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "retrieval_text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken\ndupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "source_start": 0,
+              "source_end": 252,
+              "context_spans": []
+            },
+            {
+              "doc_id": "KB-902",
+              "chunk_id": "KB-902#1",
+              "score": 0.0,
+              "text": "dupetoken secondsource filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler ",
+              "retrieval_text": "dupetoken secondsource filler filler filler filler filler filler filler filler f\ndupetoken secondsource filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler ",
+              "source_start": 0,
+              "source_end": 163,
+              "context_spans": []
+            },
+            {
+              "doc_id": "KB-903",
+              "chunk_id": "KB-903#1",
+              "score": 0.0,
+              "text": "unrelated thirdsource",
+              "retrieval_text": "unrelated thirdsource\nunrelated thirdsource",
+              "source_start": 0,
+              "source_end": 21,
+              "context_spans": []
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#2",
+              "score": 0.0,
+              "text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "retrieval_text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken\ndupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "source_start": 252,
+              "source_end": 504,
+              "context_spans": []
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#3",
+              "score": 0.0,
+              "text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "retrieval_text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken\ndupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "source_start": 504,
+              "source_end": 756,
+              "context_spans": []
+            }
+          ]
+        }
+      },
+      "stopped": true
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：3 篇文档，7 个片段，缓存键 db928c01a588\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "52958"
+      ],
+      "pid": 84437,
+      "port": 52958,
+      "kb_dir": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/kb",
+      "health": {
+        "status": "ok",
+        "llm_mode": "mock",
+        "kb_docs": 3,
+        "kb_chunks": 7,
+        "valid_sales_rows": 18290,
+        "today": "2026-09-01",
+        "data_period": {
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "cleaning_report": {
+          "raw_rows": 18628,
+          "removed": {
+            "1_unparseable_date": 8,
+            "2_empty_amount": 150,
+            "3_qty_le_zero": 30,
+            "4_store_not_in_stores": 10,
+            "5_product_not_in_products": 40,
+            "6_duplicate_row": 100
+          },
+          "removed_rows": 338,
+          "kept_rows": 18290,
+          "kept_sales_rows": 18196,
+          "kept_refund_rows": 94
+        },
+        "index_key": "db928c01a588",
+        "kb_warnings": []
+      },
+      "retrieval": {
+        "dupetoken": {
+          "results": [
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#1",
+              "score": 0.6672,
+              "text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "retrieval_text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken\ndupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "source_start": 0,
+              "source_end": 252,
+              "context_spans": []
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#2",
+              "score": 0.6672,
+              "text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "retrieval_text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken\ndupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "source_start": 252,
+              "source_end": 504,
+              "context_spans": []
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#3",
+              "score": 0.6672,
+              "text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "retrieval_text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken\ndupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "source_start": 504,
+              "source_end": 756,
+              "context_spans": []
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#4",
+              "score": 0.6672,
+              "text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "retrieval_text": "dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken\ndupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken dupetoken \n\n",
+              "source_start": 756,
+              "source_end": 1008,
+              "context_spans": []
+            },
+            {
+              "doc_id": "KB-902",
+              "chunk_id": "KB-902#1",
+              "score": 0.3828,
+              "text": "dupetoken secondsource filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler ",
+              "retrieval_text": "dupetoken secondsource filler filler filler filler filler filler filler filler f\ndupetoken secondsource filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler filler ",
+              "source_start": 0,
+              "source_end": 163,
+              "context_spans": []
+            }
+          ]
+        }
+      },
+      "stopped": true
+    }
+  ]
+}
