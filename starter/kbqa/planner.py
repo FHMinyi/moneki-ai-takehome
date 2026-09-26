@@ -263,7 +263,10 @@ class Planner:
         else:
             plan.kind, plan.intent = "summary", "data"
 
-        if asks_why:
+        # Keep the existing data-plus-cause path when the quantity belongs to
+        # a real data capability (e.g. payment mix); document quantities alone
+        # still cannot trigger a database query.
+        if asks_why and not (may_query and asks_amount):
             plan.intent, plan.kind = "doc", "doc"
 
         plan.slots["asks_why"] = bool(asks_why or abnormal)
