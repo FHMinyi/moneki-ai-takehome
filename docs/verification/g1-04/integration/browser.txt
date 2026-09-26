@@ -1,0 +1,11 @@
+npm notice run moneki-workspace@0.1.0 test:browser
+npm notice run playwright test g1-04-integration.spec.ts
+
+Running 2 tests using 1 worker
+
+(node:48199) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/g1-04-integration.spec.ts:15:3 › summary, trend and ranking share sequential filters at 1280 (2.1s)
+  ✓  2 tests/g1-04-integration.spec.ts:15:3 › summary, trend and ranking share sequential filters at 390 (2.0s)
+
+  2 passed (4.5s)
