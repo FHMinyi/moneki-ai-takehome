@@ -110,3 +110,50 @@ def test_offsets_context_and_cache_layout(runtime):
     assert legacy['key'] != first['key']
     rt.http(['tailtoken'])  # automatic load, not forced rebuild
     assert json.loads(rt.cache.read_text()) == first
+
+
+def assert_identity(rt, payload, query):
+    from kbqa.retriever import Retriever
+    index = load_index(Path(rt.env['KB_DIR']), rt.cache)
+    result = Retriever(index, date(2026, 9, 1)).search(query, top_k=5)
+    health, responses = rt.http([query])
+    api = responses[query]['results']
+    assert health['kb_chunks'] == len(payload['chunks'])
+    assert len(api) == min(5, len(index.chunks))
+    assert api == [h.as_result() for h in result.hits]
+    by_id = {c.chunk_id: c for c in index.chunks}
+    for hit, public in zip(result.hits, api):
+        chunk = by_id[hit.chunk_id]
+        assert hit.doc_id == chunk.doc_id == public['doc_id'], (query, hit.chunk_id, hit.doc_id, chunk.doc_id)
+        assert hit.meta == index.docs_meta[chunk.doc_id] and hit.meta['doc_id'] == hit.doc_id
+        assert hit.text == chunk.text and hit.source_text == chunk.source_text == public['text']
+        assert hit.source_text == index.texts[hit.doc_id][hit.source_start:hit.source_end]
+    assert [h.score for h in result.hits] == sorted((h.score for h in result.hits), reverse=True)
+    return result
+
+
+def test_duplicate_rerank_padding_identity_http(runtime):
+    rt = runtime
+    (rt.kb / 'KB-901.md').write_text(('dupetoken '*25 + '\n\n') * 5)
+    (rt.kb / 'KB-902.md').write_text('dupetoken secondsource ' + 'filler '*20)
+    (rt.kb / 'KB-903.md').write_text('unrelated thirdsource')
+    payload = rt.build()
+    # Multiple high-scoring candidates from 901 make deduplication observable.
+    idx = load_index(rt.kb, rt.cache)
+    scores = idx.score_terms({'dupetoken': 1})
+    assert sum(idx.chunks[p].doc_id == 'KB-901' for p in scores) >= 3
+    result = assert_identity(rt, payload, 'dupetoken')
+    assert any(h.padded and h.score > 0 for h in result.hits)
+    assert_identity(rt, payload, 'unmatchedzero')
+    again = assert_identity(rt, rt.build(), 'dupetoken')
+    assert [h.as_result() for h in result.hits] == [h.as_result() for h in again.hits]
+
+
+def test_original_r08_r10_identity_http(runtime):
+    rt = runtime
+    rt.env['KB_DIR'] = str(ROOT / 'knowledge_base')
+    payload = rt.build()
+    questions = [json.loads(line) for line in (ROOT / 'eval/public_questions.jsonl').read_text().splitlines()]
+    for q in questions:
+        if q['id'] in ('R08', 'R10'):
+            assert_identity(rt, payload, q['query'])
