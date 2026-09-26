@@ -169,3 +169,14 @@ def test_supported_attribute(rt,q,gold,fact):
     assert a['answer_type']=='doc' and fact in a['answer'],a
     assert gold in {c['doc_id'] for c in a['citations']},a
     quotes(a,payload)
+
+
+def test_quote_normalized_limit(rt):
+    import unicodedata
+    m.write(rt,901,'# 夜班配送规范\n\n| 事项 | 时限 | 备注 |\n|---|---|---|\n| 夜班配送 | 17小时 | '+ '㈱'*140+' |\n')
+    payload=rt.build()
+    with rt.serve() as req:a,t=chat(req,'夜班配送规定需要多少小时？')
+    for c in a['citations']:
+        norm=re.sub(r'[\s*`|#>]','',unicodedata.normalize('NFKC',c['quote']))
+        assert len(norm)<=400,(len(norm),a)
+    assert a['answer_type']=='refusal' and not a['citations'],a
