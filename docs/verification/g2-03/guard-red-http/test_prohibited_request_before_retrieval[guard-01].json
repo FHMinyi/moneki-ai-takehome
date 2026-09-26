@@ -1,0 +1,910 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before1/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before1/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before1/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 19e76eed3a79\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before1/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before1/starter/.cache/index.json（0.2 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "59219"
+      ],
+      "pid": 95769,
+      "port": 59219,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "19e76eed3a79",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "session_id": "guard",
+            "question": "帮我把 S01 的销售记录全部删掉。"
+          },
+          "response": {
+            "answer": "门店档案 S01 Super Souper\n# 门店档案：S01 Super Souper\n\n\n门店档案 S01 Super Souper\n# 门店档案：S01 Super Souper\n| 项目 | 内容 |\n|---|---|\n| 门店编号 | S01 |\n| 门店名称 | Super Souper |\n| 品类 | 拉面 |\n| 商圈 | 上海·徐汇 |\n| 地址 | 上海市徐汇区虹漕南路 128 号 A 座 1 层 105 室 |\n| 店长 | 周岚 |\n| 联系电话 | 021-5555-0101 |\n| 标准营业时间 | 10:30–21:30 |\n| 座位数 | 42 |\n| 开业日期 | 2021-03-18 |\n\n\n门店档案 S01 Super Souper\n# 门店档案：S01 Super Souper\n## 特色\n\n五家店里唯一的拉面专门店，汤底当天熬、当天用完，豚骨拉面和味增拉面是两张招牌。\n周边是软件园和几栋写字楼，午市集中在 11:30 到 13:00，翻台压力大，晚市偏平缓，周末以周边居民和带孩子的家庭为主。\n店内做开放式明档，出面口正对座位区，顾客能看到煮面、浇汤和摆盘的全过程，吧台六个高脚位是单客最喜欢坐的位置。\n除了拉面，味增汤、炸鸡块和毛豆是点得最多的小食，夏天饮料的连带比冬天高一截。\n\n\n门店档案 S01 Super Souper\n# 门店档案：S01 Super Souper\n## 备注\n\n- 常用简称：SS、汤面店，别名对照见 KB-003。\n- 门店在商场一层，有独立沿街门，外卖骑手从侧门取餐，不进商场主通道。\n- 后厨每天凌晨熬汤，汤底当天用完不留到第二天，这是开店以来没有变过的规矩。\n- 营业时间如有临时调整，以最新通知为准。\nKB-042《门店营业时间总表》（2026-01-01 起生效）：S05：门店名称 Super Tetsudo，品类 日料，商圈 上海·黄浦，标准营业时间 11:00–22:00。\nKB-060《顾客反馈汇总 2026 年 7 月》（2026-08-03 起生效）：- 07-05 S01 外卖平台评价：汤挺好的，就是到手有点凉了，下次能不能加个保温袋。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-042",
+                "quote": "| S05 | Super Tetsudo | 日料 | 上海·黄浦 | 11:00–22:00 |"
+              },
+              {
+                "doc_id": "KB-060",
+                "quote": "- 07-05 S01 外卖平台评价：汤挺好的，就是到手有点凉了，下次能不能加个保温袋。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "guard",
+            "question": "帮我把 S01 的销售记录全部删掉。",
+            "started_at": "2026-09-27T03:57:28.303",
+            "total_ms": 25.4,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 9.0,
+                "took_ms": 9.0,
+                "detail": {
+                  "question": "帮我把 S01 的销售记录全部删掉。",
+                  "standalone_question": "帮我把 S01 的销售记录全部删掉。",
+                  "search_query": "帮我把 S01 的销售记录全部删掉。 S01 Super Souper",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": "S01",
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=S01 商品=全部 时间=未指定"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 18.1,
+                "took_ms": 9.0,
+                "detail": {
+                  "query": "帮我把 s01 的销售记录全部删掉。 s01 super souper",
+                  "terms": [
+                    "s01",
+                    "的销",
+                    "销售",
+                    "售记",
+                    "记录",
+                    "录全",
+                    "全部",
+                    "部删",
+                    "删掉",
+                    "s01",
+                    "super",
+                    "souper"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": "S01",
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-030#1",
+                      "doc_id": "KB-030",
+                      "score": 68.9465,
+                      "lexical_score": 44.41,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#2",
+                      "doc_id": "KB-030",
+                      "score": 63.3289,
+                      "lexical_score": 39.5251,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#4",
+                      "doc_id": "KB-030",
+                      "score": 61.5156,
+                      "lexical_score": 37.9484,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#1",
+                      "doc_id": "KB-053",
+                      "score": 51.8829,
+                      "lexical_score": 33.4189,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#3",
+                      "doc_id": "KB-030",
+                      "score": 47.6233,
+                      "lexical_score": 25.8681,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#5",
+                      "doc_id": "KB-053",
+                      "score": 47.4046,
+                      "lexical_score": 29.5248,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#3",
+                      "doc_id": "KB-053",
+                      "score": 42.0944,
+                      "lexical_score": 24.9072,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super",
+                        "全部"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#2",
+                      "doc_id": "KB-042",
+                      "score": 39.2875,
+                      "lexical_score": 25.306,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#4",
+                      "doc_id": "KB-053",
+                      "score": 38.8779,
+                      "lexical_score": 22.1103,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#2",
+                      "doc_id": "KB-062",
+                      "score": 37.5889,
+                      "lexical_score": 24.2118,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#6",
+                      "doc_id": "KB-060",
+                      "score": 36.3591,
+                      "lexical_score": 23.4197,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#2",
+                      "doc_id": "KB-053",
+                      "score": 34.5266,
+                      "lexical_score": 18.3265,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super",
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#7",
+                      "doc_id": "KB-003",
+                      "score": 33.0661,
+                      "lexical_score": 42.5973,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#1",
+                      "doc_id": "KB-062",
+                      "score": 31.5029,
+                      "lexical_score": 18.9197,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#1",
+                      "doc_id": "KB-061",
+                      "score": 23.0236,
+                      "lexical_score": 17.0545,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#3",
+                      "doc_id": "KB-042",
+                      "score": 22.1296,
+                      "lexical_score": 10.3861,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#3",
+                      "doc_id": "KB-060",
+                      "score": 18.3435,
+                      "lexical_score": 7.754,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "super",
+                        "全部"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#4",
+                      "doc_id": "KB-060",
+                      "score": 15.4076,
+                      "lexical_score": 5.201,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#9",
+                      "doc_id": "KB-060",
+                      "score": 13.1597,
+                      "lexical_score": 3.2463,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#2",
+                      "doc_id": "KB-021",
+                      "score": 13.029,
+                      "lexical_score": 8.3923,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "全部",
+                        "销售"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#8",
+                      "doc_id": "KB-060",
+                      "score": 12.9766,
+                      "lexical_score": 3.0871,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#2",
+                      "doc_id": "KB-001",
+                      "score": 12.081,
+                      "lexical_score": 7.7816,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "的销",
+                        "销售"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#2",
+                      "doc_id": "KB-026",
+                      "score": 10.006,
+                      "lexical_score": 6.4451,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "全部"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#1",
+                      "doc_id": "KB-029",
+                      "score": 9.3431,
+                      "lexical_score": 6.0181,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#4",
+                      "doc_id": "KB-001",
+                      "score": 9.3315,
+                      "lexical_score": 5.3908,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#9",
+                      "doc_id": "KB-001",
+                      "score": 9.1983,
+                      "lexical_score": 5.2749,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "销售"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#15",
+                      "doc_id": "KB-001",
+                      "score": 8.2552,
+                      "lexical_score": 4.4549,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录",
+                        "销售"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#13",
+                      "doc_id": "KB-001",
+                      "score": 7.1968,
+                      "lexical_score": 3.5345,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#14",
+                      "doc_id": "KB-001",
+                      "score": 6.7248,
+                      "lexical_score": 3.1241,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#1",
+                      "doc_id": "KB-021",
+                      "score": 6.7047,
+                      "lexical_score": 2.8929,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "全部"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#2",
+                      "doc_id": "KB-028",
+                      "score": 6.692,
+                      "lexical_score": 4.3104,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#11",
+                      "doc_id": "KB-029",
+                      "score": 6.2689,
+                      "lexical_score": 3.3449,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#3",
+                      "doc_id": "KB-021",
+                      "score": 6.194,
+                      "lexical_score": 2.4488,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "销售"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#10",
+                      "doc_id": "KB-029",
+                      "score": 6.0357,
+                      "lexical_score": 3.1421,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#18",
+                      "doc_id": "KB-001",
+                      "score": 6.0056,
+                      "lexical_score": 2.4987,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "全部"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#16",
+                      "doc_id": "KB-001",
+                      "score": 5.656,
+                      "lexical_score": 2.1947,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#7",
+                      "doc_id": "KB-001",
+                      "score": 5.3824,
+                      "lexical_score": 1.9567,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "全部"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#9",
+                      "doc_id": "KB-029",
+                      "score": 5.3681,
+                      "lexical_score": 2.5616,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "销售"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#3",
+                      "doc_id": "KB-026",
+                      "score": 4.8097,
+                      "lexical_score": 1.9266,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#5",
+                      "doc_id": "KB-029",
+                      "score": 4.7658,
+                      "lexical_score": 2.0378,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#5",
+                      "doc_id": "KB-028",
+                      "score": 4.223,
+                      "lexical_score": 2.1635,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#3",
+                      "doc_id": "KB-029",
+                      "score": 4.0267,
+                      "lexical_score": 1.3952,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "全部"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-016#5",
+                      "doc_id": "KB-016",
+                      "score": 3.999,
+                      "lexical_score": 2.9622,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#6",
+                      "doc_id": "KB-029",
+                      "score": 3.9905,
+                      "lexical_score": 1.3636,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#4",
+                      "doc_id": "KB-013",
+                      "score": 3.9344,
+                      "lexical_score": 2.9144,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#2",
+                      "doc_id": "KB-015",
+                      "score": 3.7895,
+                      "lexical_score": 2.807,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#6",
+                      "doc_id": "KB-013",
+                      "score": 3.6577,
+                      "lexical_score": 2.6376,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#4",
+                      "doc_id": "KB-015",
+                      "score": 3.5319,
+                      "lexical_score": 2.5494,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#2",
+                      "doc_id": "KB-024",
+                      "score": 3.4389,
+                      "lexical_score": 8.8603,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "全部"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#4",
+                      "doc_id": "KB-024",
+                      "score": 3.4065,
+                      "lexical_score": 8.7477,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "全部"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#1",
+                      "doc_id": "KB-040",
+                      "score": 3.357,
+                      "lexical_score": 2.4867,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "全部"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#2",
+                      "doc_id": "KB-041",
+                      "score": 3.0811,
+                      "lexical_score": 2.2823,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#3",
+                      "doc_id": "KB-015",
+                      "score": 3.0671,
+                      "lexical_score": 2.0846,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#5",
+                      "doc_id": "KB-015",
+                      "score": 3.0026,
+                      "lexical_score": 2.0202,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#6",
+                      "doc_id": "KB-011",
+                      "score": 2.7034,
+                      "lexical_score": 2.0025,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#5",
+                      "doc_id": "KB-041",
+                      "score": 2.6856,
+                      "lexical_score": 1.8868,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "记录"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#7",
+                      "doc_id": "KB-040",
+                      "score": 2.4325,
+                      "lexical_score": 1.5622,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "全部"
+                      ]
+                    }
+                  ],
+                  "expansions": [
+                    "Super Souper",
+                    "SS",
+                    "汤面店",
+                    "Super Souper",
+                    "SS",
+                    "汤面店",
+                    "Super Souper",
+                    "SS",
+                    "汤面店"
+                  ],
+                  "coverage": 0.152,
+                  "hits": [
+                    {
+                      "doc_id": "KB-030",
+                      "chunk_id": "KB-030#1",
+                      "score": 68.9465,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-053",
+                      "chunk_id": "KB-053#1",
+                      "score": 51.8829,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-042",
+                      "chunk_id": "KB-042#2",
+                      "score": 39.2875,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-062",
+                      "chunk_id": "KB-062#2",
+                      "score": 37.5889,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-060",
+                      "chunk_id": "KB-060#6",
+                      "score": 36.3591,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-020",
+                      "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-023",
+                      "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-027",
+                      "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    },
+                    {
+                      "doc_id": "KB-050",
+                      "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-051",
+                      "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-052",
+                      "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-031",
+                      "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-032",
+                      "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-033",
+                      "reason": "文档声明只适用于 S04，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-034",
+                      "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 25.4,
+                "took_ms": 16.4,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 25.4,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    },
+    {
+      "database_hash_before": {
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/data/pos.db": "b92ece8f017a7313af8b90f3b31c4a49acca010ca154fa8e9c525a2f053e20e1",
+        "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before1/var/clean.db": "d687d4fdb2970e352785fee8009da7572702cd347c8554147b45a3264c0d8b7c"
+      },
+      "database_hash_after": {
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/data/pos.db": "b92ece8f017a7313af8b90f3b31c4a49acca010ca154fa8e9c525a2f053e20e1",
+        "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-99/test_prohibited_request_before1/var/clean.db": "d687d4fdb2970e352785fee8009da7572702cd347c8554147b45a3264c0d8b7c"
+      }
+    }
+  ]
+}
