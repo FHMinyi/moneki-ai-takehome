@@ -1,0 +1,34 @@
+{
+  "stores": [
+    {
+      "store_id": "S01",
+      "store_name": "Super Souper",
+      "category": "拉面",
+      "district": "上海·徐汇"
+    },
+    {
+      "store_id": "S02",
+      "store_name": "Makai Poke",
+      "category": "轻食",
+      "district": "上海·静安"
+    },
+    {
+      "store_id": "S03",
+      "store_name": "Juicy Bao Bao",
+      "category": "点心",
+      "district": "上海·浦东"
+    },
+    {
+      "store_id": "S04",
+      "store_name": "Arigato Sando",
+      "category": "三明治",
+      "district": "上海·长宁"
+    },
+    {
+      "store_id": "S05",
+      "store_name": "Super Tetsudo",
+      "category": "日料",
+      "district": "上海·黄浦"
+    }
+  ]
+}

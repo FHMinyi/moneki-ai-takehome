@@ -1,0 +1,322 @@
+EEEEFFFF.FFFF..FFF                                                       [100%]
+==================================== ERRORS ====================================
+__________ ERROR at setup of test_hand_calculated_sales_and_rounding ___________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-40/test_hand_calculated_sales_and0')
+
+    @pytest.fixture
+    def metrics(tmp_path):
+        source, target = tmp_path/'source.db', tmp_path/'clean.db'
+        fixture_db(source, [
+            ('A','2026-06-01','S01','P01',2,'10.00','card'),
+            ('A','2026-06-01','S01','P02',1,'5.01','card'),
+            ('B','2026-06-01','S01','P01',1,'5.00','card'),
+            ('A','2026-06-02','S01','P01',1,'-3.00','card'),
+            ('ZERO','2026-06-01','S01','P01',9,'0','card'),
+        ])
+>       build_clean_db(source, target)
+
+starter/tests/test_metrics.py:21:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+starter/kbqa/cleaning.py:163: in build_clean_db
+    rows, report = clean_rows(
+starter/kbqa/cleaning.py:101: in clean_rows
+    qty = parse_qty(row["qty"]) or 0
+          ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 2
+
+    def parse_qty(value: Optional[str]) -> Optional[int]:
+        """KB-001 §2.4：按整数解析。解析不了的按 0 处理，会被 §3.3 剔除。"""
+>       text = (value or "").strip()
+               ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'int' object has no attribute 'strip'
+
+starter/kbqa/cleaning.py:43: AttributeError
+____________ ERROR at setup of test_refund_own_day_and_combination _____________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-40/test_refund_own_day_and_combin0')
+
+    @pytest.fixture
+    def metrics(tmp_path):
+        source, target = tmp_path/'source.db', tmp_path/'clean.db'
+        fixture_db(source, [
+            ('A','2026-06-01','S01','P01',2,'10.00','card'),
+            ('A','2026-06-01','S01','P02',1,'5.01','card'),
+            ('B','2026-06-01','S01','P01',1,'5.00','card'),
+            ('A','2026-06-02','S01','P01',1,'-3.00','card'),
+            ('ZERO','2026-06-01','S01','P01',9,'0','card'),
+        ])
+>       build_clean_db(source, target)
+
+starter/tests/test_metrics.py:21:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+starter/kbqa/cleaning.py:163: in build_clean_db
+    rows, report = clean_rows(
+starter/kbqa/cleaning.py:101: in clean_rows
+    qty = parse_qty(row["qty"]) or 0
+          ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 2
+
+    def parse_qty(value: Optional[str]) -> Optional[int]:
+        """KB-001 §2.4：按整数解析。解析不了的按 0 处理，会被 §3.3 剔除。"""
+>       text = (value or "").strip()
+               ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'int' object has no attribute 'strip'
+
+starter/kbqa/cleaning.py:43: AttributeError
+_________________________ ERROR at setup of test_empty _________________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-40/test_empty0')
+
+    @pytest.fixture
+    def metrics(tmp_path):
+        source, target = tmp_path/'source.db', tmp_path/'clean.db'
+        fixture_db(source, [
+            ('A','2026-06-01','S01','P01',2,'10.00','card'),
+            ('A','2026-06-01','S01','P02',1,'5.01','card'),
+            ('B','2026-06-01','S01','P01',1,'5.00','card'),
+            ('A','2026-06-02','S01','P01',1,'-3.00','card'),
+            ('ZERO','2026-06-01','S01','P01',9,'0','card'),
+        ])
+>       build_clean_db(source, target)
+
+starter/tests/test_metrics.py:21:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+starter/kbqa/cleaning.py:163: in build_clean_db
+    rows, report = clean_rows(
+starter/kbqa/cleaning.py:101: in clean_rows
+    qty = parse_qty(row["qty"]) or 0
+          ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 2
+
+    def parse_qty(value: Optional[str]) -> Optional[int]:
+        """KB-001 §2.4：按整数解析。解析不了的按 0 处理，会被 §3.3 剔除。"""
+>       text = (value or "").strip()
+               ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'int' object has no attribute 'strip'
+
+starter/kbqa/cleaning.py:43: AttributeError
+_________________ ERROR at setup of test_daily_shared_boundary _________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-40/test_daily_shared_boundary0')
+
+    @pytest.fixture
+    def metrics(tmp_path):
+        source, target = tmp_path/'source.db', tmp_path/'clean.db'
+        fixture_db(source, [
+            ('A','2026-06-01','S01','P01',2,'10.00','card'),
+            ('A','2026-06-01','S01','P02',1,'5.01','card'),
+            ('B','2026-06-01','S01','P01',1,'5.00','card'),
+            ('A','2026-06-02','S01','P01',1,'-3.00','card'),
+            ('ZERO','2026-06-01','S01','P01',9,'0','card'),
+        ])
+>       build_clean_db(source, target)
+
+starter/tests/test_metrics.py:21:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+starter/kbqa/cleaning.py:163: in build_clean_db
+    rows, report = clean_rows(
+starter/kbqa/cleaning.py:101: in clean_rows
+    qty = parse_qty(row["qty"]) or 0
+          ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 2
+
+    def parse_qty(value: Optional[str]) -> Optional[int]:
+        """KB-001 §2.4：按整数解析。解析不了的按 0 处理，会被 §3.3 剔除。"""
+>       text = (value or "").strip()
+               ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'int' object has no attribute 'strip'
+
+starter/kbqa/cleaning.py:43: AttributeError
+=================================== FAILURES ===================================
+___________________________ test_public_metrics[M01] ___________________________
+
+client = <starlette.testclient.TestClient object at 0x109130ec0>
+case = {'category': 'metrics', 'expect': {'aov': {'tol': 0.01, 'value': 36.36}, 'net_revenue': {'tol': 0.01, 'value': 156757.0}, 'orders': {'tol': 0, 'value': 4311}, 'qty': {'tol': 0, 'value': 6496}, ...}, 'id': 'M01', 'points': 1, ...}
+
+    @pytest.mark.parametrize('case', PUBLIC, ids=lambda case: case['id'])
+    def test_public_metrics(client, case):
+        request = case['request']
+        response = client.get(request['path'], params=request['params'])
+        assert response.status_code == 200
+        for key, expected in case['expect'].items():
+            actual = response.json()[key]
+>           assert actual is None if expected['value'] is None else abs(actual-expected['value']) <= expected['tol']
+E           assert False
+
+starter/tests/test_metrics.py:65: AssertionError
+___________________________ test_public_metrics[M02] ___________________________
+
+client = <starlette.testclient.TestClient object at 0x109130ec0>
+case = {'category': 'metrics', 'expect': {'aov': {'tol': 0.01, 'value': 47.7}, 'net_revenue': {'tol': 0.01, 'value': 41740.0}, 'orders': {'tol': 0, 'value': 875}, 'qty': {'tol': 0, 'value': 1395}, ...}, 'id': 'M02', 'points': 1, ...}
+
+    @pytest.mark.parametrize('case', PUBLIC, ids=lambda case: case['id'])
+    def test_public_metrics(client, case):
+        request = case['request']
+        response = client.get(request['path'], params=request['params'])
+        assert response.status_code == 200
+        for key, expected in case['expect'].items():
+            actual = response.json()[key]
+>           assert actual is None if expected['value'] is None else abs(actual-expected['value']) <= expected['tol']
+E           assert False
+
+starter/tests/test_metrics.py:65: AssertionError
+___________________________ test_public_metrics[M03] ___________________________
+
+client = <starlette.testclient.TestClient object at 0x109130ec0>
+case = {'category': 'metrics', 'expect': {'aov': {'tol': 0.01, 'value': 23.91}, 'net_revenue': {'tol': 0.01, 'value': 11024.0}, 'orders': {'tol': 0, 'value': 461}, 'qty': {'tol': 0, 'value': 689}, ...}, 'id': 'M03', 'points': 1, ...}
+
+    @pytest.mark.parametrize('case', PUBLIC, ids=lambda case: case['id'])
+    def test_public_metrics(client, case):
+        request = case['request']
+        response = client.get(request['path'], params=request['params'])
+        assert response.status_code == 200
+        for key, expected in case['expect'].items():
+            actual = response.json()[key]
+>           assert actual is None if expected['value'] is None else abs(actual-expected['value']) <= expected['tol']
+E           assert False
+
+starter/tests/test_metrics.py:65: AssertionError
+___________________________ test_public_metrics[M04] ___________________________
+
+client = <starlette.testclient.TestClient object at 0x109130ec0>
+case = {'category': 'metrics', 'expect': {'aov': {'tol': 0.01, 'value': 68.4}, 'net_revenue': {'tol': 0.01, 'value': 3625.0}, 'orders': {'tol': 0, 'value': 53}, 'qty': {'tol': 0, 'value': 125}, ...}, 'id': 'M04', 'points': 1, ...}
+
+    @pytest.mark.parametrize('case', PUBLIC, ids=lambda case: case['id'])
+    def test_public_metrics(client, case):
+        request = case['request']
+        response = client.get(request['path'], params=request['params'])
+        assert response.status_code == 200
+        for key, expected in case['expect'].items():
+            actual = response.json()[key]
+>           assert actual is None if expected['value'] is None else abs(actual-expected['value']) <= expected['tol']
+                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: unsupported operand type(s) for -: 'NoneType' and 'float'
+
+starter/tests/test_metrics.py:65: TypeError
+_________ test_invalid_dates[20260601-2026-06-02-/api/metrics/summary] _________
+
+client = <starlette.testclient.TestClient object at 0x109130ec0>
+path = '/api/metrics/summary', start = '20260601', end = '2026-06-02'
+
+    @pytest.mark.parametrize('path', ['/api/metrics/summary','/api/metrics/daily'])
+    @pytest.mark.parametrize('start,end', [('20260601','2026-06-02'),('2026-W23-1','2026-06-02'),('2026-02-30','2026-06-02'),('2026-06-02','2026-06-01')])
+    def test_invalid_dates(client, path, start, end):
+        response = client.get(path, params=dict(start=start,end=end))
+>       assert response.status_code == 400
+E       assert 200 == 400
+E        +  where 200 = <Response [200 OK]>.status_code
+
+starter/tests/test_metrics.py:72: AssertionError
+__________ test_invalid_dates[20260601-2026-06-02-/api/metrics/daily] __________
+
+client = <starlette.testclient.TestClient object at 0x109130ec0>
+path = '/api/metrics/daily', start = '20260601', end = '2026-06-02'
+
+    @pytest.mark.parametrize('path', ['/api/metrics/summary','/api/metrics/daily'])
+    @pytest.mark.parametrize('start,end', [('20260601','2026-06-02'),('2026-W23-1','2026-06-02'),('2026-02-30','2026-06-02'),('2026-06-02','2026-06-01')])
+    def test_invalid_dates(client, path, start, end):
+        response = client.get(path, params=dict(start=start,end=end))
+>       assert response.status_code == 400
+E       assert 200 == 400
+E        +  where 200 = <Response [200 OK]>.status_code
+
+starter/tests/test_metrics.py:72: AssertionError
+________ test_invalid_dates[2026-W23-1-2026-06-02-/api/metrics/summary] ________
+
+client = <starlette.testclient.TestClient object at 0x109130ec0>
+path = '/api/metrics/summary', start = '2026-W23-1', end = '2026-06-02'
+
+    @pytest.mark.parametrize('path', ['/api/metrics/summary','/api/metrics/daily'])
+    @pytest.mark.parametrize('start,end', [('20260601','2026-06-02'),('2026-W23-1','2026-06-02'),('2026-02-30','2026-06-02'),('2026-06-02','2026-06-01')])
+    def test_invalid_dates(client, path, start, end):
+        response = client.get(path, params=dict(start=start,end=end))
+>       assert response.status_code == 400
+E       assert 200 == 400
+E        +  where 200 = <Response [200 OK]>.status_code
+
+starter/tests/test_metrics.py:72: AssertionError
+_________ test_invalid_dates[2026-W23-1-2026-06-02-/api/metrics/daily] _________
+
+client = <starlette.testclient.TestClient object at 0x109130ec0>
+path = '/api/metrics/daily', start = '2026-W23-1', end = '2026-06-02'
+
+    @pytest.mark.parametrize('path', ['/api/metrics/summary','/api/metrics/daily'])
+    @pytest.mark.parametrize('start,end', [('20260601','2026-06-02'),('2026-W23-1','2026-06-02'),('2026-02-30','2026-06-02'),('2026-06-02','2026-06-01')])
+    def test_invalid_dates(client, path, start, end):
+        response = client.get(path, params=dict(start=start,end=end))
+>       assert response.status_code == 400
+E       assert 200 == 400
+E        +  where 200 = <Response [200 OK]>.status_code
+
+starter/tests/test_metrics.py:72: AssertionError
+________ test_invalid_dates[2026-06-02-2026-06-01-/api/metrics/summary] ________
+
+client = <starlette.testclient.TestClient object at 0x109130ec0>
+path = '/api/metrics/summary', start = '2026-06-02', end = '2026-06-01'
+
+    @pytest.mark.parametrize('path', ['/api/metrics/summary','/api/metrics/daily'])
+    @pytest.mark.parametrize('start,end', [('20260601','2026-06-02'),('2026-W23-1','2026-06-02'),('2026-02-30','2026-06-02'),('2026-06-02','2026-06-01')])
+    def test_invalid_dates(client, path, start, end):
+        response = client.get(path, params=dict(start=start,end=end))
+>       assert response.status_code == 400
+E       assert 200 == 400
+E        +  where 200 = <Response [200 OK]>.status_code
+
+starter/tests/test_metrics.py:72: AssertionError
+_________ test_invalid_dates[2026-06-02-2026-06-01-/api/metrics/daily] _________
+
+client = <starlette.testclient.TestClient object at 0x109130ec0>
+path = '/api/metrics/daily', start = '2026-06-02', end = '2026-06-01'
+
+    @pytest.mark.parametrize('path', ['/api/metrics/summary','/api/metrics/daily'])
+    @pytest.mark.parametrize('start,end', [('20260601','2026-06-02'),('2026-W23-1','2026-06-02'),('2026-02-30','2026-06-02'),('2026-06-02','2026-06-01')])
+    def test_invalid_dates(client, path, start, end):
+        response = client.get(path, params=dict(start=start,end=end))
+>       assert response.status_code == 400
+E       assert 200 == 400
+E        +  where 200 = <Response [200 OK]>.status_code
+
+starter/tests/test_metrics.py:72: AssertionError
+______________________________ test_store_options ______________________________
+
+client = <starlette.testclient.TestClient object at 0x109130ec0>
+
+    def test_store_options(client):
+        data = client.get('/api/stores').json()
+>       assert len(data['stores']) == 5
+                   ^^^^^^^^^^^^^^
+E       KeyError: 'stores'
+
+starter/tests/test_metrics.py:78: KeyError
+=============================== warnings summary ===============================
+starter/tests/test_metrics.py::test_public_metrics[M01]
+  /Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED starter/tests/test_metrics.py::test_public_metrics[M01] - assert False
+FAILED starter/tests/test_metrics.py::test_public_metrics[M02] - assert False
+FAILED starter/tests/test_metrics.py::test_public_metrics[M03] - assert False
+FAILED starter/tests/test_metrics.py::test_public_metrics[M04] - TypeError: u...
+FAILED starter/tests/test_metrics.py::test_invalid_dates[20260601-2026-06-02-/api/metrics/summary]
+FAILED starter/tests/test_metrics.py::test_invalid_dates[20260601-2026-06-02-/api/metrics/daily]
+FAILED starter/tests/test_metrics.py::test_invalid_dates[2026-W23-1-2026-06-02-/api/metrics/summary]
+FAILED starter/tests/test_metrics.py::test_invalid_dates[2026-W23-1-2026-06-02-/api/metrics/daily]
+FAILED starter/tests/test_metrics.py::test_invalid_dates[2026-06-02-2026-06-01-/api/metrics/summary]
+FAILED starter/tests/test_metrics.py::test_invalid_dates[2026-06-02-2026-06-01-/api/metrics/daily]
+FAILED starter/tests/test_metrics.py::test_store_options - KeyError: 'stores'
+ERROR starter/tests/test_metrics.py::test_hand_calculated_sales_and_rounding
+ERROR starter/tests/test_metrics.py::test_refund_own_day_and_combination - At...
+ERROR starter/tests/test_metrics.py::test_empty - AttributeError: 'int' objec...
+ERROR starter/tests/test_metrics.py::test_daily_shared_boundary - AttributeEr...
+11 failed, 3 passed, 1 warning, 4 errors in 0.34s
