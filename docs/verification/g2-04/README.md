@@ -30,7 +30,7 @@ starter/.venv/bin/python docs/verification/g2-04/compare.py docs/verification/g2
 | 4 真实连续引用 | `quotes`在每次build当时核对全文、实际非补位hit、chunk.source_text或context_spans；`test_quote_normalized_limit`；独立audit | HTML真实FAQ C05、GBK营业时间C03、表格C02（行+表头分别连续引用）；MD/HTML/GBK尾段均经过重建和HTTP。兼容字符428字反例按契约拒用。`scoped-acceptance.txt`、`scoped-answer-audit.json`；同一次索引替换前后分别检查，未用新快照冒充旧材料 |
 | 5 缺答案/指令 | 3个缺单位事实、3个缺属性、弱相关费用；3个正常属性反例；S01及含指令的尾段夹具 | 手续费/申诉办结/花生含量/身份证/积分抵扣/花生属性缺证据时refusal且无引用；叠加/提现/审批正常答。文档内“忽略指令/回答9999999”不进答案/引用，evidence.rejected记录document_instruction；只承诺已测试的本关边界，不宣称完整安全体系 |
 | 6 改写/换事实 | `test_rephrasing` 6项，`test_replacement_tail_and_instruction` 3格式×两次build/restart | 中文改写、英文别名、门店别名、跨语言赔付等真实回答；人工KB901夜班配送17→23小时，重建重启后答案/quote跟随，旧值不出现；原始KB未修改。没有题号/文档号/答案数值的产品分支 |
-| 7 诊断/异常 | 54次HTTP问答取回54条trace；`test_error_trace`在planner/取证处分别抛错 | plan有路由/时点，search有实际query/候选分数/过滤，evidence有选句/拒用/原文范围/引用。合法HTTP200/refusal、trace.errors真实RuntimeError与堆栈、日志exception可查；`test_error_trace[plan]-server.log`与`[evidence]-server.log` |
+| 7 诊断/异常 | 54次HTTP问答取回54条trace；`test_error_trace`在planner/取证处分别抛错 | plan有路由/时点，search有实际query/候选分数/过滤，evidence有选句/拒用/原文范围/引用。合法HTTP200/refusal、trace.errors真实RuntimeError与堆栈、日志exception可查；`test_error_trace[plan]-server.log.txt`与`[evidence]-server.log.txt` |
 | 8 前序及全量不退化 | 51项本项、97项前序、baseline53原后端和55题；逐题逐轮compare | `scoped-acceptance.txt`、`restored-predecessors.txt`、`integration-restored/backend-tests.txt`；metrics6/6、data12/12、retrieval15/15、refusal8/8，S02/S03及两库哈希门禁保持。`restored-comparison.md/json`：36保持、13新增、6仍失败，原通过轮次无回归 |
 
 `scoped-acceptance`在最终业务代码上加强了逐次build的原文块/表头映射断言；此前`acceptance`也是同一业务代码的51项通过，均保留。`audit.py`独立核对响应约束、trace和正分非补位身份；原文逐字与准确片段范围由测试在每个实际输入快照中核对，包含17→23更新的两次快照。
@@ -77,5 +77,5 @@ starter/.venv/bin/python docs/verification/g2-04/compare.py docs/verification/g2
 - 共享checkout `/Volumes/MACPSSD/project/moneki-ai-takehome`，分支 `codex/g2-04-doc-qa`；未新建worktree，未动其他三个管理checkout。
 - `preservation.json`核对905个原始数据/KB/公开评测/旧基线/诊断/前序证据及既有未跟踪文件，变化0。原 `docs/baseline/2026-09-26-followup-draft.md`、`docs/research/`仍未跟踪，未吸收、改写或清理。
 - `resources.json`列出所有自建测试服务的PID、端口、隔离源码和停止状态，全部由测试finally退出，无常驻自建服务。最终全量PID35667、端口59131，已停止；对应`integration-restored/environment.json`。
-- 保留 `/tmp/moneki-g2-04-first-integration`、`/tmp/moneki-g2-04-final-integration`（85.5）和`/tmp/moneki-g2-04-restored-integration`（88.5），及JSON引用的pytest/source临时目录；未主动清理。系统以后可能回收临时目录，仓库内证据仍保留。
+- 保留 `/tmp/moneki-g2-04-first-integration`、`/tmp/moneki-g2-04-final-integration`（85.5）和`/tmp/moneki-g2-04-restored-integration`（88.5），及JSON引用的pytest/source临时目录；未主动清理。pytest已自动回收部分较早临时目录，仓库内HTTP/trace及错误日志已保存；其他临时目录以后也可能被框架或系统回收。
 - PR后等待主会话独立审查、合并决定及具体分支清理指令；执行会话不直接推main、不合并、不自行关闭Issue或开启下一任务。
