@@ -1,0 +1,209 @@
+FFF.FFFF........F                                                        [100%]
+=================================== FAILURES ===================================
+___________________ test_natural_missing_attribute[need-id] ____________________
+
+rt = <g203.Runtime object at 0x10b165be0>, q = '外卖退款申请要提供身份证吗？'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证吗？',
+     '员工迟到能用积分抵扣吗？',
+     '牛肉poke里有花生吗？',
+     '外卖退款申请需不需要提供身份证？',
+     '员工迟到用积分抵扣行不行？',
+     '牛肉poke含不含花生？',
+     '外卖退款申请需要出示身份证不？',
+     '牛肉poke有没有花生？',
+    ],ids=['need-id','can-offset','has-ingredient','need-or-not','is-it-ok','contains-or-not','negative-particle','has-or-not'])
+    def test_natural_missing_attribute(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-013《退款政策 v2》：3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-013', 'quote': '3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:226: AssertionError
+__________________ test_natural_missing_attribute[can-offset] __________________
+
+rt = <g203.Runtime object at 0x10b1c93a0>, q = '员工迟到能用积分抵扣吗？'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证吗？',
+     '员工迟到能用积分抵扣吗？',
+     '牛肉poke里有花生吗？',
+     '外卖退款申请需不需要提供身份证？',
+     '员工迟到用积分抵扣行不行？',
+     '牛肉poke含不含花生？',
+     '外卖退款申请需要出示身份证不？',
+     '牛肉poke有没有花生？',
+    ],ids=['need-id','can-offset','has-ingredient','need-or-not','is-it-ok','contains-or-not','negative-particle','has-or-not'])
+    def test_natural_missing_attribute(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-011《会员储值政策 v2》：3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-011', 'quote': '3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:226: AssertionError
+________________ test_natural_missing_attribute[has-ingredient] ________________
+
+rt = <g203.Runtime object at 0x10b22cad0>, q = '牛肉poke里有花生吗？'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证吗？',
+     '员工迟到能用积分抵扣吗？',
+     '牛肉poke里有花生吗？',
+     '外卖退款申请需不需要提供身份证？',
+     '员工迟到用积分抵扣行不行？',
+     '牛肉poke含不含花生？',
+     '外卖退款申请需要出示身份证不？',
+     '牛肉poke有没有花生？',
+    ],ids=['need-id','can-offset','has-ingredient','need-or-not','is-it-ok','contains-or-not','negative-particle','has-or-not'])
+    def test_natural_missing_attribute(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-023《2026 年 618 活动方案》：**当天牛肉poke 目标销量 120 份。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-023', 'quote': '**当天牛肉poke 目标销量 120 份。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:226: AssertionError
+___________________ test_natural_missing_attribute[is-it-ok] ___________________
+
+rt = <g203.Runtime object at 0x10b1bbfb0>, q = '员工迟到用积分抵扣行不行？'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证吗？',
+     '员工迟到能用积分抵扣吗？',
+     '牛肉poke里有花生吗？',
+     '外卖退款申请需不需要提供身份证？',
+     '员工迟到用积分抵扣行不行？',
+     '牛肉poke含不含花生？',
+     '外卖退款申请需要出示身份证不？',
+     '牛肉poke有没有花生？',
+    ],ids=['need-id','can-offset','has-ingredient','need-or-not','is-it-ok','contains-or-not','negative-particle','has-or-not'])
+    def test_natural_missing_attribute(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-011《会员储值政策 v2》：3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-011', 'quote': '3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:226: AssertionError
+_______________ test_natural_missing_attribute[contains-or-not] ________________
+
+rt = <g203.Runtime object at 0x10b1c8aa0>, q = '牛肉poke含不含花生？'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证吗？',
+     '员工迟到能用积分抵扣吗？',
+     '牛肉poke里有花生吗？',
+     '外卖退款申请需不需要提供身份证？',
+     '员工迟到用积分抵扣行不行？',
+     '牛肉poke含不含花生？',
+     '外卖退款申请需要出示身份证不？',
+     '牛肉poke有没有花生？',
+    ],ids=['need-id','can-offset','has-ingredient','need-or-not','is-it-ok','contains-or-not','negative-particle','has-or-not'])
+    def test_natural_missing_attribute(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-023《2026 年 618 活动方案》：**当天牛肉poke 目标销量 120 份。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-023', 'quote': '**当天牛肉poke 目标销量 120 份。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:226: AssertionError
+______________ test_natural_missing_attribute[negative-particle] _______________
+
+rt = <g203.Runtime object at 0x10b234aa0>, q = '外卖退款申请需要出示身份证不？'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证吗？',
+     '员工迟到能用积分抵扣吗？',
+     '牛肉poke里有花生吗？',
+     '外卖退款申请需不需要提供身份证？',
+     '员工迟到用积分抵扣行不行？',
+     '牛肉poke含不含花生？',
+     '外卖退款申请需要出示身份证不？',
+     '牛肉poke有没有花生？',
+    ],ids=['need-id','can-offset','has-ingredient','need-or-not','is-it-ok','contains-or-not','negative-particle','has-or-not'])
+    def test_natural_missing_attribute(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-013《退款政策 v2》：3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-013', 'quote': '3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:226: AssertionError
+__________________ test_natural_missing_attribute[has-or-not] __________________
+
+rt = <g203.Runtime object at 0x10b235d30>, q = '牛肉poke有没有花生？'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证吗？',
+     '员工迟到能用积分抵扣吗？',
+     '牛肉poke里有花生吗？',
+     '外卖退款申请需不需要提供身份证？',
+     '员工迟到用积分抵扣行不行？',
+     '牛肉poke含不含花生？',
+     '外卖退款申请需要出示身份证不？',
+     '牛肉poke有没有花生？',
+    ],ids=['need-id','can-offset','has-ingredient','need-or-not','is-it-ok','contains-or-not','negative-particle','has-or-not'])
+    def test_natural_missing_attribute(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-023《2026 年 618 活动方案》：**当天牛肉poke 目标销量 120 份。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-023', 'quote': '**当天牛肉poke 目标销量 120 份。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:226: AssertionError
+_____________________ test_boolean_subject_and_replacement _____________________
+
+rt = <g203.Runtime object at 0x10b1bb710>
+
+    def test_boolean_subject_and_replacement(rt):
+        # Identical requested predicate exists for another subject: lexical presence
+        # alone must not transfer membership rights to attendance rules.
+        p=rt.kb/'KB-901.md'
+        for subject,other in [('会员消费','员工迟到'),('员工迟到','会员消费')]:
+            p.write_text('# 通用管理规定\n\n'+other+'按正常流程登记。\n\n'+subject+'可以使用积分抵扣。\n')
+            payload=rt.build()
+            with rt.serve() as req:
+                a,t=chat(req,other+'规定能用积分抵扣吗？')
+                b,u=chat(req,subject+'规定能用积分抵扣吗？')
+>           assert a['answer_type']=='refusal' and not a['citations'],a
+E           AssertionError: {'answer': 'KB-901《通用管理规定》：会员消费可以使用积分抵扣。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-901', 'quote': '会员消费可以使用积分抵扣。'}], 'data_evidence': [], ...}
+E           assert ('doc' == 'refusal'
+E             
+E             - refusal
+E             + doc)
+
+docs/verification/g2-04/test_doc_qa.py:256: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-04/test_doc_qa.py::test_natural_missing_attribute[need-id]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_natural_missing_attribute[can-offset]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_natural_missing_attribute[has-ingredient]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_natural_missing_attribute[is-it-ok]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_natural_missing_attribute[contains-or-not]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_natural_missing_attribute[negative-particle]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_natural_missing_attribute[has-or-not]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_boolean_subject_and_replacement
+8 failed, 9 passed, 51 deselected in 11.88s

@@ -1,0 +1,49 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+___________ test_existing_wh_question_regression[version-first-turn] ___________
+
+rt = <g203.Runtime object at 0x10b3d3410>, questions = ['储值充值现在的赠送规则是什么？']
+gold = 'KB-011', fact = '60'
+
+    @pytest.mark.parametrize('questions,gold,fact',[
+     (['储值充值现在的赠送规则是什么？'],'KB-011','60'),
+     (['三文鱼poke 七月初为什么停售了？','那停售期间让顾客换成什么？'],'KB-021','鸡肉poke'),
+    ],ids=['version-first-turn','substitution-second-turn'])
+    def test_existing_wh_question_regression(rt,questions,gold,fact):
+        payload=original(rt)
+        with rt.serve() as req:
+            for q in questions:a,t=chat(req,q)
+>       assert a['answer_type']=='doc' and fact in a['answer'],a
+E       AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E       assert ('refusal' == 'doc'
+E         
+E         - doc
+E         + refusal)
+
+docs/verification/g2-04/test_doc_qa.py:303: AssertionError
+________ test_existing_wh_question_regression[substitution-second-turn] ________
+
+rt = <g203.Runtime object at 0x10b457830>
+questions = ['三文鱼poke 七月初为什么停售了？', '那停售期间让顾客换成什么？'], gold = 'KB-021'
+fact = '鸡肉poke'
+
+    @pytest.mark.parametrize('questions,gold,fact',[
+     (['储值充值现在的赠送规则是什么？'],'KB-011','60'),
+     (['三文鱼poke 七月初为什么停售了？','那停售期间让顾客换成什么？'],'KB-021','鸡肉poke'),
+    ],ids=['version-first-turn','substitution-second-turn'])
+    def test_existing_wh_question_regression(rt,questions,gold,fact):
+        payload=original(rt)
+        with rt.serve() as req:
+            for q in questions:a,t=chat(req,q)
+>       assert a['answer_type']=='doc' and fact in a['answer'],a
+E       AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E       assert ('refusal' == 'doc'
+E         
+E         - doc
+E         + refusal)
+
+docs/verification/g2-04/test_doc_qa.py:303: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-04/test_doc_qa.py::test_existing_wh_question_regression[version-first-turn]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_existing_wh_question_regression[substitution-second-turn]
+2 failed, 80 deselected in 2.00s

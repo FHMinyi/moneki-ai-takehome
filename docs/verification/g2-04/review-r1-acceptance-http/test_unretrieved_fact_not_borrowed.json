@@ -1,0 +1,241 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_unretrieved_fact_not_borr0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_unretrieved_fact_not_borr0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_unretrieved_fact_not_borr0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：1 篇文档，2 个片段，缓存键 2476c04d7b74\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_unretrieved_fact_not_borr0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_unretrieved_fact_not_borr0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55138"
+      ],
+      "pid": 62081,
+      "port": 55138,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 1,
+            "kb_chunks": 2,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "2476c04d7b74",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "夜班配送手续费是多少元？",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "检索到的相关资料不足以确认这个问题的答案，知识库里没有找到可靠的支持。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "single",
+            "question": "夜班配送手续费是多少元？",
+            "started_at": "2026-09-27T04:59:41.701",
+            "total_ms": 1.3,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.6,
+                "took_ms": 0.6,
+                "detail": {
+                  "question": "夜班配送手续费是多少元？",
+                  "standalone_question": "夜班配送手续费是多少元？",
+                  "search_query": "夜班配送手续费是多少元？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.8,
+                "took_ms": 0.2,
+                "detail": {
+                  "query": "夜班配送手续费是多少元?",
+                  "terms": [
+                    "夜班",
+                    "班配",
+                    "配送",
+                    "送手",
+                    "手续",
+                    "续费",
+                    "费是",
+                    "少元"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-901#2",
+                      "doc_id": "KB-901",
+                      "score": 3.5396,
+                      "lexical_score": 1.748,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "手续",
+                        "续费",
+                        "配送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-901#1",
+                      "doc_id": "KB-901",
+                      "score": 1.5593,
+                      "lexical_score": 0.9475,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "夜班",
+                        "配送"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.166,
+                  "hits": [
+                    {
+                      "doc_id": "KB-901",
+                      "chunk_id": "KB-901#2",
+                      "score": 3.5396,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-901",
+                      "chunk_id": "KB-901#1",
+                      "score": 1.5593,
+                      "padded": true,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 1.2,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [
+                    {
+                      "doc_id": "KB-901",
+                      "chunk_id": "KB-901#2",
+                      "score": 1.031259632132692,
+                      "text": "会员开卡手续费为83元。"
+                    }
+                  ],
+                  "rejected": [],
+                  "selected": [
+                    {
+                      "doc_id": "KB-901",
+                      "chunk_id": "KB-901#2",
+                      "score": 1.031259632132692,
+                      "source_start": 296,
+                      "source_end": 512,
+                      "quote": "会员开卡手续费为83元。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 1.3,
+                "took_ms": 0.6,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 1.3,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": [
+                    "检索最高分 3.5，且问题里没有指标、时间或门店"
+                  ]
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

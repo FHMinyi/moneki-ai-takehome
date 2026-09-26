@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import re
+import unicodedata
 from typing import Optional
 
 from .entities import focus_kinds
-from .tokenizer import STOP_CHARS, content_tokens, tokenize
+from .tokenizer import STOP_CHARS, content_tokens, tokenize, normalise
 from .units import MAX_QUOTE, Unit, UnitIndex
+from .sanitize import is_instruction_like
 
 MARKERS = {"✓", "✔", "√", "有", "×", "✗", "—", "-", "无", "N/A"}
 
@@ -86,6 +88,81 @@ class DocFacts:
             weights[term] = weight
         return weights
 
+    def requested_claim(self, query: str) -> Optional[dict]:
+        """Describe a closed question before ranking its possible evidence.
+
+        A final question particle, A-not-A construction, or explicit boolean
+        marker makes the *whole proposition* a constraint. An unparsed closed
+        question must not silently fall back to open-ended topical extraction.
+        No domain attributes or answers are enumerated here.
+        """
+        text = normalise(query).strip().rstrip("?！!。.")
+        explicit = re.search(r"是否|能否|可否|是不是|有没有|需不需要|可不可以|(.)不\1", text)
+        relation_pattern = (
+            r"(?:不)?(?:是否|需要|可以|必须|应当|支持|允许|包含|含有|具备|提供|出示|提交|使用|能|要|需|可|有|含|用)"
+        )
+        open_question = re.search(r"多少|多久|几[点天次时个折]|什么|哪[个些天家种里]|何时|为何|为什么|怎么|怎样|如何", text)
+        # “什么/怎么”的末字不是独立语气词“么”。开放疑问优先。
+        closed = not open_question and bool(
+            explicit or re.search(r"[吗么不没]$", text) or re.search(relation_pattern, text)
+        )
+        if not closed:
+            return None
+        text = re.sub(r"^(?:请问|请说明|麻烦问一下)", "", text)
+        text = re.sub(r"(?:行不行|行吗|可以吗)$", "", text)
+        text = re.sub(r"[吗么呢吧不没]$", "", text)
+        for old, new in (("可不可以", "可以"), ("需不需要", "需要"),
+                         ("有没有", "有"), ("是不是", "是否"),
+                         ("能否", "能"), ("可否", "可")):
+            text = text.replace(old, new)
+        text = re.sub(r"(.)不\1", r"\1", text)
+        marker = re.search(relation_pattern, text)
+        subject = text[:marker.start()] if marker else ""
+        attribute = text[marker.end():] if marker else text
+        subject = re.sub(r"(?:的|里面|里边|之中|规定|政策|制度|中|里)+$", "", subject)
+        attribute = re.sub(
+            r"^(?:(?:需要|可以|必须|提供|提交|出示|使用|顾客|员工)|[不用含有与和])+", "", attribute
+        )
+        return {
+            "subject": subject, "attribute": attribute,
+            "subject_terms": self._claim_terms(subject),
+            "attribute_terms": self._claim_terms(attribute),
+            "subject_entities": self.index.aliases.strict_mentions(subject),
+        }
+
+    def _claim_terms(self, text: str) -> list[str]:
+        terms = [t for t in content_tokens(text)
+                 if len(t) > 1 and not t.isdigit() and not any(c in STOP_CHARS for c in t)]
+        if not terms:
+            return []
+        known = [t for t in terms if self.index.doc_freq.get(t)]
+        # Do not erase an unknown final object just because retrieval found the
+        # subject. Otherwise absent facts become answers about a nearby topic.
+        return list(dict.fromkeys((known or terms) + [terms[-1]]))
+
+    @staticmethod
+    def _covers_claim_terms(terms: list[str], text: str) -> bool:
+        return bool(terms) and terms[-1] in text and sum(t in text for t in terms) / len(terms) >= 0.6
+
+    def supports_claim(self, claim: Optional[dict], unit: Unit) -> bool:
+        if claim is None:
+            return True
+        # Bind subject and requested predicate within the same clause. Combining
+        # attendance in one clause with a member benefit in another is not proof.
+        for clause in re.split(r"[。！？!?；;]", normalise(unit.text)):
+            if not clause.strip():
+                continue
+            entities = claim["subject_entities"]
+            if entities:
+                subject_ok = set(entities) <= set(self.index.aliases.strict_mentions(clause))
+            else:
+                subject_ok = not claim["subject"] or self._covers_claim_terms(claim["subject_terms"], clause)
+            if subject_ok and self._covers_claim_terms(
+                claim["attribute_terms"], clause + " " + normalise(" ".join(unit.header))
+            ):
+                return True
+        return False
+
     def focus_of(self, unit: Unit, kinds: list[str]) -> float:
         """这句话满足了几个焦点。
 
@@ -107,7 +184,7 @@ class DocFacts:
         return satisfied
 
     def rank(
-        self, query: str, doc_id: str, limit: int = 3, require_value: bool = False
+        self, query: str, doc_id: str, limit: int = 3, require_value: bool = False, units=None
     ) -> list[tuple[float, str]]:
         """在一篇文档里挑最能回答问题的句子。
 
@@ -119,11 +196,17 @@ class DocFacts:
         weights = self.term_weights(query)
         total = sum(weights.values()) or 1.0
         kinds = focus_kinds(query)
-        units = self.units(doc_id)
+        units = list(self.units(doc_id) if units is None else units)
+        units = [u for u in units if not is_instruction_like(u.text) and u.kind != "heading"]
         if kinds and require_value:
             units = [unit for unit in units if self.focus_of(unit, kinds)]
         scored: list[tuple[float, int, str]] = []
         for position, unit in enumerate(units):
+            # A requested unit is stronger evidence than the broad count/value
+            # shape (e.g. days cannot be answered with attendance occurrences).
+            requested = re.search(r"(?:多少|几)\s*(工作日|小时|分钟|天|克|公斤|毫升|升|元|条|次|人|杯|份)", query)
+            if requested and not re.search(r"\d[\d,.]*\s*" + requested.group(1), unit.text):
+                continue
             if len(unit.text) < 8 and unit.kind != "table":
                 continue  # 半截短语（HTML 的标签、页脚碎片）不是答案
             direct = set(tokenize(unit.text))
@@ -235,7 +318,8 @@ class DocFacts:
 
     def cite(self, doc_id: str, quote: str) -> Optional[dict]:
         quote = quote.strip()
-        if not quote or not self.verbatim(doc_id, quote):
+        normalized = re.sub(r"[\s*`|#>]", "", unicodedata.normalize("NFKC", quote))
+        if not normalized or len(normalized) > MAX_QUOTE or not self.verbatim(doc_id, quote):
             return None
         return {"doc_id": doc_id, "quote": quote}
 

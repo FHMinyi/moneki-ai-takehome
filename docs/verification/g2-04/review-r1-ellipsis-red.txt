@@ -1,0 +1,214 @@
+FFFFFFFFFF.                                                              [100%]
+=================================== FAILURES ===================================
+__________________ test_elliptical_missing_claim[id-question] __________________
+
+rt = <g203.Runtime object at 0x108962a20>, q = '外卖退款申请要提供身份证？'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证？','员工迟到能用积分抵扣？','牛肉poke里有花生？',
+     '外卖退款申请要提供身份证','员工迟到能用积分抵扣','牛肉poke里有花生',
+    ],ids=['id-question','offset-question','ingredient-question','id-bare','offset-bare','ingredient-bare'])
+    def test_elliptical_missing_claim(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-013《退款政策 v2》：3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-013', 'quote': '3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:278: AssertionError
+________________ test_elliptical_missing_claim[offset-question] ________________
+
+rt = <g203.Runtime object at 0x1088ab3e0>, q = '员工迟到能用积分抵扣？'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证？','员工迟到能用积分抵扣？','牛肉poke里有花生？',
+     '外卖退款申请要提供身份证','员工迟到能用积分抵扣','牛肉poke里有花生',
+    ],ids=['id-question','offset-question','ingredient-question','id-bare','offset-bare','ingredient-bare'])
+    def test_elliptical_missing_claim(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-011《会员储值政策 v2》：3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-011', 'quote': '3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:278: AssertionError
+______________ test_elliptical_missing_claim[ingredient-question] ______________
+
+rt = <g203.Runtime object at 0x1088aac30>, q = '牛肉poke里有花生？'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证？','员工迟到能用积分抵扣？','牛肉poke里有花生？',
+     '外卖退款申请要提供身份证','员工迟到能用积分抵扣','牛肉poke里有花生',
+    ],ids=['id-question','offset-question','ingredient-question','id-bare','offset-bare','ingredient-bare'])
+    def test_elliptical_missing_claim(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-023《2026 年 618 活动方案》：**当天牛肉poke 目标销量 120 份。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-023', 'quote': '**当天牛肉poke 目标销量 120 份。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:278: AssertionError
+____________________ test_elliptical_missing_claim[id-bare] ____________________
+
+rt = <g203.Runtime object at 0x1087ee0f0>, q = '外卖退款申请要提供身份证'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证？','员工迟到能用积分抵扣？','牛肉poke里有花生？',
+     '外卖退款申请要提供身份证','员工迟到能用积分抵扣','牛肉poke里有花生',
+    ],ids=['id-question','offset-question','ingredient-question','id-bare','offset-bare','ingredient-bare'])
+    def test_elliptical_missing_claim(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-013《退款政策 v2》：3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-013', 'quote': '3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:278: AssertionError
+__________________ test_elliptical_missing_claim[offset-bare] __________________
+
+rt = <g203.Runtime object at 0x1087ef110>, q = '员工迟到能用积分抵扣'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证？','员工迟到能用积分抵扣？','牛肉poke里有花生？',
+     '外卖退款申请要提供身份证','员工迟到能用积分抵扣','牛肉poke里有花生',
+    ],ids=['id-question','offset-question','ingredient-question','id-bare','offset-bare','ingredient-bare'])
+    def test_elliptical_missing_claim(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-011《会员储值政策 v2》：3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-011', 'quote': '3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:278: AssertionError
+________________ test_elliptical_missing_claim[ingredient-bare] ________________
+
+rt = <g203.Runtime object at 0x1087ef590>, q = '牛肉poke里有花生'
+
+    @pytest.mark.parametrize('q',[
+     '外卖退款申请要提供身份证？','员工迟到能用积分抵扣？','牛肉poke里有花生？',
+     '外卖退款申请要提供身份证','员工迟到能用积分抵扣','牛肉poke里有花生',
+    ],ids=['id-question','offset-question','ingredient-question','id-bare','offset-bare','ingredient-bare'])
+    def test_elliptical_missing_claim(rt,q):
+        original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-023《2026 年 618 活动方案》：**当天牛肉poke 目标销量 120 份。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-023', 'quote': '**当天牛肉poke 目标销量 120 份。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:278: AssertionError
+________________ test_elliptical_supported_claim[approval-bare] ________________
+
+rt = <g203.Runtime object at 0x1088484a0>, q = '外卖退款申请要审批', gold = 'KB-013'
+support = '审批'
+
+    @pytest.mark.parametrize('q,gold,support',[
+     ('外卖退款申请要审批','KB-013','审批'),
+     ('员工折扣能和活动叠加','KB-014','叠加'),
+     ('牛肉poke里有芝麻','KB-040','芝麻'),
+     ('会员赠送金额不能提现吗？','KB-011','不可提现'),
+     ('员工折扣不可以和活动叠加吗？','KB-014','叠加'),
+    ],ids=['approval-bare','stack-bare','sesame-bare','negative-can','negative-permission'])
+    def test_elliptical_supported_claim(rt,q,gold,support):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+        assert a['answer_type']=='doc' and support in a['answer'],a
+        assert gold in {c['doc_id'] for c in a['citations']},a
+>       assert detail(t,'evidence')['required_claim'] is not None
+E       assert None is not None
+
+docs/verification/g2-04/test_doc_qa.py:292: AssertionError
+_________________ test_elliptical_supported_claim[stack-bare] __________________
+
+rt = <g203.Runtime object at 0x1088264b0>, q = '员工折扣能和活动叠加', gold = 'KB-014'
+support = '叠加'
+
+    @pytest.mark.parametrize('q,gold,support',[
+     ('外卖退款申请要审批','KB-013','审批'),
+     ('员工折扣能和活动叠加','KB-014','叠加'),
+     ('牛肉poke里有芝麻','KB-040','芝麻'),
+     ('会员赠送金额不能提现吗？','KB-011','不可提现'),
+     ('员工折扣不可以和活动叠加吗？','KB-014','叠加'),
+    ],ids=['approval-bare','stack-bare','sesame-bare','negative-can','negative-permission'])
+    def test_elliptical_supported_claim(rt,q,gold,support):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+        assert a['answer_type']=='doc' and support in a['answer'],a
+        assert gold in {c['doc_id'] for c in a['citations']},a
+>       assert detail(t,'evidence')['required_claim'] is not None
+E       assert None is not None
+
+docs/verification/g2-04/test_doc_qa.py:292: AssertionError
+_________________ test_elliptical_supported_claim[sesame-bare] _________________
+
+rt = <g203.Runtime object at 0x10884b5f0>, q = '牛肉poke里有芝麻', gold = 'KB-040'
+support = '芝麻'
+
+    @pytest.mark.parametrize('q,gold,support',[
+     ('外卖退款申请要审批','KB-013','审批'),
+     ('员工折扣能和活动叠加','KB-014','叠加'),
+     ('牛肉poke里有芝麻','KB-040','芝麻'),
+     ('会员赠送金额不能提现吗？','KB-011','不可提现'),
+     ('员工折扣不可以和活动叠加吗？','KB-014','叠加'),
+    ],ids=['approval-bare','stack-bare','sesame-bare','negative-can','negative-permission'])
+    def test_elliptical_supported_claim(rt,q,gold,support):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+        assert a['answer_type']=='doc' and support in a['answer'],a
+        assert gold in {c['doc_id'] for c in a['citations']},a
+>       assert detail(t,'evidence')['required_claim'] is not None
+E       assert None is not None
+
+docs/verification/g2-04/test_doc_qa.py:292: AssertionError
+________________ test_elliptical_supported_claim[negative-can] _________________
+
+rt = <g203.Runtime object at 0x108894e60>, q = '会员赠送金额不能提现吗？', gold = 'KB-011'
+support = '不可提现'
+
+    @pytest.mark.parametrize('q,gold,support',[
+     ('外卖退款申请要审批','KB-013','审批'),
+     ('员工折扣能和活动叠加','KB-014','叠加'),
+     ('牛肉poke里有芝麻','KB-040','芝麻'),
+     ('会员赠送金额不能提现吗？','KB-011','不可提现'),
+     ('员工折扣不可以和活动叠加吗？','KB-014','叠加'),
+    ],ids=['approval-bare','stack-bare','sesame-bare','negative-can','negative-permission'])
+    def test_elliptical_supported_claim(rt,q,gold,support):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='doc' and support in a['answer'],a
+E       AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E       assert ('refusal' == 'doc'
+E         
+E         - doc
+E         + refusal)
+
+docs/verification/g2-04/test_doc_qa.py:290: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-04/test_doc_qa.py::test_elliptical_missing_claim[id-question]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_elliptical_missing_claim[offset-question]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_elliptical_missing_claim[ingredient-question]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_elliptical_missing_claim[id-bare]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_elliptical_missing_claim[offset-bare]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_elliptical_missing_claim[ingredient-bare]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_elliptical_supported_claim[approval-bare]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_elliptical_supported_claim[stack-bare]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_elliptical_supported_claim[sesame-bare]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_elliptical_supported_claim[negative-can]
+10 failed, 1 passed, 69 deselected in 7.50s

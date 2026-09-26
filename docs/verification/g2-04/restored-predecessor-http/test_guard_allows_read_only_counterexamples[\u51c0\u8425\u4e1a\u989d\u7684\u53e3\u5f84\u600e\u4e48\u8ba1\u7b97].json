@@ -1,0 +1,983 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-129/test_guard_allows_read_only_co3/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-129/test_guard_allows_read_only_co3/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-129/test_guard_allows_read_only_co3/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 c8efbc552293\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-129/test_guard_allows_read_only_co3/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-129/test_guard_allows_read_only_co3/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "60527"
+      ],
+      "pid": 37060,
+      "port": 60527,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "c8efbc552293",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "session_id": "readonly",
+            "question": "净营业额的口径怎么计算"
+          },
+          "response": {
+            "answer": "KB-001《指标口径手册 v3》：- **净营业额** = 销售行金额之和 + 退款行金额之和。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-001",
+                "quote": "- **净营业额** = 销售行金额之和 + 退款行金额之和。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "readonly",
+            "question": "净营业额的口径怎么计算",
+            "started_at": "2026-09-27T04:35:42.122",
+            "total_ms": 26.2,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 10.9,
+                "took_ms": 10.9,
+                "detail": {
+                  "question": "净营业额的口径怎么计算",
+                  "standalone_question": "净营业额的口径怎么计算",
+                  "search_query": "净营业额的口径怎么计算",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=net_revenue 门店=全部 商品=全部 时间=未指定"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 21.9,
+                "took_ms": 10.9,
+                "detail": {
+                  "query": "净营业额的口径怎么计算",
+                  "terms": [
+                    "净营",
+                    "营业",
+                    "业额",
+                    "额的",
+                    "的口",
+                    "口径",
+                    "径怎",
+                    "么计",
+                    "计算"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-001#9",
+                      "doc_id": "KB-001",
+                      "score": 26.4382,
+                      "lexical_score": 13.0559,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业额",
+                        "净营",
+                        "口径",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#15",
+                      "doc_id": "KB-001",
+                      "score": 21.1673,
+                      "lexical_score": 9.542,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业额",
+                        "净营",
+                        "口径",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#12",
+                      "doc_id": "KB-001",
+                      "score": 19.2086,
+                      "lexical_score": 8.2362,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业额",
+                        "口径",
+                        "营业",
+                        "计算"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#3",
+                      "doc_id": "KB-051",
+                      "score": 13.4207,
+                      "lexical_score": 6.6275,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径",
+                        "的口",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#1",
+                      "doc_id": "KB-060",
+                      "score": 12.1634,
+                      "lexical_score": 6.0066,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业额",
+                        "口径",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#1",
+                      "doc_id": "KB-001",
+                      "score": 11.3502,
+                      "lexical_score": 2.9972,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#16",
+                      "doc_id": "KB-001",
+                      "score": 11.2057,
+                      "lexical_score": 2.9009,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#6",
+                      "doc_id": "KB-001",
+                      "score": 10.7519,
+                      "lexical_score": 2.5984,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#19",
+                      "doc_id": "KB-001",
+                      "score": 10.5148,
+                      "lexical_score": 2.4403,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#4",
+                      "doc_id": "KB-013",
+                      "score": 10.1441,
+                      "lexical_score": 5.0094,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径",
+                        "额的"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#8",
+                      "doc_id": "KB-001",
+                      "score": 7.9774,
+                      "lexical_score": 3.4078,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#13",
+                      "doc_id": "KB-001",
+                      "score": 7.9774,
+                      "lexical_score": 3.4078,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#11",
+                      "doc_id": "KB-001",
+                      "score": 7.9298,
+                      "lexical_score": 3.3602,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#17",
+                      "doc_id": "KB-001",
+                      "score": 7.8835,
+                      "lexical_score": 3.314,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#14",
+                      "doc_id": "KB-001",
+                      "score": 7.7243,
+                      "lexical_score": 3.1547,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#3",
+                      "doc_id": "KB-001",
+                      "score": 7.6834,
+                      "lexical_score": 3.1139,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#2",
+                      "doc_id": "KB-014",
+                      "score": 7.6409,
+                      "lexical_score": 3.7733,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业额",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#10",
+                      "doc_id": "KB-001",
+                      "score": 7.6177,
+                      "lexical_score": 3.0481,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#3",
+                      "doc_id": "KB-029",
+                      "score": 7.4404,
+                      "lexical_score": 3.6743,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业额",
+                        "口径",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#5",
+                      "doc_id": "KB-001",
+                      "score": 7.4024,
+                      "lexical_score": 2.8329,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#2",
+                      "doc_id": "KB-001",
+                      "score": 6.9773,
+                      "lexical_score": 2.4078,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#4",
+                      "doc_id": "KB-001",
+                      "score": 6.7784,
+                      "lexical_score": 2.2089,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#7",
+                      "doc_id": "KB-001",
+                      "score": 6.7193,
+                      "lexical_score": 2.1497,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#18",
+                      "doc_id": "KB-001",
+                      "score": 6.3888,
+                      "lexical_score": 1.8193,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#4",
+                      "doc_id": "KB-051",
+                      "score": 6.0575,
+                      "lexical_score": 3.7378,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-060#9",
+                      "doc_id": "KB-060",
+                      "score": 5.5836,
+                      "lexical_score": 3.4813,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "业额",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#7",
+                      "doc_id": "KB-011",
+                      "score": 5.2976,
+                      "lexical_score": 3.9241,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "额的"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#14",
+                      "doc_id": "KB-029",
+                      "score": 5.2741,
+                      "lexical_score": 2.23,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#2",
+                      "doc_id": "KB-050",
+                      "score": 4.806,
+                      "lexical_score": 3.56,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "业额",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#6",
+                      "doc_id": "KB-023",
+                      "score": 4.4144,
+                      "lexical_score": 1.9901,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#3",
+                      "doc_id": "KB-042",
+                      "score": 4.3681,
+                      "lexical_score": 3.2356,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#1",
+                      "doc_id": "KB-061",
+                      "score": 4.2913,
+                      "lexical_score": 3.1787,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-042#1",
+                      "doc_id": "KB-042",
+                      "score": 4.2495,
+                      "lexical_score": 3.117,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#3",
+                      "doc_id": "KB-061",
+                      "score": 4.1224,
+                      "lexical_score": 3.0099,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-042#2",
+                      "doc_id": "KB-042",
+                      "score": 4.07,
+                      "lexical_score": 2.9375,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#4",
+                      "doc_id": "KB-042",
+                      "score": 4.0672,
+                      "lexical_score": 2.9348,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#11",
+                      "doc_id": "KB-029",
+                      "score": 3.9849,
+                      "lexical_score": 1.3706,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#1",
+                      "doc_id": "KB-062",
+                      "score": 3.9558,
+                      "lexical_score": 1.723,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#5",
+                      "doc_id": "KB-014",
+                      "score": 3.9105,
+                      "lexical_score": 1.2864,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#2",
+                      "doc_id": "KB-023",
+                      "score": 3.6751,
+                      "lexical_score": 2.7223,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-052#2",
+                      "doc_id": "KB-052",
+                      "score": 3.6298,
+                      "lexical_score": 2.6888,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "业额",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#2",
+                      "doc_id": "KB-062",
+                      "score": 3.5264,
+                      "lexical_score": 2.6122,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#2",
+                      "doc_id": "KB-051",
+                      "score": 3.5113,
+                      "lexical_score": 1.1917,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#4",
+                      "doc_id": "KB-025",
+                      "score": 3.4911,
+                      "lexical_score": 1.724,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#5",
+                      "doc_id": "KB-029",
+                      "score": 3.4069,
+                      "lexical_score": 0.9853,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#2",
+                      "doc_id": "KB-020",
+                      "score": 2.8498,
+                      "lexical_score": 2.111,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#3",
+                      "doc_id": "KB-025",
+                      "score": 2.8227,
+                      "lexical_score": 1.2784,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#3",
+                      "doc_id": "KB-021",
+                      "score": 2.6837,
+                      "lexical_score": 1.3253,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "口径"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#15",
+                      "doc_id": "KB-029",
+                      "score": 2.5627,
+                      "lexical_score": 1.2767,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-016#2",
+                      "doc_id": "KB-016",
+                      "score": 2.5447,
+                      "lexical_score": 1.885,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-034#2",
+                      "doc_id": "KB-034",
+                      "score": 2.5312,
+                      "lexical_score": 1.8749,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#2",
+                      "doc_id": "KB-026",
+                      "score": 2.5168,
+                      "lexical_score": 1.8643,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-031#2",
+                      "doc_id": "KB-031",
+                      "score": 2.5036,
+                      "lexical_score": 1.8545,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-033#2",
+                      "doc_id": "KB-033",
+                      "score": 2.5036,
+                      "lexical_score": 1.8545,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#10",
+                      "doc_id": "KB-029",
+                      "score": 2.499,
+                      "lexical_score": 1.213,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#2",
+                      "doc_id": "KB-030",
+                      "score": 2.4766,
+                      "lexical_score": 1.8345,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#12",
+                      "doc_id": "KB-029",
+                      "score": 2.4612,
+                      "lexical_score": 1.1752,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-032#2",
+                      "doc_id": "KB-032",
+                      "score": 2.4501,
+                      "lexical_score": 1.8149,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-034#4",
+                      "doc_id": "KB-034",
+                      "score": 2.4148,
+                      "lexical_score": 1.7586,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-033#4",
+                      "doc_id": "KB-033",
+                      "score": 2.3808,
+                      "lexical_score": 1.7317,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-031#4",
+                      "doc_id": "KB-031",
+                      "score": 2.3378,
+                      "lexical_score": 1.6887,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-032#4",
+                      "doc_id": "KB-032",
+                      "score": 2.3156,
+                      "lexical_score": 1.6804,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#4",
+                      "doc_id": "KB-030",
+                      "score": 2.2741,
+                      "lexical_score": 1.632,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#3",
+                      "doc_id": "KB-062",
+                      "score": 2.2305,
+                      "lexical_score": 1.3162,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#1",
+                      "doc_id": "KB-020",
+                      "score": 2.228,
+                      "lexical_score": 1.4891,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#2",
+                      "doc_id": "KB-024",
+                      "score": 0.7387,
+                      "lexical_score": 2.1886,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.298,
+                  "hits": [
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 26.4382,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-051",
+                      "chunk_id": "KB-051#3",
+                      "score": 13.4207,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-060",
+                      "chunk_id": "KB-060#1",
+                      "score": 12.1634,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-013",
+                      "chunk_id": "KB-013#4",
+                      "score": 10.1441,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "chunk_id": "KB-014#2",
+                      "score": 7.6409,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 26.2,
+                "took_ms": null,
+                "detail": {
+                  "candidates": [
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 0.7703498805862584,
+                      "text": "- **净营业额** = 销售行金额之和 + 退款行金额之和。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 0.7471512120661042,
+                      "text": "- **客单价** = 净营业额 ÷ 有效订单数，四舍五入保留 2 位小数。"
+                    },
+                    {
+                      "doc_id": "KB-051",
+                      "chunk_id": "KB-051#3",
+                      "score": 0.22270496161541656,
+                      "text": "有个别顾客问是不是出了食品安全问题，我按通知上的口径解释是排烟管道整改，没有再追问的。"
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "chunk_id": "KB-014#2",
+                      "score": 0.1796160520445399,
+                      "text": "2. 员工餐不进 POS，不开单、不计入营业额、不计入销量，由门店在《员工餐领用表》上登记。"
+                    },
+                    {
+                      "doc_id": "KB-060",
+                      "chunk_id": "KB-060#1",
+                      "score": 0.07757163767798876,
+                      "text": "统计口径：2026 年 7 月 1 日至 7 月 31 日，小程序评价、第三方外卖平台评价、会员群留言、门店意见卡四个来源合并去重，共 87 条有效反馈。"
+                    },
+                    {
+                      "doc_id": "KB-013",
+                      "chunk_id": "KB-013#4",
+                      "score": 0.07611352905571468,
+                      "text": "3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 0.06992240878680292,
+                      "text": "- **退款金额** = 退款行金额之和的绝对值。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 0.06652456386538357,
+                      "text": "- **退款行**：通过上述剔除规则后 `amount < 0` 的行。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 0.06652456386538357,
+                      "text": "- **销售行**：通过上述剔除规则后 `amount > 0` 的行。"
+                    }
+                  ],
+                  "rejected": [],
+                  "selected": [
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 0.7703498805862584,
+                      "source_start": 1136,
+                      "source_end": 1426,
+                      "quote": "- **净营业额** = 销售行金额之和 + 退款行金额之和。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 26.2,
+                "took_ms": 15.2,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 26.2,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

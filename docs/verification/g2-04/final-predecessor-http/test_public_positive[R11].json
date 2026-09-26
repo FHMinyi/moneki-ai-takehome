@@ -1,0 +1,762 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_public_positive_R11_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_public_positive_R11_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_public_positive_R11_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 8551f42134e1\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_public_positive_R11_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_public_positive_R11_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "57425"
+      ],
+      "pid": 32559,
+      "port": 57425,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "8551f42134e1",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "冷萃乌龙茶首月的目标销量是多少",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-028",
+                "chunk_id": "KB-028#3",
+                "score": 91.2082,
+                "text": "## 二、目标\n\n**首月（8 月 1 日至 8 月 31 日）全门店合计目标销量 900 杯。**\n目标按门店客流分解到各店，具体数字在店长群里单独发，门店以自己那张为准。\n\n",
+                "retrieval_text": "新品上市通知：冷萃乌龙茶\n# 新品上市通知：冷萃乌龙茶\n## 二、目标\n\n**首月（8 月 1 日至 8 月 31 日）全门店合计目标销量 900 杯。**\n目标按门店客流分解到各店，具体数字在店长群里单独发，门店以自己那张为准。\n\n",
+                "source_start": 258,
+                "source_end": 347,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 15,
+                    "text": "# 新品上市通知：冷萃乌龙茶\n"
+                  },
+                  {
+                    "start": 258,
+                    "end": 266,
+                    "text": "## 二、目标\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-022",
+                "chunk_id": "KB-022#9",
+                "score": 49.3855,
+                "text": "4. SUPPLY RESUMPTION\n\n",
+                "retrieval_text": "[Tasman Cold Chain Seafood] Salmon delivery of 2026-07-04 - reefer failure, all 3 pallets rejected\n4. SUPPLY RESUMPTION\n\n",
+                "source_start": 1785,
+                "source_end": 1807,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-029",
+                "chunk_id": "KB-029#6",
+                "score": 48.511,
+                "text": "## 议题三：新品冷萃乌龙茶上市首周情况\n\n项怡通报，冷萃乌龙茶 8 月 1 日上市，首周出杯的势头还可以，S05 和 S02 相对突出，S03 偏弱，估计和早餐客群结构有关。首月目标不变，各店按之前分解的数量推进。\n门店反馈两个问题：一是冷萃基底 07:00 前备好这个时间点对 S03 有点紧，S03 开店早，早班要同时出点心和备基底；二是冰杯出杯时封口膜偶尔封不牢。项怡认领第二项，换一批封口膜试用。第一项由运营部和 S03 单独商量，必要时把基底改成前一晚备。\n沈望舒要求，新品上市首月各店每天记录出杯数和剩余基底量的动作不要停，月底做一次完整复盘，再决定是否进常规菜单。\n\n",
+                "retrieval_text": "2026 年 8 月运营例会纪要\n# 2026 年 8 月运营例会纪要\n## 议题三：新品冷萃乌龙茶上市首周情况\n\n项怡通报，冷萃乌龙茶 8 月 1 日上市，首周出杯的势头还可以，S05 和 S02 相对突出，S03 偏弱，估计和早餐客群结构有关。首月目标不变，各店按之前分解的数量推进。\n门店反馈两个问题：一是冷萃基底 07:00 前备好这个时间点对 S03 有点紧，S03 开店早，早班要同时出点心和备基底；二是冰杯出杯时封口膜偶尔封不牢。项怡认领第二项，换一批封口膜试用。第一项由运营部和 S03 单独商量，必要时把基底改成前一晚备。\n沈望舒要求，新品上市首月各店每天记录出杯数和剩余基底量的动作不要停，月底做一次完整复盘，再决定是否进常规菜单。\n\n",
+                "source_start": 835,
+                "source_end": 1127,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 19,
+                    "text": "# 2026 年 8 月运营例会纪要\n"
+                  },
+                  {
+                    "start": 835,
+                    "end": 856,
+                    "text": "## 议题三：新品冷萃乌龙茶上市首周情况\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#6",
+                "score": 46.7052,
+                "text": "| P20 | 梅子酒 | — | — | — | — | — | — | — | — | ✓ |\n| P21 | 冷萃乌龙茶 | — | — | — | — | — | — | — | — | — |\n\n",
+                "retrieval_text": "过敏原对照表\n# 过敏原对照表\n| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| P20 | 梅子酒 | — | — | — | — | — | — | — | — | ✓ |\n| P21 | 冷萃乌龙茶 | — | — | — | — | — | — | — | — | — |\n\n",
+                "source_start": 1197,
+                "source_end": 1300,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 9,
+                    "text": "# 过敏原对照表\n"
+                  },
+                  {
+                    "start": 127,
+                    "end": 233,
+                    "text": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-041",
+                "chunk_id": "KB-041#2",
+                "score": 34.353,
+                "text": "| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n| Tasman Cold Chain Seafood | 冷链海产 | 三文鱼poke、吞拿鱼三明治 | 3 天 | 每周二、五各一次 | Daniel Whitcombe | 021-5555-0201 | 夜间发车、次日清晨到货；到货必须随车温度记录，中心温度高于 5℃ 拒收 |\n",
+                "retrieval_text": "供应商名录\n# 供应商名录\n| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n| Tasman Cold Chain Seafood | 冷链海产 | 三文鱼poke、吞拿鱼三明治 | 3 天 | 每周二、五各一次 | Daniel Whitcombe | 021-5555-0201 | 夜间发车、次日清晨到货；到货必须随车温度记录，中心温度高于 5℃ 拒收 |\n",
+                "source_start": 124,
+                "source_end": 359,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 8,
+                    "text": "# 供应商名录\n"
+                  },
+                  {
+                    "start": 124,
+                    "end": 215,
+                    "text": "| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "冷萃乌龙茶首月的目标销量是多少",
+              "terms": [
+                "冷萃",
+                "萃乌",
+                "乌龙",
+                "龙茶",
+                "茶首",
+                "首月",
+                "月的",
+                "的目",
+                "目标",
+                "标销",
+                "销量",
+                "量是"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-028#3",
+                  "doc_id": "KB-028",
+                  "score": 91.2082,
+                  "lexical_score": 45.0411,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "标销",
+                    "目标",
+                    "萃乌",
+                    "销量",
+                    "首月",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-028#1",
+                  "doc_id": "KB-028",
+                  "score": 67.1893,
+                  "lexical_score": 29.0285,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-028#6",
+                  "doc_id": "KB-028",
+                  "score": 66.3431,
+                  "lexical_score": 28.4643,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-028#2",
+                  "doc_id": "KB-028",
+                  "score": 65.0672,
+                  "lexical_score": 27.6138,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-028#4",
+                  "doc_id": "KB-028",
+                  "score": 61.2811,
+                  "lexical_score": 25.0897,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-028#5",
+                  "doc_id": "KB-028",
+                  "score": 58.3521,
+                  "lexical_score": 23.137,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#9",
+                  "doc_id": "KB-022",
+                  "score": 49.3855,
+                  "lexical_score": 24.3879,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#6",
+                  "doc_id": "KB-029",
+                  "score": 48.511,
+                  "lexical_score": 23.9561,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "目标",
+                    "萃乌",
+                    "首月",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#6",
+                  "doc_id": "KB-040",
+                  "score": 46.7052,
+                  "lexical_score": 23.0643,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#2",
+                  "doc_id": "KB-022",
+                  "score": 45.4092,
+                  "lexical_score": 21.737,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#7",
+                  "doc_id": "KB-022",
+                  "score": 44.5961,
+                  "lexical_score": 21.195,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#11",
+                  "doc_id": "KB-022",
+                  "score": 42.907,
+                  "lexical_score": 20.0689,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#1",
+                  "doc_id": "KB-022",
+                  "score": 42.044,
+                  "lexical_score": 19.4935,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#6",
+                  "doc_id": "KB-022",
+                  "score": 41.7124,
+                  "lexical_score": 19.2725,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#13",
+                  "doc_id": "KB-022",
+                  "score": 41.7124,
+                  "lexical_score": 19.2725,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#3",
+                  "doc_id": "KB-022",
+                  "score": 41.5495,
+                  "lexical_score": 19.1639,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#10",
+                  "doc_id": "KB-022",
+                  "score": 41.229,
+                  "lexical_score": 18.9502,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#4",
+                  "doc_id": "KB-022",
+                  "score": 41.0714,
+                  "lexical_score": 18.8452,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#14",
+                  "doc_id": "KB-022",
+                  "score": 40.1615,
+                  "lexical_score": 18.2386,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#5",
+                  "doc_id": "KB-022",
+                  "score": 40.0155,
+                  "lexical_score": 18.1413,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#8",
+                  "doc_id": "KB-022",
+                  "score": 39.4469,
+                  "lexical_score": 17.7621,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#2",
+                  "doc_id": "KB-041",
+                  "score": 34.353,
+                  "lexical_score": 16.9644,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-052#4",
+                  "doc_id": "KB-052",
+                  "score": 34.0135,
+                  "lexical_score": 16.7968,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-023#4",
+                  "doc_id": "KB-023",
+                  "score": 31.6204,
+                  "lexical_score": 15.615,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "标销",
+                    "目标",
+                    "销量"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#4",
+                  "doc_id": "KB-041",
+                  "score": 31.3316,
+                  "lexical_score": 14.9502,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#15",
+                  "doc_id": "KB-022",
+                  "score": 28.9665,
+                  "lexical_score": 20.4307,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#12",
+                  "doc_id": "KB-022",
+                  "score": 28.1417,
+                  "lexical_score": 19.606,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#4",
+                  "doc_id": "KB-003",
+                  "score": 21.2363,
+                  "lexical_score": 20.9741,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "乌龙",
+                    "冷萃",
+                    "萃乌",
+                    "龙茶"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-023#5",
+                  "doc_id": "KB-023",
+                  "score": 20.1062,
+                  "lexical_score": 7.9389,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "标销",
+                    "目标",
+                    "销量"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#3",
+                  "doc_id": "KB-029",
+                  "score": 16.9017,
+                  "lexical_score": 2.8832,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "月的"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#8",
+                  "doc_id": "KB-029",
+                  "score": 15.831,
+                  "lexical_score": 2.1694,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "销量"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-023#6",
+                  "doc_id": "KB-023",
+                  "score": 13.3534,
+                  "lexical_score": 3.437,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "销量"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-024#4",
+                  "doc_id": "KB-024",
+                  "score": 7.7669,
+                  "lexical_score": 15.342,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "标销",
+                    "目标",
+                    "销量"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-027#5",
+                  "doc_id": "KB-027",
+                  "score": 7.3335,
+                  "lexical_score": 3.6215,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-061#2",
+                  "doc_id": "KB-061",
+                  "score": 7.2506,
+                  "lexical_score": 5.3708,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-051#3",
+                  "doc_id": "KB-051",
+                  "score": 6.207,
+                  "lexical_score": 3.0652,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-050#2",
+                  "doc_id": "KB-050",
+                  "score": 6.09,
+                  "lexical_score": 3.0074,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-014#2",
+                  "doc_id": "KB-014",
+                  "score": 5.0421,
+                  "lexical_score": 2.4899,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "销量"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#9",
+                  "doc_id": "KB-001",
+                  "score": 4.886,
+                  "lexical_score": 2.4128,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "销量"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#12",
+                  "doc_id": "KB-001",
+                  "score": 4.2604,
+                  "lexical_score": 1.9957,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "销量"
+                  ]
+                }
+              ],
+              "expansions": [
+                "冷萃乌龙茶",
+                "冷萃乌龙",
+                "Cold Brew Oolong"
+              ],
+              "coverage": 0.501,
+              "hits": [
+                {
+                  "doc_id": "KB-028",
+                  "chunk_id": "KB-028#3",
+                  "score": 91.2082,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-022",
+                  "chunk_id": "KB-022#9",
+                  "score": 49.3855,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-029",
+                  "chunk_id": "KB-029#6",
+                  "score": 48.511,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-040",
+                  "chunk_id": "KB-040#6",
+                  "score": 46.7052,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-041",
+                  "chunk_id": "KB-041#2",
+                  "score": 34.353,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-002",
+                  "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                },
+                {
+                  "doc_id": "KB-010",
+                  "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                },
+                {
+                  "doc_id": "KB-012",
+                  "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

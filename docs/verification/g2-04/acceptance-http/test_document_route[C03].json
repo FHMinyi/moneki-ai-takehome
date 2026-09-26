@@ -1,0 +1,992 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-128/test_document_route_C03_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-128/test_document_route_C03_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-128/test_document_route_C03_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 8f2ad8447c3c\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-128/test_document_route_C03_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-128/test_document_route_C03_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "59136"
+      ],
+      "pid": 35669,
+      "port": 59136,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "8f2ad8447c3c",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "Super Souper 现在周五晚上营业到几点？",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "KB-062《合味餐饮管理（上海）有限公司   OA 公文系统   导出文件》：经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇） 调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至 周四的营业时间不变，仍为 10:30-21:30。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-062",
+                "quote": "经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇） 调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至 周四的营业时间不变，仍为 10:30-21:30。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "single",
+            "question": "Super Souper 现在周五晚上营业到几点？",
+            "started_at": "2026-09-27T04:34:46.883",
+            "total_ms": 19.5,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 6.8,
+                "took_ms": 6.8,
+                "detail": {
+                  "question": "Super Souper 现在周五晚上营业到几点？",
+                  "standalone_question": "Super Souper 现在周五晚上营业到几点？",
+                  "search_query": "Super Souper 周五晚上营业到几点？ S01 Super Souper 营业时间 闭店 延长",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": "S01",
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=S01 商品=全部 时间=未指定"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 16.6,
+                "took_ms": 9.8,
+                "detail": {
+                  "query": "super souper 周五晚上营业到几点? s01 super souper 营业时间 闭店 延长",
+                  "terms": [
+                    "super",
+                    "souper",
+                    "周五",
+                    "五晚",
+                    "晚上",
+                    "上营",
+                    "营业",
+                    "业到",
+                    "到几",
+                    "几点",
+                    "s01",
+                    "super",
+                    "souper",
+                    "营业",
+                    "业时",
+                    "时间",
+                    "闭店",
+                    "延长"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": "S01",
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-062#2",
+                      "doc_id": "KB-062",
+                      "score": 103.8346,
+                      "lexical_score": 44.5881,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super",
+                        "业时",
+                        "周五",
+                        "延长",
+                        "时间",
+                        "营业",
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#2",
+                      "doc_id": "KB-030",
+                      "score": 102.0874,
+                      "lexical_score": 43.8378,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super",
+                        "业时",
+                        "时间",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#2",
+                      "doc_id": "KB-042",
+                      "score": 83.4559,
+                      "lexical_score": 35.8372,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super",
+                        "业时",
+                        "时间",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#1",
+                      "doc_id": "KB-062",
+                      "score": 74.0125,
+                      "lexical_score": 27.3,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "souper",
+                        "super",
+                        "业时",
+                        "时间",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#1",
+                      "doc_id": "KB-053",
+                      "score": 68.8204,
+                      "lexical_score": 29.5525,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#3",
+                      "doc_id": "KB-030",
+                      "score": 66.8308,
+                      "lexical_score": 23.3993,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#3",
+                      "doc_id": "KB-042",
+                      "score": 64.1514,
+                      "lexical_score": 24.6462,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "super",
+                        "业时",
+                        "时间",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#1",
+                      "doc_id": "KB-030",
+                      "score": 63.842,
+                      "lexical_score": 40.1716,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#4",
+                      "doc_id": "KB-030",
+                      "score": 63.6928,
+                      "lexical_score": 40.0418,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super",
+                        "业时",
+                        "时间",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#3",
+                      "doc_id": "KB-062",
+                      "score": 47.4808,
+                      "lexical_score": 11.9193,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业时",
+                        "延长",
+                        "时间",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#5",
+                      "doc_id": "KB-053",
+                      "score": 45.204,
+                      "lexical_score": 28.9644,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super",
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#3",
+                      "doc_id": "KB-053",
+                      "score": 37.2038,
+                      "lexical_score": 22.0078,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super",
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#4",
+                      "doc_id": "KB-053",
+                      "score": 36.5594,
+                      "lexical_score": 21.4474,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super",
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#4",
+                      "doc_id": "KB-042",
+                      "score": 35.4029,
+                      "lexical_score": 18.2421,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "业时",
+                        "延长",
+                        "时间",
+                        "营业",
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#1",
+                      "doc_id": "KB-061",
+                      "score": 34.5355,
+                      "lexical_score": 17.0545,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#6",
+                      "doc_id": "KB-060",
+                      "score": 33.3647,
+                      "lexical_score": 21.4909,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#2",
+                      "doc_id": "KB-053",
+                      "score": 33.3558,
+                      "lexical_score": 18.6617,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super",
+                        "晚上",
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#1",
+                      "doc_id": "KB-042",
+                      "score": 30.2225,
+                      "lexical_score": 13.7374,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "业时",
+                        "时间",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#7",
+                      "doc_id": "KB-003",
+                      "score": 27.8711,
+                      "lexical_score": 35.9048,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "souper",
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#2",
+                      "doc_id": "KB-026",
+                      "score": 27.7847,
+                      "lexical_score": 11.9312,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01",
+                        "业时",
+                        "时间",
+                        "营业",
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#3",
+                      "doc_id": "KB-060",
+                      "score": 25.5861,
+                      "lexical_score": 7.3107,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "super",
+                        "时间"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#14",
+                      "doc_id": "KB-029",
+                      "score": 19.0356,
+                      "lexical_score": 8.1742,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业时",
+                        "周五",
+                        "时间",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#1",
+                      "doc_id": "KB-060",
+                      "score": 18.3725,
+                      "lexical_score": 3.1289,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#1",
+                      "doc_id": "KB-026",
+                      "score": 16.7776,
+                      "lexical_score": 5.5502,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "时间",
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#4",
+                      "doc_id": "KB-060",
+                      "score": 15.0068,
+                      "lexical_score": 5.5275,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#10",
+                      "doc_id": "KB-029",
+                      "score": 14.1566,
+                      "lexical_score": 5.3458,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01",
+                        "时间",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#12",
+                      "doc_id": "KB-029",
+                      "score": 13.8698,
+                      "lexical_score": 5.1795,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "业时",
+                        "时间",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-016#2",
+                      "doc_id": "KB-016",
+                      "score": 13.6194,
+                      "lexical_score": 10.0884,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "业时",
+                        "时间",
+                        "营业",
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#9",
+                      "doc_id": "KB-060",
+                      "score": 13.3991,
+                      "lexical_score": 4.1295,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#15",
+                      "doc_id": "KB-029",
+                      "score": 13.0798,
+                      "lexical_score": 4.7215,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "时间",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#3",
+                      "doc_id": "KB-026",
+                      "score": 12.5513,
+                      "lexical_score": 3.1002,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#1",
+                      "doc_id": "KB-029",
+                      "score": 11.2855,
+                      "lexical_score": 3.6813,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01",
+                        "时间"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#3",
+                      "doc_id": "KB-029",
+                      "score": 10.6434,
+                      "lexical_score": 3.3091,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "营业",
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#2",
+                      "doc_id": "KB-024",
+                      "score": 10.5357,
+                      "lexical_score": 18.0967,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01",
+                        "业时",
+                        "延长",
+                        "时间",
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#8",
+                      "doc_id": "KB-060",
+                      "score": 10.4252,
+                      "lexical_score": 1.5435,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#11",
+                      "doc_id": "KB-029",
+                      "score": 7.8202,
+                      "lexical_score": 1.6725,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#4",
+                      "doc_id": "KB-001",
+                      "score": 7.0592,
+                      "lexical_score": 2.6954,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#6",
+                      "doc_id": "KB-029",
+                      "score": 6.8803,
+                      "lexical_score": 1.1276,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "时间"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#9",
+                      "doc_id": "KB-001",
+                      "score": 6.1962,
+                      "lexical_score": 3.9911,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#5",
+                      "doc_id": "KB-029",
+                      "score": 5.9579,
+                      "lexical_score": 2.3198,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "周五"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#4",
+                      "doc_id": "KB-028",
+                      "score": 5.7908,
+                      "lexical_score": 2.4867,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#2",
+                      "doc_id": "KB-028",
+                      "score": 5.2191,
+                      "lexical_score": 2.1552,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#15",
+                      "doc_id": "KB-001",
+                      "score": 4.7057,
+                      "lexical_score": 2.695,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#5",
+                      "doc_id": "KB-024",
+                      "score": 4.1917,
+                      "lexical_score": 3.386,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#12",
+                      "doc_id": "KB-001",
+                      "score": 4.1105,
+                      "lexical_score": 2.1774,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#6",
+                      "doc_id": "KB-013",
+                      "score": 3.8603,
+                      "lexical_score": 2.8595,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#2",
+                      "doc_id": "KB-021",
+                      "score": 3.725,
+                      "lexical_score": 1.5996,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#2",
+                      "doc_id": "KB-014",
+                      "score": 3.6674,
+                      "lexical_score": 2.7166,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#3",
+                      "doc_id": "KB-025",
+                      "score": 3.5555,
+                      "lexical_score": 1.7558,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#5",
+                      "doc_id": "KB-014",
+                      "score": 3.5235,
+                      "lexical_score": 2.5727,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "营业"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#5",
+                      "doc_id": "KB-015",
+                      "score": 2.9566,
+                      "lexical_score": 2.1901,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "闭店"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#4",
+                      "doc_id": "KB-024",
+                      "score": 2.6256,
+                      "lexical_score": 2.7988,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#3",
+                      "doc_id": "KB-015",
+                      "score": 2.4903,
+                      "lexical_score": 1.7238,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "时间"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#1",
+                      "doc_id": "KB-041",
+                      "score": 2.4737,
+                      "lexical_score": 1.8324,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "时间"
+                      ]
+                    }
+                  ],
+                  "expansions": [
+                    "Super Souper",
+                    "SS",
+                    "汤面店",
+                    "Super Souper",
+                    "SS",
+                    "汤面店"
+                  ],
+                  "coverage": 0.398,
+                  "hits": [
+                    {
+                      "doc_id": "KB-062",
+                      "chunk_id": "KB-062#2",
+                      "score": 103.8346,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-030",
+                      "chunk_id": "KB-030#2",
+                      "score": 102.0874,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-042",
+                      "chunk_id": "KB-042#2",
+                      "score": 83.4559,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-053",
+                      "chunk_id": "KB-053#1",
+                      "score": 68.8204,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "chunk_id": "KB-061#1",
+                      "score": 34.5355,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-020",
+                      "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-023",
+                      "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-027",
+                      "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    },
+                    {
+                      "doc_id": "KB-050",
+                      "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-051",
+                      "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-052",
+                      "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-031",
+                      "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-032",
+                      "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-033",
+                      "reason": "文档声明只适用于 S04，与问题里的 S01 不符"
+                    },
+                    {
+                      "doc_id": "KB-034",
+                      "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 19.5,
+                "took_ms": null,
+                "detail": {
+                  "candidates": [
+                    {
+                      "doc_id": "KB-062",
+                      "chunk_id": "KB-062#2",
+                      "score": 0.9762133436835861,
+                      "text": "经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇） 调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至 周四的营业时间不变，仍为 10:30-21:30。"
+                    },
+                    {
+                      "doc_id": "KB-030",
+                      "chunk_id": "KB-030#2",
+                      "score": 0.5358557300899667,
+                      "text": "| 标准营业时间 | 10:30–21:30 |"
+                    },
+                    {
+                      "doc_id": "KB-042",
+                      "chunk_id": "KB-042#2",
+                      "score": 0.46040048370781955,
+                      "text": "| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |"
+                    },
+                    {
+                      "doc_id": "KB-030",
+                      "chunk_id": "KB-030#2",
+                      "score": 0.19945842873766945,
+                      "text": "| 开业日期 | 2021-03-18 |"
+                    },
+                    {
+                      "doc_id": "KB-053",
+                      "chunk_id": "KB-053#1",
+                      "score": 0.16376647053435642,
+                      "text": "提交日期：2026-07-27"
+                    },
+                    {
+                      "doc_id": "KB-042",
+                      "chunk_id": "KB-042#2",
+                      "score": 0.1376194284593419,
+                      "text": "| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |"
+                    },
+                    {
+                      "doc_id": "KB-042",
+                      "chunk_id": "KB-042#2",
+                      "score": 0.1360222436663448,
+                      "text": "| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |"
+                    },
+                    {
+                      "doc_id": "KB-042",
+                      "chunk_id": "KB-042#2",
+                      "score": 0.13550208021736193,
+                      "text": "| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |"
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "chunk_id": "KB-061#1",
+                      "score": 0.11851785105871356,
+                      "text": "最后更新：2026-03-01 | 维护：总部市场部 | 适用范围：Super Souper、Makai Poke、Juicy Bao Bao、Arigato Sando、Super Tetsudo 五家门店"
+                    }
+                  ],
+                  "rejected": [],
+                  "selected": [
+                    {
+                      "doc_id": "KB-062",
+                      "chunk_id": "KB-062#2",
+                      "score": 0.9762133436835861,
+                      "source_start": 295,
+                      "source_end": 569,
+                      "quote": "经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇） 调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至 周四的营业时间不变，仍为 10:30-21:30。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 19.5,
+                "took_ms": 12.7,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 19.5,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

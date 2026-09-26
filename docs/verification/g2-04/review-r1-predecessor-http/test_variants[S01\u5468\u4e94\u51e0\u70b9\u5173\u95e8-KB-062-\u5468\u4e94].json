@@ -1,0 +1,615 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants_S01_u5468_u4e94_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants_S01_u5468_u4e94_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants_S01_u5468_u4e94_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 089e595eb37b\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants_S01_u5468_u4e94_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants_S01_u5468_u4e94_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "52918"
+      ],
+      "pid": 57791,
+      "port": 52918,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "089e595eb37b",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "S01周五几点关门",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-030",
+                "chunk_id": "KB-030#2",
+                "score": 28.2813,
+                "text": "| 项目 | 内容 |\n|---|---|\n| 门店编号 | S01 |\n| 门店名称 | Super Souper |\n| 品类 | 拉面 |\n| 商圈 | 上海·徐汇 |\n| 地址 | 上海市徐汇区虹漕南路 128 号 A 座 1 层 105 室 |\n| 店长 | 周岚 |\n| 联系电话 | 021-5555-0101 |\n| 标准营业时间 | 10:30–21:30 |\n| 座位数 | 42 |\n| 开业日期 | 2021-03-18 |\n\n",
+                "retrieval_text": "门店档案 S01 Super Souper\n# 门店档案：S01 Super Souper\n| 项目 | 内容 |\n|---|---|\n| 门店编号 | S01 |\n| 门店名称 | Super Souper |\n| 品类 | 拉面 |\n| 商圈 | 上海·徐汇 |\n| 地址 | 上海市徐汇区虹漕南路 128 号 A 座 1 层 105 室 |\n| 店长 | 周岚 |\n| 联系电话 | 021-5555-0101 |\n| 标准营业时间 | 10:30–21:30 |\n| 座位数 | 42 |\n| 开业日期 | 2021-03-18 |\n\n",
+                "source_start": 25,
+                "source_end": 251,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 24,
+                    "text": "# 门店档案：S01 Super Souper\n"
+                  },
+                  {
+                    "start": 25,
+                    "end": 47,
+                    "text": "| 项目 | 内容 |\n|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-062",
+                "chunk_id": "KB-062#2",
+                "score": 27.0962,
+                "text": "各门店、各职能部门：\n\n　　经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇）\n调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至\n周四的营业时间不变，仍为 10:30-21:30。\n\n　　现将有关事项通知如下：\n\n　　一、本次调整只涉及 Super Souper 一家门店，其余四家门店的营业时间不变。\n\n　　二、店长应在接到本通知后，按《排班与考勤制度》的要求调整周五、周六的排班\n并在店内公示，延长时段至少配置 3 人（前厅 1 人、后厨 2 人）。\n\n",
+                "retrieval_text": "合味餐饮管理（上海）有限公司   OA 公文系统   导出文件\n各门店、各职能部门：\n\n　　经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇）\n调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至\n周四的营业时间不变，仍为 10:30-21:30。\n\n　　现将有关事项通知如下：\n\n　　一、本次调整只涉及 Super Souper 一家门店，其余四家门店的营业时间不变。\n\n　　二、店长应在接到本通知后，按《排班与考勤制度》的要求调整周五、周六的排班\n并在店内公示，延长时段至少配置 3 人（前厅 1 人、后厨 2 人）。\n\n",
+                "source_start": 295,
+                "source_end": 569,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-053",
+                "chunk_id": "KB-053#1",
+                "score": 23.9581,
+                "text": "# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n\n店长：周岚\n提交日期：2026-07-27\n\n",
+                "retrieval_text": "S01 店长周报 2026-07-20 至 2026-07-26\n# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n\n店长：周岚\n提交日期：2026-07-27\n\n",
+                "source_start": 0,
+                "source_end": 73,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 49,
+                    "text": "# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-042",
+                "chunk_id": "KB-042#2",
+                "score": 17.545,
+                "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "retrieval_text": "门店营业时间总表\n# 门店营业时间总表\n| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "source_start": 61,
+                "source_end": 319,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 11,
+                    "text": "# 门店营业时间总表\n"
+                  },
+                  {
+                    "start": 61,
+                    "end": 118,
+                    "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-060",
+                "chunk_id": "KB-060#6",
+                "score": 10.587,
+                "text": "| 门店 | 反馈条数 | 主要类型 |\n|---|---|---|\n| S01 Super Souper | 14 | 汤底偏咸 3 条，等位 3 条，其余为好评 |\n| S02 Makai Poke | 21 | 三文鱼缺货 9 条，配菜分量 4 条，其余为好评 |\n| S03 Juicy Bao Bao | 12 | 早餐出品稳定，好评为主，2 条反映座位不够 |\n| S04 Arigato Sando | 22 | 出餐慢 12 条，面包偏干 3 条，其余为好评 |\n| S05 Super Tetsudo | 18 | 好评为主，2 条反映晚市噪音 |\n\n",
+                "retrieval_text": "顾客反馈汇总 2026 年 7 月\n# 顾客反馈汇总（2026 年 7 月）\n## 二、分店情况\n| 门店 | 反馈条数 | 主要类型 |\n|---|---|---|\n| S01 Super Souper | 14 | 汤底偏咸 3 条，等位 3 条，其余为好评 |\n| S02 Makai Poke | 21 | 三文鱼缺货 9 条，配菜分量 4 条，其余为好评 |\n| S03 Juicy Bao Bao | 12 | 早餐出品稳定，好评为主，2 条反映座位不够 |\n| S04 Arigato Sando | 22 | 出餐慢 12 条，面包偏干 3 条，其余为好评 |\n| S05 Super Tetsudo | 18 | 好评为主，2 条反映晚市噪音 |\n\n",
+                "source_start": 489,
+                "source_end": 774,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 21,
+                    "text": "# 顾客反馈汇总（2026 年 7 月）\n"
+                  },
+                  {
+                    "start": 478,
+                    "end": 488,
+                    "text": "## 二、分店情况\n"
+                  },
+                  {
+                    "start": 489,
+                    "end": 524,
+                    "text": "| 门店 | 反馈条数 | 主要类型 |\n|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "s01周五几点关门",
+              "terms": [
+                "s01",
+                "周五",
+                "五几",
+                "几点",
+                "点关",
+                "关门"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": "S01",
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-030#2",
+                  "doc_id": "KB-030",
+                  "score": 28.2813,
+                  "lexical_score": 11.7674,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-062#2",
+                  "doc_id": "KB-062",
+                  "score": 27.0962,
+                  "lexical_score": 11.6355,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01",
+                    "周五"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-053#1",
+                  "doc_id": "KB-053",
+                  "score": 23.9581,
+                  "lexical_score": 10.288,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-030#3",
+                  "doc_id": "KB-030",
+                  "score": 21.2676,
+                  "lexical_score": 7.7014,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-030#1",
+                  "doc_id": "KB-030",
+                  "score": 20.5267,
+                  "lexical_score": 13.2217,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-030#4",
+                  "doc_id": "KB-030",
+                  "score": 18.5688,
+                  "lexical_score": 11.5191,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-042#2",
+                  "doc_id": "KB-042",
+                  "score": 17.545,
+                  "lexical_score": 7.5341,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-062#1",
+                  "doc_id": "KB-062",
+                  "score": 15.1841,
+                  "lexical_score": 4.7299,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-053#5",
+                  "doc_id": "KB-053",
+                  "score": 14.6649,
+                  "lexical_score": 9.1513,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-053#3",
+                  "doc_id": "KB-053",
+                  "score": 12.325,
+                  "lexical_score": 7.1166,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-053#4",
+                  "doc_id": "KB-053",
+                  "score": 12.1325,
+                  "lexical_score": 6.9492,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#6",
+                  "doc_id": "KB-060",
+                  "score": 10.587,
+                  "lexical_score": 6.8193,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-053#2",
+                  "doc_id": "KB-053",
+                  "score": 10.2873,
+                  "lexical_score": 5.3447,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#7",
+                  "doc_id": "KB-003",
+                  "score": 10.067,
+                  "lexical_score": 12.9687,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-042#3",
+                  "doc_id": "KB-042",
+                  "score": 9.0277,
+                  "lexical_score": 2.5965,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-060#9",
+                  "doc_id": "KB-060",
+                  "score": 8.9533,
+                  "lexical_score": 5.3987,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s01",
+                    "关门"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-061#1",
+                  "doc_id": "KB-061",
+                  "score": 8.6339,
+                  "lexical_score": 4.2636,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-060#3",
+                  "doc_id": "KB-060",
+                  "score": 6.6554,
+                  "lexical_score": 1.4714,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-029#14",
+                  "doc_id": "KB-029",
+                  "score": 6.2958,
+                  "lexical_score": 2.7035,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "周五"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#4",
+                  "doc_id": "KB-001",
+                  "score": 6.2769,
+                  "lexical_score": 2.6954,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#4",
+                  "doc_id": "KB-060",
+                  "score": 5.7354,
+                  "lexical_score": 2.6005,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#1",
+                  "doc_id": "KB-029",
+                  "score": 5.0491,
+                  "lexical_score": 1.9808,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-028#2",
+                  "doc_id": "KB-028",
+                  "score": 5.019,
+                  "lexical_score": 2.1552,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#8",
+                  "doc_id": "KB-060",
+                  "score": 4.5198,
+                  "lexical_score": 1.5435,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#11",
+                  "doc_id": "KB-029",
+                  "score": 4.5172,
+                  "lexical_score": 1.6725,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#10",
+                  "doc_id": "KB-029",
+                  "score": 4.3423,
+                  "lexical_score": 1.5711,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#5",
+                  "doc_id": "KB-029",
+                  "score": 3.756,
+                  "lexical_score": 2.3198,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "周五"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-021#2",
+                  "doc_id": "KB-021",
+                  "score": 3.725,
+                  "lexical_score": 1.5996,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-026#2",
+                  "doc_id": "KB-026",
+                  "score": 3.6327,
+                  "lexical_score": 1.5599,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-024#2",
+                  "doc_id": "KB-024",
+                  "score": 1.6504,
+                  "lexical_score": 2.8348,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-024#4",
+                  "doc_id": "KB-024",
+                  "score": 1.0899,
+                  "lexical_score": 2.7988,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s01"
+                  ]
+                }
+              ],
+              "expansions": [
+                "Super Souper",
+                "SS",
+                "汤面店"
+              ],
+              "coverage": 0.213,
+              "hits": [
+                {
+                  "doc_id": "KB-030",
+                  "chunk_id": "KB-030#2",
+                  "score": 28.2813,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-062",
+                  "chunk_id": "KB-062#2",
+                  "score": 27.0962,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-053",
+                  "chunk_id": "KB-053#1",
+                  "score": 23.9581,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-042",
+                  "chunk_id": "KB-042#2",
+                  "score": 17.545,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-060",
+                  "chunk_id": "KB-060#6",
+                  "score": 10.587,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-002",
+                  "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                },
+                {
+                  "doc_id": "KB-020",
+                  "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-023",
+                  "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-027",
+                  "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-010",
+                  "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                },
+                {
+                  "doc_id": "KB-012",
+                  "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                },
+                {
+                  "doc_id": "KB-050",
+                  "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-051",
+                  "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-052",
+                  "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-031",
+                  "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-032",
+                  "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-033",
+                  "reason": "文档声明只适用于 S04，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-034",
+                  "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

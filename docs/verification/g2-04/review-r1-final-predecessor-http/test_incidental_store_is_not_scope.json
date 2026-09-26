@@ -1,0 +1,135 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_incidental_store_is_not_s0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_incidental_store_is_not_s0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_incidental_store_is_not_s0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：1 篇文档，1 个片段，缓存键 4ea9194599f1\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_incidental_store_is_not_s0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_incidental_store_is_not_s0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55444"
+      ],
+      "pid": 62389,
+      "port": 55444,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 1,
+            "kb_chunks": 1,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "4ea9194599f1",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "S02 sharedtoken 通用制度",
+            "top_k": 1
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#1",
+                "score": 2.2193,
+                "text": "sharedtoken 通用制度，正文以 S01 举例，所有门店均应遵守。",
+                "retrieval_text": "sharedtoken 通用制度，正文以 S01 举例，所有门店均应遵守。\nsharedtoken 通用制度，正文以 S01 举例，所有门店均应遵守。",
+                "source_start": 0,
+                "source_end": 37,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "s02 sharedtoken 通用制度",
+              "terms": [
+                "s02",
+                "sharedtoken",
+                "通用",
+                "用制",
+                "制度"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": "S02",
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-901#1",
+                  "doc_id": "KB-901",
+                  "score": 2.2193,
+                  "lexical_score": 1.6439,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "sharedtoken",
+                    "制度",
+                    "用制",
+                    "通用"
+                  ]
+                }
+              ],
+              "expansions": [],
+              "coverage": 0.454,
+              "hits": [
+                {
+                  "doc_id": "KB-901",
+                  "chunk_id": "KB-901#1",
+                  "score": 2.2193,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

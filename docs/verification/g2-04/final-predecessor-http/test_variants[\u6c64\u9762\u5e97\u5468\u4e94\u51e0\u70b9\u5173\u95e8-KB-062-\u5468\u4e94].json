@@ -1,0 +1,490 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_variants__u6c64_u9762_u5e0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_variants__u6c64_u9762_u5e0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_variants__u6c64_u9762_u5e0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 c4d0cb7c2b7c\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_variants__u6c64_u9762_u5e0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_variants__u6c64_u9762_u5e0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "57615"
+      ],
+      "pid": 32762,
+      "port": 57615,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "c4d0cb7c2b7c",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "汤面店周五几点关门",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-030",
+                "chunk_id": "KB-030#4",
+                "score": 26.3619,
+                "text": "## 备注\n\n- 常用简称：SS、汤面店，别名对照见 KB-003。\n- 门店在商场一层，有独立沿街门，外卖骑手从侧门取餐，不进商场主通道。\n- 后厨每天凌晨熬汤，汤底当天用完不留到第二天，这是开店以来没有变过的规矩。\n- 营业时间如有临时调整，以最新通知为准。",
+                "retrieval_text": "门店档案 S01 Super Souper\n# 门店档案：S01 Super Souper\n## 备注\n\n- 常用简称：SS、汤面店，别名对照见 KB-003。\n- 门店在商场一层，有独立沿街门，外卖骑手从侧门取餐，不进商场主通道。\n- 后厨每天凌晨熬汤，汤底当天用完不留到第二天，这是开店以来没有变过的规矩。\n- 营业时间如有临时调整，以最新通知为准。",
+                "source_start": 456,
+                "source_end": 587,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 24,
+                    "text": "# 门店档案：S01 Super Souper\n"
+                  },
+                  {
+                    "start": 456,
+                    "end": 462,
+                    "text": "## 备注\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-062",
+                "chunk_id": "KB-062#2",
+                "score": 23.3439,
+                "text": "各门店、各职能部门：\n\n　　经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇）\n调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至\n周四的营业时间不变，仍为 10:30-21:30。\n\n　　现将有关事项通知如下：\n\n　　一、本次调整只涉及 Super Souper 一家门店，其余四家门店的营业时间不变。\n\n　　二、店长应在接到本通知后，按《排班与考勤制度》的要求调整周五、周六的排班\n并在店内公示，延长时段至少配置 3 人（前厅 1 人、后厨 2 人）。\n\n",
+                "retrieval_text": "合味餐饮管理（上海）有限公司   OA 公文系统   导出文件\n各门店、各职能部门：\n\n　　经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇）\n调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至\n周四的营业时间不变，仍为 10:30-21:30。\n\n　　现将有关事项通知如下：\n\n　　一、本次调整只涉及 Super Souper 一家门店，其余四家门店的营业时间不变。\n\n　　二、店长应在接到本通知后，按《排班与考勤制度》的要求调整周五、周六的排班\n并在店内公示，延长时段至少配置 3 人（前厅 1 人、后厨 2 人）。\n\n",
+                "source_start": 295,
+                "source_end": 569,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-003",
+                "chunk_id": "KB-003#7",
+                "score": 16.1204,
+                "text": "| 数据库写法 | 门店编号 | 常见别名 |\n|---|---|---|\n| Super Souper | S01 | SS、汤面店 |\n| Makai Poke | S02 | Makai |\n| Juicy Bao Bao | S03 | JBB、包包店 |\n| Arigato Sando | S04 | 阿里嘎多、AS |\n| Super Tetsudo | S05 | 铁道、ST |\n\n",
+                "retrieval_text": "商品与门店别名词典\n# 商品与门店别名词典\n## 二、门店\n| 数据库写法 | 门店编号 | 常见别名 |\n|---|---|---|\n| Super Souper | S01 | SS、汤面店 |\n| Makai Poke | S02 | Makai |\n| Juicy Bao Bao | S03 | JBB、包包店 |\n| Arigato Sando | S04 | 阿里嘎多、AS |\n| Super Tetsudo | S05 | 铁道、ST |\n\n",
+                "source_start": 709,
+                "source_end": 909,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 商品与门店别名词典\n"
+                  },
+                  {
+                    "start": 700,
+                    "end": 708,
+                    "text": "## 二、门店\n"
+                  },
+                  {
+                    "start": 709,
+                    "end": 747,
+                    "text": "| 数据库写法 | 门店编号 | 常见别名 |\n|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-053",
+                "chunk_id": "KB-053#1",
+                "score": 14.9541,
+                "text": "# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n\n店长：周岚\n提交日期：2026-07-27\n\n",
+                "retrieval_text": "S01 店长周报 2026-07-20 至 2026-07-26\n# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n\n店长：周岚\n提交日期：2026-07-27\n\n",
+                "source_start": 0,
+                "source_end": 73,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 49,
+                    "text": "# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-029",
+                "chunk_id": "KB-029#14",
+                "score": 13.8856,
+                "text": "1. 门店周报的提交时间统一到每周一中午 12:00 前，晚交的运营部会单独提醒。周报里的数字是店长估算，只作为经营情况的背景，报表口径一律以系统为准，不要拿周报的数字去回答总部或外部的问题。\n2. 外卖平台的门店信息（营业时间、地址、电话）由各店本周内自查一遍，有出入的报市场部改，自查结果在本周五前回到店长群。\n3. 会员生日赠饮的核销流程有两家店操作不熟，出现过让顾客白跑一趟的情况，市场部本周内补一份图文说明发到店长群，并在下次培训里过一遍。\n",
+                "retrieval_text": "2026 年 8 月运营例会纪要\n# 2026 年 8 月运营例会纪要\n## 议题八：其他事项\n1. 门店周报的提交时间统一到每周一中午 12:00 前，晚交的运营部会单独提醒。周报里的数字是店长估算，只作为经营情况的背景，报表口径一律以系统为准，不要拿周报的数字去回答总部或外部的问题。\n2. 外卖平台的门店信息（营业时间、地址、电话）由各店本周内自查一遍，有出入的报市场部改，自查结果在本周五前回到店长群。\n3. 会员生日赠饮的核销流程有两家店操作不熟，出现过让顾客白跑一趟的情况，市场部本周内补一份图文说明发到店长群，并在下次培训里过一遍。\n",
+                "source_start": 2183,
+                "source_end": 2409,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 19,
+                    "text": "# 2026 年 8 月运营例会纪要\n"
+                  },
+                  {
+                    "start": 2170,
+                    "end": 2182,
+                    "text": "## 议题八：其他事项\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "汤面店周五几点关门",
+              "terms": [
+                "汤面",
+                "面店",
+                "店周",
+                "周五",
+                "五几",
+                "几点",
+                "点关",
+                "关门"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": "S01",
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-030#4",
+                  "doc_id": "KB-030",
+                  "score": 26.3619,
+                  "lexical_score": 16.9803,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "汤面",
+                    "面店"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-030#2",
+                  "doc_id": "KB-030",
+                  "score": 24.0435,
+                  "lexical_score": 7.9952,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-062#2",
+                  "doc_id": "KB-062",
+                  "score": 23.3439,
+                  "lexical_score": 10.0242,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "周五"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-030#3",
+                  "doc_id": "KB-030",
+                  "score": 19.2781,
+                  "lexical_score": 5.2326,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-030#1",
+                  "doc_id": "KB-030",
+                  "score": 17.1653,
+                  "lexical_score": 8.9833,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-003#7",
+                  "doc_id": "KB-003",
+                  "score": 16.1204,
+                  "lexical_score": 20.767,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "汤面",
+                    "面店"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-053#1",
+                  "doc_id": "KB-053",
+                  "score": 14.9541,
+                  "lexical_score": 6.4215,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-062#1",
+                  "doc_id": "KB-062",
+                  "score": 14.2112,
+                  "lexical_score": 4.7299,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-029#14",
+                  "doc_id": "KB-029",
+                  "score": 13.8856,
+                  "lexical_score": 5.9627,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "周五",
+                    "店周"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-042#2",
+                  "doc_id": "KB-042",
+                  "score": 11.9206,
+                  "lexical_score": 5.1189,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-053#2",
+                  "doc_id": "KB-053",
+                  "score": 9.3232,
+                  "lexical_score": 5.8596,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "汤面"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-053#5",
+                  "doc_id": "KB-053",
+                  "score": 9.0374,
+                  "lexical_score": 5.6111,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-061#1",
+                  "doc_id": "KB-061",
+                  "score": 8.6339,
+                  "lexical_score": 4.2636,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-060#6",
+                  "doc_id": "KB-060",
+                  "score": 7.5926,
+                  "lexical_score": 4.8905,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-042#3",
+                  "doc_id": "KB-042",
+                  "score": 7.5695,
+                  "lexical_score": 2.5965,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-053#3",
+                  "doc_id": "KB-053",
+                  "score": 7.4344,
+                  "lexical_score": 4.2172,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-053#4",
+                  "doc_id": "KB-053",
+                  "score": 7.3065,
+                  "lexical_score": 4.1059,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-060#9",
+                  "doc_id": "KB-060",
+                  "score": 6.3103,
+                  "lexical_score": 3.7755,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "关门"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#3",
+                  "doc_id": "KB-060",
+                  "score": 5.4909,
+                  "lexical_score": 1.4714,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-029#5",
+                  "doc_id": "KB-029",
+                  "score": 5.0678,
+                  "lexical_score": 2.3198,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "周五"
+                  ]
+                }
+              ],
+              "expansions": [
+                "Super Souper",
+                "SS",
+                "汤面店"
+              ],
+              "coverage": 0.21,
+              "hits": [
+                {
+                  "doc_id": "KB-030",
+                  "chunk_id": "KB-030#4",
+                  "score": 26.3619,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-062",
+                  "chunk_id": "KB-062#2",
+                  "score": 23.3439,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-003",
+                  "chunk_id": "KB-003#7",
+                  "score": 16.1204,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-053",
+                  "chunk_id": "KB-053#1",
+                  "score": 14.9541,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-029",
+                  "chunk_id": "KB-029#14",
+                  "score": 13.8856,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-002",
+                  "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                },
+                {
+                  "doc_id": "KB-020",
+                  "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-023",
+                  "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-027",
+                  "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-010",
+                  "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                },
+                {
+                  "doc_id": "KB-012",
+                  "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                },
+                {
+                  "doc_id": "KB-050",
+                  "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-051",
+                  "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-052",
+                  "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-031",
+                  "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-032",
+                  "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-033",
+                  "reason": "文档声明只适用于 S04，与问题里的 S01 不符"
+                },
+                {
+                  "doc_id": "KB-034",
+                  "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

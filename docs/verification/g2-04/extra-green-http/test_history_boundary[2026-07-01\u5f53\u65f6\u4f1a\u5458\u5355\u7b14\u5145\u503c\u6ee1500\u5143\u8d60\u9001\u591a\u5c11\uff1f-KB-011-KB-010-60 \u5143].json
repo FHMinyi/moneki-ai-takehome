@@ -1,0 +1,919 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-114/test_history_boundary_2026_07_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-114/test_history_boundary_2026_07_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-114/test_history_boundary_2026_07_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 6a50ec2f37a8\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-114/test_history_boundary_2026_07_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-114/test_history_boundary_2026_07_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "53896"
+      ],
+      "pid": 25196,
+      "port": 53896,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "6a50ec2f37a8",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "2026-07-01当时会员单笔充值满500元赠送多少？",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "KB-011《会员储值政策 v2》：1. 单笔充值满 500 元，赠送 60 元。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-011",
+                "quote": "1. 单笔充值满 500 元，赠送 60 元。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "single",
+            "question": "2026-07-01当时会员单笔充值满500元赠送多少？",
+            "started_at": "2026-09-27T04:25:45.783",
+            "total_ms": 19.7,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 8.1,
+                "took_ms": 8.1,
+                "detail": {
+                  "question": "2026-07-01当时会员单笔充值满500元赠送多少？",
+                  "standalone_question": "2026-07-01当时会员单笔充值满500元赠送多少？",
+                  "search_query": "2026-07-01当时会员单笔充值满500元赠送多少？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-07-01",
+                    "2026-07-01"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-07-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=['2026-07-01']"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 15.8,
+                "took_ms": 7.7,
+                "detail": {
+                  "query": "2026-07-01当时会员单笔充值满500元赠送多少?",
+                  "terms": [
+                    "2026",
+                    "07",
+                    "01",
+                    "当时",
+                    "时会",
+                    "会员",
+                    "员单",
+                    "单笔",
+                    "笔充",
+                    "充值",
+                    "值满",
+                    "500",
+                    "元赠",
+                    "赠送",
+                    "送多"
+                  ],
+                  "scope": {
+                    "as_of": "2026-07-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-011#3",
+                      "doc_id": "KB-011",
+                      "score": 83.7187,
+                      "lexical_score": 41.3426,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "500",
+                        "会员",
+                        "值满",
+                        "充值",
+                        "单笔",
+                        "笔充",
+                        "赠送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#1",
+                      "doc_id": "KB-011",
+                      "score": 44.0321,
+                      "lexical_score": 14.8848,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "01",
+                        "07",
+                        "2026",
+                        "会员",
+                        "充值"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#7",
+                      "doc_id": "KB-011",
+                      "score": 39.1188,
+                      "lexical_score": 11.6093,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "会员",
+                        "充值",
+                        "赠送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#5",
+                      "doc_id": "KB-011",
+                      "score": 37.9658,
+                      "lexical_score": 10.8406,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "会员",
+                        "充值",
+                        "赠送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#4",
+                      "doc_id": "KB-011",
+                      "score": 31.0527,
+                      "lexical_score": 6.2319,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "500",
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#6",
+                      "doc_id": "KB-011",
+                      "score": 24.8453,
+                      "lexical_score": 10.3754,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员",
+                        "充值",
+                        "赠送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#2",
+                      "doc_id": "KB-011",
+                      "score": 17.8036,
+                      "lexical_score": 3.3337,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#1",
+                      "doc_id": "KB-014",
+                      "score": 13.3438,
+                      "lexical_score": 6.5896,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "01",
+                        "07"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#14",
+                      "doc_id": "KB-001",
+                      "score": 12.9692,
+                      "lexical_score": 6.4045,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "01",
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#3",
+                      "doc_id": "KB-013",
+                      "score": 12.1267,
+                      "lexical_score": 5.9885,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "单笔"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#3",
+                      "doc_id": "KB-051",
+                      "score": 11.764,
+                      "lexical_score": 5.8094,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026",
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#3",
+                      "doc_id": "KB-014",
+                      "score": 9.9272,
+                      "lexical_score": 4.3118,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "会员",
+                        "赠送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#7",
+                      "doc_id": "KB-001",
+                      "score": 9.428,
+                      "lexical_score": 4.0437,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "时会"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#1",
+                      "doc_id": "KB-015",
+                      "score": 9.299,
+                      "lexical_score": 4.5921,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "01",
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#1",
+                      "doc_id": "KB-001",
+                      "score": 9.2334,
+                      "lexical_score": 3.914,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "01",
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-016#1",
+                      "doc_id": "KB-016",
+                      "score": 8.8479,
+                      "lexical_score": 4.3693,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#4",
+                      "doc_id": "KB-001",
+                      "score": 8.7276,
+                      "lexical_score": 3.5768,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "07",
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#1",
+                      "doc_id": "KB-061",
+                      "score": 8.6855,
+                      "lexical_score": 4.2892,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "01",
+                        "2026",
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#2",
+                      "doc_id": "KB-050",
+                      "score": 8.6805,
+                      "lexical_score": 4.2866,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#12",
+                      "doc_id": "KB-001",
+                      "score": 7.7767,
+                      "lexical_score": 2.9429,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "当时"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-033#2",
+                      "doc_id": "KB-033",
+                      "score": 6.6769,
+                      "lexical_score": 3.2973,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "01"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#3",
+                      "doc_id": "KB-023",
+                      "score": 6.397,
+                      "lexical_score": 3.159,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026",
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#3",
+                      "doc_id": "KB-061",
+                      "score": 6.0563,
+                      "lexical_score": 2.5363,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#4",
+                      "doc_id": "KB-025",
+                      "score": 5.9331,
+                      "lexical_score": 2.9299,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026",
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#1",
+                      "doc_id": "KB-051",
+                      "score": 5.627,
+                      "lexical_score": 1.7181,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-032#3",
+                      "doc_id": "KB-032",
+                      "score": 5.6192,
+                      "lexical_score": 2.7749,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "07",
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#4",
+                      "doc_id": "KB-051",
+                      "score": 5.1223,
+                      "lexical_score": 1.3816,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#5",
+                      "doc_id": "KB-023",
+                      "score": 5.1046,
+                      "lexical_score": 2.2974,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026",
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#2",
+                      "doc_id": "KB-051",
+                      "score": 4.8967,
+                      "lexical_score": 1.2312,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#1",
+                      "doc_id": "KB-050",
+                      "score": 4.833,
+                      "lexical_score": 1.7217,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#1",
+                      "doc_id": "KB-013",
+                      "score": 4.4497,
+                      "lexical_score": 0.8705,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-032#2",
+                      "doc_id": "KB-032",
+                      "score": 4.3911,
+                      "lexical_score": 1.9562,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "07"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#4",
+                      "doc_id": "KB-050",
+                      "score": 4.3317,
+                      "lexical_score": 1.3874,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#3",
+                      "doc_id": "KB-050",
+                      "score": 4.2801,
+                      "lexical_score": 1.3531,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#5",
+                      "doc_id": "KB-013",
+                      "score": 4.2279,
+                      "lexical_score": 2.1319,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#2",
+                      "doc_id": "KB-042",
+                      "score": 4.0698,
+                      "lexical_score": 2.0098,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "07"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#2",
+                      "doc_id": "KB-020",
+                      "score": 4.0622,
+                      "lexical_score": 2.006,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026",
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#2",
+                      "doc_id": "KB-023",
+                      "score": 3.8791,
+                      "lexical_score": 1.4804,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#1",
+                      "doc_id": "KB-023",
+                      "score": 3.8658,
+                      "lexical_score": 1.4716,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#2",
+                      "doc_id": "KB-061",
+                      "score": 3.8529,
+                      "lexical_score": 2.3517,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-025#2",
+                      "doc_id": "KB-025",
+                      "score": 3.694,
+                      "lexical_score": 1.4372,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#4",
+                      "doc_id": "KB-061",
+                      "score": 3.6705,
+                      "lexical_score": 0.9458,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#4",
+                      "doc_id": "KB-023",
+                      "score": 3.6595,
+                      "lexical_score": 1.334,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#5",
+                      "doc_id": "KB-051",
+                      "score": 3.5922,
+                      "lexical_score": 1.5589,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#1",
+                      "doc_id": "KB-025",
+                      "score": 3.5418,
+                      "lexical_score": 1.3357,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#6",
+                      "doc_id": "KB-023",
+                      "score": 3.523,
+                      "lexical_score": 1.243,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#3",
+                      "doc_id": "KB-025",
+                      "score": 3.188,
+                      "lexical_score": 1.0998,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#5",
+                      "doc_id": "KB-050",
+                      "score": 3.0301,
+                      "lexical_score": 1.5298,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#1",
+                      "doc_id": "KB-020",
+                      "score": 2.6358,
+                      "lexical_score": 1.0551,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#5",
+                      "doc_id": "KB-024",
+                      "score": 0.91,
+                      "lexical_score": 1.7975,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#4",
+                      "doc_id": "KB-003",
+                      "score": 0.7145,
+                      "lexical_score": 0.7057,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#6",
+                      "doc_id": "KB-024",
+                      "score": 0.5947,
+                      "lexical_score": 0.9568,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "2026"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.433,
+                  "hits": [
+                    {
+                      "doc_id": "KB-011",
+                      "chunk_id": "KB-011#3",
+                      "score": 83.7187,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "chunk_id": "KB-014#1",
+                      "score": 13.3438,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#14",
+                      "score": 12.9692,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-013",
+                      "chunk_id": "KB-013#3",
+                      "score": 12.1267,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-051",
+                      "chunk_id": "KB-051#3",
+                      "score": 11.764,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-062",
+                      "reason": "该版本自 2026-08-15 起才生效，晚于问题所指的 2026-07-01"
+                    },
+                    {
+                      "doc_id": "KB-021",
+                      "reason": "该版本自 2026-07-06 起才生效，晚于问题所指的 2026-07-01"
+                    },
+                    {
+                      "doc_id": "KB-022",
+                      "reason": "该版本自 2026-07-04 起才生效，晚于问题所指的 2026-07-01"
+                    },
+                    {
+                      "doc_id": "KB-026",
+                      "reason": "该版本自 2026-07-24 起才生效，晚于问题所指的 2026-07-01"
+                    },
+                    {
+                      "doc_id": "KB-027",
+                      "reason": "该版本自 2026-08-03 起才生效，晚于问题所指的 2026-07-01"
+                    },
+                    {
+                      "doc_id": "KB-028",
+                      "reason": "该版本自 2026-08-01 起才生效，晚于问题所指的 2026-07-01"
+                    },
+                    {
+                      "doc_id": "KB-029",
+                      "reason": "该版本自 2026-08-05 起才生效，晚于问题所指的 2026-07-01"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    },
+                    {
+                      "doc_id": "KB-040",
+                      "reason": "该版本自 2026-08-01 起才生效，晚于问题所指的 2026-07-01"
+                    },
+                    {
+                      "doc_id": "KB-060",
+                      "reason": "该版本自 2026-08-03 起才生效，晚于问题所指的 2026-07-01"
+                    },
+                    {
+                      "doc_id": "KB-052",
+                      "reason": "该版本自 2026-08-10 起才生效，晚于问题所指的 2026-07-01"
+                    },
+                    {
+                      "doc_id": "KB-053",
+                      "reason": "该版本自 2026-07-27 起才生效，晚于问题所指的 2026-07-01"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 19.7,
+                "took_ms": null,
+                "detail": {
+                  "candidates": [
+                    {
+                      "doc_id": "KB-011",
+                      "chunk_id": "KB-011#3",
+                      "score": 1.0249096737398546,
+                      "text": "1. 单笔充值满 500 元，赠送 60 元。"
+                    },
+                    {
+                      "doc_id": "KB-011",
+                      "chunk_id": "KB-011#3",
+                      "score": 0.8633012780913746,
+                      "text": "2. 单笔充值满 1000 元，赠送 150 元。"
+                    },
+                    {
+                      "doc_id": "KB-011",
+                      "chunk_id": "KB-011#3",
+                      "score": 0.7826038908031012,
+                      "text": "3. 赠送档位不叠加，按单笔充值金额就高不就低；500 元以下的充值不赠送。"
+                    },
+                    {
+                      "doc_id": "KB-011",
+                      "chunk_id": "KB-011#3",
+                      "score": 0.15189084332059682,
+                      "text": "4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。"
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "chunk_id": "KB-014#1",
+                      "score": 0.08068559273180037,
+                      "text": "生效日期：2025-07-01"
+                    },
+                    {
+                      "doc_id": "KB-013",
+                      "chunk_id": "KB-013#3",
+                      "score": 0.06486246198241179,
+                      "text": "1. 单笔退款金额不超过 ¥200 的，当班店员核实后即可操作。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#14",
+                      "score": 0.06295435578484017,
+                      "text": "| v3 | 2026-05-01 | 现行 |"
+                    },
+                    {
+                      "doc_id": "KB-013",
+                      "chunk_id": "KB-013#3",
+                      "score": 0.06020475097116628,
+                      "text": "2. **单笔超过 ¥200 需店长审批**，店长不在店时电话或企业微信确认，并在登记时注明审批人。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#14",
+                      "score": 0.04815379004932062,
+                      "text": "| v2 | 2025-09-01 | 已被 v3 取代 |"
+                    },
+                    {
+                      "doc_id": "KB-051",
+                      "chunk_id": "KB-051#3",
+                      "score": 0.018986041505906652,
+                      "text": "13 号、14 号是周末，客流感觉比停业前稍微好一点，估计是憋了几天，加上我们在会员群里说了一声。"
+                    },
+                    {
+                      "doc_id": "KB-051",
+                      "chunk_id": "KB-051#3",
+                      "score": 0.005833919291788628,
+                      "text": "12 号恢复营业第一天，早上七点半开门，门口已经有几位老顾客在等了，早餐这一波基本回来了。"
+                    }
+                  ],
+                  "rejected": [],
+                  "selected": [
+                    {
+                      "doc_id": "KB-011",
+                      "chunk_id": "KB-011#3",
+                      "score": 1.0249096737398546,
+                      "source_start": 146,
+                      "source_end": 290,
+                      "quote": "1. 单笔充值满 500 元，赠送 60 元。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 19.7,
+                "took_ms": 11.6,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 19.7,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

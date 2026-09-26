@@ -1,0 +1,333 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：1 篇文档，1 个片段，缓存键 65fbf65d0ca2\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56931"
+      ],
+      "pid": 32069,
+      "port": 56931,
+      "kb_dir": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/kb",
+      "health": {
+        "status": "ok",
+        "llm_mode": "mock",
+        "kb_docs": 1,
+        "kb_chunks": 1,
+        "valid_sales_rows": 18290,
+        "today": "2026-09-01",
+        "data_period": {
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "cleaning_report": {
+          "raw_rows": 18628,
+          "removed": {
+            "1_unparseable_date": 8,
+            "2_empty_amount": 150,
+            "3_qty_le_zero": 30,
+            "4_store_not_in_stores": 10,
+            "5_product_not_in_products": 40,
+            "6_duplicate_row": 100
+          },
+          "removed_rows": 338,
+          "kept_rows": 18290,
+          "kept_sales_rows": 18196,
+          "kept_refund_rows": 94
+        },
+        "index_key": "65fbf65d0ca2",
+        "kb_warnings": []
+      },
+      "retrieval": {
+        "oldtoken": {
+          "results": [
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#1",
+              "score": 0.5548,
+              "text": "oldtoken oldfact",
+              "retrieval_text": "oldtoken oldfact\noldtoken oldfact",
+              "source_start": 0,
+              "source_end": 16,
+              "context_spans": [],
+              "padded": false,
+              "evidence_eligible": true,
+              "exclusion_reason": null
+            }
+          ],
+          "diagnostics": {
+            "query": "oldtoken",
+            "terms": [
+              "oldtoken"
+            ],
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "candidates": [
+              {
+                "chunk_id": "KB-901#1",
+                "doc_id": "KB-901",
+                "score": 0.5548,
+                "lexical_score": 0.411,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "oldtoken"
+                ]
+              }
+            ],
+            "expansions": [],
+            "coverage": 1.0,
+            "hits": [
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#1",
+                "score": 0.5548,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": []
+          }
+        }
+      },
+      "stopped": true
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/other\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：1 篇文档，1 个片段，缓存键 d1cced59a4c6\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56946"
+      ],
+      "pid": 32082,
+      "port": 56946,
+      "kb_dir": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/other",
+      "health": {
+        "status": "ok",
+        "llm_mode": "mock",
+        "kb_docs": 1,
+        "kb_chunks": 1,
+        "valid_sales_rows": 18290,
+        "today": "2026-09-01",
+        "data_period": {
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "cleaning_report": {
+          "raw_rows": 18628,
+          "removed": {
+            "1_unparseable_date": 8,
+            "2_empty_amount": 150,
+            "3_qty_le_zero": 30,
+            "4_store_not_in_stores": 10,
+            "5_product_not_in_products": 40,
+            "6_duplicate_row": 100
+          },
+          "removed_rows": 338,
+          "kept_rows": 18290,
+          "kept_sales_rows": 18196,
+          "kept_refund_rows": 94
+        },
+        "index_key": "d1cced59a4c6",
+        "kb_warnings": []
+      },
+      "retrieval": {
+        "newtoken": {
+          "results": [
+            {
+              "doc_id": "KB-903",
+              "chunk_id": "KB-903#1",
+              "score": 0.5548,
+              "text": "newtoken newfact",
+              "retrieval_text": "newtoken newfact\nnewtoken newfact",
+              "source_start": 0,
+              "source_end": 16,
+              "context_spans": [],
+              "padded": false,
+              "evidence_eligible": true,
+              "exclusion_reason": null
+            }
+          ],
+          "diagnostics": {
+            "query": "newtoken",
+            "terms": [
+              "newtoken"
+            ],
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "candidates": [
+              {
+                "chunk_id": "KB-903#1",
+                "doc_id": "KB-903",
+                "score": 0.5548,
+                "lexical_score": 0.411,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "newtoken"
+                ]
+              }
+            ],
+            "expansions": [],
+            "coverage": 1.0,
+            "hits": [
+              {
+                "doc_id": "KB-903",
+                "chunk_id": "KB-903#1",
+                "score": 0.5548,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": []
+          }
+        }
+      },
+      "stopped": true
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56960"
+      ],
+      "pid": 32090,
+      "port": 56960,
+      "kb_dir": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/other",
+      "health": {
+        "status": "ok",
+        "llm_mode": "mock",
+        "kb_docs": 1,
+        "kb_chunks": 1,
+        "valid_sales_rows": 18290,
+        "today": "2026-09-01",
+        "data_period": {
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "cleaning_report": {
+          "raw_rows": 18628,
+          "removed": {
+            "1_unparseable_date": 8,
+            "2_empty_amount": 150,
+            "3_qty_le_zero": 30,
+            "4_store_not_in_stores": 10,
+            "5_product_not_in_products": 40,
+            "6_duplicate_row": 100
+          },
+          "removed_rows": 338,
+          "kept_rows": 18290,
+          "kept_sales_rows": 18196,
+          "kept_refund_rows": 94
+        },
+        "index_key": "d1cced59a4c6",
+        "kb_warnings": []
+      },
+      "retrieval": {
+        "oldtoken": {
+          "results": [
+            {
+              "doc_id": "KB-903",
+              "chunk_id": "KB-903#1",
+              "score": 0.0,
+              "text": "newtoken newfact",
+              "retrieval_text": "newtoken newfact\nnewtoken newfact",
+              "source_start": 0,
+              "source_end": 16,
+              "context_spans": [],
+              "padded": true,
+              "evidence_eligible": false,
+              "exclusion_reason": null
+            }
+          ],
+          "diagnostics": {
+            "query": "oldtoken",
+            "terms": [
+              "oldtoken"
+            ],
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "candidates": [],
+            "expansions": [],
+            "coverage": 0.0,
+            "hits": [
+              {
+                "doc_id": "KB-903",
+                "chunk_id": "KB-903#1",
+                "score": 0.0,
+                "padded": true,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": []
+          }
+        }
+      },
+      "stopped": true
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/other\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：1 篇文档，1 个片段，缓存键 d1cced59a4c6\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-124/test_lifecycle_rebuild_restart3/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    }
+  ]
+}

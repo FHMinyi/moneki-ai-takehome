@@ -1,0 +1,48 @@
+.....F........F                                                          [100%]
+=================================== FAILURES ===================================
+_ test_rephrasing[\u8bf7\u8bf4\u660e\u5916\u5356\u9000\u6b3e\u7684\u7533\u8bf7\u65f6\u9650-KB-013-24] _
+
+rt = <g203.Runtime object at 0x108f38ef0>, q = '请说明外卖退款的申请时限', gold = 'KB-013'
+fact = '24'
+
+    @pytest.mark.parametrize('q,gold,fact',[
+     ('请说明外卖退款的申请时限','KB-013','24'),
+     ('Beef Poke里面有哪些过敏原？','KB-040','芝麻'),
+     ('汤面店周五几点关门','KB-062','23:00'),
+     ('开具电子发票的操作流程','KB-061','小程序'),
+     ('阿里嘎多的吞拿鱼三明治为何停售','KB-029','35%'),
+     ('鲑鱼波奇饭断供后供应商赔付金额是多少','KB-022','8,600'),
+    ])
+    def test_rephrasing(rt,q,gold,fact):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='doc' and fact in a['answer'],a
+E       AssertionError: {'answer': 'KB-013《退款政策 v2》：3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-013', 'quote': '3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'doc'
+E         
+E           doc and '24' in 'KB-013《退款政策 v2》：3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。')
+
+docs/verification/g2-04/test_doc_qa.py:119: AssertionError
+______________________ test_unretrieved_fact_not_borrowed ______________________
+
+rt = <g203.Runtime object at 0x109521dc0>
+
+    def test_unretrieved_fact_not_borrowed(rt):
+        # The retrieved span is about deposits; unrelated material in the same doc
+        # must not become an answer to an absent delivery-fee question.
+        m.write(rt,901,'# 配送规则\n\n配送规则适用于夜班。\n\n'+
+                '门店请遵守登记流程。\n\n'*40+'会员开卡手续费为83元。\n')
+        rt.build()
+        with rt.serve() as req:a,t=chat(req,'夜班配送手续费是多少元？')
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': '这个问题我没抓住重点：是想查某段时间的经营数字，还是想看某条规定？补一个指标、时间或者门店，我就能答。', 'answer_type': 'clarify', 'citations': [], 'data_evidence': [], ...}
+E       assert ('clarify' == 'refusal'
+E         
+E         - refusal
+E         + clarify)
+
+docs/verification/g2-04/test_doc_qa.py:149: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-04/test_doc_qa.py::test_rephrasing[\u8bf7\u8bf4\u660e\u5916\u5356\u9000\u6b3e\u7684\u7533\u8bf7\u65f6\u9650-KB-013-24]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_unretrieved_fact_not_borrowed
+2 failed, 13 passed, 27 deselected in 11.87s

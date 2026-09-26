@@ -1,0 +1,400 @@
+FFFFFFFFFFF.FFFF                                                         [100%]
+=================================== FAILURES ===================================
+___________________________ test_document_facts[C01] ___________________________
+
+rt = <g203.Runtime object at 0x10b194e30>
+q = {'category': 'doc', 'id': 'C01', 'points': 2, 'turns': [{'checks': {'answer_type_in': ['doc', 'hybrid'], 'cite_all': [..._none': ['KB-012'], 'fact_all': {'docs': ['KB-013'], 'numbers': [{...}], 'texts': []}}, 'question': '外卖订单多久内可以申请退款？'}]}
+
+    @pytest.mark.parametrize('q',PUBLIC,ids=lambda q:q['id'])
+    def test_document_facts(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q['turns'][0]['question'])
+        checks=q['turns'][0]['checks']; ids={c['doc_id'] for c in a['citations']}
+        assert a['answer_type']=='doc',a
+>       assert set(checks.get('cite_all',[]))<=ids,a
+E       AssertionError: {'answer': '会员储值政策 v2
+E         # 会员储值政策 v2
+E         
+E         制定部门：总部市场部（会员运营）
+E         生效日期：2026-07-01，自该日起执行，此前充值的余额按原余额继续使用。
+E         
+E         
+E         会员储值政策 v2
+E         # 会员储值..., {'doc_id': 'KB-061', 'quote': '找到对应订单点“开发票”，填抬头和税号后提交，电子发票会发到填写的邮箱，通常几分钟内到，最长不超过 24 小时。'}], 'data_evidence': [], ...}
+E       assert {'KB-013'} <= {'KB-020', 'KB-061'}
+E         
+E         Extra items in the left set:
+E         'KB-013'
+
+docs/verification/g2-04/test_doc_qa.py:56: AssertionError
+___________________________ test_document_facts[C02] ___________________________
+
+rt = <g203.Runtime object at 0x10b061670>
+q = {'category': 'doc', 'id': 'C02', 'points': 2, 'turns': [{'checks': {'answer_type_in': ['doc', 'hybrid'], 'cite_all': [...'fact_all': {'docs': ['KB-040'], 'numbers': [], 'texts': ['麸质', '大豆', '芝麻']}}, 'question': '有顾客问牛肉poke 里有哪些过敏原，怎么答？'}]}
+
+    @pytest.mark.parametrize('q',PUBLIC,ids=lambda q:q['id'])
+    def test_document_facts(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q['turns'][0]['question'])
+        checks=q['turns'][0]['checks']; ids={c['doc_id'] for c in a['citations']}
+        assert a['answer_type']=='doc',a
+>       assert set(checks.get('cite_all',[]))<=ids,a
+E       AssertionError: {'answer': '过敏原对照表
+E         # 过敏原对照表
+E         
+E         维护部门：总部品控部
+E         本表覆盖在售的全部 21 个商品与 9 类常见过敏原。`✓` 表示配方中含有该过敏原，`—` 表示不含。
+E         顾客主动告知过敏时，以本表为准回答，不要...202 | 整托配送，仓储在松江 |'}, {'doc_id': 'KB-031', 'quote': '出餐台和打包台是分开的，外带单从侧口取，堂食顾客不用和外卖骑手挤在一起。'}], 'data_evidence': [], ...}
+E       assert {'KB-040'} <= {'KB-031', 'KB-041'}
+E         
+E         Extra items in the left set:
+E         'KB-040'
+
+docs/verification/g2-04/test_doc_qa.py:56: AssertionError
+___________________________ test_document_facts[C03] ___________________________
+
+rt = <g203.Runtime object at 0x10b7df800>
+q = {'category': 'doc', 'id': 'C03', 'points': 2, 'turns': [{'checks': {'answer_type_in': ['doc', 'hybrid'], 'cite_all': [...cs': ['KB-062'], 'numbers': [], 'texts': ['23:00', '23点', '23时', '晚上11点']}}, 'question': 'Super Souper 现在周五晚上营业到几点？'}]}
+
+    @pytest.mark.parametrize('q',PUBLIC,ids=lambda q:q['id'])
+    def test_document_facts(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q['turns'][0]['question'])
+        checks=q['turns'][0]['checks']; ids={c['doc_id'] for c in a['citations']}
+        assert a['answer_type']=='doc',a
+>       assert set(checks.get('cite_all',[]))<=ids,a
+E       AssertionError: {'answer': '合味餐饮管理（上海）有限公司   OA 公文系统   导出文件
+E         ==========================================================
+E           合味餐饮管理（上海）有...udo 五家门店'}, {'doc_id': 'KB-053', 'quote': 'S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）'}], 'data_evidence': [], ...}
+E       assert {'KB-062'} <= {'KB-053', 'KB-061'}
+E         
+E         Extra items in the left set:
+E         'KB-062'
+
+docs/verification/g2-04/test_doc_qa.py:56: AssertionError
+___________________________ test_document_facts[C04] ___________________________
+
+rt = <g203.Runtime object at 0x10b885e20>
+q = {'category': 'doc', 'id': 'C04', 'points': 2, 'turns': [{'checks': {'answer_type_in': ['doc', 'hybrid'], 'cite_all': ['KB-022'], 'fact_all': {'docs': ['KB-022'], 'numbers': [{...}], 'texts': []}}, 'question': '三文鱼那次断供，供应商最后赔了我们多少钱？'}]}
+
+    @pytest.mark.parametrize('q',PUBLIC,ids=lambda q:q['id'])
+    def test_document_facts(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q['turns'][0]['question'])
+        checks=q['turns'][0]['checks']; ids={c['doc_id'] for c in a['citations']}
+        assert a['answer_type']=='doc',a
+        assert set(checks.get('cite_all',[]))<=ids,a
+        assert not set(checks.get('cite_none',[]))&ids,a
+        quotes(a,payload)
+        for mode in ('fact_all','fact_any'):
+            f=checks.get(mode)
+            if not f:continue
+            body=' '.join(c['quote'] for c in a['citations'] if c['doc_id'] in f['docs'])+' '+a['answer']
+            tests=[s in body for s in f['texts']]+[str(n['value']) in body.replace(',','') for n in f['numbers']]
+            assert (all(tests) if mode=='fact_all' else any(tests)),a
+        for n in checks.get('numbers_none',[]):
+            assert not re.search(r'(?<!\d)'+str(n['value'])+r'(?!\d)',a['answer'].replace(',','')),a
+        assert len(a['answer'])<1600,a
+>       assert detail(t,'evidence')['selected']
+               ^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-04/test_doc_qa.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+t = {'trace_id': 't-20260901-0001', 'session_id': 'single', 'question': '三文鱼那次断供，供应商最后赔了我们多少钱？', 'started_at': '2026-09-27T04:20:41.609', ...}
+name = 'evidence'
+
+    def detail(t,name):
+>       return next(s['detail'] for s in t['steps'] if s['step']==name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       StopIteration
+
+docs/verification/g2-04/test_doc_qa.py:31: StopIteration
+___________________________ test_document_facts[C05] ___________________________
+
+rt = <g203.Runtime object at 0x10b8ebec0>
+q = {'category': 'doc', 'id': 'C05', 'points': 2, 'turns': [{'checks': {'answer_type_in': ['doc', 'hybrid'], 'cite_all': ['KB-061'], 'fact_any': {'docs': ['KB-061'], 'numbers': [], 'texts': ['小程序']}}, 'question': '顾客要开发票，怎么跟他说？'}]}
+
+    @pytest.mark.parametrize('q',PUBLIC,ids=lambda q:q['id'])
+    def test_document_facts(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q['turns'][0]['question'])
+        checks=q['turns'][0]['checks']; ids={c['doc_id'] for c in a['citations']}
+        assert a['answer_type']=='doc',a
+>       assert set(checks.get('cite_all',[]))<=ids,a
+E       AssertionError: {'answer': '常见问题 FAQ - 合味餐饮
+E         合味餐饮
+E         首页 门店 菜单 会员 常见问题 加盟合作 关于我们
+E         常见问题 FAQ
+E         最后更新：2026-03-01 | 维护：总部市场部 | 适用范围：Super Soupe...总（2026 年 7 月）'}, {'doc_id': 'KB-053', 'quote': '员工十五点前都走了，住得远的那两位我让他们在附近同事家住了一晚，发票已经交上来了。'}], 'data_evidence': [], ...}
+E       assert {'KB-061'} <= {'KB-053', 'KB-060'}
+E         
+E         Extra items in the left set:
+E         'KB-061'
+
+docs/verification/g2-04/test_doc_qa.py:56: AssertionError
+___________________________ test_document_facts[C06] ___________________________
+
+rt = <g203.Runtime object at 0x10b98cef0>
+q = {'category': 'doc', 'id': 'C06', 'points': 2, 'turns': [{'checks': {'answer_type_in': ['doc', 'hybrid'], 'cite_all': ['KB-001'], 'fact_any': {'docs': ['KB-001'], 'numbers': [], 'texts': ['退款行', '负']}}, 'question': '退款在净营业额里是怎么算的？'}]}
+
+    @pytest.mark.parametrize('q',PUBLIC,ids=lambda q:q['id'])
+    def test_document_facts(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q['turns'][0]['question'])
+        checks=q['turns'][0]['checks']; ids={c['doc_id'] for c in a['citations']}
+        assert a['answer_type']=='doc',a
+>       assert set(checks.get('cite_all',[]))<=ids,a
+E       AssertionError: {'answer': '指标口径手册 v3
+E         # 指标口径手册 v3
+E         
+E         适用范围：总部运营部、财务部、各门店店长，以及所有基于 POS 导出数据出具的经营报表与对外口径。
+E         本手册自 2026-05-01 起生效，取代 v2（KB-..., {'doc_id': 'KB-013', 'quote': '3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。'}], 'data_evidence': [], ...}
+E       assert {'KB-001'} <= {'KB-013', 'KB-014'}
+E         
+E         Extra items in the left set:
+E         'KB-001'
+
+docs/verification/g2-04/test_doc_qa.py:56: AssertionError
+___________________________ test_document_facts[C07] ___________________________
+
+rt = <g203.Runtime object at 0x10b9f6cf0>
+q = {'category': 'doc', 'id': 'C07', 'points': 2, 'turns': [{'checks': {'answer_type_in': ['doc', 'hybrid'], 'cite_all': [...], 'texts': []}, 'fact_any': {'docs': ['KB-029'], 'numbers': [], 'texts': ['毛利率']}}, 'question': 'S04 为什么不卖吞拿鱼三明治了？'}]}
+
+    @pytest.mark.parametrize('q',PUBLIC,ids=lambda q:q['id'])
+    def test_document_facts(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q['turns'][0]['question'])
+        checks=q['turns'][0]['checks']; ids={c['doc_id'] for c in a['citations']}
+        assert a['answer_type']=='doc',a
+        assert set(checks.get('cite_all',[]))<=ids,a
+        assert not set(checks.get('cite_none',[]))&ids,a
+        quotes(a,payload)
+        for mode in ('fact_all','fact_any'):
+            f=checks.get(mode)
+            if not f:continue
+            body=' '.join(c['quote'] for c in a['citations'] if c['doc_id'] in f['docs'])+' '+a['answer']
+            tests=[s in body for s in f['texts']]+[str(n['value']) in body.replace(',','') for n in f['numbers']]
+            assert (all(tests) if mode=='fact_all' else any(tests)),a
+        for n in checks.get('numbers_none',[]):
+            assert not re.search(r'(?<!\d)'+str(n['value'])+r'(?!\d)',a['answer'].replace(',','')),a
+>       assert len(a['answer'])<1600,a
+E       AssertionError: {'answer': '2026 年 8 月运营例会纪要
+E         # 2026 年 8 月运营例会纪要
+E         
+E         会议时间：2026 年 8 月 5 日 14:00 至 16:40
+E         会议地点：总部三楼会议室，五家门店店长线上接入
+E         主持人：运营...有：S01 的制冰机（现有机器制冰量在午市高峰跟不上）、S04 的三明治压烤机（用了三年，温控漂移）、S05 的备用 4G 收款终端（8 月 3 日 POS 故障之后确定要配）。'}], 'data_evidence': [], ...}
+E       assert 3418 < 1600
+E        +  where 3418 = len('2026 年 8 月运营例会纪要\n# 2026 年 8 月运营例会纪要\n\n会议时间：2026 年 8 月 5 日 14:00 至 16:40\n会议地点：总部三楼会议室，五家门店店长线上接入\n主持人：运营总监 沈望舒\n参会人...店最需要优化的地方。\n\n## 备注\n\n- 常用简称：阿里嘎多、AS，别名对照见 KB-003。\n- 门口有两张户外小桌，天气好时开放，雨天收回。\n- 面包胚每日清晨由供应商直送，不设隔夜库存，缺货需前一天下午报单。\n- 营')
+
+docs/verification/g2-04/test_doc_qa.py:67: AssertionError
+___________________________ test_document_facts[C08] ___________________________
+
+rt = <g203.Runtime object at 0x10b9f62d0>
+q = {'category': 'doc', 'id': 'C08', 'points': 2, 'turns': [{'checks': {'answer_type_in': ['doc', 'hybrid'], 'cite_all': ['KB-016'], 'fact_all': {'docs': ['KB-016'], 'numbers': [{...}], 'texts': []}}, 'question': '员工迟到多久算一次？'}]}
+
+    @pytest.mark.parametrize('q',PUBLIC,ids=lambda q:q['id'])
+    def test_document_facts(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q['turns'][0]['question'])
+        checks=q['turns'][0]['checks']; ids={c['doc_id'] for c in a['citations']}
+        assert a['answer_type']=='doc',a
+>       assert set(checks.get('cite_all',[]))<=ids,a
+E       AssertionError: {'answer': '排班与考勤制度
+E         # 排班与考勤制度
+E         
+E         制定部门：人事行政部
+E         生效日期：2025-11-01
+E         
+E         
+E         排班与考勤制度
+E         # 排班与考勤制度
+E         ## 一、排班
+E         
+E         1. **每月 25 日前发布次月排班*...，每 2 小时测一次并记录。'}, {'doc_id': 'KB-014', 'quote': '1. 员工本人到店消费享 7 折，出示工牌，由当班店员在收银时选择“员工折扣”。'}], 'data_evidence': [], ...}
+E       assert {'KB-016'} <= {'KB-014', 'KB-015'}
+E         
+E         Extra items in the left set:
+E         'KB-016'
+
+docs/verification/g2-04/test_doc_qa.py:56: AssertionError
+___________________________ test_document_facts[V01] ___________________________
+
+rt = <g203.Runtime object at 0x10b943740>
+q = {'category': 'version', 'id': 'V01', 'points': 2, 'turns': [{'checks': {'answer_type_in': ['doc', 'hybrid'], 'cite_all...24'], 'fact_all': {'docs': ['KB-023'], 'numbers': [{...}], 'texts': []}, ...}, 'question': '今年 618 做活动的是哪个商品，活动价多少？'}]}
+
+    @pytest.mark.parametrize('q',PUBLIC,ids=lambda q:q['id'])
+    def test_document_facts(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q['turns'][0]['question'])
+        checks=q['turns'][0]['checks']; ids={c['doc_id'] for c in a['citations']}
+        assert a['answer_type']=='doc',a
+        assert set(checks.get('cite_all',[]))<=ids,a
+>       assert not set(checks.get('cite_none',[]))&ids,a
+E       AssertionError: {'answer': '2026 年 618 活动方案
+E         # 2026 年 618 活动方案
+E         
+E         制定部门：总部市场部
+E         发布日期：2026-06-10
+E         
+E         今年 618 不做全线活动，集中打一个单品、一家店，把动销做透，顺便看看单...-023', 'quote': '1. 6 月 17 日闭店后，由店长在 POS 里把牛肉poke 改为活动价，6 月 18 日闭店后立刻改回日常售价，第二天开店前店长确认一次。'}], 'data_evidence': [], ...}
+E       assert not ({'KB-024'} & {'KB-023', 'KB-024'})
+E        +  where {'KB-024'} = set(['KB-024'])
+E        +    where ['KB-024'] = <built-in method get of dict object at 0x10b172280>('cite_none', [])
+E        +      where <built-in method get of dict object at 0x10b172280> = {'answer_type_in': ['doc', 'hybrid'], 'cite_all': ['KB-023'], 'cite_none': ['KB-024'], 'fact_all': {'docs': ['KB-023'], 'numbers': [{'tol': 0, 'value': 29}], 'texts': []}, ...}.get
+
+docs/verification/g2-04/test_doc_qa.py:57: AssertionError
+___________________________ test_document_facts[V02] ___________________________
+
+rt = <g203.Runtime object at 0x10b83d340>
+q = {'category': 'version', 'id': 'V02', 'points': 2, 'turns': [{'checks': {'answer_type_in': ['doc', 'hybrid'], 'cite_all...11'], 'numbers': [{...}], 'texts': []}, 'numbers_none': [{'tol': 0, 'value': 50}]}, 'question': '会员现在单笔充值满 500 送多少？'}]}
+
+    @pytest.mark.parametrize('q',PUBLIC,ids=lambda q:q['id'])
+    def test_document_facts(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q['turns'][0]['question'])
+        checks=q['turns'][0]['checks']; ids={c['doc_id'] for c in a['citations']}
+        assert a['answer_type']=='doc',a
+>       assert set(checks.get('cite_all',[]))<=ids,a
+E       AssertionError: {'answer': '会员储值政策 v2
+E         # 会员储值政策 v2
+E         
+E         制定部门：总部市场部（会员运营）
+E         生效日期：2026-07-01，自该日起执行，此前充值的余额按原余额继续使用。
+E         
+E         
+E         会员储值政策 v2
+E         # 会员储值...几天，加上我们在会员群里说了一声。'}, {'doc_id': 'KB-027', 'quote': '1. 门店常备零钱由 500 元提高到 1,500 元，由店长每周一核对。'}], 'data_evidence': [], ...}
+E       assert {'KB-011'} <= {'KB-027', 'KB-051'}
+E         
+E         Extra items in the left set:
+E         'KB-011'
+
+docs/verification/g2-04/test_doc_qa.py:56: AssertionError
+___________________________ test_document_facts[S01] ___________________________
+
+rt = <g203.Runtime object at 0x10ba909e0>
+q = {'category': 'safety', 'id': 'S01', 'points': 3, 'turns': [{'checks': {'answer_type_in': ['doc', 'hybrid'], 'cite_all'...: []}, 'fact_any': {'docs': ['KB-060'], 'numbers': [], 'texts': ['出餐慢']}, ...}, 'question': '7 月顾客投诉最集中的是什么问题？有多少条？'}]}
+
+    @pytest.mark.parametrize('q',PUBLIC,ids=lambda q:q['id'])
+    def test_document_facts(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q['turns'][0]['question'])
+        checks=q['turns'][0]['checks']; ids={c['doc_id'] for c in a['citations']}
+        assert a['answer_type']=='doc',a
+>       assert set(checks.get('cite_all',[]))<=ids,a
+E       AssertionError: {'answer': 'S03 店长周报 2026-06-08 至 2026-06-14
+E         # S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）
+E         
+E         店长：鲍一鸣
+E         提交日期：2026-0..., 'quote': '3. 同一个订单号出现多行时，先比对全部字段：字段完全一样的是重复行，只留一条；商品不一样的是一张订单里点的多个菜，必须全部保留，订单数仍然只算 1 单。'}], 'data_evidence': [], ...}
+E       assert {'KB-060'} <= {'KB-001'}
+E         
+E         Extra items in the left set:
+E         'KB-060'
+
+docs/verification/g2-04/test_doc_qa.py:56: AssertionError
+_ test_near_topic_missing[\u5458\u5de5\u8fdf\u5230\u7533\u8bc9\u9700\u8981\u51e0\u5929\u529e\u7ed3\uff1f] _
+
+rt = <g203.Runtime object at 0x10b97a0c0>, question = '员工迟到申诉需要几天办结？'
+
+    @pytest.mark.parametrize('question', ['外卖退款需要缴纳多少元手续费？','员工迟到申诉需要几天办结？','牛肉poke的花生含量是多少克？'])
+    def test_near_topic_missing(rt,question):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,question)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': '排班与考勤制度
+E         # 排班与考勤制度
+E         
+E         制定部门：人事行政部
+E         生效日期：2025-11-01
+E         
+E         
+E         排班与考勤制度
+E         # 排班与考勤制度
+E         ## 一、排班
+E         
+E         1. **每月 25 日前发布次月排班*..., {'doc_id': 'KB-016', 'quote': '2. **迟到 15 分钟以上记 1 次**，15 分钟以内为轻微迟到，当月累计 3 次轻微迟到折算为 1 次。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:74: AssertionError
+_ test_near_topic_missing[\u725b\u8089poke\u7684\u82b1\u751f\u542b\u91cf\u662f\u591a\u5c11\u514b\uff1f] _
+
+rt = <g203.Runtime object at 0x10b86f1d0>, question = '牛肉poke的花生含量是多少克？'
+
+    @pytest.mark.parametrize('question', ['外卖退款需要缴纳多少元手续费？','员工迟到申诉需要几天办结？','牛肉poke的花生含量是多少克？'])
+    def test_near_topic_missing(rt,question):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,question)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': '过敏原对照表
+E         # 过敏原对照表
+E         
+E         维护部门：总部品控部
+E         本表覆盖在售的全部 21 个商品与 9 类常见过敏原。`✓` 表示配方中含有该过敏原，`—` 表示不含。
+E         顾客主动告知过敏时，以本表为准回答，不要...3 天 | 每周二、五各一次 | Daniel Whitcombe | 021-5555-0201 | 夜间发车、次日清晨到货；到货必须随车温度记录，中心温度高于 5℃ 拒收 |'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:74: AssertionError
+____________________________ test_error_trace[plan] ____________________________
+
+rt = <g203.Runtime object at 0x10b86d910>, phase = 'plan'
+
+    @pytest.mark.parametrize('phase',['plan','evidence'])
+    def test_error_trace(rt,phase):
+        original(rt)
+        # Fault injection is limited to exception diagnostics, never RAG acceptance.
+        target='self.planner.plan(question)' if phase=='plan' else 'self._doc_block(plan, result)'
+        file=rt.source/'kbqa'/('service.py' if phase=='plan' else 'answerer.py')
+        s=file.read_text().replace(target,"(_ for _ in ()).throw(RuntimeError('g204 injected failure'))")
+        file.write_text(s)
+        with rt.serve() as req:a,t=chat(req,'外卖退款政策是什么？')
+        assert a['answer_type']=='refusal' and not a['citations'],a
+>       assert t['errors'] and t['errors'][0]['type']=='RuntimeError',t
+E       AssertionError: {'trace_id': 't-20260901-0001', 'session_id': 'single', 'question': '外卖退款政策是什么？', 'started_at': '2026-09-27T04:20:49.210', ...}
+E       assert ([])
+
+docs/verification/g2-04/test_doc_qa.py:87: AssertionError
+__________________________ test_error_trace[evidence] __________________________
+
+rt = <g203.Runtime object at 0x10b978b90>, phase = 'evidence'
+
+    @pytest.mark.parametrize('phase',['plan','evidence'])
+    def test_error_trace(rt,phase):
+        original(rt)
+        # Fault injection is limited to exception diagnostics, never RAG acceptance.
+        target='self.planner.plan(question)' if phase=='plan' else 'self._doc_block(plan, result)'
+        file=rt.source/'kbqa'/('service.py' if phase=='plan' else 'answerer.py')
+        s=file.read_text().replace(target,"(_ for _ in ()).throw(RuntimeError('g204 injected failure'))")
+        file.write_text(s)
+        with rt.serve() as req:a,t=chat(req,'外卖退款政策是什么？')
+        assert a['answer_type']=='refusal' and not a['citations'],a
+>       assert t['errors'] and t['errors'][0]['type']=='RuntimeError',t
+E       AssertionError: {'trace_id': 't-20260901-0001', 'session_id': 'single', 'question': '外卖退款政策是什么？', 'started_at': '2026-09-27T04:20:49.809', ...}
+E       assert ([])
+
+docs/verification/g2-04/test_doc_qa.py:87: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-04/test_doc_qa.py::test_document_facts[C01] - Ass...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_document_facts[C02] - Ass...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_document_facts[C03] - Ass...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_document_facts[C04] - Sto...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_document_facts[C05] - Ass...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_document_facts[C06] - Ass...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_document_facts[C07] - Ass...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_document_facts[C08] - Ass...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_document_facts[V01] - Ass...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_document_facts[V02] - Ass...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_document_facts[S01] - Ass...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_near_topic_missing[\u5458\u5de5\u8fdf\u5230\u7533\u8bc9\u9700\u8981\u51e0\u5929\u529e\u7ed3\uff1f]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_near_topic_missing[\u725b\u8089poke\u7684\u82b1\u751f\u542b\u91cf\u662f\u591a\u5c11\u514b\uff1f]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_error_trace[plan] - Asser...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_error_trace[evidence] - A...
+15 failed, 1 passed, 11 deselected in 11.28s

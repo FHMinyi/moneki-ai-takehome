@@ -1,0 +1,979 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu6/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu6/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu6/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 905a8c2c911a\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu6/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu6/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "51907"
+      ],
+      "pid": 56076,
+      "port": 51907,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "905a8c2c911a",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "外卖退款申请需要审批不？",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "KB-013《退款政策 v2》：3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-013",
+                "quote": "3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "single",
+            "question": "外卖退款申请需要审批不？",
+            "started_at": "2026-09-27T04:54:48.871",
+            "total_ms": 19.7,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 7.4,
+                "took_ms": 7.4,
+                "detail": {
+                  "question": "外卖退款申请需要审批不？",
+                  "standalone_question": "外卖退款申请需要审批不？",
+                  "search_query": "外卖退款申请需要审批不？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 14.6,
+                "took_ms": 7.2,
+                "detail": {
+                  "query": "外卖退款申请需要审批不?",
+                  "terms": [
+                    "外卖",
+                    "卖退",
+                    "退款",
+                    "款申",
+                    "申请",
+                    "请需",
+                    "需要",
+                    "要审",
+                    "审批",
+                    "批不"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-013#3",
+                      "doc_id": "KB-013",
+                      "score": 27.7877,
+                      "lexical_score": 20.5835,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "审批",
+                        "款申",
+                        "申请",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#1",
+                      "doc_id": "KB-013",
+                      "score": 15.1018,
+                      "lexical_score": 7.8976,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "审批",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#5",
+                      "doc_id": "KB-013",
+                      "score": 13.6812,
+                      "lexical_score": 6.477,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-016#4",
+                      "doc_id": "KB-016",
+                      "score": 13.4407,
+                      "lexical_score": 9.9561,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "审批",
+                        "申请"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#2",
+                      "doc_id": "KB-013",
+                      "score": 12.5972,
+                      "lexical_score": 5.393,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#4",
+                      "doc_id": "KB-013",
+                      "score": 12.1092,
+                      "lexical_score": 4.905,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#6",
+                      "doc_id": "KB-013",
+                      "score": 11.9173,
+                      "lexical_score": 4.7131,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#5",
+                      "doc_id": "KB-011",
+                      "score": 9.4915,
+                      "lexical_score": 7.0307,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "申请",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#3",
+                      "doc_id": "KB-061",
+                      "score": 6.7361,
+                      "lexical_score": 4.9897,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖",
+                        "需要"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#9",
+                      "doc_id": "KB-001",
+                      "score": 6.2207,
+                      "lexical_score": 4.6079,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#10",
+                      "doc_id": "KB-001",
+                      "score": 5.7993,
+                      "lexical_score": 4.1865,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#2",
+                      "doc_id": "KB-011",
+                      "score": 5.394,
+                      "lexical_score": 2.9333,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-033#3",
+                      "doc_id": "KB-033",
+                      "score": 5.2694,
+                      "lexical_score": 3.9032,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖",
+                        "需要"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#3",
+                      "doc_id": "KB-025",
+                      "score": 5.1201,
+                      "lexical_score": 3.7927,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖",
+                        "需要"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#18",
+                      "doc_id": "KB-001",
+                      "score": 4.716,
+                      "lexical_score": 3.1032,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#2",
+                      "doc_id": "KB-020",
+                      "score": 4.6496,
+                      "lexical_score": 3.4442,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖",
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#15",
+                      "doc_id": "KB-001",
+                      "score": 4.5741,
+                      "lexical_score": 2.9614,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "退款"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#2",
+                      "doc_id": "KB-061",
+                      "score": 4.3244,
+                      "lexical_score": 2.578,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#1",
+                      "doc_id": "KB-020",
+                      "score": 4.2389,
+                      "lexical_score": 3.0335,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "需要"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#2",
+                      "doc_id": "KB-014",
+                      "score": 3.7354,
+                      "lexical_score": 2.767,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "需要"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-032#3",
+                      "doc_id": "KB-032",
+                      "score": 3.4849,
+                      "lexical_score": 2.5814,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "需要"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#2",
+                      "doc_id": "KB-025",
+                      "score": 3.4594,
+                      "lexical_score": 2.1319,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#1",
+                      "doc_id": "KB-042",
+                      "score": 3.1439,
+                      "lexical_score": 2.3288,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#3",
+                      "doc_id": "KB-062",
+                      "score": 2.9957,
+                      "lexical_score": 2.219,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#2",
+                      "doc_id": "KB-026",
+                      "score": 2.7986,
+                      "lexical_score": 2.0731,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#8",
+                      "doc_id": "KB-060",
+                      "score": 2.7758,
+                      "lexical_score": 2.0562,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#4",
+                      "doc_id": "KB-042",
+                      "score": 2.7114,
+                      "lexical_score": 1.8964,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#3",
+                      "doc_id": "KB-023",
+                      "score": 2.6537,
+                      "lexical_score": 1.9657,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#2",
+                      "doc_id": "KB-028",
+                      "score": 2.4979,
+                      "lexical_score": 1.8503,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#1",
+                      "doc_id": "KB-060",
+                      "score": 2.4593,
+                      "lexical_score": 1.7397,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-030#4",
+                      "doc_id": "KB-030",
+                      "score": 2.45,
+                      "lexical_score": 1.8148,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#5",
+                      "doc_id": "KB-028",
+                      "score": 2.4366,
+                      "lexical_score": 1.789,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#4",
+                      "doc_id": "KB-053",
+                      "score": 2.2453,
+                      "lexical_score": 1.6632,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#9",
+                      "doc_id": "KB-060",
+                      "score": 2.1132,
+                      "lexical_score": 1.3935,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-031#3",
+                      "doc_id": "KB-031",
+                      "score": 1.9991,
+                      "lexical_score": 1.4808,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#9",
+                      "doc_id": "KB-029",
+                      "score": 1.9607,
+                      "lexical_score": 1.4524,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#2",
+                      "doc_id": "KB-021",
+                      "score": 1.8539,
+                      "lexical_score": 1.3733,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#2",
+                      "doc_id": "KB-053",
+                      "score": 1.8246,
+                      "lexical_score": 1.2425,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#14",
+                      "doc_id": "KB-029",
+                      "score": 1.7113,
+                      "lexical_score": 1.2029,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#7",
+                      "doc_id": "KB-040",
+                      "score": 1.6086,
+                      "lexical_score": 1.1916,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#3",
+                      "doc_id": "KB-029",
+                      "score": 1.5725,
+                      "lexical_score": 1.0642,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#1",
+                      "doc_id": "KB-003",
+                      "score": 1.1376,
+                      "lexical_score": 1.6854,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#3",
+                      "doc_id": "KB-003",
+                      "score": 1.0655,
+                      "lexical_score": 1.5412,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#3",
+                      "doc_id": "KB-024",
+                      "score": 0.9786,
+                      "lexical_score": 2.8995,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "外卖"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.348,
+                  "hits": [
+                    {
+                      "doc_id": "KB-013",
+                      "chunk_id": "KB-013#3",
+                      "score": 27.7877,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-016",
+                      "chunk_id": "KB-016#4",
+                      "score": 13.4407,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-011",
+                      "chunk_id": "KB-011#5",
+                      "score": 9.4915,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "chunk_id": "KB-061#3",
+                      "score": 6.7361,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#9",
+                      "score": 6.2207,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 19.7,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": {
+                    "subject": "外卖退款申请",
+                    "attribute": "审批",
+                    "subject_terms": [
+                      "外卖",
+                      "退款",
+                      "款申"
+                    ],
+                    "attribute_terms": [
+                      "审批"
+                    ],
+                    "subject_entities": []
+                  },
+                  "candidates": [
+                    {
+                      "doc_id": "KB-013",
+                      "chunk_id": "KB-013#3",
+                      "score": 0.5834166699194693,
+                      "text": "3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。"
+                    }
+                  ],
+                  "rejected": [
+                    {
+                      "doc_id": "KB-013",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "2. **单笔超过 ¥200 需店长审批**，店长不在店时电话或企业微信确认，并在登记时注明审批人。"
+                    },
+                    {
+                      "doc_id": "KB-013",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "1. 单笔退款金额不超过 ¥200 的，当班店员核实后即可操作。"
+                    },
+                    {
+                      "doc_id": "KB-016",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "3. 请假审批人为店长，店长本人请假由运营部审批。"
+                    },
+                    {
+                      "doc_id": "KB-016",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "1. 事假提前 3 天申请，病假事后 1 个工作日内补交证明。"
+                    },
+                    {
+                      "doc_id": "KB-011",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "3. 申请在小程序提交，会员客服在 3 个工作日内处理，门店不受理现场退款。"
+                    },
+                    {
+                      "doc_id": "KB-011",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "1. 未消费的储值本金余额，自最后一次充值之日起 30 天内可无理由申请退回，原路退到原支付渠道。"
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "不可以。第三方外卖平台的订单只能用平台自己的支付方式，会员储值余额可以在门店堂食、自提和小程序自营外卖使用。"
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "请尽快联系门店。拾到的物品由门店登记保管 7 天，贵重物品会交商场服务台或就近派出所，领取时需要说明物品特征。"
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "可以用会员储值余额在外卖平台付款吗？"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "- **净营业额** = 销售行金额之和 + 退款行金额之和。退款行的金额本身是负数，所以实际效果是相减。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "- **有效订单数** = 销售行中不同 `order_id` 的个数。多行订单算 1 单；退款行不单独计为订单。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "- **退款金额** = 退款行金额之和的绝对值。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "- **净营业额** = 销售行金额之和 + 退款行金额之和。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "外卖退款申请",
+                        "attribute": "审批",
+                        "subject_terms": [
+                          "外卖",
+                          "退款",
+                          "款申"
+                        ],
+                        "attribute_terms": [
+                          "审批"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "- **退款行**：通过上述剔除规则后 `amount < 0` 的行。"
+                    }
+                  ],
+                  "selected": [
+                    {
+                      "doc_id": "KB-013",
+                      "chunk_id": "KB-013#3",
+                      "score": 0.5834166699194693,
+                      "source_start": 237,
+                      "source_end": 363,
+                      "quote": "3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 19.7,
+                "took_ms": 12.4,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 19.7,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

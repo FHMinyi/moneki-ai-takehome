@@ -1,0 +1,143 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-106/test_document_facts_V02_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-106/test_document_facts_V02_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-106/test_document_facts_V02_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 59bfa4c4d54f\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-106/test_document_facts_V02_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-106/test_document_facts_V02_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "64773"
+      ],
+      "pid": 9380,
+      "port": 64773,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "59bfa4c4d54f",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "会员现在单笔充值满 500 送多少？",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "数据库里只有 2026-05-01 至 2026-08-31 的销售明细，2026-09-01 至 2026-09-01 没有任何数据。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "single",
+            "question": "会员现在单笔充值满 500 送多少？",
+            "started_at": "2026-09-27T04:09:58.215",
+            "total_ms": 5.8,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 5.8,
+                "took_ms": 5.8,
+                "detail": {
+                  "question": "会员现在单笔充值满 500 送多少？",
+                  "standalone_question": "会员现在单笔充值满 500 送多少？",
+                  "search_query": "会员单笔充值满 500 送多少？",
+                  "intent": "refusal",
+                  "kind": "out_of_period",
+                  "window": [
+                    "2026-09-01",
+                    "2026-09-01"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": true,
+                  "needs_docs": false,
+                  "refusal": "数据库里只有 2026-05-01 至 2026-08-31 的销售明细，2026-09-01 至 2026-09-01 没有任何数据。",
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定"
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 5.8,
+                "took_ms": 0.0,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 5.8,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

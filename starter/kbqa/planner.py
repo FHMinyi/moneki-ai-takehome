@@ -140,6 +140,14 @@ class Planner:
             )
             return plan
         self._choose_kind(plan, spec)
+        # A reporting period identifies the event being discussed, not the
+        # knowledge cutoff: a July feedback report can be published in August.
+        if plan.intent == "doc" and not (
+            E.has_any(standalone, E.POLICY_WORDS + E.HISTORICAL_WORDS +
+                      ("当时", "截至", "生效", "充值", "赠送", "储值"))
+        ):
+            plan.as_of = self.today
+            plan.notes.append("事件/报告的时间用于主题检索，资料适用时点使用今天。")
         self._check_period(plan, spec)
         self._build_search_query(plan, spec)
         recent = [
@@ -204,7 +212,7 @@ class Planner:
         explicit_metric = bool(plan.slots.get("metric_explicit"))
         asks_policy = E.has_any(text, E.POLICY_WORDS)
         asks_rank = E.has_any(text, E.RANK_WORDS)
-        asks_payment = E.has_any(text, E.PAYMENT_WORDS)
+        asks_payment = E.has_any(text, E.PAYMENT_WORDS) and not E.has_any(text, ("充值", "赠送", "储值政策"))
         asks_why = E.has_any(text, E.WHY_WORDS)
         asks_target = E.has_any(text, E.TARGET_WORDS)
         asks_price = E.has_any(text, E.PRICE_WORDS)
@@ -255,13 +263,10 @@ class Planner:
         else:
             plan.kind, plan.intent = "summary", "data"
 
-        # 路由：问“多少/多久/几”的就是要数字，问“为什么/原因”的就是要说法。
-        # 两边都走一遍太慢，没必要。
-        if E.has_any(text, ("多少", "多久", "几")):
-            plan.intent = "data"
-            if plan.kind in ("doc", "anomaly", "target", "price"):
-                plan.kind = "summary"
-        elif E.has_any(text, ("为什么", "原因", "怎么回事", "咋回事")):
+        # Keep the existing data-plus-cause path when the quantity belongs to
+        # a real data capability (e.g. payment mix); document quantities alone
+        # still cannot trigger a database query.
+        if asks_why and not (may_query and asks_amount):
             plan.intent, plan.kind = "doc", "doc"
 
         plan.slots["asks_why"] = bool(asks_why or abnormal)

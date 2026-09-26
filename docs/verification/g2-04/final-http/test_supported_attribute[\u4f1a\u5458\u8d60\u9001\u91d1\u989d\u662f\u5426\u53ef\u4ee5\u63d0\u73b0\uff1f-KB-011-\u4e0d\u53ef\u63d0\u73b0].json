@@ -1,0 +1,832 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-123/test_supported_attribute__u4f10/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-123/test_supported_attribute__u4f10/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-123/test_supported_attribute__u4f10/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 7b6c9975c2e5\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-123/test_supported_attribute__u4f10/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-123/test_supported_attribute__u4f10/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "57630"
+      ],
+      "pid": 32778,
+      "port": 57630,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "7b6c9975c2e5",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "会员赠送金额是否可以提现？",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "KB-011《会员储值政策 v2》：4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-011",
+                "quote": "4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "single",
+            "question": "会员赠送金额是否可以提现？",
+            "started_at": "2026-09-27T04:32:11.405",
+            "total_ms": 23.7,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 8.6,
+                "took_ms": 8.6,
+                "detail": {
+                  "question": "会员赠送金额是否可以提现？",
+                  "standalone_question": "会员赠送金额是否可以提现？",
+                  "search_query": "会员赠送金额是否可以提现？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 17.9,
+                "took_ms": 9.3,
+                "detail": {
+                  "query": "会员赠送金额是否可以提现?",
+                  "terms": [
+                    "会员",
+                    "员赠",
+                    "赠送",
+                    "送金",
+                    "金额",
+                    "额是",
+                    "是否",
+                    "否可",
+                    "以提",
+                    "提现"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-011#3",
+                      "doc_id": "KB-011",
+                      "score": 42.1702,
+                      "lexical_score": 20.8248,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "会员",
+                        "提现",
+                        "赠送",
+                        "送金",
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#7",
+                      "doc_id": "KB-011",
+                      "score": 24.8846,
+                      "lexical_score": 17.5959,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员",
+                        "赠送",
+                        "送金",
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#6",
+                      "doc_id": "KB-011",
+                      "score": 21.0768,
+                      "lexical_score": 13.7881,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员",
+                        "赠送",
+                        "金额",
+                        "额是"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#5",
+                      "doc_id": "KB-011",
+                      "score": 14.8993,
+                      "lexical_score": 7.6106,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员",
+                        "赠送",
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#4",
+                      "doc_id": "KB-011",
+                      "score": 14.8337,
+                      "lexical_score": 2.6005,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#3",
+                      "doc_id": "KB-061",
+                      "score": 14.1684,
+                      "lexical_score": 10.4951,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "以提",
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#1",
+                      "doc_id": "KB-011",
+                      "score": 10.7761,
+                      "lexical_score": 3.4874,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#2",
+                      "doc_id": "KB-011",
+                      "score": 10.6224,
+                      "lexical_score": 3.3337,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#3",
+                      "doc_id": "KB-014",
+                      "score": 9.5531,
+                      "lexical_score": 7.0764,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员",
+                        "赠送",
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#18",
+                      "doc_id": "KB-001",
+                      "score": 8.1885,
+                      "lexical_score": 6.0655,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "金额",
+                        "额是"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#5",
+                      "doc_id": "KB-001",
+                      "score": 7.1638,
+                      "lexical_score": 2.6529,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#1",
+                      "doc_id": "KB-061",
+                      "score": 7.0708,
+                      "lexical_score": 3.3975,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#2",
+                      "doc_id": "KB-061",
+                      "score": 6.1872,
+                      "lexical_score": 2.5139,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-001#9",
+                      "doc_id": "KB-001",
+                      "score": 6.0102,
+                      "lexical_score": 3.8873,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#6",
+                      "doc_id": "KB-029",
+                      "score": 5.8349,
+                      "lexical_score": 4.3221,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "是否"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#9",
+                      "doc_id": "KB-029",
+                      "score": 5.0433,
+                      "lexical_score": 3.5306,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "是否"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#3",
+                      "doc_id": "KB-013",
+                      "score": 4.9364,
+                      "lexical_score": 2.2709,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#4",
+                      "doc_id": "KB-014",
+                      "score": 4.8611,
+                      "lexical_score": 2.3844,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-001#12",
+                      "doc_id": "KB-001",
+                      "score": 4.4395,
+                      "lexical_score": 2.3165,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#16",
+                      "doc_id": "KB-001",
+                      "score": 4.3176,
+                      "lexical_score": 2.1947,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#4",
+                      "doc_id": "KB-001",
+                      "score": 4.2927,
+                      "lexical_score": 2.1697,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-023#3",
+                      "doc_id": "KB-023",
+                      "score": 3.9806,
+                      "lexical_score": 1.9657,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#15",
+                      "doc_id": "KB-001",
+                      "score": 3.935,
+                      "lexical_score": 1.8121,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#4",
+                      "doc_id": "KB-013",
+                      "score": 3.9344,
+                      "lexical_score": 2.9144,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#7",
+                      "doc_id": "KB-001",
+                      "score": 3.9279,
+                      "lexical_score": 1.8049,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#6",
+                      "doc_id": "KB-013",
+                      "score": 3.6577,
+                      "lexical_score": 2.6376,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-052#4",
+                      "doc_id": "KB-052",
+                      "score": 3.537,
+                      "lexical_score": 2.62,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-029#8",
+                      "doc_id": "KB-029",
+                      "score": 3.3578,
+                      "lexical_score": 1.8451,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-013#5",
+                      "doc_id": "KB-013",
+                      "score": 3.1519,
+                      "lexical_score": 2.1319,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#4",
+                      "doc_id": "KB-051",
+                      "score": 3.1481,
+                      "lexical_score": 2.3319,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-060#9",
+                      "doc_id": "KB-060",
+                      "score": 3.0036,
+                      "lexical_score": 1.3935,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-027#4",
+                      "doc_id": "KB-027",
+                      "score": 2.9445,
+                      "lexical_score": 2.1811,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-027#5",
+                      "doc_id": "KB-027",
+                      "score": 2.8386,
+                      "lexical_score": 2.0752,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-031#3",
+                      "doc_id": "KB-031",
+                      "score": 2.803,
+                      "lexical_score": 2.0763,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-034#3",
+                      "doc_id": "KB-034",
+                      "score": 2.7178,
+                      "lexical_score": 2.0132,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-029#14",
+                      "doc_id": "KB-029",
+                      "score": 2.7157,
+                      "lexical_score": 1.2029,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#3",
+                      "doc_id": "KB-029",
+                      "score": 2.5769,
+                      "lexical_score": 1.0642,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#4",
+                      "doc_id": "KB-025",
+                      "score": 2.4383,
+                      "lexical_score": 1.8061,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#5",
+                      "doc_id": "KB-028",
+                      "score": 2.4152,
+                      "lexical_score": 1.789,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#1",
+                      "doc_id": "KB-060",
+                      "score": 2.3485,
+                      "lexical_score": 1.7397,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#3",
+                      "doc_id": "KB-051",
+                      "score": 2.2686,
+                      "lexical_score": 1.4524,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#3",
+                      "doc_id": "KB-025",
+                      "score": 2.2517,
+                      "lexical_score": 1.6196,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "金额"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#5",
+                      "doc_id": "KB-023",
+                      "score": 2.0663,
+                      "lexical_score": 1.3783,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#10",
+                      "doc_id": "KB-060",
+                      "score": 2.0233,
+                      "lexical_score": 1.4144,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#8",
+                      "doc_id": "KB-060",
+                      "score": 1.934,
+                      "lexical_score": 1.3252,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-027#3",
+                      "doc_id": "KB-027",
+                      "score": 1.9257,
+                      "lexical_score": 1.1623,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-032#3",
+                      "doc_id": "KB-032",
+                      "score": 1.9023,
+                      "lexical_score": 1.4091,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#2",
+                      "doc_id": "KB-020",
+                      "score": 1.6036,
+                      "lexical_score": 1.1878,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#5",
+                      "doc_id": "KB-024",
+                      "score": 0.6067,
+                      "lexical_score": 1.7975,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "会员"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.377,
+                  "hits": [
+                    {
+                      "doc_id": "KB-011",
+                      "chunk_id": "KB-011#3",
+                      "score": 42.1702,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "chunk_id": "KB-061#3",
+                      "score": 14.1684,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "chunk_id": "KB-014#3",
+                      "score": 9.5531,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "chunk_id": "KB-001#18",
+                      "score": 8.1885,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-029",
+                      "chunk_id": "KB-029#6",
+                      "score": 5.8349,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 23.7,
+                "took_ms": null,
+                "detail": {
+                  "candidates": [
+                    {
+                      "doc_id": "KB-011",
+                      "chunk_id": "KB-011#3",
+                      "score": 0.5366298151562398,
+                      "text": "4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。"
+                    }
+                  ],
+                  "rejected": [
+                    {
+                      "doc_id": "KB-011",
+                      "reason": "unsupported_attribute",
+                      "required_terms": [
+                        "提现"
+                      ],
+                      "text": "3. 赠送档位不叠加，按单笔充值金额就高不就低；500 元以下的充值不赠送。"
+                    },
+                    {
+                      "doc_id": "KB-011",
+                      "reason": "unsupported_attribute",
+                      "required_terms": [
+                        "提现"
+                      ],
+                      "text": "1. 单笔充值满 500 元，赠送 60 元。"
+                    },
+                    {
+                      "doc_id": "KB-011",
+                      "reason": "unsupported_attribute",
+                      "required_terms": [
+                        "提现"
+                      ],
+                      "text": "2. 单笔充值满 1000 元，赠送 150 元。"
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "reason": "unsupported_attribute",
+                      "required_terms": [
+                        "提现"
+                      ],
+                      "text": "小桌不接受预订，到店取号。8 人以上的聚餐可以提前一天电话预订，由门店安排拼桌，门店电话见“门店”页面。"
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "reason": "unsupported_attribute",
+                      "required_terms": [
+                        "提现"
+                      ],
+                      "text": "不可以。第三方外卖平台的订单只能用平台自己的支付方式，会员储值余额可以在门店堂食、自提和小程序自营外卖使用。"
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "reason": "unsupported_attribute",
+                      "required_terms": [
+                        "提现"
+                      ],
+                      "text": "可以用会员储值余额在外卖平台付款吗？"
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "reason": "unsupported_attribute",
+                      "required_terms": [
+                        "提现"
+                      ],
+                      "text": "3. 员工折扣同样不与会员券、储值赠送、平台补贴叠加。"
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "reason": "unsupported_attribute",
+                      "required_terms": [
+                        "提现"
+                      ],
+                      "text": "4. 折后金额就是实收金额，照常进 POS，按实收入账。"
+                    },
+                    {
+                      "doc_id": "KB-001",
+                      "reason": "unsupported_attribute",
+                      "required_terms": [
+                        "提现"
+                      ],
+                      "text": "1. 带 `¥` 的金额是可以恢复的脏值，去掉符号之后照常参与统计，不要把整行丢掉。"
+                    },
+                    {
+                      "doc_id": "KB-029",
+                      "reason": "unsupported_attribute",
+                      "required_terms": [
+                        "提现"
+                      ],
+                      "text": "沈望舒要求，新品上市首月各店每天记录出杯数和剩余基底量的动作不要停，月底做一次完整复盘，再决定是否进常规菜单。"
+                    }
+                  ],
+                  "selected": [
+                    {
+                      "doc_id": "KB-011",
+                      "chunk_id": "KB-011#3",
+                      "score": 0.5366298151562398,
+                      "source_start": 146,
+                      "source_end": 290,
+                      "quote": "4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 23.7,
+                "took_ms": 15.1,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 23.7,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}
