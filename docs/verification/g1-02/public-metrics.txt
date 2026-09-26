@@ -1,0 +1,8 @@
+共 6 题，逐题串行请求 http://127.0.0.1:8002，单次超时 180 秒
+  M01    metrics    1.00 / 1.00  0.0s
+  M02    metrics    1.00 / 1.00  0.0s
+  M03    metrics    1.00 / 1.00  0.0s
+  M04    metrics    1.00 / 1.00  0.0s
+  M05    metrics    1.00 / 1.00  0.0s
+  M06    metrics    1.00 / 1.00  0.0s
+总分 6.00 / 6.00（100.0%）-> docs/verification/g1-02/public-metrics/report.json, docs/verification/g1-02/public-metrics/report.md

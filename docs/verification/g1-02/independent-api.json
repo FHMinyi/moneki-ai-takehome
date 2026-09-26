@@ -1,0 +1,186 @@
+[
+  {
+    "id": "M01",
+    "url": "http://127.0.0.1:8002/api/metrics/summary?end=2026-06-30&start=2026-06-01",
+    "independent": {
+      "net_revenue": 156757.0,
+      "refund_amount": 953.0,
+      "orders": 4311,
+      "aov": 36.36,
+      "qty": 6496
+    },
+    "api": {
+      "start": "2026-06-01",
+      "end": "2026-06-30",
+      "store_id": null,
+      "product_id": null,
+      "net_revenue": 156757.0,
+      "refund_amount": 953.0,
+      "orders": 4311,
+      "aov": 36.36,
+      "qty": 6496
+    },
+    "passed": true
+  },
+  {
+    "id": "M02",
+    "url": "http://127.0.0.1:8002/api/metrics/summary?end=2026-07-31&start=2026-07-01&store_id=S02",
+    "independent": {
+      "net_revenue": 41740.0,
+      "refund_amount": 107.0,
+      "orders": 875,
+      "aov": 47.7,
+      "qty": 1395
+    },
+    "api": {
+      "start": "2026-07-01",
+      "end": "2026-07-31",
+      "store_id": "S02",
+      "product_id": null,
+      "net_revenue": 41740.0,
+      "refund_amount": 107.0,
+      "orders": 875,
+      "aov": 47.7,
+      "qty": 1395
+    },
+    "passed": true
+  },
+  {
+    "id": "M03",
+    "url": "http://127.0.0.1:8002/api/metrics/summary?end=2026-08-31&product_id=P21&start=2026-08-01",
+    "independent": {
+      "net_revenue": 11024.0,
+      "refund_amount": 16.0,
+      "orders": 461,
+      "aov": 23.91,
+      "qty": 689
+    },
+    "api": {
+      "start": "2026-08-01",
+      "end": "2026-08-31",
+      "store_id": null,
+      "product_id": "P21",
+      "net_revenue": 11024.0,
+      "refund_amount": 16.0,
+      "orders": 461,
+      "aov": 23.91,
+      "qty": 689
+    },
+    "passed": true
+  },
+  {
+    "id": "M04",
+    "url": "http://127.0.0.1:8002/api/metrics/summary?end=2026-06-18&product_id=P06&start=2026-06-18&store_id=S02",
+    "independent": {
+      "net_revenue": 3625.0,
+      "refund_amount": 0.0,
+      "orders": 53,
+      "aov": 68.4,
+      "qty": 125
+    },
+    "api": {
+      "start": "2026-06-18",
+      "end": "2026-06-18",
+      "store_id": "S02",
+      "product_id": "P06",
+      "net_revenue": 3625.0,
+      "refund_amount": 0.0,
+      "orders": 53,
+      "aov": 68.4,
+      "qty": 125
+    },
+    "passed": true
+  },
+  {
+    "id": "M05",
+    "url": "http://127.0.0.1:8002/api/metrics/summary?end=2026-09-30&start=2026-09-01",
+    "independent": {
+      "net_revenue": 0.0,
+      "refund_amount": 0.0,
+      "orders": 0,
+      "aov": null,
+      "qty": 0
+    },
+    "api": {
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "store_id": null,
+      "product_id": null,
+      "net_revenue": 0.0,
+      "refund_amount": 0.0,
+      "orders": 0,
+      "aov": null,
+      "qty": 0
+    },
+    "passed": true
+  },
+  {
+    "id": "single-day-all",
+    "url": "http://127.0.0.1:8002/api/metrics/summary?start=2026-06-18&end=2026-06-18",
+    "independent": {
+      "net_revenue": 8308.0,
+      "refund_amount": 50.0,
+      "orders": 182,
+      "aov": 45.65,
+      "qty": 318
+    },
+    "api": {
+      "start": "2026-06-18",
+      "end": "2026-06-18",
+      "store_id": null,
+      "product_id": null,
+      "net_revenue": 8308.0,
+      "refund_amount": 50.0,
+      "orders": 182,
+      "aov": 45.65,
+      "qty": 318
+    },
+    "passed": true
+  },
+  {
+    "id": "single-day-store",
+    "url": "http://127.0.0.1:8002/api/metrics/summary?start=2026-06-18&end=2026-06-18&store_id=S02",
+    "independent": {
+      "net_revenue": 4683.0,
+      "refund_amount": 0.0,
+      "orders": 78,
+      "aov": 60.04,
+      "qty": 165
+    },
+    "api": {
+      "start": "2026-06-18",
+      "end": "2026-06-18",
+      "store_id": "S02",
+      "product_id": null,
+      "net_revenue": 4683.0,
+      "refund_amount": 0.0,
+      "orders": 78,
+      "aov": 60.04,
+      "qty": 165
+    },
+    "passed": true
+  },
+  {
+    "id": "full-range",
+    "url": "http://127.0.0.1:8002/api/metrics/summary?start=2026-05-01&end=2026-08-31",
+    "independent": {
+      "net_revenue": 646929.0,
+      "refund_amount": 3237.0,
+      "orders": 17926,
+      "aov": 36.09,
+      "qty": 27262
+    },
+    "api": {
+      "start": "2026-05-01",
+      "end": "2026-08-31",
+      "store_id": null,
+      "product_id": null,
+      "net_revenue": 646929.0,
+      "refund_amount": 3237.0,
+      "orders": 17926,
+      "aov": 36.09,
+      "qty": 27262
+    },
+    "passed": true
+  }
+]

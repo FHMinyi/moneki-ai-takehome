@@ -1,0 +1,111 @@
+npm notice run moneki-workspace@0.1.0 test:browser
+npm notice run playwright test tests/metrics.spec.ts
+
+Running 6 tests using 1 worker
+
+(node:40159) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/metrics.spec.ts:14:3 › real summary and filters at 1280 (30.0s)
+(node:40285) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/metrics.spec.ts:14:3 › real summary and filters at 1440 (30.0s)
+(node:40443) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 tests/metrics.spec.ts:14:3 › real summary and filters at 390 (768ms)
+  ✓  4 tests/metrics.spec.ts:36:1 › invalid dates do not submit and report unchanged applied range (365ms)
+  ✓  5 tests/metrics.spec.ts:52:1 › loading failure retry and refund-only display (563ms)
+  ✓  6 tests/metrics.spec.ts:74:1 › obsolete successful response cannot overwrite newer filters (517ms)
+
+
+  1) tests/metrics.spec.ts:14:3 › real summary and filters at 1280 ─────────────────────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('combobox', { name: '门店' })
+        - locator resolved to <input readonly value="" type="search" role="combobox" aria-label="门店" id="rc_select_0" unselectable="on" autocomplete="off" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list" aria-owns="rc_select_0_list" aria-controls="rc_select_0_list" class="ant-select-selection-search-input"/>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <span title="全部门店" class="ant-select-selection-item">全部门店</span> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <span title="全部门店" class="ant-select-selection-item">全部门店</span> intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        57 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <span title="全部门店" class="ant-select-selection-item">全部门店</span> intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+
+
+       6 |   await page.getByRole('textbox', { name: '结束日期' }).fill(end);
+       7 |   if (store) {
+    >  8 |     await page.getByRole('combobox', { name: '门店' }).click();
+         |                                                      ^
+       9 |     await page.getByTitle(store, { exact: true }).click();
+      10 |   }
+      11 |   await page.getByRole('button', { name: '查询汇总' }).click();
+        at query (/Volumes/MACPSSD/project/moneki-ai-takehome/frontend/tests/metrics.spec.ts:8:54)
+        at /Volumes/MACPSSD/project/moneki-ai-takehome/frontend/tests/metrics.spec.ts:20:5
+
+    Error Context: test-results/metrics-real-summary-and-filters-at-1280/error-context.md
+
+  2) tests/metrics.spec.ts:14:3 › real summary and filters at 1440 ─────────────────────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('combobox', { name: '门店' })
+        - locator resolved to <input readonly value="" type="search" role="combobox" aria-label="门店" id="rc_select_0" unselectable="on" autocomplete="off" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list" aria-owns="rc_select_0_list" aria-controls="rc_select_0_list" class="ant-select-selection-search-input"/>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <span title="全部门店" class="ant-select-selection-item">全部门店</span> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <span title="全部门店" class="ant-select-selection-item">全部门店</span> intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        57 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <span title="全部门店" class="ant-select-selection-item">全部门店</span> intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+
+
+       6 |   await page.getByRole('textbox', { name: '结束日期' }).fill(end);
+       7 |   if (store) {
+    >  8 |     await page.getByRole('combobox', { name: '门店' }).press('ArrowDown');
+         |                                                      ^
+       9 |     await page.getByTitle(store, { exact: true }).click();
+      10 |   }
+      11 |   await page.getByRole('button', { name: '查询汇总' }).click();
+        at query (/Volumes/MACPSSD/project/moneki-ai-takehome/frontend/tests/metrics.spec.ts:8:54)
+        at /Volumes/MACPSSD/project/moneki-ai-takehome/frontend/tests/metrics.spec.ts:20:5
+
+    Error Context: test-results/metrics-real-summary-and-filters-at-1440/error-context.md
+
+  2 failed
+    tests/metrics.spec.ts:14:3 › real summary and filters at 1280 ──────────────────────────────────
+    tests/metrics.spec.ts:14:3 › real summary and filters at 1440 ──────────────────────────────────
+  4 passed (1.1m)

@@ -1,0 +1,10 @@
+npm notice run moneki-workspace@0.1.0 test:browser
+npm notice run playwright test tests/metrics.spec.ts -g at 1440
+
+Running 1 test using 1 worker
+
+(node:40595) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/metrics.spec.ts:15:3 › real summary and filters at 1440 (776ms)
+
+  1 passed (1.1s)

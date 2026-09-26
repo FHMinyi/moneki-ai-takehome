@@ -1,0 +1,524 @@
+{
+  "fixed_point": "5b21ee3588c1cf3f6e8bea32f2dab4b6d22768d9",
+  "files": [
+    {
+      "path": "data/pos.db",
+      "unchanged": true,
+      "sha256": "b92ece8f017a7313af8b90f3b31c4a49acca010ca154fa8e9c525a2f053e20e1"
+    },
+    {
+      "path": "data/products.csv",
+      "unchanged": true,
+      "sha256": "5446dce0fa2fa17eb73de67b57ce36ccc0133310bbd5a02015abb8ce8d118ab7"
+    },
+    {
+      "path": "data/sales.csv",
+      "unchanged": true,
+      "sha256": "e4bc7fa705722a3fe03b4f033d57115e75df6420a93c2a15b6f8f8517a1bc379"
+    },
+    {
+      "path": "data/stores.csv",
+      "unchanged": true,
+      "sha256": "5b040c19bdc1540c2e366918260182796156cddebe90270def05584fb4a5669c"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/BASELINE.md",
+      "unchanged": true,
+      "sha256": "0650026b1bd0014ad642b91762739b85fa97f9105df1c6ea0fa3278a6f4327b2"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/context.txt",
+      "unchanged": true,
+      "sha256": "5a8dac387ceccbb73fb11948b4134bdc51bf953710fc1bfb1f15d8ad88cfc030"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/dependencies.txt",
+      "unchanged": true,
+      "sha256": "d7fbf681d46594f04869c3c31a29f17ba5479f6ec3c80eb270946d13c58532d6"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/eval.exit",
+      "unchanged": true,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/eval.output.txt",
+      "unchanged": true,
+      "sha256": "9dfff09760e7df44d63acfcefece8a3384f4d44597c414a864bcfd9d54f9e737"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/evaluator-tests.exit",
+      "unchanged": true,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/evaluator-tests.output.txt",
+      "unchanged": true,
+      "sha256": "fc6e1d7ac9e31bc88e188e1e9cb73ca231b3cfbcb3ee53c554a697a7b56917f4"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/failed-questions.tsv",
+      "unchanged": true,
+      "sha256": "cca1007c4727f80c6ca73245b13c774201ec1a8bdc42365954e7c219cf9af731"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/final-checks.txt",
+      "unchanged": true,
+      "sha256": "ca9682ee779730222b8bc08ab99b4c6d432dc945a426256da191d385738a8cec"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/health.json",
+      "unchanged": true,
+      "sha256": "481f2faf756df9c48e0d770697841df0fd5925e3c87ebbc4a876e2ea0f20fefe"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/input-sha256-after.txt",
+      "unchanged": true,
+      "sha256": "232decaa0dde2ae5cdafad9d0cdf69fcc35201e7456da3e05cb7bebecdf5f2ca"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/input-sha256-before.txt",
+      "unchanged": true,
+      "sha256": "232decaa0dde2ae5cdafad9d0cdf69fcc35201e7456da3e05cb7bebecdf5f2ca"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/rebuild.exit",
+      "unchanged": true,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/rebuild.output.txt",
+      "unchanged": true,
+      "sha256": "4df00ca8c08db7e8be14b49390dffe35c07098f59a8155337788803d380993a8"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/report.json",
+      "unchanged": true,
+      "sha256": "b0bf1f662979f0f5a6881730bb9aac88709bf72d9de733b7c936ffb5801c9309"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/report.md",
+      "unchanged": true,
+      "sha256": "987a67a612cc5298684467df460142ce776908220212ec0cc79f4eb0aa789957"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/starter-tests.exit",
+      "unchanged": true,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T233022-f32daa7-mock/starter-tests.output.txt",
+      "unchanged": true,
+      "sha256": "069458d64f57ea7f7d7f1134bf31850170e414c9b2ade4585f1d2cc61672ae5e"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/LIVE_BASELINE.md",
+      "unchanged": true,
+      "sha256": "c15c07a8fe4631f0b6810dbde0911e015477428a3d57e996300d0b946294d914"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/context.txt",
+      "unchanged": true,
+      "sha256": "6b663c613561c6d4970c603c078a8a21bfc38a3d21c55ddf9556fbb23c57e6c4"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/dependencies.txt",
+      "unchanged": true,
+      "sha256": "d7fbf681d46594f04869c3c31a29f17ba5479f6ec3c80eb270946d13c58532d6"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/eval-proxy-sanitized.jsonl",
+      "unchanged": true,
+      "sha256": "36194b6b05361dbd5f7b9add7805c2884f603aff4109814a3ac3e9bf240a0a68"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/eval-proxy-summary.json",
+      "unchanged": true,
+      "sha256": "6abdeb0e46e52a6b93b66ab2a9e60fbd736a2113dd0a9360c0a84330a65e81c5"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/eval.exit",
+      "unchanged": true,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/eval.output.txt",
+      "unchanged": true,
+      "sha256": "668fc4fb61371f9f80c4afffa4534fadf3ee4eca9925134be288048d2cba8a84"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/failed-questions.tsv",
+      "unchanged": true,
+      "sha256": "7ab3ac3f8beb6910e83e0586db16f7af2bab373cf8e7556a64cb57fc8e73cdfc"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/final-checks.txt",
+      "unchanged": true,
+      "sha256": "2fb772bd17b19e3151e6ff06549c0eb9e7fa32492d77797eb2a42644f5df4895"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/input-sha256-after.txt",
+      "unchanged": true,
+      "sha256": "c0e6f1ee49c12bb70433cf285652e80fb412b0b4c7c9e948c6cbe9894aa47a32"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/input-sha256-before.txt",
+      "unchanged": true,
+      "sha256": "c0e6f1ee49c12bb70433cf285652e80fb412b0b4c7c9e948c6cbe9894aa47a32"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/live-health.json",
+      "unchanged": true,
+      "sha256": "48d5e69f1a1b6198af02e05812b2e72935c93ff59d05ed353f67a4368f054d71"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/mock-vs-live.json",
+      "unchanged": true,
+      "sha256": "5c4f4bac7c20562f49b58d0c6f0623fa527d2ec980e151318a15e5464a5a9dfd"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/model-config-sanitized.json",
+      "unchanged": true,
+      "sha256": "c58d74f3e994f3590186167ed682bd28db678b20bc695f5039c4a730ad1374a2"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/preflight.exit",
+      "unchanged": true,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/preflight.output.txt",
+      "unchanged": true,
+      "sha256": "8f9d2f507a79b5a6889fd08433391613d2ae3130e99e465e56bf9c14930b19f5"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/preflight_report.json",
+      "unchanged": true,
+      "sha256": "160052da55a44197683c8d7caee92d76e98c8d79b0f31c8aee34bd1f3ed49a16"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/preflight_report.md",
+      "unchanged": true,
+      "sha256": "2411183d17d23aa00057171c6620bd226d6fbdbb0e699a1004359c92b51c6f12"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/report.json",
+      "unchanged": true,
+      "sha256": "68499cb54c0bc5257c90733bfd000bd0e82c5efd2abd8f8aab025a2028a11216"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/report.md",
+      "unchanged": true,
+      "sha256": "03a20b215a16e427ac104966e4a0fae4ce520a2b824e82773a177f4a03f92af3"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/smoke-data.json",
+      "unchanged": true,
+      "sha256": "f06391c669f24f86f3ac0cc77d7c460f1672c12972a9a53bd1d196d641be719c"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/smoke-doc.json",
+      "unchanged": true,
+      "sha256": "009536705be899490a9f49dac8e9313b3e6cfa2a56c26e0fb338f9a8abad4156"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/smoke-followup.json",
+      "unchanged": true,
+      "sha256": "563a86e750d67a7ea627626a193d9ccacdbad924ed7ff6afec98ed1e5b9b41d0"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/smoke-hybrid.json",
+      "unchanged": true,
+      "sha256": "6601336024181ecfd27e95b22b710a4328807b8518157fcf6390adb670feade6"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/smoke-proxy-sanitized.jsonl",
+      "unchanged": true,
+      "sha256": "1c759d3333658a788bab0ffb21cc7dde9f551601c6913969d2e8cb9b3065d113"
+    },
+    {
+      "path": "docs/baseline/2026-09-26T235144-f32daa7-live/smoke-proxy-summary.json",
+      "unchanged": true,
+      "sha256": "5adc484729508fd3bcfd5bd93a012eca179a086d3fdd8f5e245963f340ee5416"
+    },
+    {
+      "path": "docs/verification/g1-01/after.txt",
+      "unchanged": true,
+      "sha256": "56d9fedbf7a9a53fed049a6735425ee6ef9479e206446a09b84cc8911655e93c"
+    },
+    {
+      "path": "docs/verification/g1-01/audit_sample.py",
+      "unchanged": true,
+      "sha256": "98b02305cca4ffaf7b7b25416d2ad1b1f190603d15363ff85805b629df183367"
+    },
+    {
+      "path": "docs/verification/g1-01/before.txt",
+      "unchanged": true,
+      "sha256": "8d3e949805a6751d4748b1d5662aa4124e4efb72184b33450365414e9fcbbfca"
+    },
+    {
+      "path": "docs/verification/g1-01/browser-first-run.txt",
+      "unchanged": true,
+      "sha256": "d16c210cedd571c9873fa6adcb384399ac3e292102a63af43d8f2ae0f1d81a98"
+    },
+    {
+      "path": "docs/verification/g1-01/browser.txt",
+      "unchanged": true,
+      "sha256": "6060efe74e65013fce432d3d96e1d85a880f79f806f2bad8a44a768df1c51a41"
+    },
+    {
+      "path": "docs/verification/g1-01/build.txt",
+      "unchanged": true,
+      "sha256": "86c0ae0c42d5a5b72f86e89267abd3de0f1dd05a1f3d79c7f0e4a32c4e93fa18"
+    },
+    {
+      "path": "docs/verification/g1-01/data-quality.json",
+      "unchanged": true,
+      "sha256": "331b2da150bd467d3ccf88615146e008bae3b3f1e31e2dd5de2928e1463b6f22"
+    },
+    {
+      "path": "docs/verification/g1-01/dev-proxy.txt",
+      "unchanged": true,
+      "sha256": "3195be9bc26ca192fa4768b07f8c05228223fb3ab8d131464720ca830b786305"
+    },
+    {
+      "path": "docs/verification/g1-01/empty.png",
+      "unchanged": true,
+      "sha256": "d00cdc15cc593e314fe8730a710dab9a2100a7775f3c82fa5812cf8dbeccf5f8"
+    },
+    {
+      "path": "docs/verification/g1-01/failure.png",
+      "unchanged": true,
+      "sha256": "2cdee98d993b4d2aed01df8a9664230a8fcd422d2e50d55b2886b05c03992afc"
+    },
+    {
+      "path": "docs/verification/g1-01/health.json",
+      "unchanged": true,
+      "sha256": "709618ec22a691109095c1498c7d1735a1b6a8b82e5fdba91595a20dfa5b9ba7"
+    },
+    {
+      "path": "docs/verification/g1-01/independent-audit.json",
+      "unchanged": true,
+      "sha256": "faf0857e0eab354bb0f070f16e38b996e9a802393fbe5663b525055fad1e1925"
+    },
+    {
+      "path": "docs/verification/g1-01/loading.png",
+      "unchanged": true,
+      "sha256": "a9ceb401870393e3b3ed268bd03e010354e1782c1f193bf37c1f74709b74e23c"
+    },
+    {
+      "path": "docs/verification/g1-01/normalization-before.txt",
+      "unchanged": true,
+      "sha256": "ae4974fca2495ac81004e670b2bf5ed21d59548db65f21457fd5ce9606ee3114"
+    },
+    {
+      "path": "docs/verification/g1-01/preservation.json",
+      "unchanged": true,
+      "sha256": "4a88131c2eb34e66873bf2fe7079f2f674f10a13abb0706e0673ddcbefc4f146"
+    },
+    {
+      "path": "docs/verification/g1-01/rebuild.txt",
+      "unchanged": true,
+      "sha256": "c31335a8f9d030641104cf9abdc16a801c9d2412b2087a1fa5cd67a348a65059"
+    },
+    {
+      "path": "docs/verification/g1-01/workspace-1280.png",
+      "unchanged": true,
+      "sha256": "a11d3b0ff9f2e5aef30acf8fb417c88bf0bc0c7c638946d45f2bf08433ad8010"
+    },
+    {
+      "path": "docs/verification/g1-01/workspace-1440.png",
+      "unchanged": true,
+      "sha256": "eaeed21c0da85c243defc63875b526ab62cd64960f14001ad4df4bc76afdb40f"
+    },
+    {
+      "path": "docs/verification/g1-01/workspace-390.png",
+      "unchanged": true,
+      "sha256": "1ff3c44dba71f29be3ba48db59d6ee8a9726b38798840ac3aa1efeb883a1866f"
+    },
+    {
+      "path": "knowledge_base/README.md",
+      "unchanged": true,
+      "sha256": "e6d96b5d2bdf7fa153355d3603ebf131d0c03b878d50c20e2fb05aecd1ae27c8"
+    },
+    {
+      "path": "knowledge_base/handbook/KB-001_指标口径手册_v3.md",
+      "unchanged": true,
+      "sha256": "0952cb20c32afb587b6177bf6d87e6bdde2f4963ec1f723dbd98452876ee21a0"
+    },
+    {
+      "path": "knowledge_base/handbook/KB-002_指标口径手册_v2.md",
+      "unchanged": true,
+      "sha256": "19520895def5129a4dffd372aa85cf661a671c4c6dc6501525eb3780d301c2d1"
+    },
+    {
+      "path": "knowledge_base/handbook/KB-003_商品与门店别名词典.md",
+      "unchanged": true,
+      "sha256": "a6785db300e7fd2ac31b513d15edf8903505c44413b5bdc01b38a5258d3f1141"
+    },
+    {
+      "path": "knowledge_base/legacy/KB-062_旧OA导出_营业时间调整通知.txt",
+      "unchanged": true,
+      "sha256": "c33aabf67fd0ceeb799a7faced36059d94f85ddcd0ff0e45900e95f2b07f8359"
+    },
+    {
+      "path": "knowledge_base/notices/KB-020_S03临时停业通知.md",
+      "unchanged": true,
+      "sha256": "16a10af7066898ca60216c68fc7b1a77a91e2614451d756049cf8ff3380efe8f"
+    },
+    {
+      "path": "knowledge_base/notices/KB-021_三文鱼poke临时停售通知.md",
+      "unchanged": true,
+      "sha256": "e4e9954129a64d83b6c66351e0f9c2b8e2dcf7f31edb75675d4bf38ab380ad88"
+    },
+    {
+      "path": "knowledge_base/notices/KB-022_Supplier_Email_Salmon_Incident.txt",
+      "unchanged": true,
+      "sha256": "aa72248dd50b61775932446c459ef8f90a45ba2000bf2b3501d4fdb0f97abdf3"
+    },
+    {
+      "path": "knowledge_base/notices/KB-023_2026年618活动方案.md",
+      "unchanged": true,
+      "sha256": "e9b8d1e1e8b97e0c15af5c9344e84f9f8946fa7036ea8418ad0f20d7e3ee6276"
+    },
+    {
+      "path": "knowledge_base/notices/KB-024_2025年618活动方案.md",
+      "unchanged": true,
+      "sha256": "07e160878286cc78969ea17b8af04d4f2e9b68dc9c745a5e2fbd7355f4bb217a"
+    },
+    {
+      "path": "knowledge_base/notices/KB-025_2026年7月调价通知.md",
+      "unchanged": true,
+      "sha256": "339ee9a65e3ca66f2c317b5e9d820e22590c485434ad03caf59ad6edd2327342"
+    },
+    {
+      "path": "knowledge_base/notices/KB-026_台风白鹭提前闭店通知.md",
+      "unchanged": true,
+      "sha256": "77bada0e1a6e592169e81a492567ee144b75efb609c5ff14b4d525cd632534d4"
+    },
+    {
+      "path": "knowledge_base/notices/KB-027_S05_POS终端故障报告.md",
+      "unchanged": true,
+      "sha256": "9f1b1a505c6a56eedce41a499530e7c368f5c30ca0259b2bedd5528d046eed70"
+    },
+    {
+      "path": "knowledge_base/notices/KB-028_新品上市通知_冷萃乌龙茶.md",
+      "unchanged": true,
+      "sha256": "dcc78d6fecfe50fec9247013c30d6ebb397023ea2b59bd48a5721c847a75fa24"
+    },
+    {
+      "path": "knowledge_base/notices/KB-029_2026年8月运营例会纪要.md",
+      "unchanged": true,
+      "sha256": "615353e54cf90adeedc9fa8616d6102926554b6904cb3f9c97056ef06f4a316c"
+    },
+    {
+      "path": "knowledge_base/policies/KB-010_会员储值政策_v1.md",
+      "unchanged": true,
+      "sha256": "1b4dec82bab7c3056df67393165f47c79b9ecc3da7caf4020157d011a865be28"
+    },
+    {
+      "path": "knowledge_base/policies/KB-011_会员储值政策_v2.md",
+      "unchanged": true,
+      "sha256": "36fddfe48cc6fcaf1dfcdbc3fa09f7228fa1f6d48782f99e17a91ba96074e874"
+    },
+    {
+      "path": "knowledge_base/policies/KB-012_退款政策_v1.md",
+      "unchanged": true,
+      "sha256": "7589dd4c6a281b52be498bc2cc83b218f6c3f6f139ee38a658ee9abbdeb5a863"
+    },
+    {
+      "path": "knowledge_base/policies/KB-013_退款政策_v2.md",
+      "unchanged": true,
+      "sha256": "c2dc0bdc047ba8c297f4e3a09f1e8daef06fab0510dfea4c923f1483f3435d0d"
+    },
+    {
+      "path": "knowledge_base/policies/KB-014_员工餐与员工折扣制度.md",
+      "unchanged": true,
+      "sha256": "8426f92a295a276d31f68841a36422a981023c0e499642e043afc91064cd9dd7"
+    },
+    {
+      "path": "knowledge_base/policies/KB-015_食品安全SOP节选.md",
+      "unchanged": true,
+      "sha256": "81d8d1bc9887c9aa6843c68be2aa9af9305a9a93a95ef0514dc44ade19c55c56"
+    },
+    {
+      "path": "knowledge_base/policies/KB-016_排班与考勤制度.md",
+      "unchanged": true,
+      "sha256": "9d4e867086e6dbfee0329aa7b3826df5032a616f6673ab60079c8e015f8c1daa"
+    },
+    {
+      "path": "knowledge_base/reference/KB-040_过敏原对照表.md",
+      "unchanged": true,
+      "sha256": "37ecf79dd6b5c6367012066b085a029fe7db5cddfb656b301c7678e7abc81f20"
+    },
+    {
+      "path": "knowledge_base/reference/KB-041_供应商名录.md",
+      "unchanged": true,
+      "sha256": "c3840b28511fd3c0a1103b2db38affed09416f1183fdda98f900e864b310f946"
+    },
+    {
+      "path": "knowledge_base/reference/KB-042_门店营业时间总表.md",
+      "unchanged": true,
+      "sha256": "ac659f5ad7ced47b9c342d2fb88efae3b119ae695b69a4f9ee2d5cc2762d1853"
+    },
+    {
+      "path": "knowledge_base/reference/KB-060_顾客反馈汇总_2026年7月.md",
+      "unchanged": true,
+      "sha256": "9ab9280b9e29840150dac2178a4dabb1f400279df829da268c6c2457178ec730"
+    },
+    {
+      "path": "knowledge_base/reference/KB-061_常见问题FAQ.html",
+      "unchanged": true,
+      "sha256": "84a991d74121ddfbcdbf5f044e624488a11ac224a1bf2b74fa272c95aeba7036"
+    },
+    {
+      "path": "knowledge_base/reports/KB-050_S02店长周报_0615-0621.md",
+      "unchanged": true,
+      "sha256": "4542ea699d7ab4f68818b7a6e4b59257ab389e6806de310779d1098a1689569f"
+    },
+    {
+      "path": "knowledge_base/reports/KB-051_S03店长周报_0608-0614.md",
+      "unchanged": true,
+      "sha256": "de6e9dbd67bf8c76d9b0de76b0c67365348291f1dfef144c17717feeffdbcb01"
+    },
+    {
+      "path": "knowledge_base/reports/KB-052_S05店长周报_0803-0809.md",
+      "unchanged": true,
+      "sha256": "ed241d97060318ca9ef84e5f3c2a99d06fc959724bfd46bb8821f132a207fa30"
+    },
+    {
+      "path": "knowledge_base/reports/KB-053_S01店长周报_0720-0726.md",
+      "unchanged": true,
+      "sha256": "b1c0caa8e71b56af1c73946e834d0435caab992c9dcc9fd54611079d64e92169"
+    },
+    {
+      "path": "knowledge_base/stores/KB-030_门店档案_S01_Super_Souper.md",
+      "unchanged": true,
+      "sha256": "109d111962fb24b958da2e1d91274ca180697be91a1e4693511c5fb156631deb"
+    },
+    {
+      "path": "knowledge_base/stores/KB-031_门店档案_S02_Makai_Poke.md",
+      "unchanged": true,
+      "sha256": "79864e6f0d6f749bce6ef3e7fbfba9957aa5851f327faabf745b48f470485d5b"
+    },
+    {
+      "path": "knowledge_base/stores/KB-032_门店档案_S03_Juicy_Bao_Bao.md",
+      "unchanged": true,
+      "sha256": "d7d914a897c7804e6da4f50d83b648db0cc9795751aca81a7361a6dd24d18cc5"
+    },
+    {
+      "path": "knowledge_base/stores/KB-033_门店档案_S04_Arigato_Sando.md",
+      "unchanged": true,
+      "sha256": "0353a45d96d8c757bb658203e7dd59d2539fbd381603cd60c5720e1a7cbe4d39"
+    },
+    {
+      "path": "knowledge_base/stores/KB-034_门店档案_S05_Super_Tetsudo.md",
+      "unchanged": true,
+      "sha256": "e6be3aeca34bd8445085be37e99d879d0cbc83a5f4963bf84bd45d5c8f4fa73f"
+    }
+  ],
+  "untracked_left_unmodified": [
+    "docs/baseline/2026-09-26-followup-draft.md",
+    "docs/research/"
+  ]
+}

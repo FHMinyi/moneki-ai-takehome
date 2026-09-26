@@ -79,3 +79,39 @@
 提交前再次核验：30 项后端测试通过、生产构建通过、5 项 Chromium 测试通过。
 代码被测固定点为 `748f8ab`；随后仅补充文档和保存既有验收证据。
 验收日志入库时仅清理 pytest 输出的行尾空白，未修改断言或测试结果。
+
+# G1-02 调试记录
+
+执行规格：Issue #2；固定点 `5b21ee3588c1cf3f6e8bea32f2dab4b6d22768d9`；
+分支 `codex/g1-02-metrics-summary`。下列证据位于 `docs/verification/g1-02/`。
+测试先实际执行，再修复生产代码；提交是在验证完成后按后端、前端、文档整理，
+不将提交时间冒充测试执行时间，不回退代码补造红绿历史。
+
+## 1. 汇总结束日丢失、退款遗漏、多商品订单被重复计数
+
+- 现象：修复前 M01–M04 失败，M05 空区间通过；单日查询为零，手算两笔订单的净额和客单价不符。
+- 根因：`DataTools._where` 用 `< end`；`query_metrics` 排除退款，退款固定 0、`COUNT(*)` 数明细、销量只累加销售。
+- 验证：`before.txt` 是真实修复前 14 failed / 4 passed。手工夹具两笔订单三条销售：10+5.01+5=20.01，客单价 20.01/2=10.005 → 10.01；第二天原订单退款 3 元、1 份，单独当天 -3/3/0/null/-1。零金额行不属于销售。
+- 修复：闭区间 `<= end`；金额包含退款，退款单独取绝对值；仅正金额销售行按 `order_id` 去重，销量按正负金额加减；金额保持整数分，客单价继续 Decimal ROUND_HALF_UP。每日指标共享同一闭区间，并排除零金额订单。
+- 回归：`after.txt` 49 passed；包括 daily 的补零/单日/退款/零金额，以及现有 payment_mix、top_products、by_store、by_store_category、compare_periods 的结束日边界。未增加趋势/排行 UI，也未重做这些工具的其他行为。
+- 独立证据：`audit_api.py` 复用 G1-01 的独立原始 CSV 规范化脚本（无生产导入），再独立 Decimal 聚合；8 组 API 对照全部一致，见 `independent-api.json`。固定样本预期只在测试数据。
+- 公开评测器：`public-metrics.txt` 与 `public-metrics/report.json` 证明 M01–M06 6/6；这不是全量评测，也没有真实模型调用。
+
+## 2. 日期错误被接受为经营查询、页面缺乏筛选入口
+
+- 根因：`date.fromisoformat` 接受紧凑日期/ISO 周日期；没有检查 start > end；原前端仅数据质量台账。
+- 修复：summary/daily 要求严格 YYYY-MM-DD、有效日历日期、顺序合法，错误返回 400 与中文 error；新增只读 `/api/stores` 从实际维表取选项。
+- 前端：Dashboard 统一持有已生效条件；DashboardFilter 保存草稿、明确查询才生效；校验失败不发请求，提示旧条件仍生效。初始日期来自清洗后真实范围。SummaryPanel 渲染五项指标、加载/失败/重试/空结果，null 客单价显示“—”与无可计算值解释，退款区间不被误判为空。
+- 并发：公共请求 hook 用 AbortController、15 秒超时与 active 标记；返回值携带 URL/revision，防止条件切换后的首帧显示旧结果。浏览器特意让 fetch 忽略取消信号、延迟旧成功响应，确认新空区间保持 0/null。
+- 证据：`browser.txt` 11 passed（6 项本任务 + 5 项 G1-01 回归），1280/1440/390 实际 Chromium、实际 API；`dev-proxy.txt` 1 passed。退款专属显示/失败/延迟为明确受控响应，其余真实页面与 API 核对。
+
+## 3. 实际开发中的测试/构建调整
+
+- `fixture-first-run.txt`：最初合成源库把数量存成 int，生产清洗器按 POS 的文本字段调用 strip，4 个夹具初始化错误。改为源数据结构一致的字符串数量后才形成 `before.txt`；没有改生产解析器迎合夹具。
+- `build-first-run.txt`：Vite 配置加入可覆盖代理目标后 TypeScript 缺 Node 类型；补开发依赖 `@types/node`，最终构建通过。已有 Ant Design 指令与 bundle 大小警告仍非阻断。
+- `browser-first-run.txt`：AntD 的透明搜索 input 被选中项挡住，click 定位超时；测试改为键盘 ArrowDown 打开，再点击真实选项。首轮仍运行时测试源码已修订，因此其错误代码片段展示的是当时磁盘上的新文本，调用日志保留真实 click 超时；不把这个失败归因于业务数据。
+- `select-before.txt` 实际是一次通过的诊断运行，检查 aria-expanded=false，未据此修生产代码。随后确认截图捕获了收起动画，补等待 dropdown 隐藏，再保存清晰截图。
+- 所有 G1-01 回归截图写入本任务子目录 `g1-01-regression/`；原证据、原数据、知识库、两组基线与固定点逐文件一致，见 `preservation.json`。原有未跟踪草稿及 research 仍保留。
+
+实现提交：后端 `8fa078c`；前端 `54f327c`。其后仅补充文档与已生成验收证据。
+保护核验首次遇到 Git 对中文路径的 quoted 输出，改用 `ls-tree -rz` 读取 NUL 分隔真实路径后，103 个受保护已跟踪文件逐字节一致。
