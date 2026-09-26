@@ -1,0 +1,136 @@
+[
+  {
+    "args": [
+      "make",
+      "rebuild"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-6yeq26mj/source",
+    "environment": {},
+    "exit_code": 0,
+    "log": "rebuild-original.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+      "eval/run_eval.py",
+      "--base-url",
+      "http://127.0.0.1:60112",
+      "--questions",
+      "eval/public_questions.jsonl",
+      "--out",
+      "/private/tmp/moneki-g205-final-rag/eval"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-6yeq26mj/source",
+    "environment": {},
+    "exit_code": 0,
+    "log": "eval.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+      "docs/verification/g2-02/audit.py",
+      "/private/tmp/moneki-g205-final-rag",
+      "/private/tmp/moneki-g205-final-rag/g2-02-audit.json"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-6yeq26mj/source",
+    "environment": {},
+    "exit_code": 0,
+    "log": "g2-02-audit.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+      "docs/verification/g2-03/audit.py",
+      "/private/tmp/moneki-g205-final-rag",
+      "/private/tmp/moneki-g205-final-rag/g2-03-audit.json"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-6yeq26mj/source",
+    "environment": {},
+    "exit_code": 0,
+    "log": "g2-03-audit.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+      "-m",
+      "pytest",
+      "docs/verification/g2-01/test_ingestion.py",
+      "docs/verification/g2-02/test_evidence.py",
+      "docs/verification/g2-03/test_retrieval.py",
+      "docs/verification/g2-04/test_doc_qa.py",
+      "docs/verification/g2-04-heading-fix/test_heading.py",
+      "--collect-only",
+      "-q"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-6yeq26mj/source",
+    "environment": {},
+    "exit_code": 0,
+    "log": "collected-tests.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+      "-m",
+      "pytest",
+      "docs/verification/g2-01/test_ingestion.py",
+      "docs/verification/g2-02/test_evidence.py",
+      "docs/verification/g2-03/test_retrieval.py",
+      "docs/verification/g2-04/test_doc_qa.py",
+      "docs/verification/g2-04-heading-fix/test_heading.py",
+      "-q",
+      "--basetemp",
+      "/private/tmp/moneki-g205-final-rag/pytest-temp"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-6yeq26mj/source",
+    "environment": {
+      "G2_EVIDENCE": "/private/tmp/moneki-g205-final-rag/rag-http",
+      "G2_HISTORY_FIXTURE": "/private/tmp/moneki-g205-final-rag/history-fixture",
+      "G2_HEADING_HISTORY_FIXTURE": "/private/tmp/moneki-g205-final-rag/heading-history-fixture"
+    },
+    "exit_code": 0,
+    "log": "rag-regressions.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+      "docs/verification/g2-04/audit.py",
+      "/private/tmp/moneki-g205-final-rag/answer-audit-input",
+      "/private/tmp/moneki-g205-final-rag/answer-audit.json"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-6yeq26mj/source",
+    "environment": {},
+    "exit_code": 0,
+    "log": "answer-audit.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+      "docs/verification/g2-04/compare.py",
+      "docs/verification/g2-04/review-r1-integration/eval/report.json",
+      "/private/tmp/moneki-g205-final-rag/eval/report.json",
+      "/private/tmp/moneki-g205-final-rag/vs-r1.json"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-6yeq26mj/source",
+    "environment": {},
+    "exit_code": 0,
+    "log": "compare.txt"
+  },
+  {
+    "args": [
+      "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+      "-m",
+      "pytest",
+      "docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py",
+      "-q",
+      "--basetemp",
+      "/private/tmp/moneki-g205-final-rag/diagnostic-temp"
+    ],
+    "cwd": "/private/tmp/moneki-g1-05-6yeq26mj/source",
+    "environment": {
+      "PYTHONPATH": "/private/tmp/moneki-g1-05-6yeq26mj/source/starter",
+      "G2_SOURCE": "/private/tmp/moneki-g1-05-6yeq26mj/source"
+    },
+    "exit_code": 1,
+    "log": "diagnostic-original.txt"
+  }
+]

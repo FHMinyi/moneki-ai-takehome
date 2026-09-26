@@ -1,0 +1,70 @@
+env -u LLM_API_KEY -u LLM_BASE_URL -u LLM_MODEL /Library/Developer/CommandLineTools/usr/bin/make -C starter run PORT=8016
+.venv/bin/python -m uvicorn kbqa.server:app --host 127.0.0.1 --port 8016
+INFO:     Started server process [18484]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8016 (Press CTRL+C to quit)
+INFO:     127.0.0.1:59997 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59998 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59999 - "GET /api/data_quality HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60000 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60001 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60002 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60003 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60004 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60005 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60006 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60007 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X22 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60008 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X22 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60009 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X22 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60010 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60010 - "GET /assets/index-BWHUe1Zi.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60011 - "GET /assets/index-BzlJnGoX.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60010 - "GET /api/data_quality HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60010 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60010 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60011 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60012 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60013 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60012 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60011 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60010 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60013 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60013 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60013 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60014 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60014 - "GET /assets/index-BWHUe1Zi.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60015 - "GET /assets/index-BzlJnGoX.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60014 - "GET /api/data_quality HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60014 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60014 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60015 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60017 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60018 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60017 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60015 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60014 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60018 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60018 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60018 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60019 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60019 - "GET /assets/index-BWHUe1Zi.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60020 - "GET /assets/index-BzlJnGoX.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60019 - "GET /api/data_quality HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60019 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60019 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60020 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60021 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60022 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60021 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60020 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60019 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60022 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60022 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60022 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [18484]
+make[1]: *** [run] Terminated: 15
+make: *** [run] Terminated: 15

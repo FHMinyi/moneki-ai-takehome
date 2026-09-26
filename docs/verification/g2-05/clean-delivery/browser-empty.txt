@@ -1,0 +1,15 @@
+Browser output: /tmp/moneki-g1-05-u99qwxp5/browser-empty
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' install chromium
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' test --output=/tmp/moneki-g1-05-u99qwxp5/browser-empty/results g1-05-delivery.spec.ts
+
+Running 3 tests using 1 worker
+
+(node:83612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/g1-05-delivery.spec.ts:6:3 › delivery empty at 1280 (193ms)
+  ✓  2 tests/g1-05-delivery.spec.ts:6:3 › delivery empty at 1440 (177ms)
+  ✓  3 tests/g1-05-delivery.spec.ts:6:3 › delivery empty at 390 (163ms)
+
+  3 passed (801ms)

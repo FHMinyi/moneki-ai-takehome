@@ -1,0 +1,11 @@
+{
+  "pid": 18253,
+  "pgid": 18253,
+  "port": 8015,
+  "command": [
+    "make",
+    "run",
+    "PORT=8015"
+  ],
+  "cwd": "/tmp/moneki-g1-05-6yeq26mj/source"
+}

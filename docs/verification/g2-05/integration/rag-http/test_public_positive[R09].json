@@ -1,0 +1,560 @@
+{
+  "source": "/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_public_positive_R09_0/starter",
+  "records": [
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_public_positive_R09_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-u99qwxp5/source/data\n知识库目录：/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_public_positive_R09_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 4fb7d7d5b53f\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_public_positive_R09_0/var/clean.db、/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_public_positive_R09_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "63805"
+      ],
+      "pid": 85050,
+      "port": 63805,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "4fb7d7d5b53f",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "味噌拉面在数据库里叫什么",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-003",
+                "chunk_id": "KB-003#3",
+                "score": 32.5288,
+                "text": "| 数据库写法 | 常见别名 | 说明 |\n|---|---|---|\n| 味增拉面 | 味噌拉面、Miso Ramen | 数据库里的写法是“味增拉面”，这是早年录入时留下的写法。菜单、物料、外卖平台上印的都是“味噌拉面”，两者是同一个商品，从来没有改过名，查数时两种写法都要命中 |\n| 豚骨拉面 | Tonkotsu Ramen、白汤拉面 | |\n| 牛肉poke | 牛肉波奇饭、Beef Poke | 顾客口头也常说“牛肉饭”，但这和照烧鸡饭不是一回事，接待时要问清楚 |\n",
+                "retrieval_text": "商品与门店别名词典\n# 商品与门店别名词典\n## 一、商品\n| 数据库写法 | 常见别名 | 说明 |\n|---|---|---|\n| 味增拉面 | 味噌拉面、Miso Ramen | 数据库里的写法是“味增拉面”，这是早年录入时留下的写法。菜单、物料、外卖平台上印的都是“味噌拉面”，两者是同一个商品，从来没有改过名，查数时两种写法都要命中 |\n| 豚骨拉面 | Tonkotsu Ramen、白汤拉面 | |\n| 牛肉poke | 牛肉波奇饭、Beef Poke | 顾客口头也常说“牛肉饭”，但这和照烧鸡饭不是一回事，接待时要问清楚 |\n",
+                "source_start": 146,
+                "source_end": 388,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 商品与门店别名词典\n"
+                  },
+                  {
+                    "start": 137,
+                    "end": 145,
+                    "text": "## 一、商品\n"
+                  },
+                  {
+                    "start": 146,
+                    "end": 182,
+                    "text": "| 数据库写法 | 常见别名 | 说明 |\n|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#2",
+                "score": 28.9598,
+                "text": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| P01 | 豚骨拉面 | ✓ | ✓ | — | — | ✓ | — | — | — | — |\n| P02 | 味增拉面 | ✓ | ✓ | — | — | ✓ | — | — | — | — |\n| P03 | 照烧鸡饭 | ✓ | ✓ | — | — | — | — | ✓ | — | — |\n",
+                "retrieval_text": "过敏原对照表\n# 过敏原对照表\n| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| P01 | 豚骨拉面 | ✓ | ✓ | — | — | ✓ | — | — | — | — |\n| P02 | 味增拉面 | ✓ | ✓ | — | — | ✓ | — | — | — | — |\n| P03 | 照烧鸡饭 | ✓ | ✓ | — | — | — | — | ✓ | — | — |\n",
+                "source_start": 127,
+                "source_end": 386,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 9,
+                    "text": "# 过敏原对照表\n"
+                  },
+                  {
+                    "start": 127,
+                    "end": 233,
+                    "text": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-030",
+                "chunk_id": "KB-030#3",
+                "score": 23.1976,
+                "text": "## 特色\n\n五家店里唯一的拉面专门店，汤底当天熬、当天用完，豚骨拉面和味增拉面是两张招牌。\n周边是软件园和几栋写字楼，午市集中在 11:30 到 13:00，翻台压力大，晚市偏平缓，周末以周边居民和带孩子的家庭为主。\n店内做开放式明档，出面口正对座位区，顾客能看到煮面、浇汤和摆盘的全过程，吧台六个高脚位是单客最喜欢坐的位置。\n除了拉面，味增汤、炸鸡块和毛豆是点得最多的小食，夏天饮料的连带比冬天高一截。\n\n",
+                "retrieval_text": "门店档案 S01 Super Souper\n# 门店档案：S01 Super Souper\n## 特色\n\n五家店里唯一的拉面专门店，汤底当天熬、当天用完，豚骨拉面和味增拉面是两张招牌。\n周边是软件园和几栋写字楼，午市集中在 11:30 到 13:00，翻台压力大，晚市偏平缓，周末以周边居民和带孩子的家庭为主。\n店内做开放式明档，出面口正对座位区，顾客能看到煮面、浇汤和摆盘的全过程，吧台六个高脚位是单客最喜欢坐的位置。\n除了拉面，味增汤、炸鸡块和毛豆是点得最多的小食，夏天饮料的连带比冬天高一截。\n\n",
+                "source_start": 251,
+                "source_end": 456,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 24,
+                    "text": "# 门店档案：S01 Super Souper\n"
+                  },
+                  {
+                    "start": 251,
+                    "end": 257,
+                    "text": "## 特色\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-041",
+                "chunk_id": "KB-041#3",
+                "score": 20.5256,
+                "text": "| 沪滨米业有限公司 | 大米、寿司醋、米制品 | 各类主食、poke 饭底 | 5 天 | 每周一次 | 田伟 | 021-5555-0202 | 整托配送，仓储在松江 |\n| 明和面业（上海）有限公司 | 拉面面条、面包胚 | 豚骨拉面、味增拉面、两款三明治 | 2 天 | 每日配送 | 单玉清 | 021-5555-0203 | 面包胚当日达，不隔夜，缺货需前一天 16:00 前报 |\n| 青岭农产配送 | 蔬菜、水果、豆制品 | 毛豆、各类配菜 | 1 天 | 每日配送 | 华小满 | 021-5555-0204 | 叶菜为当日采摘，雨天可能延后两小时 |\n",
+                "retrieval_text": "供应商名录\n# 供应商名录\n| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n| 沪滨米业有限公司 | 大米、寿司醋、米制品 | 各类主食、poke 饭底 | 5 天 | 每周一次 | 田伟 | 021-5555-0202 | 整托配送，仓储在松江 |\n| 明和面业（上海）有限公司 | 拉面面条、面包胚 | 豚骨拉面、味增拉面、两款三明治 | 2 天 | 每日配送 | 单玉清 | 021-5555-0203 | 面包胚当日达，不隔夜，缺货需前一天 16:00 前报 |\n| 青岭农产配送 | 蔬菜、水果、豆制品 | 毛豆、各类配菜 | 1 天 | 每日配送 | 华小满 | 021-5555-0204 | 叶菜为当日采摘，雨天可能延后两小时 |\n",
+                "source_start": 359,
+                "source_end": 645,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 8,
+                    "text": "# 供应商名录\n"
+                  },
+                  {
+                    "start": 124,
+                    "end": 215,
+                    "text": "| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-042",
+                "chunk_id": "KB-042#2",
+                "score": 9.874,
+                "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "retrieval_text": "门店营业时间总表\n# 门店营业时间总表\n| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "source_start": 61,
+                "source_end": 319,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 11,
+                    "text": "# 门店营业时间总表\n"
+                  },
+                  {
+                    "start": 61,
+                    "end": 118,
+                    "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "味噌拉面在数据库里叫什么",
+              "terms": [
+                "味噌",
+                "噌拉",
+                "拉面",
+                "面在",
+                "在数",
+                "数据",
+                "据库",
+                "库里",
+                "里叫",
+                "叫什"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-003#3",
+                  "doc_id": "KB-003",
+                  "score": 32.5288,
+                  "lexical_score": 48.1909,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "味噌",
+                    "噌拉",
+                    "库里",
+                    "拉面",
+                    "据库",
+                    "数据"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#2",
+                  "doc_id": "KB-040",
+                  "score": 28.9598,
+                  "lexical_score": 21.4517,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "拉面"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-030#3",
+                  "doc_id": "KB-030",
+                  "score": 23.1976,
+                  "lexical_score": 17.1834,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "拉面"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#3",
+                  "doc_id": "KB-041",
+                  "score": 20.5256,
+                  "lexical_score": 15.2042,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "拉面"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#1",
+                  "doc_id": "KB-003",
+                  "score": 14.3638,
+                  "lexical_score": 11.8609,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "库里",
+                    "据库",
+                    "数据"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#7",
+                  "doc_id": "KB-040",
+                  "score": 13.9871,
+                  "lexical_score": 6.479,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "拉面"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#8",
+                  "doc_id": "KB-003",
+                  "score": 13.8881,
+                  "lexical_score": 10.9093,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "库里",
+                    "据库",
+                    "数据"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-030#2",
+                  "doc_id": "KB-030",
+                  "score": 13.2099,
+                  "lexical_score": 7.1957,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "拉面"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#5",
+                  "doc_id": "KB-003",
+                  "score": 12.7225,
+                  "lexical_score": 8.5782,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "据库",
+                    "数据"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#4",
+                  "doc_id": "KB-040",
+                  "score": 12.0684,
+                  "lexical_score": 4.5603,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-003#7",
+                  "doc_id": "KB-003",
+                  "score": 12.0681,
+                  "lexical_score": 7.2694,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "据库",
+                    "数据"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#4",
+                  "doc_id": "KB-003",
+                  "score": 11.0984,
+                  "lexical_score": 5.33,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "据库",
+                    "数据"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-042#2",
+                  "doc_id": "KB-042",
+                  "score": 9.874,
+                  "lexical_score": 7.314,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "拉面"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-028#5",
+                  "doc_id": "KB-028",
+                  "score": 8.5194,
+                  "lexical_score": 6.3107,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "拉面"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-031#3",
+                  "doc_id": "KB-031",
+                  "score": 5.4163,
+                  "lexical_score": 4.0121,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "面在"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#12",
+                  "doc_id": "KB-001",
+                  "score": 5.3529,
+                  "lexical_score": 3.9651,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "据库",
+                    "数据"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-025#4",
+                  "doc_id": "KB-025",
+                  "score": 4.657,
+                  "lexical_score": 3.4496,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-050#4",
+                  "doc_id": "KB-050",
+                  "score": 4.3264,
+                  "lexical_score": 3.2048,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-001#1",
+                  "doc_id": "KB-001",
+                  "score": 4.2985,
+                  "lexical_score": 2.9107,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "数据"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-050#3",
+                  "doc_id": "KB-050",
+                  "score": 4.1644,
+                  "lexical_score": 3.0428,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-001#19",
+                  "doc_id": "KB-001",
+                  "score": 4.0666,
+                  "lexical_score": 2.6788,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "数据"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#2",
+                  "doc_id": "KB-001",
+                  "score": 4.0173,
+                  "lexical_score": 2.6295,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "数据"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#4",
+                  "doc_id": "KB-001",
+                  "score": 3.7268,
+                  "lexical_score": 2.339,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "数据"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#9",
+                  "doc_id": "KB-060",
+                  "score": 3.5931,
+                  "lexical_score": 2.6616,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-027#5",
+                  "doc_id": "KB-027",
+                  "score": 3.5015,
+                  "lexical_score": 2.5937,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "数据"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#8",
+                  "doc_id": "KB-060",
+                  "score": 3.4626,
+                  "lexical_score": 2.531,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-029#3",
+                  "doc_id": "KB-029",
+                  "score": 2.7439,
+                  "lexical_score": 2.0325,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                }
+              ],
+              "expansions": [
+                "味增拉面",
+                "味噌拉面",
+                "Miso Ramen"
+              ],
+              "coverage": 0.501,
+              "hits": [
+                {
+                  "doc_id": "KB-003",
+                  "chunk_id": "KB-003#3",
+                  "score": 32.5288,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-040",
+                  "chunk_id": "KB-040#2",
+                  "score": 28.9598,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-030",
+                  "chunk_id": "KB-030#3",
+                  "score": 23.1976,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-041",
+                  "chunk_id": "KB-041#3",
+                  "score": 20.5256,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-042",
+                  "chunk_id": "KB-042#2",
+                  "score": 9.874,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-002",
+                  "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                },
+                {
+                  "doc_id": "KB-010",
+                  "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                },
+                {
+                  "doc_id": "KB-012",
+                  "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

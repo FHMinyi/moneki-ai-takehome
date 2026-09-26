@@ -1,0 +1,799 @@
+{
+  "source": "/private/tmp/moneki-g205-final-rag/pytest-temp/test_shape_rerank_replacement_0/starter",
+  "records": [
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g205-final-rag/pytest-temp/test_shape_rerank_replacement_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-6yeq26mj/source/data\n知识库目录：/private/tmp/moneki-g205-final-rag/pytest-temp/test_shape_rerank_replacement_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：2 篇文档，4 个片段，缓存键 5d8e2492fab9\n产物：/private/tmp/moneki-g205-final-rag/pytest-temp/test_shape_rerank_replacement_0/var/clean.db、/private/tmp/moneki-g205-final-rag/pytest-temp/test_shape_rerank_replacement_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "60937"
+      ],
+      "pid": 19175,
+      "port": 60937,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 2,
+            "kb_chunks": 4,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "5d8e2492fab9",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "星河鱼供应商赔付金额是多少",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-981",
+                "chunk_id": "KB-981#3",
+                "score": 0.9981,
+                "text": "ipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. \n\n2. SETTLEMENT\n\nCredit issued: CNY 4321.",
+                "retrieval_text": "Jade Trout delivery\n# Jade Trout delivery\nipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. \n\n2. SETTLEMENT\n\nCredit issued: CNY 4321.",
+                "source_start": 275,
+                "source_end": 544,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 22,
+                    "text": "# Jade Trout delivery\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-981",
+                "chunk_id": "KB-981#1",
+                "score": 0.9312,
+                "text": "# Jade Trout delivery\n\n1. DETAILS\n\n",
+                "retrieval_text": "Jade Trout delivery\n# Jade Trout delivery\n\n1. DETAILS\n\n",
+                "source_start": 0,
+                "source_end": 35,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 22,
+                    "text": "# Jade Trout delivery\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-981",
+                "chunk_id": "KB-981#2",
+                "score": 0.642,
+                "text": "The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment w",
+                "retrieval_text": "Jade Trout delivery\n# Jade Trout delivery\nThe shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment w",
+                "source_start": 35,
+                "source_end": 335,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 22,
+                    "text": "# Jade Trout delivery\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-980",
+                "chunk_id": "KB-980#1",
+                "score": 0.3943,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 星河鱼 | Jade Trout |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 星河鱼 | Jade Trout |",
+                "source_start": 0,
+                "source_end": 47,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "星河鱼供应商赔付金额是多少",
+              "terms": [
+                "星河",
+                "河鱼",
+                "鱼供",
+                "供应",
+                "应商",
+                "商赔",
+                "赔付",
+                "付金",
+                "金额",
+                "额是"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-981#3",
+                  "doc_id": "KB-981",
+                  "score": 0.9981,
+                  "lexical_score": 0.424,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "星河",
+                    "河鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-981#1",
+                  "doc_id": "KB-981",
+                  "score": 0.9312,
+                  "lexical_score": 0.6898,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "星河",
+                    "河鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-981#2",
+                  "doc_id": "KB-981",
+                  "score": 0.642,
+                  "lexical_score": 0.4006,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "星河",
+                    "河鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-980#1",
+                  "doc_id": "KB-980",
+                  "score": 0.3943,
+                  "lexical_score": 0.5842,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "星河",
+                    "河鱼"
+                  ]
+                }
+              ],
+              "expansions": [
+                "星河鱼",
+                "Jade Trout"
+              ],
+              "coverage": 0.011,
+              "hits": [
+                {
+                  "doc_id": "KB-981",
+                  "chunk_id": "KB-981#3",
+                  "score": 0.9981,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-981",
+                  "chunk_id": "KB-981#1",
+                  "score": 0.9312,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-981",
+                  "chunk_id": "KB-981#2",
+                  "score": 0.642,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-980",
+                  "chunk_id": "KB-980#1",
+                  "score": 0.3943,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "zzzxylophoneqqq金额多少钱",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-980",
+                "chunk_id": "KB-980#1",
+                "score": 0.0,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 星河鱼 | Jade Trout |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 星河鱼 | Jade Trout |",
+                "source_start": 0,
+                "source_end": 47,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-981",
+                "chunk_id": "KB-981#1",
+                "score": 0.0,
+                "text": "# Jade Trout delivery\n\n1. DETAILS\n\n",
+                "retrieval_text": "Jade Trout delivery\n# Jade Trout delivery\n\n1. DETAILS\n\n",
+                "source_start": 0,
+                "source_end": 35,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 22,
+                    "text": "# Jade Trout delivery\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-981",
+                "chunk_id": "KB-981#2",
+                "score": 0.0,
+                "text": "The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment w",
+                "retrieval_text": "Jade Trout delivery\n# Jade Trout delivery\nThe shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment w",
+                "source_start": 35,
+                "source_end": 335,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 22,
+                    "text": "# Jade Trout delivery\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-981",
+                "chunk_id": "KB-981#3",
+                "score": 0.0,
+                "text": "ipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. \n\n2. SETTLEMENT\n\nCredit issued: CNY 4321.",
+                "retrieval_text": "Jade Trout delivery\n# Jade Trout delivery\nipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. \n\n2. SETTLEMENT\n\nCredit issued: CNY 4321.",
+                "source_start": 275,
+                "source_end": 544,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 22,
+                    "text": "# Jade Trout delivery\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "zzzxylophoneqqq金额多少钱",
+              "terms": [
+                "zzzxylophoneqqq",
+                "金额",
+                "额多",
+                "少钱"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [],
+              "expansions": [],
+              "coverage": 0.0,
+              "hits": [
+                {
+                  "doc_id": "KB-980",
+                  "chunk_id": "KB-980#1",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-981",
+                  "chunk_id": "KB-981#1",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-981",
+                  "chunk_id": "KB-981#2",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-981",
+                  "chunk_id": "KB-981#3",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        }
+      ],
+      "stopped": true
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g205-final-rag/pytest-temp/test_shape_rerank_replacement_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-6yeq26mj/source/data\n知识库目录：/private/tmp/moneki-g205-final-rag/pytest-temp/test_shape_rerank_replacement_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：2 篇文档，4 个片段，缓存键 9ce7f8b635e3\n产物：/private/tmp/moneki-g205-final-rag/pytest-temp/test_shape_rerank_replacement_0/var/clean.db、/private/tmp/moneki-g205-final-rag/pytest-temp/test_shape_rerank_replacement_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "60945"
+      ],
+      "pid": 19184,
+      "port": 60945,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 2,
+            "kb_chunks": 4,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "9ce7f8b635e3",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "星河鱼供应商赔付金额是多少",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-981",
+                "chunk_id": "KB-981#3",
+                "score": 0.9981,
+                "text": "ipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. \n\n2. SETTLEMENT\n\nCredit issued: CNY 6789.",
+                "retrieval_text": "Amber Cod delivery\n# Amber Cod delivery\nipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. \n\n2. SETTLEMENT\n\nCredit issued: CNY 6789.",
+                "source_start": 274,
+                "source_end": 543,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 21,
+                    "text": "# Amber Cod delivery\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-981",
+                "chunk_id": "KB-981#1",
+                "score": 0.9312,
+                "text": "# Amber Cod delivery\n\n1. DETAILS\n\n",
+                "retrieval_text": "Amber Cod delivery\n# Amber Cod delivery\n\n1. DETAILS\n\n",
+                "source_start": 0,
+                "source_end": 34,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 21,
+                    "text": "# Amber Cod delivery\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-981",
+                "chunk_id": "KB-981#2",
+                "score": 0.642,
+                "text": "The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment w",
+                "retrieval_text": "Amber Cod delivery\n# Amber Cod delivery\nThe shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment w",
+                "source_start": 34,
+                "source_end": 334,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 21,
+                    "text": "# Amber Cod delivery\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-980",
+                "chunk_id": "KB-980#1",
+                "score": 0.3943,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 星河鱼 | Amber Cod |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 星河鱼 | Amber Cod |",
+                "source_start": 0,
+                "source_end": 46,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "星河鱼供应商赔付金额是多少",
+              "terms": [
+                "星河",
+                "河鱼",
+                "鱼供",
+                "供应",
+                "应商",
+                "商赔",
+                "赔付",
+                "付金",
+                "金额",
+                "额是"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-981#3",
+                  "doc_id": "KB-981",
+                  "score": 0.9981,
+                  "lexical_score": 0.424,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "星河",
+                    "河鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-981#1",
+                  "doc_id": "KB-981",
+                  "score": 0.9312,
+                  "lexical_score": 0.6898,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "星河",
+                    "河鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-981#2",
+                  "doc_id": "KB-981",
+                  "score": 0.642,
+                  "lexical_score": 0.4006,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "星河",
+                    "河鱼"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-980#1",
+                  "doc_id": "KB-980",
+                  "score": 0.3943,
+                  "lexical_score": 0.5842,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "星河",
+                    "河鱼"
+                  ]
+                }
+              ],
+              "expansions": [
+                "星河鱼",
+                "Amber Cod"
+              ],
+              "coverage": 0.011,
+              "hits": [
+                {
+                  "doc_id": "KB-981",
+                  "chunk_id": "KB-981#3",
+                  "score": 0.9981,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-981",
+                  "chunk_id": "KB-981#1",
+                  "score": 0.9312,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-981",
+                  "chunk_id": "KB-981#2",
+                  "score": 0.642,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-980",
+                  "chunk_id": "KB-980#1",
+                  "score": 0.3943,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "zzzxylophoneqqq金额多少钱",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-980",
+                "chunk_id": "KB-980#1",
+                "score": 0.0,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 星河鱼 | Amber Cod |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 星河鱼 | Amber Cod |",
+                "source_start": 0,
+                "source_end": 46,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-981",
+                "chunk_id": "KB-981#1",
+                "score": 0.0,
+                "text": "# Amber Cod delivery\n\n1. DETAILS\n\n",
+                "retrieval_text": "Amber Cod delivery\n# Amber Cod delivery\n\n1. DETAILS\n\n",
+                "source_start": 0,
+                "source_end": 34,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 21,
+                    "text": "# Amber Cod delivery\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-981",
+                "chunk_id": "KB-981#2",
+                "score": 0.0,
+                "text": "The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment w",
+                "retrieval_text": "Amber Cod delivery\n# Amber Cod delivery\nThe shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment w",
+                "source_start": 34,
+                "source_end": 334,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 21,
+                    "text": "# Amber Cod delivery\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-981",
+                "chunk_id": "KB-981#3",
+                "score": 0.0,
+                "text": "ipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. \n\n2. SETTLEMENT\n\nCredit issued: CNY 6789.",
+                "retrieval_text": "Amber Cod delivery\n# Amber Cod delivery\nipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. The shipment was delayed. \n\n2. SETTLEMENT\n\nCredit issued: CNY 6789.",
+                "source_start": 274,
+                "source_end": 543,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 21,
+                    "text": "# Amber Cod delivery\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "zzzxylophoneqqq金额多少钱",
+              "terms": [
+                "zzzxylophoneqqq",
+                "金额",
+                "额多",
+                "少钱"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [],
+              "expansions": [],
+              "coverage": 0.0,
+              "hits": [
+                {
+                  "doc_id": "KB-980",
+                  "chunk_id": "KB-980#1",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-981",
+                  "chunk_id": "KB-981#1",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-981",
+                  "chunk_id": "KB-981#2",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-981",
+                  "chunk_id": "KB-981#3",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

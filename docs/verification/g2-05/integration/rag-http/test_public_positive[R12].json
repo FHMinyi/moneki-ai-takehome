@@ -1,0 +1,577 @@
+{
+  "source": "/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_public_positive_R12_0/starter",
+  "records": [
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_public_positive_R12_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-u99qwxp5/source/data\n知识库目录：/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_public_positive_R12_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 156c24da3a65\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_public_positive_R12_0/var/clean.db、/private/tmp/moneki-g2-05-rag-01/pytest-temp/test_public_positive_R12_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "63854"
+      ],
+      "pid": 85087,
+      "port": 63854,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "156c24da3a65",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "S03 六月停业几天，什么原因",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-020",
+                "chunk_id": "KB-020#1",
+                "score": 26.4297,
+                "text": "# S03 Juicy Bao Bao 临时停业通知\n\n发布部门：总部运营部\n发布日期：2026-06-06\n\n浦东新区市场监管所于 2026-06-05 到 Juicy Bao Bao（S03，上海·浦东）做日常检查，指出后厨排烟管道油垢堆积、局部风管接口密封不严，要求限期整改。\n整改需要停火作业并拆装部分风管，无法在营业时间内穿插完成。经与商场物业、施工方确认，现决定：\n\n",
+                "retrieval_text": "S03 Juicy Bao Bao 临时停业通知\n# S03 Juicy Bao Bao 临时停业通知\n\n发布部门：总部运营部\n发布日期：2026-06-06\n\n浦东新区市场监管所于 2026-06-05 到 Juicy Bao Bao（S03，上海·浦东）做日常检查，指出后厨排烟管道油垢堆积、局部风管接口密封不严，要求限期整改。\n整改需要停火作业并拆装部分风管，无法在营业时间内穿插完成。经与商场物业、施工方确认，现决定：\n\n",
+                "source_start": 0,
+                "source_end": 190,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "# S03 Juicy Bao Bao 临时停业通知\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-032",
+                "chunk_id": "KB-032#1",
+                "score": 23.5304,
+                "text": "# 门店档案：S03 Juicy Bao Bao\n\n",
+                "retrieval_text": "门店档案 S03 Juicy Bao Bao\n# 门店档案：S03 Juicy Bao Bao\n\n",
+                "source_start": 0,
+                "source_end": 26,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 25,
+                    "text": "# 门店档案：S03 Juicy Bao Bao\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-051",
+                "chunk_id": "KB-051#4",
+                "score": 23.5036,
+                "text": "## 问题\n\n1. 停业期间的鲜货是提前停的，没有浪费，但半成品倒掉了一些，下次可以再早一天开始减量。\n2. 施工那几天后厨断断续续没法用，员工午饭是在外面吃的，这部分怎么算请人事给个说法。\n3. 蒸箱有一个门封条施工时被压到，已经换了新的。\n\n",
+                "retrieval_text": "S03 店长周报 2026-06-08 至 2026-06-14\n# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n## 问题\n\n1. 停业期间的鲜货是提前停的，没有浪费，但半成品倒掉了一些，下次可以再早一天开始减量。\n2. 施工那几天后厨断断续续没法用，员工午饭是在外面吃的，这部分怎么算请人事给个说法。\n3. 蒸箱有一个门封条施工时被压到，已经换了新的。\n\n",
+                "source_start": 443,
+                "source_end": 566,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 50,
+                    "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n"
+                  },
+                  {
+                    "start": 443,
+                    "end": 449,
+                    "text": "## 问题\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-042",
+                "chunk_id": "KB-042#2",
+                "score": 14.699,
+                "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "retrieval_text": "门店营业时间总表\n# 门店营业时间总表\n| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "source_start": 61,
+                "source_end": 319,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 11,
+                    "text": "# 门店营业时间总表\n"
+                  },
+                  {
+                    "start": 61,
+                    "end": 118,
+                    "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-003",
+                "chunk_id": "KB-003#7",
+                "score": 10.1846,
+                "text": "| 数据库写法 | 门店编号 | 常见别名 |\n|---|---|---|\n| Super Souper | S01 | SS、汤面店 |\n| Makai Poke | S02 | Makai |\n| Juicy Bao Bao | S03 | JBB、包包店 |\n| Arigato Sando | S04 | 阿里嘎多、AS |\n| Super Tetsudo | S05 | 铁道、ST |\n\n",
+                "retrieval_text": "商品与门店别名词典\n# 商品与门店别名词典\n## 二、门店\n| 数据库写法 | 门店编号 | 常见别名 |\n|---|---|---|\n| Super Souper | S01 | SS、汤面店 |\n| Makai Poke | S02 | Makai |\n| Juicy Bao Bao | S03 | JBB、包包店 |\n| Arigato Sando | S04 | 阿里嘎多、AS |\n| Super Tetsudo | S05 | 铁道、ST |\n\n",
+                "source_start": 709,
+                "source_end": 909,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 商品与门店别名词典\n"
+                  },
+                  {
+                    "start": 700,
+                    "end": 708,
+                    "text": "## 二、门店\n"
+                  },
+                  {
+                    "start": 709,
+                    "end": 747,
+                    "text": "| 数据库写法 | 门店编号 | 常见别名 |\n|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "s03 六月停业几天,什么原因",
+              "terms": [
+                "s03",
+                "六月",
+                "月停",
+                "停业",
+                "业几",
+                "几天",
+                "么原",
+                "原因"
+              ],
+              "scope": {
+                "as_of": "2026-06-30",
+                "store_id": "S03",
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-020#1",
+                  "doc_id": "KB-020",
+                  "score": 26.4297,
+                  "lexical_score": 17.024,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03",
+                    "停业"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-020#3",
+                  "doc_id": "KB-020",
+                  "score": 25.7963,
+                  "lexical_score": 16.4731,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03",
+                    "停业"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-032#1",
+                  "doc_id": "KB-032",
+                  "score": 23.5304,
+                  "lexical_score": 15.1564,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-051#4",
+                  "doc_id": "KB-051",
+                  "score": 23.5036,
+                  "lexical_score": 15.1392,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03",
+                    "停业",
+                    "几天"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-020#2",
+                  "doc_id": "KB-020",
+                  "score": 23.167,
+                  "lexical_score": 14.1868,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03",
+                    "停业"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-032#2",
+                  "doc_id": "KB-032",
+                  "score": 21.9595,
+                  "lexical_score": 13.7905,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-051#3",
+                  "doc_id": "KB-051",
+                  "score": 21.5228,
+                  "lexical_score": 13.4167,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03",
+                    "停业",
+                    "几天"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-051#1",
+                  "doc_id": "KB-051",
+                  "score": 20.2024,
+                  "lexical_score": 12.2686,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-032#4",
+                  "doc_id": "KB-032",
+                  "score": 19.9186,
+                  "lexical_score": 12.0158,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-051#5",
+                  "doc_id": "KB-051",
+                  "score": 18.5688,
+                  "lexical_score": 10.8481,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-032#3",
+                  "doc_id": "KB-032",
+                  "score": 17.3623,
+                  "lexical_score": 9.7929,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-051#2",
+                  "doc_id": "KB-051",
+                  "score": 17.253,
+                  "lexical_score": 9.7039,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03",
+                    "停业"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-042#2",
+                  "doc_id": "KB-042",
+                  "score": 14.699,
+                  "lexical_score": 9.468,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#7",
+                  "doc_id": "KB-003",
+                  "score": 10.1846,
+                  "lexical_score": 13.1202,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-042#4",
+                  "doc_id": "KB-042",
+                  "score": 9.4936,
+                  "lexical_score": 2.1898,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "停业"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#19",
+                  "doc_id": "KB-001",
+                  "score": 6.8546,
+                  "lexical_score": 3.385,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "原因"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-061#1",
+                  "doc_id": "KB-061",
+                  "score": 6.7694,
+                  "lexical_score": 5.0144,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-016#3",
+                  "doc_id": "KB-016",
+                  "score": 6.0345,
+                  "lexical_score": 2.98,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "原因"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-014#5",
+                  "doc_id": "KB-014",
+                  "score": 5.5324,
+                  "lexical_score": 2.732,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "原因"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-013#1",
+                  "doc_id": "KB-013",
+                  "score": 5.4229,
+                  "lexical_score": 4.017,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "几天"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-001#4",
+                  "doc_id": "KB-001",
+                  "score": 3.0928,
+                  "lexical_score": 1.9081,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s03"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-024#4",
+                  "doc_id": "KB-024",
+                  "score": 1.7249,
+                  "lexical_score": 2.9627,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s03"
+                  ]
+                }
+              ],
+              "expansions": [
+                "Juicy Bao Bao",
+                "JBB",
+                "包包店"
+              ],
+              "coverage": 0.251,
+              "hits": [
+                {
+                  "doc_id": "KB-020",
+                  "chunk_id": "KB-020#1",
+                  "score": 26.4297,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-032",
+                  "chunk_id": "KB-032#1",
+                  "score": 23.5304,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-051",
+                  "chunk_id": "KB-051#4",
+                  "score": 23.5036,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-042",
+                  "chunk_id": "KB-042#2",
+                  "score": 14.699,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-003",
+                  "chunk_id": "KB-003#7",
+                  "score": 10.1846,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-002",
+                  "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                },
+                {
+                  "doc_id": "KB-062",
+                  "reason": "该版本自 2026-08-15 起才生效，晚于问题所指的 2026-06-30"
+                },
+                {
+                  "doc_id": "KB-021",
+                  "reason": "该版本自 2026-07-06 起才生效，晚于问题所指的 2026-06-30"
+                },
+                {
+                  "doc_id": "KB-022",
+                  "reason": "该版本自 2026-07-04 起才生效，晚于问题所指的 2026-06-30"
+                },
+                {
+                  "doc_id": "KB-023",
+                  "reason": "文档声明只适用于 S02，与问题里的 S03 不符"
+                },
+                {
+                  "doc_id": "KB-025",
+                  "reason": "该版本自 2026-07-01 起才生效，晚于问题所指的 2026-06-30"
+                },
+                {
+                  "doc_id": "KB-026",
+                  "reason": "该版本自 2026-07-24 起才生效，晚于问题所指的 2026-06-30"
+                },
+                {
+                  "doc_id": "KB-027",
+                  "reason": "文档声明只适用于 S05，与问题里的 S03 不符"
+                },
+                {
+                  "doc_id": "KB-028",
+                  "reason": "该版本自 2026-08-01 起才生效，晚于问题所指的 2026-06-30"
+                },
+                {
+                  "doc_id": "KB-029",
+                  "reason": "该版本自 2026-08-05 起才生效，晚于问题所指的 2026-06-30"
+                },
+                {
+                  "doc_id": "KB-011",
+                  "reason": "该版本自 2026-07-01 起才生效，晚于问题所指的 2026-06-30"
+                },
+                {
+                  "doc_id": "KB-012",
+                  "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                },
+                {
+                  "doc_id": "KB-040",
+                  "reason": "该版本自 2026-08-01 起才生效，晚于问题所指的 2026-06-30"
+                },
+                {
+                  "doc_id": "KB-060",
+                  "reason": "该版本自 2026-08-03 起才生效，晚于问题所指的 2026-06-30"
+                },
+                {
+                  "doc_id": "KB-050",
+                  "reason": "文档声明只适用于 S02，与问题里的 S03 不符"
+                },
+                {
+                  "doc_id": "KB-052",
+                  "reason": "文档声明只适用于 S05，与问题里的 S03 不符"
+                },
+                {
+                  "doc_id": "KB-053",
+                  "reason": "文档声明只适用于 S01，与问题里的 S03 不符"
+                },
+                {
+                  "doc_id": "KB-030",
+                  "reason": "文档声明只适用于 S01，与问题里的 S03 不符"
+                },
+                {
+                  "doc_id": "KB-031",
+                  "reason": "文档声明只适用于 S02，与问题里的 S03 不符"
+                },
+                {
+                  "doc_id": "KB-033",
+                  "reason": "文档声明只适用于 S04，与问题里的 S03 不符"
+                },
+                {
+                  "doc_id": "KB-034",
+                  "reason": "文档声明只适用于 S05，与问题里的 S03 不符"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

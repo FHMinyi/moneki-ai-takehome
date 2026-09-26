@@ -1,0 +1,322 @@
+{
+  "generated_at": "2026-09-27 06:06:56",
+  "base_url": "http://127.0.0.1:8015",
+  "questions_file": "/private/tmp/moneki-g1-05-6yeq26mj/source/eval/public_questions.jsonl",
+  "kb_dir": "/private/tmp/moneki-g1-05-6yeq26mj/source/knowledge_base",
+  "kb_docs_loaded": 35,
+  "timeout": 180.0,
+  "only": "metrics",
+  "total": {
+    "points": 6.0,
+    "earned": 6.0,
+    "ratio": 1.0,
+    "questions": 6,
+    "passed": 6
+  },
+  "per_category": {
+    "metrics": {
+      "points": 6.0,
+      "earned": 6.0,
+      "questions": 6,
+      "passed": 6,
+      "ratio": 1.0
+    }
+  },
+  "latency_seconds": {
+    "median": 0.001,
+    "max": 0.003,
+    "total": 0.007
+  },
+  "health": {
+    "status": "ok",
+    "llm_mode": "mock",
+    "kb_docs": 35,
+    "kb_chunks": 215,
+    "valid_sales_rows": 18290,
+    "today": "2026-09-01",
+    "data_period": {
+      "start": "2026-05-01",
+      "end": "2026-08-31"
+    },
+    "cleaning_report": {
+      "raw_rows": 18628,
+      "removed": {
+        "1_unparseable_date": 8,
+        "2_empty_amount": 150,
+        "3_qty_le_zero": 30,
+        "4_store_not_in_stores": 10,
+        "5_product_not_in_products": 40,
+        "6_duplicate_row": 100
+      },
+      "removed_rows": 338,
+      "kept_rows": 18290,
+      "kept_sales_rows": 18196,
+      "kept_refund_rows": 94
+    },
+    "index_key": "87a7f13a7776",
+    "kb_warnings": [
+      "跳过没有 KB 编号的文件：README.md",
+      "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+    ]
+  },
+  "health_error": null,
+  "metrics_baselines": {},
+  "metrics_baseline_errors": {},
+  "kb_errors": [],
+  "questions": [
+    {
+      "id": "M01",
+      "category": "metrics",
+      "points": 1.0,
+      "earned": 1.0,
+      "passed": true,
+      "latency_seconds": 0.003,
+      "turns": [
+        {
+          "question": "GET /api/metrics/summary",
+          "passed": true,
+          "latency_seconds": 0.003,
+          "answer_type": null,
+          "citations": [],
+          "trace_id": null,
+          "answer": "{\"start\": \"2026-06-01\", \"end\": \"2026-06-30\", \"store_id\": null, \"product_id\": null, \"net_revenue\": 156757.0, \"refund_amount\": 953.0, \"orders\": 4311, \"aov\": 36.36, \"qty\": 6496}",
+          "checks": [
+            {
+              "name": "request",
+              "passed": true
+            },
+            {
+              "name": "expect.aov",
+              "passed": true
+            },
+            {
+              "name": "expect.net_revenue",
+              "passed": true
+            },
+            {
+              "name": "expect.orders",
+              "passed": true
+            },
+            {
+              "name": "expect.qty",
+              "passed": true
+            },
+            {
+              "name": "expect.refund_amount",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "category": "metrics",
+      "points": 1.0,
+      "earned": 1.0,
+      "passed": true,
+      "latency_seconds": 0.001,
+      "turns": [
+        {
+          "question": "GET /api/metrics/summary",
+          "passed": true,
+          "latency_seconds": 0.001,
+          "answer_type": null,
+          "citations": [],
+          "trace_id": null,
+          "answer": "{\"start\": \"2026-07-01\", \"end\": \"2026-07-31\", \"store_id\": \"S02\", \"product_id\": null, \"net_revenue\": 41740.0, \"refund_amount\": 107.0, \"orders\": 875, \"aov\": 47.7, \"qty\": 1395}",
+          "checks": [
+            {
+              "name": "request",
+              "passed": true
+            },
+            {
+              "name": "expect.aov",
+              "passed": true
+            },
+            {
+              "name": "expect.net_revenue",
+              "passed": true
+            },
+            {
+              "name": "expect.orders",
+              "passed": true
+            },
+            {
+              "name": "expect.qty",
+              "passed": true
+            },
+            {
+              "name": "expect.refund_amount",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M03",
+      "category": "metrics",
+      "points": 1.0,
+      "earned": 1.0,
+      "passed": true,
+      "latency_seconds": 0.001,
+      "turns": [
+        {
+          "question": "GET /api/metrics/summary",
+          "passed": true,
+          "latency_seconds": 0.001,
+          "answer_type": null,
+          "citations": [],
+          "trace_id": null,
+          "answer": "{\"start\": \"2026-08-01\", \"end\": \"2026-08-31\", \"store_id\": null, \"product_id\": \"P21\", \"net_revenue\": 11024.0, \"refund_amount\": 16.0, \"orders\": 461, \"aov\": 23.91, \"qty\": 689}",
+          "checks": [
+            {
+              "name": "request",
+              "passed": true
+            },
+            {
+              "name": "expect.aov",
+              "passed": true
+            },
+            {
+              "name": "expect.net_revenue",
+              "passed": true
+            },
+            {
+              "name": "expect.orders",
+              "passed": true
+            },
+            {
+              "name": "expect.qty",
+              "passed": true
+            },
+            {
+              "name": "expect.refund_amount",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M04",
+      "category": "metrics",
+      "points": 1.0,
+      "earned": 1.0,
+      "passed": true,
+      "latency_seconds": 0.001,
+      "turns": [
+        {
+          "question": "GET /api/metrics/summary",
+          "passed": true,
+          "latency_seconds": 0.001,
+          "answer_type": null,
+          "citations": [],
+          "trace_id": null,
+          "answer": "{\"start\": \"2026-06-18\", \"end\": \"2026-06-18\", \"store_id\": \"S02\", \"product_id\": \"P06\", \"net_revenue\": 3625.0, \"refund_amount\": 0.0, \"orders\": 53, \"aov\": 68.4, \"qty\": 125}",
+          "checks": [
+            {
+              "name": "request",
+              "passed": true
+            },
+            {
+              "name": "expect.aov",
+              "passed": true
+            },
+            {
+              "name": "expect.net_revenue",
+              "passed": true
+            },
+            {
+              "name": "expect.orders",
+              "passed": true
+            },
+            {
+              "name": "expect.qty",
+              "passed": true
+            },
+            {
+              "name": "expect.refund_amount",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M05",
+      "category": "metrics",
+      "points": 1.0,
+      "earned": 1.0,
+      "passed": true,
+      "latency_seconds": 0.0,
+      "turns": [
+        {
+          "question": "GET /api/metrics/summary",
+          "passed": true,
+          "latency_seconds": 0.0,
+          "answer_type": null,
+          "citations": [],
+          "trace_id": null,
+          "answer": "{\"start\": \"2026-09-01\", \"end\": \"2026-09-30\", \"store_id\": null, \"product_id\": null, \"net_revenue\": 0.0, \"refund_amount\": 0.0, \"orders\": 0, \"aov\": null, \"qty\": 0}",
+          "checks": [
+            {
+              "name": "request",
+              "passed": true
+            },
+            {
+              "name": "expect.aov",
+              "passed": true
+            },
+            {
+              "name": "expect.net_revenue",
+              "passed": true
+            },
+            {
+              "name": "expect.orders",
+              "passed": true
+            },
+            {
+              "name": "expect.qty",
+              "passed": true
+            },
+            {
+              "name": "expect.refund_amount",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M06",
+      "category": "metrics",
+      "points": 1.0,
+      "earned": 1.0,
+      "passed": true,
+      "latency_seconds": 0.001,
+      "turns": [
+        {
+          "question": "GET /api/metrics/daily",
+          "passed": true,
+          "latency_seconds": 0.001,
+          "answer_type": null,
+          "citations": [],
+          "trace_id": null,
+          "answer": "{\"days\": [{\"date\": \"2026-06-08\", \"net_revenue\": 0.0, \"orders\": 0, \"aov\": null}, {\"date\": \"2026-06-09\", \"net_revenue\": 0.0, \"orders\": 0, \"aov\": null}, {\"date\": \"2026-06-10\", \"net_revenue\": 0.0, \"orders\": 0, \"aov\": null}, {\"date\": \"2026-06-11\", \"net_revenue\": 0.0, \"orders\": 0, \"aov\": null}, {\"date\": \"2026-06-12\", \"net_revenue\": 998.0, \"orders\": 27, \"aov\": 36.96}]}",
+          "checks": [
+            {
+              "name": "request",
+              "passed": true
+            },
+            {
+              "name": "expect_days",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

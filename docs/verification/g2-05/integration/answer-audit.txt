@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/private/tmp/moneki-g1-05-u99qwxp5/source/docs/verification/g2-04/audit.py", line 16, in <module>
+    for run in artifact['records']:
+               ~~~~~~~~^^^^^^^^^^^
+KeyError: 'records'

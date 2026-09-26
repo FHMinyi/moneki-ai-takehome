@@ -1,0 +1,61 @@
+....FFF............                                                      [100%]
+=================================== FAILURES ===================================
+___________________ test_chunking_keeps_last_character[301] ____________________
+
+size = 301
+
+    @pytest.mark.parametrize('size',[300,301,600,601])
+    def test_chunking_keeps_last_character(size):
+        body='甲'*(size-1)+'尾'
+        doc=Document('KB-900','diagnostic',body,Path('KB-900.md'),'md')
+        pieces=chunk_document(doc)
+>       assert ''.join(c.source_text for c in pieces)==body, {'input':size,'retained':sum(len(c.source_text) for c in pieces)}
+E       AssertionError: {'input': 301, 'retained': 361}
+E       assert '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲尾' == '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲尾'
+E         
+E         Skipping 290 identical leading characters in diff, use -v to show
+E         - 甲甲甲甲甲甲甲甲甲甲尾
+E         + 甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲尾
+
+docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:42: AssertionError
+___________________ test_chunking_keeps_last_character[600] ____________________
+
+size = 600
+
+    @pytest.mark.parametrize('size',[300,301,600,601])
+    def test_chunking_keeps_last_character(size):
+        body='甲'*(size-1)+'尾'
+        doc=Document('KB-900','diagnostic',body,Path('KB-900.md'),'md')
+        pieces=chunk_document(doc)
+>       assert ''.join(c.source_text for c in pieces)==body, {'input':size,'retained':sum(len(c.source_text) for c in pieces)}
+E       AssertionError: {'input': 600, 'retained': 720}
+E       assert '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲尾' == '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲尾'
+E         
+E         Skipping 589 identical leading characters in diff, use -v to show
+E         - 甲甲甲甲甲甲甲甲甲甲尾
+E         + 甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲尾
+
+docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:42: AssertionError
+___________________ test_chunking_keeps_last_character[601] ____________________
+
+size = 601
+
+    @pytest.mark.parametrize('size',[300,301,600,601])
+    def test_chunking_keeps_last_character(size):
+        body='甲'*(size-1)+'尾'
+        doc=Document('KB-900','diagnostic',body,Path('KB-900.md'),'md')
+        pieces=chunk_document(doc)
+>       assert ''.join(c.source_text for c in pieces)==body, {'input':size,'retained':sum(len(c.source_text) for c in pieces)}
+E       AssertionError: {'input': 601, 'retained': 721}
+E       assert '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲尾' == '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲尾'
+E         
+E         Skipping 590 identical leading characters in diff, use -v to show
+E         - 甲甲甲甲甲甲甲甲甲甲尾
+E         + 甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲尾
+
+docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:42: AssertionError
+=========================== short test summary info ============================
+FAILED docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_chunking_keeps_last_character[301]
+FAILED docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_chunking_keeps_last_character[600]
+FAILED docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_chunking_keeps_last_character[601]
+3 failed, 16 passed in 0.45s

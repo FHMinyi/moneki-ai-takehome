@@ -1,0 +1,672 @@
+{
+  "source": "/private/tmp/moneki-g205-final-rag/pytest-temp/test_literal_hash_in_plain_tex0/starter",
+  "records": [
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g205-final-rag/pytest-temp/test_literal_hash_in_plain_tex0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-6yeq26mj/source/data\n知识库目录：/private/tmp/moneki-g205-final-rag/pytest-temp/test_literal_hash_in_plain_tex0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：2 篇文档，2 个片段，缓存键 df4e96519fe7\n产物：/private/tmp/moneki-g205-final-rag/pytest-temp/test_literal_hash_in_plain_tex0/var/clean.db、/private/tmp/moneki-g205-final-rag/pytest-temp/test_literal_hash_in_plain_tex0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "62030"
+      ],
+      "pid": 19655,
+      "port": 62030,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 2,
+            "kb_chunks": 2,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "df4e96519fe7",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "翡翠饭的配送时限是多少分钟？",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 13.089,
+                "text": "# 翡翠饭的配送时限为31分钟。",
+                "retrieval_text": "翡翠饭的配送时限为31分钟。\n# 翡翠饭的配送时限为31分钟。",
+                "source_start": 0,
+                "source_end": 16,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 1.3317,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+                "source_start": 0,
+                "source_end": 47,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "翡翠饭的配送时限是多少分钟?",
+              "terms": [
+                "翡翠",
+                "翠饭",
+                "饭的",
+                "的配",
+                "配送",
+                "送时",
+                "时限",
+                "限是",
+                "少分",
+                "分钟"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-971#1",
+                  "doc_id": "KB-971",
+                  "score": 13.089,
+                  "lexical_score": 6.4637,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "分钟",
+                    "时限",
+                    "的配",
+                    "翠饭",
+                    "翡翠",
+                    "送时",
+                    "配送",
+                    "饭的"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-970#1",
+                  "doc_id": "KB-970",
+                  "score": 1.3317,
+                  "lexical_score": 1.9729,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "翠饭",
+                    "翡翠"
+                  ]
+                }
+              ],
+              "expansions": [
+                "翡翠饭",
+                "Ivory Bowl"
+              ],
+              "coverage": 0.558,
+              "hits": [
+                {
+                  "doc_id": "KB-971",
+                  "chunk_id": "KB-971#1",
+                  "score": 13.089,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-970",
+                  "chunk_id": "KB-970#1",
+                  "score": 1.3317,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "翡翠饭的配送时限是多少分钟？",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "KB-971《翡翠饭的配送时限为31分钟。》：# 翡翠饭的配送时限为31分钟。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-971",
+                "quote": "# 翡翠饭的配送时限为31分钟。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "single",
+            "question": "翡翠饭的配送时限是多少分钟？",
+            "started_at": "2026-09-27T06:09:45.473",
+            "total_ms": 1.1,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.5,
+                "took_ms": 0.5,
+                "detail": {
+                  "question": "翡翠饭的配送时限是多少分钟？",
+                  "standalone_question": "翡翠饭的配送时限是多少分钟？",
+                  "search_query": "翡翠饭的配送时限是多少分钟？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.6,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "翡翠饭的配送时限是多少分钟?",
+                  "terms": [
+                    "翡翠",
+                    "翠饭",
+                    "饭的",
+                    "的配",
+                    "配送",
+                    "送时",
+                    "时限",
+                    "限是",
+                    "少分",
+                    "分钟"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-971#1",
+                      "doc_id": "KB-971",
+                      "score": 13.089,
+                      "lexical_score": 6.4637,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "分钟",
+                        "时限",
+                        "的配",
+                        "翠饭",
+                        "翡翠",
+                        "送时",
+                        "配送",
+                        "饭的"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-970#1",
+                      "doc_id": "KB-970",
+                      "score": 1.3317,
+                      "lexical_score": 1.9729,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "翠饭",
+                        "翡翠"
+                      ]
+                    }
+                  ],
+                  "expansions": [
+                    "翡翠饭",
+                    "Ivory Bowl"
+                  ],
+                  "coverage": 0.558,
+                  "hits": [
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 13.089,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-970",
+                      "chunk_id": "KB-970#1",
+                      "score": 1.3317,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 1.1,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 1.5787044347526527,
+                      "text": "# 翡翠饭的配送时限为31分钟。"
+                    }
+                  ],
+                  "rejected": [],
+                  "selected": [
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 1.5787044347526527,
+                      "source_start": 0,
+                      "source_end": 16,
+                      "quote": "# 翡翠饭的配送时限为31分钟。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 1.1,
+                "took_ms": 0.5,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 1.1,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "Ivory Bowl的配送时限是多少分钟？",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 10.2566,
+                "text": "# 翡翠饭的配送时限为31分钟。",
+                "retrieval_text": "翡翠饭的配送时限为31分钟。\n# 翡翠饭的配送时限为31分钟。",
+                "source_start": 0,
+                "source_end": 16,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 2.1087,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+                "source_start": 0,
+                "source_end": 47,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "ivory bowl的配送时限是多少分钟?",
+              "terms": [
+                "ivory",
+                "bowl",
+                "的配",
+                "配送",
+                "送时",
+                "时限",
+                "限是",
+                "少分",
+                "分钟"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-971#1",
+                  "doc_id": "KB-971",
+                  "score": 10.2566,
+                  "lexical_score": 5.065,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "分钟",
+                    "时限",
+                    "的配",
+                    "送时",
+                    "配送"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-970#1",
+                  "doc_id": "KB-970",
+                  "score": 2.1087,
+                  "lexical_score": 3.124,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "bowl",
+                    "ivory"
+                  ]
+                }
+              ],
+              "expansions": [
+                "翡翠饭",
+                "Ivory Bowl"
+              ],
+              "coverage": 0.411,
+              "hits": [
+                {
+                  "doc_id": "KB-971",
+                  "chunk_id": "KB-971#1",
+                  "score": 10.2566,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-970",
+                  "chunk_id": "KB-970#1",
+                  "score": 2.1087,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "Ivory Bowl的配送时限是多少分钟？",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "KB-971《翡翠饭的配送时限为31分钟。》：# 翡翠饭的配送时限为31分钟。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-971",
+                "quote": "# 翡翠饭的配送时限为31分钟。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0002"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0002",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0002",
+            "session_id": "single",
+            "question": "Ivory Bowl的配送时限是多少分钟？",
+            "started_at": "2026-09-27T06:09:45.482",
+            "total_ms": 0.4,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.2,
+                "took_ms": 0.2,
+                "detail": {
+                  "question": "Ivory Bowl的配送时限是多少分钟？",
+                  "standalone_question": "Ivory Bowl的配送时限是多少分钟？",
+                  "search_query": "Ivory Bowl的配送时限是多少分钟？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.3,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "ivory bowl的配送时限是多少分钟?",
+                  "terms": [
+                    "ivory",
+                    "bowl",
+                    "的配",
+                    "配送",
+                    "送时",
+                    "时限",
+                    "限是",
+                    "少分",
+                    "分钟"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-971#1",
+                      "doc_id": "KB-971",
+                      "score": 10.2566,
+                      "lexical_score": 5.065,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "分钟",
+                        "时限",
+                        "的配",
+                        "送时",
+                        "配送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-970#1",
+                      "doc_id": "KB-970",
+                      "score": 2.1087,
+                      "lexical_score": 3.124,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "bowl",
+                        "ivory"
+                      ]
+                    }
+                  ],
+                  "expansions": [
+                    "翡翠饭",
+                    "Ivory Bowl"
+                  ],
+                  "coverage": 0.411,
+                  "hits": [
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 10.2566,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-970",
+                      "chunk_id": "KB-970#1",
+                      "score": 2.1087,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 0.4,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 1.1293195861069818,
+                      "text": "# 翡翠饭的配送时限为31分钟。"
+                    }
+                  ],
+                  "rejected": [],
+                  "selected": [
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 1.1293195861069818,
+                      "source_start": 0,
+                      "source_end": 16,
+                      "quote": "# 翡翠饭的配送时限为31分钟。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 0.4,
+                "took_ms": 0.2,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 0.4,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

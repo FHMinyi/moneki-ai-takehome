@@ -1,0 +1,45 @@
+[
+  {
+    "args": [
+      "/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+      "docs/verification/g2-04/audit.py",
+      "/tmp/moneki-g2-05-rag-01/answer-audit-input",
+      "/tmp/moneki-g2-05-rag-01/answer-audit.json"
+    ],
+    "log": "answer-audit-corrected.txt",
+    "cwd": "/tmp/moneki-g1-05-u99qwxp5/source",
+    "exit_code": 0,
+    "environment": {}
+  },
+  {
+    "args": [
+      "/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+      "docs/verification/g2-04/compare.py",
+      "docs/verification/g2-04/review-r1-integration/eval/report.json",
+      "/tmp/moneki-g2-05-rag-01/eval/report.json",
+      "/tmp/moneki-g2-05-rag-01/vs-r1.json"
+    ],
+    "log": "compare.txt",
+    "cwd": "/tmp/moneki-g1-05-u99qwxp5/source",
+    "exit_code": 0,
+    "environment": {}
+  },
+  {
+    "args": [
+      "/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+      "-m",
+      "pytest",
+      "docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py",
+      "-q",
+      "--basetemp",
+      "/tmp/moneki-g2-05-rag-01/diagnostic-temp"
+    ],
+    "log": "diagnostic-original.txt",
+    "cwd": "/tmp/moneki-g1-05-u99qwxp5/source",
+    "exit_code": 1,
+    "environment": {
+      "PYTHONPATH": "/tmp/moneki-g1-05-u99qwxp5/source/starter",
+      "G2_SOURCE": "/tmp/moneki-g1-05-u99qwxp5/source"
+    }
+  }
+]

@@ -1,0 +1,3341 @@
+{
+  "source": "/private/tmp/moneki-g2-05-kb-02/starter",
+  "records": [
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g2-05-kb-02/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-u99qwxp5/source/data\n知识库目录：/private/tmp/moneki-g2-05-kb-02/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：2 篇文档，2 个片段，缓存键 cc8aa8370658\n产物：/private/tmp/moneki-g2-05-kb-02/var/clean.db、/private/tmp/moneki-g2-05-kb-02/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "49176"
+      ],
+      "pid": 87714,
+      "port": 49176,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 2,
+            "kb_chunks": 2,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "cc8aa8370658",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 2,
+            "kb_chunks": 2,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "cc8aa8370658",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "Ivory Bowl的配送时限是多少分钟？",
+            "top_k": 100
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 10.2566,
+                "text": "翡翠饭的配送时限为31分钟。",
+                "retrieval_text": "翡翠饭的配送时限为31分钟。\n翡翠饭的配送时限为31分钟。",
+                "source_start": 0,
+                "source_end": 14,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 2.1087,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+                "source_start": 0,
+                "source_end": 47,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "ivory bowl的配送时限是多少分钟?",
+              "terms": [
+                "ivory",
+                "bowl",
+                "的配",
+                "配送",
+                "送时",
+                "时限",
+                "限是",
+                "少分",
+                "分钟"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-971#1",
+                  "doc_id": "KB-971",
+                  "score": 10.2566,
+                  "lexical_score": 5.065,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "分钟",
+                    "时限",
+                    "的配",
+                    "送时",
+                    "配送"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-970#1",
+                  "doc_id": "KB-970",
+                  "score": 2.1087,
+                  "lexical_score": 3.124,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "bowl",
+                    "ivory"
+                  ]
+                }
+              ],
+              "expansions": [
+                "翡翠饭",
+                "Ivory Bowl"
+              ],
+              "coverage": 0.411,
+              "hits": [
+                {
+                  "doc_id": "KB-971",
+                  "chunk_id": "KB-971#1",
+                  "score": 10.2566,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-970",
+                  "chunk_id": "KB-970#1",
+                  "score": 2.1087,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "Ivory Bowl的配送时限是多少分钟？",
+            "session_id": "initial-0"
+          },
+          "response": {
+            "answer": "知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "initial-0",
+            "question": "Ivory Bowl的配送时限是多少分钟？",
+            "started_at": "2026-09-27T05:24:19.884",
+            "total_ms": 1.0,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.6,
+                "took_ms": 0.6,
+                "detail": {
+                  "question": "Ivory Bowl的配送时限是多少分钟？",
+                  "standalone_question": "Ivory Bowl的配送时限是多少分钟？",
+                  "search_query": "Ivory Bowl的配送时限是多少分钟？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.7,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "ivory bowl的配送时限是多少分钟?",
+                  "terms": [
+                    "ivory",
+                    "bowl",
+                    "的配",
+                    "配送",
+                    "送时",
+                    "时限",
+                    "限是",
+                    "少分",
+                    "分钟"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-971#1",
+                      "doc_id": "KB-971",
+                      "score": 10.2566,
+                      "lexical_score": 5.065,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "分钟",
+                        "时限",
+                        "的配",
+                        "送时",
+                        "配送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-970#1",
+                      "doc_id": "KB-970",
+                      "score": 2.1087,
+                      "lexical_score": 3.124,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "bowl",
+                        "ivory"
+                      ]
+                    }
+                  ],
+                  "expansions": [
+                    "翡翠饭",
+                    "Ivory Bowl"
+                  ],
+                  "coverage": 0.411,
+                  "hits": [
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 10.2566,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-970",
+                      "chunk_id": "KB-970#1",
+                      "score": 2.1087,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 1.0,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [],
+                  "rejected": [],
+                  "selected": []
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 1.0,
+                "took_ms": 0.4,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 1.0,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": [
+                    "没有可以逐字引用的原文"
+                  ]
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g2-05-kb-02/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-u99qwxp5/source/data\n知识库目录：/private/tmp/moneki-g2-05-kb-02/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：3 篇文档，3 个片段，缓存键 38bca4ab2587\n产物：/private/tmp/moneki-g2-05-kb-02/var/clean.db、/private/tmp/moneki-g2-05-kb-02/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "49191"
+      ],
+      "pid": 87738,
+      "port": 49191,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 3,
+            "kb_chunks": 3,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "38bca4ab2587",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 3,
+            "kb_chunks": 3,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "38bca4ab2587",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "夜班配送申请应提前多少小时提交？",
+            "top_k": 100
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-972",
+                "chunk_id": "KB-972#1",
+                "score": 27.2327,
+                "text": "夜班配送申请应提前19小时提交。",
+                "retrieval_text": "夜班配送申请应提前19小时提交。\n夜班配送申请应提前19小时提交。",
+                "source_start": 0,
+                "source_end": 16,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 1.3291,
+                "text": "翡翠饭的配送时限为31分钟。",
+                "retrieval_text": "翡翠饭的配送时限为31分钟。\n翡翠饭的配送时限为31分钟。",
+                "source_start": 0,
+                "source_end": 14,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 0.0,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+                "source_start": 0,
+                "source_end": 47,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "夜班配送申请应提前多少小时提交?",
+              "terms": [
+                "夜班",
+                "班配",
+                "配送",
+                "送申",
+                "申请",
+                "请应",
+                "应提",
+                "提前",
+                "前多",
+                "少小",
+                "小时",
+                "时提",
+                "提交"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-972#1",
+                  "doc_id": "KB-972",
+                  "score": 27.2327,
+                  "lexical_score": 13.4482,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "夜班",
+                    "小时",
+                    "应提",
+                    "提交",
+                    "提前",
+                    "时提",
+                    "班配",
+                    "申请",
+                    "请应",
+                    "送申",
+                    "配送"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-971#1",
+                  "doc_id": "KB-971",
+                  "score": 1.3291,
+                  "lexical_score": 0.6564,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "配送"
+                  ]
+                }
+              ],
+              "expansions": [],
+              "coverage": 0.712,
+              "hits": [
+                {
+                  "doc_id": "KB-972",
+                  "chunk_id": "KB-972#1",
+                  "score": 27.2327,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-971",
+                  "chunk_id": "KB-971#1",
+                  "score": 1.3291,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-970",
+                  "chunk_id": "KB-970#1",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "夜班配送申请应提前多少小时提交？",
+            "session_id": "add-html-0"
+          },
+          "response": {
+            "answer": "知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "add-html-0",
+            "question": "夜班配送申请应提前多少小时提交？",
+            "started_at": "2026-09-27T05:24:20.456",
+            "total_ms": 7.9,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.5,
+                "took_ms": 0.5,
+                "detail": {
+                  "question": "夜班配送申请应提前多少小时提交？",
+                  "standalone_question": "夜班配送申请应提前多少小时提交？",
+                  "search_query": "夜班配送申请应提前多少小时提交？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.6,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "夜班配送申请应提前多少小时提交?",
+                  "terms": [
+                    "夜班",
+                    "班配",
+                    "配送",
+                    "送申",
+                    "申请",
+                    "请应",
+                    "应提",
+                    "提前",
+                    "前多",
+                    "少小",
+                    "小时",
+                    "时提",
+                    "提交"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-972#1",
+                      "doc_id": "KB-972",
+                      "score": 27.2327,
+                      "lexical_score": 13.4482,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "夜班",
+                        "小时",
+                        "应提",
+                        "提交",
+                        "提前",
+                        "时提",
+                        "班配",
+                        "申请",
+                        "请应",
+                        "送申",
+                        "配送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-971#1",
+                      "doc_id": "KB-971",
+                      "score": 1.3291,
+                      "lexical_score": 0.6564,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "配送"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.712,
+                  "hits": [
+                    {
+                      "doc_id": "KB-972",
+                      "chunk_id": "KB-972#1",
+                      "score": 27.2327,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 1.3291,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-970",
+                      "chunk_id": "KB-970#1",
+                      "score": 0.0,
+                      "padded": true,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 7.9,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [],
+                  "rejected": [],
+                  "selected": []
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 7.9,
+                "took_ms": 7.4,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 7.9,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": [
+                    "没有可以逐字引用的原文"
+                  ]
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g2-05-kb-02/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-u99qwxp5/source/data\n知识库目录：/private/tmp/moneki-g2-05-kb-02/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：3 篇文档，3 个片段，缓存键 43e182de2503\n告警：使用 GBK 解码：KB-971.txt\n产物：/private/tmp/moneki-g2-05-kb-02/var/clean.db、/private/tmp/moneki-g2-05-kb-02/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "49203"
+      ],
+      "pid": 87753,
+      "port": 49203,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 3,
+            "kb_chunks": 3,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "43e182de2503",
+            "kb_warnings": [
+              "使用 GBK 解码：KB-971.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 3,
+            "kb_chunks": 3,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "43e182de2503",
+            "kb_warnings": [
+              "使用 GBK 解码：KB-971.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "Copper Dish的配送时限是多少分钟？",
+            "top_k": 100
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 15.0823,
+                "text": "翡翠饭的配送时限为47分钟。",
+                "retrieval_text": "翡翠饭的配送时限为47分钟。\n翡翠饭的配送时限为47分钟。",
+                "source_start": 0,
+                "source_end": 14,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 3.1553,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Copper Dish |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Copper Dish |",
+                "source_start": 0,
+                "source_end": 48,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-972",
+                "chunk_id": "KB-972#1",
+                "score": 1.2453,
+                "text": "夜班配送申请应提前19小时提交。",
+                "retrieval_text": "夜班配送申请应提前19小时提交。\n夜班配送申请应提前19小时提交。",
+                "source_start": 0,
+                "source_end": 16,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "copper dish的配送时限是多少分钟?",
+              "terms": [
+                "copper",
+                "dish",
+                "的配",
+                "配送",
+                "送时",
+                "时限",
+                "限是",
+                "少分",
+                "分钟"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-971#1",
+                  "doc_id": "KB-971",
+                  "score": 15.0823,
+                  "lexical_score": 7.448,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "分钟",
+                    "时限",
+                    "的配",
+                    "送时",
+                    "配送"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-970#1",
+                  "doc_id": "KB-970",
+                  "score": 3.1553,
+                  "lexical_score": 4.6746,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "copper",
+                    "dish"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-972#1",
+                  "doc_id": "KB-972",
+                  "score": 1.2453,
+                  "lexical_score": 0.615,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "配送"
+                  ]
+                }
+              ],
+              "expansions": [
+                "翡翠饭",
+                "Copper Dish"
+              ],
+              "coverage": 0.418,
+              "hits": [
+                {
+                  "doc_id": "KB-971",
+                  "chunk_id": "KB-971#1",
+                  "score": 15.0823,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-970",
+                  "chunk_id": "KB-970#1",
+                  "score": 3.1553,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-972",
+                  "chunk_id": "KB-972#1",
+                  "score": 1.2453,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "Copper Dish的配送时限是多少分钟？",
+            "session_id": "modify-format-encoding-alias-0"
+          },
+          "response": {
+            "answer": "知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "modify-format-encoding-alias-0",
+            "question": "Copper Dish的配送时限是多少分钟？",
+            "started_at": "2026-09-27T05:24:21.029",
+            "total_ms": 7.2,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.5,
+                "took_ms": 0.5,
+                "detail": {
+                  "question": "Copper Dish的配送时限是多少分钟？",
+                  "standalone_question": "Copper Dish的配送时限是多少分钟？",
+                  "search_query": "Copper Dish的配送时限是多少分钟？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.7,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "copper dish的配送时限是多少分钟?",
+                  "terms": [
+                    "copper",
+                    "dish",
+                    "的配",
+                    "配送",
+                    "送时",
+                    "时限",
+                    "限是",
+                    "少分",
+                    "分钟"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-971#1",
+                      "doc_id": "KB-971",
+                      "score": 15.0823,
+                      "lexical_score": 7.448,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "分钟",
+                        "时限",
+                        "的配",
+                        "送时",
+                        "配送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-970#1",
+                      "doc_id": "KB-970",
+                      "score": 3.1553,
+                      "lexical_score": 4.6746,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "copper",
+                        "dish"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-972#1",
+                      "doc_id": "KB-972",
+                      "score": 1.2453,
+                      "lexical_score": 0.615,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "配送"
+                      ]
+                    }
+                  ],
+                  "expansions": [
+                    "翡翠饭",
+                    "Copper Dish"
+                  ],
+                  "coverage": 0.418,
+                  "hits": [
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 15.0823,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-970",
+                      "chunk_id": "KB-970#1",
+                      "score": 3.1553,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-972",
+                      "chunk_id": "KB-972#1",
+                      "score": 1.2453,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 7.2,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [],
+                  "rejected": [],
+                  "selected": []
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 7.2,
+                "took_ms": 6.7,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 7.2,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": [
+                    "没有可以逐字引用的原文"
+                  ]
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g2-05-kb-02/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-u99qwxp5/source/data\n知识库目录：/private/tmp/moneki-g2-05-kb-02/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：2 篇文档，2 个片段，缓存键 9db1a90f6f72\n告警：使用 GBK 解码：KB-971.txt\n产物：/private/tmp/moneki-g2-05-kb-02/var/clean.db、/private/tmp/moneki-g2-05-kb-02/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "49215"
+      ],
+      "pid": 87758,
+      "port": 49215,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 2,
+            "kb_chunks": 2,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "9db1a90f6f72",
+            "kb_warnings": [
+              "使用 GBK 解码：KB-971.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 2,
+            "kb_chunks": 2,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "9db1a90f6f72",
+            "kb_warnings": [
+              "使用 GBK 解码：KB-971.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "夜班配送申请应提前多少小时提交？",
+            "top_k": 100
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 1.856,
+                "text": "翡翠饭的配送时限为47分钟。",
+                "retrieval_text": "翡翠饭的配送时限为47分钟。\n翡翠饭的配送时限为47分钟。",
+                "source_start": 0,
+                "source_end": 14,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 0.0,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Copper Dish |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Copper Dish |",
+                "source_start": 0,
+                "source_end": 48,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "夜班配送申请应提前多少小时提交?",
+              "terms": [
+                "夜班",
+                "班配",
+                "配送",
+                "送申",
+                "申请",
+                "请应",
+                "应提",
+                "提前",
+                "前多",
+                "少小",
+                "小时",
+                "时提",
+                "提交"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-971#1",
+                  "doc_id": "KB-971",
+                  "score": 1.856,
+                  "lexical_score": 0.9166,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "配送"
+                  ]
+                }
+              ],
+              "expansions": [],
+              "coverage": 0.031,
+              "hits": [
+                {
+                  "doc_id": "KB-971",
+                  "chunk_id": "KB-971#1",
+                  "score": 1.856,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-970",
+                  "chunk_id": "KB-970#1",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "夜班配送申请应提前多少小时提交？",
+            "session_id": "delete-0"
+          },
+          "response": {
+            "answer": "知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "delete-0",
+            "question": "夜班配送申请应提前多少小时提交？",
+            "started_at": "2026-09-27T05:24:21.611",
+            "total_ms": 0.9,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.5,
+                "took_ms": 0.5,
+                "detail": {
+                  "question": "夜班配送申请应提前多少小时提交？",
+                  "standalone_question": "夜班配送申请应提前多少小时提交？",
+                  "search_query": "夜班配送申请应提前多少小时提交？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.6,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "夜班配送申请应提前多少小时提交?",
+                  "terms": [
+                    "夜班",
+                    "班配",
+                    "配送",
+                    "送申",
+                    "申请",
+                    "请应",
+                    "应提",
+                    "提前",
+                    "前多",
+                    "少小",
+                    "小时",
+                    "时提",
+                    "提交"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-971#1",
+                      "doc_id": "KB-971",
+                      "score": 1.856,
+                      "lexical_score": 0.9166,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "配送"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.031,
+                  "hits": [
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 1.856,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-970",
+                      "chunk_id": "KB-970#1",
+                      "score": 0.0,
+                      "padded": true,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 0.9,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [],
+                  "rejected": [],
+                  "selected": []
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 0.9,
+                "took_ms": 0.4,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 0.9,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": [
+                    "问题里的关键词在知识库里一个都找不到（词表覆盖率 0.08）"
+                  ]
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g2-05-kb-02/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-u99qwxp5/source/data\n知识库目录：/private/tmp/moneki-g2-05-kb-02/replacement-kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：1 篇文档，1 个片段，缓存键 a23b8d509bf6\n告警：使用 GBK 解码：KB-973.txt\n告警：跳过没有 KB 编号的文件：README.md\n产物：/private/tmp/moneki-g2-05-kb-02/var/clean.db、/private/tmp/moneki-g2-05-kb-02/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-u99qwxp5/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "49226"
+      ],
+      "pid": 87772,
+      "port": 49226,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 1,
+            "kb_chunks": 1,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "a23b8d509bf6",
+            "kb_warnings": [
+              "使用 GBK 解码：KB-973.txt",
+              "跳过没有 KB 编号的文件：README.md"
+            ]
+          }
+        },
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 1,
+            "kb_chunks": 1,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "a23b8d509bf6",
+            "kb_warnings": [
+              "使用 GBK 解码：KB-973.txt",
+              "跳过没有 KB 编号的文件：README.md"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "夜班配送申请应提前多少小时提交？",
+            "top_k": 100
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-973",
+                "chunk_id": "KB-973#1",
+                "score": 9.1545,
+                "text": "夜班配送申请应提前29小时提交。",
+                "retrieval_text": "夜班配送申请应提前29小时提交。\n夜班配送申请应提前29小时提交。",
+                "source_start": 0,
+                "source_end": 16,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "夜班配送申请应提前多少小时提交?",
+              "terms": [
+                "夜班",
+                "班配",
+                "配送",
+                "送申",
+                "申请",
+                "请应",
+                "应提",
+                "提前",
+                "前多",
+                "少小",
+                "小时",
+                "时提",
+                "提交"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-973#1",
+                  "doc_id": "KB-973",
+                  "score": 9.1545,
+                  "lexical_score": 4.5207,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "夜班",
+                    "小时",
+                    "应提",
+                    "提交",
+                    "提前",
+                    "时提",
+                    "班配",
+                    "申请",
+                    "请应",
+                    "送申",
+                    "配送"
+                  ]
+                }
+              ],
+              "expansions": [],
+              "coverage": 0.533,
+              "hits": [
+                {
+                  "doc_id": "KB-973",
+                  "chunk_id": "KB-973#1",
+                  "score": 9.1545,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "夜班配送申请应提前多少小时提交？",
+            "session_id": "switch-directory-0"
+          },
+          "response": {
+            "answer": "知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "switch-directory-0",
+            "question": "夜班配送申请应提前多少小时提交？",
+            "started_at": "2026-09-27T05:24:22.187",
+            "total_ms": 0.9,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.5,
+                "took_ms": 0.5,
+                "detail": {
+                  "question": "夜班配送申请应提前多少小时提交？",
+                  "standalone_question": "夜班配送申请应提前多少小时提交？",
+                  "search_query": "夜班配送申请应提前多少小时提交？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.6,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "夜班配送申请应提前多少小时提交?",
+                  "terms": [
+                    "夜班",
+                    "班配",
+                    "配送",
+                    "送申",
+                    "申请",
+                    "请应",
+                    "应提",
+                    "提前",
+                    "前多",
+                    "少小",
+                    "小时",
+                    "时提",
+                    "提交"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-973#1",
+                      "doc_id": "KB-973",
+                      "score": 9.1545,
+                      "lexical_score": 4.5207,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "夜班",
+                        "小时",
+                        "应提",
+                        "提交",
+                        "提前",
+                        "时提",
+                        "班配",
+                        "申请",
+                        "请应",
+                        "送申",
+                        "配送"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.533,
+                  "hits": [
+                    {
+                      "doc_id": "KB-973",
+                      "chunk_id": "KB-973#1",
+                      "score": 9.1545,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 0.9,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [],
+                  "rejected": [],
+                  "selected": []
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 0.9,
+                "took_ms": 0.4,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 0.9,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": [
+                    "没有可以逐字引用的原文"
+                  ]
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ],
+  "cases": [
+    {
+      "stage": "initial",
+      "expected": {
+        "KB-970": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+        "KB-971": "翡翠饭的配送时限为31分钟。"
+      },
+      "input_sha256": {
+        "KB-970.md": "b2ec359326a59a6de5f57a921eec56a2d1eba6b4565c03dc070bab7765a041a6",
+        "KB-971.md": "b50f0806f96a469cfe65c2e02407a1713279009d8eb28d6c069a3453f92d56ed"
+      },
+      "checks": [
+        {
+          "question": "Ivory Bowl的配送时限是多少分钟？",
+          "gold": "KB-971",
+          "fact": "31",
+          "answer": {
+            "answer": "知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          },
+          "trace": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "initial-0",
+            "question": "Ivory Bowl的配送时限是多少分钟？",
+            "started_at": "2026-09-27T05:24:19.884",
+            "total_ms": 1.0,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.6,
+                "took_ms": 0.6,
+                "detail": {
+                  "question": "Ivory Bowl的配送时限是多少分钟？",
+                  "standalone_question": "Ivory Bowl的配送时限是多少分钟？",
+                  "search_query": "Ivory Bowl的配送时限是多少分钟？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.7,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "ivory bowl的配送时限是多少分钟?",
+                  "terms": [
+                    "ivory",
+                    "bowl",
+                    "的配",
+                    "配送",
+                    "送时",
+                    "时限",
+                    "限是",
+                    "少分",
+                    "分钟"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-971#1",
+                      "doc_id": "KB-971",
+                      "score": 10.2566,
+                      "lexical_score": 5.065,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "分钟",
+                        "时限",
+                        "的配",
+                        "送时",
+                        "配送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-970#1",
+                      "doc_id": "KB-970",
+                      "score": 2.1087,
+                      "lexical_score": 3.124,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "bowl",
+                        "ivory"
+                      ]
+                    }
+                  ],
+                  "expansions": [
+                    "翡翠饭",
+                    "Ivory Bowl"
+                  ],
+                  "coverage": 0.411,
+                  "hits": [
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 10.2566,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-970",
+                      "chunk_id": "KB-970#1",
+                      "score": 2.1087,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 1.0,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [],
+                  "rejected": [],
+                  "selected": []
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 1.0,
+                "took_ms": 0.4,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 1.0,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": [
+                    "没有可以逐字引用的原文"
+                  ]
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          },
+          "retrieval": {
+            "results": [
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 10.2566,
+                "text": "翡翠饭的配送时限为31分钟。",
+                "retrieval_text": "翡翠饭的配送时限为31分钟。\n翡翠饭的配送时限为31分钟。",
+                "source_start": 0,
+                "source_end": 14,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 2.1087,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+                "source_start": 0,
+                "source_end": 47,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "ivory bowl的配送时限是多少分钟?",
+              "terms": [
+                "ivory",
+                "bowl",
+                "的配",
+                "配送",
+                "送时",
+                "时限",
+                "限是",
+                "少分",
+                "分钟"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-971#1",
+                  "doc_id": "KB-971",
+                  "score": 10.2566,
+                  "lexical_score": 5.065,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "分钟",
+                    "时限",
+                    "的配",
+                    "送时",
+                    "配送"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-970#1",
+                  "doc_id": "KB-970",
+                  "score": 2.1087,
+                  "lexical_score": 3.124,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "bowl",
+                    "ivory"
+                  ]
+                }
+              ],
+              "expansions": [
+                "翡翠饭",
+                "Ivory Bowl"
+              ],
+              "coverage": 0.411,
+              "hits": [
+                {
+                  "doc_id": "KB-971",
+                  "chunk_id": "KB-971#1",
+                  "score": 10.2566,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-970",
+                  "chunk_id": "KB-970#1",
+                  "score": 2.1087,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        }
+      ],
+      "passed": false,
+      "error": "{'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], 'trace_id': 't-20260901-0001'}"
+    },
+    {
+      "stage": "add-html",
+      "expected": {
+        "KB-970": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+        "KB-971": "翡翠饭的配送时限为31分钟。",
+        "KB-972": "夜班配送申请应提前19小时提交。"
+      },
+      "input_sha256": {
+        "KB-970.md": "b2ec359326a59a6de5f57a921eec56a2d1eba6b4565c03dc070bab7765a041a6",
+        "KB-971.md": "b50f0806f96a469cfe65c2e02407a1713279009d8eb28d6c069a3453f92d56ed",
+        "KB-972.html": "0997d703421a56827f946e5a3bfece4a8333fb9f51d22b5be576a54bd68b3bcc"
+      },
+      "checks": [
+        {
+          "question": "夜班配送申请应提前多少小时提交？",
+          "gold": "KB-972",
+          "fact": "19",
+          "answer": {
+            "answer": "知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          },
+          "trace": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "add-html-0",
+            "question": "夜班配送申请应提前多少小时提交？",
+            "started_at": "2026-09-27T05:24:20.456",
+            "total_ms": 7.9,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.5,
+                "took_ms": 0.5,
+                "detail": {
+                  "question": "夜班配送申请应提前多少小时提交？",
+                  "standalone_question": "夜班配送申请应提前多少小时提交？",
+                  "search_query": "夜班配送申请应提前多少小时提交？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.6,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "夜班配送申请应提前多少小时提交?",
+                  "terms": [
+                    "夜班",
+                    "班配",
+                    "配送",
+                    "送申",
+                    "申请",
+                    "请应",
+                    "应提",
+                    "提前",
+                    "前多",
+                    "少小",
+                    "小时",
+                    "时提",
+                    "提交"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-972#1",
+                      "doc_id": "KB-972",
+                      "score": 27.2327,
+                      "lexical_score": 13.4482,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "夜班",
+                        "小时",
+                        "应提",
+                        "提交",
+                        "提前",
+                        "时提",
+                        "班配",
+                        "申请",
+                        "请应",
+                        "送申",
+                        "配送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-971#1",
+                      "doc_id": "KB-971",
+                      "score": 1.3291,
+                      "lexical_score": 0.6564,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "配送"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.712,
+                  "hits": [
+                    {
+                      "doc_id": "KB-972",
+                      "chunk_id": "KB-972#1",
+                      "score": 27.2327,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 1.3291,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-970",
+                      "chunk_id": "KB-970#1",
+                      "score": 0.0,
+                      "padded": true,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 7.9,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [],
+                  "rejected": [],
+                  "selected": []
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 7.9,
+                "took_ms": 7.4,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 7.9,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": [
+                    "没有可以逐字引用的原文"
+                  ]
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          },
+          "retrieval": {
+            "results": [
+              {
+                "doc_id": "KB-972",
+                "chunk_id": "KB-972#1",
+                "score": 27.2327,
+                "text": "夜班配送申请应提前19小时提交。",
+                "retrieval_text": "夜班配送申请应提前19小时提交。\n夜班配送申请应提前19小时提交。",
+                "source_start": 0,
+                "source_end": 16,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 1.3291,
+                "text": "翡翠饭的配送时限为31分钟。",
+                "retrieval_text": "翡翠饭的配送时限为31分钟。\n翡翠饭的配送时限为31分钟。",
+                "source_start": 0,
+                "source_end": 14,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 0.0,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Ivory Bowl |",
+                "source_start": 0,
+                "source_end": 47,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "夜班配送申请应提前多少小时提交?",
+              "terms": [
+                "夜班",
+                "班配",
+                "配送",
+                "送申",
+                "申请",
+                "请应",
+                "应提",
+                "提前",
+                "前多",
+                "少小",
+                "小时",
+                "时提",
+                "提交"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-972#1",
+                  "doc_id": "KB-972",
+                  "score": 27.2327,
+                  "lexical_score": 13.4482,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "夜班",
+                    "小时",
+                    "应提",
+                    "提交",
+                    "提前",
+                    "时提",
+                    "班配",
+                    "申请",
+                    "请应",
+                    "送申",
+                    "配送"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-971#1",
+                  "doc_id": "KB-971",
+                  "score": 1.3291,
+                  "lexical_score": 0.6564,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "配送"
+                  ]
+                }
+              ],
+              "expansions": [],
+              "coverage": 0.712,
+              "hits": [
+                {
+                  "doc_id": "KB-972",
+                  "chunk_id": "KB-972#1",
+                  "score": 27.2327,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-971",
+                  "chunk_id": "KB-971#1",
+                  "score": 1.3291,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-970",
+                  "chunk_id": "KB-970#1",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        }
+      ],
+      "passed": false,
+      "error": "{'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], 'trace_id': 't-20260901-0001'}"
+    },
+    {
+      "stage": "modify-format-encoding-alias",
+      "expected": {
+        "KB-970": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Copper Dish |",
+        "KB-971": "翡翠饭的配送时限为47分钟。",
+        "KB-972": "夜班配送申请应提前19小时提交。"
+      },
+      "input_sha256": {
+        "KB-971.txt": "4163141336578d47f2a410b89a83fb0cffbddc7238ae4eaab58d9f1b37b7aaf2",
+        "KB-970.md": "bbf4e9a805e0f0f8c6ce1895d1ea154b92df576cd8610159ea836bab4037ff50",
+        "KB-972.html": "0997d703421a56827f946e5a3bfece4a8333fb9f51d22b5be576a54bd68b3bcc"
+      },
+      "checks": [
+        {
+          "question": "Copper Dish的配送时限是多少分钟？",
+          "gold": "KB-971",
+          "fact": "47",
+          "answer": {
+            "answer": "知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          },
+          "trace": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "modify-format-encoding-alias-0",
+            "question": "Copper Dish的配送时限是多少分钟？",
+            "started_at": "2026-09-27T05:24:21.029",
+            "total_ms": 7.2,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.5,
+                "took_ms": 0.5,
+                "detail": {
+                  "question": "Copper Dish的配送时限是多少分钟？",
+                  "standalone_question": "Copper Dish的配送时限是多少分钟？",
+                  "search_query": "Copper Dish的配送时限是多少分钟？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.7,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "copper dish的配送时限是多少分钟?",
+                  "terms": [
+                    "copper",
+                    "dish",
+                    "的配",
+                    "配送",
+                    "送时",
+                    "时限",
+                    "限是",
+                    "少分",
+                    "分钟"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-971#1",
+                      "doc_id": "KB-971",
+                      "score": 15.0823,
+                      "lexical_score": 7.448,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "分钟",
+                        "时限",
+                        "的配",
+                        "送时",
+                        "配送"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-970#1",
+                      "doc_id": "KB-970",
+                      "score": 3.1553,
+                      "lexical_score": 4.6746,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "copper",
+                        "dish"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-972#1",
+                      "doc_id": "KB-972",
+                      "score": 1.2453,
+                      "lexical_score": 0.615,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "配送"
+                      ]
+                    }
+                  ],
+                  "expansions": [
+                    "翡翠饭",
+                    "Copper Dish"
+                  ],
+                  "coverage": 0.418,
+                  "hits": [
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 15.0823,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-970",
+                      "chunk_id": "KB-970#1",
+                      "score": 3.1553,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-972",
+                      "chunk_id": "KB-972#1",
+                      "score": 1.2453,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 7.2,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [],
+                  "rejected": [],
+                  "selected": []
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 7.2,
+                "took_ms": 6.7,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 7.2,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": [
+                    "没有可以逐字引用的原文"
+                  ]
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          },
+          "retrieval": {
+            "results": [
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 15.0823,
+                "text": "翡翠饭的配送时限为47分钟。",
+                "retrieval_text": "翡翠饭的配送时限为47分钟。\n翡翠饭的配送时限为47分钟。",
+                "source_start": 0,
+                "source_end": 14,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 3.1553,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Copper Dish |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Copper Dish |",
+                "source_start": 0,
+                "source_end": 48,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-972",
+                "chunk_id": "KB-972#1",
+                "score": 1.2453,
+                "text": "夜班配送申请应提前19小时提交。",
+                "retrieval_text": "夜班配送申请应提前19小时提交。\n夜班配送申请应提前19小时提交。",
+                "source_start": 0,
+                "source_end": 16,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "copper dish的配送时限是多少分钟?",
+              "terms": [
+                "copper",
+                "dish",
+                "的配",
+                "配送",
+                "送时",
+                "时限",
+                "限是",
+                "少分",
+                "分钟"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-971#1",
+                  "doc_id": "KB-971",
+                  "score": 15.0823,
+                  "lexical_score": 7.448,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "分钟",
+                    "时限",
+                    "的配",
+                    "送时",
+                    "配送"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-970#1",
+                  "doc_id": "KB-970",
+                  "score": 3.1553,
+                  "lexical_score": 4.6746,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "copper",
+                    "dish"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-972#1",
+                  "doc_id": "KB-972",
+                  "score": 1.2453,
+                  "lexical_score": 0.615,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "配送"
+                  ]
+                }
+              ],
+              "expansions": [
+                "翡翠饭",
+                "Copper Dish"
+              ],
+              "coverage": 0.418,
+              "hits": [
+                {
+                  "doc_id": "KB-971",
+                  "chunk_id": "KB-971#1",
+                  "score": 15.0823,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-970",
+                  "chunk_id": "KB-970#1",
+                  "score": 3.1553,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-972",
+                  "chunk_id": "KB-972#1",
+                  "score": 1.2453,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        }
+      ],
+      "passed": false,
+      "error": "{'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], 'trace_id': 't-20260901-0001'}"
+    },
+    {
+      "stage": "delete",
+      "expected": {
+        "KB-970": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Copper Dish |",
+        "KB-971": "翡翠饭的配送时限为47分钟。"
+      },
+      "input_sha256": {
+        "KB-971.txt": "4163141336578d47f2a410b89a83fb0cffbddc7238ae4eaab58d9f1b37b7aaf2",
+        "KB-970.md": "bbf4e9a805e0f0f8c6ce1895d1ea154b92df576cd8610159ea836bab4037ff50"
+      },
+      "checks": [
+        {
+          "question": "夜班配送申请应提前多少小时提交？",
+          "gold": null,
+          "fact": null,
+          "answer": {
+            "answer": "知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          },
+          "trace": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "delete-0",
+            "question": "夜班配送申请应提前多少小时提交？",
+            "started_at": "2026-09-27T05:24:21.611",
+            "total_ms": 0.9,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.5,
+                "took_ms": 0.5,
+                "detail": {
+                  "question": "夜班配送申请应提前多少小时提交？",
+                  "standalone_question": "夜班配送申请应提前多少小时提交？",
+                  "search_query": "夜班配送申请应提前多少小时提交？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.6,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "夜班配送申请应提前多少小时提交?",
+                  "terms": [
+                    "夜班",
+                    "班配",
+                    "配送",
+                    "送申",
+                    "申请",
+                    "请应",
+                    "应提",
+                    "提前",
+                    "前多",
+                    "少小",
+                    "小时",
+                    "时提",
+                    "提交"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-971#1",
+                      "doc_id": "KB-971",
+                      "score": 1.856,
+                      "lexical_score": 0.9166,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "配送"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.031,
+                  "hits": [
+                    {
+                      "doc_id": "KB-971",
+                      "chunk_id": "KB-971#1",
+                      "score": 1.856,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-970",
+                      "chunk_id": "KB-970#1",
+                      "score": 0.0,
+                      "padded": true,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 0.9,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [],
+                  "rejected": [],
+                  "selected": []
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 0.9,
+                "took_ms": 0.4,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 0.9,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": [
+                    "问题里的关键词在知识库里一个都找不到（词表覆盖率 0.08）"
+                  ]
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          },
+          "retrieval": {
+            "results": [
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 1.856,
+                "text": "翡翠饭的配送时限为47分钟。",
+                "retrieval_text": "翡翠饭的配送时限为47分钟。\n翡翠饭的配送时限为47分钟。",
+                "source_start": 0,
+                "source_end": 14,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 0.0,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Copper Dish |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Copper Dish |",
+                "source_start": 0,
+                "source_end": 48,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "夜班配送申请应提前多少小时提交?",
+              "terms": [
+                "夜班",
+                "班配",
+                "配送",
+                "送申",
+                "申请",
+                "请应",
+                "应提",
+                "提前",
+                "前多",
+                "少小",
+                "小时",
+                "时提",
+                "提交"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-971#1",
+                  "doc_id": "KB-971",
+                  "score": 1.856,
+                  "lexical_score": 0.9166,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "配送"
+                  ]
+                }
+              ],
+              "expansions": [],
+              "coverage": 0.031,
+              "hits": [
+                {
+                  "doc_id": "KB-971",
+                  "chunk_id": "KB-971#1",
+                  "score": 1.856,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-970",
+                  "chunk_id": "KB-970#1",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "stage": "switch-directory",
+      "expected": {
+        "KB-973": "夜班配送申请应提前29小时提交。"
+      },
+      "input_sha256": {
+        "KB-973.txt": "ba3a6f95a09b636006314a111f7056a3ea9671ee431d057158a4119f36bf17e7",
+        "README.md": "ffa0bcbff38ecacf490f895b62a895757584a0eb593d27bfc097aa79225ca10e"
+      },
+      "checks": [
+        {
+          "question": "夜班配送申请应提前多少小时提交？",
+          "gold": "KB-973",
+          "fact": "29",
+          "answer": {
+            "answer": "知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          },
+          "trace": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "switch-directory-0",
+            "question": "夜班配送申请应提前多少小时提交？",
+            "started_at": "2026-09-27T05:24:22.187",
+            "total_ms": 0.9,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.5,
+                "took_ms": 0.5,
+                "detail": {
+                  "question": "夜班配送申请应提前多少小时提交？",
+                  "standalone_question": "夜班配送申请应提前多少小时提交？",
+                  "search_query": "夜班配送申请应提前多少小时提交？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.6,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "夜班配送申请应提前多少小时提交?",
+                  "terms": [
+                    "夜班",
+                    "班配",
+                    "配送",
+                    "送申",
+                    "申请",
+                    "请应",
+                    "应提",
+                    "提前",
+                    "前多",
+                    "少小",
+                    "小时",
+                    "时提",
+                    "提交"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-973#1",
+                      "doc_id": "KB-973",
+                      "score": 9.1545,
+                      "lexical_score": 4.5207,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "夜班",
+                        "小时",
+                        "应提",
+                        "提交",
+                        "提前",
+                        "时提",
+                        "班配",
+                        "申请",
+                        "请应",
+                        "送申",
+                        "配送"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.533,
+                  "hits": [
+                    {
+                      "doc_id": "KB-973",
+                      "chunk_id": "KB-973#1",
+                      "score": 9.1545,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": []
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 0.9,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [],
+                  "rejected": [],
+                  "selected": []
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 0.9,
+                "took_ms": 0.4,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 0.9,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": [
+                    "没有可以逐字引用的原文"
+                  ]
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          },
+          "retrieval": {
+            "results": [
+              {
+                "doc_id": "KB-973",
+                "chunk_id": "KB-973#1",
+                "score": 9.1545,
+                "text": "夜班配送申请应提前29小时提交。",
+                "retrieval_text": "夜班配送申请应提前29小时提交。\n夜班配送申请应提前29小时提交。",
+                "source_start": 0,
+                "source_end": 16,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "夜班配送申请应提前多少小时提交?",
+              "terms": [
+                "夜班",
+                "班配",
+                "配送",
+                "送申",
+                "申请",
+                "请应",
+                "应提",
+                "提前",
+                "前多",
+                "少小",
+                "小时",
+                "时提",
+                "提交"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-973#1",
+                  "doc_id": "KB-973",
+                  "score": 9.1545,
+                  "lexical_score": 4.5207,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "夜班",
+                    "小时",
+                    "应提",
+                    "提交",
+                    "提前",
+                    "时提",
+                    "班配",
+                    "申请",
+                    "请应",
+                    "送申",
+                    "配送"
+                  ]
+                }
+              ],
+              "expansions": [],
+              "coverage": 0.533,
+              "hits": [
+                {
+                  "doc_id": "KB-973",
+                  "chunk_id": "KB-973#1",
+                  "score": 9.1545,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": []
+            }
+          }
+        }
+      ],
+      "passed": false,
+      "error": "{'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], 'trace_id': 't-20260901-0001'}"
+    }
+  ]
+}

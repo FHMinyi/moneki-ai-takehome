@@ -1,0 +1,40 @@
+env -u LLM_API_KEY -u LLM_BASE_URL -u LLM_MODEL /Library/Developer/CommandLineTools/usr/bin/make -C starter run PORT=8017
+.venv/bin/python -m uvicorn kbqa.server:app --host 127.0.0.1 --port 8017
+INFO:     Started server process [83547]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8017 (Press CTRL+C to quit)
+INFO:     127.0.0.1:63094 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63095 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63096 - "GET /api/data_quality HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63097 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63098 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63099 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63100 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63101 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63102 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63103 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63104 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X22 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63105 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X22 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63106 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X22 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63111 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63111 - "GET /assets/index-BWHUe1Zi.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63112 - "GET /assets/index-BzlJnGoX.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63111 - "GET /api/data_quality HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63111 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63113 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63113 - "GET /assets/index-BWHUe1Zi.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63114 - "GET /assets/index-BzlJnGoX.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63113 - "GET /api/data_quality HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63113 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63115 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63115 - "GET /assets/index-BWHUe1Zi.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63116 - "GET /assets/index-BzlJnGoX.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63115 - "GET /api/data_quality HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63115 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83547]
+make[1]: *** [run] Terminated: 15
+make: *** [run] Terminated: 15

@@ -1,0 +1,15 @@
+{
+  "commit": "b5c756e04302b14583b50ca83d07eee106285efa",
+  "source": "/private/tmp/moneki-g1-05-6yeq26mj/source",
+  "python": "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+  "installed_environment_source": "/tmp/moneki-g1-05-6yeq26mj",
+  "key_configured": false,
+  "today": "2026-09-01",
+  "pid": 18816,
+  "port": 60112,
+  "command": [
+    "make",
+    "run",
+    "PORT=60112"
+  ]
+}
