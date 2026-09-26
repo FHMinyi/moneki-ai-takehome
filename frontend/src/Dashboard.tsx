@@ -3,6 +3,7 @@ import { Alert, Button, Card, Empty, Input, Select, Skeleton, Tag } from 'antd';
 import { filterError, metricsUrl, parseStores, parseSummary, useDashboardRequest } from './dashboardApi';
 import type { DashboardFilters, Store } from './dashboardApi';
 import { TopProducts } from './TopProducts';
+import { DailyTrend } from './DailyTrend';
 
 type Period = { start: string | null; end: string | null };
 const money = (value: number) => `¥${value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -67,6 +68,7 @@ export function Dashboard({ period }: { period: Period }) {
       <DashboardFilter initial={filters} stores={stores.data} onApply={setFilters} />
       <p className="scope-note" data-testid="applied-filters">已生效：{filters.start} 至 {filters.end} · {filters.store_id ? `${stores.data.find(s => s.store_id === filters.store_id)?.store_name || ''} · ${filters.store_id}` : '全部门店'}</p>
       <SummaryPanel filters={filters} />
+      <DailyTrend filters={filters} />
       <TopProducts filters={filters} />
     </>}
   </div>;

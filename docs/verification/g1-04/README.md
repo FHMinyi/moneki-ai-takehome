@@ -24,4 +24,4 @@ npm --prefix frontend run build
 EVIDENCE_DIR=/tmp/g1-04-regression-quality METRICS_EVIDENCE_DIR=/tmp/g1-04-regression-summary TOP_PRODUCTS_EVIDENCE_DIR=../docs/verification/g1-04 BROWSER_BASE_URL=http://127.0.0.1:8004 npm --prefix frontend run test:browser
 ```
 
-后续：本分支目前只以 G1-02 为基础；主会话合并 G1-03 后，须按其通知同步最新 `main` 并检查同屏挂载和受影响回归，再由主会话合并本 PR。
+G1-03 已合并为 `673e8484869fa210ba72fa4033dd7334d3736e3e`，本分支以正常 merge 同步。冲突仅在 `Dashboard.tsx` 的 import 与同级挂载位置，已保留 `SummaryPanel`、`DailyTrend`、`TopProducts` 共用同一份 `filters`；另将 `frontend/README.md` 更新为当前三个组件的实际契约。受影响的同屏验证见 [`integration/README.md`](integration/README.md)。PR 最终由主会话验收合并。
