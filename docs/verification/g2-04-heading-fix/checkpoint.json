@@ -1,0 +1,16 @@
+{
+  "checkpoint": "d2a25c2585f7eb680bbffa06577a40f5966cebe0",
+  "base": "358859a5be641b04395f314029e4b9325631dd8a",
+  "extracted": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g204-heading-checkpoint-fdtz2kgs",
+  "files": {
+    "docs/verification/g2-05/README.md": "f7db02b07b1e79dded38fb73018b8b37d6d7a213796fd4d03ceeef531f54c9b3",
+    "docs/verification/g2-05/reproduce_heading.py": "6014f8ce3e5dfb817e1a67ac8cc63b8264aa857f8d3217dde1f8b0c766b19add",
+    "docs/verification/g2-05/verify_kb.py": "8685a25a932ea1536cc037c88d103c4b06c65d73b20fa99acf2394634c8898ab",
+    "docs/verification/g2-05/heading-repro/http.json": "10741adc76e524b98786cef9b9bb13acb3a103a641538757bb3f1175adfd87fa",
+    "docs/verification/g2-05/heading-repro/inputs/explicit-heading/KB-970.md": "b2ec359326a59a6de5f57a921eec56a2d1eba6b4565c03dc070bab7765a041a6",
+    "docs/verification/g2-05/heading-repro/inputs/explicit-heading/KB-971.md": "567531034d5e521b0d2c3d42179273b041268ebce90c750a83dcb829ab3ce147",
+    "docs/verification/g2-05/heading-repro/inputs/no-heading/KB-970.md": "b2ec359326a59a6de5f57a921eec56a2d1eba6b4565c03dc070bab7765a041a6",
+    "docs/verification/g2-05/heading-repro/inputs/no-heading/KB-971.md": "b50f0806f96a469cfe65c2e02407a1713279009d8eb28d6c069a3453f92d56ed"
+  },
+  "checkpoint_tree": "83058f994c9a869d221d51e13f4ab578d7e3a4b3"
+}

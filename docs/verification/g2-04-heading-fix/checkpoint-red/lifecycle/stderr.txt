@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g204-heading-replay-yv3_h0a1/verify_kb.py", line 81, in <module>
+    assert all(c['passed'] for c in cases), 'Knowledge-base lifecycle has recorded failures'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Knowledge-base lifecycle has recorded failures

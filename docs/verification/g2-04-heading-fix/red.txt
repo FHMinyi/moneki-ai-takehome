@@ -1,0 +1,438 @@
+FFFF....FFFFFFF                                                          [100%]
+=================================== FAILURES ===================================
+__________________ test_untitled_formats_and_fact_update[md] ___________________
+
+rt = <g203.Runtime object at 0x10aa433b0>, fmt = 'md'
+
+    @pytest.mark.parametrize('fmt',['md','utf8-txt','gbk-txt','html'])
+    def test_untitled_formats_and_fact_update(rt,fmt):
+        aliases(rt)
+        for number in (31,47):
+            fact=f'翡翠饭的配送时限为{number}分钟。'
+            suffix='txt' if fmt.endswith('txt') else fmt
+            body=f'<html><body><p>{fact}</p></body></html>' if fmt=='html' else fact
+            (rt.kb/('KB-971.'+suffix)).write_bytes(body.encode('gbk' if fmt=='gbk-txt' else 'utf-8'))
+            payload=rt.build()
+>           with rt.serve() as req:ask(req,payload,fact)
+                                   ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+req = <function Runtime.serve.<locals>.request at 0x10a93a5c0>
+payload = {'key': 'ced369dfe0163ca109b19de72b6cfc3514ea6607c7530c3737f843c4edf48f74', 'version': 'bm25-4', 'docs': {'KB-970': {'... 'ivory bowl': '翡翠饭'}, 'aliases_of': {'翡翠饭': ['翡翠饭', 'Ivory Bowl']}, 'store_code_of': {}, 'source_doc': 'KB-970'}, ...}
+fact = '翡翠饭的配送时限为31分钟。'
+
+    def ask(req,payload,fact):
+        for q in QUERIES:
+            hits=req('/api/retrieve',dict(query=q,top_k=5))
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
+            a,t=m.chat(req,q)
+>           assert a['answer_type']=='doc' and fact in a['answer'],a
+E           AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E           assert ('refusal' == 'doc'
+E             
+E             - doc
+E             + refusal)
+
+docs/verification/g2-04-heading-fix/test_heading.py:28: AssertionError
+_______________ test_untitled_formats_and_fact_update[utf8-txt] ________________
+
+rt = <g203.Runtime object at 0x10aa61610>, fmt = 'utf8-txt'
+
+    @pytest.mark.parametrize('fmt',['md','utf8-txt','gbk-txt','html'])
+    def test_untitled_formats_and_fact_update(rt,fmt):
+        aliases(rt)
+        for number in (31,47):
+            fact=f'翡翠饭的配送时限为{number}分钟。'
+            suffix='txt' if fmt.endswith('txt') else fmt
+            body=f'<html><body><p>{fact}</p></body></html>' if fmt=='html' else fact
+            (rt.kb/('KB-971.'+suffix)).write_bytes(body.encode('gbk' if fmt=='gbk-txt' else 'utf-8'))
+            payload=rt.build()
+>           with rt.serve() as req:ask(req,payload,fact)
+                                   ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+req = <function Runtime.serve.<locals>.request at 0x10aad0fe0>
+payload = {'key': '4dca929bcf2ed2b61416614d9b91476dc2d929d2eaf6e5ca3b1cb73a770657b1', 'version': 'bm25-4', 'docs': {'KB-970': {'... 'ivory bowl': '翡翠饭'}, 'aliases_of': {'翡翠饭': ['翡翠饭', 'Ivory Bowl']}, 'store_code_of': {}, 'source_doc': 'KB-970'}, ...}
+fact = '翡翠饭的配送时限为31分钟。'
+
+    def ask(req,payload,fact):
+        for q in QUERIES:
+            hits=req('/api/retrieve',dict(query=q,top_k=5))
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
+            a,t=m.chat(req,q)
+>           assert a['answer_type']=='doc' and fact in a['answer'],a
+E           AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E           assert ('refusal' == 'doc'
+E             
+E             - doc
+E             + refusal)
+
+docs/verification/g2-04-heading-fix/test_heading.py:28: AssertionError
+________________ test_untitled_formats_and_fact_update[gbk-txt] ________________
+
+rt = <g203.Runtime object at 0x10aaa6750>, fmt = 'gbk-txt'
+
+    @pytest.mark.parametrize('fmt',['md','utf8-txt','gbk-txt','html'])
+    def test_untitled_formats_and_fact_update(rt,fmt):
+        aliases(rt)
+        for number in (31,47):
+            fact=f'翡翠饭的配送时限为{number}分钟。'
+            suffix='txt' if fmt.endswith('txt') else fmt
+            body=f'<html><body><p>{fact}</p></body></html>' if fmt=='html' else fact
+            (rt.kb/('KB-971.'+suffix)).write_bytes(body.encode('gbk' if fmt=='gbk-txt' else 'utf-8'))
+            payload=rt.build()
+>           with rt.serve() as req:ask(req,payload,fact)
+                                   ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+req = <function Runtime.serve.<locals>.request at 0x10aad1ee0>
+payload = {'key': '53a462e0b5b90e8c43ddf5dff38b53d1b03eeb1029238f81b6dbf4dd0207094d', 'version': 'bm25-4', 'docs': {'KB-970': {'... 'ivory bowl': '翡翠饭'}, 'aliases_of': {'翡翠饭': ['翡翠饭', 'Ivory Bowl']}, 'store_code_of': {}, 'source_doc': 'KB-970'}, ...}
+fact = '翡翠饭的配送时限为31分钟。'
+
+    def ask(req,payload,fact):
+        for q in QUERIES:
+            hits=req('/api/retrieve',dict(query=q,top_k=5))
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
+            a,t=m.chat(req,q)
+>           assert a['answer_type']=='doc' and fact in a['answer'],a
+E           AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E           assert ('refusal' == 'doc'
+E             
+E             - doc
+E             + refusal)
+
+docs/verification/g2-04-heading-fix/test_heading.py:28: AssertionError
+_________________ test_untitled_formats_and_fact_update[html] __________________
+
+rt = <g203.Runtime object at 0x10aaa6b70>, fmt = 'html'
+
+    @pytest.mark.parametrize('fmt',['md','utf8-txt','gbk-txt','html'])
+    def test_untitled_formats_and_fact_update(rt,fmt):
+        aliases(rt)
+        for number in (31,47):
+            fact=f'翡翠饭的配送时限为{number}分钟。'
+            suffix='txt' if fmt.endswith('txt') else fmt
+            body=f'<html><body><p>{fact}</p></body></html>' if fmt=='html' else fact
+            (rt.kb/('KB-971.'+suffix)).write_bytes(body.encode('gbk' if fmt=='gbk-txt' else 'utf-8'))
+            payload=rt.build()
+>           with rt.serve() as req:ask(req,payload,fact)
+                                   ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+req = <function Runtime.serve.<locals>.request at 0x10aad23e0>
+payload = {'key': '6b5d4e5baec227d01464a553ff9ee98bc48978ee2e6ef71ad81c04ed558fc46e', 'version': 'bm25-4', 'docs': {'KB-970': {'... 'ivory bowl': '翡翠饭'}, 'aliases_of': {'翡翠饭': ['翡翠饭', 'Ivory Bowl']}, 'store_code_of': {}, 'source_doc': 'KB-970'}, ...}
+fact = '翡翠饭的配送时限为31分钟。'
+
+    def ask(req,payload,fact):
+        for q in QUERIES:
+            hits=req('/api/retrieve',dict(query=q,top_k=5))
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
+            a,t=m.chat(req,q)
+>           assert a['answer_type']=='doc' and fact in a['answer'],a
+E           AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E           assert ('refusal' == 'doc'
+E             
+E             - doc
+E             + refusal)
+
+docs/verification/g2-04-heading-fix/test_heading.py:28: AssertionError
+_____________ test_structural_heading_controls[same-text-twice-md] _____________
+
+rt = <g203.Runtime object at 0x10aa9fbf0>, fmt = 'md', mode = 'same-text-twice'
+
+    @pytest.mark.parametrize('fmt',['md','html'])
+    @pytest.mark.parametrize('mode',['heading-only','heading-and-fact','same-text-twice','metadata-equals-body'])
+    def test_structural_heading_controls(rt,fmt,mode):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        if fmt=='md':
+            body={'heading-only':'# '+fact,
+                  'heading-and-fact':'# 配送规范\n\n'+fact,
+                  'same-text-twice':'# '+fact+'\n\n'+fact,
+                  'metadata-equals-body':'---\ntitle: '+fact+'\n---\n'+fact}[mode]
+        else:
+            body={'heading-only':'<h1>'+fact+'</h1>',
+                  'heading-and-fact':'<h1>配送规范</h1><p>'+fact+'</p>',
+                  'same-text-twice':'<h1>'+fact+'</h1><p>'+fact+'</p>',
+                  'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
+        (rt.kb/('KB-971.'+fmt)).write_text(body)
+        payload=rt.build()
+        with rt.serve() as req:
+>           if mode!='heading-only':ask(req,payload,fact)
+                                    ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+req = <function Runtime.serve.<locals>.request at 0x10aad31a0>
+payload = {'key': '9ac13305eb23e9e8a50f5e612a82ffc7c4c6cef159d16b86c6a6c986c8f07783', 'version': 'bm25-4', 'docs': {'KB-970': {'... 'ivory bowl': '翡翠饭'}, 'aliases_of': {'翡翠饭': ['翡翠饭', 'Ivory Bowl']}, 'store_code_of': {}, 'source_doc': 'KB-970'}, ...}
+fact = '翡翠饭的配送时限为31分钟。'
+
+    def ask(req,payload,fact):
+        for q in QUERIES:
+            hits=req('/api/retrieve',dict(query=q,top_k=5))
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
+            a,t=m.chat(req,q)
+>           assert a['answer_type']=='doc' and fact in a['answer'],a
+E           AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E           assert ('refusal' == 'doc'
+E             
+E             - doc
+E             + refusal)
+
+docs/verification/g2-04-heading-fix/test_heading.py:28: AssertionError
+____________ test_structural_heading_controls[same-text-twice-html] ____________
+
+rt = <g203.Runtime object at 0x10aa9dc70>, fmt = 'html'
+mode = 'same-text-twice'
+
+    @pytest.mark.parametrize('fmt',['md','html'])
+    @pytest.mark.parametrize('mode',['heading-only','heading-and-fact','same-text-twice','metadata-equals-body'])
+    def test_structural_heading_controls(rt,fmt,mode):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        if fmt=='md':
+            body={'heading-only':'# '+fact,
+                  'heading-and-fact':'# 配送规范\n\n'+fact,
+                  'same-text-twice':'# '+fact+'\n\n'+fact,
+                  'metadata-equals-body':'---\ntitle: '+fact+'\n---\n'+fact}[mode]
+        else:
+            body={'heading-only':'<h1>'+fact+'</h1>',
+                  'heading-and-fact':'<h1>配送规范</h1><p>'+fact+'</p>',
+                  'same-text-twice':'<h1>'+fact+'</h1><p>'+fact+'</p>',
+                  'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
+        (rt.kb/('KB-971.'+fmt)).write_text(body)
+        payload=rt.build()
+        with rt.serve() as req:
+>           if mode!='heading-only':ask(req,payload,fact)
+                                    ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+req = <function Runtime.serve.<locals>.request at 0x10aad3060>
+payload = {'key': '4c238857616ba7e20e5dc5a479a5da54d9c5fd9d7b1db981be94311297c6eea2', 'version': 'bm25-4', 'docs': {'KB-970': {'... 'ivory bowl': '翡翠饭'}, 'aliases_of': {'翡翠饭': ['翡翠饭', 'Ivory Bowl']}, 'store_code_of': {}, 'source_doc': 'KB-970'}, ...}
+fact = '翡翠饭的配送时限为31分钟。'
+
+    def ask(req,payload,fact):
+        for q in QUERIES:
+            hits=req('/api/retrieve',dict(query=q,top_k=5))
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
+            a,t=m.chat(req,q)
+>           assert a['answer_type']=='doc' and fact in a['answer'],a
+E           AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E           assert ('refusal' == 'doc'
+E             
+E             - doc
+E             + refusal)
+
+docs/verification/g2-04-heading-fix/test_heading.py:28: AssertionError
+__________ test_structural_heading_controls[metadata-equals-body-md] ___________
+
+rt = <g203.Runtime object at 0x10ab0a150>, fmt = 'md'
+mode = 'metadata-equals-body'
+
+    @pytest.mark.parametrize('fmt',['md','html'])
+    @pytest.mark.parametrize('mode',['heading-only','heading-and-fact','same-text-twice','metadata-equals-body'])
+    def test_structural_heading_controls(rt,fmt,mode):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        if fmt=='md':
+            body={'heading-only':'# '+fact,
+                  'heading-and-fact':'# 配送规范\n\n'+fact,
+                  'same-text-twice':'# '+fact+'\n\n'+fact,
+                  'metadata-equals-body':'---\ntitle: '+fact+'\n---\n'+fact}[mode]
+        else:
+            body={'heading-only':'<h1>'+fact+'</h1>',
+                  'heading-and-fact':'<h1>配送规范</h1><p>'+fact+'</p>',
+                  'same-text-twice':'<h1>'+fact+'</h1><p>'+fact+'</p>',
+                  'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
+        (rt.kb/('KB-971.'+fmt)).write_text(body)
+        payload=rt.build()
+        with rt.serve() as req:
+>           if mode!='heading-only':ask(req,payload,fact)
+                                    ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+req = <function Runtime.serve.<locals>.request at 0x10aad0d60>
+payload = {'key': 'd70453c8f46fbaec34c48c38f2ef36cc2e09b8c9c516f7955cf7f0166a0b6d79', 'version': 'bm25-4', 'docs': {'KB-970': {'... 'ivory bowl': '翡翠饭'}, 'aliases_of': {'翡翠饭': ['翡翠饭', 'Ivory Bowl']}, 'store_code_of': {}, 'source_doc': 'KB-970'}, ...}
+fact = '翡翠饭的配送时限为31分钟。'
+
+    def ask(req,payload,fact):
+        for q in QUERIES:
+            hits=req('/api/retrieve',dict(query=q,top_k=5))
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
+            a,t=m.chat(req,q)
+>           assert a['answer_type']=='doc' and fact in a['answer'],a
+E           AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E           assert ('refusal' == 'doc'
+E             
+E             - doc
+E             + refusal)
+
+docs/verification/g2-04-heading-fix/test_heading.py:28: AssertionError
+_________ test_structural_heading_controls[metadata-equals-body-html] __________
+
+rt = <g203.Runtime object at 0x10ab673e0>, fmt = 'html'
+mode = 'metadata-equals-body'
+
+    @pytest.mark.parametrize('fmt',['md','html'])
+    @pytest.mark.parametrize('mode',['heading-only','heading-and-fact','same-text-twice','metadata-equals-body'])
+    def test_structural_heading_controls(rt,fmt,mode):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        if fmt=='md':
+            body={'heading-only':'# '+fact,
+                  'heading-and-fact':'# 配送规范\n\n'+fact,
+                  'same-text-twice':'# '+fact+'\n\n'+fact,
+                  'metadata-equals-body':'---\ntitle: '+fact+'\n---\n'+fact}[mode]
+        else:
+            body={'heading-only':'<h1>'+fact+'</h1>',
+                  'heading-and-fact':'<h1>配送规范</h1><p>'+fact+'</p>',
+                  'same-text-twice':'<h1>'+fact+'</h1><p>'+fact+'</p>',
+                  'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
+        (rt.kb/('KB-971.'+fmt)).write_text(body)
+        payload=rt.build()
+        with rt.serve() as req:
+>           if mode!='heading-only':ask(req,payload,fact)
+                                    ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+req = <function Runtime.serve.<locals>.request at 0x10aad1e40>
+payload = {'key': 'fa159b7190b599dc136eca9bed7ec5d73a896ebaa7378ccc5874fae3d60d4586', 'version': 'bm25-4', 'docs': {'KB-970': {'... 'ivory bowl': '翡翠饭'}, 'aliases_of': {'翡翠饭': ['翡翠饭', 'Ivory Bowl']}, 'store_code_of': {}, 'source_doc': 'KB-970'}, ...}
+fact = '翡翠饭的配送时限为31分钟。'
+
+    def ask(req,payload,fact):
+        for q in QUERIES:
+            hits=req('/api/retrieve',dict(query=q,top_k=5))
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
+            a,t=m.chat(req,q)
+>           assert a['answer_type']=='doc' and fact in a['answer'],a
+E           AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E           assert ('refusal' == 'doc'
+E             
+E             - doc
+E             + refusal)
+
+docs/verification/g2-04-heading-fix/test_heading.py:28: AssertionError
+________________ test_long_markdown_heading_does_not_merge_body ________________
+
+rt = <g203.Runtime object at 0x10ab669c0>
+
+    def test_long_markdown_heading_does_not_merge_body(rt):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        (rt.kb/'KB-971.md').write_text('# 配送规范'+('补充条款'*10)+'\n\n'+fact)
+        payload=rt.build()
+>       with rt.serve() as req:ask(req,payload,fact)
+                               ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+req = <function Runtime.serve.<locals>.request at 0x10ab5cae0>
+payload = {'key': '3b99f69b08ac975c915352a5f76ff613768e52d12628324bb96a3a99c79e58bc', 'version': 'bm25-4', 'docs': {'KB-970': {'... 'ivory bowl': '翡翠饭'}, 'aliases_of': {'翡翠饭': ['翡翠饭', 'Ivory Bowl']}, 'store_code_of': {}, 'source_doc': 'KB-970'}, ...}
+fact = '翡翠饭的配送时限为31分钟。'
+
+    def ask(req,payload,fact):
+        for q in QUERIES:
+            hits=req('/api/retrieve',dict(query=q,top_k=5))
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
+            a,t=m.chat(req,q)
+>           assert a['answer_type']=='doc' and fact in a['answer'],a
+E           AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E           assert ('refusal' == 'doc'
+E             
+E             - doc
+E             + refusal)
+
+docs/verification/g2-04-heading-fix/test_heading.py:28: AssertionError
+___________________ test_literal_hash_in_plain_text_is_prose ___________________
+
+rt = <g203.Runtime object at 0x10b0d0d70>
+
+    def test_literal_hash_in_plain_text_is_prose(rt):
+        aliases(rt);fact='# 翡翠饭的配送时限为31分钟。'
+        (rt.kb/'KB-971.txt').write_text(fact)
+        payload=rt.build()
+>       with rt.serve() as req:ask(req,payload,fact)
+                               ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+req = <function Runtime.serve.<locals>.request at 0x10ab5c680>
+payload = {'key': '6bec2c2ae80a1a201bb84e4858a7ba0eb5b4a0eb069e5799d4f0096c7ab115ef', 'version': 'bm25-4', 'docs': {'KB-970': {'... 'ivory bowl': '翡翠饭'}, 'aliases_of': {'翡翠饭': ['翡翠饭', 'Ivory Bowl']}, 'store_code_of': {}, 'source_doc': 'KB-970'}, ...}
+fact = '# 翡翠饭的配送时限为31分钟。'
+
+    def ask(req,payload,fact):
+        for q in QUERIES:
+            hits=req('/api/retrieve',dict(query=q,top_k=5))
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
+            a,t=m.chat(req,q)
+>           assert a['answer_type']=='doc' and fact in a['answer'],a
+E           AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E           assert ('refusal' == 'doc'
+E             
+E             - doc
+E             + refusal)
+
+docs/verification/g2-04-heading-fix/test_heading.py:28: AssertionError
+__________ test_actual_old_cache_preserves_prose_and_heading_identity __________
+
+rt = <g203.Runtime object at 0x10b0d3380>
+
+    def test_actual_old_cache_preserves_prose_and_heading_identity(rt):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        (rt.kb/'KB-971.html').write_text('<p>'+fact+'</p>')
+        (rt.kb/'KB-972.html').write_text('<h1>夜班预约应提前19小时提交。</h1>')
+        current={name:(rt.source/'kbqa'/name).read_bytes() for name in ('loader.py','units.py')}
+        for name in current:
+            (rt.source/'kbqa'/name).write_bytes(subprocess.check_output(['git','show','358859a:'+('starter/kbqa/'+name)],cwd=ROOT))
+        old=rt.build()
+        for name,data in current.items():(rt.source/'kbqa'/name).write_bytes(data)
+        # No manual cache deletion/rebuild after restoring the implementation.
+        with rt.serve() as req:
+            payload=json.loads(rt.cache.read_text())
+>           ask(req,payload,fact)
+
+docs/verification/g2-04-heading-fix/test_heading.py:93: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+req = <function Runtime.serve.<locals>.request at 0x10ab5ccc0>
+payload = {'key': 'f6b983a471eb4b118a800dcb8d1acddf3196d75fefb817b94a913338beba72e9', 'version': 'bm25-4', 'docs': {'KB-970': {'... 'ivory bowl': '翡翠饭'}, 'aliases_of': {'翡翠饭': ['翡翠饭', 'Ivory Bowl']}, 'store_code_of': {}, 'source_doc': 'KB-970'}, ...}
+fact = '翡翠饭的配送时限为31分钟。'
+
+    def ask(req,payload,fact):
+        for q in QUERIES:
+            hits=req('/api/retrieve',dict(query=q,top_k=5))
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
+            a,t=m.chat(req,q)
+>           assert a['answer_type']=='doc' and fact in a['answer'],a
+E           AssertionError: {'answer': '知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E           assert ('refusal' == 'doc'
+E             
+E             - doc
+E             + refusal)
+
+docs/verification/g2-04-heading-fix/test_heading.py:28: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_untitled_formats_and_fact_update[md]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_untitled_formats_and_fact_update[utf8-txt]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_untitled_formats_and_fact_update[gbk-txt]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_untitled_formats_and_fact_update[html]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_structural_heading_controls[same-text-twice-md]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_structural_heading_controls[same-text-twice-html]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_structural_heading_controls[metadata-equals-body-md]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_structural_heading_controls[metadata-equals-body-html]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_long_markdown_heading_does_not_merge_body
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_literal_hash_in_plain_text_is_prose
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_actual_old_cache_preserves_prose_and_heading_identity
+11 failed, 4 passed in 8.82s
