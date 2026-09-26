@@ -15,6 +15,7 @@ _SENTENCE_TAIL = "。！？；!?;"
 _LIST_START = re.compile(r"^\s*(?:[-*>|]|#{1,6}\s|\d+[.、)]|[一二三四五六七八九十]+[、.])")
 #: “发布部门：总部运营部”这类字段行是独立的一条信息，不能和上一行拼成一句。
 _FIELD_LINE = re.compile(r"^[^：:\s]{1,6}[：:]")
+_ATX_HEADING = re.compile(r"^#{1,6}\s+")
 
 
 def _lines_of(text: str, fmt: str) -> list[str]:
@@ -31,6 +32,7 @@ def _lines_of(text: str, fmt: str) -> list[str]:
             and not _LIST_START.match(line)
             and not _FIELD_LINE.match(line)
             and not _FIELD_LINE.match(merged[-1])
+            and not (fmt in ("md", "markdown") and _ATX_HEADING.match(merged[-1]))
         ):
             merged[-1] = merged[-1] + " " + line
         else:
@@ -111,12 +113,19 @@ class UnitIndex:
         if cached is not None:
             return cached
         units: list[Unit] = []
-        seen: set[str] = set()
+        seen: set[tuple[str, str]] = set()
         cursor = 0
         index = self.index
-        headings: set[str] = set()
-        for chunk in index.chunks_of(doc_id):
-            headings.update(part.strip() for part in chunk.heading.split(" > ") if part.strip())
+        # Display/retrieval titles may be inferred from a real sentence. Only
+        # source structure gives a unit heading identity; text equality cannot.
+        source = index.texts.get(doc_id, "")
+        meta = index.docs_meta.get(doc_id, {})
+        fmt = meta.get("format", "md")
+        heading_ranges = [
+            (len(re.sub(r"\s+", "", source[:span["start"]])),
+             len(re.sub(r"\s+", "", source[:span["end"]])))
+            for span in meta.get("heading_spans", [])
+        ]
         for chunk in index.chunks_of(doc_id):
             context = set(tokenize(chunk.heading))
             for canonical in index.aliases.strict_mentions(chunk.heading):
@@ -131,30 +140,34 @@ class UnitIndex:
                     # 表头行本身不是答案，跳过。
                     if [c.strip() for c in stripped.strip("|").split("|")] == header_cells:
                         continue
-                    if stripped in seen:
+                    if (stripped, "table") in seen:
                         continue
-                    seen.add(stripped)
+                    seen.add((stripped, "table"))
                     unit = Unit(stripped, context | header_tokens, "table", chunk.table_header, doc_id)
                     unit.start, unit.end = self.locate(doc_id, stripped, cursor)
                     cursor = max(cursor, unit.end)
                     units.append(unit)
                 continue
-            fmt = index.docs_meta.get(doc_id, {}).get("format", "md")
             for line_id, line in enumerate(_lines_of(chunk.source_text, fmt)):
                 for sentence in split_sentences(line):
-                    text = sentence.strip().lstrip("#").strip()
-                    if not text or text in seen:
+                    text = sentence.strip()
+                    markdown_heading = fmt in ("md", "markdown") and _ATX_HEADING.match(text)
+                    if markdown_heading:
+                        text = _ATX_HEADING.sub("", text, count=1).strip()
+                    if not text:
                         continue
-                    seen.add(text)
+                    start, end = self.locate(doc_id, text, cursor)
                     kind = (
                         "heading"
-                        if sentence.strip().startswith("#") or text in headings
+                        if markdown_heading or any(a <= start < end <= b for a, b in heading_ranges)
                         else "text"
                     )
+                    if (text, kind) in seen:
+                        continue
+                    seen.add((text, kind))
                     unit = Unit(text, context, kind, [], doc_id, line_id=id(chunk) * 1000 + line_id)
-                    unit.start, unit.end = self.locate(doc_id, text, cursor)
+                    unit.start, unit.end = start, end
                     cursor = max(cursor, unit.end)
                     units.append(unit)
         self._cache[doc_id] = units
         return units
-
