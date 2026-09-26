@@ -1,0 +1,50 @@
+Browser output: /tmp/moneki-g1-05-4r7gvnd1/old-browser
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' install chromium
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' test --output=/tmp/moneki-g1-05-4r7gvnd1/old-browser/results
+
+Running 26 tests using 7 workers
+
+(node:55290) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55294) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55293) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55291) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55295) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/workspace.spec.ts:4:3 › real API ledger at 1280px (845ms)
+  ✓   2 tests/g1-05-delivery.spec.ts:6:3 › delivery original at 1280 (1.3s)
+  ✓   7 tests/metrics.spec.ts:16:3 › real summary and filters at 1280 (1.3s)
+  ✓   4 tests/g1-ui.spec.ts:6:3 › real API full and short range at 1280 (1.3s)
+  ✓   8 tests/workspace.spec.ts:4:3 › real API ledger at 1440px (712ms)
+  ✓   5 tests/daily-trend.spec.ts:15:3 › real daily trend and filters at 1440 (1.7s)
+  ✓   6 tests/top-products.spec.ts:15:3 › real ranking and shared filter at 390 (1.9s)
+  ✓  12 tests/workspace.spec.ts:4:3 › real API ledger at 390px (644ms)
+  ✓   9 tests/g1-05-delivery.spec.ts:6:3 › delivery original at 1440 (1.1s)
+  ✓  11 tests/g1-ui.spec.ts:6:3 › real API full and short range at 1440 (1.1s)
+  ✓  10 tests/metrics.spec.ts:16:3 › real summary and filters at 1440 (1.2s)
+  ✓  15 tests/workspace.spec.ts:39:1 › loading, failure and retry are visible (327ms)
+  ✓   3 tests/g1-04-integration.spec.ts:15:3 › summary, trend and ranking share sequential filters at 1280 (2.6s)
+  ✓  14 tests/top-products.spec.ts:15:3 › real ranking and shared filter at 1280 (941ms)
+  ✓  13 tests/daily-trend.spec.ts:15:3 › real daily trend and filters at 1280 (1.3s)
+  ✓  19 tests/workspace.spec.ts:54:1 › empty ledger and rejected inconsistent response (632ms)
+  ✓  16 tests/g1-05-delivery.spec.ts:6:3 › delivery original at 390 (938ms)
+  ✓  17 tests/g1-ui.spec.ts:6:3 › real API full and short range at 390 (1.1s)
+  ✓  18 tests/metrics.spec.ts:16:3 › real summary and filters at 390 (1.1s)
+  ✓  21 tests/top-products.spec.ts:15:3 › real ranking and shared filter at 1440 (873ms)
+  ✓  23 tests/metrics.spec.ts:41:1 › invalid dates do not submit and report unchanged applied range (486ms)
+  ✓  22 tests/daily-trend.spec.ts:15:3 › real daily trend and filters at 390 (1.3s)
+  ✓  20 tests/g1-04-integration.spec.ts:15:3 › summary, trend and ranking share sequential filters at 390 (2.1s)
+  ✓  24 tests/metrics.spec.ts:57:1 › loading failure retry and refund-only display (602ms)
+  ✓  25 tests/daily-trend.spec.ts:45:1 › controlled negative day remains below zero and exact value is readable (472ms)
+  ✓  26 tests/metrics.spec.ts:79:1 › obsolete successful response cannot overwrite newer filters (570ms)
+
+  26 passed (5.8s)

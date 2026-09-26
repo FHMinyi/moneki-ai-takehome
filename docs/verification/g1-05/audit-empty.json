@@ -1,0 +1,212 @@
+{
+  "passed": true,
+  "kind": "empty",
+  "observations": {
+    "/api/health": {
+      "status": "ok",
+      "llm_mode": "mock",
+      "kb_docs": 36,
+      "kb_chunks": 72,
+      "valid_sales_rows": 0,
+      "today": "2026-09-01",
+      "data_period": {
+        "start": null,
+        "end": null
+      },
+      "cleaning_report": {
+        "raw_rows": 0,
+        "removed": {
+          "1_unparseable_date": 0,
+          "2_empty_amount": 0,
+          "3_qty_le_zero": 0,
+          "4_store_not_in_stores": 0,
+          "5_product_not_in_products": 0,
+          "6_duplicate_row": 0
+        },
+        "removed_rows": 0,
+        "kept_rows": 0,
+        "kept_sales_rows": 0,
+        "kept_refund_rows": 0
+      },
+      "index_key": "8651fac326e2",
+      "kb_warnings": [
+        "跳过没有 KB 编号的文件：README.md"
+      ]
+    },
+    "/api/data_quality": {
+      "cleaning_report": {
+        "raw_rows": 0,
+        "removed": {
+          "1_unparseable_date": 0,
+          "2_empty_amount": 0,
+          "3_qty_le_zero": 0,
+          "4_store_not_in_stores": 0,
+          "5_product_not_in_products": 0,
+          "6_duplicate_row": 0
+        },
+        "removed_rows": 0,
+        "kept_rows": 0,
+        "kept_sales_rows": 0,
+        "kept_refund_rows": 0
+      },
+      "data_period": {
+        "start": null,
+        "end": null
+      },
+      "kb_warnings": [
+        "跳过没有 KB 编号的文件：README.md"
+      ]
+    },
+    "/api/stores": {
+      "stores": [
+        {
+          "store_id": "X11",
+          "store_name": "替换·河畔店",
+          "category": "测试餐饮",
+          "district": "新区"
+        },
+        {
+          "store_id": "X22",
+          "store_name": "替换·山麓店",
+          "category": "测试餐饮",
+          "district": "西区"
+        }
+      ]
+    },
+    "/api/metrics/summary?start=2027-01-02&end=2027-01-05": {
+      "start": "2027-01-02",
+      "end": "2027-01-05",
+      "store_id": null,
+      "product_id": null,
+      "net_revenue": 0.0,
+      "refund_amount": 0.0,
+      "orders": 0,
+      "aov": null,
+      "qty": 0
+    },
+    "/api/metrics/daily?start=2027-01-02&end=2027-01-05": {
+      "days": [
+        {
+          "date": "2027-01-02",
+          "net_revenue": 0.0,
+          "orders": 0,
+          "aov": null
+        },
+        {
+          "date": "2027-01-03",
+          "net_revenue": 0.0,
+          "orders": 0,
+          "aov": null
+        },
+        {
+          "date": "2027-01-04",
+          "net_revenue": 0.0,
+          "orders": 0,
+          "aov": null
+        },
+        {
+          "date": "2027-01-05",
+          "net_revenue": 0.0,
+          "orders": 0,
+          "aov": null
+        }
+      ]
+    },
+    "/api/metrics/top-products?start=2027-01-02&end=2027-01-05": {
+      "start": "2027-01-02",
+      "end": "2027-01-05",
+      "store_id": null,
+      "products": []
+    },
+    "/api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X11": {
+      "start": "2027-01-02",
+      "end": "2027-01-05",
+      "store_id": "X11",
+      "product_id": null,
+      "net_revenue": 0.0,
+      "refund_amount": 0.0,
+      "orders": 0,
+      "aov": null,
+      "qty": 0
+    },
+    "/api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X11": {
+      "days": [
+        {
+          "date": "2027-01-02",
+          "net_revenue": 0.0,
+          "orders": 0,
+          "aov": null
+        },
+        {
+          "date": "2027-01-03",
+          "net_revenue": 0.0,
+          "orders": 0,
+          "aov": null
+        },
+        {
+          "date": "2027-01-04",
+          "net_revenue": 0.0,
+          "orders": 0,
+          "aov": null
+        },
+        {
+          "date": "2027-01-05",
+          "net_revenue": 0.0,
+          "orders": 0,
+          "aov": null
+        }
+      ]
+    },
+    "/api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X11": {
+      "start": "2027-01-02",
+      "end": "2027-01-05",
+      "store_id": "X11",
+      "products": []
+    },
+    "/api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X22": {
+      "start": "2027-01-02",
+      "end": "2027-01-05",
+      "store_id": "X22",
+      "product_id": null,
+      "net_revenue": 0.0,
+      "refund_amount": 0.0,
+      "orders": 0,
+      "aov": null,
+      "qty": 0
+    },
+    "/api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X22": {
+      "days": [
+        {
+          "date": "2027-01-02",
+          "net_revenue": 0.0,
+          "orders": 0,
+          "aov": null
+        },
+        {
+          "date": "2027-01-03",
+          "net_revenue": 0.0,
+          "orders": 0,
+          "aov": null
+        },
+        {
+          "date": "2027-01-04",
+          "net_revenue": 0.0,
+          "orders": 0,
+          "aov": null
+        },
+        {
+          "date": "2027-01-05",
+          "net_revenue": 0.0,
+          "orders": 0,
+          "aov": null
+        }
+      ]
+    },
+    "/api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X22": {
+      "start": "2027-01-02",
+      "end": "2027-01-05",
+      "store_id": "X22",
+      "products": []
+    }
+  }
+}
