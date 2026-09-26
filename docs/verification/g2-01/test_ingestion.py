@@ -236,3 +236,29 @@ def test_first_start_and_legacy_cache_upgrade(runtime):
     payload = rt.build()
     assert_snapshot(rt, payload, {'KB-901': 'newtoken newfact'}, {'newtoken': 'newfact'})
     assert rt.build() == payload
+
+
+def test_metadata_alias_public_rebuild_restart(runtime):
+    rt = runtime
+    path = rt.kb / 'KB-901.md'
+    def body(title, token, alias, store):
+        return (f'---\ntitle: {title}\nstores: [{store}]\n---\n{token} product\n'
+                f'| canonical | alias |\n|---|---|\n| product | {alias} |')
+    path.write_text(body('oldtitle', 'oldtoken', 'oldalias', 'S01'))
+    before = rt.build()
+    rt.http(['oldtoken'])
+    path.write_text(body('newtitle', 'newtoken', 'newalias', 'S02'))
+    after = rt.build()
+    assert after['docs']['KB-901']['title'] == 'newtitle'
+    assert after['docs']['KB-901']['stores'] == ['S02']
+    assert after['aliases']['canonical_of']['newalias'] == 'product'
+    assert 'oldalias' not in after['aliases']['canonical_of']
+    assert before['key'] != after['key']
+    health, responses = rt.http(['newtoken', 'oldtoken'])
+    assert health['kb_docs'] == 1
+    assert any(h['score'] > 0 and 'newtoken' in h['text'] for h in responses['newtoken']['results'])
+    assert all('oldtoken' not in h['text'] for h in responses['oldtoken']['results'])
+    path.unlink()
+    empty = rt.build()
+    assert empty['aliases']['canonical_of'] == {} and empty['docs'] == {}
+    assert_snapshot(rt, empty, {})

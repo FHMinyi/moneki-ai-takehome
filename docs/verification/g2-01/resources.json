@@ -1,0 +1,422 @@
+{
+  "http_runs": [
+    {
+      "evidence": "red-http/test_lifecycle_rebuild_restart_http[add].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_lifecycle_rebuild_restart0/starter",
+      "pid": 80404,
+      "port": 51143,
+      "stopped": true
+    },
+    {
+      "evidence": "red-http/test_lifecycle_rebuild_restart_http[add].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_lifecycle_rebuild_restart0/starter",
+      "pid": 80406,
+      "port": 51150,
+      "stopped": true
+    },
+    {
+      "evidence": "red-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_lifecycle_rebuild_restart2/starter",
+      "pid": 80437,
+      "port": 51174,
+      "stopped": true
+    },
+    {
+      "evidence": "red-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_lifecycle_rebuild_restart2/starter",
+      "pid": 80439,
+      "port": 51183,
+      "stopped": true
+    },
+    {
+      "evidence": "red-http/test_empty_and_non_document_health.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_empty_and_non_document_he0/starter",
+      "pid": 80474,
+      "port": 51203,
+      "stopped": true
+    },
+    {
+      "evidence": "red-http/test_format_through_rebuild_http[html-<p>mailtoken \\u7f51\\u9875\\u6b63\\u6587<_p><script>hiddenjs<_script>].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_format_through_rebuild_ht1/starter",
+      "pid": 80394,
+      "port": 51136,
+      "stopped": true
+    },
+    {
+      "evidence": "red-http/test_first_start_and_legacy_cache_upgrade.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_first_start_and_legacy_ca0/starter",
+      "pid": 80475,
+      "port": 51211,
+      "stopped": true
+    },
+    {
+      "evidence": "red-http/test_first_start_and_legacy_cache_upgrade.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_first_start_and_legacy_ca0/starter",
+      "pid": 80485,
+      "port": 51218,
+      "stopped": true
+    },
+    {
+      "evidence": "red-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_lifecycle_rebuild_restart1/starter",
+      "pid": 80425,
+      "port": 51158,
+      "stopped": true
+    },
+    {
+      "evidence": "red-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_lifecycle_rebuild_restart1/starter",
+      "pid": 80428,
+      "port": 51167,
+      "stopped": true
+    },
+    {
+      "evidence": "red-http/test_format_through_rebuild_http[txt-mailtoken \\u90ae\\u4ef6\\u6b63\\u6587].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_format_through_rebuild_ht0/starter",
+      "pid": 80385,
+      "port": 51129,
+      "stopped": true
+    },
+    {
+      "evidence": "red-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_lifecycle_rebuild_restart3/starter",
+      "pid": 80450,
+      "port": 51189,
+      "stopped": true
+    },
+    {
+      "evidence": "red-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-64/test_lifecycle_rebuild_restart3/starter",
+      "pid": 80458,
+      "port": 51196,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_lifecycle_rebuild_restart_http[add].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_lifecycle_rebuild_restart0/starter",
+      "pid": 80615,
+      "port": 51294,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_lifecycle_rebuild_restart_http[add].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_lifecycle_rebuild_restart0/starter",
+      "pid": 80617,
+      "port": 51301,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_lifecycle_rebuild_restart2/starter",
+      "pid": 80658,
+      "port": 51332,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_lifecycle_rebuild_restart2/starter",
+      "pid": 80660,
+      "port": 51340,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_lifecycle_rebuild_restart2/starter",
+      "pid": 80669,
+      "port": 51348,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_empty_and_non_document_health.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_empty_and_non_document_he0/starter",
+      "pid": 80702,
+      "port": 51379,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_empty_and_non_document_health.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_empty_and_non_document_he0/starter",
+      "pid": 80703,
+      "port": 51385,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_format_through_rebuild_http[html-<p>mailtoken \\u7f51\\u9875\\u6b63\\u6587<_p><script>hiddenjs<_script>].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_format_through_rebuild_ht1/starter",
+      "pid": 80597,
+      "port": 51286,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_first_start_and_legacy_cache_upgrade.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_first_start_and_legacy_ca0/starter",
+      "pid": 80711,
+      "port": 51392,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_first_start_and_legacy_cache_upgrade.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_first_start_and_legacy_ca0/starter",
+      "pid": 80721,
+      "port": 51400,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_lifecycle_rebuild_restart1/starter",
+      "pid": 80636,
+      "port": 51309,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_lifecycle_rebuild_restart1/starter",
+      "pid": 80638,
+      "port": 51318,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_lifecycle_rebuild_restart1/starter",
+      "pid": 80641,
+      "port": 51325,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_format_through_rebuild_http[txt-mailtoken \\u90ae\\u4ef6\\u6b63\\u6587].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_format_through_rebuild_ht0/starter",
+      "pid": 80590,
+      "port": 51277,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_lifecycle_rebuild_restart3/starter",
+      "pid": 80679,
+      "port": 51357,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_lifecycle_rebuild_restart3/starter",
+      "pid": 80681,
+      "port": 51364,
+      "stopped": true
+    },
+    {
+      "evidence": "green-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-65/test_lifecycle_rebuild_restart3/starter",
+      "pid": 80691,
+      "port": 51371,
+      "stopped": true
+    },
+    {
+      "evidence": "metadata-http/test_metadata_alias_public_rebuild_restart.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-67/test_metadata_alias_public_reb0/starter",
+      "pid": 80863,
+      "port": 51548,
+      "stopped": true
+    },
+    {
+      "evidence": "metadata-http/test_metadata_alias_public_rebuild_restart.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-67/test_metadata_alias_public_reb0/starter",
+      "pid": 80865,
+      "port": 51555,
+      "stopped": true
+    },
+    {
+      "evidence": "metadata-http/test_metadata_alias_public_rebuild_restart.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-67/test_metadata_alias_public_reb0/starter",
+      "pid": 80883,
+      "port": 51564,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_lifecycle_rebuild_restart_http[add].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_lifecycle_rebuild_restart0/starter",
+      "pid": 81027,
+      "port": 51616,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_lifecycle_rebuild_restart_http[add].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_lifecycle_rebuild_restart0/starter",
+      "pid": 81029,
+      "port": 51624,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_metadata_alias_public_rebuild_restart.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_metadata_alias_public_reb0/starter",
+      "pid": 81164,
+      "port": 51740,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_metadata_alias_public_rebuild_restart.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_metadata_alias_public_reb0/starter",
+      "pid": 81166,
+      "port": 51748,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_metadata_alias_public_rebuild_restart.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_metadata_alias_public_reb0/starter",
+      "pid": 81178,
+      "port": 51757,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_lifecycle_rebuild_restart2/starter",
+      "pid": 81075,
+      "port": 51655,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_lifecycle_rebuild_restart2/starter",
+      "pid": 81079,
+      "port": 51664,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_lifecycle_rebuild_restart2/starter",
+      "pid": 81089,
+      "port": 51676,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_empty_and_non_document_health.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_empty_and_non_document_he0/starter",
+      "pid": 81134,
+      "port": 51712,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_empty_and_non_document_health.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_empty_and_non_document_he0/starter",
+      "pid": 81135,
+      "port": 51718,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_format_through_rebuild_http[html-<p>mailtoken \\u7f51\\u9875\\u6b63\\u6587<_p><script>hiddenjs<_script>].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_format_through_rebuild_ht1/starter",
+      "pid": 81015,
+      "port": 51609,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_first_start_and_legacy_cache_upgrade.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_first_start_and_legacy_ca0/starter",
+      "pid": 81142,
+      "port": 51726,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_first_start_and_legacy_cache_upgrade.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_first_start_and_legacy_ca0/starter",
+      "pid": 81154,
+      "port": 51733,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_lifecycle_rebuild_restart1/starter",
+      "pid": 81048,
+      "port": 51632,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_lifecycle_rebuild_restart1/starter",
+      "pid": 81051,
+      "port": 51641,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_lifecycle_rebuild_restart1/starter",
+      "pid": 81065,
+      "port": 51648,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_format_through_rebuild_http[txt-mailtoken \\u90ae\\u4ef6\\u6b63\\u6587].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_format_through_rebuild_ht0/starter",
+      "pid": 81006,
+      "port": 51601,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_lifecycle_rebuild_restart3/starter",
+      "pid": 81099,
+      "port": 51686,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_lifecycle_rebuild_restart3/starter",
+      "pid": 81114,
+      "port": 51695,
+      "stopped": true
+    },
+    {
+      "evidence": "final-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-70/test_lifecycle_rebuild_restart3/starter",
+      "pid": 81119,
+      "port": 51703,
+      "stopped": true
+    }
+  ],
+  "integration": {
+    "commit": "1e4ebbe886522f8f13be314d6444ca9fd811be43",
+    "source": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-y9a34vhs",
+    "python": "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+    "key_configured": false,
+    "runtime_reused": true,
+    "source_export": "git archive HEAD",
+    "commands": [
+      {
+        "args": [
+          "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+          "-m",
+          "kbqa.rebuild"
+        ],
+        "cwd": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-y9a34vhs/starter",
+        "exit_code": 0
+      },
+      {
+        "args": [
+          "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+          "-m",
+          "pytest",
+          "tests",
+          "-q"
+        ],
+        "cwd": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-y9a34vhs/starter",
+        "exit_code": 0
+      },
+      {
+        "args": [
+          "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+          "eval/run_eval.py",
+          "--base-url",
+          "http://127.0.0.1:51415",
+          "--questions",
+          "eval/public_questions.jsonl",
+          "--out",
+          "/private/tmp/moneki-g2-01-integration/eval"
+        ],
+        "cwd": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-y9a34vhs",
+        "exit_code": 0
+      }
+    ],
+    "port": 51415,
+    "pid": 80810,
+    "server_stopped": true
+  }
+}

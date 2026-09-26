@@ -143,3 +143,22 @@
 
 本轮仍观测到健康 `kb_docs=36`、缓存键不感知知识库内容等前序问题，它们属于后续 RAG 范围。
 N01 的清洗字段已核对，未将 N01 整题说成通过；构建 chunk 提示及测试依赖弃用提示见真实日志。
+
+## G2-01：可信摄取、重建和健康计数（2026-09-27）
+
+执行基点 `acfcabd5bf0fa69b8d54e4d948ee07a2f8a4a8ce`，Issue #13；红灯提交 `ac14efd`，修复提交 `1e4ebbe`。
+完整命令、真实 HTTP 与原文对照见 [G2-01 验证](docs/verification/g2-01/README.md)。以下修复前行号均指执行基点，修复后行号指 `1e4ebbe`。
+
+| 缺陷 | 现象与假设 | 实际验证与关键输出 | 根因与修复 | 回归及修复前证据 |
+|---|---|---|---|---|
+| D01 格式遗漏 | 实际 KB 缺三篇；假设白名单仅接受 Markdown | 实际文件身份集合与索引比较失败；TXT/HTML 经 rebuild + HTTP 也失败。排除只在 loader 单测里出现的问题 | 旧 `loader.py:12,233` 排除 txt/html；新 `loader.py:13` 扩充实际格式，修复 `1e4ebbe` | `test_original_identity_and_formats`、`test_format_through_rebuild_http`；`red.txt` 与 `red-http/` → `green.txt`，原始库35篇/88片段 |
+| 文件身份违约 | front matter 可把 KB-901 变成 KB-999；推测编号优先级反了 | 不一致编号断言实际返回 KB-999；无编号 README 的排除也纳入同一回归 | 旧 `loader.py:185-186` 优先读 meta；新 `loader.py:221-243` 先验证文件名，冲突告警，修复 `1e4ebbe` | `test_filename_identity_not_frontmatter`，`red.txt` → `green.txt` |
+| D02 编码吞字 | GBK 通知中文损坏；假设 errors=ignore 静默丢字 | 与真实源文件严格 GBK 解码逐字比对失败；无效字节原实现未抛异常 | 旧 `loader.py:82-84`；新 `loader.py:126-136` 严格 UTF-8/BOM → GBK 回退并告警；两者均非法时显式失败，修复 `1e4ebbe` | `test_actual_gbk_exact_text`、`test_invalid_encoding_never_silently_drops_bytes`；原文/加载全文及 SHA-256 在 `source-comparisons.json` |
+| D03 HTML 非正文 | HTML 仍含脚本；假设仅抽取 title 没转换正文 | 真实 FAQ 命中 window.dataLayer；小夹具验证段落、br、实体、head/script/style 隔离，均先失败 | 旧 `loader.py:178-182`；新 `loader.py:80-123,233-239` 使用标准库 HTMLParser 抽取静态文本；修复 `1e4ebbe` | `test_actual_html_visible_text`、`test_html_paragraphs_and_entities`；`source-comparisons.json` 保存原 HTML、加载文本及连续引文 |
+| D09 缓存不感知输入 | 增删改和换目录后仍旧事实；假设缓存只绑定版本 | 四个独立 HTTP 生命周期回归全部先红；别名/标题更新也先红。临时副本排除共享旧缓存干扰 | 旧 `index.py:23-27` 仅版本键、`rebuild.py:22` 可复用旧缓存；新 `index.py:23-36` 绑定路径/文件名/字节/解析版本，`rebuild.py:22` 强制刷新，修复 `1e4ebbe` | `test_lifecycle_rebuild_restart_http`、`test_metadata_alias_refresh_and_automatic_cache_invalidation`、`test_first_start_and_legacy_cache_upgrade`；15项红灯含旧索引升级。另补公开重建/重启后别名、门店元数据和删除清除验证 |
+| D10 健康虚报 | 空文档库放 README 后 health=1/index=0；假设计数用目录文件数 | 真实 HTTP 空库回归先失败；完整库修复后 health=35/index=35/chunks=88 | 旧/新 `service.py:70`，改为 len(index.docs_meta)，修复 `1e4ebbe` | `test_empty_and_non_document_health`；`red-http/` → `green-http/`，`integration/health.json` |
+
+执行中的测试脚本错误：首轮证据文件名使用参数化 HTML 字符串，含 `/` 导致写证据报错；修正为安全文件名后，在尚未改产品代码的基线上重新运行，最终提交的 `red.txt` 为15失败、无测试框架错误。旧缓存夹具由真实基线代码生成，未用检索替身。
+
+原后端53项通过；新增16项最终全绿；公开 metrics 6/6、data 12/12，未退化。无模型全量43/100、27/55题全绿。
+原诊断仍7失败/12通过（两次）：分块尾段3例、中文匹配、来源映射、现行版本过滤、top-k过滤。审计显示35篇均有尾段未进入片段、累计5940字符；全文仍在索引。未修改这些后续层，也未把公开检索8/15或零分补位解释为真实相关性完成。修复提交：后续项均待修复。

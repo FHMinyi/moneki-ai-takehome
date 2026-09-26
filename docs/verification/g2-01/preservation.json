@@ -1,0 +1,20 @@
+{
+  "checked": 348,
+  "authorized_changes": [
+    "AI_USAGE.md",
+    "DEBUG_LOG.md",
+    "starter/kbqa/index.py",
+    "starter/kbqa/loader.py",
+    "starter/kbqa/rebuild.py",
+    "starter/kbqa/service.py"
+  ],
+  "changed": [
+    "AI_USAGE.md",
+    "DEBUG_LOG.md",
+    "starter/kbqa/index.py",
+    "starter/kbqa/loader.py",
+    "starter/kbqa/rebuild.py",
+    "starter/kbqa/service.py"
+  ],
+  "unexpected_changes": []
+}

@@ -1,0 +1,64 @@
+....FFFFFFF........                                                      [100%]
+=================================== FAILURES ===================================
+___________________ test_chunking_keeps_last_character[301] ____________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:42: in test_chunking_keeps_last_character
+    assert ''.join(c.source_text for c in pieces)==body, {'input':size,'retained':sum(len(c.source_text) for c in pieces)}
+E   AssertionError: {'input': 301, 'retained': 300}
+E   assert '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲甲' == '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲尾'
+E     
+E     Skipping 289 identical leading characters in diff, use -v to show
+E     - 甲甲甲甲甲甲甲甲甲甲甲尾
+E     ?            -
+E     + 甲甲甲甲甲甲甲甲甲甲甲
+___________________ test_chunking_keeps_last_character[600] ____________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:42: in test_chunking_keeps_last_character
+    assert ''.join(c.source_text for c in pieces)==body, {'input':size,'retained':sum(len(c.source_text) for c in pieces)}
+E   AssertionError: {'input': 600, 'retained': 300}
+E   assert '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲甲' == '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲尾'
+E     
+E     Skipping 289 identical leading characters in diff, use -v to show
+E     - 甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲尾
+E     + 甲甲甲甲甲甲甲甲甲甲甲
+___________________ test_chunking_keeps_last_character[601] ____________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:42: in test_chunking_keeps_last_character
+    assert ''.join(c.source_text for c in pieces)==body, {'input':size,'retained':sum(len(c.source_text) for c in pieces)}
+E   AssertionError: {'input': 601, 'retained': 600}
+E   assert '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲甲' == '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲尾'
+E     
+E     Skipping 589 identical leading characters in diff, use -v to show
+E     - 甲甲甲甲甲甲甲甲甲甲甲尾
+E     ?            -
+E     + 甲甲甲甲甲甲甲甲甲甲甲
+_______________ test_chinese_query_gets_positive_relevant_score ________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:49: in test_chinese_query_gets_positive_relevant_score
+    assert scores, {'terms':terms,'document_terms':tokenize(doc.text)}
+E   AssertionError: {'terms': ['外卖订单多久内可以申请退款'], 'document_terms': ['外卖订单在送达后24小时内可以申请退款。']}
+E   assert {}
+________________ test_returned_doc_id_matches_real_chunk_owner _________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:55: in test_returned_doc_id_matches_real_chunk_owner
+    assert not mismatches,mismatches
+E   AssertionError: [{'doc_id': 'KB-060', 'chunk_id': 'KB-029#4', 'owner': 'KB-029'}, {'doc_id': 'KB-060', 'chunk_id': 'KB-003#3', 'owner': 'KB-003'}]
+E   assert not [{'doc_id': 'KB-060', 'chunk_id': 'KB-029#4', 'owner': 'KB-029'}, {'doc_id': 'KB-060', 'chunk_id': 'KB-003#3', 'owner': 'KB-003'}]
+_______________ test_current_policy_excludes_superseded_version ________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:60: in test_current_policy_excludes_superseded_version
+    assert r._eligible('KB-012',TODAY,None) is not None,idx.docs_meta['KB-012']
+E   AssertionError: {'doc_id': 'KB-012', 'title': '退款政策 v1', 'type': '政策', 'state': '已废止', ...}
+E   assert None is not None
+E    +  where None = _eligible('KB-012', datetime.date(2026, 9, 1), None)
+E    +    where _eligible = <kbqa.retriever.Retriever object at 0x10853ffb0>._eligible
+__________ test_filter_before_topk_retains_available_matching_result ___________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:67: in test_filter_before_topk_retains_available_matching_result
+    assert len(result.hits)==1 and result.hits[0].doc_id=='KB-902',result.as_trace()
+E   AssertionError: {'query': 'refund', 'expansions': [], 'coverage': 1.0, 'hits': [], ...}
+E   assert (0 == 1)
+E    +  where 0 = len([])
+E    +    where [] = SearchResult(hits=[], query='refund', terms=['refund'], expansions=[], filtered=[{'doc_id': 'KB-901', 'reason': '文档声明只适用于 S01，与问题里的 S02 不符'}], coverage=1.0).hits
+=========================== short test summary info ============================
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_chunking_keeps_last_character[301]
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_chunking_keeps_last_character[600]
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_chunking_keeps_last_character[601]
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_chinese_query_gets_positive_relevant_score
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_returned_doc_id_matches_real_chunk_owner
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_current_policy_excludes_superseded_version
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_filter_before_topk_retains_available_matching_result
+7 failed, 12 passed in 0.39s
