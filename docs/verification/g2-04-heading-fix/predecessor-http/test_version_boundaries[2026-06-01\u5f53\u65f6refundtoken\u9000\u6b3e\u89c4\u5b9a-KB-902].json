@@ -1,0 +1,162 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-154/test_version_boundaries_2026_01/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-154/test_version_boundaries_2026_01/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-154/test_version_boundaries_2026_01/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：2 篇文档，2 个片段，缓存键 b23330da81b9\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-154/test_version_boundaries_2026_01/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-154/test_version_boundaries_2026_01/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56293"
+      ],
+      "pid": 10881,
+      "port": 56293,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 2,
+            "kb_chunks": 2,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "b23330da81b9",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "2026-06-01当时refundtoken退款规定",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-902",
+                "chunk_id": "KB-902#1",
+                "score": 0.7032,
+                "text": "refundtoken退款申请限时7小时。",
+                "retrieval_text": "refundtoken退款申请限时7小时。\nrefundtoken退款申请限时7小时。",
+                "source_start": 0,
+                "source_end": 21,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#1",
+                "score": 0.0,
+                "text": "refundtoken退款申请限时9小时。",
+                "retrieval_text": "refundtoken退款申请限时9小时。\nrefundtoken退款申请限时9小时。",
+                "source_start": 0,
+                "source_end": 21,
+                "context_spans": [],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": "该版本自 2026-06-01 起已被 KB-902 取代"
+              }
+            ],
+            "diagnostics": {
+              "query": "2026-06-01当时refundtoken退款规定",
+              "terms": [
+                "2026",
+                "06",
+                "01",
+                "当时",
+                "refundtoken",
+                "退款",
+                "款规",
+                "规定"
+              ],
+              "scope": {
+                "as_of": "2026-06-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-902#1",
+                  "doc_id": "KB-902",
+                  "score": 0.7032,
+                  "lexical_score": 0.5209,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "refundtoken",
+                    "退款"
+                  ]
+                }
+              ],
+              "expansions": [],
+              "coverage": 0.033,
+              "hits": [
+                {
+                  "doc_id": "KB-902",
+                  "chunk_id": "KB-902#1",
+                  "score": 0.7032,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-901",
+                  "chunk_id": "KB-901#1",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": "该版本自 2026-06-01 起已被 KB-902 取代",
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-901",
+                  "reason": "该版本自 2026-06-01 起已被 KB-902 取代"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}
