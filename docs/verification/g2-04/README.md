@@ -79,3 +79,7 @@ starter/.venv/bin/python docs/verification/g2-04/compare.py docs/verification/g2
 - `resources.json`列出所有自建测试服务的PID、端口、隔离源码和停止状态，全部由测试finally退出，无常驻自建服务。最终全量PID35667、端口59131，已停止；对应`integration-restored/environment.json`。
 - 保留 `/tmp/moneki-g2-04-first-integration`、`/tmp/moneki-g2-04-final-integration`（85.5）和`/tmp/moneki-g2-04-restored-integration`（88.5），及JSON引用的pytest/source临时目录；未主动清理。pytest已自动回收部分较早临时目录，仓库内HTTP/trace及错误日志已保存；其他临时目录以后也可能被框架或系统回收。
 - PR后等待主会话独立审查、合并决定及具体分支清理指令；执行会话不直接推main、不合并、不自行关闭Issue或开启下一任务。
+
+## 提交前自查
+
+按固定点核对业务diff，仅5个产品文件（116新增/27删除）；没有KB/题号/答案数值分支。最终交付的业务文件与67b0f62被测树一致。代码、测试脚本和Markdown的whitespace检查通过；完整diff仅9份真实pytest失败输出有尾部空白提示，保留原始输出不修剪，见final-checks.json。未发现尚未报告的本项合并阻塞；PR可合并状态不替代主会话独立验收。
