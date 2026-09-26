@@ -8,6 +8,7 @@ from typing import Optional
 from .entities import focus_kinds
 from .tokenizer import STOP_CHARS, content_tokens, tokenize
 from .units import MAX_QUOTE, Unit, UnitIndex
+from .sanitize import is_instruction_like
 
 MARKERS = {"✓", "✔", "√", "有", "×", "✗", "—", "-", "无", "N/A"}
 
@@ -107,7 +108,7 @@ class DocFacts:
         return satisfied
 
     def rank(
-        self, query: str, doc_id: str, limit: int = 3, require_value: bool = False
+        self, query: str, doc_id: str, limit: int = 3, require_value: bool = False, units=None
     ) -> list[tuple[float, str]]:
         """在一篇文档里挑最能回答问题的句子。
 
@@ -119,11 +120,17 @@ class DocFacts:
         weights = self.term_weights(query)
         total = sum(weights.values()) or 1.0
         kinds = focus_kinds(query)
-        units = self.units(doc_id)
+        units = list(self.units(doc_id) if units is None else units)
+        units = [u for u in units if not is_instruction_like(u.text) and u.kind != "heading"]
         if kinds and require_value:
             units = [unit for unit in units if self.focus_of(unit, kinds)]
         scored: list[tuple[float, int, str]] = []
         for position, unit in enumerate(units):
+            # A requested unit is stronger evidence than the broad count/value
+            # shape (e.g. days cannot be answered with attendance occurrences).
+            requested = re.search(r"(?:多少|几)\s*(工作日|小时|分钟|天|克|公斤|毫升|升|元|条|次|人|杯|份)", query)
+            if requested and not re.search(r"\d[\d,.]*\s*" + requested.group(1), unit.text):
+                continue
             if len(unit.text) < 8 and unit.kind != "table":
                 continue  # 半截短语（HTML 的标签、页脚碎片）不是答案
             direct = set(tokenize(unit.text))
@@ -235,7 +242,7 @@ class DocFacts:
 
     def cite(self, doc_id: str, quote: str) -> Optional[dict]:
         quote = quote.strip()
-        if not quote or not self.verbatim(doc_id, quote):
+        if not quote or len(re.sub(r"\s+", "", quote)) > MAX_QUOTE or not self.verbatim(doc_id, quote):
             return None
         return {"doc_id": doc_id, "quote": quote}
 

@@ -78,8 +78,9 @@ def test_near_topic_missing(rt,question):
 def test_error_trace(rt,phase):
     original(rt)
     # Fault injection is limited to exception diagnostics, never RAG acceptance.
-    target='self.planner.plan(question)' if phase=='plan' else 'self._doc_block(plan, result)'
+    target='self.planner.plan(question)' if phase=='plan' else 'self._document_evidence(plan, result, trace)'
     file=rt.source/'kbqa'/('service.py' if phase=='plan' else 'answerer.py')
+    assert target in file.read_text()
     s=file.read_text().replace(target,"(_ for _ in ()).throw(RuntimeError('g204 injected failure'))")
     file.write_text(s)
     with rt.serve() as req:a,t=chat(req,'外卖退款政策是什么？')

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import time
+import re
 from datetime import date
 from typing import Optional
 
@@ -14,6 +15,7 @@ from .planner import Plan
 from .retriever import Retriever, SearchResult
 from .schemas import Answer
 from .tokenizer import content_tokens, tokenize
+from .sanitize import is_instruction_like
 
 #: 拒答闸门。两个互补的信号：
 #: `vocab` —— 问题里的词有多少在整个知识库的词表里出现过（“工资”“下雨”一个都找不到）；
@@ -310,13 +312,54 @@ class Answerer(HybridAnswers):
 
     # -- 纯文档 -----------------------------------------------------------------
 
-    def _context(self, result: SearchResult) -> str:
-        """把命中的那篇文档原样拼进来，答案就在里面，别漏了。"""
-        blocks: list[str] = []
-        for hit in result.hits[:1]:
-            for chunk in self.retriever.index.chunks_of(hit.doc_id):
-                blocks.append(chunk.text)
-        return ("\n".join(blocks) + "\n") if blocks else ""
+    def _document_evidence(self, plan: Plan, result: SearchResult, trace=None):
+        """Rank only units inside genuine retrieved spans; never attach full documents.
+
+        Source offsets stay on the original visible text. Table headings may
+        explain cells but receive their own continuous citation.
+        """
+        candidates, rejected = [], []
+        for hit in self.answerable_hits(plan, result):
+            source = self.retriever.index.texts[hit.doc_id]
+            start = len(re.sub(r"\s+", "", source[:hit.source_start]))
+            end = len(re.sub(r"\s+", "", source[:hit.source_end]))
+            units = [u for u in self.facts.units(hit.doc_id) if start <= u.start < u.end <= end]
+            for unit in units:
+                if is_instruction_like(unit.text):
+                    rejected.append({"doc_id": hit.doc_id, "reason": "document_instruction", "text": unit.text})
+            ranked = self.facts.rank(plan.search_query, hit.doc_id, limit=5,
+                                     require_value=True, units=units)
+            for score, unit in ranked:
+                if is_instruction_like(unit.text) or not (start <= unit.start < unit.end <= end):
+                    continue
+                candidates.append(dict(score=score * (hit.score / result.ranked[0].score) ** .5,
+                                       unit=unit, hit=hit))
+        candidates.sort(key=lambda c: (-c["score"], -(int((c["hit"].meta.get("effective_from") or "0000-00-00").replace("-", "")))))
+        selected, citations, body = [], [], []
+        # One best supported proposition is safer than adding a second near-topic
+        # document. Multi-fact/mixed questions belong to the later orchestration.
+        for candidate in candidates:
+            unit, hit = candidate["unit"], candidate["hit"]
+            cite = self.facts.cite(hit.doc_id, unit.text)
+            if not cite:
+                rejected.append({"doc_id":hit.doc_id,"reason":"quote_invalid_or_too_long"})
+                continue
+            citations = [cite]
+            if unit.kind == "table":
+                for span in hit.context_spans:
+                    if span["text"].strip().startswith("|") and all(h in span["text"] for h in unit.header):
+                        header = self.facts.cite(hit.doc_id, self.retriever.index.texts[hit.doc_id][span["start"]:span["end"]])
+                        if header and header not in citations:
+                            citations.append(header)
+            body = ["%s《%s》：%s" % (hit.doc_id, hit.meta.get("title", ""), self.facts.render(hit.doc_id, unit.text))]
+            selected = [{"doc_id":hit.doc_id,"chunk_id":hit.chunk_id,"score":candidate["score"],
+                         "source_start":hit.source_start,"source_end":hit.source_end,"quote":unit.text}]
+            break
+        if trace is not None:
+            trace.step("evidence", {"candidates":[{"doc_id":c["hit"].doc_id,"chunk_id":c["hit"].chunk_id,
+                       "score":c["score"],"text":c["unit"].text} for c in candidates],
+                       "rejected":rejected,"selected":selected})
+        return "\n".join(body), citations, candidates[0]["score"] if candidates else 0.0
 
     def _should_refuse(self, plan: Plan, confidence: float, top_score: float) -> Optional[str]:
         """三个信号一起判断“知识库里到底有没有这件事”。"""
@@ -333,7 +376,7 @@ class Answerer(HybridAnswers):
 
     def _answer_doc(self, plan: Plan, trace=None) -> Answer:
         result = self._search(plan, trace=trace)
-        body, citations, confidence = self._doc_block(plan, result)
+        body, citations, confidence = self._document_evidence(plan, result, trace)
         top_score = result.ranked[0].score if result.ranked else 0.0
         reason = self._should_refuse(plan, confidence, top_score)
         if not citations or reason:
@@ -351,4 +394,4 @@ class Answerer(HybridAnswers):
                 answer_type="clarify",
                 notes=["检索最高分 %.1f，且问题里没有指标、时间或门店" % top_score],
             )
-        return Answer(answer=self._context(result) + body, answer_type="doc", citations=citations)
+        return Answer(answer=body, answer_type="doc", citations=citations)

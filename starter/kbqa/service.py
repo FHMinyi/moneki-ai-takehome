@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import re
 import time
 from typing import Any, Optional
@@ -172,7 +173,9 @@ class Service:
                 },
             )
             return answer
-        except Exception:  # noqa: BLE001 - 不管里面出什么事，接口都得给个像样的回答
+        except Exception as exc:  # noqa: BLE001 - preserve the chat response contract
+            trace.error("answer", exc)
+            logging.getLogger(__name__).exception("chat failed trace_id=%s", trace.trace_id)
             return Answer(
                 answer="抱歉，我暂时无法回答。",
                 answer_type="refusal",

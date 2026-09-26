@@ -1,0 +1,80 @@
+.....................F.FF.F                                              [100%]
+=================================== FAILURES ===================================
+___________________________ test_document_facts[S01] ___________________________
+
+rt = <g203.Runtime object at 0x108b0fef0>
+q = {'category': 'safety', 'id': 'S01', 'points': 3, 'turns': [{'checks': {'answer_type_in': ['doc', 'hybrid'], 'cite_all'...: []}, 'fact_any': {'docs': ['KB-060'], 'numbers': [], 'texts': ['出餐慢']}, ...}, 'question': '7 月顾客投诉最集中的是什么问题？有多少条？'}]}
+
+    @pytest.mark.parametrize('q',PUBLIC,ids=lambda q:q['id'])
+    def test_document_facts(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q['turns'][0]['question'])
+        checks=q['turns'][0]['checks']; ids={c['doc_id'] for c in a['citations']}
+        assert a['answer_type']=='doc',a
+>       assert set(checks.get('cite_all',[]))<=ids,a
+E       AssertionError: {'answer': 'KB-061《常见问题 FAQ - 合味餐饮》：8 人以上的聚餐可以提前一天电话预订，由门店安排拼桌，门店电话见“门店”页面。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-061', 'quote': '8 人以上的聚餐可以提前一天电话预订，由门店安排拼桌，门店电话见“门店”页面。'}], 'data_evidence': [], ...}
+E       assert {'KB-060'} <= {'KB-061'}
+E         
+E         Extra items in the left set:
+E         'KB-060'
+
+docs/verification/g2-04/test_doc_qa.py:56: AssertionError
+_ test_near_topic_missing[\u5458\u5de5\u8fdf\u5230\u7533\u8bc9\u9700\u8981\u51e0\u5929\u529e\u7ed3\uff1f] _
+
+rt = <g203.Runtime object at 0x108bc31d0>, question = '员工迟到申诉需要几天办结？'
+
+    @pytest.mark.parametrize('question', ['外卖退款需要缴纳多少元手续费？','员工迟到申诉需要几天办结？','牛肉poke的花生含量是多少克？'])
+    def test_near_topic_missing(rt,question):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,question)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-016《排班与考勤制度》：3. **当月迟到 3 次以上由店长约谈**，并记入当月门店考勤小结；店长本人迟到由运营部约谈。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-016', 'quote': '3. **当月迟到 3 次以上由店长约谈**，并记入当月门店考勤小结；店长本人迟到由运营部约谈。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:74: AssertionError
+_ test_near_topic_missing[\u725b\u8089poke\u7684\u82b1\u751f\u542b\u91cf\u662f\u591a\u5c11\u514b\uff1f] _
+
+rt = <g203.Runtime object at 0x108b2e120>, question = '牛肉poke的花生含量是多少克？'
+
+    @pytest.mark.parametrize('question', ['外卖退款需要缴纳多少元手续费？','员工迟到申诉需要几天办结？','牛肉poke的花生含量是多少克？'])
+    def test_near_topic_missing(rt,question):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,question)
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-023《2026 年 618 活动方案》：**当天牛肉poke 目标销量 120 份。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-023', 'quote': '**当天牛肉poke 目标销量 120 份。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:74: AssertionError
+__________________________ test_error_trace[evidence] __________________________
+
+rt = <g203.Runtime object at 0x1091f1670>, phase = 'evidence'
+
+    @pytest.mark.parametrize('phase',['plan','evidence'])
+    def test_error_trace(rt,phase):
+        original(rt)
+        # Fault injection is limited to exception diagnostics, never RAG acceptance.
+        target='self.planner.plan(question)' if phase=='plan' else 'self._doc_block(plan, result)'
+        file=rt.source/'kbqa'/('service.py' if phase=='plan' else 'answerer.py')
+        s=file.read_text().replace(target,"(_ for _ in ()).throw(RuntimeError('g204 injected failure'))")
+        file.write_text(s)
+        with rt.serve() as req:a,t=chat(req,'外卖退款政策是什么？')
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-013《退款政策 v2》：第三方外卖平台内已经完成的退款不在门店重复操作。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-013', 'quote': '第三方外卖平台内已经完成的退款不在门店重复操作。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:86: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-04/test_doc_qa.py::test_document_facts[S01] - Ass...
+FAILED docs/verification/g2-04/test_doc_qa.py::test_near_topic_missing[\u5458\u5de5\u8fdf\u5230\u7533\u8bc9\u9700\u8981\u51e0\u5929\u529e\u7ed3\uff1f]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_near_topic_missing[\u725b\u8089poke\u7684\u82b1\u751f\u542b\u91cf\u662f\u591a\u5c11\u514b\uff1f]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_error_trace[evidence] - A...
+4 failed, 23 passed in 19.15s

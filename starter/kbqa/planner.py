@@ -140,6 +140,14 @@ class Planner:
             )
             return plan
         self._choose_kind(plan, spec)
+        # A reporting period identifies the event being discussed, not the
+        # knowledge cutoff: a July feedback report can be published in August.
+        if plan.intent == "doc" and not (
+            E.has_any(standalone, E.POLICY_WORDS + E.HISTORICAL_WORDS +
+                      ("当时", "截至", "生效", "充值", "赠送", "储值"))
+        ):
+            plan.as_of = self.today
+            plan.notes.append("事件/报告的时间用于主题检索，资料适用时点使用今天。")
         self._check_period(plan, spec)
         self._build_search_query(plan, spec)
         recent = [
