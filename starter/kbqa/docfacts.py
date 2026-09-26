@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import unicodedata
 from typing import Optional
 
 from .entities import focus_kinds
@@ -265,7 +266,8 @@ class DocFacts:
 
     def cite(self, doc_id: str, quote: str) -> Optional[dict]:
         quote = quote.strip()
-        if not quote or len(re.sub(r"\s+", "", quote)) > MAX_QUOTE or not self.verbatim(doc_id, quote):
+        normalized = re.sub(r"[\s*`|#>]", "", unicodedata.normalize("NFKC", quote))
+        if not normalized or len(normalized) > MAX_QUOTE or not self.verbatim(doc_id, quote):
             return None
         return {"doc_id": doc_id, "quote": quote}
 

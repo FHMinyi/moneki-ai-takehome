@@ -339,7 +339,10 @@ class Answerer(HybridAnswers):
                     continue
                 candidates.append(dict(score=score * (hit.score / result.ranked[0].score) ** .5,
                                        unit=unit, hit=hit))
-        candidates.sort(key=lambda c: (-c["score"], -(int((c["hit"].meta.get("effective_from") or "0000-00-00").replace("-", "")))))
+        candidates.sort(
+            key=lambda c: (c["score"], c["hit"].meta.get("effective_from") or ""),
+            reverse=True,
+        )
         selected, citations, body = [], [], []
         # Select the strongest supported span without appending near-topic facts.
         for candidate in candidates:
