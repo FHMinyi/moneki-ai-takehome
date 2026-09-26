@@ -1,0 +1,78 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+______________ test_normalization_refunds_multiline_and_priority _______________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-33/test_normalization_refunds_mul0')
+
+    def test_normalization_refunds_multiline_and_priority(tmp_path):
+        rows = [
+            ('A','25-07-2026',' s01 ','p01 ','2',' ¥38.00 ','card'),
+            ('A','2026/7/25','S01','P02','1','20','card'),
+            ('R','07-06-2026','S01','P01','1','-38.00','card'),
+            ('A','2026-07-25','S01','P01','2','38.00','card'),
+            ('bad','N/A','bad','bad','0','','card'),
+            ('bad','2026-06-01','bad','bad','0','  ','card'),
+            ('bad','2026-06-01','bad','bad','0','10','card'),
+            ('bad','2026-06-01','bad','bad','1','10','card'),
+            ('bad','2026-06-01','S01','bad','1','10','card'),
+        ]
+        source, target = tmp_path/'source.db', tmp_path/'clean.db'
+        fixture_db(source, rows)
+        report = build_clean_db(source, target)
+>       assert report.kept_rows == 3
+E       AssertionError: assert 9 == 3
+E        +  where 9 = CleaningReport(raw_rows=9, kept_rows=9, kept_sales_rows=8, kept_refund_rows=1, removed={'1_unparseable_date': 0, '2_em...zero': 0, '4_store_not_in_stores': 0, '5_product_not_in_products': 0, '6_duplicate_row': 0}, note_unparseable_amount=0).kept_rows
+
+starter/tests/test_cleaning.py:40: AssertionError
+____________ test_sample_rebuild_is_repeatable_and_source_unchanged ____________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-33/test_sample_rebuild_is_repeata0')
+
+    def test_sample_rebuild_is_repeatable_and_source_unchanged(tmp_path):
+        before = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
+        snapshots = []
+        for _ in range(2):
+            target = tmp_path/'clean.db'
+            report = build_clean_db(SOURCE, target)
+            assert report.raw_rows == 18628
+>           assert report.kept_rows == 18290
+E           AssertionError: assert 18628 == 18290
+E            +  where 18628 = CleaningReport(raw_rows=18628, kept_rows=18628, kept_sales_rows=18534, kept_refund_rows=94, removed={'1_unparseable_da...zero': 0, '4_store_not_in_stores': 0, '5_product_not_in_products': 0, '6_duplicate_row': 0}, note_unparseable_amount=0).kept_rows
+
+starter/tests/test_cleaning.py:57: AssertionError
+___________________________ test_empty_and_readonly ____________________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-33/test_empty_and_readonly0')
+
+    def test_empty_and_readonly(tmp_path):
+        source, target = tmp_path/'source.db', tmp_path/'clean.db'
+        fixture_db(source, [])
+        assert build_clean_db(source, target).kept_rows == 0
+        tools = DataTools(target)
+        assert tools.data_period() == {'start':None,'end':None}
+        tools.close()
+        conn = open_readonly(source)
+>       with pytest.raises(sqlite3.OperationalError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE OperationalError
+
+starter/tests/test_cleaning.py:76: Failed
+_________________________ test_source_cannot_be_target _________________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-33/test_source_cannot_be_target0')
+
+    def test_source_cannot_be_target(tmp_path):
+        source = tmp_path/'source.db'
+        fixture_db(source, [])
+        before = source.read_bytes()
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+starter/tests/test_cleaning.py:85: Failed
+=========================== short test summary info ============================
+FAILED starter/tests/test_cleaning.py::test_normalization_refunds_multiline_and_priority
+FAILED starter/tests/test_cleaning.py::test_sample_rebuild_is_repeatable_and_source_unchanged
+FAILED starter/tests/test_cleaning.py::test_empty_and_readonly - Failed: DID ...
+FAILED starter/tests/test_cleaning.py::test_source_cannot_be_target - Failed:...
+4 failed in 0.11s

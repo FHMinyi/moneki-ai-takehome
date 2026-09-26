@@ -1,0 +1,5 @@
+HEAD=b5703aa596670674ec811a028de9bd5167139564
+ORIGINAL_BUSINESS_HEAD=f32daa70b8236429a0daad2090c6e91dc309deb6
+Python=Python 3.12.14
+runtime_copy_matches_source=yes
+venv_reused_from_mock=yes

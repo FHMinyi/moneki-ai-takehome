@@ -1,0 +1,10 @@
+npm notice run moneki-workspace@0.1.0 test:browser
+npm notice run playwright test --grep real API ledger at 1280px
+
+Running 1 test using 1 worker
+
+(node:33238) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/workspace.spec.ts:4:3 › real API ledger at 1280px (815ms)
+
+  1 passed (1.1s)

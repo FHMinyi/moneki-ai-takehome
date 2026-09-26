@@ -1,0 +1,62 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+________________ test_whitespace_amount_and_noninteger_quantity ________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-37/test_whitespace_amount_and_non0')
+
+    def test_whitespace_amount_and_noninteger_quantity(tmp_path):
+        source, target = tmp_path/'source.db', tmp_path/'clean.db'
+        fixture_db(source, [('A','2026-06-01','S01','P01','1','\n\r ','card'),
+                            ('B','2026-06-01','S01','P01','1.5','10','card')])
+>       report = build_clean_db(source, target)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+starter/tests/test_cleaning.py:126:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+starter/kbqa/cleaning.py:166: in build_clean_db
+    rows, report = clean_rows(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rows = <sqlite3.Cursor object at 0x1070733c0>, store_ids = {'S01'}
+product_ids = {'P01', 'P02'}
+
+    def clean_rows(rows: Iterable[sqlite3.Row], store_ids: set[str],
+                   product_ids: set[str]) -> tuple[list[tuple], CleaningReport]:
+        """KB-001: normalize first; count only the first applicable removal reason."""
+        report = CleaningReport()
+        kept: list[tuple] = []
+        seen: set[tuple] = set()
+        for row in rows:
+            report.raw_rows += 1
+            day = normalize_date(row["date"])
+            cents, status = parse_amount(row["amount"])
+            qty = parse_qty(row["qty"]) or 0
+            store = (row["store_id"] or "").strip().upper()
+            product = (row["product_id"] or "").strip().upper()
+            normalized = (row["order_id"], day, store, product, qty, cents, row["payment"])
+            reason = None
+            if day is None:
+                reason = REMOVAL_REASONS[0]
+            elif status == "empty":
+                reason = REMOVAL_REASONS[1]
+            elif qty <= 0:
+                reason = REMOVAL_REASONS[2]
+            elif store not in store_ids:
+                reason = REMOVAL_REASONS[3]
+            elif product not in product_ids:
+                reason = REMOVAL_REASONS[4]
+            elif normalized in seen:
+                reason = REMOVAL_REASONS[5]
+            if reason:
+                report.removed[reason] += 1
+                continue
+            if status != "ok":
+                # KB-001 has no rule for nonempty, nonnumeric amounts. Fail the
+                # rebuild instead of inventing a seventh removal rule or money.
+>               raise ValueError("Nonempty amount cannot be parsed; source row %d" % report.raw_rows)
+E               ValueError: Nonempty amount cannot be parsed; source row 1
+
+starter/kbqa/cleaning.py:127: ValueError
+=========================== short test summary info ============================
+FAILED starter/tests/test_cleaning.py::test_whitespace_amount_and_noninteger_quantity
+1 failed, 11 deselected in 0.03s

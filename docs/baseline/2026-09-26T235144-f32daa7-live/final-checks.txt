@@ -1,0 +1,5 @@
+source_inputs_unchanged=yes
+services_stopped=yes
+tracked_diff_clean=yes
+staged_diff_clean=yes
+real_key_occurrences=0

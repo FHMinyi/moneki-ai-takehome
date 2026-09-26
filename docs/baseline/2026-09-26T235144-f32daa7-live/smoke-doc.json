@@ -1,0 +1,7 @@
+{
+  "answer": "模型服务这次没有正常返回（工具调用没有收敛），为了不给出没有依据的数字，这个问题先不回答。可以稍后重试；失败的真实原因记在 trace 里。",
+  "answer_type": "refusal",
+  "citations": [],
+  "data_evidence": [],
+  "trace_id": "t-20260901-0002"
+}

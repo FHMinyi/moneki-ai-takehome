@@ -1,0 +1,69 @@
+npm notice run moneki-workspace@0.1.0 test:browser
+npm notice run playwright test
+
+Running 5 tests using 1 worker
+
+(node:33108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/workspace.spec.ts:4:3 › real API ledger at 1280px (473ms)
+  ✓  2 tests/workspace.spec.ts:4:3 › real API ledger at 1440px (245ms)
+  ✘  3 tests/workspace.spec.ts:4:3 › real API ledger at 390px (5.2s)
+(node:33190) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 tests/workspace.spec.ts:37:1 › loading, failure and retry are visible (30.0s)
+(node:33346) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 tests/workspace.spec.ts:52:1 › empty ledger and rejected inconsistent response (586ms)
+
+
+  1) tests/workspace.spec.ts:4:3 › real API ledger at 390px ────────────────────────────────────────
+
+    Error: expect(locator).toBeInViewport() failed
+
+    Locator:  locator('tbody tr.ant-table-row').nth(5).locator('td').last()
+    Expected: in viewport
+    Received: viewport ratio 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeInViewport" locator('tbody tr.ant-table-row').nth(5).locator('td').last() with timeout 5000ms
+      - waiting for locator('tbody tr.ant-table-row').nth(5).locator('td').last()
+        14 × locator resolved to <td class="ant-table-cell">…</td>
+           - unexpected value "viewport ratio 0"
+
+
+      25 |       expect(await scroller.evaluate(el => el.scrollWidth > el.clientWidth)).toBe(true);
+      26 |       await scroller.evaluate(el => { el.scrollLeft = el.scrollWidth; });
+    > 27 |       await expect(rows.nth(5).locator('td').last()).toBeInViewport();
+         |                                                      ^
+      28 |       await scroller.evaluate(el => { el.scrollLeft = 0; });
+      29 |     }
+      30 |     await page.getByRole('button', { name: '刷新数据' }).click();
+        at /Volumes/MACPSSD/project/moneki-ai-takehome/frontend/tests/workspace.spec.ts:27:54
+
+    Error Context: test-results/workspace-real-API-ledger-at-390px/error-context.md
+
+  2) tests/workspace.spec.ts:37:1 › loading, failure and retry are visible ─────────────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '重试' })
+
+
+      46 |   await page.screenshot({ path: `${evidence}/failure.png`, fullPage: true });
+      47 |   await page.unroute('**/api/data_quality');
+    > 48 |   await page.getByRole('button', { name: '重试' }).click();
+         |                                                  ^
+      49 |   await expect(page.getByTestId('kept')).toHaveText('18,290行');
+      50 | });
+      51 |
+        at /Volumes/MACPSSD/project/moneki-ai-takehome/frontend/tests/workspace.spec.ts:48:50
+
+    Error Context: test-results/workspace-loading-failure-and-retry-are-visible/error-context.md
+
+  2 failed
+    tests/workspace.spec.ts:4:3 › real API ledger at 390px ─────────────────────────────────────────
+    tests/workspace.spec.ts:37:1 › loading, failure and retry are visible ──────────────────────────
+  3 passed (38.5s)

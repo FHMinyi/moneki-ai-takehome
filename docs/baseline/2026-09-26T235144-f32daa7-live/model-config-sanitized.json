@@ -1,0 +1,7 @@
+{
+  "provider_host": "api.deepseek.com",
+  "model": "deepseek-flash",
+  "protocol": "OpenAI-compatible Chat Completions via local proxy",
+  "key_configured": true,
+  "key_recorded": false
+}
