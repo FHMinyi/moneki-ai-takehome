@@ -12,18 +12,27 @@ from typing import Optional
 
 from .aliases import AliasTable, build_alias_table
 from .chunker import CHUNKER_VERSION, Chunk, chunk_documents
-from .loader import Document, load_knowledge_base
+from .loader import LOADER_VERSION, SUPPORTED_SUFFIXES, Document, load_knowledge_base
 from .tokenizer import TOKENIZER_VERSION, tokenize
 
-INDEX_VERSION = "bm25-3"
+INDEX_VERSION = "bm25-4"
 K1 = 1.5
 B = 0.75
 
 
 def content_key(kb_dir: Path) -> str:
-    """缓存键：三个版本号拼起来哈希一下。改了切块或分词，键就变，缓存自动失效。"""
+    """Bind cache to parser versions, resolved source directory, names and bytes."""
     digest = hashlib.sha256()
-    digest.update(("%s|%s|%s\n" % (INDEX_VERSION, CHUNKER_VERSION, TOKENIZER_VERSION)).encode())
+    versions = [INDEX_VERSION, LOADER_VERSION, CHUNKER_VERSION, TOKENIZER_VERSION]
+    digest.update(json.dumps([versions, str(kb_dir.resolve())]).encode())
+    for path in sorted(kb_dir.rglob("*")):
+        if not path.is_file() or path.name.startswith("."):
+            continue
+        if path.suffix.lower() not in SUPPORTED_SUFFIXES:
+            continue
+        # Length-delimited JSON records prevent name/content boundary ambiguity.
+        record = [path.relative_to(kb_dir).as_posix(), hashlib.sha256(path.read_bytes()).hexdigest()]
+        digest.update(json.dumps(record, ensure_ascii=False).encode())
     return digest.hexdigest()
 
 
