@@ -1,0 +1,74 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_______________ test_top_products_ties_refunds_stores_and_names ________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-46/test_top_products_ties_refunds0')
+
+    def test_top_products_ties_refunds_stores_and_names(tmp_path):
+        source, clean = tmp_path / "source.db", tmp_path / "clean.db"
+        fixture_db(source, [
+            ("A", "2026-06-01", "S01", "P01", "2", "10.00", "card"),
+            ("B", "2026-06-01", "S01", "P02", "1", "10.00", "card"),
+            ("C", "2026-06-01", "S02", "P02", "1", "8.00", "card"),
+            ("D", "2026-06-02", "S01", "P01", "1", "-4.00", "card"),
+            ("E", "2026-06-01", "S01", "P01", "1", "0.00", "card"),
+        ])
+        with sqlite3.connect(source) as db:
+            db.execute("UPDATE products SET product_name='Renamed from dimension' WHERE product_id='P02'")
+        build_clean_db(source, clean)
+        tools = DataTools(clean)
+        try:
+            tie = tools.top_products("2026-06-01", "2026-06-01", "S01")["products"]
+>           assert [(p["product_id"], p["net_revenue"], p["qty"]) for p in tie] == [
+                ("P01", 10.0, 2), ("P02", 10.0, 1)]
+E               AssertionError: assert [('P02', 10.0...01', 10.0, 3)] == [('P01', 10.0...02', 10.0, 1)]
+E
+E                 At index 0 diff: ('P02', 10.0, 1) != ('P01', 10.0, 2)
+E                 Use -v to get more diff
+
+starter/tests/test_top_products.py:25: AssertionError
+__________________ test_top_products_limit_only_matching_rows __________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-46/test_top_products_limit_only_m0')
+
+    def test_top_products_limit_only_matching_rows(tmp_path):
+        source, clean = tmp_path / "source.db", tmp_path / "clean.db"
+        fixture_db(source, [])
+        with sqlite3.connect(source) as db:
+            db.executemany("INSERT INTO products VALUES (?,?,?,?)", [
+                (f"P{i:02}", f"Product {i}", "C", 999) for i in range(3, 15)])
+            db.executemany("INSERT INTO sales VALUES (?,?,?,?,?,?,?)", [
+                (f"O{i}", "2026-06-01", "S01", f"P{i:02}", "1", "1.00", "card") for i in range(1, 15)])
+        build_clean_db(source, clean)
+        tools = DataTools(clean)
+        try:
+            items = tools.top_products("2026-06-01", "2026-06-01")["products"]
+>           assert [p["product_id"] for p in items] == [f"P{i:02}" for i in range(1, 11)]
+E           AssertionError: assert ['P14', 'P13'...', 'P09', ...] == ['P01', 'P02'...', 'P06', ...]
+E
+E             At index 0 diff: 'P14' != 'P01'
+E             Use -v to get more diff
+
+starter/tests/test_top_products.py:49: AssertionError
+____________________________ test_top_products_api _____________________________
+
+client = <starlette.testclient.TestClient object at 0x10c4d90a0>
+
+    def test_top_products_api(client):
+        response = client.get("/api/metrics/top-products", params={"start": "2026-06-18", "end": "2026-06-18", "store_id": "S02"})
+>       assert response.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+starter/tests/test_top_products.py:56: AssertionError
+=============================== warnings summary ===============================
+starter/tests/test_top_products.py::test_top_products_api
+  /Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED starter/tests/test_top_products.py::test_top_products_ties_refunds_stores_and_names
+FAILED starter/tests/test_top_products.py::test_top_products_limit_only_matching_rows
+FAILED starter/tests/test_top_products.py::test_top_products_api - assert 404...
+3 failed, 1 warning in 0.15s

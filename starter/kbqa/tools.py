@@ -187,18 +187,20 @@ class DataTools:
         }
 
     def top_products(self, start: str, end: str, store_id=None, limit: int = 10) -> dict:
+        """有匹配明细的商品按实收净额排序，零金额不贡献净销量。"""
         where, params = self._where(start, end, store_id)
         rows = self.conn.execute(
             """
             SELECT s.product_id, p.product_name, p.product_category,
                    COALESCE(SUM(s.amount_cents), 0),
-                   COUNT(DISTINCT CASE WHEN s.is_refund=0 THEN s.order_id END),
-                   COALESCE(SUM(CASE WHEN s.is_refund=0 THEN s.qty ELSE -s.qty END), 0)
-            FROM sales_clean s LEFT JOIN products p ON p.product_id = s.product_id
-            WHERE %s GROUP BY s.product_id ORDER BY 4 DESC
+                   COUNT(DISTINCT CASE WHEN s.amount_cents > 0 THEN s.order_id END),
+                   COALESCE(SUM(CASE WHEN s.amount_cents > 0 THEN s.qty
+                                     WHEN s.amount_cents < 0 THEN -s.qty ELSE 0 END), 0)
+            FROM sales_clean s JOIN products p ON p.product_id = s.product_id
+            WHERE %s GROUP BY s.product_id ORDER BY 4 DESC, s.product_id ASC LIMIT ?
             """
             % where,
-            params,
+            [*params, min(10, max(1, limit))],
         ).fetchall()
         items = [
             {
@@ -211,7 +213,7 @@ class DataTools:
             }
             for r in rows
         ]
-        return {"start": start, "end": end, "store_id": store_id, "products": items[: max(1, limit)]}
+        return {"start": start, "end": end, "store_id": store_id, "products": items}
 
     def by_store(self, start: str, end: str, product_id=None) -> dict:
         stores = []

@@ -83,6 +83,9 @@ class Service:
     def metrics_daily(self, start: str, end: str, store_id=None, product_id=None) -> dict:
         return self.tools.daily_metrics(start, end, store_id, product_id)
 
+    def metrics_top_products(self, start: str, end: str, store_id=None) -> dict:
+        return self.tools.top_products(start, end, store_id)
+
     def retrieve(self, query: str, top_k: int = 5) -> dict:
         """契约 §4：片段够就恰好给 top_k 条，不够才少给。
 

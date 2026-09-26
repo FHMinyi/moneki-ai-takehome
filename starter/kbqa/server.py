@@ -98,6 +98,16 @@ def metrics_daily(
     return bad or service().metrics_daily(start, end, store_id, product_id)
 
 
+@app.get("/api/metrics/top-products")
+def metrics_top_products(
+    start: str = Query(...),
+    end: str = Query(...),
+    store_id: Optional[str] = None,
+):
+    bad = _bad_date(start, end)
+    return bad or service().metrics_top_products(start, end, store_id)
+
+
 @app.post("/api/retrieve")
 def retrieve(request: RetrieveRequest) -> dict:
     return service().retrieve(_as_text(request.query), request.top_k)

@@ -14,14 +14,14 @@ for (const width of [1280, 1440, 390]) {
     const health = await (await request.get('/api/health')).json();
     expect(health.llm_mode).toBe('mock');
     expect(health.valid_sales_rows).toBe(q.cleaning_report.kept_rows);
-    const rows = page.locator('tbody tr.ant-table-row');
+    const rows = page.locator('.ledger tbody tr.ant-table-row');
     await expect(rows).toHaveCount(6);
     for (const [i, expected] of [8, 150, 30, 10, 40, 100].entries()) {
       await expect(rows.nth(i).locator('td').last()).toHaveText(String(expected));
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     if (width === 390) {
-      const scroller = page.locator('.ant-table-content');
+      const scroller = page.locator('.ledger .ant-table-content');
       expect(await scroller.evaluate(el => el.scrollWidth > el.clientWidth)).toBe(true);
       await scroller.evaluate(el => { el.scrollLeft = el.scrollWidth; });
       await rows.nth(5).locator('td').last().scrollIntoViewIfNeeded();
