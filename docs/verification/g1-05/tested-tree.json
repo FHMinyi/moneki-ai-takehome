@@ -1,0 +1,7 @@
+{
+  "commit": "6d42e85a2d4e52cb1841e51cd67d855ab519dde2",
+  "tracked_files_checked": 266,
+  "all_exported_tracked_bytes_match": true,
+  "verification_overlay": "frontend/tests/g1-05-delivery.spec.ts",
+  "overlay_sha256": "f496161a8d44909a51fc1f7ba8e34b328d34d1883f3098209c0a62621dde857d"
+}
