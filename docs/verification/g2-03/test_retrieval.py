@@ -264,10 +264,36 @@ print(json.dumps({'api':s.retrieve('S02 cobaltsecret规章规定'), 'tool':s.run
 
 
 def test_unknown_chinese_keeps_low_coverage(rt):
-    original(rt)
+    payload=original(rt)
     with rt.serve() as request:
         r=get(request,'量子纠缠宇宙飞船跃迁引擎规定')
         empty=get(request,'？！',500)
     assert r['diagnostics']['coverage']<.25
     assert not evidence(empty) and empty['diagnostics']['coverage']==0
-    assert len(empty['results'])==215
+    assert len(empty['results'])==len(payload['chunks'])
+
+@pytest.mark.parametrize('q,gold,word',[
+ ('鲑鱼波奇饭断供的赔付金额是多少','KB-022','CNY'),
+ ('阿里嘎多下架金枪鱼三明治是什么原因','KB-029','低于'),
+])
+def test_supported_variants(rt,q,gold,word):
+    original(rt)
+    with rt.serve() as request:
+        r=get(request,q)
+    assert any(h['doc_id']==gold and word in h['text'] for h in evidence(r)),r
+
+
+def test_shape_rerank_replacement_and_no_lexical_match(rt):
+    for alias,amount in [('Jade Trout','4321'),('Amber Cod','6789')]:
+        write(rt,980,'| 标准写法 | alias |\n|---|---|\n| 星河鱼 | '+alias+' |')
+        write(rt,981,'# '+alias+' delivery\n\n1. DETAILS\n\n'+('The shipment was delayed. '*18)+'\n\n2. SETTLEMENT\n\nCredit issued: CNY '+amount+'.\n')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,'星河鱼供应商赔付金额是多少')
+            unknown=get(request,'zzzxylophoneqqq金额多少钱')
+        assert any(h['doc_id']=='KB-981' and amount in h['text'] for h in evidence(r)),r
+        # Fact shape alone (CNY) must never create a lexical candidate.
+        assert not evidence(unknown),unknown
+        assert unknown['diagnostics']['candidates']==[]
+        if alias=='Amber Cod':
+            assert '4321' not in json.dumps(payload) and 'Jade Trout' not in json.dumps(payload)

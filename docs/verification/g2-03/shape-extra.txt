@@ -1,0 +1,24 @@
+F..                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_supported_variants[\u9c91\u9c7c\u6ce2\u5947\u996d\u65ad\u4f9b\u7684\u8d54\u4ed8\u91d1\u989d\u662f\u591a\u5c11-KB-022-CNY] _
+
+rt = <test_retrieval.Runtime object at 0x1090655b0>, q = '鲑鱼波奇饭断供的赔付金额是多少'
+gold = 'KB-022', word = 'CNY'
+
+    @pytest.mark.parametrize('q,gold,word',[
+     ('鲑鱼波奇饭断供的赔付金额是多少','KB-022','CNY'),
+     ('阿里嘎多下架金枪鱼三明治是什么原因','KB-029','低于'),
+    ])
+    def test_supported_variants(rt,q,gold,word):
+        original(rt)
+        with rt.serve() as request:
+            r=get(request,q)
+>       assert any(h['doc_id']==gold and word in h['text'] for h in evidence(r)),r
+E       AssertionError: {'results': [{'doc_id': 'KB-003', 'chunk_id': 'KB-003#4', 'score': 19.2095, 'text': '| 三文鱼poke | 鲑鱼波奇饭、Salmon Poke | 供...10.4081, ...}, {'chunk_id': 'KB-011#3', 'doc_id': 'KB-011', 'score': 8.8817, 'lexical_score': 3.1666, ...}, ...], ...}}
+E       assert False
+E        +  where False = any(<generator object test_supported_variants.<locals>.<genexpr> at 0x10903e5e0>)
+
+docs/verification/g2-03/test_retrieval.py:283: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-03/test_retrieval.py::test_supported_variants[\u9c91\u9c7c\u6ce2\u5947\u996d\u65ad\u4f9b\u7684\u8d54\u4ed8\u91d1\u989d\u662f\u591a\u5c11-KB-022-CNY]
+1 failed, 2 passed, 47 deselected in 2.93s
