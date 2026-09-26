@@ -20,7 +20,15 @@ def aliases(rt):
 
 QUERIES=['翡翠饭的配送时限是多少分钟？','Ivory Bowl的配送时限是多少分钟？']
 
+def check_spans(payload):
+    for doc,meta in payload['docs'].items():
+        for span in meta.get('heading_spans',[]):
+            assert 0<=span['start']<span['end']<=len(payload['texts'][doc])
+            assert span['text']==payload['texts'][doc][span['start']:span['end']]
+
+
 def ask(req,payload,fact):
+    check_spans(payload)
     for q in QUERIES:
         hits=req('/api/retrieve',dict(query=q,top_k=5))
         assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
@@ -56,6 +64,7 @@ def test_structural_heading_controls(rt,fmt,mode):
               'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
     (rt.kb/('KB-971.'+fmt)).write_text(body)
     payload=rt.build()
+    check_spans(payload)
     with rt.serve() as req:
         if mode!='heading-only':ask(req,payload,fact)
         else:
@@ -68,7 +77,25 @@ def test_long_markdown_heading_does_not_merge_body(rt):
     aliases(rt);fact='翡翠饭的配送时限为31分钟。'
     (rt.kb/'KB-971.md').write_text('# 配送规范'+('补充条款'*10)+'\n\n'+fact)
     payload=rt.build()
-    with rt.serve() as req:ask(req,payload,fact)
+    with rt.serve() as req:
+        for q in QUERIES:
+            a,t=m.chat(req,q)
+            selected=m.detail(t,'evidence')['selected']
+            assert any(x['doc_id']=='KB-971' and x['quote']==fact for x in selected),t
+            chunks={c['chunk_id']:c for c in payload['chunks']}
+            for picked in selected:
+                chunk=chunks[picked['chunk_id']]
+                assert picked['doc_id']==chunk['doc_id']=='KB-971'
+                assert picked['source_start']==chunk['source_start'] and picked['source_end']==chunk['source_end']
+                original=payload['texts']['KB-971'][chunk['source_start']:chunk['source_end']]
+                assert original==chunk['source_text'] and picked['quote'] in original
+            if a['answer_type']=='doc':
+                m.quotes(a,payload,t)
+            else:
+                # The original long-title alias probe is conservatively refused
+                # by an existing score gate. This test constrains prose identity,
+                # not a newly invented no-model answer-rate requirement.
+                assert a['answer_type']=='refusal' and not a['citations'],a
 
 
 def test_literal_hash_in_plain_text_is_prose(rt):

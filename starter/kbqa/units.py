@@ -121,10 +121,16 @@ class UnitIndex:
         source = index.texts.get(doc_id, "")
         meta = index.docs_meta.get(doc_id, {})
         fmt = meta.get("format", "md")
+        structural_spans = list(meta.get("heading_spans", []))
+        if fmt in ("md", "markdown"):
+            structural_spans.extend(
+                span for chunk in index.chunks_of(doc_id) for span in chunk.context_spans
+                if _ATX_HEADING.match(span["text"])
+            )
         heading_ranges = [
             (len(re.sub(r"\s+", "", source[:span["start"]])),
              len(re.sub(r"\s+", "", source[:span["end"]])))
-            for span in meta.get("heading_spans", [])
+            for span in structural_spans
         ]
         for chunk in index.chunks_of(doc_id):
             context = set(tokenize(chunk.heading))
