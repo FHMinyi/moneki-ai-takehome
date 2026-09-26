@@ -1,0 +1,541 @@
+[
+  {
+    "evidence": "docs/verification/g2-02/chunk-green-http/test_offsets_context_and_cache_layout.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-73/test_offsets_context_and_cache0/starter",
+    "pid": 84215,
+    "port": 52835,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/chunk-green-http/test_table_context_and_contiguous_quotes_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-73/test_table_context_and_contigu0/starter",
+    "pid": 84195,
+    "port": 52828,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/chunk-green-http/test_tail_fact_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-73/test_tail_fact_http0/starter",
+    "pid": 84188,
+    "port": 52819,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/chunk-red-http/test_table_context_and_contiguous_quotes_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-72/test_table_context_and_contigu0/starter",
+    "pid": 83812,
+    "port": 52713,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/chunk-red-http/test_tail_fact_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-72/test_tail_fact_http0/starter",
+    "pid": 83575,
+    "port": 52688,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/final-http/test_actual_all_retrieval_identity_and_rebuild_stability.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-76/test_actual_all_retrieval_iden0/starter",
+    "pid": 84770,
+    "port": 53138,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/final-http/test_duplicate_rerank_padding_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-76/test_duplicate_rerank_padding_0/starter",
+    "pid": 84730,
+    "port": 53099,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/final-http/test_duplicate_rerank_padding_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-76/test_duplicate_rerank_padding_0/starter",
+    "pid": 84731,
+    "port": 53107,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/final-http/test_duplicate_rerank_padding_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-76/test_duplicate_rerank_padding_0/starter",
+    "pid": 84735,
+    "port": 53116,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/final-http/test_offsets_context_and_cache_layout.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-76/test_offsets_context_and_cache0/starter",
+    "pid": 84704,
+    "port": 53084,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/final-http/test_offsets_context_and_cache_layout.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-76/test_offsets_context_and_cache0/starter",
+    "pid": 84719,
+    "port": 53091,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/final-http/test_original_r08_r10_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-76/test_original_r08_r10_identity0/starter",
+    "pid": 84744,
+    "port": 53123,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/final-http/test_original_r08_r10_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-76/test_original_r08_r10_identity0/starter",
+    "pid": 84745,
+    "port": 53130,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/final-http/test_table_context_and_contiguous_quotes_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-76/test_table_context_and_contigu0/starter",
+    "pid": 84685,
+    "port": 53076,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/final-http/test_tail_fact_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-76/test_tail_fact_http0/starter",
+    "pid": 84682,
+    "port": 53068,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_empty_and_non_document_health.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_empty_and_non_document_he0/starter",
+    "pid": 85827,
+    "port": 53877,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_empty_and_non_document_health.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_empty_and_non_document_he0/starter",
+    "pid": 85835,
+    "port": 53883,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_first_start_and_legacy_cache_upgrade.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_first_start_and_legacy_ca0/starter",
+    "pid": 85844,
+    "port": 53891,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_first_start_and_legacy_cache_upgrade.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_first_start_and_legacy_ca0/starter",
+    "pid": 85846,
+    "port": 53899,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_format_through_rebuild_http[html-<p>mailtoken \\u7f51\\u9875\\u6b63\\u6587<_p><script>hiddenjs<_script>].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_format_through_rebuild_ht1/starter",
+    "pid": 85742,
+    "port": 53653,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_format_through_rebuild_http[txt-mailtoken \\u90ae\\u4ef6\\u6b63\\u6587].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_format_through_rebuild_ht0/starter",
+    "pid": 85738,
+    "port": 53643,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_lifecycle_rebuild_restart_http[add].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_lifecycle_rebuild_restart0/starter",
+    "pid": 85762,
+    "port": 53666,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_lifecycle_rebuild_restart_http[add].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_lifecycle_rebuild_restart0/starter",
+    "pid": 85778,
+    "port": 53797,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_lifecycle_rebuild_restart_http[delete].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_lifecycle_rebuild_restart2/starter",
+    "pid": 85797,
+    "port": 53833,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_lifecycle_rebuild_restart_http[delete].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_lifecycle_rebuild_restart2/starter",
+    "pid": 85799,
+    "port": 53841,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_lifecycle_rebuild_restart_http[delete].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_lifecycle_rebuild_restart2/starter",
+    "pid": 85815,
+    "port": 53847,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_lifecycle_rebuild_restart_http[modify].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_lifecycle_rebuild_restart1/starter",
+    "pid": 85788,
+    "port": 53810,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_lifecycle_rebuild_restart_http[modify].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_lifecycle_rebuild_restart1/starter",
+    "pid": 85790,
+    "port": 53818,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_lifecycle_rebuild_restart_http[modify].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_lifecycle_rebuild_restart1/starter",
+    "pid": 85794,
+    "port": 53826,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_lifecycle_rebuild_restart_http[switch].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_lifecycle_rebuild_restart3/starter",
+    "pid": 85819,
+    "port": 53856,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_lifecycle_rebuild_restart_http[switch].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_lifecycle_rebuild_restart3/starter",
+    "pid": 85821,
+    "port": 53863,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_lifecycle_rebuild_restart_http[switch].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_lifecycle_rebuild_restart3/starter",
+    "pid": 85824,
+    "port": 53869,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_metadata_alias_public_rebuild_restart.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_metadata_alias_public_reb0/starter",
+    "pid": 85851,
+    "port": 53906,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_metadata_alias_public_rebuild_restart.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_metadata_alias_public_reb0/starter",
+    "pid": 85853,
+    "port": 53913,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-final-http/test_metadata_alias_public_rebuild_restart.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-80/test_metadata_alias_public_reb0/starter",
+    "pid": 85864,
+    "port": 53920,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_empty_and_non_document_health.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_empty_and_non_document_he0/starter",
+    "pid": 84927,
+    "port": 53266,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_empty_and_non_document_health.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_empty_and_non_document_he0/starter",
+    "pid": 84928,
+    "port": 53272,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_first_start_and_legacy_cache_upgrade.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_first_start_and_legacy_ca0/starter",
+    "pid": 84937,
+    "port": 53279,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_first_start_and_legacy_cache_upgrade.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_first_start_and_legacy_ca0/starter",
+    "pid": 84946,
+    "port": 53287,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_format_through_rebuild_http[html-<p>mailtoken \\u7f51\\u9875\\u6b63\\u6587<_p><script>hiddenjs<_script>].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_format_through_rebuild_ht1/starter",
+    "pid": 84816,
+    "port": 53176,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_format_through_rebuild_http[txt-mailtoken \\u90ae\\u4ef6\\u6b63\\u6587].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_format_through_rebuild_ht0/starter",
+    "pid": 84814,
+    "port": 53168,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_lifecycle_rebuild_restart_http[add].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_lifecycle_rebuild_restart0/starter",
+    "pid": 84839,
+    "port": 53183,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_lifecycle_rebuild_restart_http[add].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_lifecycle_rebuild_restart0/starter",
+    "pid": 84841,
+    "port": 53191,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_lifecycle_rebuild_restart_http[delete].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_lifecycle_rebuild_restart2/starter",
+    "pid": 84881,
+    "port": 53220,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_lifecycle_rebuild_restart_http[delete].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_lifecycle_rebuild_restart2/starter",
+    "pid": 84883,
+    "port": 53227,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_lifecycle_rebuild_restart_http[delete].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_lifecycle_rebuild_restart2/starter",
+    "pid": 84893,
+    "port": 53235,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_lifecycle_rebuild_restart_http[modify].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_lifecycle_rebuild_restart1/starter",
+    "pid": 84859,
+    "port": 53198,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_lifecycle_rebuild_restart_http[modify].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_lifecycle_rebuild_restart1/starter",
+    "pid": 84861,
+    "port": 53205,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_lifecycle_rebuild_restart_http[modify].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_lifecycle_rebuild_restart1/starter",
+    "pid": 84864,
+    "port": 53213,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_lifecycle_rebuild_restart_http[switch].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_lifecycle_rebuild_restart3/starter",
+    "pid": 84902,
+    "port": 53243,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_lifecycle_rebuild_restart_http[switch].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_lifecycle_rebuild_restart3/starter",
+    "pid": 84904,
+    "port": 53251,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_lifecycle_rebuild_restart_http[switch].json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_lifecycle_rebuild_restart3/starter",
+    "pid": 84907,
+    "port": 53258,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_metadata_alias_public_rebuild_restart.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_metadata_alias_public_reb0/starter",
+    "pid": 84960,
+    "port": 53295,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_metadata_alias_public_rebuild_restart.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_metadata_alias_public_reb0/starter",
+    "pid": 84977,
+    "port": 53302,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/g2-01-http/test_metadata_alias_public_rebuild_restart.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-77/test_metadata_alias_public_reb0/starter",
+    "pid": 84994,
+    "port": 53310,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/identity-green-http/test_duplicate_rerank_padding_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/starter",
+    "pid": 84419,
+    "port": 52943,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/identity-green-http/test_duplicate_rerank_padding_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/starter",
+    "pid": 84429,
+    "port": 52950,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/identity-green-http/test_duplicate_rerank_padding_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_duplicate_rerank_padding_0/starter",
+    "pid": 84437,
+    "port": 52958,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/identity-green-http/test_offsets_context_and_cache_layout.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_offsets_context_and_cache0/starter",
+    "pid": 84417,
+    "port": 52936,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/identity-green-http/test_original_r08_r10_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_original_r08_r10_identity0/starter",
+    "pid": 84446,
+    "port": 52965,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/identity-green-http/test_original_r08_r10_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_original_r08_r10_identity0/starter",
+    "pid": 84447,
+    "port": 52972,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/identity-green-http/test_table_context_and_contiguous_quotes_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_table_context_and_contigu0/starter",
+    "pid": 84398,
+    "port": 52929,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/identity-green-http/test_tail_fact_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-75/test_tail_fact_http0/starter",
+    "pid": 84389,
+    "port": 52921,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/identity-red-http/test_duplicate_rerank_padding_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-74/test_duplicate_rerank_padding_0/starter",
+    "pid": 84320,
+    "port": 52899,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/identity-red-http/test_original_r08_r10_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-74/test_original_r08_r10_identity0/starter",
+    "pid": 84329,
+    "port": 52907,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/spacing-green-http/test_actual_all_retrieval_identity_and_rebuild_stability.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_actual_all_retrieval_iden0/starter",
+    "pid": 85361,
+    "port": 53573,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/spacing-green-http/test_duplicate_rerank_padding_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_duplicate_rerank_padding_0/starter",
+    "pid": 85321,
+    "port": 53535,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/spacing-green-http/test_duplicate_rerank_padding_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_duplicate_rerank_padding_0/starter",
+    "pid": 85329,
+    "port": 53543,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/spacing-green-http/test_duplicate_rerank_padding_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_duplicate_rerank_padding_0/starter",
+    "pid": 85337,
+    "port": 53551,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/spacing-green-http/test_offsets_context_and_cache_layout.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_offsets_context_and_cache0/starter",
+    "pid": 85302,
+    "port": 53521,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/spacing-green-http/test_offsets_context_and_cache_layout.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_offsets_context_and_cache0/starter",
+    "pid": 85310,
+    "port": 53528,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/spacing-green-http/test_original_r08_r10_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_original_r08_r10_identity0/starter",
+    "pid": 85342,
+    "port": 53558,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/spacing-green-http/test_original_r08_r10_identity_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_original_r08_r10_identity0/starter",
+    "pid": 85343,
+    "port": 53566,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/spacing-green-http/test_table_context_and_contiguous_quotes_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_table_context_and_contigu0/starter",
+    "pid": 85284,
+    "port": 53513,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/spacing-green-http/test_tail_fact_http.json",
+    "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-79/test_tail_fact_http0/starter",
+    "pid": 85281,
+    "port": 53504,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/integration/environment.json",
+    "source": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-lcskiuk_",
+    "pid": 85747,
+    "port": 53661,
+    "stopped": true
+  },
+  {
+    "evidence": "docs/verification/g2-02/integration-before-spacing/environment.json",
+    "source": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-qa6bd1uj",
+    "pid": 84995,
+    "port": 53316,
+    "stopped": true
+  }
+]

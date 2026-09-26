@@ -1,0 +1,67 @@
+{"commit": "9e51f48fe845b8418699423b47a6e01e2e133c1a", "source": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-qa6bd1uj", "python": "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python", "key_configured": false, "runtime_reused": true, "source_export": "git archive HEAD", "commands": [{"args": ["/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python", "-m", "kbqa.rebuild"], "cwd": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-qa6bd1uj/starter", "exit_code": 0}, {"args": ["/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python", "-m", "pytest", "tests", "-q"], "cwd": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-qa6bd1uj/starter", "exit_code": 0}, {"args": ["/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python", "eval/run_eval.py", "--base-url", "http://127.0.0.1:53316", "--questions", "eval/public_questions.jsonl", "--out", "/private/tmp/moneki-g2-02-integration/eval"], "cwd": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-qa6bd1uj", "exit_code": 0}], "port": 53316, "pid": 84995, "server_stopped": true}
+# 评测报告
+
+- 服务地址：`http://127.0.0.1:53316`
+- 题库：`/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-qa6bd1uj/eval/public_questions.jsonl`
+- 生成时间：2026-09-27 03:41:44
+- 知识库：载入 35 份文档（用于 quote 逐字校验）
+
+## 总分
+
+**44.00 / 100.00（44.0%）**，28 题全绿 / 共 55 题。
+
+每题耗时：中位数 0.00 秒，最大 0.02 秒，合计 0.2 秒。
+
+## 分类别
+
+| 类别 | 得分 | 满分 | 比例 | 全绿题数 |
+|---|---|---|---|---|
+| 指标接口（`metrics`） | 6.00 | 6.00 | 100.0% | 6 / 6 |
+| 检索质量（`retrieval`） | 9.00 | 15.00 | 60.0% | 9 / 15 |
+| 纯数据问题（`data`） | 12.00 | 12.00 | 100.0% | 6 / 6 |
+| 纯文档问题（`doc`） | 0.00 | 16.00 | 0.0% | 0 / 8 |
+| 版本与时效（`version`） | 0.00 | 6.00 | 0.0% | 0 / 3 |
+| 数据 + 文档（`hybrid`） | 3.00 | 18.00 | 16.7% | 1 / 6 |
+| 多轮追问（`multi_turn`） | 2.00 | 9.00 | 22.2% | 0 / 3 |
+| 拒答（`refusal`） | 8.00 | 8.00 | 100.0% | 4 / 4 |
+| 安全（`safety`） | 3.00 | 9.00 | 33.3% | 1 / 3 |
+| 健康检查（`health`） | 1.00 | 1.00 | 100.0% | 1 / 1 |
+
+## `/api/health` 快照
+
+```json
+{
+  "status": "ok",
+  "llm_mode": "mock",
+  "kb_docs": 35,
+  "kb_chunks": 360,
+  "valid_sales_rows": 18290,
+  "today": "2026-09-01",
+  "data_period": {
+    "start": "2026-05-01",
+    "end": "2026-08-31"
+  },
+  "cleaning_report": {
+    "raw_rows": 18628,
+    "removed": {
+      "1_unparseable_date": 8,
+      "2_empty_amount": 150,
+      "3_qty_le_zero": 30,
+      "4_store_not_in_stores": 10,
+      "5_product_not_in_products": 40,
+      "6_duplicate_row": 100
+    },
+    "removed_rows": 338,
+    "kept_rows": 18290,
+    "kept_sales_rows": 18196,
+    "kept_refund_rows": 94
+  },
+  "index_key": "50973ec4b961",
+  "kb_warnings": [
+    "跳过没有 KB 编号的文件：README.md",
+    "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+  ]
+}
+```
+
+

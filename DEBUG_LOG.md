@@ -162,3 +162,18 @@ N01 的清洗字段已核对，未将 N01 整题说成通过；构建 chunk 提�
 
 原后端53项通过；新增16项最终全绿；公开 metrics 6/6、data 12/12，未退化。无模型全量43/100、27/55题全绿。
 原诊断仍7失败/12通过（两次）：分块尾段3例、中文匹配、来源映射、现行版本过滤、top-k过滤。审计显示35篇均有尾段未进入片段、累计5940字符；全文仍在索引。未修改这些后续层，也未把公开检索8/15或零分补位解释为真实相关性完成。修复提交：后续项均待修复。
+
+## G2-02：完整证据与来源一致性（2026-09-27）
+
+固定点 `8b72f47`，Issue #14。[命令、HTTP与逐项证据](docs/verification/g2-02/README.md)。旧代码行号指固定点，新代码行号指最终业务提交 `b1d57c8`。
+
+| 缺陷 | 现象与真实假设 | 实验及关键输出 | 根因和修复 | 回归/修复前红灯 |
+|---|---|---|---|---|
+| D04 丢尾段/空正文伪证据 | 长度301丢1字、600丢300字；尾段事实HTTP没有正分。猜测range扣减造成尾部遗漏 | 独立长度边界与真实库逐篇审计；35篇原有遗漏5940字；空正文回退元数据title不在原文中 | 旧chunker.py:41的range终点及:54回退标题。`2e4c2e4`完整覆盖/空正文不制造块；最终chunker.py:38-68 | `b0244ce`的chunk-red.txt 11失败3通过，边界/实际库/tail HTTP；最终audit.json未覆盖0字 |
+| D04 表格/标题与连续引用 | 40行表格末行被截成rowt，猜测固定字符窗口既丢尾又拆行 | 独立真实HTTP rowtoken先无完整命中；修复后末行77正分返回，标题和表头均带同文档位置。连续行cite成功，合成检索文本cite被拒绝 | 旧chunker.py:42盲切；`2e4c2e4`新增整行分组、局部标题、source_start/end/context_spans；最终chunker.py:79-125，retriever.py:51-61明确HTTP原文/检索文本分离 | chunk-red-http → chunk-green-http；后补长行、父子标题和表格外不残留表头回归，19项最终全绿 |
+| 布局缓存一致性 | 新布局不能继续使用旧片段；原实现注释已有版本契约 | 在同临时目录实际装入8b72f47的index/chunker生成旧缓存，然后恢复新代码自动启动；tailtoken重新可见。另只改大小180导致key/chunks变化 | `2e4c2e4` index.py:26加入layout_signature，语义版本最终chunker-4，参数直接参与键；未手工删除缓存 | test_offsets_context_and_cache_layout；相同输入payload、身份和检索顺序一致；原红灯无偏移字段 |
+| D06 去重后来源错位 | 多高分片段夹具中KB-902#1被标KB-901；实际R08 KB-011#6被标KB-010 | 真实HTTP与内部Hit/meta/索引双向比对均先失败；排除单纯前端展示或夹具mock问题 | 旧retriever.py:264,275-276按未经去重ordered再覆盖doc_id。`d4995b3`删除覆盖，始终用同一position构造完整Hit | `b5a94c5` identity-red.txt 2失败；独立夹具含去重、重排及正/零分补位；R08/R10与全15问75条均一致 |
+| 自引入碎片问题 | 首轮集成35篇360片段，额外审计发现20片段仅空白；猜测标题独立emit使边界空白成片 | test_headings_and_spacing_stay_with_body在c1a9acb先失败。修复后全文覆盖不变、35篇215片段且无空白块 | 初修2e4c2e4 chunker.py:103单独emit标题，文本分支另发空白。`b1d57c8`标题随下段、空白并前连续正文（最终:79-86、103-125） | spacing-red.txt → spacing-green.txt 19通过；首轮integration-before-spacing和最终integration分别保存 |
+
+本轮测试编写出现一次字符串转义导致的SyntaxError，保留test-authoring-error.txt；修正测试后继续验证，没有当作产品失败或伪造历史。未调用付费模型。
+最终19项本任务回归、16项G2-01、53项原后端通过；无模型44/100，28/55，metrics6/6和data12/12未退化。检索9/15、doc0/16、version0/6如实移交后续任务。
