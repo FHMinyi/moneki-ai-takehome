@@ -1,0 +1,13 @@
+npm notice run moneki-workspace@0.1.0 test:browser
+npm notice run playwright test tests/daily-trend.spec.ts
+
+Running 4 tests using 1 worker
+
+(node:45911) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/daily-trend.spec.ts:15:3 › real daily trend and filters at 1440 (1.4s)
+  ✓  2 tests/daily-trend.spec.ts:15:3 › real daily trend and filters at 1280 (1.5s)
+  ✓  3 tests/daily-trend.spec.ts:15:3 › real daily trend and filters at 390 (1.4s)
+  ✓  4 tests/daily-trend.spec.ts:45:1 › controlled negative day remains below zero and exact value is readable (593ms)
+
+  4 passed (5.2s)

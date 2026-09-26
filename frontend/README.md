@@ -16,7 +16,8 @@ type DashboardFilters = Readonly<{
 - 日期/门店之外暂不增加筛选 UI；API 的 `product_id` 能力保留。
 - `SummaryPanel` 仅接收 `filters`。G1-03/04 应在 Dashboard 内作为它的同级组件，接收同一份 `filters`，不自行初始化日期/门店，不与聊天会话混用。
 - 公共请求边界：`metricsUrl(path, filters)` 生成相同参数；`useDashboardRequest(url, stableParser, revision?)` 提供 loading/error/ready、15 秒超时、取消与过时响应忽略。解析器放模块顶层以保持引用稳定；error 状态有 `message`，ready 状态有 `data`。组件可通过 revision 重试。
-- 当前只建立了汇总所需结构，没有预建趋势/排行端点或大框架。未来新端点沿用筛选参数与自有响应解析器即可。
+- `DailyTrend` 与 `SummaryPanel` 同级，接收同一生效 `filters`，调用 `/api/metrics/daily`。横向可滚动的趋势图包含每天的点和零线；点可点击或用键盘选择精确日期与金额，展开明细可逐日核对。区间订单数和客单价仍以汇总接口为准。
+- 商品排行留给后续任务；新端点沿用筛选参数与自有响应解析器。
 - `/api/stores` 返回 `{stores:[{store_id,store_name,category,district}]}`，来源为清洗库真实维表。界面使用名称与编号，不硬编码选项。
 - 空区间显示 0，`aov: null` 显示“— / 无有效订单，无可计算值”；只有退款的区间可显示负净营业额/负销量，不能显示为空。
 - 日期输入为明确 YYYY-MM-DD 的 AntD Input；无效或倒置条件不提交，显示反馈并标明下方仍为上次生效结果。

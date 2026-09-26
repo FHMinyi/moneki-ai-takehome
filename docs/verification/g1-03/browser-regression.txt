@@ -1,0 +1,22 @@
+npm notice run moneki-workspace@0.1.0 test:browser
+npm notice run playwright test tests/workspace.spec.ts tests/metrics.spec.ts
+
+Running 11 tests using 2 workers
+
+(node:45455) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:45454) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 tests/workspace.spec.ts:4:3 › real API ledger at 1280px (648ms)
+  ✓   1 tests/metrics.spec.ts:16:3 › real summary and filters at 1280 (1.4s)
+  ✓   3 tests/workspace.spec.ts:4:3 › real API ledger at 1440px (826ms)
+  ✓   5 tests/workspace.spec.ts:4:3 › real API ledger at 390px (765ms)
+  ✓   6 tests/workspace.spec.ts:39:1 › loading, failure and retry are visible (392ms)
+  ✓   4 tests/metrics.spec.ts:16:3 › real summary and filters at 1440 (1.3s)
+  ✓   7 tests/workspace.spec.ts:54:1 › empty ledger and rejected inconsistent response (625ms)
+  ✓   8 tests/metrics.spec.ts:16:3 › real summary and filters at 390 (1.3s)
+  ✓   9 tests/metrics.spec.ts:41:1 › invalid dates do not submit and report unchanged applied range (651ms)
+  ✓  10 tests/metrics.spec.ts:57:1 › loading failure retry and refund-only display (619ms)
+  ✓  11 tests/metrics.spec.ts:79:1 › obsolete successful response cannot overwrite newer filters (694ms)
+
+  11 passed (6.2s)
