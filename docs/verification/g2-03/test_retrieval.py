@@ -207,3 +207,13 @@ def test_replacement_alias_and_fact(rt):
         assert any(h['doc_id']=='KB-971' and fact in h['text'] for h in evidence(r)),r
         if alias=='Violet Plate':
             assert not evidence(old),old
+
+@pytest.mark.parametrize('query,gold,required',[
+ ('三文鱼那次断供供应商赔了多少钱','KB-022','CNY'),
+ ('S04 为什么不卖吞拿鱼三明治了','KB-029','低于'),
+])
+def test_gold_chunk_contains_support_not_only_heading(rt,query,gold,required):
+    original(rt)
+    with rt.serve() as request:
+        r=get(request,query)
+    assert any(h['doc_id']==gold and required in h['text'] for h in evidence(r)),r
