@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Optional
 
 from .aliases import AliasTable, build_alias_table
-from .chunker import CHUNKER_VERSION, Chunk, chunk_documents
+from .chunker import CHUNKER_VERSION, Chunk, chunk_documents, layout_signature
 from .loader import LOADER_VERSION, SUPPORTED_SUFFIXES, Document, load_knowledge_base
 from .tokenizer import TOKENIZER_VERSION, tokenize
 
@@ -23,7 +23,7 @@ B = 0.75
 def content_key(kb_dir: Path) -> str:
     """Bind cache to parser versions, resolved source directory, names and bytes."""
     digest = hashlib.sha256()
-    versions = [INDEX_VERSION, LOADER_VERSION, CHUNKER_VERSION, TOKENIZER_VERSION]
+    versions = [INDEX_VERSION, LOADER_VERSION, CHUNKER_VERSION, layout_signature(), TOKENIZER_VERSION]
     digest.update(json.dumps([versions, str(kb_dir.resolve())]).encode())
     for path in sorted(kb_dir.rglob("*")):
         if not path.is_file() or path.name.startswith("."):
