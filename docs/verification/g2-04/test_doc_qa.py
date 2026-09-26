@@ -147,3 +147,25 @@ def test_unretrieved_fact_not_borrowed(rt):
     rt.build()
     with rt.serve() as req:a,t=chat(req,'夜班配送手续费是多少元？')
     assert a['answer_type']=='refusal' and not a['citations'],a
+
+@pytest.mark.parametrize('q',[
+    '外卖退款申请是否需要顾客提供身份证？',
+    '员工迟到可以用积分抵扣吗？',
+    '牛肉poke是否含花生？',
+])
+def test_missing_attribute(rt,q):
+    original(rt)
+    with rt.serve() as req:a,t=chat(req,q)
+    assert a['answer_type']=='refusal' and not a['citations'],a
+
+@pytest.mark.parametrize('q,gold,fact',[
+ ('员工折扣是否可以和促销活动叠加？','KB-014','叠加'),
+ ('会员赠送金额是否可以提现？','KB-011','不可提现'),
+ ('外卖退款申请是否需要审批？','KB-013','审批'),
+])
+def test_supported_attribute(rt,q,gold,fact):
+    payload=original(rt)
+    with rt.serve() as req:a,t=chat(req,q)
+    assert a['answer_type']=='doc' and fact in a['answer'],a
+    assert gold in {c['doc_id'] for c in a['citations']},a
+    quotes(a,payload)
