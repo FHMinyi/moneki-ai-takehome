@@ -1,5 +1,60 @@
 # G2-04：单轮文档问答执行证据
 
+## 当前交付：主会话审查修正 R1
+
+主会话对初次交付 `f2d2fff` 独立复核后发现近主题自然问法仍误答，第5/6项当时未满足。以下R1结果取代初次自验结论；下方初次交付记录和原88.5分报告保留作历史，不冒充这次复核证据。
+
+- 原执行固定点：`174cc635b7ae547b939bcbfb03091af7e3b59916`；R1审查固定点：`f2d2fff4b8a2f06db8bb405416588f9be7218c8a`。
+- R1最终被测业务提交：**`c7130778c6c04ad6fe1dce6b6d7610f196333236`**。后续提交只整理证据/文档。
+- **82项本项、97项前序、53项原后端通过**；完整未改题库无Key **88.5/100、49/55全绿**。
+- 对G2-03：36保持、13新增、原通过轮次无回归；对初次88.5分交付：49个全绿保持、原通过轮次无回归。
+- 仍未全绿V03/H01/H06/T01/T02/T03，不把V03首轮或其他部分轮次通过写成多轮完成。
+- 修复和本地验证完成，**等待主会话再次独立核验**；不宣告合并或Issue关闭。
+
+### R1复现命令
+
+```bash
+G2_EVIDENCE=/tmp/g2-04-r1-review-http starter/.venv/bin/python -m pytest docs/verification/g2-04/test_doc_qa.py -q
+G2_EVIDENCE=/tmp/g2-04-r1-review-predecessors starter/.venv/bin/python -m pytest docs/verification/g2-01/test_ingestion.py docs/verification/g2-02/test_evidence.py docs/verification/g2-03/test_retrieval.py -q
+starter/.venv/bin/python docs/diagnostics/2026-09-27-g2-start/baseline.py --repo "$PWD" --out /tmp/g2-04-r1-review-integration
+starter/.venv/bin/python docs/verification/g2-04/audit.py /tmp/g2-04-r1-review-http /tmp/g2-04-r1-review-answers.json
+starter/.venv/bin/python docs/verification/g2-04/compare.py docs/verification/g2-03/integration/eval/report.json /tmp/g2-04-r1-review-integration/eval/report.json /tmp/g2-04-r1-vs-g203.json
+starter/.venv/bin/python docs/verification/g2-04/compare.py docs/verification/g2-04/integration-restored/eval/report.json /tmp/g2-04-r1-review-integration/eval/report.json /tmp/g2-04-r1-vs-original.json
+```
+
+输出目录用新名字。baseline导出调用时HEAD，复用已有venv；源码、缓存、VAR_DIR隔离，显式移除LLM变量，不加载.env.live、不调用模型。异常诊断的两项故障注入与真实RAG验收分开。
+
+### R1八项验收
+
+| # | 检查 | 最新实际证据 |
+|---|---|---|
+| 1 公开文档/单轮版本 | C01—C08、V01/V02及契约检查全通过 | `review-r1-integration/eval/report.md/json`，无Key真实HTTP，未改题库评分器 |
+| 2 正确路由 | 11项原文档路由保持，H05既有数据+原因路径保持 | `review-r1-acceptance.txt`和对应HTTP；plan/doc无错误经营查询 |
+| 3 明确历史日期 | 原5项历史/版本边界与全角日期保持 | 同套82项；V03追问原题第二轮仍失败，未扩大多轮 |
+| 4 引文来源 | 每次build核对实际正分非补位块/表头中的连续原文；HTML/GBK/表格/尾段、规范化400字边界保持 | `review-r1-final-answer-audit.json`：90问答/90trace、61doc、身份错位0；`review-r1-source-audit.json`：35篇215块遗漏0、15问75条错位0 |
+| 5 缺事实不编造 | 原缺属性/单位、文档指令检查保持；新增普通吗问句、正反问、否定、省略和跨主体反例 | `review-r1-parent-recheck.json`主会话四问全部refusal无引文；原三个误答分别不再回答退款审批/生日赠饮/目标销量 |
+| 6 改写和输入替换 | 新增的普通问法使用同一claim抽取/证据约束；有依据的审批/叠加/提现/芝麻正常答；权限归属重建后互换 | `test_natural_*`、`test_elliptical_*`、`test_boolean_subject_and_replacement`、`test_boolean_subject_cannot_cross_clauses`；不存在题号、docID、身份证/花生/积分属性列表或固定答案补丁 |
+| 7 可诊断 | evidence.required_claim记录问题主体、属性、词项、实体；候选被拒用时保留该约束；异常trace与HTTP契约保持 | `review-r1-acceptance-http/`及`review-r1-test_error_trace[...]-server.log.txt`；90条trace可取回 |
+| 8 保持前序 | 82本项/97前序/53原后端；metrics/data/retrieval/refusal全过，S02/S03和两库hash门禁保持 | `review-r1-final-predecessors.txt`、`review-r1-integration/backend-tests.txt`；`review-r1-vs-g203.md/json`及`review-r1-vs-original.md/json`逐题逐轮无回归 |
+
+### R1实际修复与红绿
+
+前一实现仅识别部分布尔前缀；没有识别到就按普通文档主题取句。新路径先区分开放疑问与闭合命题，识别主体和所问属性；同一候选分句必须同时支持主体与属性，已识别实体要一致。不能因为另一主体有同一属性，或同一句中另一分句提到该属性，就转移事实。表格通过同一行的实体和同源表头解释属性，保留原连续引用映射。
+
+- `33a6427`：17项8失败9通过，另同分句/分号主体反例1失败；`3e53810`修复后69项通过。
+- `review-r1-attempt.txt`保留初修4失败20通过：过度删除主体尾部“申请”误伤真实退款审批，恢复主体文本后通过，未降低断言。
+- `8297bb1`：省略/否定11项10失败1通过，其中3项正常对照要求trace确实进入claim校验；`705bdc4`修复后80项通过。
+- 首轮完整评测86.5分暴露“什么”的末字么误判。`b8689a7`提交V03首轮/T02第二轮两项真实红灯和`review-r1-before-wh-integration/`；`c713077`开放疑问优先，31项对照通过，最终82项/88.5分。
+- 最终评测见`review-r1-integration/`；原`integration-restored/`88.5分与本轮86.5分均保留，不覆盖旧输出。
+
+这仍是保守的无模型结构/词项校验，不是通用语义蕴含证明。完整句法、任意同义表达或跨句推理可能拒答；没有声称隐藏题或所有布尔问句都正确。关键变化是不能只凭主题或孤立属性词选择邻近事实；对普通有依据的问题仍返回原文，而不是一律拒绝布尔问题。未改变混合编排、会话、前端或live路径。
+
+### R1资源和保护
+
+`review-r1-preservation.json`：905个原保护文件变化0。既有未跟踪草稿和research仍保留；共享分支`codex/g2-04-doc-qa`，未动其他checkout。`review-r1-resources.json`记录本轮519次自建服务，全部finally退出；前一轮715次记录仍在原resources.json。最终集成PID61358/端口54267已停止，无常驻自建服务。保留仓库证据和`/tmp/moneki-g2-04-review-r1-*-integration`；部分较早pytest临时目录会由框架自动回收。未主动清理分支/共享目录或其他进程，不合并不关闭Issue。
+
+## 初次交付记录（保留作历史，已由上方R1结果取代）
+
 规格 [Issue #16](https://github.com/FHMinyi/moneki-ai-takehome/issues/16)。执行固定点 **`174cc635b7ae547b939bcbfb03091af7e3b59916`**（已核对当时本地main及远端）；最终被测业务提交 **`67b0f6255c2e1c2de1bd6e13c14a8a72c9ee5b3d`**。后续提交只整理测试、证据和说明。执行模型 GPT-6 Astra/high；未派生子agent。实施和本地验证完成，等待主会话独立验收；本文件不宣告Issue已关闭。
 
 最终无模型 **88.5/100，49/55整题全绿**；C01—C08与V01/V02全部通过。新增本项 **51项通过**，G2-01—03 **97项通过**，原后端 **53项通过**。对G2-03逐题逐轮比较：原36个全绿题全部保持，新增13个整题通过；原已通过轮次没有退化。原文35篇215块未覆盖0字符，15问75条来源错位0。

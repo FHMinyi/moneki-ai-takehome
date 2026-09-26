@@ -1,0 +1,404 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R08_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R08_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R08_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 3c26711418f7\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R08_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R08_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "54972"
+      ],
+      "pid": 61921,
+      "port": 54972,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "3c26711418f7",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "现在单笔充值 500 送多少",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#3",
+                "score": 51.9221,
+                "text": "## 二、储值与赠送\n\n1. 单笔充值满 500 元，赠送 60 元。\n2. 单笔充值满 1000 元，赠送 150 元。\n3. 赠送档位不叠加，按单笔充值金额就高不就低；500 元以下的充值不赠送。\n4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。\n\n",
+                "retrieval_text": "会员储值政策 v2\n# 会员储值政策 v2\n## 二、储值与赠送\n\n1. 单笔充值满 500 元，赠送 60 元。\n2. 单笔充值满 1000 元，赠送 150 元。\n3. 赠送档位不叠加，按单笔充值金额就高不就低；500 元以下的充值不赠送。\n4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。\n\n",
+                "source_start": 146,
+                "source_end": 290,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 会员储值政策 v2\n"
+                  },
+                  {
+                    "start": 146,
+                    "end": 157,
+                    "text": "## 二、储值与赠送\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#3",
+                "score": 12.1267,
+                "text": "## 二、审批\n\n1. 单笔退款金额不超过 ¥200 的，当班店员核实后即可操作。\n2. **单笔超过 ¥200 需店长审批**，店长不在店时电话或企业微信确认，并在登记时注明审批人。\n3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。\n\n",
+                "retrieval_text": "退款政策 v2\n# 退款政策 v2\n## 二、审批\n\n1. 单笔退款金额不超过 ¥200 的，当班店员核实后即可操作。\n2. **单笔超过 ¥200 需店长审批**，店长不在店时电话或企业微信确认，并在登记时注明审批人。\n3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。\n\n",
+                "source_start": 237,
+                "source_end": 363,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v2\n"
+                  },
+                  {
+                    "start": 237,
+                    "end": 245,
+                    "text": "## 二、审批\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-027",
+                "chunk_id": "KB-027#6",
+                "score": 9.2915,
+                "text": "## 三、改进\n\n1. 门店常备零钱由 500 元提高到 1,500 元，由店长每周一核对。\n2. 增加一台 4G 移动收款终端作为备份，由 IT 部在 8 月内配置到位，每月月初测试一次。\n3. 商场再有网络升级，要求物业提前 3 个工作日书面通知门店，运营部已与物业沟通并写进沟通纪要。\n4. 只收现金的告知模板由市场部统一做好存档，门店随时可打印。",
+                "retrieval_text": "S05 Super Tetsudo POS 终端故障报告\n# S05 Super Tetsudo POS 终端故障报告\n## 三、改进\n\n1. 门店常备零钱由 500 元提高到 1,500 元，由店长每周一核对。\n2. 增加一台 4G 移动收款终端作为备份，由 IT 部在 8 月内配置到位，每月月初测试一次。\n3. 商场再有网络升级，要求物业提前 3 个工作日书面通知门店，运营部已与物业沟通并写进沟通纪要。\n4. 只收现金的告知模板由市场部统一做好存档，门店随时可打印。",
+                "source_start": 622,
+                "source_end": 799,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 31,
+                    "text": "# S05 Super Tetsudo POS 终端故障报告\n"
+                  },
+                  {
+                    "start": 622,
+                    "end": 630,
+                    "text": "## 三、改进\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#12",
+                "score": 6.6421,
+                "text": "1. 凡涉及营业额、订单数、销量、客单价等经营数字，一律以数据库按本手册口径计算的结果为准。\n2. 周报、会议纪要、活动复盘里的数字是店长和运营的人工估算，只能当背景参考，不能当作答案，更不能拿去对外。\n3. 商品的现行售价以调价通知为准。`products` 表里的 `unit_price` 是建档价，由财务在月底统一更新，可能滞后于实际售价，不能用它当作某一天的成交价。\n   **金额以实收为准**：`amount` 记的是顾客当时实际付掉的钱，活动特价、调价当天的差异都已经体现在 `amount` 里，不要用建档价反推金额，也不要用建档价去覆盖 `amount`。\n\n",
+                "retrieval_text": "指标口径手册 v3\n# 指标口径手册 v3\n## 5. 数字来源优先级\n1. 凡涉及营业额、订单数、销量、客单价等经营数字，一律以数据库按本手册口径计算的结果为准。\n2. 周报、会议纪要、活动复盘里的数字是店长和运营的人工估算，只能当背景参考，不能当作答案，更不能拿去对外。\n3. 商品的现行售价以调价通知为准。`products` 表里的 `unit_price` 是建档价，由财务在月底统一更新，可能滞后于实际售价，不能用它当作某一天的成交价。\n   **金额以实收为准**：`amount` 记的是顾客当时实际付掉的钱，活动特价、调价当天的差异都已经体现在 `amount` 里，不要用建档价反推金额，也不要用建档价去覆盖 `amount`。\n\n",
+                "source_start": 1486,
+                "source_end": 1776,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 指标口径手册 v3\n"
+                  },
+                  {
+                    "start": 1471,
+                    "end": 1485,
+                    "text": "## 5. 数字来源优先级\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-051",
+                "chunk_id": "KB-051#3",
+                "score": 6.207,
+                "text": "## 恢复之后\n\n12 号恢复营业第一天，早上七点半开门，门口已经有几位老顾客在等了，早餐这一波基本回来了。\n13 号、14 号是周末，客流感觉比停业前稍微好一点，估计是憋了几天，加上我们在会员群里说了一声。具体好多少我说不准，看系统吧。\n有个别顾客问是不是出了食品安全问题，我按通知上的口径解释是排烟管道整改，没有再追问的。\n\n",
+                "retrieval_text": "S03 店长周报 2026-06-08 至 2026-06-14\n# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n## 恢复之后\n\n12 号恢复营业第一天，早上七点半开门，门口已经有几位老顾客在等了，早餐这一波基本回来了。\n13 号、14 号是周末，客流感觉比停业前稍微好一点，估计是憋了几天，加上我们在会员群里说了一声。具体好多少我说不准，看系统吧。\n有个别顾客问是不是出了食品安全问题，我按通知上的口径解释是排烟管道整改，没有再追问的。\n\n",
+                "source_start": 278,
+                "source_end": 443,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 50,
+                    "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n"
+                  },
+                  {
+                    "start": 278,
+                    "end": 286,
+                    "text": "## 恢复之后\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "现在单笔充值 500 送多少",
+              "terms": [
+                "现在",
+                "在单",
+                "单笔",
+                "笔充",
+                "充值",
+                "500",
+                "送多"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-011#3",
+                  "doc_id": "KB-011",
+                  "score": 51.9221,
+                  "lexical_score": 25.6406,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "500",
+                    "充值",
+                    "单笔",
+                    "笔充"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-011#5",
+                  "doc_id": "KB-011",
+                  "score": 21.1721,
+                  "lexical_score": 5.1405,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "充值"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-011#7",
+                  "doc_id": "KB-011",
+                  "score": 20.7322,
+                  "lexical_score": 4.8472,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "充值"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-011#1",
+                  "doc_id": "KB-011",
+                  "score": 19.9405,
+                  "lexical_score": 4.3195,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "充值"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-011#4",
+                  "doc_id": "KB-011",
+                  "score": 18.9085,
+                  "lexical_score": 3.6315,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "500"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-011#6",
+                  "doc_id": "KB-011",
+                  "score": 13.4316,
+                  "lexical_score": 4.4574,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "充值"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-013#3",
+                  "doc_id": "KB-013",
+                  "score": 12.1267,
+                  "lexical_score": 5.9885,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "单笔"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-027#6",
+                  "doc_id": "KB-027",
+                  "score": 9.2915,
+                  "lexical_score": 4.5884,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "500"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-027#5",
+                  "doc_id": "KB-027",
+                  "score": 7.8411,
+                  "lexical_score": 3.6215,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-001#12",
+                  "doc_id": "KB-001",
+                  "score": 6.6421,
+                  "lexical_score": 3.28,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "现在"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-051#3",
+                  "doc_id": "KB-051",
+                  "score": 6.207,
+                  "lexical_score": 3.0652,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-050#2",
+                  "doc_id": "KB-050",
+                  "score": 6.09,
+                  "lexical_score": 3.0074,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-061#2",
+                  "doc_id": "KB-061",
+                  "score": 3.1748,
+                  "lexical_score": 2.3517,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                }
+              ],
+              "expansions": [],
+              "coverage": 0.477,
+              "hits": [
+                {
+                  "doc_id": "KB-011",
+                  "chunk_id": "KB-011#3",
+                  "score": 51.9221,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-013",
+                  "chunk_id": "KB-013#3",
+                  "score": 12.1267,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-027",
+                  "chunk_id": "KB-027#6",
+                  "score": 9.2915,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-001",
+                  "chunk_id": "KB-001#12",
+                  "score": 6.6421,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-051",
+                  "chunk_id": "KB-051#3",
+                  "score": 6.207,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-002",
+                  "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                },
+                {
+                  "doc_id": "KB-010",
+                  "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                },
+                {
+                  "doc_id": "KB-012",
+                  "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

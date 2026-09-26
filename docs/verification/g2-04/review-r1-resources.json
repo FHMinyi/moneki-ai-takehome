@@ -1,0 +1,3639 @@
+{
+  "services": 519,
+  "all_stopped": true,
+  "resources": [
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_missing_attribute[has-ingredient].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_missing_attribute2/starter",
+      "pid": 48732,
+      "port": 64815,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_supported_attribute[can-stack].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_supported_attribu1/starter",
+      "pid": 48861,
+      "port": 64904,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_supported_attribute[need-approval].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_supported_attribu0/starter",
+      "pid": 48836,
+      "port": 64890,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_supported_attribute[can-withdraw].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_supported_attribu2/starter",
+      "pid": 48871,
+      "port": 64912,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_missing_attribute[need-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_missing_attribute3/starter",
+      "pid": 48749,
+      "port": 64835,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_supported_attribute[is-it].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_supported_attribu7/starter",
+      "pid": 48972,
+      "port": 65005,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_missing_attribute[can-offset].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_missing_attribute1/starter",
+      "pid": 48720,
+      "port": 64805,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_supported_attribute[has-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_supported_attribu5/starter",
+      "pid": 48925,
+      "port": 64978,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_supported_attribute[negative-particle].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_supported_attribu6/starter",
+      "pid": 48955,
+      "port": 64987,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_missing_attribute[need-id].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_missing_attribute0/starter",
+      "pid": 48691,
+      "port": 64794,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_missing_attribute[contains-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_missing_attribute5/starter",
+      "pid": 48791,
+      "port": 64859,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_missing_attribute[is-it-ok].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_missing_attribute4/starter",
+      "pid": 48766,
+      "port": 64847,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_boolean_subject_and_replacement.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_boolean_subject_and_repla0/starter",
+      "pid": 48983,
+      "port": 65024,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_supported_attribute[can-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_supported_attribu3/starter",
+      "pid": 48888,
+      "port": 64955,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_missing_attribute[negative-particle].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_missing_attribute6/starter",
+      "pid": 48802,
+      "port": 64867,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_supported_attribute[has-sesame].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_supported_attribu4/starter",
+      "pid": 48908,
+      "port": 64966,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-red-http/test_natural_missing_attribute[has-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-133/test_natural_missing_attribute7/starter",
+      "pid": 48819,
+      "port": 64878,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_missing_attribute[has-ingredient].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_missing_attribute2/starter",
+      "pid": 51182,
+      "port": 49314,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_supported_attribute[can-stack].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_supported_attribu1/starter",
+      "pid": 51288,
+      "port": 49384,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_supported_attribute[need-approval].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_supported_attribu0/starter",
+      "pid": 51284,
+      "port": 49375,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_supported_attribute[can-withdraw].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_supported_attribu2/starter",
+      "pid": 51312,
+      "port": 49396,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_missing_attribute[need-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_missing_attribute3/starter",
+      "pid": 51184,
+      "port": 49322,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_supported_attribute[is-it].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_supported_attribu7/starter",
+      "pid": 51387,
+      "port": 49446,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_missing_attribute[can-offset].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_missing_attribute1/starter",
+      "pid": 51148,
+      "port": 49303,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_supported_attribute[has-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_supported_attribu5/starter",
+      "pid": 51352,
+      "port": 49426,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_supported_attribute[negative-particle].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_supported_attribu6/starter",
+      "pid": 51378,
+      "port": 49438,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_supported_attribute[\\u5916\\u5356\\u9000\\u6b3e\\u7533\\u8bf7\\u662f\\u5426\\u9700\\u8981\\u5ba1\\u6279\\uff1f-KB-013-\\u5ba1\\u6279].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_supported_attribute__u5910/starter",
+      "pid": 51114,
+      "port": 49281,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_supported_attribute[\\u4f1a\\u5458\\u8d60\\u9001\\u91d1\\u989d\\u662f\\u5426\\u53ef\\u4ee5\\u63d0\\u73b0\\uff1f-KB-011-\\u4e0d\\u53ef\\u63d0\\u73b0].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_supported_attribute__u4f10/starter",
+      "pid": 51095,
+      "port": 49272,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_missing_attribute[\\u5916\\u5356\\u9000\\u6b3e\\u7533\\u8bf7\\u662f\\u5426\\u9700\\u8981\\u987e\\u5ba2\\u63d0\\u4f9b\\u8eab\\u4efd\\u8bc1\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_missing_attribute__u5916_0/starter",
+      "pid": 51010,
+      "port": 49228,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_missing_attribute[need-id].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_missing_attribute0/starter",
+      "pid": 51146,
+      "port": 49293,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_missing_attribute[contains-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_missing_attribute5/starter",
+      "pid": 51215,
+      "port": 49342,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_missing_attribute[is-it-ok].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_missing_attribute4/starter",
+      "pid": 51202,
+      "port": 49333,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_boolean_subject_and_replacement.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_boolean_subject_and_repla0/starter",
+      "pid": 51405,
+      "port": 49461,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_boolean_subject_and_replacement.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_boolean_subject_and_repla0/starter",
+      "pid": 51415,
+      "port": 49471,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_boolean_subject_cannot_cross_clauses.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_boolean_subject_cannot_cr0/starter",
+      "pid": 51435,
+      "port": 49483,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_supported_attribute[can-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_supported_attribu3/starter",
+      "pid": 51321,
+      "port": 49404,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_missing_attribute[negative-particle].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_missing_attribute6/starter",
+      "pid": 51231,
+      "port": 49353,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_supported_attribute[\\u5458\\u5de5\\u6298\\u6263\\u662f\\u5426\\u53ef\\u4ee5\\u548c\\u4fc3\\u9500\\u6d3b\\u52a8\\u53e0\\u52a0\\uff1f-KB-014-\\u53e0\\u52a0].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_supported_attribute__u5450/starter",
+      "pid": 51079,
+      "port": 49261,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_supported_attribute[has-sesame].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_supported_attribu4/starter",
+      "pid": 51350,
+      "port": 49417,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_natural_missing_attribute[has-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_natural_missing_attribute7/starter",
+      "pid": 51250,
+      "port": 49362,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_missing_attribute[\\u725b\\u8089poke\\u662f\\u5426\\u542b\\u82b1\\u751f\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_missing_attribute__u725b_0/starter",
+      "pid": 51061,
+      "port": 49253,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-attempt-http/test_missing_attribute[\\u5458\\u5de5\\u8fdf\\u5230\\u53ef\\u4ee5\\u7528\\u79ef\\u5206\\u62b5\\u6263\\u5417\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-135/test_missing_attribute__u5458_0/starter",
+      "pid": 51038,
+      "port": 49239,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-ellipsis-red-http/test_elliptical_missing_claim[id-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-137/test_elliptical_missing_claim_3/starter",
+      "pid": 54388,
+      "port": 50977,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-ellipsis-red-http/test_elliptical_missing_claim[id-question].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-137/test_elliptical_missing_claim_0/starter",
+      "pid": 54338,
+      "port": 50937,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-ellipsis-red-http/test_elliptical_missing_claim[offset-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-137/test_elliptical_missing_claim_4/starter",
+      "pid": 54409,
+      "port": 50991,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-ellipsis-red-http/test_elliptical_supported_claim[stack-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-137/test_elliptical_supported_clai1/starter",
+      "pid": 54453,
+      "port": 51019,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-ellipsis-red-http/test_elliptical_supported_claim[negative-permission].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-137/test_elliptical_supported_clai4/starter",
+      "pid": 54502,
+      "port": 51059,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-ellipsis-red-http/test_elliptical_supported_claim[sesame-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-137/test_elliptical_supported_clai2/starter",
+      "pid": 54473,
+      "port": 51031,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-ellipsis-red-http/test_elliptical_missing_claim[ingredient-question].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-137/test_elliptical_missing_claim_2/starter",
+      "pid": 54378,
+      "port": 50969,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-ellipsis-red-http/test_elliptical_supported_claim[negative-can].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-137/test_elliptical_supported_clai3/starter",
+      "pid": 54489,
+      "port": 51049,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-ellipsis-red-http/test_elliptical_missing_claim[ingredient-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-137/test_elliptical_missing_claim_5/starter",
+      "pid": 54424,
+      "port": 51000,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-ellipsis-red-http/test_elliptical_supported_claim[approval-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-137/test_elliptical_supported_clai0/starter",
+      "pid": 54438,
+      "port": 51010,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-ellipsis-red-http/test_elliptical_missing_claim[offset-question].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-137/test_elliptical_missing_claim_1/starter",
+      "pid": 54361,
+      "port": 50954,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-integration/environment.json",
+      "source": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-_wq6ikr2",
+      "pid": 61358,
+      "port": 54267,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_variants[Beef Poke\\u91cc\\u9762\\u6709\\u54ea\\u4e9b\\u8fc7\\u654f\\u539f\\uff1f-KB-040-\\u725b\\u8089].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants_Beef_Poke_u91cc_0/starter",
+      "pid": 57717,
+      "port": 52874,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_real_versions[\\u73b0\\u5728\\u5916\\u5356\\u9000\\u6b3e\\u7684\\u653f\\u7b56\\u89c4\\u5b9a-KB-013-KB-012].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_real_versions__u73b0_u5720/starter",
+      "pid": 57832,
+      "port": 52945,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_variants[\\u963f\\u91cc\\u560e\\u591a\\u7684\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u4e3a\\u4f55\\u505c\\u552e-KB-029-\\u4e09\\u660e\\u6cbb].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants__u963f_u91cc_u560/starter",
+      "pid": 57763,
+      "port": 52899,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R07].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R07_0/starter",
+      "pid": 57558,
+      "port": 52774,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_guard_allows_read_only_counterexamples[S02\\u7684\\u98df\\u54c1\\u5b89\\u5168\\u89c4\\u5b9a\\u6709\\u54ea\\u4e9b].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_guard_allows_read_only_co4/starter",
+      "pid": 58446,
+      "port": 53311,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_guard_allows_read_only_counterexamples[\\u5916\\u5356\\u8ba2\\u5355\\u7684\\u9000\\u6b3e\\u653f\\u7b56\\u89c4\\u5b9a\\u662f\\u4ec0\\u4e48].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_guard_allows_read_only_co0/starter",
+      "pid": 58367,
+      "port": 53270,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_lifecycle_rebuild_restart_http[add].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_lifecycle_rebuild_restart0/starter",
+      "pid": 57046,
+      "port": 52247,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_lifecycle_rebuild_restart_http[add].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_lifecycle_rebuild_restart0/starter",
+      "pid": 57070,
+      "port": 52260,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R05].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R05_0/starter",
+      "pid": 57529,
+      "port": 52756,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_prohibited_request_before_retrieval[guard-05].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_prohibited_request_before5/starter",
+      "pid": 58314,
+      "port": 53250,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_replacement_alias_and_fact.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_replacement_alias_and_fac0/starter",
+      "pid": 58026,
+      "port": 53071,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_replacement_alias_and_fact.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_replacement_alias_and_fac0/starter",
+      "pid": 58038,
+      "port": 53081,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_metadata_alias_public_rebuild_restart.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_metadata_alias_public_reb0/starter",
+      "pid": 57254,
+      "port": 52570,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_metadata_alias_public_rebuild_restart.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_metadata_alias_public_reb0/starter",
+      "pid": 57271,
+      "port": 52581,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_metadata_alias_public_rebuild_restart.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_metadata_alias_public_reb0/starter",
+      "pid": 57289,
+      "port": 52592,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_prohibited_request_before_retrieval[guard-01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_prohibited_request_before1/starter",
+      "pid": 58263,
+      "port": 53211,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_lifecycle_rebuild_restart2/starter",
+      "pid": 57121,
+      "port": 52415,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_lifecycle_rebuild_restart2/starter",
+      "pid": 57144,
+      "port": 52445,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_lifecycle_rebuild_restart2/starter",
+      "pid": 57153,
+      "port": 52451,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_variants[\\u8bf7\\u8bf4\\u660e\\u5916\\u5356\\u9000\\u6b3e\\u7684\\u7533\\u8bf7\\u65f6\\u9650-KB-013-\\u9000\\u6b3e].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants__u8bf7_u8bf4_u660/starter",
+      "pid": 57689,
+      "port": 52854,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_filter_before_topk_and_padding[100].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_filter_before_topk_and_pa3/starter",
+      "pid": 57970,
+      "port": 53030,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R01_0/starter",
+      "pid": 57463,
+      "port": 52719,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R03].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R03_0/starter",
+      "pid": 57493,
+      "port": 52736,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_rewritten_chat_search_is_reproducible[\\uff12\\uff10\\uff12\\uff16\\uff0f\\uff10\\uff16\\uff0f\\uff11\\uff14\\u5f53\\u65f6\\u7684\\u5916\\u5356\\u9000\\u6b3e\\u653f\\u7b56\\u89c4\\u5b9a].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_rewritten_chat_search_is_1/starter",
+      "pid": 58098,
+      "port": 53119,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_variants[\\u5458\\u5de5\\u4e70\\u9910\\u6298\\u6263\\u80fd\\u4e0e\\u4fc3\\u9500\\u53e0\\u52a0\\u5417-KB-014-\\u6298].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants__u5458_u5de5_u4e0/starter",
+      "pid": 57701,
+      "port": 52864,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_original_r08_r10_identity_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_original_r08_r10_identity0/starter",
+      "pid": 57401,
+      "port": 52678,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_original_r08_r10_identity_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_original_r08_r10_identity0/starter",
+      "pid": 57412,
+      "port": 52685,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_prohibited_request_before_retrieval[guard-03].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_prohibited_request_before3/starter",
+      "pid": 58290,
+      "port": 53230,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_variants[\\u5f00\\u5177\\u7535\\u5b50\\u53d1\\u7968\\u7684\\u64cd\\u4f5c\\u6d41\\u7a0b-KB-061-\\u53d1\\u7968].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants__u5f00_u5177_u750/starter",
+      "pid": 57799,
+      "port": 52929,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R04].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R04_0/starter",
+      "pid": 57503,
+      "port": 52749,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_version_boundaries[2026-06-01\\u5f53\\u65f6refundtoken\\u9000\\u6b3e\\u89c4\\u5b9a-KB-902].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_version_boundaries_2026_01/starter",
+      "pid": 57912,
+      "port": 52989,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_prohibited_request_before_retrieval[guard-04].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_prohibited_request_before4/starter",
+      "pid": 58310,
+      "port": 53239,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_guard_allows_read_only_counterexamples[\\u8c03\\u4ef7\\u901a\\u77e5\\u89c4\\u5b9a\\u4e86\\u54ea\\u4e9b\\u5546\\u54c1\\u4ef7\\u683c].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_guard_allows_read_only_co1/starter",
+      "pid": 58407,
+      "port": 53281,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_same_search_http_and_trace.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_same_search_http_and_trac0/starter",
+      "pid": 58006,
+      "port": 53062,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_empty_and_non_document_health.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_empty_and_non_document_he0/starter",
+      "pid": 57209,
+      "port": 52489,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_empty_and_non_document_health.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_empty_and_non_document_he0/starter",
+      "pid": 57217,
+      "port": 52520,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_prohibited_request_before_retrieval[guard-06].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_prohibited_request_before6/starter",
+      "pid": 58348,
+      "port": 53260,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R06].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R06_0/starter",
+      "pid": 57534,
+      "port": 52766,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_variants[\\u6c64\\u9762\\u5e97\\u5468\\u4e94\\u51e0\\u70b9\\u5173\\u95e8-KB-062-\\u5468\\u4e94].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants__u6c64_u9762_u5e0/starter",
+      "pid": 57780,
+      "port": 52910,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_unknown_chinese_keeps_low_coverage.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_unknown_chinese_keeps_low0/starter",
+      "pid": 58172,
+      "port": 53153,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R02_0/starter",
+      "pid": 57480,
+      "port": 52729,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_prohibited_request_before_retrieval[guard-02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_prohibited_request_before2/starter",
+      "pid": 58281,
+      "port": 53219,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_prohibited_request_before_retrieval[guard-00].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_prohibited_request_before0/starter",
+      "pid": 58243,
+      "port": 53199,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_gold_chunk_contains_support_not_only_heading[\\u4e09\\u6587\\u9c7c\\u90a3\\u6b21\\u65ad\\u4f9b\\u4f9b\\u5e94\\u5546\\u8d54\\u4e86\\u591a\\u5c11\\u94b1-KB-022-CNY].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_gold_chunk_contains_suppo0/starter",
+      "pid": 58067,
+      "port": 53092,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_filter_before_topk_and_padding[2].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_filter_before_topk_and_pa1/starter",
+      "pid": 57937,
+      "port": 53007,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_real_versions[2026-06-14\\u5f53\\u65f6\\u7684\\u5916\\u5356\\u9000\\u6b3e\\u89c4\\u5b9a-KB-012-KB-013].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_real_versions_2026_06_14_0/starter",
+      "pid": 57856,
+      "port": 52954,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_rewritten_chat_search_is_reproducible[\\u73b0\\u5728S02\\u7684\\u9000\\u6b3e\\u653f\\u7b56\\u89c4\\u5b9a].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_rewritten_chat_search_is_2/starter",
+      "pid": 58130,
+      "port": 53132,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_version_boundaries[\\u73b0\\u5728refundtoken\\u9000\\u6b3e\\u89c4\\u5b9a-KB-902].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_version_boundaries__u73b00/starter",
+      "pid": 57885,
+      "port": 52971,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R15].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R15_0/starter",
+      "pid": 57676,
+      "port": 52847,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_unknown_and_padding_chat.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_unknown_and_padding_chat0/starter",
+      "pid": 57998,
+      "port": 53049,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_incidental_store_is_not_scope.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_incidental_store_is_not_s0/starter",
+      "pid": 57987,
+      "port": 53042,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_format_through_rebuild_http[html-<p>mailtoken \\u7f51\\u9875\\u6b63\\u6587<_p><script>hiddenjs<_script>].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_format_through_rebuild_ht1/starter",
+      "pid": 57028,
+      "port": 52239,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_rewritten_chat_search_is_reproducible[2026\\u5e746\\u670814\\u65e5\\u5f53\\u65f6\\u7684\\u5916\\u5356\\u9000\\u6b3e\\u653f\\u7b56\\u89c4\\u5b9a].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_rewritten_chat_search_is_0/starter",
+      "pid": 58095,
+      "port": 53109,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R13].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R13_0/starter",
+      "pid": 57641,
+      "port": 52829,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_first_start_and_legacy_cache_upgrade.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_first_start_and_legacy_ca0/starter",
+      "pid": 57227,
+      "port": 52549,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_first_start_and_legacy_cache_upgrade.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_first_start_and_legacy_ca0/starter",
+      "pid": 57250,
+      "port": 52561,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_variants[\\uff22\\uff45\\uff45\\uff46\\u3000\\uff30\\uff4f\\uff4b\\uff45\\uff1a\\u8fc7\\u654f\\u539f\\uff1f-KB-040-\\u725b\\u8089].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants__uff22_uff45_uff0/starter",
+      "pid": 57729,
+      "port": 52881,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_lifecycle_rebuild_restart1/starter",
+      "pid": 57089,
+      "port": 52329,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_lifecycle_rebuild_restart1/starter",
+      "pid": 57099,
+      "port": 52398,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_lifecycle_rebuild_restart1/starter",
+      "pid": 57109,
+      "port": 52406,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R11].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R11_0/starter",
+      "pid": 57621,
+      "port": 52809,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R08].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R08_0/starter",
+      "pid": 57562,
+      "port": 52783,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_version_boundaries[2026-05-31\\u5f53\\u65f6refundtoken\\u9000\\u6b3e\\u89c4\\u5b9a-KB-901].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_version_boundaries_2026_00/starter",
+      "pid": 57894,
+      "port": 52978,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_table_context_and_contiguous_quotes_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_table_context_and_contigu0/starter",
+      "pid": 57309,
+      "port": 52621,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_variants[\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u5728\\uff33\\uff10\\uff14\\u505c\\u552e\\u7684\\u539f\\u56e0-KB-029-\\u4e09\\u660e\\u6cbb].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants__u541e_u62ff_u9c0/starter",
+      "pid": 57752,
+      "port": 52891,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_format_through_rebuild_http[txt-mailtoken \\u90ae\\u4ef6\\u6b63\\u6587].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_format_through_rebuild_ht0/starter",
+      "pid": 57011,
+      "port": 52232,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_offsets_context_and_cache_layout.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_offsets_context_and_cache0/starter",
+      "pid": 57339,
+      "port": 52633,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_offsets_context_and_cache_layout.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_offsets_context_and_cache0/starter",
+      "pid": 57347,
+      "port": 52641,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_guard_allows_read_only_counterexamples[7\\u6708\\u6574\\u4f53\\u7684\\u51c0\\u8425\\u4e1a\\u989d\\u662f\\u591a\\u5c11\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_guard_allows_read_only_co2/starter",
+      "pid": 58410,
+      "port": 53289,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_filter_before_topk_and_padding[1].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_filter_before_topk_and_pa0/starter",
+      "pid": 57924,
+      "port": 52996,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_real_versions[2026-06-15\\u5f53\\u65f6\\u7684\\u5916\\u5356\\u9000\\u6b3e\\u89c4\\u5b9a-KB-013-KB-012].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_real_versions_2026_06_15_0/starter",
+      "pid": 57860,
+      "port": 52961,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_gold_chunk_contains_support_not_only_heading[S04 \\u4e3a\\u4ec0\\u4e48\\u4e0d\\u5356\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u4e86-KB-029-\\u4f4e\\u4e8e].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_gold_chunk_contains_suppo1/starter",
+      "pid": 58070,
+      "port": 53099,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_shape_rerank_replacement_and_no_lexical_match.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_shape_rerank_replacement_0/starter",
+      "pid": 58212,
+      "port": 53182,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_shape_rerank_replacement_and_no_lexical_match.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_shape_rerank_replacement_0/starter",
+      "pid": 58235,
+      "port": 53191,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_variants[S01\\u5468\\u4e94\\u51e0\\u70b9\\u5173\\u95e8-KB-062-\\u5468\\u4e94].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants_S01_u5468_u4e94_0/starter",
+      "pid": 57791,
+      "port": 52918,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_lifecycle_rebuild_restart3/starter",
+      "pid": 57178,
+      "port": 52462,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_lifecycle_rebuild_restart3/starter",
+      "pid": 57181,
+      "port": 52469,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_lifecycle_rebuild_restart3/starter",
+      "pid": 57185,
+      "port": 52476,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R14].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R14_0/starter",
+      "pid": 57655,
+      "port": 52837,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_actual_store_scope_and_incidental_examples.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_actual_store_scope_and_in0/starter",
+      "pid": 58142,
+      "port": 53144,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R10].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R10_0/starter",
+      "pid": 57595,
+      "port": 52798,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_supported_variants[\\u963f\\u91cc\\u560e\\u591a\\u4e0b\\u67b6\\u91d1\\u67aa\\u9c7c\\u4e09\\u660e\\u6cbb\\u662f\\u4ec0\\u4e48\\u539f\\u56e0-KB-029-\\u4f4e\\u4e8e].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_supported_variants__u963f0/starter",
+      "pid": 58207,
+      "port": 53172,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_guard_allows_read_only_counterexamples[\\u51c0\\u8425\\u4e1a\\u989d\\u7684\\u53e3\\u5f84\\u600e\\u4e48\\u8ba1\\u7b97].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_guard_allows_read_only_co3/starter",
+      "pid": 58435,
+      "port": 53301,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R09].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R09_0/starter",
+      "pid": 57587,
+      "port": 52791,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_variants[\\u53f0\\u98ce\\u5bfc\\u81f4\\u63d0\\u524d\\u95ed\\u5e97\\u7684\\u5177\\u4f53\\u65f6\\u95f4-KB-026-\\u95ed\\u5e97].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_variants__u53f0_u98ce_u5b0/starter",
+      "pid": 57828,
+      "port": 52936,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_filter_before_topk_and_padding[5].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_filter_before_topk_and_pa2/starter",
+      "pid": 57952,
+      "port": 53021,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_actual_all_retrieval_identity_and_rebuild_stability.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_actual_all_retrieval_iden0/starter",
+      "pid": 57444,
+      "port": 52695,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_supported_variants[\\u9c91\\u9c7c\\u6ce2\\u5947\\u996d\\u65ad\\u4f9b\\u7684\\u8d54\\u4ed8\\u91d1\\u989d\\u662f\\u591a\\u5c11-KB-022-CNY].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_supported_variants__u9c910/starter",
+      "pid": 58191,
+      "port": 53164,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_duplicate_rerank_padding_identity_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_duplicate_rerank_padding_0/starter",
+      "pid": 57368,
+      "port": 52651,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_duplicate_rerank_padding_identity_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_duplicate_rerank_padding_0/starter",
+      "pid": 57381,
+      "port": 52660,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_duplicate_rerank_padding_identity_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_duplicate_rerank_padding_0/starter",
+      "pid": 57386,
+      "port": 52667,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_public_positive[R12].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_public_positive_R12_0/starter",
+      "pid": 57623,
+      "port": 52818,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-predecessor-http/test_tail_fact_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-139/test_tail_fact_http0/starter",
+      "pid": 57306,
+      "port": 52602,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-clause-red-http/test_boolean_subject_cannot_cross_clauses.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-134/test_boolean_subject_cannot_cr0/starter",
+      "pid": 49560,
+      "port": 65247,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-before-wh-integration/environment.json",
+      "source": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-1rsmerhs",
+      "pid": 57069,
+      "port": 52258,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_missing_attribute[has-ingredient].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_missing_attribute2/starter",
+      "pid": 62304,
+      "port": 55349,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_quote_normalized_limit.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_quote_normalized_limit0/starter",
+      "pid": 62204,
+      "port": 55256,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_supported_attribute[can-stack].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_supported_attribu1/starter",
+      "pid": 62442,
+      "port": 55494,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_history_boundary[2026-06-15\\u5f53\\u65f6\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u7533\\u8bf7\\u9000\\u6b3e\\uff1f-KB-013-KB-012-24 \\u5c0f\\u65f6].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_history_boundary_2026_06_1/starter",
+      "pid": 61811,
+      "port": 54871,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_facts[C06].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_facts_C06_0/starter",
+      "pid": 61597,
+      "port": 54647,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_facts[C04].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_facts_C04_0/starter",
+      "pid": 61558,
+      "port": 54605,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_elliptical_missing_claim[id-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_elliptical_missing_claim_3/starter",
+      "pid": 62665,
+      "port": 55740,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_supported_attribute[need-approval].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_supported_attribu0/starter",
+      "pid": 62431,
+      "port": 55477,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_elliptical_missing_claim[id-question].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_elliptical_missing_claim_0/starter",
+      "pid": 62617,
+      "port": 55685,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_replacement_tail_and_instruction[html].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_replacement_tail_and_inst1/starter",
+      "pid": 62012,
+      "port": 55070,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_replacement_tail_and_instruction[html].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_replacement_tail_and_inst1/starter",
+      "pid": 62039,
+      "port": 55088,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_near_topic_missing[\\u5916\\u5356\\u9000\\u6b3e\\u9700\\u8981\\u7f34\\u7eb3\\u591a\\u5c11\\u5143\\u624b\\u7eed\\u8d39\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_near_topic_missing__u59160/starter",
+      "pid": 61706,
+      "port": 54756,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_route[S01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_route_S01_0/starter",
+      "pid": 61491,
+      "port": 54529,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_supported_attribute[can-withdraw].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_supported_attribu2/starter",
+      "pid": 62464,
+      "port": 55514,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_facts[V02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_facts_V02_0/starter",
+      "pid": 61676,
+      "port": 54717,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_error_trace[plan].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_error_trace_plan_0/starter",
+      "pid": 61767,
+      "port": 54814,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_missing_attribute[need-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_missing_attribute3/starter",
+      "pid": 62313,
+      "port": 55365,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_facts[C02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_facts_C02_0/starter",
+      "pid": 61523,
+      "port": 54567,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_history_boundary[\\uff12\\uff10\\uff12\\uff16\\u5e74\\uff16\\u6708\\uff13\\uff10\\u65e5\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1\\uff15\\uff10\\uff10\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-010-KB-011-50 \\u5143].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_history_boundary__uff12_u0/starter",
+      "pid": 61863,
+      "port": 54920,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_facts[C05].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_facts_C05_0/starter",
+      "pid": 61588,
+      "port": 54632,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_elliptical_missing_claim[offset-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_elliptical_missing_claim_4/starter",
+      "pid": 62693,
+      "port": 55768,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_supported_attribute[is-it].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_supported_attribu7/starter",
+      "pid": 62549,
+      "port": 55608,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_near_topic_missing[\\u5458\\u5de5\\u8fdf\\u5230\\u7533\\u8bc9\\u9700\\u8981\\u51e0\\u5929\\u529e\\u7ed3\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_near_topic_missing__u54580/starter",
+      "pid": 61735,
+      "port": 54778,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_error_trace[evidence].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_error_trace_evidence_0/starter",
+      "pid": 61780,
+      "port": 54826,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_missing_attribute[can-offset].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_missing_attribute1/starter",
+      "pid": 62278,
+      "port": 55331,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_rephrasing[\\u5f00\\u5177\\u7535\\u5b50\\u53d1\\u7968\\u7684\\u64cd\\u4f5c\\u6d41\\u7a0b-KB-061-\\u5c0f\\u7a0b\\u5e8f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_rephrasing__u5f00_u5177_u0/starter",
+      "pid": 61937,
+      "port": 54989,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_rephrasing[Beef Poke\\u91cc\\u9762\\u6709\\u54ea\\u4e9b\\u8fc7\\u654f\\u539f\\uff1f-KB-040-\\u829d\\u9ebb].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_rephrasing_Beef_Poke_u91c0/starter",
+      "pid": 61901,
+      "port": 54954,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_facts[C07].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_facts_C07_0/starter",
+      "pid": 61626,
+      "port": 54670,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_existing_payment_explanation_regression[8 \\u6708 3 \\u65e5 S05 \\u7684\\u73b0\\u91d1\\u652f\\u4ed8\\u5360\\u6bd4\\u662f\\u591a\\u5c11\\uff1f\\u4e3a\\u4ec0\\u4e48\\u4f1a\\u8fd9\\u6837\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_existing_payment_explanat0/starter",
+      "pid": 62224,
+      "port": 55275,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_elliptical_supported_claim[stack-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_elliptical_supported_clai1/starter",
+      "pid": 62787,
+      "port": 55820,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_history_boundary[2026-06-30\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1500\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-010-KB-011-50 \\u5143].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_history_boundary_2026_06_2/starter",
+      "pid": 61831,
+      "port": 54886,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_facts[C03].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_facts_C03_0/starter",
+      "pid": 61543,
+      "port": 54588,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_replacement_tail_and_instruction[md].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_replacement_tail_and_inst0/starter",
+      "pid": 61984,
+      "port": 55041,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_replacement_tail_and_instruction[md].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_replacement_tail_and_inst0/starter",
+      "pid": 62007,
+      "port": 55055,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_supported_attribute[has-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_supported_attribu5/starter",
+      "pid": 62517,
+      "port": 55565,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_elliptical_supported_claim[negative-permission].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_elliptical_supported_clai4/starter",
+      "pid": 62900,
+      "port": 55886,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_elliptical_supported_claim[sesame-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_elliptical_supported_clai2/starter",
+      "pid": 62795,
+      "port": 55841,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_history_boundary[2026-06-14\\u5f53\\u65f6\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u7533\\u8bf7\\u9000\\u6b3e\\uff1f-KB-012-KB-013-7 \\u5929].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_history_boundary_2026_06_0/starter",
+      "pid": 61795,
+      "port": 54855,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_supported_attribute[negative-particle].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_supported_attribu6/starter",
+      "pid": 62527,
+      "port": 55591,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_route[C08].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_route_C08_0/starter",
+      "pid": 61435,
+      "port": 54479,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_existing_wh_question_regression[version-first-turn].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_existing_wh_question_regr0/starter",
+      "pid": 62926,
+      "port": 55902,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_facts[V01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_facts_V01_0/starter",
+      "pid": 61666,
+      "port": 54704,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_facts[C01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_facts_C01_0/starter",
+      "pid": 61509,
+      "port": 54553,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_facts[S01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_facts_S01_0/starter",
+      "pid": 61702,
+      "port": 54738,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_existing_payment_explanation_regression[S05\\u57282026-08-03\\u73b0\\u91d1\\u652f\\u4ed8\\u5360\\u6bd4\\u591a\\u5c11\\uff0c\\u539f\\u56e0\\u662f\\u4ec0\\u4e48\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_existing_payment_explanat1/starter",
+      "pid": 62247,
+      "port": 55294,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_elliptical_missing_claim[ingredient-question].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_elliptical_missing_claim_2/starter",
+      "pid": 62650,
+      "port": 55721,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_rephrasing[\\u6c64\\u9762\\u5e97\\u5468\\u4e94\\u51e0\\u70b9\\u5173\\u95e8-KB-062-23:00].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_rephrasing__u6c64_u9762_u0/starter",
+      "pid": 61922,
+      "port": 54973,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_supported_attribute[\\u5916\\u5356\\u9000\\u6b3e\\u7533\\u8bf7\\u662f\\u5426\\u9700\\u8981\\u5ba1\\u6279\\uff1f-KB-013-\\u5ba1\\u6279].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_supported_attribute__u5910/starter",
+      "pid": 62191,
+      "port": 55242,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_route[C04].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_route_C04_0/starter",
+      "pid": 61363,
+      "port": 54325,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_supported_attribute[\\u4f1a\\u5458\\u8d60\\u9001\\u91d1\\u989d\\u662f\\u5426\\u53ef\\u4ee5\\u63d0\\u73b0\\uff1f-KB-011-\\u4e0d\\u53ef\\u63d0\\u73b0].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_supported_attribute__u4f10/starter",
+      "pid": 62168,
+      "port": 55221,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_route[C06].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_route_C06_0/starter",
+      "pid": 61403,
+      "port": 54442,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_rephrasing[\\u8bf7\\u8bf4\\u660e\\u5916\\u5356\\u9000\\u6b3e\\u7684\\u7533\\u8bf7\\u65f6\\u9650-KB-013-24].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_rephrasing__u8bf7_u8bf4_u0/starter",
+      "pid": 61882,
+      "port": 54938,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_history_boundary[2026-07-01\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1500\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-011-KB-010-60 \\u5143].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_history_boundary_2026_07_0/starter",
+      "pid": 61850,
+      "port": 54905,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_missing_attribute[\\u5916\\u5356\\u9000\\u6b3e\\u7533\\u8bf7\\u662f\\u5426\\u9700\\u8981\\u987e\\u5ba2\\u63d0\\u4f9b\\u8eab\\u4efd\\u8bc1\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_missing_attribute__u5916_0/starter",
+      "pid": 62094,
+      "port": 55155,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_near_topic_missing[\\u725b\\u8089poke\\u7684\\u82b1\\u751f\\u542b\\u91cf\\u662f\\u591a\\u5c11\\u514b\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_near_topic_missing__u725b0/starter",
+      "pid": 61747,
+      "port": 54793,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_existing_wh_question_regression[substitution-second-turn].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_existing_wh_question_regr1/starter",
+      "pid": 62937,
+      "port": 55925,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_route[C02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_route_C02_0/starter",
+      "pid": 61323,
+      "port": 54246,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_missing_attribute[need-id].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_missing_attribute0/starter",
+      "pid": 62265,
+      "port": 55312,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_route[V02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_route_V02_0/starter",
+      "pid": 61468,
+      "port": 54512,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_unretrieved_fact_not_borrowed.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_unretrieved_fact_not_borr0/starter",
+      "pid": 62081,
+      "port": 55138,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_elliptical_supported_claim[negative-can].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_elliptical_supported_clai3/starter",
+      "pid": 62890,
+      "port": 55866,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_missing_attribute[contains-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_missing_attribute5/starter",
+      "pid": 62352,
+      "port": 55406,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_rephrasing[\\u9c91\\u9c7c\\u6ce2\\u5947\\u996d\\u65ad\\u4f9b\\u540e\\u4f9b\\u5e94\\u5546\\u8d54\\u4ed8\\u91d1\\u989d\\u662f\\u591a\\u5c11-KB-022-8,600].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_rephrasing__u9c91_u9c7c_u0/starter",
+      "pid": 61969,
+      "port": 55023,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_elliptical_missing_claim[ingredient-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_elliptical_missing_claim_5/starter",
+      "pid": 62707,
+      "port": 55784,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_route[C07].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_route_C07_0/starter",
+      "pid": 61419,
+      "port": 54464,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_elliptical_supported_claim[approval-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_elliptical_supported_clai0/starter",
+      "pid": 62765,
+      "port": 55802,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_missing_attribute[is-it-ok].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_missing_attribute4/starter",
+      "pid": 62347,
+      "port": 55387,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_boolean_subject_and_replacement.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_boolean_subject_and_repla0/starter",
+      "pid": 62555,
+      "port": 55625,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_boolean_subject_and_replacement.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_boolean_subject_and_repla0/starter",
+      "pid": 62584,
+      "port": 55644,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_boolean_subject_cannot_cross_clauses.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_boolean_subject_cannot_cr0/starter",
+      "pid": 62596,
+      "port": 55657,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_supported_attribute[can-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_supported_attribu3/starter",
+      "pid": 62478,
+      "port": 55530,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_route[C05].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_route_C05_0/starter",
+      "pid": 61392,
+      "port": 54425,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_missing_attribute[negative-particle].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_missing_attribute6/starter",
+      "pid": 62384,
+      "port": 55430,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_replacement_tail_and_instruction[gbk].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_replacement_tail_and_inst2/starter",
+      "pid": 62043,
+      "port": 55104,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_replacement_tail_and_instruction[gbk].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_replacement_tail_and_inst2/starter",
+      "pid": 62059,
+      "port": 55123,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_route[C01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_route_C01_0/starter",
+      "pid": 61314,
+      "port": 54228,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_elliptical_missing_claim[offset-question].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_elliptical_missing_claim_1/starter",
+      "pid": 62631,
+      "port": 55701,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_route[V01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_route_V01_0/starter",
+      "pid": 61451,
+      "port": 54496,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_supported_attribute[\\u5458\\u5de5\\u6298\\u6263\\u662f\\u5426\\u53ef\\u4ee5\\u548c\\u4fc3\\u9500\\u6d3b\\u52a8\\u53e0\\u52a0\\uff1f-KB-014-\\u53e0\\u52a0].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_supported_attribute__u5450/starter",
+      "pid": 62154,
+      "port": 55205,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_supported_attribute[has-sesame].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_supported_attribu4/starter",
+      "pid": 62497,
+      "port": 55548,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_natural_missing_attribute[has-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_natural_missing_attribute7/starter",
+      "pid": 62391,
+      "port": 55451,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_facts[C08].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_facts_C08_0/starter",
+      "pid": 61630,
+      "port": 54685,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_rephrasing[\\u963f\\u91cc\\u560e\\u591a\\u7684\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u4e3a\\u4f55\\u505c\\u552e-KB-029-35%].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_rephrasing__u963f_u91cc_u0/starter",
+      "pid": 61948,
+      "port": 55008,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_missing_attribute[\\u725b\\u8089poke\\u662f\\u5426\\u542b\\u82b1\\u751f\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_missing_attribute__u725b_0/starter",
+      "pid": 62130,
+      "port": 55189,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_missing_attribute[\\u5458\\u5de5\\u8fdf\\u5230\\u53ef\\u4ee5\\u7528\\u79ef\\u5206\\u62b5\\u6263\\u5417\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_missing_attribute__u5458_0/starter",
+      "pid": 62114,
+      "port": 55172,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-acceptance-http/test_document_route[C03].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-144/test_document_route_C03_0/starter",
+      "pid": 61357,
+      "port": 54264,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_missing_attribute[has-ingredient].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_missing_attribute2/starter",
+      "pid": 55878,
+      "port": 51780,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_quote_normalized_limit.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_quote_normalized_limit0/starter",
+      "pid": 55796,
+      "port": 51730,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_supported_attribute[can-stack].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu1/starter",
+      "pid": 55997,
+      "port": 51851,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_history_boundary[2026-06-15\\u5f53\\u65f6\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u7533\\u8bf7\\u9000\\u6b3e\\uff1f-KB-013-KB-012-24 \\u5c0f\\u65f6].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_history_boundary_2026_06_1/starter",
+      "pid": 55436,
+      "port": 51496,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_facts[C06].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_facts_C06_0/starter",
+      "pid": 55240,
+      "port": 51374,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_facts[C04].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_facts_C04_0/starter",
+      "pid": 55214,
+      "port": 51354,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_elliptical_missing_claim[id-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_elliptical_missing_claim_3/starter",
+      "pid": 56204,
+      "port": 51998,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_supported_attribute[need-approval].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu0/starter",
+      "pid": 55972,
+      "port": 51840,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_elliptical_missing_claim[id-question].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_elliptical_missing_claim_0/starter",
+      "pid": 56162,
+      "port": 51967,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_replacement_tail_and_instruction[html].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_replacement_tail_and_inst1/starter",
+      "pid": 55625,
+      "port": 51619,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_replacement_tail_and_instruction[html].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_replacement_tail_and_inst1/starter",
+      "pid": 55650,
+      "port": 51631,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_near_topic_missing[\\u5916\\u5356\\u9000\\u6b3e\\u9700\\u8981\\u7f34\\u7eb3\\u591a\\u5c11\\u5143\\u624b\\u7eed\\u8d39\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_near_topic_missing__u59160/starter",
+      "pid": 55335,
+      "port": 51435,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_route[S01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_route_S01_0/starter",
+      "pid": 55148,
+      "port": 51314,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_supported_attribute[can-withdraw].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu2/starter",
+      "pid": 56008,
+      "port": 51862,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_facts[V02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_facts_V02_0/starter",
+      "pid": 55305,
+      "port": 51414,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_error_trace[plan].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_error_trace_plan_0/starter",
+      "pid": 55381,
+      "port": 51463,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_missing_attribute[need-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_missing_attribute3/starter",
+      "pid": 55887,
+      "port": 51791,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_facts[C02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_facts_C02_0/starter",
+      "pid": 55179,
+      "port": 51334,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_history_boundary[\\uff12\\uff10\\uff12\\uff16\\u5e74\\uff16\\u6708\\uff13\\uff10\\u65e5\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1\\uff15\\uff10\\uff10\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-010-KB-011-50 \\u5143].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_history_boundary__uff12_u0/starter",
+      "pid": 55474,
+      "port": 51525,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_facts[C05].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_facts_C05_0/starter",
+      "pid": 55225,
+      "port": 51363,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_elliptical_missing_claim[offset-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_elliptical_missing_claim_4/starter",
+      "pid": 56226,
+      "port": 52009,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_supported_attribute[is-it].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu7/starter",
+      "pid": 56093,
+      "port": 51918,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_near_topic_missing[\\u5458\\u5de5\\u8fdf\\u5230\\u7533\\u8bc9\\u9700\\u8981\\u51e0\\u5929\\u529e\\u7ed3\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_near_topic_missing__u54580/starter",
+      "pid": 55353,
+      "port": 51444,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_error_trace[evidence].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_error_trace_evidence_0/starter",
+      "pid": 55397,
+      "port": 51475,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_missing_attribute[can-offset].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_missing_attribute1/starter",
+      "pid": 55867,
+      "port": 51770,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_rephrasing[\\u5f00\\u5177\\u7535\\u5b50\\u53d1\\u7968\\u7684\\u64cd\\u4f5c\\u6d41\\u7a0b-KB-061-\\u5c0f\\u7a0b\\u5e8f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_rephrasing__u5f00_u5177_u0/starter",
+      "pid": 55538,
+      "port": 51571,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_rephrasing[Beef Poke\\u91cc\\u9762\\u6709\\u54ea\\u4e9b\\u8fc7\\u654f\\u539f\\uff1f-KB-040-\\u829d\\u9ebb].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_rephrasing_Beef_Poke_u91c0/starter",
+      "pid": 55510,
+      "port": 51551,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_facts[C07].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_facts_C07_0/starter",
+      "pid": 55253,
+      "port": 51382,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_existing_payment_explanation_regression[8 \\u6708 3 \\u65e5 S05 \\u7684\\u73b0\\u91d1\\u652f\\u4ed8\\u5360\\u6bd4\\u662f\\u591a\\u5c11\\uff1f\\u4e3a\\u4ec0\\u4e48\\u4f1a\\u8fd9\\u6837\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_existing_payment_explanat0/starter",
+      "pid": 55815,
+      "port": 51738,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_elliptical_supported_claim[stack-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_elliptical_supported_clai1/starter",
+      "pid": 56265,
+      "port": 52037,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_history_boundary[2026-06-30\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1500\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-010-KB-011-50 \\u5143].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_history_boundary_2026_06_2/starter",
+      "pid": 55446,
+      "port": 51505,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_facts[C03].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_facts_C03_0/starter",
+      "pid": 55189,
+      "port": 51342,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_replacement_tail_and_instruction[md].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_replacement_tail_and_inst0/starter",
+      "pid": 55589,
+      "port": 51601,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_replacement_tail_and_instruction[md].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_replacement_tail_and_inst0/starter",
+      "pid": 55608,
+      "port": 51611,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_supported_attribute[has-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu5/starter",
+      "pid": 56059,
+      "port": 51899,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_elliptical_supported_claim[negative-permission].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_elliptical_supported_clai4/starter",
+      "pid": 56318,
+      "port": 52068,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_elliptical_supported_claim[sesame-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_elliptical_supported_clai2/starter",
+      "pid": 56290,
+      "port": 52049,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_history_boundary[2026-06-14\\u5f53\\u65f6\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u7533\\u8bf7\\u9000\\u6b3e\\uff1f-KB-012-KB-013-7 \\u5929].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_history_boundary_2026_06_0/starter",
+      "pid": 55411,
+      "port": 51485,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_supported_attribute[negative-particle].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu6/starter",
+      "pid": 56076,
+      "port": 51907,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_route[C08].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_route_C08_0/starter",
+      "pid": 55098,
+      "port": 51281,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_facts[V01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_facts_V01_0/starter",
+      "pid": 55290,
+      "port": 51402,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_facts[C01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_facts_C01_0/starter",
+      "pid": 55161,
+      "port": 51322,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_facts[S01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_facts_S01_0/starter",
+      "pid": 55318,
+      "port": 51424,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_existing_payment_explanation_regression[S05\\u57282026-08-03\\u73b0\\u91d1\\u652f\\u4ed8\\u5360\\u6bd4\\u591a\\u5c11\\uff0c\\u539f\\u56e0\\u662f\\u4ec0\\u4e48\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_existing_payment_explanat1/starter",
+      "pid": 55824,
+      "port": 51750,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_elliptical_missing_claim[ingredient-question].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_elliptical_missing_claim_2/starter",
+      "pid": 56191,
+      "port": 51989,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_rephrasing[\\u6c64\\u9762\\u5e97\\u5468\\u4e94\\u51e0\\u70b9\\u5173\\u95e8-KB-062-23:00].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_rephrasing__u6c64_u9762_u0/starter",
+      "pid": 55528,
+      "port": 51563,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_supported_attribute[\\u5916\\u5356\\u9000\\u6b3e\\u7533\\u8bf7\\u662f\\u5426\\u9700\\u8981\\u5ba1\\u6279\\uff1f-KB-013-\\u5ba1\\u6279].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_supported_attribute__u5910/starter",
+      "pid": 55787,
+      "port": 51719,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_route[C04].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_route_C04_0/starter",
+      "pid": 55035,
+      "port": 51218,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_supported_attribute[\\u4f1a\\u5458\\u8d60\\u9001\\u91d1\\u989d\\u662f\\u5426\\u53ef\\u4ee5\\u63d0\\u73b0\\uff1f-KB-011-\\u4e0d\\u53ef\\u63d0\\u73b0].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_supported_attribute__u4f10/starter",
+      "pid": 55761,
+      "port": 51710,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_route[C06].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_route_C06_0/starter",
+      "pid": 55063,
+      "port": 51261,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_rephrasing[\\u8bf7\\u8bf4\\u660e\\u5916\\u5356\\u9000\\u6b3e\\u7684\\u7533\\u8bf7\\u65f6\\u9650-KB-013-24].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_rephrasing__u8bf7_u8bf4_u0/starter",
+      "pid": 55500,
+      "port": 51543,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_history_boundary[2026-07-01\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1500\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-011-KB-010-60 \\u5143].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_history_boundary_2026_07_0/starter",
+      "pid": 55464,
+      "port": 51517,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_missing_attribute[\\u5916\\u5356\\u9000\\u6b3e\\u7533\\u8bf7\\u662f\\u5426\\u9700\\u8981\\u987e\\u5ba2\\u63d0\\u4f9b\\u8eab\\u4efd\\u8bc1\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_missing_attribute__u5916_0/starter",
+      "pid": 55693,
+      "port": 51670,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_near_topic_missing[\\u725b\\u8089poke\\u7684\\u82b1\\u751f\\u542b\\u91cf\\u662f\\u591a\\u5c11\\u514b\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_near_topic_missing__u725b0/starter",
+      "pid": 55367,
+      "port": 51455,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_route[C02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_route_C02_0/starter",
+      "pid": 54999,
+      "port": 51198,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_missing_attribute[need-id].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_missing_attribute0/starter",
+      "pid": 55843,
+      "port": 51758,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_route[V02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_route_V02_0/starter",
+      "pid": 55126,
+      "port": 51303,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_unretrieved_fact_not_borrowed.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_unretrieved_fact_not_borr0/starter",
+      "pid": 55689,
+      "port": 51659,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_elliptical_supported_claim[negative-can].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_elliptical_supported_clai3/starter",
+      "pid": 56302,
+      "port": 52057,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_missing_attribute[contains-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_missing_attribute5/starter",
+      "pid": 55932,
+      "port": 51811,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_rephrasing[\\u9c91\\u9c7c\\u6ce2\\u5947\\u996d\\u65ad\\u4f9b\\u540e\\u4f9b\\u5e94\\u5546\\u8d54\\u4ed8\\u91d1\\u989d\\u662f\\u591a\\u5c11-KB-022-8,600].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_rephrasing__u9c91_u9c7c_u0/starter",
+      "pid": 55576,
+      "port": 51590,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_elliptical_missing_claim[ingredient-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_elliptical_missing_claim_5/starter",
+      "pid": 56237,
+      "port": 52017,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_route[C07].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_route_C07_0/starter",
+      "pid": 55084,
+      "port": 51273,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_elliptical_supported_claim[approval-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_elliptical_supported_clai0/starter",
+      "pid": 56254,
+      "port": 52029,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_missing_attribute[is-it-ok].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_missing_attribute4/starter",
+      "pid": 55906,
+      "port": 51799,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_boolean_subject_and_replacement.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_boolean_subject_and_repla0/starter",
+      "pid": 56104,
+      "port": 51928,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_boolean_subject_and_replacement.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_boolean_subject_and_repla0/starter",
+      "pid": 56121,
+      "port": 51942,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_boolean_subject_cannot_cross_clauses.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_boolean_subject_cannot_cr0/starter",
+      "pid": 56145,
+      "port": 51953,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_supported_attribute[can-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu3/starter",
+      "pid": 56029,
+      "port": 51873,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_route[C05].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_route_C05_0/starter",
+      "pid": 55048,
+      "port": 51252,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_missing_attribute[negative-particle].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_missing_attribute6/starter",
+      "pid": 55944,
+      "port": 51820,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_replacement_tail_and_instruction[gbk].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_replacement_tail_and_inst2/starter",
+      "pid": 55661,
+      "port": 51640,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_replacement_tail_and_instruction[gbk].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_replacement_tail_and_inst2/starter",
+      "pid": 55667,
+      "port": 51652,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_route[C01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_route_C01_0/starter",
+      "pid": 54975,
+      "port": 51185,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_elliptical_missing_claim[offset-question].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_elliptical_missing_claim_1/starter",
+      "pid": 56174,
+      "port": 51978,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_route[V01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_route_V01_0/starter",
+      "pid": 55113,
+      "port": 51294,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_supported_attribute[\\u5458\\u5de5\\u6298\\u6263\\u662f\\u5426\\u53ef\\u4ee5\\u548c\\u4fc3\\u9500\\u6d3b\\u52a8\\u53e0\\u52a0\\uff1f-KB-014-\\u53e0\\u52a0].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_supported_attribute__u5450/starter",
+      "pid": 55752,
+      "port": 51699,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_supported_attribute[has-sesame].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_supported_attribu4/starter",
+      "pid": 56040,
+      "port": 51886,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_natural_missing_attribute[has-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_natural_missing_attribute7/starter",
+      "pid": 55961,
+      "port": 51831,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_facts[C08].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_facts_C08_0/starter",
+      "pid": 55267,
+      "port": 51393,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_rephrasing[\\u963f\\u91cc\\u560e\\u591a\\u7684\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u4e3a\\u4f55\\u505c\\u552e-KB-029-35%].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_rephrasing__u963f_u91cc_u0/starter",
+      "pid": 55561,
+      "port": 51582,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_missing_attribute[\\u725b\\u8089poke\\u662f\\u5426\\u542b\\u82b1\\u751f\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_missing_attribute__u725b_0/starter",
+      "pid": 55729,
+      "port": 51690,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_missing_attribute[\\u5458\\u5de5\\u8fdf\\u5230\\u53ef\\u4ee5\\u7528\\u79ef\\u5206\\u62b5\\u6263\\u5417\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_missing_attribute__u5458_0/starter",
+      "pid": 55724,
+      "port": 51679,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-complete-http/test_document_route[C03].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-138/test_document_route_C03_0/starter",
+      "pid": 55018,
+      "port": 51206,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_missing_attribute[has-ingredient].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_missing_attribute2/starter",
+      "pid": 53024,
+      "port": 50348,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_quote_normalized_limit.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_quote_normalized_limit0/starter",
+      "pid": 52935,
+      "port": 50298,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_supported_attribute[can-stack].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_supported_attribu1/starter",
+      "pid": 53124,
+      "port": 50417,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_history_boundary[2026-06-15\\u5f53\\u65f6\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u7533\\u8bf7\\u9000\\u6b3e\\uff1f-KB-013-KB-012-24 \\u5c0f\\u65f6].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_history_boundary_2026_06_1/starter",
+      "pid": 52583,
+      "port": 50071,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_facts[C06].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_facts_C06_0/starter",
+      "pid": 52389,
+      "port": 49898,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_facts[C04].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_facts_C04_0/starter",
+      "pid": 52360,
+      "port": 49878,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_supported_attribute[need-approval].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_supported_attribu0/starter",
+      "pid": 53112,
+      "port": 50408,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_replacement_tail_and_instruction[html].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_replacement_tail_and_inst1/starter",
+      "pid": 52759,
+      "port": 50188,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_replacement_tail_and_instruction[html].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_replacement_tail_and_inst1/starter",
+      "pid": 52775,
+      "port": 50200,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_near_topic_missing[\\u5916\\u5356\\u9000\\u6b3e\\u9700\\u8981\\u7f34\\u7eb3\\u591a\\u5c11\\u5143\\u624b\\u7eed\\u8d39\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_near_topic_missing__u59160/starter",
+      "pid": 52489,
+      "port": 50002,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_route[S01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_route_S01_0/starter",
+      "pid": 52294,
+      "port": 49838,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_supported_attribute[can-withdraw].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_supported_attribu2/starter",
+      "pid": 53140,
+      "port": 50431,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_facts[V02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_facts_V02_0/starter",
+      "pid": 52452,
+      "port": 49939,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_error_trace[plan].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_error_trace_plan_0/starter",
+      "pid": 52520,
+      "port": 50039,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_missing_attribute[need-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_missing_attribute3/starter",
+      "pid": 53026,
+      "port": 50357,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_facts[C02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_facts_C02_0/starter",
+      "pid": 52322,
+      "port": 49858,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_history_boundary[\\uff12\\uff10\\uff12\\uff16\\u5e74\\uff16\\u6708\\uff13\\uff10\\u65e5\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1\\uff15\\uff10\\uff10\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-010-KB-011-50 \\u5143].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_history_boundary__uff12_u0/starter",
+      "pid": 52613,
+      "port": 50101,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_facts[C05].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_facts_C05_0/starter",
+      "pid": 52377,
+      "port": 49889,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_supported_attribute[is-it].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_supported_attribu7/starter",
+      "pid": 53232,
+      "port": 50485,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_near_topic_missing[\\u5458\\u5de5\\u8fdf\\u5230\\u7533\\u8bc9\\u9700\\u8981\\u51e0\\u5929\\u529e\\u7ed3\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_near_topic_missing__u54580/starter",
+      "pid": 52491,
+      "port": 50012,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_error_trace[evidence].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_error_trace_evidence_0/starter",
+      "pid": 52542,
+      "port": 50051,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_missing_attribute[can-offset].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_missing_attribute1/starter",
+      "pid": 52991,
+      "port": 50337,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_rephrasing[\\u5f00\\u5177\\u7535\\u5b50\\u53d1\\u7968\\u7684\\u64cd\\u4f5c\\u6d41\\u7a0b-KB-061-\\u5c0f\\u7a0b\\u5e8f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_rephrasing__u5f00_u5177_u0/starter",
+      "pid": 52676,
+      "port": 50141,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_rephrasing[Beef Poke\\u91cc\\u9762\\u6709\\u54ea\\u4e9b\\u8fc7\\u654f\\u539f\\uff1f-KB-040-\\u829d\\u9ebb].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_rephrasing_Beef_Poke_u91c0/starter",
+      "pid": 52648,
+      "port": 50121,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_facts[C07].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_facts_C07_0/starter",
+      "pid": 52398,
+      "port": 49909,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_existing_payment_explanation_regression[8 \\u6708 3 \\u65e5 S05 \\u7684\\u73b0\\u91d1\\u652f\\u4ed8\\u5360\\u6bd4\\u662f\\u591a\\u5c11\\uff1f\\u4e3a\\u4ec0\\u4e48\\u4f1a\\u8fd9\\u6837\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_existing_payment_explanat0/starter",
+      "pid": 52961,
+      "port": 50309,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_history_boundary[2026-06-30\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1500\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-010-KB-011-50 \\u5143].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_history_boundary_2026_06_2/starter",
+      "pid": 52585,
+      "port": 50079,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_facts[C03].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_facts_C03_0/starter",
+      "pid": 52349,
+      "port": 49870,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_replacement_tail_and_instruction[md].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_replacement_tail_and_inst0/starter",
+      "pid": 52724,
+      "port": 50169,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_replacement_tail_and_instruction[md].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_replacement_tail_and_inst0/starter",
+      "pid": 52741,
+      "port": 50180,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_supported_attribute[has-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_supported_attribu5/starter",
+      "pid": 53199,
+      "port": 50463,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_history_boundary[2026-06-14\\u5f53\\u65f6\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u7533\\u8bf7\\u9000\\u6b3e\\uff1f-KB-012-KB-013-7 \\u5929].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_history_boundary_2026_06_0/starter",
+      "pid": 52557,
+      "port": 50059,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_supported_attribute[negative-particle].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_supported_attribu6/starter",
+      "pid": 53223,
+      "port": 50475,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_route[C08].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_route_C08_0/starter",
+      "pid": 52241,
+      "port": 49808,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_facts[V01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_facts_V01_0/starter",
+      "pid": 52428,
+      "port": 49930,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_facts[C01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_facts_C01_0/starter",
+      "pid": 52311,
+      "port": 49849,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_facts[S01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_facts_S01_0/starter",
+      "pid": 52456,
+      "port": 49947,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_existing_payment_explanation_regression[S05\\u57282026-08-03\\u73b0\\u91d1\\u652f\\u4ed8\\u5360\\u6bd4\\u591a\\u5c11\\uff0c\\u539f\\u56e0\\u662f\\u4ec0\\u4e48\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_existing_payment_explanat1/starter",
+      "pid": 52963,
+      "port": 50317,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_rephrasing[\\u6c64\\u9762\\u5e97\\u5468\\u4e94\\u51e0\\u70b9\\u5173\\u95e8-KB-062-23:00].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_rephrasing__u6c64_u9762_u0/starter",
+      "pid": 52662,
+      "port": 50132,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_supported_attribute[\\u5916\\u5356\\u9000\\u6b3e\\u7533\\u8bf7\\u662f\\u5426\\u9700\\u8981\\u5ba1\\u6279\\uff1f-KB-013-\\u5ba1\\u6279].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_supported_attribute__u5910/starter",
+      "pid": 52926,
+      "port": 50289,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_route[C04].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_route_C04_0/starter",
+      "pid": 52160,
+      "port": 49765,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_supported_attribute[\\u4f1a\\u5458\\u8d60\\u9001\\u91d1\\u989d\\u662f\\u5426\\u53ef\\u4ee5\\u63d0\\u73b0\\uff1f-KB-011-\\u4e0d\\u53ef\\u63d0\\u73b0].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_supported_attribute__u4f10/starter",
+      "pid": 52900,
+      "port": 50278,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_route[C06].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_route_C06_0/starter",
+      "pid": 52213,
+      "port": 49787,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_rephrasing[\\u8bf7\\u8bf4\\u660e\\u5916\\u5356\\u9000\\u6b3e\\u7684\\u7533\\u8bf7\\u65f6\\u9650-KB-013-24].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_rephrasing__u8bf7_u8bf4_u0/starter",
+      "pid": 52635,
+      "port": 50112,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_history_boundary[2026-07-01\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1500\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-011-KB-010-60 \\u5143].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_history_boundary_2026_07_0/starter",
+      "pid": 52603,
+      "port": 50092,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_missing_attribute[\\u5916\\u5356\\u9000\\u6b3e\\u7533\\u8bf7\\u662f\\u5426\\u9700\\u8981\\u987e\\u5ba2\\u63d0\\u4f9b\\u8eab\\u4efd\\u8bc1\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_missing_attribute__u5916_0/starter",
+      "pid": 52832,
+      "port": 50238,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_near_topic_missing[\\u725b\\u8089poke\\u7684\\u82b1\\u751f\\u542b\\u91cf\\u662f\\u591a\\u5c11\\u514b\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_near_topic_missing__u725b0/starter",
+      "pid": 52518,
+      "port": 50028,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_route[C02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_route_C02_0/starter",
+      "pid": 52132,
+      "port": 49743,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_missing_attribute[need-id].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_missing_attribute0/starter",
+      "pid": 52989,
+      "port": 50329,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_route[V02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_route_V02_0/starter",
+      "pid": 52282,
+      "port": 49828,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_unretrieved_fact_not_borrowed.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_unretrieved_fact_not_borr0/starter",
+      "pid": 52828,
+      "port": 50229,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_missing_attribute[contains-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_missing_attribute5/starter",
+      "pid": 53060,
+      "port": 50377,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_rephrasing[\\u9c91\\u9c7c\\u6ce2\\u5947\\u996d\\u65ad\\u4f9b\\u540e\\u4f9b\\u5e94\\u5546\\u8d54\\u4ed8\\u91d1\\u989d\\u662f\\u591a\\u5c11-KB-022-8,600].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_rephrasing__u9c91_u9c7c_u0/starter",
+      "pid": 52713,
+      "port": 50160,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_route[C07].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_route_C07_0/starter",
+      "pid": 52224,
+      "port": 49796,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_missing_attribute[is-it-ok].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_missing_attribute4/starter",
+      "pid": 53058,
+      "port": 50369,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_boolean_subject_and_replacement.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_boolean_subject_and_repla0/starter",
+      "pid": 53249,
+      "port": 50496,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_boolean_subject_and_replacement.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_boolean_subject_and_repla0/starter",
+      "pid": 53260,
+      "port": 50506,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_boolean_subject_cannot_cross_clauses.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_boolean_subject_cannot_cr0/starter",
+      "pid": 53279,
+      "port": 50519,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_supported_attribute[can-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_supported_attribu3/starter",
+      "pid": 53168,
+      "port": 50443,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_route[C05].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_route_C05_0/starter",
+      "pid": 52195,
+      "port": 49775,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_missing_attribute[negative-particle].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_missing_attribute6/starter",
+      "pid": 53085,
+      "port": 50389,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_replacement_tail_and_instruction[gbk].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_replacement_tail_and_inst2/starter",
+      "pid": 52794,
+      "port": 50208,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_replacement_tail_and_instruction[gbk].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_replacement_tail_and_inst2/starter",
+      "pid": 52799,
+      "port": 50219,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_route[C01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_route_C01_0/starter",
+      "pid": 52116,
+      "port": 49732,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_route[V01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_route_V01_0/starter",
+      "pid": 52265,
+      "port": 49817,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_supported_attribute[\\u5458\\u5de5\\u6298\\u6263\\u662f\\u5426\\u53ef\\u4ee5\\u548c\\u4fc3\\u9500\\u6d3b\\u52a8\\u53e0\\u52a0\\uff1f-KB-014-\\u53e0\\u52a0].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_supported_attribute__u5450/starter",
+      "pid": 52898,
+      "port": 50269,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_supported_attribute[has-sesame].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_supported_attribu4/starter",
+      "pid": 53194,
+      "port": 50454,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_natural_missing_attribute[has-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_natural_missing_attribute7/starter",
+      "pid": 53095,
+      "port": 50397,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_facts[C08].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_facts_C08_0/starter",
+      "pid": 52424,
+      "port": 49919,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_rephrasing[\\u963f\\u91cc\\u560e\\u591a\\u7684\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u4e3a\\u4f55\\u505c\\u552e-KB-029-35%].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_rephrasing__u963f_u91cc_u0/starter",
+      "pid": 52695,
+      "port": 50149,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_missing_attribute[\\u725b\\u8089poke\\u662f\\u5426\\u542b\\u82b1\\u751f\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_missing_attribute__u725b_0/starter",
+      "pid": 52866,
+      "port": 50257,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_missing_attribute[\\u5458\\u5de5\\u8fdf\\u5230\\u53ef\\u4ee5\\u7528\\u79ef\\u5206\\u62b5\\u6263\\u5417\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_missing_attribute__u5458_0/starter",
+      "pid": 52864,
+      "port": 50249,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-green-http/test_document_route[C03].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-136/test_document_route_C03_0/starter",
+      "pid": 52154,
+      "port": 49754,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-red-http/test_existing_wh_question_regression[version-first-turn].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-141/test_existing_wh_question_regr0/starter",
+      "pid": 59923,
+      "port": 53641,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-red-http/test_existing_wh_question_regression[substitution-second-turn].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-141/test_existing_wh_question_regr1/starter",
+      "pid": 59937,
+      "port": 53649,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_missing_attribute[has-ingredient].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_missing_attribute2/starter",
+      "pid": 60414,
+      "port": 53809,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_supported_attribute[can-stack].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_supported_attribu1/starter",
+      "pid": 60515,
+      "port": 53886,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_elliptical_missing_claim[id-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_elliptical_missing_claim_3/starter",
+      "pid": 60726,
+      "port": 54024,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_supported_attribute[need-approval].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_supported_attribu0/starter",
+      "pid": 60509,
+      "port": 53874,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_elliptical_missing_claim[id-question].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_elliptical_missing_claim_0/starter",
+      "pid": 60680,
+      "port": 53992,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_supported_attribute[can-withdraw].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_supported_attribu2/starter",
+      "pid": 60544,
+      "port": 53894,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_missing_attribute[need-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_missing_attribute3/starter",
+      "pid": 60431,
+      "port": 53821,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_elliptical_missing_claim[offset-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_elliptical_missing_claim_4/starter",
+      "pid": 60738,
+      "port": 54033,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_supported_attribute[is-it].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_supported_attribu7/starter",
+      "pid": 60620,
+      "port": 53946,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_missing_attribute[can-offset].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_missing_attribute1/starter",
+      "pid": 60400,
+      "port": 53801,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_elliptical_supported_claim[stack-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_elliptical_supported_clai1/starter",
+      "pid": 60786,
+      "port": 54064,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_supported_attribute[has-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_supported_attribu5/starter",
+      "pid": 60575,
+      "port": 53923,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_elliptical_supported_claim[negative-permission].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_elliptical_supported_clai4/starter",
+      "pid": 60836,
+      "port": 54095,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_elliptical_supported_claim[sesame-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_elliptical_supported_clai2/starter",
+      "pid": 60801,
+      "port": 54074,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_supported_attribute[negative-particle].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_supported_attribu6/starter",
+      "pid": 60600,
+      "port": 53934,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_existing_wh_question_regression[version-first-turn].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_existing_wh_question_regr0/starter",
+      "pid": 60848,
+      "port": 54103,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_elliptical_missing_claim[ingredient-question].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_elliptical_missing_claim_2/starter",
+      "pid": 60708,
+      "port": 54012,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_existing_wh_question_regression[substitution-second-turn].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_existing_wh_question_regr1/starter",
+      "pid": 60874,
+      "port": 54118,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_missing_attribute[need-id].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_missing_attribute0/starter",
+      "pid": 60370,
+      "port": 53790,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_elliptical_supported_claim[negative-can].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_elliptical_supported_clai3/starter",
+      "pid": 60813,
+      "port": 54086,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_missing_attribute[contains-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_missing_attribute5/starter",
+      "pid": 60466,
+      "port": 53841,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_elliptical_missing_claim[ingredient-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_elliptical_missing_claim_5/starter",
+      "pid": 60760,
+      "port": 54045,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_elliptical_supported_claim[approval-bare].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_elliptical_supported_clai0/starter",
+      "pid": 60773,
+      "port": 54054,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_missing_attribute[is-it-ok].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_missing_attribute4/starter",
+      "pid": 60442,
+      "port": 53830,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_boolean_subject_and_replacement.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_boolean_subject_and_repla0/starter",
+      "pid": 60643,
+      "port": 53955,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_boolean_subject_and_replacement.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_boolean_subject_and_repla0/starter",
+      "pid": 60645,
+      "port": 53966,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_boolean_subject_cannot_cross_clauses.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_boolean_subject_cannot_cr0/starter",
+      "pid": 60671,
+      "port": 53980,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_supported_attribute[can-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_supported_attribu3/starter",
+      "pid": 60549,
+      "port": 53906,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_missing_attribute[negative-particle].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_missing_attribute6/starter",
+      "pid": 60478,
+      "port": 53850,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_elliptical_missing_claim[offset-question].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_elliptical_missing_claim_1/starter",
+      "pid": 60702,
+      "port": 54003,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_supported_attribute[has-sesame].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_supported_attribu4/starter",
+      "pid": 60572,
+      "port": 53915,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-wh-green-http/test_natural_missing_attribute[has-or-not].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-142/test_natural_missing_attribute7/starter",
+      "pid": 60489,
+      "port": 53866,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_variants[Beef Poke\\u91cc\\u9762\\u6709\\u54ea\\u4e9b\\u8fc7\\u654f\\u539f\\uff1f-KB-040-\\u725b\\u8089].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_variants_Beef_Poke_u91cc_0/starter",
+      "pid": 62083,
+      "port": 55144,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_real_versions[\\u73b0\\u5728\\u5916\\u5356\\u9000\\u6b3e\\u7684\\u653f\\u7b56\\u89c4\\u5b9a-KB-013-KB-012].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_real_versions__u73b0_u5720/starter",
+      "pid": 62223,
+      "port": 55276,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_variants[\\u963f\\u91cc\\u560e\\u591a\\u7684\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u4e3a\\u4f55\\u505c\\u552e-KB-029-\\u4e09\\u660e\\u6cbb].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_variants__u963f_u91cc_u560/starter",
+      "pid": 62134,
+      "port": 55193,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R07].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R07_0/starter",
+      "pid": 61903,
+      "port": 54956,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_guard_allows_read_only_counterexamples[S02\\u7684\\u98df\\u54c1\\u5b89\\u5168\\u89c4\\u5b9a\\u6709\\u54ea\\u4e9b].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_guard_allows_read_only_co4/starter",
+      "pid": 62998,
+      "port": 55965,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_guard_allows_read_only_counterexamples[\\u5916\\u5356\\u8ba2\\u5355\\u7684\\u9000\\u6b3e\\u653f\\u7b56\\u89c4\\u5b9a\\u662f\\u4ec0\\u4e48].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_guard_allows_read_only_co0/starter",
+      "pid": 62930,
+      "port": 55905,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_lifecycle_rebuild_restart_http[add].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_lifecycle_rebuild_restart0/starter",
+      "pid": 61356,
+      "port": 54262,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_lifecycle_rebuild_restart_http[add].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_lifecycle_rebuild_restart0/starter",
+      "pid": 61362,
+      "port": 54306,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R05].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R05_0/starter",
+      "pid": 61864,
+      "port": 54922,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_prohibited_request_before_retrieval[guard-05].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_prohibited_request_before5/starter",
+      "pid": 62889,
+      "port": 55864,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_replacement_alias_and_fact.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_replacement_alias_and_fac0/starter",
+      "pid": 62449,
+      "port": 55502,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_replacement_alias_and_fact.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_replacement_alias_and_fac0/starter",
+      "pid": 62466,
+      "port": 55518,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_metadata_alias_public_rebuild_restart.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_metadata_alias_public_reb0/starter",
+      "pid": 61594,
+      "port": 54637,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_metadata_alias_public_rebuild_restart.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_metadata_alias_public_reb0/starter",
+      "pid": 61599,
+      "port": 54650,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_metadata_alias_public_rebuild_restart.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_metadata_alias_public_reb0/starter",
+      "pid": 61625,
+      "port": 54667,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_prohibited_request_before_retrieval[guard-01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_prohibited_request_before1/starter",
+      "pid": 62706,
+      "port": 55782,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_lifecycle_rebuild_restart2/starter",
+      "pid": 61433,
+      "port": 54472,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_lifecycle_rebuild_restart2/starter",
+      "pid": 61442,
+      "port": 54486,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_lifecycle_rebuild_restart_http[delete].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_lifecycle_rebuild_restart2/starter",
+      "pid": 61453,
+      "port": 54499,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_variants[\\u8bf7\\u8bf4\\u660e\\u5916\\u5356\\u9000\\u6b3e\\u7684\\u7533\\u8bf7\\u65f6\\u9650-KB-013-\\u9000\\u6b3e].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_variants__u8bf7_u8bf4_u660/starter",
+      "pid": 62044,
+      "port": 55109,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_filter_before_topk_and_padding[100].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_filter_before_topk_and_pa3/starter",
+      "pid": 62382,
+      "port": 55425,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R01].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R01_0/starter",
+      "pid": 61800,
+      "port": 54860,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R03].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R03_0/starter",
+      "pid": 61835,
+      "port": 54893,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_rewritten_chat_search_is_reproducible[\\uff12\\uff10\\uff12\\uff16\\uff0f\\uff10\\uff16\\uff0f\\uff11\\uff14\\u5f53\\u65f6\\u7684\\u5916\\u5356\\u9000\\u6b3e\\u653f\\u7b56\\u89c4\\u5b9a].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_rewritten_chat_search_is_1/starter",
+      "pid": 62529,
+      "port": 55595,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_variants[\\u5458\\u5de5\\u4e70\\u9910\\u6298\\u6263\\u80fd\\u4e0e\\u4fc3\\u9500\\u53e0\\u52a0\\u5417-KB-014-\\u6298].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_variants__u5458_u5de5_u4e0/starter",
+      "pid": 62079,
+      "port": 55128,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_original_r08_r10_identity_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_original_r08_r10_identity0/starter",
+      "pid": 61746,
+      "port": 54790,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_original_r08_r10_identity_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_original_r08_r10_identity0/starter",
+      "pid": 61757,
+      "port": 54807,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_prohibited_request_before_retrieval[guard-03].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_prohibited_request_before3/starter",
+      "pid": 62788,
+      "port": 55823,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_variants[\\u5f00\\u5177\\u7535\\u5b50\\u53d1\\u7968\\u7684\\u64cd\\u4f5c\\u6d41\\u7a0b-KB-061-\\u53d1\\u7968].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_variants__u5f00_u5177_u750/starter",
+      "pid": 62190,
+      "port": 55239,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R04].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R04_0/starter",
+      "pid": 61851,
+      "port": 54909,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_version_boundaries[2026-06-01\\u5f53\\u65f6refundtoken\\u9000\\u6b3e\\u89c4\\u5b9a-KB-902].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_version_boundaries_2026_01/starter",
+      "pid": 62308,
+      "port": 55352,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_prohibited_request_before_retrieval[guard-04].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_prohibited_request_before4/starter",
+      "pid": 62864,
+      "port": 55848,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_guard_allows_read_only_counterexamples[\\u8c03\\u4ef7\\u901a\\u77e5\\u89c4\\u5b9a\\u4e86\\u54ea\\u4e9b\\u5546\\u54c1\\u4ef7\\u683c].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_guard_allows_read_only_co1/starter",
+      "pid": 62951,
+      "port": 55930,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_same_search_http_and_trace.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_same_search_http_and_trac0/starter",
+      "pid": 62433,
+      "port": 55484,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_empty_and_non_document_health.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_empty_and_non_document_he0/starter",
+      "pid": 61522,
+      "port": 54564,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_empty_and_non_document_health.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_empty_and_non_document_he0/starter",
+      "pid": 61541,
+      "port": 54581,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_prohibited_request_before_retrieval[guard-06].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_prohibited_request_before6/starter",
+      "pid": 62901,
+      "port": 55888,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R06].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R06_0/starter",
+      "pid": 61883,
+      "port": 54940,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_variants[\\u6c64\\u9762\\u5e97\\u5468\\u4e94\\u51e0\\u70b9\\u5173\\u95e8-KB-062-\\u5468\\u4e94].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_variants__u6c64_u9762_u5e0/starter",
+      "pid": 62155,
+      "port": 55208,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_unknown_chinese_keeps_low_coverage.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_unknown_chinese_keeps_low0/starter",
+      "pid": 62598,
+      "port": 55660,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R02_0/starter",
+      "pid": 61818,
+      "port": 54875,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_prohibited_request_before_retrieval[guard-02].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_prohibited_request_before2/starter",
+      "pid": 62766,
+      "port": 55804,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_prohibited_request_before_retrieval[guard-00].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_prohibited_request_before0/starter",
+      "pid": 62692,
+      "port": 55765,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_gold_chunk_contains_support_not_only_heading[\\u4e09\\u6587\\u9c7c\\u90a3\\u6b21\\u65ad\\u4f9b\\u4f9b\\u5e94\\u5546\\u8d54\\u4e86\\u591a\\u5c11\\u94b1-KB-022-CNY].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_gold_chunk_contains_suppo0/starter",
+      "pid": 62479,
+      "port": 55532,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_filter_before_topk_and_padding[2].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_filter_before_topk_and_pa1/starter",
+      "pid": 62348,
+      "port": 55389,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_real_versions[2026-06-14\\u5f53\\u65f6\\u7684\\u5916\\u5356\\u9000\\u6b3e\\u89c4\\u5b9a-KB-012-KB-013].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_real_versions_2026_06_14_0/starter",
+      "pid": 62245,
+      "port": 55290,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_rewritten_chat_search_is_reproducible[\\u73b0\\u5728S02\\u7684\\u9000\\u6b3e\\u653f\\u7b56\\u89c4\\u5b9a].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_rewritten_chat_search_is_2/starter",
+      "pid": 62551,
+      "port": 55614,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_version_boundaries[\\u73b0\\u5728refundtoken\\u9000\\u6b3e\\u89c4\\u5b9a-KB-902].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_version_boundaries__u73b00/starter",
+      "pid": 62276,
+      "port": 55323,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R15].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R15_0/starter",
+      "pid": 62040,
+      "port": 55091,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_unknown_and_padding_chat.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_unknown_and_padding_chat0/starter",
+      "pid": 62411,
+      "port": 55467,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_incidental_store_is_not_scope.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_incidental_store_is_not_s0/starter",
+      "pid": 62389,
+      "port": 55444,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_format_through_rebuild_http[html-<p>mailtoken \\u7f51\\u9875\\u6b63\\u6587<_p><script>hiddenjs<_script>].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_format_through_rebuild_ht1/starter",
+      "pid": 61322,
+      "port": 54244,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_rewritten_chat_search_is_reproducible[2026\\u5e746\\u670814\\u65e5\\u5f53\\u65f6\\u7684\\u5916\\u5356\\u9000\\u6b3e\\u653f\\u7b56\\u89c4\\u5b9a].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_rewritten_chat_search_is_0/starter",
+      "pid": 62518,
+      "port": 55567,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R13].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R13_0/starter",
+      "pid": 62008,
+      "port": 55057,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_first_start_and_legacy_cache_upgrade.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_first_start_and_legacy_ca0/starter",
+      "pid": 61545,
+      "port": 54593,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_first_start_and_legacy_cache_upgrade.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_first_start_and_legacy_ca0/starter",
+      "pid": 61567,
+      "port": 54620,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_variants[\\uff22\\uff45\\uff45\\uff46\\u3000\\uff30\\uff4f\\uff4b\\uff45\\uff1a\\u8fc7\\u654f\\u539f\\uff1f-KB-040-\\u725b\\u8089].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_variants__uff22_uff45_uff0/starter",
+      "pid": 62111,
+      "port": 55161,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_lifecycle_rebuild_restart1/starter",
+      "pid": 61385,
+      "port": 54422,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_lifecycle_rebuild_restart1/starter",
+      "pid": 61402,
+      "port": 54439,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_lifecycle_rebuild_restart_http[modify].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_lifecycle_rebuild_restart1/starter",
+      "pid": 61407,
+      "port": 54454,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R11].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R11_0/starter",
+      "pid": 61968,
+      "port": 55021,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R08].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R08_0/starter",
+      "pid": 61921,
+      "port": 54972,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_version_boundaries[2026-05-31\\u5f53\\u65f6refundtoken\\u9000\\u6b3e\\u89c4\\u5b9a-KB-901].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_version_boundaries_2026_00/starter",
+      "pid": 62284,
+      "port": 55340,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_table_context_and_contiguous_quotes_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_table_context_and_contigu0/starter",
+      "pid": 61650,
+      "port": 54699,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_variants[\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u5728\\uff33\\uff10\\uff14\\u505c\\u552e\\u7684\\u539f\\u56e0-KB-029-\\u4e09\\u660e\\u6cbb].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_variants__u541e_u62ff_u9c0/starter",
+      "pid": 62115,
+      "port": 55175,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_format_through_rebuild_http[txt-mailtoken \\u90ae\\u4ef6\\u6b63\\u6587].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_format_through_rebuild_ht0/starter",
+      "pid": 61315,
+      "port": 54229,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_offsets_context_and_cache_layout.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_offsets_context_and_cache0/starter",
+      "pid": 61675,
+      "port": 54715,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_offsets_context_and_cache_layout.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_offsets_context_and_cache0/starter",
+      "pid": 61689,
+      "port": 54733,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_guard_allows_read_only_counterexamples[7\\u6708\\u6574\\u4f53\\u7684\\u51c0\\u8425\\u4e1a\\u989d\\u662f\\u591a\\u5c11\\uff1f].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_guard_allows_read_only_co2/starter",
+      "pid": 62968,
+      "port": 55946,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_filter_before_topk_and_padding[1].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_filter_before_topk_and_pa0/starter",
+      "pid": 62322,
+      "port": 55370,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_real_versions[2026-06-15\\u5f53\\u65f6\\u7684\\u5916\\u5356\\u9000\\u6b3e\\u89c4\\u5b9a-KB-013-KB-012].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_real_versions_2026_06_15_0/starter",
+      "pid": 62264,
+      "port": 55308,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_gold_chunk_contains_support_not_only_heading[S04 \\u4e3a\\u4ec0\\u4e48\\u4e0d\\u5356\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u4e86-KB-029-\\u4f4e\\u4e8e].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_gold_chunk_contains_suppo1/starter",
+      "pid": 62498,
+      "port": 55551,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_shape_rerank_replacement_and_no_lexical_match.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_shape_rerank_replacement_0/starter",
+      "pid": 62651,
+      "port": 55725,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_shape_rerank_replacement_and_no_lexical_match.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_shape_rerank_replacement_0/starter",
+      "pid": 62664,
+      "port": 55737,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_variants[S01\\u5468\\u4e94\\u51e0\\u70b9\\u5173\\u95e8-KB-062-\\u5468\\u4e94].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_variants_S01_u5468_u4e94_0/starter",
+      "pid": 62170,
+      "port": 55223,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_lifecycle_rebuild_restart3/starter",
+      "pid": 61469,
+      "port": 54516,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_lifecycle_rebuild_restart3/starter",
+      "pid": 61494,
+      "port": 54535,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_lifecycle_rebuild_restart_http[switch].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_lifecycle_rebuild_restart3/starter",
+      "pid": 61508,
+      "port": 54549,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R14].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R14_0/starter",
+      "pid": 62014,
+      "port": 55074,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_actual_store_scope_and_incidental_examples.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_actual_store_scope_and_in0/starter",
+      "pid": 62577,
+      "port": 55639,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R10].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R10_0/starter",
+      "pid": 61947,
+      "port": 55006,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_supported_variants[\\u963f\\u91cc\\u560e\\u591a\\u4e0b\\u67b6\\u91d1\\u67aa\\u9c7c\\u4e09\\u660e\\u6cbb\\u662f\\u4ec0\\u4e48\\u539f\\u56e0-KB-029-\\u4f4e\\u4e8e].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_supported_variants__u963f0/starter",
+      "pid": 62632,
+      "port": 55705,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_guard_allows_read_only_counterexamples[\\u51c0\\u8425\\u4e1a\\u989d\\u7684\\u53e3\\u5f84\\u600e\\u4e48\\u8ba1\\u7b97].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_guard_allows_read_only_co3/starter",
+      "pid": 62980,
+      "port": 55957,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R09].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R09_0/starter",
+      "pid": 61936,
+      "port": 54987,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_variants[\\u53f0\\u98ce\\u5bfc\\u81f4\\u63d0\\u524d\\u95ed\\u5e97\\u7684\\u5177\\u4f53\\u65f6\\u95f4-KB-026-\\u95ed\\u5e97].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_variants__u53f0_u98ce_u5b0/starter",
+      "pid": 62205,
+      "port": 55258,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_filter_before_topk_and_padding[5].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_filter_before_topk_and_pa2/starter",
+      "pid": 62351,
+      "port": 55404,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_actual_all_retrieval_identity_and_rebuild_stability.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_actual_all_retrieval_iden0/starter",
+      "pid": 61779,
+      "port": 54824,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_supported_variants[\\u9c91\\u9c7c\\u6ce2\\u5947\\u996d\\u65ad\\u4f9b\\u7684\\u8d54\\u4ed8\\u91d1\\u989d\\u662f\\u591a\\u5c11-KB-022-CNY].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_supported_variants__u9c910/starter",
+      "pid": 62620,
+      "port": 55689,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_duplicate_rerank_padding_identity_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_duplicate_rerank_padding_0/starter",
+      "pid": 61704,
+      "port": 54748,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_duplicate_rerank_padding_identity_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_duplicate_rerank_padding_0/starter",
+      "pid": 61707,
+      "port": 54759,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_duplicate_rerank_padding_identity_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_duplicate_rerank_padding_0/starter",
+      "pid": 61734,
+      "port": 54775,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_public_positive[R12].json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_public_positive_R12_0/starter",
+      "pid": 61983,
+      "port": 55039,
+      "stopped": true
+    },
+    {
+      "evidence": "docs/verification/g2-04/review-r1-final-predecessor-http/test_tail_fact_http.json",
+      "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-143/test_tail_fact_http0/starter",
+      "pid": 61629,
+      "port": 54681,
+      "stopped": true
+    }
+  ]
+}
