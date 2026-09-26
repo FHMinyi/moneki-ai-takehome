@@ -22,8 +22,10 @@
 
 运行说明和03/04接入约定见 `frontend/README.md`。没有执行全量问答、真实模型或部署。
 服务验收期间保留，均只绑定 localhost：
-- FastAPI PID 39917，8002；cwd 仓库根目录，VAR_DIR=/tmp/moneki-g1-02-var。
+- FastAPI PID 41813，8002；cwd 仓库根目录，VAR_DIR=/tmp/moneki-g1-02-var。
 - Vite PID 40797，5174；cwd 仓库 frontend 目录，API_PROXY_TARGET=http://127.0.0.1:8002。
 
 停止前先用 `lsof -nP -iTCP:8002 -iTCP:5174 -sTCP:LISTEN` 核对 PID 仍属于这些服务，
-再 `kill -TERM 39917 40797`。不要按模糊进程名杀死其他服务。
+再 `kill -TERM 41813 40797`。不要按模糊进程名杀死其他服务。
+
+实现提交整理后将本任务 8002 服务重启到最终代码，新 PID 41813；旧 PID 39917 已停止。
