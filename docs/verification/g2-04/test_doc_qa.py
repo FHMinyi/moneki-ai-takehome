@@ -267,3 +267,27 @@ def test_boolean_subject_cannot_cross_clauses(rt):
     assert a['answer_type']=='refusal' and not a['citations'],a
     assert b['answer_type']=='doc' and '会员消费' in b['answer'],b
     quotes(b,payload,u)
+
+@pytest.mark.parametrize('q',[
+ '外卖退款申请要提供身份证？','员工迟到能用积分抵扣？','牛肉poke里有花生？',
+ '外卖退款申请要提供身份证','员工迟到能用积分抵扣','牛肉poke里有花生',
+],ids=['id-question','offset-question','ingredient-question','id-bare','offset-bare','ingredient-bare'])
+def test_elliptical_missing_claim(rt,q):
+    original(rt)
+    with rt.serve() as req:a,t=chat(req,q)
+    assert a['answer_type']=='refusal' and not a['citations'],a
+
+@pytest.mark.parametrize('q,gold,support',[
+ ('外卖退款申请要审批','KB-013','审批'),
+ ('员工折扣能和活动叠加','KB-014','叠加'),
+ ('牛肉poke里有芝麻','KB-040','芝麻'),
+ ('会员赠送金额不能提现吗？','KB-011','不可提现'),
+ ('员工折扣不可以和活动叠加吗？','KB-014','叠加'),
+],ids=['approval-bare','stack-bare','sesame-bare','negative-can','negative-permission'])
+def test_elliptical_supported_claim(rt,q,gold,support):
+    payload=original(rt)
+    with rt.serve() as req:a,t=chat(req,q)
+    assert a['answer_type']=='doc' and support in a['answer'],a
+    assert gold in {c['doc_id'] for c in a['citations']},a
+    assert detail(t,'evidence')['required_claim'] is not None
+    quotes(a,payload,t)
