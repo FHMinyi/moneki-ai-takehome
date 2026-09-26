@@ -1,0 +1,17 @@
+missing ['KB-022', 'KB-061', 'KB-062'] lost tails documents 32 lost chars 5611
+R01 coverage 0.0 padded 5 wrong_owner 0
+R02 coverage 0.404 padded 0 wrong_owner 0
+R03 coverage 0.476 padded 0 wrong_owner 0
+R04 coverage 0.0 padded 5 wrong_owner 0
+R05 coverage 0.0 padded 5 wrong_owner 0
+R06 coverage 0.0 padded 5 wrong_owner 0
+R07 coverage 0.453 padded 0 wrong_owner 0
+R08 coverage 0.218 padded 3 wrong_owner 1
+R09 coverage 0.0 padded 3 wrong_owner 0
+R10 coverage 0.327 padded 0 wrong_owner 2
+R11 coverage 0.0 padded 2 wrong_owner 0
+R12 coverage 0.301 padded 0 wrong_owner 0
+R13 coverage 0.0 padded 5 wrong_owner 0
+R14 coverage 0.301 padded 0 wrong_owner 0
+R15 coverage 0.0 padded 5 wrong_owner 0
+examples [{'doc_id': 'KB-001', 'input_chars': 2567, 'retained_chars': 2400, 'lost_chars': 167, 'lost_excerpt': '行的日期是操作退款那一天，不是原订单那一天。算某一天、某一家门店的数时，按退款行自己的日期归属，不要挪回原单。\n5. 某个商品在某一天的成交单价和建档价对不上时，以 `amount` 为准，不要去“修'}, {'doc_id': 'KB-002', 'input_chars': 971, 'retained_chars': 900, 'lost_chars': 71, 'lost_excerpt': '## 6. 报送要求\n\n各门店月报于次月 3 日前提交总部运营部，财务部于次月 5 日前完成复核。\n口径有疑问的先问运营部，不要自行调整算法。'}, {'doc_id': 'KB-003', 'input_chars': 1074, 'retained_chars': 900, 'lost_chars': 174, 'lost_excerpt': '铁道、ST |\n\n## 三、使用说明\n\n1. 别名只用于检索和理解，不改数据库里的原始值，也不做批量改名。\n2. 跨语言的材料（例如英文供应商邮件）先按本表把英文名映射回数据库写法，再去查数。\n3. '}]

@@ -1,0 +1,47 @@
+{
+  "commit": "094ae6d427ea85f24ea364f13be1fe9a5461c30f",
+  "source": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-cyky1x5q",
+  "python": "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+  "key_configured": false,
+  "runtime_reused": true,
+  "source_export": "git archive HEAD",
+  "commands": [
+    {
+      "args": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-cyky1x5q/starter",
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests",
+        "-q"
+      ],
+      "cwd": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-cyky1x5q/starter",
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "eval/run_eval.py",
+        "--base-url",
+        "http://127.0.0.1:62295",
+        "--questions",
+        "eval/public_questions.jsonl",
+        "--out",
+        "/private/tmp/moneki-g2-portable-check/eval"
+      ],
+      "cwd": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-cyky1x5q",
+      "exit_code": 0
+    }
+  ],
+  "port": 62295,
+  "pid": 65729,
+  "server_stopped": true
+}

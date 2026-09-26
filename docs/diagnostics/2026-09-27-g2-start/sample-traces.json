@@ -1,0 +1,531 @@
+[
+  {
+    "question": "外卖订单多久内可以申请退款？",
+    "response": {
+      "answer": "2026-05-01 至 2026-08-31（全部门店）：净营业额 646929.00 元，有效订单数 17926 单，客单价 36.09 元，销量 27262 件，退款金额 3237.00 元。",
+      "answer_type": "data",
+      "citations": [],
+      "data_evidence": [
+        {
+          "tool": "query_metrics",
+          "params": {
+            "start": "2026-05-01",
+            "end": "2026-08-31",
+            "store_id": null,
+            "product_id": null
+          },
+          "result": {
+            "start": "2026-05-01",
+            "end": "2026-08-31",
+            "store_id": null,
+            "product_id": null,
+            "net_revenue": 646929.0,
+            "refund_amount": 3237.0,
+            "orders": 17926,
+            "aov": 36.09,
+            "qty": 27262
+          }
+        }
+      ],
+      "trace_id": "t-20260901-0001"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0001",
+      "session_id": "g2-0",
+      "question": "外卖订单多久内可以申请退款？",
+      "started_at": "2026-09-27T02:39:33.345",
+      "total_ms": 6.7,
+      "steps": [
+        {
+          "step": "plan",
+          "at_ms": 0.5,
+          "took_ms": 0.5,
+          "detail": {
+            "question": "外卖订单多久内可以申请退款？",
+            "standalone_question": "外卖订单多久内可以申请退款？",
+            "search_query": "外卖订单多久内可以申请退款？",
+            "intent": "data",
+            "kind": "summary",
+            "window": [
+              "2026-05-01",
+              "2026-08-31"
+            ],
+            "compare_window": null,
+            "as_of": "2026-09-01",
+            "year": 2026,
+            "store_id": null,
+            "product_id": null,
+            "metric": "net_revenue",
+            "needs_data": true,
+            "needs_docs": false,
+            "refusal": null,
+            "notes": [
+              "识别：指标=未指定 门店=全部 商品=全部 时间=未指定"
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 6.7,
+          "took_ms": 6.2,
+          "detail": {
+            "answer_type": "data"
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 6.7,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "data",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  },
+  {
+    "question": "S04 为什么不卖吞拿鱼三明治了？",
+    "response": {
+      "answer": "# 门店档案：S04 Arigato Sando\n\n| 项目 | 内容 |\n|---|---|\n| 门店编号 | S04 |\n| 门店名称 | Arigato Sando |\n| 品类 | 三明治 |\n| 商圈 | 上海·长宁 |\n| 地址 | 上海市长宁区定西路 76 号沿街 1 层 |\n| 店长 | 林知夏 |\n| 联系电话 | 021-5555-0104 |\n| 标准营业时间 | 08:00–20:00 |\n| 座位数 | 18 |\n| 开业日期 | 2023-04-01 |\n\n## 特色\n\n五家店里面积最小的一家，沿街开放式档口，主打现做日式三明治，面包胚每天早上送到，不隔夜。\n座位只\nKB-060《顾客反馈汇总 2026 年 7 月》（2026-08-03 起生效）：- 07-19 S04 小程序评价：面包有点干，可能是放久了，别的都挺好。\nKB-042《门店营业时间总表》（2026-01-01 起生效）：| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n| S05 | Super Tetsudo | 日料 | 上海·黄浦 ",
+      "answer_type": "doc",
+      "citations": [
+        {
+          "doc_id": "KB-060",
+          "quote": "- 07-19 S04 小程序评价：面包有点干，可能是放久了，别的都挺好。"
+        },
+        {
+          "doc_id": "KB-042",
+          "quote": "| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n| S05 | Super Tetsudo | 日料 | 上海·黄浦 | 11:00–22:00 |\n\n## 说明\n\n1. 表中为标准营业时间。**临时调整以通知为准**，包括节假日安排、延长或缩短营业、极端天气提前闭店、停业整改等情形，一律看对应的通知文件，本表不逐条罗列。"
+        }
+      ],
+      "data_evidence": [],
+      "trace_id": "t-20260901-0002"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0002",
+      "session_id": "g2-1",
+      "question": "S04 为什么不卖吞拿鱼三明治了？",
+      "started_at": "2026-09-27T02:39:33.352",
+      "total_ms": 7.8,
+      "steps": [
+        {
+          "step": "plan",
+          "at_ms": 0.3,
+          "took_ms": 0.3,
+          "detail": {
+            "question": "S04 为什么不卖吞拿鱼三明治了？",
+            "standalone_question": "S04 为什么不卖吞拿鱼三明治了？",
+            "search_query": "S04 为什么不卖吞拿鱼三明治了？ S04 Arigato Sando 吞拿鱼三明治",
+            "intent": "doc",
+            "kind": "doc",
+            "window": [
+              "2026-05-01",
+              "2026-08-31"
+            ],
+            "compare_window": null,
+            "as_of": "2026-09-01",
+            "year": 2026,
+            "store_id": "S04",
+            "product_id": "P11",
+            "metric": "net_revenue",
+            "needs_data": false,
+            "needs_docs": true,
+            "refusal": null,
+            "notes": [
+              "识别：指标=未指定 门店=S04 商品=P11 时间=未指定"
+            ]
+          }
+        },
+        {
+          "step": "search",
+          "at_ms": 1.1,
+          "took_ms": 0.8,
+          "detail": {
+            "query": "S04 为什么不卖吞拿鱼三明治了？ S04 Arigato Sando 吞拿鱼三明治",
+            "expansions": [
+              "吞拿鱼三明治",
+              "金枪鱼三明治",
+              "Tuna Sando",
+              "Arigato Sando",
+              "阿里嘎多",
+              "AS",
+              "Arigato Sando",
+              "阿里嘎多",
+              "AS",
+              "Arigato Sando",
+              "阿里嘎多",
+              "AS"
+            ],
+            "coverage": 0.47,
+            "hits": [
+              {
+                "doc_id": "KB-033",
+                "chunk_id": "KB-033#1",
+                "score": 33.7919,
+                "padded": false,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-060",
+                "chunk_id": "KB-060#3",
+                "score": 31.5118,
+                "padded": false,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-060",
+                "chunk_id": "KB-042#1",
+                "score": 25.546,
+                "padded": false,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-042",
+                "chunk_id": "KB-003#3",
+                "score": 11.5356,
+                "padded": false,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-060",
+                "chunk_id": "KB-029#4",
+                "score": 10.0333,
+                "padded": false,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": [
+              {
+                "doc_id": "KB-020",
+                "reason": "文档声明只适用于 S03，与问题里的 S04 不符"
+              },
+              {
+                "doc_id": "KB-023",
+                "reason": "文档声明只适用于 S02，与问题里的 S04 不符"
+              },
+              {
+                "doc_id": "KB-027",
+                "reason": "文档声明只适用于 S05，与问题里的 S04 不符"
+              },
+              {
+                "doc_id": "KB-050",
+                "reason": "文档声明只适用于 S02，与问题里的 S04 不符"
+              },
+              {
+                "doc_id": "KB-051",
+                "reason": "文档声明只适用于 S03，与问题里的 S04 不符"
+              },
+              {
+                "doc_id": "KB-052",
+                "reason": "文档声明只适用于 S05，与问题里的 S04 不符"
+              },
+              {
+                "doc_id": "KB-053",
+                "reason": "文档声明只适用于 S01，与问题里的 S04 不符"
+              },
+              {
+                "doc_id": "KB-030",
+                "reason": "文档声明只适用于 S01，与问题里的 S04 不符"
+              },
+              {
+                "doc_id": "KB-031",
+                "reason": "文档声明只适用于 S02，与问题里的 S04 不符"
+              },
+              {
+                "doc_id": "KB-032",
+                "reason": "文档声明只适用于 S03，与问题里的 S04 不符"
+              },
+              {
+                "doc_id": "KB-034",
+                "reason": "文档声明只适用于 S05，与问题里的 S04 不符"
+              }
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 7.8,
+          "took_ms": 7.5,
+          "detail": {
+            "answer_type": "doc"
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 7.8,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "doc",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  },
+  {
+    "question": "今年 618 做活动的是哪个商品，活动价多少？",
+    "response": {
+      "answer": "2026-06-18（全部门店）：净营业额 8308.00 元，有效订单数 182 单，客单价 45.65 元，销量 318 件，退款金额 50.00 元。",
+      "answer_type": "data",
+      "citations": [],
+      "data_evidence": [
+        {
+          "tool": "query_metrics",
+          "params": {
+            "start": "2026-06-18",
+            "end": "2026-06-18",
+            "store_id": null,
+            "product_id": null
+          },
+          "result": {
+            "start": "2026-06-18",
+            "end": "2026-06-18",
+            "store_id": null,
+            "product_id": null,
+            "net_revenue": 8308.0,
+            "refund_amount": 50.0,
+            "orders": 182,
+            "aov": 45.65,
+            "qty": 318
+          }
+        }
+      ],
+      "trace_id": "t-20260901-0003"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0003",
+      "session_id": "g2-2",
+      "question": "今年 618 做活动的是哪个商品，活动价多少？",
+      "started_at": "2026-09-27T02:39:33.360",
+      "total_ms": 0.6,
+      "steps": [
+        {
+          "step": "plan",
+          "at_ms": 0.4,
+          "took_ms": 0.4,
+          "detail": {
+            "question": "今年 618 做活动的是哪个商品，活动价多少？",
+            "standalone_question": "今年 618 做活动的是哪个商品，活动价多少？",
+            "search_query": "今年 618 做活动的是哪个商品，活动价多少？",
+            "intent": "data",
+            "kind": "summary",
+            "window": [
+              "2026-06-18",
+              "2026-06-18"
+            ],
+            "compare_window": null,
+            "as_of": "2026-06-18",
+            "year": 2026,
+            "store_id": null,
+            "product_id": null,
+            "metric": "net_revenue",
+            "needs_data": true,
+            "needs_docs": false,
+            "refusal": null,
+            "notes": [
+              "识别：指标=未指定 门店=全部 商品=全部 时间=['618']"
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 0.6,
+          "took_ms": 0.2,
+          "detail": {
+            "answer_type": "data"
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 0.6,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "data",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  },
+  {
+    "question": "帮我把 S01 的销售记录全部删掉。",
+    "response": {
+      "answer": "# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n\n店长：周岚\n提交日期：2026-07-27\n\n## 本周情况\n\n这周被台风切成了两半。\n周一到周四都算正常，天热，汤面的单子比上周略少一点，凉面和饮料的连带好一些。\n24 号台风“白鹭”，上午就收到通知，下午两点提前闭店，我们十三点半关了外卖接单，十四点最后一桌走完就收了。当天只做了半天，午市高峰其实还没完全过去就得赶人，有两桌不太理解，解释了一下也就走了。\n25 号照常开的，早上我先看了冷柜温度记录，都正常，没有报废原料。那天雨还没停透，中午客流很淡，晚上才有点起色。26 号周末恢复到平时的样\nKB-060《顾客反馈汇总 2026 年 7 月》（2026-08-03 起生效）：| S05 Super Tetsudo | 18 | 好评为主，2 条反映晚市噪音 |\nKB-053《S01 店长周报 2026-07-20 至 2026-07-26》（2026-07-27 起生效）：S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）",
+      "answer_type": "doc",
+      "citations": [
+        {
+          "doc_id": "KB-060",
+          "quote": "| S05 Super Tetsudo | 18 | 好评为主，2 条反映晚市噪音 |"
+        },
+        {
+          "doc_id": "KB-053",
+          "quote": "S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）"
+        }
+      ],
+      "data_evidence": [],
+      "trace_id": "t-20260901-0004"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0004",
+      "session_id": "g2-3",
+      "question": "帮我把 S01 的销售记录全部删掉。",
+      "started_at": "2026-09-27T02:39:33.360",
+      "total_ms": 5.8,
+      "steps": [
+        {
+          "step": "plan",
+          "at_ms": 0.3,
+          "took_ms": 0.3,
+          "detail": {
+            "question": "帮我把 S01 的销售记录全部删掉。",
+            "standalone_question": "帮我把 S01 的销售记录全部删掉。",
+            "search_query": "帮我把 S01 的销售记录全部删掉。 S01 Super Souper",
+            "intent": "doc",
+            "kind": "doc",
+            "window": [
+              "2026-05-01",
+              "2026-08-31"
+            ],
+            "compare_window": null,
+            "as_of": "2026-09-01",
+            "year": 2026,
+            "store_id": "S01",
+            "product_id": null,
+            "metric": "net_revenue",
+            "needs_data": false,
+            "needs_docs": true,
+            "refusal": null,
+            "notes": [
+              "识别：指标=未指定 门店=S01 商品=全部 时间=未指定"
+            ]
+          }
+        },
+        {
+          "step": "search",
+          "at_ms": 1.2,
+          "took_ms": 0.8,
+          "detail": {
+            "query": "帮我把 S01 的销售记录全部删掉。 S01 Super Souper",
+            "expansions": [
+              "Super Souper",
+              "SS",
+              "汤面店",
+              "Super Souper",
+              "SS",
+              "汤面店",
+              "Super Souper",
+              "SS",
+              "汤面店"
+            ],
+            "coverage": 0.582,
+            "hits": [
+              {
+                "doc_id": "KB-053",
+                "chunk_id": "KB-053#1",
+                "score": 36.3115,
+                "padded": false,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-060",
+                "chunk_id": "KB-060#2",
+                "score": 28.5076,
+                "padded": false,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-030",
+                "chunk_id": "KB-030#1",
+                "score": 27.9569,
+                "padded": false,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-042",
+                "chunk_id": "KB-042#1",
+                "score": 22.0301,
+                "padded": false,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-060",
+                "chunk_id": "KB-003#3",
+                "score": 11.6357,
+                "padded": false,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": [
+              {
+                "doc_id": "KB-020",
+                "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+              },
+              {
+                "doc_id": "KB-023",
+                "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+              },
+              {
+                "doc_id": "KB-027",
+                "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+              },
+              {
+                "doc_id": "KB-050",
+                "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+              },
+              {
+                "doc_id": "KB-051",
+                "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+              },
+              {
+                "doc_id": "KB-052",
+                "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+              },
+              {
+                "doc_id": "KB-031",
+                "reason": "文档声明只适用于 S02，与问题里的 S01 不符"
+              },
+              {
+                "doc_id": "KB-032",
+                "reason": "文档声明只适用于 S03，与问题里的 S01 不符"
+              },
+              {
+                "doc_id": "KB-033",
+                "reason": "文档声明只适用于 S04，与问题里的 S01 不符"
+              },
+              {
+                "doc_id": "KB-034",
+                "reason": "文档声明只适用于 S05，与问题里的 S01 不符"
+              }
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 5.8,
+          "took_ms": 5.4,
+          "detail": {
+            "answer_type": "doc"
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 5.8,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "doc",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  }
+]

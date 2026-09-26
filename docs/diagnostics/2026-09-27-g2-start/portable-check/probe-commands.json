@@ -1,0 +1,27 @@
+[
+  {
+    "command": [
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+      "-m",
+      "pytest",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py",
+      "-q",
+      "--tb=short"
+    ],
+    "exit_code": 1
+  },
+  {
+    "command": [
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+      "-m",
+      "pytest",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py",
+      "-q",
+      "--tb=short"
+    ],
+    "exit_code": 1
+  },
+  {
+    "audit_exit_code": 0
+  }
+]

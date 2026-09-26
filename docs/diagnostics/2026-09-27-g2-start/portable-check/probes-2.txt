@@ -1,0 +1,173 @@
+FFF.FFFFFFFFFFFFF..                                                      [100%]
+=================================== FAILURES ===================================
+__________________ test_formats_all_document_ids_enter_index ___________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:23: in test_formats_all_document_ids_enter_index
+    assert set(idx.docs_meta)==expected, {'missing':sorted(expected-set(idx.docs_meta))}
+E   AssertionError: {'missing': ['KB-022', 'KB-061', 'KB-062']}
+E   assert {'KB-001', 'K...'KB-012', ...} == {'KB-001', 'K...'KB-012', ...}
+E     
+E     Extra items in the right set:
+E     'KB-061'
+E     'KB-062'
+E     'KB-022'
+E     Use -v to get more diff
+________________ test_real_gbk_document_preserves_visible_words ________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:30: in test_real_gbk_document_preserves_visible_words
+    assert '营业时间' in actual and '周五' in actual, actual[:160]
+E   AssertionError: ==========================================================
+E       ζϺ޹˾   OA ϵͳ   ļ
+E       ʱ䣺2026-08-12 09:41:07
+E       ˣӪ  A0117
+E       ĺţӪͨ֡2026047 
+E       ܼڲ
+E     =========================
+E   assert ('营业时间' in '==========================================================\n  ζϺ\u07b9˾   OA ϵͳ   ļ\n  ʱ䣺2026-08-12 09:41:07\n  ˣӪ  A...-----------------------------\n OA ϵͳԶ GBKʽԭв졣\nԭ OA ϵͳаĺż\n----------------------------------------------------------')
+_______________ test_real_html_excludes_scripts_styles_and_tags ________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:35: in test_real_html_excludes_scripts_styles_and_tags
+    assert '<script' not in doc.text and 'window.dataLayer' not in doc.text and '<style' not in doc.text
+E   AssertionError: assert ('<script' not in '<!DOCTYPE h...dy>\n</html>'
+E     
+E     '<script' is contained here:
+E       
+E       </style>
+E       <script>
+E         window.dataLayer = window.dataLayer || [];
+E         function hwTrack(evt, props) {...
+E     
+E     ...Full output truncated (116 lines hidden), use '-vv' to show)
+___________________ test_chunking_keeps_last_character[301] ____________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:42: in test_chunking_keeps_last_character
+    assert ''.join(c.source_text for c in pieces)==body, {'input':size,'retained':sum(len(c.source_text) for c in pieces)}
+E   AssertionError: {'input': 301, 'retained': 300}
+E   assert '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲甲' == '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲尾'
+E     
+E     Skipping 289 identical leading characters in diff, use -v to show
+E     - 甲甲甲甲甲甲甲甲甲甲甲尾
+E     ?            -
+E     + 甲甲甲甲甲甲甲甲甲甲甲
+___________________ test_chunking_keeps_last_character[600] ____________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:42: in test_chunking_keeps_last_character
+    assert ''.join(c.source_text for c in pieces)==body, {'input':size,'retained':sum(len(c.source_text) for c in pieces)}
+E   AssertionError: {'input': 600, 'retained': 300}
+E   assert '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲甲' == '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲尾'
+E     
+E     Skipping 289 identical leading characters in diff, use -v to show
+E     - 甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲尾
+E     + 甲甲甲甲甲甲甲甲甲甲甲
+___________________ test_chunking_keeps_last_character[601] ____________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:42: in test_chunking_keeps_last_character
+    assert ''.join(c.source_text for c in pieces)==body, {'input':size,'retained':sum(len(c.source_text) for c in pieces)}
+E   AssertionError: {'input': 601, 'retained': 600}
+E   assert '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲甲' == '甲甲甲甲甲甲甲甲甲甲甲甲...甲甲甲甲甲甲甲甲甲甲甲甲尾'
+E     
+E     Skipping 589 identical leading characters in diff, use -v to show
+E     - 甲甲甲甲甲甲甲甲甲甲甲尾
+E     ?            -
+E     + 甲甲甲甲甲甲甲甲甲甲甲
+_______________ test_chinese_query_gets_positive_relevant_score ________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:49: in test_chinese_query_gets_positive_relevant_score
+    assert scores, {'terms':terms,'document_terms':tokenize(doc.text)}
+E   AssertionError: {'terms': ['外卖订单多久内可以申请退款'], 'document_terms': ['外卖订单在送达后24小时内可以申请退款。']}
+E   assert {}
+________________ test_returned_doc_id_matches_real_chunk_owner _________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:55: in test_returned_doc_id_matches_real_chunk_owner
+    assert not mismatches,mismatches
+E   AssertionError: [{'doc_id': 'KB-060', 'chunk_id': 'KB-029#4', 'owner': 'KB-029'}, {'doc_id': 'KB-060', 'chunk_id': 'KB-003#3', 'owner': 'KB-003'}]
+E   assert not [{'doc_id': 'KB-060', 'chunk_id': 'KB-029#4', 'owner': 'KB-029'}, {'doc_id': 'KB-060', 'chunk_id': 'KB-003#3', 'owner': 'KB-003'}]
+_______________ test_current_policy_excludes_superseded_version ________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:60: in test_current_policy_excludes_superseded_version
+    assert r._eligible('KB-012',TODAY,None) is not None,idx.docs_meta['KB-012']
+E   AssertionError: {'doc_id': 'KB-012', 'title': '退款政策 v1', 'type': '政策', 'state': '已废止', ...}
+E   assert None is not None
+E    +  where None = _eligible('KB-012', datetime.date(2026, 9, 1), None)
+E    +    where _eligible = <kbqa.retriever.Retriever object at 0x1074295e0>._eligible
+__________ test_filter_before_topk_retains_available_matching_result ___________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:67: in test_filter_before_topk_retains_available_matching_result
+    assert len(result.hits)==1 and result.hits[0].doc_id=='KB-902',result.as_trace()
+E   AssertionError: {'query': 'refund', 'expansions': [], 'coverage': 1.0, 'hits': [], ...}
+E   assert (0 == 1)
+E    +  where 0 = len([])
+E    +    where [] = SearchResult(hits=[], query='refund', terms=['refund'], expansions=[], filtered=[{'doc_id': 'KB-901', 'reason': '文档声明只适用于 S01，与问题里的 S02 不符'}], coverage=1.0).hits
+________________ test_cache_reflects_knowledge_base_change[add] ________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:81: in test_cache_reflects_knowledge_base_change
+    assert observed.texts==fresh.texts, {'cached':observed.texts,'fresh':fresh.texts,'same_key':first.key==fresh.key}
+E   AssertionError: {'cached': {'KB-900': '# Original
+E     original sentinel'}, 'fresh': {'KB-900': '# Original
+E     original sentinel', 'KB-901': '# Added
+E     new sentinel'}, 'same_key': True}
+E   assert {'KB-900': '#...nal sentinel'} == {'KB-900': '#...new sentinel'}
+E     
+E     Omitting 1 identical items, use -vv to show
+E     Right contains 1 more item:
+E     {'KB-901': '# Added\nnew sentinel'}
+E     Use -v to get more diff
+______________ test_cache_reflects_knowledge_base_change[modify] _______________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:81: in test_cache_reflects_knowledge_base_change
+    assert observed.texts==fresh.texts, {'cached':observed.texts,'fresh':fresh.texts,'same_key':first.key==fresh.key}
+E   AssertionError: {'cached': {'KB-900': '# Original
+E     original sentinel'}, 'fresh': {'KB-900': '# Changed
+E     changed sentinel'}, 'same_key': True}
+E   assert {'KB-900': '#...nal sentinel'} == {'KB-900': '#...ged sentinel'}
+E     
+E     Differing items:
+E     {'KB-900': '# Original\noriginal sentinel'} != {'KB-900': '# Changed\nchanged sentinel'}
+E     Use -v to get more diff
+______________ test_cache_reflects_knowledge_base_change[delete] _______________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:81: in test_cache_reflects_knowledge_base_change
+    assert observed.texts==fresh.texts, {'cached':observed.texts,'fresh':fresh.texts,'same_key':first.key==fresh.key}
+E   AssertionError: {'cached': {'KB-900': '# Original
+E     original sentinel'}, 'fresh': {}, 'same_key': True}
+E   assert {'KB-900': '#...nal sentinel'} == {}
+E     
+E     Left contains 1 more item:
+E     {'KB-900': '# Original\noriginal sentinel'}
+E     Use -v to get more diff
+_________ test_cache_reflects_knowledge_base_change[switch_directory] __________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:81: in test_cache_reflects_knowledge_base_change
+    assert observed.texts==fresh.texts, {'cached':observed.texts,'fresh':fresh.texts,'same_key':first.key==fresh.key}
+E   AssertionError: {'cached': {'KB-900': '# Original
+E     original sentinel'}, 'fresh': {'KB-902': '# Other
+E     other sentinel'}, 'same_key': True}
+E   assert {'KB-900': '#...nal sentinel'} == {'KB-902': '#...her sentinel'}
+E     
+E     Left contains 1 more item:
+E     {'KB-900': '# Original\noriginal sentinel'}
+E     Right contains 1 more item:
+E     {'KB-902': '# Other\nother sentinel'}
+E     Use -v to get more diff
+_________________ test_health_reports_actual_indexed_documents _________________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:87: in test_health_reports_actual_indexed_documents
+    assert service.health()['kb_docs']==len(service.index.docs_meta),{'reported':service.health()['kb_docs'],'indexed':len(service.index.docs_meta)}
+E   AssertionError: {'reported': 36, 'indexed': 32}
+E   assert 36 == 32
+E    +  where 32 = len({'KB-001': {'doc_id': 'KB-001', 'title': '指标口径手册 v3', 'type': '手册', 'state': '现行', ...}, 'KB-002': {'doc_id': 'KB-002'...'现行', ...}, 'KB-020': {'doc_id': 'KB-020', 'title': 'S03 Juicy Bao Bao 临时停业通知', 'type': '通知', 'state': '现行', ...}, ...})
+E    +    where {'KB-001': {'doc_id': 'KB-001', 'title': '指标口径手册 v3', 'type': '手册', 'state': '现行', ...}, 'KB-002': {'doc_id': 'KB-002'...'现行', ...}, 'KB-020': {'doc_id': 'KB-020', 'title': 'S03 Juicy Bao Bao 临时停业通知', 'type': '通知', 'state': '现行', ...}, ...} = <kbqa.index.BM25Index object at 0x107d71550>.docs_meta
+E    +      where <kbqa.index.BM25Index object at 0x107d71550> = <kbqa.service.Service object at 0x107b35190>.index
+______________ test_public_rebuild_command_detects_added_document ______________
+/Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py:104: in test_public_rebuild_command_detects_added_document
+    assert 'KB-901' in cached['docs'],second.stdout
+E   AssertionError: 数据目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-cyky1x5q/data
+E     知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-60/test_public_rebuild_command_de0/kb
+E     清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E     索引完成：1 篇文档，1 个片段，缓存键 8651fac326e2
+E     产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-60/test_public_rebuild_command_de0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-60/test_public_rebuild_command_de0/starter/.cache/index.json（0.1 秒）
+E     
+E   assert 'KB-901' in {'KB-900': {'doc_id': 'KB-900', 'title': 'First', 'type': '文档', 'state': '现行', ...}}
+=========================== short test summary info ============================
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_formats_all_document_ids_enter_index
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_real_gbk_document_preserves_visible_words
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_real_html_excludes_scripts_styles_and_tags
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_chunking_keeps_last_character[301]
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_chunking_keeps_last_character[600]
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_chunking_keeps_last_character[601]
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_chinese_query_gets_positive_relevant_score
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_returned_doc_id_matches_real_chunk_owner
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_current_policy_excludes_superseded_version
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_filter_before_topk_retains_available_matching_result
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_cache_reflects_knowledge_base_change[add]
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_cache_reflects_knowledge_base_change[modify]
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_cache_reflects_knowledge_base_change[delete]
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_cache_reflects_knowledge_base_change[switch_directory]
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_health_reports_actual_indexed_documents
+FAILED ../../../../../../../Volumes/MACPSSD/project/moneki-ai-takehome/docs/diagnostics/2026-09-27-g2-start/test_diagnostic_probes.py::test_public_rebuild_command_detects_added_document
+16 failed, 3 passed in 0.38s

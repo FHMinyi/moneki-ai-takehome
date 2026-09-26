@@ -1,0 +1,970 @@
+{
+  "actual_documents": 32,
+  "missing": [
+    "KB-022",
+    "KB-061",
+    "KB-062"
+  ],
+  "loss_documents": [
+    {
+      "doc_id": "KB-001",
+      "input_chars": 2567,
+      "retained_chars": 2400,
+      "lost_chars": 167,
+      "lost_excerpt": "行的日期是操作退款那一天，不是原订单那一天。算某一天、某一家门店的数时，按退款行自己的日期归属，不要挪回原单。\n5. 某个商品在某一天的成交单价和建档价对不上时，以 `amount` 为准，不要去“修"
+    },
+    {
+      "doc_id": "KB-002",
+      "input_chars": 971,
+      "retained_chars": 900,
+      "lost_chars": 71,
+      "lost_excerpt": "## 6. 报送要求\n\n各门店月报于次月 3 日前提交总部运营部，财务部于次月 5 日前完成复核。\n口径有疑问的先问运营部，不要自行调整算法。"
+    },
+    {
+      "doc_id": "KB-003",
+      "input_chars": 1074,
+      "retained_chars": 900,
+      "lost_chars": 174,
+      "lost_excerpt": "铁道、ST |\n\n## 三、使用说明\n\n1. 别名只用于检索和理解，不改数据库里的原始值，也不做批量改名。\n2. 跨语言的材料（例如英文供应商邮件）先按本表把英文名映射回数据库写法，再去查数。\n3. "
+    },
+    {
+      "doc_id": "KB-020",
+      "input_chars": 587,
+      "retained_chars": 300,
+      "lost_chars": 287,
+      "lost_excerpt": "外卖平台门店状态置为“休息中”，由市场部提前一天在会员群和门店公众号说明，不做促销预告。\n4. 已收的预订单由店长逐一电话联系，可改期或全额退款，改期的备注在预订本上。\n5. 鲜货备货从 6 月 7 "
+    },
+    {
+      "doc_id": "KB-021",
+      "input_chars": 534,
+      "retained_chars": 300,
+      "lost_chars": 234,
+      "lost_excerpt": "现有三文鱼库存已全部封存，不得继续出品，也不得用于员工餐。\n5. 停售期间鸡肉poke 的备货量按平时的 1.5 倍准备，S02 按 2 倍准备；估计不够的，提前一天报供应链部补货。\n6. 顾客询问时"
+    },
+    {
+      "doc_id": "KB-023",
+      "input_chars": 727,
+      "retained_chars": 600,
+      "lost_chars": 127,
+      "lost_excerpt": "18 日当天上午再推一次。\n5. 当天加派 2 名兼职支援午市与晚市高峰，收银开双机。\n\n## 五、复盘\n\n6 月 19 日由店长提交活动复盘，写清实际销量、备货损耗、排队时长和客诉情况，报市场部。\n"
+    },
+    {
+      "doc_id": "KB-024",
+      "input_chars": 555,
+      "retained_chars": 300,
+      "lost_chars": 255,
+      "lost_excerpt": " 份。\n\n## 四、执行\n\n1. 6 月 17 日闭店后各店在 POS 里改价，6 月 18 日闭店后改回。\n2. 三文鱼按平时的 2.5 倍备货，6 月 16 日报量，6 月 17 日下午到货，到货"
+    },
+    {
+      "doc_id": "KB-025",
+      "input_chars": 676,
+      "retained_chars": 600,
+      "lost_chars": 76,
+      "lost_excerpt": "、储值余额照常使用，按调整后的售价结算，按实收入账。\n\n联系人：财务部 何静，021-5555-0130；供应链部 陆颂平，021-5555-0131。"
+    },
+    {
+      "doc_id": "KB-026",
+      "input_chars": 545,
+      "retained_chars": 300,
+      "lost_chars": 245,
+      "lost_excerpt": "\n4. 闭店前检查：外摆桌椅、立牌、遮阳棚全部收回室内；门窗紧闭；地漏与排水口清理干净；冷柜、制冰机保持通电，其余设备断电。\n5. 现金当天全部带走或入保险柜，不留在收银抽屉。\n6. 员工 15:00"
+    },
+    {
+      "doc_id": "KB-027",
+      "input_chars": 799,
+      "retained_chars": 600,
+      "lost_chars": 199,
+      "lost_excerpt": "统日报核对一致，无金额差错，无投诉升级。\n\n## 三、改进\n\n1. 门店常备零钱由 500 元提高到 1,500 元，由店长每周一核对。\n2. 增加一台 4G 移动收款终端作为备份，由 IT 部在 8"
+    },
+    {
+      "doc_id": "KB-028",
+      "input_chars": 652,
+      "retained_chars": 600,
+      "lost_chars": 52,
+      "lost_excerpt": "\n## 五、其他\n\n物料（杯、杯盖、封口膜、立牌）已于 7 月 29 日发到各店，缺料的当天报运营部补。"
+    },
+    {
+      "doc_id": "KB-029",
+      "input_chars": 2577,
+      "retained_chars": 2400,
+      "lost_chars": 177,
+      "lost_excerpt": "次培训里过一遍。\n4. 商场物业的施工和检修计划，各店收到后第一时间转运营部，不要等到影响营业当天才说。八月已经有一次网络升级没有提前通知到门店，运营部已经和物业重新确认了知会流程。\n5. 各店后厨的"
+    },
+    {
+      "doc_id": "KB-010",
+      "input_chars": 663,
+      "retained_chars": 600,
+      "lost_chars": 63,
+      "lost_excerpt": "与赠送金额的对账由财务在每月 5 日前完成，门店不自行调账。\n4. 顾客对余额有疑问，一律走会员客服工单，门店不在现场给承诺。"
+    },
+    {
+      "doc_id": "KB-011",
+      "input_chars": 884,
+      "retained_chars": 600,
+      "lost_chars": 284,
+      "lost_excerpt": "不设有效期。\n\n## 五、储值支付与订单金额\n\n使用储值余额支付**不改变订单金额**。\nPOS 记录的 `amount` 仍然是顾客本次实际消费的金额，`payment` 记为“会员储值”。\n充值时"
+    },
+    {
+      "doc_id": "KB-012",
+      "input_chars": 728,
+      "retained_chars": 600,
+      "lost_chars": 128,
+      "lost_excerpt": "店长处理，不走普通流程。\n\n## 五、沟通要求\n\n1. 受理退款时先听完顾客说明，不打断、不辩解，能当场解决的不往上推。\n2. 不在顾客面前讨论责任归属，也不当面批评员工。\n3. 涉及食品安全的投诉一"
+    },
+    {
+      "doc_id": "KB-013",
+      "input_chars": 692,
+      "retained_chars": 600,
+      "lost_chars": 92,
+      "lost_excerpt": "台内已经完成的退款不在门店重复操作。\n\n## 五、复核\n\n店长每天闭店时核对当天退款记录与登记内容，条数、金额都要对得上。\n运营部每月抽查，退款集中在个别时段或个别人员的，会单独复盘。"
+    },
+    {
+      "doc_id": "KB-014",
+      "input_chars": 736,
+      "retained_chars": 600,
+      "lost_chars": 136,
+      "lost_excerpt": "一次记警告，两次取消折扣资格。\n2. 离职当日起停用工牌和折扣权限，由店长在系统里当天关闭，不得延用到次月。\n3. 运营部每月复核各店员工折扣订单占比，明显偏高的门店要单独说明原因。\n4. 员工餐的食"
+    },
+    {
+      "doc_id": "KB-015",
+      "input_chars": 693,
+      "retained_chars": 600,
+      "lost_chars": 93,
+      "lost_excerpt": "分区：红色生肉、蓝色水产、绿色蔬果、白色熟食，不混用。\n3. 员工每次换岗、接触生料后、如厕后必须洗手消毒，店长每班抽查。\n4. 每日闭店做一次清洁自查，每周做一次全店深度清洁并留记录。"
+    },
+    {
+      "doc_id": "KB-016",
+      "input_chars": 617,
+      "retained_chars": 600,
+      "lost_chars": 17,
+      "lost_excerpt": "存两年，人事行政部每季度抽查一次。"
+    },
+    {
+      "doc_id": "KB-040",
+      "input_chars": 1552,
+      "retained_chars": 1500,
+      "lost_chars": 52,
+      "lost_excerpt": "提醒骑手核验。\n5. 配方或供应商变更时，由品控部在变更生效前更新本表并通知各店，门店不得自行修改配方。"
+    },
+    {
+      "doc_id": "KB-041",
+      "input_chars": 1026,
+      "retained_chars": 900,
+      "lost_chars": 126,
+      "lost_excerpt": "收、短交、破损在 30 分钟内报供应链部，由供应链部与供应商交涉，门店不与司机争执。\n3. 临时加单按各家的订货提前期倒推，赶不上的提前跟店长说，不要等到断货当天。\n4. 新增或更换供应商需经品控部资"
+    },
+    {
+      "doc_id": "KB-042",
+      "input_chars": 645,
+      "retained_chars": 600,
+      "lost_chars": 45,
+      "lost_excerpt": "修改。\n5. 本表由运营部维护，标准营业时间发生长期变更时才更新本表；临时性调整不改本表。"
+    },
+    {
+      "doc_id": "KB-060",
+      "input_chars": 1487,
+      "retained_chars": 1200,
+      "lost_chars": 287,
+      "lost_excerpt": "三样，两样有点少。\n- 07-25 S01 会员群留言：昨天台风提前关门，我理解，但能不能提前两个小时在群里说一声。\n- 07-28 S05 外卖平台评价：包装很稳，汤一点没洒，好评。\n\n## 四、跟"
+    },
+    {
+      "doc_id": "KB-050",
+      "input_chars": 588,
+      "retained_chars": 300,
+      "lost_chars": 288,
+      "lost_excerpt": "\n备货是按 10 倍备的，基本够，牛肉大概下午三点多有点紧张，临时从冷柜里又拿了一批出来解冻，最后收档还剩一点点，不算浪费。\n米饭备多了，晚上收档倒掉了两盆，下次同样的活动米饭按 2.5 倍备就够。\n"
+    },
+    {
+      "doc_id": "KB-051",
+      "input_chars": 616,
+      "retained_chars": 600,
+      "lost_chars": 16,
+      "lost_excerpt": "最近早班一个人顶两个岗有点吃力。"
+    },
+    {
+      "doc_id": "KB-052",
+      "input_chars": 598,
+      "retained_chars": 300,
+      "lost_chars": 298,
+      "lost_excerpt": "中午十二点多就把备用金用光了，我让员工跑了两趟对面便利店换零钱，后面才勉强周转开。\n\n## 处理\n\n1. 收银台和门口都贴了告知，排队的顾客提前说，减少走到收银台才发现的情况。\n2. 当天现金和系统日"
+    },
+    {
+      "doc_id": "KB-053",
+      "input_chars": 584,
+      "retained_chars": 300,
+      "lost_chars": 284,
+      "lost_excerpt": "子。\n\n## 闭店准备\n\n外摆的两张桌子和立牌都收进来了，地漏清了，遮阳棚收好了，冷柜和制冰机保持通电，其他设备断电。\n现金全部带走，收银抽屉空着。\n员工十五点前都走了，住得远的那两位我让他们在附近同"
+    },
+    {
+      "doc_id": "KB-030",
+      "input_chars": 587,
+      "retained_chars": 300,
+      "lost_chars": 287,
+      "lost_excerpt": "是软件园和几栋写字楼，午市集中在 11:30 到 13:00，翻台压力大，晚市偏平缓，周末以周边居民和带孩子的家庭为主。\n店内做开放式明档，出面口正对座位区，顾客能看到煮面、浇汤和摆盘的全过程，吧台六"
+    },
+    {
+      "doc_id": "KB-031",
+      "input_chars": 561,
+      "retained_chars": 300,
+      "lost_chars": 261,
+      "lost_excerpt": "\n客群以周边办公楼的白领为主，午市外带比例高，晚市偏安静，周末客流明显下降。\n店面在地下一层，紧邻地铁通道口，动线短、翻台快，但后厨面积小，冷柜容量有限，备货只能做到当天量，隔天的鲜货一律不留。\n出餐"
+    },
+    {
+      "doc_id": "KB-032",
+      "input_chars": 574,
+      "retained_chars": 300,
+      "lost_chars": 274,
+      "lost_excerpt": "0 到 09:30 是早餐高峰，客群以送完孩子的家长和周边居民为主，午市偏家庭，晚市 19:00 之后基本收尾。\n后厨有独立的包制间和蒸区，明档能看到包子现包，周末上午会做一档亲子包包体验，需要提前在"
+    },
+    {
+      "doc_id": "KB-033",
+      "input_chars": 565,
+      "retained_chars": 300,
+      "lost_chars": 265,
+      "lost_excerpt": "有 18 个，外带和外卖占比高，午市 12:00 前后排队最长，出餐速度是这家店最吃紧的环节。\n周边是老小区加创意园区，客群年龄跨度大，早市有一批固定的咖啡加三明治的熟客，认人也认口味。\n因为没有后厨"
+    },
+    {
+      "doc_id": "KB-034",
+      "input_chars": 551,
+      "retained_chars": 300,
+      "lost_chars": 251,
+      "lost_excerpt": "好。\n开在商场三层的餐饮层，靠近影院出口，晚市和周末是主场，工作日午市靠周边写字楼撑。\n店内有一条八人长吧台，单客和情侣多坐吧台，靠窗一排是四人桌，可以拼成长桌接待小型聚餐。\n因为品类全、座位多，总部"
+    }
+  ],
+  "retrieval": [
+    {
+      "id": "R01",
+      "query": "外卖订单多久内可以申请退款",
+      "terms": [
+        "外卖订单多久内可以申请退款"
+      ],
+      "coverage": 0.0,
+      "gold": [
+        "KB-013"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-001",
+          "chunk_id": "KB-001#1",
+          "real_owner": "KB-001",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-002",
+          "chunk_id": "KB-002#1",
+          "real_owner": "KB-002",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-003",
+          "chunk_id": "KB-003#1",
+          "real_owner": "KB-003",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-020",
+          "chunk_id": "KB-020#1",
+          "real_owner": "KB-020",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-021",
+          "chunk_id": "KB-021#1",
+          "real_owner": "KB-021",
+          "score": 0.0,
+          "padded": true
+        }
+      ]
+    },
+    {
+      "id": "R02",
+      "query": "牛肉poke 含哪些过敏原",
+      "terms": [
+        "牛肉poke",
+        "含哪些过敏原"
+      ],
+      "coverage": 0.4037161296698263,
+      "gold": [
+        "KB-040"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-040",
+          "chunk_id": "KB-040#2",
+          "real_owner": "KB-040",
+          "score": 3.594250031481501,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-003",
+          "chunk_id": "KB-003#2",
+          "real_owner": "KB-003",
+          "score": 3.304145999924626,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-050",
+          "chunk_id": "KB-050#1",
+          "real_owner": "KB-050",
+          "score": 2.2028733916243124,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-031",
+          "chunk_id": "KB-031#1",
+          "real_owner": "KB-031",
+          "score": 2.1272016728390644,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-060",
+          "chunk_id": "KB-060#1",
+          "real_owner": "KB-060",
+          "score": 1.8597217138741189,
+          "padded": false
+        }
+      ]
+    },
+    {
+      "id": "R03",
+      "query": "Super Souper 周五晚上营业到几点",
+      "terms": [
+        "super",
+        "souper",
+        "周五晚上营业到几点"
+      ],
+      "coverage": 0.4758733864347893,
+      "gold": [
+        "KB-062"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-053",
+          "chunk_id": "KB-053#1",
+          "real_owner": "KB-053",
+          "score": 13.05748462343392,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-030",
+          "chunk_id": "KB-030#1",
+          "real_owner": "KB-030",
+          "score": 11.137720627346562,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-060",
+          "chunk_id": "KB-060#2",
+          "real_owner": "KB-060",
+          "score": 10.742907065654066,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-042",
+          "chunk_id": "KB-042#1",
+          "real_owner": "KB-042",
+          "score": 7.921956144065312,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-052",
+          "chunk_id": "KB-052#1",
+          "real_owner": "KB-052",
+          "score": 5.854504666398487,
+          "padded": false
+        }
+      ]
+    },
+    {
+      "id": "R04",
+      "query": "三文鱼那次断供供应商赔了多少钱",
+      "terms": [
+        "三文鱼那次断供供应商赔了多少钱"
+      ],
+      "coverage": 0.0,
+      "gold": [
+        "KB-022"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-001",
+          "chunk_id": "KB-001#1",
+          "real_owner": "KB-001",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-002",
+          "chunk_id": "KB-002#1",
+          "real_owner": "KB-002",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-003",
+          "chunk_id": "KB-003#1",
+          "real_owner": "KB-003",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-020",
+          "chunk_id": "KB-020#1",
+          "real_owner": "KB-020",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-021",
+          "chunk_id": "KB-021#1",
+          "real_owner": "KB-021",
+          "score": 0.0,
+          "padded": true
+        }
+      ]
+    },
+    {
+      "id": "R05",
+      "query": "发票怎么开",
+      "terms": [
+        "发票怎么开"
+      ],
+      "coverage": 0.0,
+      "gold": [
+        "KB-061"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-001",
+          "chunk_id": "KB-001#1",
+          "real_owner": "KB-001",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-002",
+          "chunk_id": "KB-002#1",
+          "real_owner": "KB-002",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-003",
+          "chunk_id": "KB-003#1",
+          "real_owner": "KB-003",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-020",
+          "chunk_id": "KB-020#1",
+          "real_owner": "KB-020",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-021",
+          "chunk_id": "KB-021#1",
+          "real_owner": "KB-021",
+          "score": 0.0,
+          "padded": true
+        }
+      ]
+    },
+    {
+      "id": "R06",
+      "query": "净营业额怎么算，退款算不算进去",
+      "terms": [
+        "净营业额怎么算,退款算不算进去"
+      ],
+      "coverage": 0.0,
+      "gold": [
+        "KB-001"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-001",
+          "chunk_id": "KB-001#1",
+          "real_owner": "KB-001",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-002",
+          "chunk_id": "KB-002#1",
+          "real_owner": "KB-002",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-003",
+          "chunk_id": "KB-003#1",
+          "real_owner": "KB-003",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-020",
+          "chunk_id": "KB-020#1",
+          "real_owner": "KB-020",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-021",
+          "chunk_id": "KB-021#1",
+          "real_owner": "KB-021",
+          "score": 0.0,
+          "padded": true
+        }
+      ]
+    },
+    {
+      "id": "R07",
+      "query": "今年 618 牛肉poke 的活动价和目标销量",
+      "terms": [
+        "今年",
+        "618",
+        "牛肉poke",
+        "的活动价和目标销量"
+      ],
+      "coverage": 0.45304186035775224,
+      "gold": [
+        "KB-023"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-023",
+          "chunk_id": "KB-023#1",
+          "real_owner": "KB-023",
+          "score": 11.860566225480671,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-050",
+          "chunk_id": "KB-050#1",
+          "real_owner": "KB-050",
+          "score": 7.10399022825275,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-024",
+          "chunk_id": "KB-024#1",
+          "real_owner": "KB-024",
+          "score": 3.8787031257392037,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-040",
+          "chunk_id": "KB-040#2",
+          "real_owner": "KB-040",
+          "score": 3.594250031481501,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-003",
+          "chunk_id": "KB-003#2",
+          "real_owner": "KB-003",
+          "score": 3.304145999924626,
+          "padded": false
+        }
+      ]
+    },
+    {
+      "id": "R08",
+      "query": "现在单笔充值 500 送多少",
+      "terms": [
+        "现在单笔充值",
+        "500",
+        "送多少"
+      ],
+      "coverage": 0.21847816098100586,
+      "gold": [
+        "KB-011"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-010",
+          "chunk_id": "KB-010#1",
+          "real_owner": "KB-010",
+          "score": 5.976598492600994,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-010",
+          "chunk_id": "KB-010#2",
+          "real_owner": "KB-010",
+          "score": 4.4248319866719825,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-010",
+          "chunk_id": "KB-011#1",
+          "real_owner": "KB-011",
+          "score": 4.2176953412178495,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-011",
+          "chunk_id": "KB-011#2",
+          "real_owner": "KB-011",
+          "score": 3.968820058535611,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-001",
+          "chunk_id": "KB-001#1",
+          "real_owner": "KB-001",
+          "score": 0.0,
+          "padded": true
+        }
+      ]
+    },
+    {
+      "id": "R09",
+      "query": "味噌拉面在数据库里叫什么",
+      "terms": [
+        "味噌拉面在数据库里叫什么"
+      ],
+      "coverage": 0.0,
+      "gold": [
+        "KB-003"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-040",
+          "chunk_id": "KB-040#1",
+          "real_owner": "KB-040",
+          "score": 2.176386830453081,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-003",
+          "chunk_id": "KB-003#1",
+          "real_owner": "KB-003",
+          "score": 1.880452307261618,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-001",
+          "chunk_id": "KB-001#1",
+          "real_owner": "KB-001",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-002",
+          "chunk_id": "KB-002#1",
+          "real_owner": "KB-002",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-003",
+          "chunk_id": "KB-003#2",
+          "real_owner": "KB-003",
+          "score": 0.0,
+          "padded": true
+        }
+      ]
+    },
+    {
+      "id": "R10",
+      "query": "S04 为什么不卖吞拿鱼三明治了",
+      "terms": [
+        "s04",
+        "为什么不卖吞拿鱼三明治了"
+      ],
+      "coverage": 0.32674561478899683,
+      "gold": [
+        "KB-029"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-060",
+          "chunk_id": "KB-060#3",
+          "real_owner": "KB-060",
+          "score": 9.72282382401691,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-033",
+          "chunk_id": "KB-033#1",
+          "real_owner": "KB-033",
+          "score": 9.519284170505157,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-042",
+          "chunk_id": "KB-042#1",
+          "real_owner": "KB-042",
+          "score": 7.52015031029038,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-060",
+          "chunk_id": "KB-029#4",
+          "real_owner": "KB-029",
+          "score": 4.362293805275832,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-060",
+          "chunk_id": "KB-003#3",
+          "real_owner": "KB-003",
+          "score": 3.3958251936850052,
+          "padded": false
+        }
+      ]
+    },
+    {
+      "id": "R11",
+      "query": "冷萃乌龙茶首月的目标销量是多少",
+      "terms": [
+        "冷萃乌龙茶首月的目标销量是多少"
+      ],
+      "coverage": 0.0,
+      "gold": [
+        "KB-028"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-041",
+          "chunk_id": "KB-041#1",
+          "real_owner": "KB-041",
+          "score": 3.140112017757182,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-003",
+          "chunk_id": "KB-003#3",
+          "real_owner": "KB-003",
+          "score": 2.30358335963186,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-040",
+          "chunk_id": "KB-040#5",
+          "real_owner": "KB-040",
+          "score": 2.1074102299187274,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-001",
+          "chunk_id": "KB-001#1",
+          "real_owner": "KB-001",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-002",
+          "chunk_id": "KB-002#1",
+          "real_owner": "KB-002",
+          "score": 0.0,
+          "padded": true
+        }
+      ]
+    },
+    {
+      "id": "R12",
+      "query": "S03 六月停业几天，什么原因",
+      "terms": [
+        "s03",
+        "六月停业几天,什么原因"
+      ],
+      "coverage": 0.30142883487353245,
+      "gold": [
+        "KB-020",
+        "KB-051"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-020",
+          "chunk_id": "KB-020#1",
+          "real_owner": "KB-020",
+          "score": 9.420067253978713,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-051",
+          "chunk_id": "KB-051#1",
+          "real_owner": "KB-051",
+          "score": 8.979141588958303,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-032",
+          "chunk_id": "KB-032#1",
+          "real_owner": "KB-032",
+          "score": 7.442016719397774,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-060",
+          "chunk_id": "KB-060#3",
+          "real_owner": "KB-060",
+          "score": 6.961459777365927,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-042",
+          "chunk_id": "KB-042#1",
+          "real_owner": "KB-042",
+          "score": 6.339339516295251,
+          "padded": false
+        }
+      ]
+    },
+    {
+      "id": "R13",
+      "query": "台风那天几点提前闭店",
+      "terms": [
+        "台风那天几点提前闭店"
+      ],
+      "coverage": 0.0,
+      "gold": [
+        "KB-026",
+        "KB-053"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-001",
+          "chunk_id": "KB-001#1",
+          "real_owner": "KB-001",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-002",
+          "chunk_id": "KB-002#1",
+          "real_owner": "KB-002",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-003",
+          "chunk_id": "KB-003#1",
+          "real_owner": "KB-003",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-020",
+          "chunk_id": "KB-020#1",
+          "real_owner": "KB-020",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-021",
+          "chunk_id": "KB-021#1",
+          "real_owner": "KB-021",
+          "score": 0.0,
+          "padded": true
+        }
+      ]
+    },
+    {
+      "id": "R14",
+      "query": "S05 那天为什么只能收现金",
+      "terms": [
+        "s05",
+        "那天为什么只能收现金"
+      ],
+      "coverage": 0.30142883487353245,
+      "gold": [
+        "KB-027",
+        "KB-052"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-052",
+          "chunk_id": "KB-052#1",
+          "real_owner": "KB-052",
+          "score": 8.829640932083004,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-027",
+          "chunk_id": "KB-027#1",
+          "real_owner": "KB-027",
+          "score": 7.650365750915235,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-042",
+          "chunk_id": "KB-042#2",
+          "real_owner": "KB-042",
+          "score": 6.829447019372684,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-034",
+          "chunk_id": "KB-034#1",
+          "real_owner": "KB-034",
+          "score": 6.205145982545853,
+          "padded": false
+        },
+        {
+          "doc_id": "KB-060",
+          "chunk_id": "KB-060#3",
+          "real_owner": "KB-060",
+          "score": 5.678494102483024,
+          "padded": false
+        }
+      ]
+    },
+    {
+      "id": "R15",
+      "query": "员工折扣几折，能不能和活动叠加",
+      "terms": [
+        "员工折扣几折,能不能和活动叠加"
+      ],
+      "coverage": 0.0,
+      "gold": [
+        "KB-014"
+      ],
+      "hits": [
+        {
+          "doc_id": "KB-001",
+          "chunk_id": "KB-001#1",
+          "real_owner": "KB-001",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-002",
+          "chunk_id": "KB-002#1",
+          "real_owner": "KB-002",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-003",
+          "chunk_id": "KB-003#1",
+          "real_owner": "KB-003",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-020",
+          "chunk_id": "KB-020#1",
+          "real_owner": "KB-020",
+          "score": 0.0,
+          "padded": true
+        },
+        {
+          "doc_id": "KB-021",
+          "chunk_id": "KB-021#1",
+          "real_owner": "KB-021",
+          "score": 0.0,
+          "padded": true
+        }
+      ]
+    }
+  ]
+}
