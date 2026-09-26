@@ -1,0 +1,164 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-106/test_near_topic_missing__u725b0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-106/test_near_topic_missing__u725b0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-106/test_near_topic_missing__u725b0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 deec39f4c498\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-106/test_near_topic_missing__u725b0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-106/test_near_topic_missing__u725b0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "64820"
+      ],
+      "pid": 9430,
+      "port": 64820,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "deec39f4c498",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "牛肉poke的花生含量是多少克？",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "2026-05-01 至 2026-08-31（全部门店）（牛肉poke）：净营业额 82570.00 元，有效订单数 1248 单，客单价 66.16 元，销量 1939 件，退款金额 300.00 元。",
+            "answer_type": "data",
+            "citations": [],
+            "data_evidence": [
+              {
+                "tool": "query_metrics",
+                "params": {
+                  "start": "2026-05-01",
+                  "end": "2026-08-31",
+                  "store_id": null,
+                  "product_id": "P06"
+                },
+                "result": {
+                  "start": "2026-05-01",
+                  "end": "2026-08-31",
+                  "store_id": null,
+                  "product_id": "P06",
+                  "net_revenue": 82570.0,
+                  "refund_amount": 300.0,
+                  "orders": 1248,
+                  "aov": 66.16,
+                  "qty": 1939
+                }
+              }
+            ],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "single",
+            "question": "牛肉poke的花生含量是多少克？",
+            "started_at": "2026-09-27T04:10:00.763",
+            "total_ms": 8.5,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 7.7,
+                "took_ms": 7.7,
+                "detail": {
+                  "question": "牛肉poke的花生含量是多少克？",
+                  "standalone_question": "牛肉poke的花生含量是多少克？",
+                  "search_query": "牛肉poke的花生含量是多少克？ 牛肉poke",
+                  "intent": "data",
+                  "kind": "summary",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": "P06",
+                  "metric": "net_revenue",
+                  "needs_data": true,
+                  "needs_docs": false,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=P06 时间=未指定"
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 8.5,
+                "took_ms": 0.9,
+                "detail": {
+                  "answer_type": "data"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 8.5,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "data",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}
