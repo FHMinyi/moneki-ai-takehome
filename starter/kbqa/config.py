@@ -47,7 +47,7 @@ class Settings:
 
     @property
     def index_path(self) -> Path:
-        # 索引缓存跟着仓库走，clone 下来就能直接起服务，不用等建索引。
+        # 本地产物：从源码安装后由 rebuild 生成，不随仓库分发。
         return PROJECT_DIR / ".cache" / "index.json"
 
     @property

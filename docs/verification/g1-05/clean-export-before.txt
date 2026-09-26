@@ -1,0 +1,6 @@
+Tested commit: e842093 (first delivery entrypoint commit)
+Command: python3.12 /tmp/g1-05-prepare.py (git archive + absence assertions)
+Result: AssertionError before installing dependencies.
+Diagnosis: git ls-files 'starter/.cache/*' returned starter/.cache/index.json.
+The starter shipped a tracked pre-generated index despite .gitignore excluding .cache/.
+No README installation steps ran on this failed export.
