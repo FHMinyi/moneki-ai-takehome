@@ -1,8 +1,9 @@
-# Moneki 经营看板 · 第一关交付
+# Moneki 经营看板与文档问答 · 第二关交付
 
 已实现日期/门店筛选、五项经营指标、每日净营业额趋势、Top 10 商品和全量数据质量台账。
 页面使用真实清洗数据，Python/FastAPI 同源提供 API 与 React 生产页面，无 Key 可用。
-当前交付范围是**第一关**；starter 的 RAG/问答仍有已知缺陷，尚未交付第二至四关的 AI 体验。
+当前交付包含第一关看板，以及第二关的知识库摄取、可靠检索与单轮文档问答 API。
+无 Key 使用保守的原文抽取，证据不足时允许拒答；混合编排、多轮会话、聊天前端和修复后的真实模型验收留待后续。
 [原始任务书全文](docs/ASSIGNMENT.md)保持可查，[必须遵守的 API 契约](docs/API_CONTRACT.md)未改。
 
 ## 三步从源码启动
@@ -39,8 +40,9 @@ make run DATA_DIR=/absolute/new-data KB_DIR=/absolute/new-kb VAR_DIR=/absolute/n
 
 重建包含前端构建；清洗库成功完成后原子替换。无销售行时日期范围为空，页面显示明确空态，门店仍来自维表。
 已有服务持有当前数据/索引对象，不承诺热更新；**重建后必须重启**。
-索引仍使用 starter 的 `starter/.cache/index.json` 缓存，知识库变更感知与文档计数已知问题留待第二关；
-第一关验证只覆盖销售/门店/商品替换，不能据此宣称知识库替换验收通过。
+索引缓存位于 `starter/.cache/index.json`，按知识库路径、文件内容和处理版本失效；health 报告实际入库文档和片段数。
+知识库支持带 `KB-xxx` 文件编号的 Markdown、TXT（UTF-8/GBK）和静态 HTML 可见正文，说明文件不计入索引。
+第二关已通过新增、修改、删除、切换目录、事实/别名及格式编码变化的重建和重启验证；原文连续引用由同次输入快照核对。
 
 ## 架构与取舍
 
@@ -53,7 +55,9 @@ flowchart LR
   VITE --> STATIC[FastAPI 同源静态页面]
   API --> UI[浏览器经营看板]
   STATIC --> UI
-  KB[knowledge_base] --> INDEX[starter 索引缓存 · 待第二关修复]
+  KB[knowledge_base] --> INDEX[内容感知 BM25 索引与原文位置]
+  INDEX --> RETRIEVE[适用版本和门店过滤后的检索]
+  RETRIEVE --> CHAT[单轮文档 API · 原文引用或拒答]
 ```
 
 - 保留 Python/FastAPI + SQLite：沿用契约与 starter，计算路径可追溯，当前规模无需新增数据库或消息队列。
@@ -71,7 +75,8 @@ Top 10 按净营业额降序，同额按商品编号稳定排序；不把样本�
 ## 验证与证据
 
 [第一关正式验收记录](docs/verification/g1-05/README.md)记录被测提交、干净副本、完整命令、环境、原始/替换/空数据检查及截图。
-[评测报告](EVAL_REPORT.md)保留原始无模型 17/100、真实模型 25.5/100 两组基线，新增本关 metrics **6/6** 阶段记录；这不是最终全量 100 分。
+[第二关整体验收记录](docs/verification/g2-05/final/README.md)保存新安装环境、199项真实RAG、知识库替换和第一关浏览器回归。
+[评测报告](EVAL_REPORT.md)并列原始无模型17/100、原始真实模型25.5/100、第二关起点41/100与当前无模型 **88.5/100，49/55**。这不是修复后的真实模型成绩。
 [调试记录](DEBUG_LOG.md)与 [AI 使用说明](AI_USAGE.md)区分真实缺陷、验收脚本问题与尚未验证事项。
 
 本地后端回归与公开指标评测（先启动原始数据服务）：
@@ -83,3 +88,23 @@ python3.12 eval/run_eval.py --base-url http://127.0.0.1:8000 --questions eval/pu
 
 浏览器回归安装 Chromium 后运行；旧测试默认向前序证据目录截图，须使用[验收脚本](docs/verification/g1-05/run_browser.sh)统一重定向。
 开发入口与各阶段说明见 [starter 运行说明](starter/README.md)和[前端说明](frontend/README.md)。
+
+## 单轮文档 API 与已知边界
+
+启动后可通过同一服务调用（现有页面仍是经营看板）：
+
+```bash
+curl -s http://127.0.0.1:8000/api/retrieve -H 'Content-Type: application/json' \
+  -d '{"query":"外卖订单多久内可以退款","top_k":5}'
+curl -s http://127.0.0.1:8000/api/chat -H 'Content-Type: application/json' \
+  -d '{"session_id":"single-demo","question":"2026-06-14当时外卖订单多久内可以申请退款？"}'
+```
+
+沿用 BM25，不下载嵌入模型或部署检索服务。中文相邻二元词项、英文整词与知识库别名支持检索；
+适用版本/门店先过滤，补位片段不作为问答证据。分块保存原文偏移与同源标题/表头上下文，
+长普通行使用重叠以保留边界事实。引用回到真实连续正文，展示标题不会吞掉同名正文。
+这些是本地无模型模式的实现选择，不等于通用语言理解；低分或证据不足时保守拒答。
+
+公开剩余未全绿为 V03、H01、H06、T01、T02、T03。历史完整问句通过不代表追问通过；
+不承诺会话隔离、任意同义表达/长标题问法、隐藏题或完整安全对抗已验收。
+根三步入口始终清除模型配置；真实模型切换与修复后评测属于后续工作，不由本次无 Key 结果推导。
