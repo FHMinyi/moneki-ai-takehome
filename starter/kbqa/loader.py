@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-import html as html_module
 import re
 from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
+from html.parser import HTMLParser
 from typing import Optional
 
-SUPPORTED_SUFFIXES = {".md", ".markdown"}
+LOADER_VERSION = "loader-2"
+SUPPORTED_SUFFIXES = {".md", ".markdown", ".txt", ".html"}
 
 #: 文件名开头的编号就是 doc_id，与文件格式无关（契约 §0）。
 _DOC_ID = re.compile(r"^(KB-\d+)")
@@ -76,12 +77,63 @@ class Document:
         }
 
 
-_HTML_TITLE = re.compile(r"<title>(.*?)</title>", re.S | re.I)
+class _VisibleHTML(HTMLParser):
+    """Extract static text; keep inline text contiguous and separate block elements."""
+
+    BLOCKS = {"p", "div", "section", "article", "header", "footer", "main", "nav",
+              "h1", "h2", "h3", "h4", "h5", "h6", "li", "ul", "ol", "br", "hr",
+              "table", "tr", "blockquote", "pre", "dl", "dt", "dd"}
+    HIDDEN = {"head", "script", "style", "template"}
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.parts: list[str] = []
+        self.title_parts: list[str] = []
+        self.hidden: list[str] = []
+        self.in_title = False
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "title":
+            self.in_title = True
+        if tag in self.HIDDEN:
+            self.hidden.append(tag)
+        if not self.hidden and tag in self.BLOCKS:
+            self.parts.append("\n")
+        if not self.hidden and tag in {"td", "th"}:
+            self.parts.append(" ")
+
+    def handle_endtag(self, tag):
+        if tag == "title":
+            self.in_title = False
+        if tag in self.hidden:
+            # Recover gracefully from unbalanced hidden markup.
+            position = len(self.hidden) - 1 - self.hidden[::-1].index(tag)
+            del self.hidden[position:]
+        if not self.hidden and tag in self.BLOCKS:
+            self.parts.append("\n")
+
+    def handle_data(self, data):
+        if self.in_title:
+            self.title_parts.append(data)
+        elif not self.hidden:
+            self.parts.append(re.sub(r"\s+", " ", data))
+
+    @property
+    def text(self):
+        return "\n".join(line.strip() for line in "".join(self.parts).splitlines() if line.strip())
 
 
 def decode_bytes(raw: bytes, path: Path, warnings: list[str]) -> str:
-    """统一按 UTF-8 读。个别老文件里有怪字符，忽略掉就行，不影响检索。"""
-    return raw.decode("utf-8", errors="ignore")
+    """Strict UTF-8 (optional BOM), then the supplied legacy GBK encoding.
+
+    Unsupported bytes raise instead of silently corrupting reference text.
+    """
+    try:
+        return raw.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        text = raw.decode("gbk")
+        warnings.append("使用 GBK 解码：%s" % path.name)
+        return text
 
 
 def parse_front_matter(text: str) -> tuple[dict, str]:
@@ -166,6 +218,9 @@ def _title_from_body(text: str, fallback: str) -> str:
 
 def load_document(path: Path) -> Optional[Document]:
     """读一个文件。不是知识库文档（没有 KB 编号）时返回 None。"""
+    match = _DOC_ID.match(path.name)
+    if not match:
+        return None
     warnings: list[str] = []
     raw = path.read_bytes()
     text = decode_bytes(raw, path, warnings)
@@ -176,15 +231,16 @@ def load_document(path: Path) -> Optional[Document]:
     if fmt == "md":
         meta, text = parse_front_matter(text)
     elif fmt == "html":
-        # html 直接按文本入库，标签也就那么几个，BM25 自己会忽略。
-        match_title = _HTML_TITLE.search(text)
-        html_title = html_module.unescape(match_title.group(1).strip()) if match_title else ""
-        meta = {"title": html_title.split("-")[0].strip() or html_title}
+        parser = _VisibleHTML()
+        parser.feed(text)
+        parser.close()
+        text = parser.text
+        html_title = "".join(parser.title_parts).strip()
+        meta = {"title": html_title}
 
-    match = _DOC_ID.match(path.name)
-    doc_id = str(meta.get("doc_id") or (match.group(1) if match else "")).strip()
-    if not doc_id:
-        return None
+    doc_id = match.group(1)
+    if meta.get("doc_id") and meta["doc_id"] != doc_id:
+        warnings.append("忽略与文件名不一致的 doc_id：%s" % path.name)
 
     declared = meta.get("stores")
     stores = declared or _sorted_unique(_STORE_CODE.findall(text))
