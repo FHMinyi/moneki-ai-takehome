@@ -319,7 +319,7 @@ class Answerer(HybridAnswers):
         explain cells but receive their own continuous citation.
         """
         candidates, rejected = [], []
-        attributes = self.facts.requested_attribute(plan.standalone)
+        claim = self.facts.requested_claim(plan.standalone)
         for hit in self.answerable_hits(plan, result):
             source = self.retriever.index.texts[hit.doc_id]
             start = len(re.sub(r"\s+", "", source[:hit.source_start]))
@@ -329,13 +329,13 @@ class Answerer(HybridAnswers):
                 if is_instruction_like(unit.text):
                     rejected.append({"doc_id": hit.doc_id, "reason": "document_instruction", "text": unit.text})
             ranked = self.facts.rank(plan.search_query, hit.doc_id, limit=5,
-                                     require_value=not attributes, units=units)
+                                     require_value=claim is None, units=units)
             for score, unit in ranked:
                 if is_instruction_like(unit.text) or not (start <= unit.start < unit.end <= end):
                     continue
-                if not self.facts.supports_attribute(attributes, unit.text + " " + " ".join(unit.header)):
+                if not self.facts.supports_claim(claim, unit):
                     rejected.append({"doc_id": hit.doc_id, "reason": "unsupported_attribute",
-                                     "required_terms": attributes, "text": unit.text})
+                                     "required_claim": claim, "text": unit.text})
                     continue
                 candidates.append(dict(score=score * (hit.score / result.ranked[0].score) ** .5,
                                        unit=unit, hit=hit))
@@ -363,7 +363,7 @@ class Answerer(HybridAnswers):
                          "source_start":hit.source_start,"source_end":hit.source_end,"quote":unit.text}]
             break
         if trace is not None:
-            trace.step("evidence", {"candidates":[{"doc_id":c["hit"].doc_id,"chunk_id":c["hit"].chunk_id,
+            trace.step("evidence", {"required_claim": claim, "candidates":[{"doc_id":c["hit"].doc_id,"chunk_id":c["hit"].chunk_id,
                        "score":c["score"],"text":c["unit"].text} for c in candidates],
                        "rejected":rejected,"selected":selected})
         return "\n".join(body), citations, candidates[0]["score"] if candidates else 0.0
