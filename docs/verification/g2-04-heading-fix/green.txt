@@ -1,0 +1,880 @@
+FFFFFFFFFFFFFFF                                                          [100%]
+=================================== FAILURES ===================================
+__________________ test_untitled_formats_and_fact_update[md] ___________________
+
+rt = <g203.Runtime object at 0x108b80c20>, fmt = 'md'
+
+    @pytest.mark.parametrize('fmt',['md','utf8-txt','gbk-txt','html'])
+    def test_untitled_formats_and_fact_update(rt,fmt):
+        aliases(rt)
+        for number in (31,47):
+            fact=f'翡翠饭的配送时限为{number}分钟。'
+            suffix='txt' if fmt.endswith('txt') else fmt
+            body=f'<html><body><p>{fact}</p></body></html>' if fmt=='html' else fact
+            (rt.kb/('KB-971.'+suffix)).write_bytes(body.encode('gbk' if fmt=='gbk-txt' else 'utf-8'))
+>           payload=rt.build()
+                    ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108b80c20>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact0/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact0/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact0/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact0/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact0/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact0/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact0/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+_______________ test_untitled_formats_and_fact_update[utf8-txt] ________________
+
+rt = <g203.Runtime object at 0x108a894c0>, fmt = 'utf8-txt'
+
+    @pytest.mark.parametrize('fmt',['md','utf8-txt','gbk-txt','html'])
+    def test_untitled_formats_and_fact_update(rt,fmt):
+        aliases(rt)
+        for number in (31,47):
+            fact=f'翡翠饭的配送时限为{number}分钟。'
+            suffix='txt' if fmt.endswith('txt') else fmt
+            body=f'<html><body><p>{fact}</p></body></html>' if fmt=='html' else fact
+            (rt.kb/('KB-971.'+suffix)).write_bytes(body.encode('gbk' if fmt=='gbk-txt' else 'utf-8'))
+>           payload=rt.build()
+                    ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108a894c0>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact1/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact1/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact1/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact1/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact1/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact1/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact1/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+________________ test_untitled_formats_and_fact_update[gbk-txt] ________________
+
+rt = <g203.Runtime object at 0x108b77500>, fmt = 'gbk-txt'
+
+    @pytest.mark.parametrize('fmt',['md','utf8-txt','gbk-txt','html'])
+    def test_untitled_formats_and_fact_update(rt,fmt):
+        aliases(rt)
+        for number in (31,47):
+            fact=f'翡翠饭的配送时限为{number}分钟。'
+            suffix='txt' if fmt.endswith('txt') else fmt
+            body=f'<html><body><p>{fact}</p></body></html>' if fmt=='html' else fact
+            (rt.kb/('KB-971.'+suffix)).write_bytes(body.encode('gbk' if fmt=='gbk-txt' else 'utf-8'))
+>           payload=rt.build()
+                    ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108b77500>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact2/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact2/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact2/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact2/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact2/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact2/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact2/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+_________________ test_untitled_formats_and_fact_update[html] __________________
+
+rt = <g203.Runtime object at 0x108b74ce0>, fmt = 'html'
+
+    @pytest.mark.parametrize('fmt',['md','utf8-txt','gbk-txt','html'])
+    def test_untitled_formats_and_fact_update(rt,fmt):
+        aliases(rt)
+        for number in (31,47):
+            fact=f'翡翠饭的配送时限为{number}分钟。'
+            suffix='txt' if fmt.endswith('txt') else fmt
+            body=f'<html><body><p>{fact}</p></body></html>' if fmt=='html' else fact
+            (rt.kb/('KB-971.'+suffix)).write_bytes(body.encode('gbk' if fmt=='gbk-txt' else 'utf-8'))
+>           payload=rt.build()
+                    ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108b74ce0>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact3/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact3/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact3/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact3/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact3/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact3/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_untitled_formats_and_fact3/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+______________ test_structural_heading_controls[heading-only-md] _______________
+
+rt = <g203.Runtime object at 0x108b76000>, fmt = 'md', mode = 'heading-only'
+
+    @pytest.mark.parametrize('fmt',['md','html'])
+    @pytest.mark.parametrize('mode',['heading-only','heading-and-fact','same-text-twice','metadata-equals-body'])
+    def test_structural_heading_controls(rt,fmt,mode):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        if fmt=='md':
+            body={'heading-only':'# '+fact,
+                  'heading-and-fact':'# 配送规范\n\n'+fact,
+                  'same-text-twice':'# '+fact+'\n\n'+fact,
+                  'metadata-equals-body':'---\ntitle: '+fact+'\n---\n'+fact}[mode]
+        else:
+            body={'heading-only':'<h1>'+fact+'</h1>',
+                  'heading-and-fact':'<h1>配送规范</h1><p>'+fact+'</p>',
+                  'same-text-twice':'<h1>'+fact+'</h1><p>'+fact+'</p>',
+                  'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
+        (rt.kb/('KB-971.'+fmt)).write_text(body)
+>       payload=rt.build()
+                ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108b76000>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro0/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro0/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro0/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro0/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro0/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro0/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro0/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+_____________ test_structural_heading_controls[heading-only-html] ______________
+
+rt = <g203.Runtime object at 0x108c781a0>, fmt = 'html', mode = 'heading-only'
+
+    @pytest.mark.parametrize('fmt',['md','html'])
+    @pytest.mark.parametrize('mode',['heading-only','heading-and-fact','same-text-twice','metadata-equals-body'])
+    def test_structural_heading_controls(rt,fmt,mode):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        if fmt=='md':
+            body={'heading-only':'# '+fact,
+                  'heading-and-fact':'# 配送规范\n\n'+fact,
+                  'same-text-twice':'# '+fact+'\n\n'+fact,
+                  'metadata-equals-body':'---\ntitle: '+fact+'\n---\n'+fact}[mode]
+        else:
+            body={'heading-only':'<h1>'+fact+'</h1>',
+                  'heading-and-fact':'<h1>配送规范</h1><p>'+fact+'</p>',
+                  'same-text-twice':'<h1>'+fact+'</h1><p>'+fact+'</p>',
+                  'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
+        (rt.kb/('KB-971.'+fmt)).write_text(body)
+>       payload=rt.build()
+                ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108c781a0>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro1/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro1/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro1/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro1/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro1/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro1/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro1/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+____________ test_structural_heading_controls[heading-and-fact-md] _____________
+
+rt = <g203.Runtime object at 0x108c79c10>, fmt = 'md', mode = 'heading-and-fact'
+
+    @pytest.mark.parametrize('fmt',['md','html'])
+    @pytest.mark.parametrize('mode',['heading-only','heading-and-fact','same-text-twice','metadata-equals-body'])
+    def test_structural_heading_controls(rt,fmt,mode):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        if fmt=='md':
+            body={'heading-only':'# '+fact,
+                  'heading-and-fact':'# 配送规范\n\n'+fact,
+                  'same-text-twice':'# '+fact+'\n\n'+fact,
+                  'metadata-equals-body':'---\ntitle: '+fact+'\n---\n'+fact}[mode]
+        else:
+            body={'heading-only':'<h1>'+fact+'</h1>',
+                  'heading-and-fact':'<h1>配送规范</h1><p>'+fact+'</p>',
+                  'same-text-twice':'<h1>'+fact+'</h1><p>'+fact+'</p>',
+                  'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
+        (rt.kb/('KB-971.'+fmt)).write_text(body)
+>       payload=rt.build()
+                ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108c79c10>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro2/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro2/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro2/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro2/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro2/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro2/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro2/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+___________ test_structural_heading_controls[heading-and-fact-html] ____________
+
+rt = <g203.Runtime object at 0x108b770e0>, fmt = 'html'
+mode = 'heading-and-fact'
+
+    @pytest.mark.parametrize('fmt',['md','html'])
+    @pytest.mark.parametrize('mode',['heading-only','heading-and-fact','same-text-twice','metadata-equals-body'])
+    def test_structural_heading_controls(rt,fmt,mode):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        if fmt=='md':
+            body={'heading-only':'# '+fact,
+                  'heading-and-fact':'# 配送规范\n\n'+fact,
+                  'same-text-twice':'# '+fact+'\n\n'+fact,
+                  'metadata-equals-body':'---\ntitle: '+fact+'\n---\n'+fact}[mode]
+        else:
+            body={'heading-only':'<h1>'+fact+'</h1>',
+                  'heading-and-fact':'<h1>配送规范</h1><p>'+fact+'</p>',
+                  'same-text-twice':'<h1>'+fact+'</h1><p>'+fact+'</p>',
+                  'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
+        (rt.kb/('KB-971.'+fmt)).write_text(body)
+>       payload=rt.build()
+                ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108b770e0>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro3/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro3/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro3/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro3/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro3/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro3/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro3/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+_____________ test_structural_heading_controls[same-text-twice-md] _____________
+
+rt = <g203.Runtime object at 0x108b77770>, fmt = 'md', mode = 'same-text-twice'
+
+    @pytest.mark.parametrize('fmt',['md','html'])
+    @pytest.mark.parametrize('mode',['heading-only','heading-and-fact','same-text-twice','metadata-equals-body'])
+    def test_structural_heading_controls(rt,fmt,mode):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        if fmt=='md':
+            body={'heading-only':'# '+fact,
+                  'heading-and-fact':'# 配送规范\n\n'+fact,
+                  'same-text-twice':'# '+fact+'\n\n'+fact,
+                  'metadata-equals-body':'---\ntitle: '+fact+'\n---\n'+fact}[mode]
+        else:
+            body={'heading-only':'<h1>'+fact+'</h1>',
+                  'heading-and-fact':'<h1>配送规范</h1><p>'+fact+'</p>',
+                  'same-text-twice':'<h1>'+fact+'</h1><p>'+fact+'</p>',
+                  'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
+        (rt.kb/('KB-971.'+fmt)).write_text(body)
+>       payload=rt.build()
+                ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108b77770>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro4/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro4/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro4/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro4/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro4/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro4/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro4/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+____________ test_structural_heading_controls[same-text-twice-html] ____________
+
+rt = <g203.Runtime object at 0x108a89190>, fmt = 'html'
+mode = 'same-text-twice'
+
+    @pytest.mark.parametrize('fmt',['md','html'])
+    @pytest.mark.parametrize('mode',['heading-only','heading-and-fact','same-text-twice','metadata-equals-body'])
+    def test_structural_heading_controls(rt,fmt,mode):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        if fmt=='md':
+            body={'heading-only':'# '+fact,
+                  'heading-and-fact':'# 配送规范\n\n'+fact,
+                  'same-text-twice':'# '+fact+'\n\n'+fact,
+                  'metadata-equals-body':'---\ntitle: '+fact+'\n---\n'+fact}[mode]
+        else:
+            body={'heading-only':'<h1>'+fact+'</h1>',
+                  'heading-and-fact':'<h1>配送规范</h1><p>'+fact+'</p>',
+                  'same-text-twice':'<h1>'+fact+'</h1><p>'+fact+'</p>',
+                  'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
+        (rt.kb/('KB-971.'+fmt)).write_text(body)
+>       payload=rt.build()
+                ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108a89190>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro5/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro5/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro5/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro5/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro5/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro5/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro5/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+__________ test_structural_heading_controls[metadata-equals-body-md] ___________
+
+rt = <g203.Runtime object at 0x108c7b9b0>, fmt = 'md'
+mode = 'metadata-equals-body'
+
+    @pytest.mark.parametrize('fmt',['md','html'])
+    @pytest.mark.parametrize('mode',['heading-only','heading-and-fact','same-text-twice','metadata-equals-body'])
+    def test_structural_heading_controls(rt,fmt,mode):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        if fmt=='md':
+            body={'heading-only':'# '+fact,
+                  'heading-and-fact':'# 配送规范\n\n'+fact,
+                  'same-text-twice':'# '+fact+'\n\n'+fact,
+                  'metadata-equals-body':'---\ntitle: '+fact+'\n---\n'+fact}[mode]
+        else:
+            body={'heading-only':'<h1>'+fact+'</h1>',
+                  'heading-and-fact':'<h1>配送规范</h1><p>'+fact+'</p>',
+                  'same-text-twice':'<h1>'+fact+'</h1><p>'+fact+'</p>',
+                  'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
+        (rt.kb/('KB-971.'+fmt)).write_text(body)
+>       payload=rt.build()
+                ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108c7b9b0>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro6/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro6/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro6/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro6/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro6/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro6/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro6/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+_________ test_structural_heading_controls[metadata-equals-body-html] __________
+
+rt = <g203.Runtime object at 0x108c78770>, fmt = 'html'
+mode = 'metadata-equals-body'
+
+    @pytest.mark.parametrize('fmt',['md','html'])
+    @pytest.mark.parametrize('mode',['heading-only','heading-and-fact','same-text-twice','metadata-equals-body'])
+    def test_structural_heading_controls(rt,fmt,mode):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        if fmt=='md':
+            body={'heading-only':'# '+fact,
+                  'heading-and-fact':'# 配送规范\n\n'+fact,
+                  'same-text-twice':'# '+fact+'\n\n'+fact,
+                  'metadata-equals-body':'---\ntitle: '+fact+'\n---\n'+fact}[mode]
+        else:
+            body={'heading-only':'<h1>'+fact+'</h1>',
+                  'heading-and-fact':'<h1>配送规范</h1><p>'+fact+'</p>',
+                  'same-text-twice':'<h1>'+fact+'</h1><p>'+fact+'</p>',
+                  'metadata-equals-body':'<head><title>'+fact+'</title></head><body><p>'+fact+'</p></body>'}[mode]
+        (rt.kb/('KB-971.'+fmt)).write_text(body)
+>       payload=rt.build()
+                ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108c78770>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro7/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro7/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro7/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro7/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro7/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro7/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_structural_heading_contro7/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+________________ test_long_markdown_heading_does_not_merge_body ________________
+
+rt = <g203.Runtime object at 0x108c783b0>
+
+    def test_long_markdown_heading_does_not_merge_body(rt):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        (rt.kb/'KB-971.md').write_text('# 配送规范'+('补充条款'*10)+'\n\n'+fact)
+>       payload=rt.build()
+                ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108c783b0>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_long_markdown_heading_doe0/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_long_markdown_heading_doe0/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_long_markdown_heading_doe0/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_long_markdown_heading_doe0/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_long_markdown_heading_doe0/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_long_markdown_heading_doe0/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_long_markdown_heading_doe0/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+___________________ test_literal_hash_in_plain_text_is_prose ___________________
+
+rt = <g203.Runtime object at 0x108b77da0>
+
+    def test_literal_hash_in_plain_text_is_prose(rt):
+        aliases(rt);fact='# 翡翠饭的配送时限为31分钟。'
+        (rt.kb/'KB-971.txt').write_text(fact)
+>       payload=rt.build()
+                ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108b77da0>
+
+    def build(self):
+        cmd = [sys.executable, '-m', 'kbqa.rebuild']
+        r = subprocess.run(cmd, cwd=self.source, env=self.env, capture_output=True, text=True)
+        self.records.append(dict(command=cmd, cwd=str(self.source), exit_code=r.returncode,
+                                 stdout=r.stdout, stderr=r.stderr))
+>       assert r.returncode == 0, r.stdout + r.stderr
+               ^^^^^^^^^^^^^^^^^
+E       AssertionError: 数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+E       知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_literal_hash_in_plain_tex0/kb
+E       清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+E       Traceback (most recent call last):
+E         File "<frozen runpy>", line 198, in _run_module_as_main
+E         File "<frozen runpy>", line 88, in _run_code
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_literal_hash_in_plain_tex0/starter/kbqa/rebuild.py", line 35, in <module>
+E           sys.exit(main())
+E                    ^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_literal_hash_in_plain_tex0/starter/kbqa/rebuild.py", line 22, in main
+E           index = load_index(settings.kb_dir, settings.index_path, rebuild=True)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_literal_hash_in_plain_tex0/starter/kbqa/index.py", line 194, in load_index
+E           index = build_index(kb_dir)
+E                   ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_literal_hash_in_plain_tex0/starter/kbqa/index.py", line 169, in build_index
+E           documents, warnings = load_knowledge_base(kb_dir)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_literal_hash_in_plain_tex0/starter/kbqa/loader.py", line 337, in load_knowledge_base
+E           document = load_document(path)
+E                      ^^^^^^^^^^^^^^^^^^^
+E         File "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-149/test_literal_hash_in_plain_tex0/starter/kbqa/loader.py", line 309, in load_document
+E           heading_spans=heading_spans,
+E                         ^^^^^^^^^^^^^
+E       UnboundLocalError: cannot access local variable 'heading_spans' where it is not associated with a value
+
+docs/verification/g2-01/test_ingestion.py:94: AssertionError
+__________ test_actual_old_cache_preserves_prose_and_heading_identity __________
+
+rt = <g203.Runtime object at 0x108b755b0>
+
+    def test_actual_old_cache_preserves_prose_and_heading_identity(rt):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        (rt.kb/'KB-971.html').write_text('<p>'+fact+'</p>')
+        (rt.kb/'KB-972.html').write_text('<h1>夜班预约应提前19小时提交。</h1>')
+        current={name:(rt.source/'kbqa'/name).read_bytes() for name in ('loader.py','units.py')}
+        for name in current:
+            (rt.source/'kbqa'/name).write_bytes(subprocess.check_output(['git','show','358859a:'+('starter/kbqa/'+name)],cwd=ROOT))
+        old=rt.build()
+        for name,data in current.items():(rt.source/'kbqa'/name).write_bytes(data)
+        # No manual cache deletion/rebuild after restoring the implementation.
+>       with rt.serve() as req:
+             ^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:91: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:137: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <g203.Runtime object at 0x108b755b0>
+
+    @contextmanager
+    def serve(self):
+        with socket.socket() as s:
+            s.bind(('127.0.0.1', 0))
+            port = s.getsockname()[1]
+        cmd = [sys.executable, '-m', 'uvicorn', 'kbqa.server:app', '--host', '127.0.0.1', '--port', str(port)]
+        with (self.root / 'server.log').open('a') as log:
+            p = subprocess.Popen(cmd, cwd=self.source, env=self.env, stdout=log, stderr=log)
+            record = dict(command=cmd, pid=p.pid, port=port, requests=[])
+            self.records.append(record)
+            def request(path, body=None):
+                req = urllib.request.Request(f'http://127.0.0.1:{port}{path}', data=json.dumps(body).encode() if body is not None else None, headers={'Content-Type':'application/json'})
+                with urllib.request.urlopen(req, timeout=20) as response:
+                    result = json.load(response)
+                record['requests'].append(dict(path=path, body=body, response=result))
+                return result
+            try:
+                for _ in range(200):
+                    try:
+                        health = request('/api/health')
+                        break
+                    except OSError:
+                        assert p.poll() is None, (self.root/'server.log').read_text()
+                        time.sleep(.05)
+                else:
+>                   raise AssertionError('startup timeout')
+E                   AssertionError: startup timeout
+
+docs/verification/g2-03/test_retrieval.py:50: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_untitled_formats_and_fact_update[md]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_untitled_formats_and_fact_update[utf8-txt]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_untitled_formats_and_fact_update[gbk-txt]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_untitled_formats_and_fact_update[html]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_structural_heading_controls[heading-only-md]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_structural_heading_controls[heading-only-html]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_structural_heading_controls[heading-and-fact-md]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_structural_heading_controls[heading-and-fact-html]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_structural_heading_controls[same-text-twice-md]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_structural_heading_controls[same-text-twice-html]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_structural_heading_controls[metadata-equals-body-md]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_structural_heading_controls[metadata-equals-body-html]
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_long_markdown_heading_does_not_merge_body
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_literal_hash_in_plain_text_is_prose
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_actual_old_cache_preserves_prose_and_heading_identity
+15 failed in 14.62s

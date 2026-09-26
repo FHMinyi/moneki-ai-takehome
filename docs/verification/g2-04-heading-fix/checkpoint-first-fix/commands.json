@@ -1,0 +1,36 @@
+{
+  "source": "/Volumes/MACPSSD/project/moneki-ai-takehome",
+  "application_commit": "04b435dffdd3673ebeb9860a8ce2a2809166d9e8",
+  "runs": [
+    {
+      "script": "reproduce_heading.py",
+      "checkpoint": "d2a25c2585f7eb680bbffa06577a40f5966cebe0",
+      "sha256": "6014f8ce3e5dfb817e1a67ac8cc63b8264aa857f8d3217dde1f8b0c766b19add",
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g204-heading-replay-dxckbs_l/reproduce_heading.py",
+        "--source",
+        "/Volumes/MACPSSD/project/moneki-ai-takehome",
+        "--out",
+        "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g204-heading-replay-dxckbs_l/ab"
+      ],
+      "exit_code": 0,
+      "work": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g204-heading-replay-dxckbs_l/ab"
+    },
+    {
+      "script": "verify_kb.py",
+      "checkpoint": "d2a25c2585f7eb680bbffa06577a40f5966cebe0",
+      "sha256": "8685a25a932ea1536cc037c88d103c4b06c65d73b20fa99acf2394634c8898ab",
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g204-heading-replay-dxckbs_l/verify_kb.py",
+        "--source",
+        "/Volumes/MACPSSD/project/moneki-ai-takehome",
+        "--out",
+        "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g204-heading-replay-dxckbs_l/lifecycle"
+      ],
+      "exit_code": 0,
+      "work": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g204-heading-replay-dxckbs_l/lifecycle"
+    }
+  ]
+}

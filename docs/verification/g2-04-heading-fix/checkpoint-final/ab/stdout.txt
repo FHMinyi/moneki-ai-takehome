@@ -1,0 +1,30 @@
+[
+  {
+    "stage": "no-heading",
+    "question": "翡翠饭的配送时限是多少分钟？",
+    "expected": "翡翠饭的配送时限为31分钟。",
+    "retrieve_passed": true,
+    "chat_passed": true
+  },
+  {
+    "stage": "no-heading",
+    "question": "Ivory Bowl的配送时限是多少分钟？",
+    "expected": "翡翠饭的配送时限为31分钟。",
+    "retrieve_passed": true,
+    "chat_passed": true
+  },
+  {
+    "stage": "explicit-heading",
+    "question": "翡翠饭的配送时限是多少分钟？",
+    "expected": "翡翠饭的配送时限为31分钟。",
+    "retrieve_passed": true,
+    "chat_passed": true
+  },
+  {
+    "stage": "explicit-heading",
+    "question": "Ivory Bowl的配送时限是多少分钟？",
+    "expected": "翡翠饭的配送时限为31分钟。",
+    "retrieve_passed": true,
+    "chat_passed": true
+  }
+]

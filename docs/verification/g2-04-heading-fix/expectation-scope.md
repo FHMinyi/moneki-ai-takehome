@@ -1,0 +1,11 @@
+# 新增控制的预期收敛
+
+G2-05的原始reproduce_heading.py与verify_kb.py从d2a25c2原样读出，字节/输入/断言均未修改。原始A/B四问和生命周期五阶段七问在首轮标题身份修复后已全绿。
+
+本会话自行新增的test_long_markdown_heading_does_not_merge_body最初要求长标题场景中英文都返回doc。修复正文身份后，英文问句已经选中连续31分钟原文，但BM25最高分6.6644，被既有CLARIFY_SCORE=8且underspecified门禁拒答。green-2.txt与structure-red.txt保留真实失败；旧断言在红灯提交的test_heading.py中可恢复。
+
+主会话随后明确裁定：该回答率预期不是原始任务书或本次最小标题身份修复的新合并门槛；暂不修改规划/置信度规则。结构控制应检查真实标题不当正文、正文不被吞掉及连续映射，不得顺着自增控制扩大无模型语言规则。
+
+因此只调整这条新控制：两问都必须在evidence.selected中保留精确、连续的原正文；doc时继续验证真实引文映射，现有低分refusal时必须没有引用。没有改问句、材料、分数阈值或G2-05原始断言。该场景的保守拒答作为现有限制如实记录。未知主体和已知主体缺少属性的拒答对照仍保留。
+
+首轮实现另有初始化位置错误：heading_spans默认值误放在parse_front_matter，导致重建UnboundLocalError；green.txt实际15失败，不能按文件名声称绿灯。first-attempt.patch保存当时未提交的产品差异，后移至load_document正确初始化。green-2为14通过1个上述自增回答率失败。

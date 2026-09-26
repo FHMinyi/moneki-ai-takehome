@@ -1,0 +1,221 @@
+diff --git a/starter/kbqa/loader.py b/starter/kbqa/loader.py
+index b338791..57e9954 100644
+--- a/starter/kbqa/loader.py
++++ b/starter/kbqa/loader.py
+@@ -9,7 +9,7 @@ from pathlib import Path
+ from html.parser import HTMLParser
+ from typing import Optional
+ 
+-LOADER_VERSION = "loader-3"
++LOADER_VERSION = "loader-4"
+ SUPPORTED_SUFFIXES = {".md", ".markdown", ".txt", ".html"}
+ 
+ #: 文件名开头的编号就是 doc_id，与文件格式无关（契约 §0）。
+@@ -49,6 +49,8 @@ class Document:
+     stores_explicit: bool = False
+     updated_at: Optional[date] = None
+     warnings: list[str] = field(default_factory=list)
++    # Structural HTML headings mapped into visible text, not display titles.
++    heading_spans: list[dict] = field(default_factory=list)
+ 
+     @property
+     def estimates_only(self) -> bool:
+@@ -74,6 +76,7 @@ class Document:
+             "title_year": self.title_year,
+             "format": self.fmt,
+             "filename": self.path.name,
++            "heading_spans": self.heading_spans,
+         }
+ 
+ 
+@@ -84,6 +87,7 @@ class _VisibleHTML(HTMLParser):
+               "h1", "h2", "h3", "h4", "h5", "h6", "li", "ul", "ol", "br", "hr",
+               "table", "tr", "blockquote", "pre", "dl", "dt", "dd"}
+     HIDDEN = {"head", "script", "style", "template"}
++    HEADINGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
+ 
+     def __init__(self):
+         super().__init__(convert_charrefs=True)
+@@ -91,6 +95,8 @@ class _VisibleHTML(HTMLParser):
+         self.title_parts: list[str] = []
+         self.hidden: list[str] = []
+         self.in_title = False
++        self.heading_stack: list[tuple[str, int]] = []
++        self.heading_parts: list[tuple[int, int]] = []
+ 
+     def handle_starttag(self, tag, attrs):
+         if tag == "title":
+@@ -99,6 +105,8 @@ class _VisibleHTML(HTMLParser):
+             self.hidden.append(tag)
+         if not self.hidden and tag in self.BLOCKS:
+             self.parts.append("\n")
++        if not self.hidden and tag in self.HEADINGS:
++            self.heading_stack.append((tag, len(self.parts)))
+         if not self.hidden and tag in {"td", "th"}:
+             self.parts.append(" ")
+ 
+@@ -109,6 +117,12 @@ class _VisibleHTML(HTMLParser):
+             # Recover gracefully from unbalanced hidden markup.
+             position = len(self.hidden) - 1 - self.hidden[::-1].index(tag)
+             del self.hidden[position:]
++        if not self.hidden and tag in self.HEADINGS:
++            for position in range(len(self.heading_stack) - 1, -1, -1):
++                if self.heading_stack[position][0] == tag:
++                    self.heading_parts.append((self.heading_stack[position][1], len(self.parts)))
++                    del self.heading_stack[position:]
++                    break
+         if not self.hidden and tag in self.BLOCKS:
+             self.parts.append("\n")
+ 
+@@ -118,9 +132,38 @@ class _VisibleHTML(HTMLParser):
+         elif not self.hidden:
+             self.parts.append(re.sub(r"\s+", " ", data))
+ 
++    def _visible(self):
++        """Retain the existing visible text normalization and map its characters."""
++        lines, positions, offset = [], [], 0
++        for line in "".join(self.parts).splitlines(keepends=True):
++            content = line.strip()
++            if content:
++                if lines:
++                    positions.append(None)  # normalized block separator
++                start = offset + len(line) - len(line.lstrip())
++                positions.extend(range(start, start + len(content)))
++                lines.append(content)
++            offset += len(line)
++        return "\n".join(lines), positions
++
+     @property
+     def text(self):
+-        return "\n".join(line.strip() for line in "".join(self.parts).splitlines() if line.strip())
++        return self._visible()[0]
++
++    @property
++    def heading_spans(self):
++        text, positions = self._visible()
++        offsets = [0]
++        for part in self.parts:
++            offsets.append(offsets[-1] + len(part))
++        spans = []
++        for first, last in self.heading_parts:
++            visible = [i for i, position in enumerate(positions)
++                       if position is not None and offsets[first] <= position < offsets[last]]
++            if visible:
++                start, end = visible[0], visible[-1] + 1
++                spans.append({"start": start, "end": end, "text": text[start:end]})
++        return spans
+ 
+ 
+ def decode_bytes(raw: bytes, path: Path, warnings: list[str]) -> str:
+@@ -142,6 +185,7 @@ def parse_front_matter(text: str) -> tuple[dict, str]:
+     if not match:
+         return {}, text
+     meta: dict = {}
++    heading_spans: list[dict] = []
+     for line in match.group(1).splitlines():
+         if not line.strip() or line.lstrip().startswith("#") or ":" not in line:
+             continue
+@@ -235,6 +279,7 @@ def load_document(path: Path) -> Optional[Document]:
+         parser.feed(text)
+         parser.close()
+         text = parser.text
++        heading_spans = parser.heading_spans
+         html_title = "".join(parser.title_parts).strip()
+         meta = {"title": html_title}
+ 
+@@ -261,6 +306,7 @@ def load_document(path: Path) -> Optional[Document]:
+         stores_explicit=bool(declared),
+         updated_at=_as_date(meta.get("updated_at")),
+         warnings=warnings,
++        heading_spans=heading_spans,
+     )
+ 
+ 
+diff --git a/starter/kbqa/units.py b/starter/kbqa/units.py
+index dcc2704..2b46db5 100644
+--- a/starter/kbqa/units.py
++++ b/starter/kbqa/units.py
+@@ -15,6 +15,7 @@ _SENTENCE_TAIL = "。！？；!?;"
+ _LIST_START = re.compile(r"^\s*(?:[-*>|]|#{1,6}\s|\d+[.、)]|[一二三四五六七八九十]+[、.])")
+ #: “发布部门：总部运营部”这类字段行是独立的一条信息，不能和上一行拼成一句。
+ _FIELD_LINE = re.compile(r"^[^：:\s]{1,6}[：:]")
++_ATX_HEADING = re.compile(r"^#{1,6}\s+")
+ 
+ 
+ def _lines_of(text: str, fmt: str) -> list[str]:
+@@ -31,6 +32,7 @@ def _lines_of(text: str, fmt: str) -> list[str]:
+             and not _LIST_START.match(line)
+             and not _FIELD_LINE.match(line)
+             and not _FIELD_LINE.match(merged[-1])
++            and not (fmt in ("md", "markdown") and _ATX_HEADING.match(merged[-1]))
+         ):
+             merged[-1] = merged[-1] + " " + line
+         else:
+@@ -111,12 +113,19 @@ class UnitIndex:
+         if cached is not None:
+             return cached
+         units: list[Unit] = []
+-        seen: set[str] = set()
++        seen: set[tuple[str, str]] = set()
+         cursor = 0
+         index = self.index
+-        headings: set[str] = set()
+-        for chunk in index.chunks_of(doc_id):
+-            headings.update(part.strip() for part in chunk.heading.split(" > ") if part.strip())
++        # Display/retrieval titles may be inferred from a real sentence. Only
++        # source structure gives a unit heading identity; text equality cannot.
++        source = index.texts.get(doc_id, "")
++        meta = index.docs_meta.get(doc_id, {})
++        fmt = meta.get("format", "md")
++        heading_ranges = [
++            (len(re.sub(r"\s+", "", source[:span["start"]])),
++             len(re.sub(r"\s+", "", source[:span["end"]])))
++            for span in meta.get("heading_spans", [])
++        ]
+         for chunk in index.chunks_of(doc_id):
+             context = set(tokenize(chunk.heading))
+             for canonical in index.aliases.strict_mentions(chunk.heading):
+@@ -131,30 +140,34 @@ class UnitIndex:
+                     # 表头行本身不是答案，跳过。
+                     if [c.strip() for c in stripped.strip("|").split("|")] == header_cells:
+                         continue
+-                    if stripped in seen:
++                    if (stripped, "table") in seen:
+                         continue
+-                    seen.add(stripped)
++                    seen.add((stripped, "table"))
+                     unit = Unit(stripped, context | header_tokens, "table", chunk.table_header, doc_id)
+                     unit.start, unit.end = self.locate(doc_id, stripped, cursor)
+                     cursor = max(cursor, unit.end)
+                     units.append(unit)
+                 continue
+-            fmt = index.docs_meta.get(doc_id, {}).get("format", "md")
+             for line_id, line in enumerate(_lines_of(chunk.source_text, fmt)):
+                 for sentence in split_sentences(line):
+-                    text = sentence.strip().lstrip("#").strip()
+-                    if not text or text in seen:
++                    text = sentence.strip()
++                    markdown_heading = fmt in ("md", "markdown") and _ATX_HEADING.match(text)
++                    if markdown_heading:
++                        text = _ATX_HEADING.sub("", text, count=1).strip()
++                    if not text:
+                         continue
+-                    seen.add(text)
++                    start, end = self.locate(doc_id, text, cursor)
+                     kind = (
+                         "heading"
+-                        if sentence.strip().startswith("#") or text in headings
++                        if markdown_heading or any(a <= start < end <= b for a, b in heading_ranges)
+                         else "text"
+                     )
++                    if (text, kind) in seen:
++                        continue
++                    seen.add((text, kind))
+                     unit = Unit(text, context, kind, [], doc_id, line_id=id(chunk) * 1000 + line_id)
+-                    unit.start, unit.end = self.locate(doc_id, text, cursor)
++                    unit.start, unit.end = start, end
+                     cursor = max(cursor, unit.end)
+                     units.append(unit)
+         self._cache[doc_id] = units
+         return units
+-

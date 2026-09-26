@@ -1,0 +1,36 @@
+............F..                                                          [100%]
+=================================== FAILURES ===================================
+________________ test_long_markdown_heading_does_not_merge_body ________________
+
+rt = <g203.Runtime object at 0x1066373b0>
+
+    def test_long_markdown_heading_does_not_merge_body(rt):
+        aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+        (rt.kb/'KB-971.md').write_text('# 配送规范'+('补充条款'*10)+'\n\n'+fact)
+        payload=rt.build()
+>       with rt.serve() as req:ask(req,payload,fact)
+                               ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g2-04-heading-fix/test_heading.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+req = <function Runtime.serve.<locals>.request at 0x106686700>
+payload = {'key': '96029c08e6a34a9f3c207115e74616d5aad35e68b41506d7fc5049524ca0c59d', 'version': 'bm25-4', 'docs': {'KB-970': {'... 'ivory bowl': '翡翠饭'}, 'aliases_of': {'翡翠饭': ['翡翠饭', 'Ivory Bowl']}, 'store_code_of': {}, 'source_doc': 'KB-970'}, ...}
+fact = '翡翠饭的配送时限为31分钟。'
+
+    def ask(req,payload,fact):
+        for q in QUERIES:
+            hits=req('/api/retrieve',dict(query=q,top_k=5))
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] and h['score']>0 and not h['padded'] for h in hits['results'])
+            a,t=m.chat(req,q)
+>           assert a['answer_type']=='doc' and fact in a['answer'],a
+E           AssertionError: {'answer': '检索到的相关资料不足以确认这个问题的答案，知识库里没有找到可靠的支持。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E           assert ('refusal' == 'doc'
+E             
+E             - doc
+E             + refusal)
+
+docs/verification/g2-04-heading-fix/test_heading.py:28: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-04-heading-fix/test_heading.py::test_long_markdown_heading_does_not_merge_body
+1 failed, 14 passed in 10.95s

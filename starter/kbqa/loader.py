@@ -9,7 +9,7 @@ from pathlib import Path
 from html.parser import HTMLParser
 from typing import Optional
 
-LOADER_VERSION = "loader-3"
+LOADER_VERSION = "loader-4"
 SUPPORTED_SUFFIXES = {".md", ".markdown", ".txt", ".html"}
 
 #: 文件名开头的编号就是 doc_id，与文件格式无关（契约 §0）。
@@ -49,6 +49,8 @@ class Document:
     stores_explicit: bool = False
     updated_at: Optional[date] = None
     warnings: list[str] = field(default_factory=list)
+    # Structural HTML headings mapped into visible text, not display titles.
+    heading_spans: list[dict] = field(default_factory=list)
 
     @property
     def estimates_only(self) -> bool:
@@ -74,6 +76,7 @@ class Document:
             "title_year": self.title_year,
             "format": self.fmt,
             "filename": self.path.name,
+            "heading_spans": self.heading_spans,
         }
 
 
@@ -84,6 +87,7 @@ class _VisibleHTML(HTMLParser):
               "h1", "h2", "h3", "h4", "h5", "h6", "li", "ul", "ol", "br", "hr",
               "table", "tr", "blockquote", "pre", "dl", "dt", "dd"}
     HIDDEN = {"head", "script", "style", "template"}
+    HEADINGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 
     def __init__(self):
         super().__init__(convert_charrefs=True)
@@ -91,6 +95,8 @@ class _VisibleHTML(HTMLParser):
         self.title_parts: list[str] = []
         self.hidden: list[str] = []
         self.in_title = False
+        self.heading_stack: list[tuple[str, int]] = []
+        self.heading_parts: list[tuple[int, int]] = []
 
     def handle_starttag(self, tag, attrs):
         if tag == "title":
@@ -99,6 +105,8 @@ class _VisibleHTML(HTMLParser):
             self.hidden.append(tag)
         if not self.hidden and tag in self.BLOCKS:
             self.parts.append("\n")
+        if not self.hidden and tag in self.HEADINGS:
+            self.heading_stack.append((tag, len(self.parts)))
         if not self.hidden and tag in {"td", "th"}:
             self.parts.append(" ")
 
@@ -109,6 +117,12 @@ class _VisibleHTML(HTMLParser):
             # Recover gracefully from unbalanced hidden markup.
             position = len(self.hidden) - 1 - self.hidden[::-1].index(tag)
             del self.hidden[position:]
+        if not self.hidden and tag in self.HEADINGS:
+            for position in range(len(self.heading_stack) - 1, -1, -1):
+                if self.heading_stack[position][0] == tag:
+                    self.heading_parts.append((self.heading_stack[position][1], len(self.parts)))
+                    del self.heading_stack[position:]
+                    break
         if not self.hidden and tag in self.BLOCKS:
             self.parts.append("\n")
 
@@ -118,9 +132,38 @@ class _VisibleHTML(HTMLParser):
         elif not self.hidden:
             self.parts.append(re.sub(r"\s+", " ", data))
 
+    def _visible(self):
+        """Retain the existing visible text normalization and map its characters."""
+        lines, positions, offset = [], [], 0
+        for line in "".join(self.parts).splitlines(keepends=True):
+            content = line.strip()
+            if content:
+                if lines:
+                    positions.append(None)  # normalized block separator
+                start = offset + len(line) - len(line.lstrip())
+                positions.extend(range(start, start + len(content)))
+                lines.append(content)
+            offset += len(line)
+        return "\n".join(lines), positions
+
     @property
     def text(self):
-        return "\n".join(line.strip() for line in "".join(self.parts).splitlines() if line.strip())
+        return self._visible()[0]
+
+    @property
+    def heading_spans(self):
+        text, positions = self._visible()
+        offsets = [0]
+        for part in self.parts:
+            offsets.append(offsets[-1] + len(part))
+        spans = []
+        for first, last in self.heading_parts:
+            visible = [i for i, position in enumerate(positions)
+                       if position is not None and offsets[first] <= position < offsets[last]]
+            if visible:
+                start, end = visible[0], visible[-1] + 1
+                spans.append({"start": start, "end": end, "text": text[start:end]})
+        return spans
 
 
 def decode_bytes(raw: bytes, path: Path, warnings: list[str]) -> str:
@@ -228,6 +271,7 @@ def load_document(path: Path) -> Optional[Document]:
     fmt = {".md": "md", ".markdown": "md", ".txt": "txt"}.get(suffix, "html")
 
     meta: dict = {}
+    heading_spans: list[dict] = []
     if fmt == "md":
         meta, text = parse_front_matter(text)
     elif fmt == "html":
@@ -235,6 +279,7 @@ def load_document(path: Path) -> Optional[Document]:
         parser.feed(text)
         parser.close()
         text = parser.text
+        heading_spans = parser.heading_spans
         html_title = "".join(parser.title_parts).strip()
         meta = {"title": html_title}
 
@@ -261,6 +306,7 @@ def load_document(path: Path) -> Optional[Document]:
         stores_explicit=bool(declared),
         updated_at=_as_date(meta.get("updated_at")),
         warnings=warnings,
+        heading_spans=heading_spans,
     )
 
 

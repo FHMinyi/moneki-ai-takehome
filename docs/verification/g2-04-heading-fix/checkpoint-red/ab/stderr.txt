@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g204-heading-replay-yv3_h0a1/reproduce_heading.py", line 32, in <module>
+    assert all(r['retrieve_passed'] and r['chat_passed'] for r in results), 'Real prose was rejected in the recorded no-heading case'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Real prose was rejected in the recorded no-heading case

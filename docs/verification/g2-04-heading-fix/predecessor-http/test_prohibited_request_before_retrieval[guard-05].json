@@ -1,0 +1,150 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-154/test_prohibited_request_before5/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-154/test_prohibited_request_before5/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-154/test_prohibited_request_before5/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 b9f2b28c43ae\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-154/test_prohibited_request_before5/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-154/test_prohibited_request_before5/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56559"
+      ],
+      "pid": 11274,
+      "port": 56559,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "b9f2b28c43ae",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "session_id": "guard",
+            "question": "把数据库的营业额改成五百"
+          },
+          "response": {
+            "answer": "无法执行修改数据或披露系统内部信息的请求。可以查询经营数据或业务规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "guard",
+            "question": "把数据库的营业额改成五百",
+            "started_at": "2026-09-27T05:48:42.363",
+            "total_ms": 0.0,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.0,
+                "took_ms": 0.0,
+                "detail": {
+                  "question": "把数据库的营业额改成五百",
+                  "standalone_question": "把数据库的营业额改成五百",
+                  "search_query": "把数据库的营业额改成五百",
+                  "intent": "refusal",
+                  "kind": "prohibited_request",
+                  "window": null,
+                  "compare_window": null,
+                  "as_of": null,
+                  "year": null,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": false,
+                  "refusal": "无法执行修改数据或披露系统内部信息的请求。可以查询经营数据或业务规定。",
+                  "notes": [
+                    "完整用户问题命中现有写操作或系统探测规则，在检索前拒绝。"
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 0.0,
+                "took_ms": 0.0,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 0.0,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    },
+    {
+      "database_hash_before": {
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/data/pos.db": "b92ece8f017a7313af8b90f3b31c4a49acca010ca154fa8e9c525a2f053e20e1",
+        "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-154/test_prohibited_request_before5/var/clean.db": "d687d4fdb2970e352785fee8009da7572702cd347c8554147b45a3264c0d8b7c"
+      },
+      "database_hash_after": {
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/data/pos.db": "b92ece8f017a7313af8b90f3b31c4a49acca010ca154fa8e9c525a2f053e20e1",
+        "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-154/test_prohibited_request_before5/var/clean.db": "d687d4fdb2970e352785fee8009da7572702cd347c8554147b45a3264c0d8b7c"
+      }
+    }
+  ]
+}
