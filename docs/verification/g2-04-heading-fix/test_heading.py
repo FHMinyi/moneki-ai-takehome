@@ -94,3 +94,25 @@ def test_actual_old_cache_preserves_prose_and_heading_identity(rt):
         a,t=m.chat(req,'夜班预约应提前多少小时提交？')
         assert a['answer_type']=='refusal' and not a['citations'],a
     rt.records.append(dict(old_cache_key=old['key'],loaded_cache_key=payload['key']))
+
+@pytest.mark.parametrize('shape',['md-sentences','md-windows','html-inline'])
+def test_true_heading_sentences_and_windows(rt,shape):
+    aliases(rt);fact='翡翠饭的配送时限为31分钟。'
+    if shape=='html-inline':
+        body='<html><body><h2>配送规范。<em>'+fact+'</em></h2></body></html>';suffix='html'
+    else:
+        body='# 配送规范'+('补充条款'*90 if shape=='md-windows' else '')+'。'+fact;suffix='md'
+    (rt.kb/('KB-971.'+suffix)).write_text(body)
+    rt.build()
+    with rt.serve() as req:
+        a,t=m.chat(req,QUERIES[0])
+    assert a['answer_type']=='refusal' and not a['citations'],a
+    assert not m.detail(t,'evidence')['candidates'],t
+
+@pytest.mark.parametrize('q',['Unknown Dish的配送时限是多少分钟？','Ivory Bowl需要提供身份证吗？'],ids=['unknown-subject','known-subject-missing-fact'])
+def test_long_heading_subject_guards(rt,q):
+    aliases(rt)
+    (rt.kb/'KB-971.md').write_text('# 配送规范'+('补充条款'*10)+'\n\n翡翠饭的配送时限为31分钟。')
+    rt.build()
+    with rt.serve() as req:a,t=m.chat(req,q)
+    assert a['answer_type']=='refusal' and not a['citations'],a
