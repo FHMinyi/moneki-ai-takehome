@@ -13,7 +13,8 @@ from .timeparse import parse_time
 from .index import BM25Index, load_index
 from .tokenizer import content_tokens, normalise, tokenize
 
-ALIAS_WEIGHT = 0.6
+# A known alias denotes the same concept: score it like a literal query term.
+ALIAS_WEIGHT = 1.0
 # Prefer a source passage carrying the requested fact shape over title-only matches.
 SOURCE_FOCUS_BOOST = 1.5
 #: 单字（“月”“日”“店”）在二元组的世界里基本是噪声，降权但不丢弃。
