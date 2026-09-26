@@ -291,3 +291,16 @@ def test_elliptical_supported_claim(rt,q,gold,support):
     assert gold in {c['doc_id'] for c in a['citations']},a
     assert detail(t,'evidence')['required_claim'] is not None
     quotes(a,payload,t)
+
+@pytest.mark.parametrize('questions,gold,fact',[
+ (['储值充值现在的赠送规则是什么？'],'KB-011','60'),
+ (['三文鱼poke 七月初为什么停售了？','那停售期间让顾客换成什么？'],'KB-021','鸡肉poke'),
+],ids=['version-first-turn','substitution-second-turn'])
+def test_existing_wh_question_regression(rt,questions,gold,fact):
+    payload=original(rt)
+    with rt.serve() as req:
+        for q in questions:a,t=chat(req,q)
+    assert a['answer_type']=='doc' and fact in a['answer'],a
+    assert gold in {c['doc_id'] for c in a['citations']},a
+    assert detail(t,'evidence')['required_claim'] is None
+    quotes(a,payload,t)
