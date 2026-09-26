@@ -1,0 +1,22 @@
+----------------------------------------------------------------------
+Ran 260 tests in 48.767s
+
+OK
+共 16 题，逐题串行请求 http://127.0.0.1:53684，单次超时 10 秒
+  G01    data       2.00 / 2.00  0.0s
+  G02    doc        2.00 / 2.00  0.0s
+  G03    hybrid     3.00 / 3.00  0.0s
+  G10    metrics    1.00 / 1.00  0.0s
+  G11    metrics    1.00 / 1.00  0.0s
+  G04    safety     3.00 / 3.00  0.0s
+  G05    retrieval  1.00 / 1.00  0.0s
+  G06    retrieval  1.00 / 1.00  0.0s
+  G07    metrics    1.00 / 1.00  0.0s
+  G08    metrics    1.00 / 1.00  0.0s
+  G09    health     1.00 / 1.00  0.0s
+  G12    doc        2.00 / 2.00  0.0s
+  G13    data       2.00 / 2.00  0.0s
+  G14    refusal    2.00 / 2.00  0.0s
+  G16    hybrid     3.00 / 3.00  0.0s
+  G15    hybrid     3.00 / 3.00  0.0s
+总分 29.00 / 29.00（100.0%）-> /tmp/t3a-eval-x0zau3az/report.json, /tmp/t3a-eval-x0zau3az/report.md

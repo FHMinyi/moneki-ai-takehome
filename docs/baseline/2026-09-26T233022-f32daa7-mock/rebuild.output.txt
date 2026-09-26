@@ -1,0 +1,7 @@
+/tmp/moneki-baseline.uQa5zo/starter/.venv/bin/python -m kbqa.rebuild
+数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data
+知识库目录：/Volumes/MACPSSD/project/moneki-ai-takehome/knowledge_base
+清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 0, "2_empty_amount": 0, "3_qty_le_zero": 0, "4_store_not_in_stores": 0, "5_product_not_in_products": 0, "6_duplicate_row": 0, "note_unparseable_amount": 0}, "kept_rows": 18628, "kept_sales_rows": 18534, "kept_refund_rows": 94}
+索引完成：25 篇文档，53 个片段，缓存键 8651fac326e2
+告警：跳过没有 KB 编号的文件：README.md
+产物：/private/tmp/moneki-baseline.uQa5zo/starter/var/clean.db、/private/tmp/moneki-baseline.uQa5zo/starter/.cache/index.json（0.1 秒）
