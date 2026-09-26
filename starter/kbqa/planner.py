@@ -204,7 +204,7 @@ class Planner:
         explicit_metric = bool(plan.slots.get("metric_explicit"))
         asks_policy = E.has_any(text, E.POLICY_WORDS)
         asks_rank = E.has_any(text, E.RANK_WORDS)
-        asks_payment = E.has_any(text, E.PAYMENT_WORDS)
+        asks_payment = E.has_any(text, E.PAYMENT_WORDS) and not E.has_any(text, ("充值", "赠送", "储值政策"))
         asks_why = E.has_any(text, E.WHY_WORDS)
         asks_target = E.has_any(text, E.TARGET_WORDS)
         asks_price = E.has_any(text, E.PRICE_WORDS)
@@ -255,13 +255,7 @@ class Planner:
         else:
             plan.kind, plan.intent = "summary", "data"
 
-        # 路由：问“多少/多久/几”的就是要数字，问“为什么/原因”的就是要说法。
-        # 两边都走一遍太慢，没必要。
-        if E.has_any(text, ("多少", "多久", "几")):
-            plan.intent = "data"
-            if plan.kind in ("doc", "anomaly", "target", "price"):
-                plan.kind = "summary"
-        elif E.has_any(text, ("为什么", "原因", "怎么回事", "咋回事")):
+        if asks_why:
             plan.intent, plan.kind = "doc", "doc"
 
         plan.slots["asks_why"] = bool(asks_why or abnormal)
