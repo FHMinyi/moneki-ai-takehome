@@ -389,9 +389,8 @@ class Answerer(HybridAnswers):
         if plan.slots.get("underspecified") and top_score < CLARIFY_SCORE:
             # 问得太泛、检索也没有明显命中：宁可反问，也不要拿一段不相干的原文充数。
             return Answer(
-                answer="这个问题我没抓住重点：是想查某段时间的经营数字，还是想看某条规定？"
-                "补一个指标、时间或者门店，我就能答。",
-                answer_type="clarify",
+                answer="检索到的相关资料不足以确认这个问题的答案，知识库里没有找到可靠的支持。",
+                answer_type="refusal",
                 notes=["检索最高分 %.1f，且问题里没有指标、时间或门店" % top_score],
             )
         return Answer(answer=body, answer_type="doc", citations=citations)
