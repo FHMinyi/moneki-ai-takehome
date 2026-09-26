@@ -1,0 +1,186 @@
+[
+  {
+    "command": [
+      "make",
+      "setup"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "setup.txt",
+    "extra_env": {}
+  },
+  {
+    "command": [
+      "make",
+      "rebuild"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "rebuild-original.txt",
+    "extra_env": {}
+  },
+  {
+    "command": [
+      "starter/.venv/bin/python",
+      "-m",
+      "pip",
+      "freeze"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "python-dependencies.txt",
+    "extra_env": {}
+  },
+  {
+    "command": [
+      "starter/.venv/bin/python",
+      "-m",
+      "pytest",
+      "starter/tests",
+      "-q"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "backend-tests.txt",
+    "extra_env": {}
+  },
+  {
+    "command": [
+      "npm",
+      "--prefix",
+      "frontend",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "typecheck.txt",
+    "extra_env": {}
+  },
+  {
+    "command": [
+      "python3.12",
+      "eval/run_eval.py",
+      "--base-url",
+      "http://127.0.0.1:8015",
+      "--questions",
+      "eval/public_questions.jsonl",
+      "--only",
+      "metrics",
+      "--out",
+      "/tmp/moneki-g1-05-6yeq26mj/metrics"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "metrics.txt",
+    "extra_env": {}
+  },
+  {
+    "command": [
+      "sh",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g1-05/run_browser.sh"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "browser-original.txt",
+    "extra_env": {
+      "BROWSER_BASE_URL": "http://127.0.0.1:8015",
+      "G1_OUTPUT": "/tmp/moneki-g1-05-6yeq26mj/old-browser",
+      "DELIVERY_CASE": "original",
+      "DELIVERY_OUTPUT": "/tmp/moneki-g1-05-6yeq26mj/screenshots"
+    }
+  },
+  {
+    "command": [
+      "python3.12",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g1-05/fixture.py",
+      "/tmp/moneki-g1-05-6yeq26mj/replacement-data",
+      "--source",
+      "/tmp/moneki-g1-05-6yeq26mj/source/data/pos.db"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "fixture-replacement.txt",
+    "extra_env": {}
+  },
+  {
+    "command": [
+      "make",
+      "rebuild",
+      "DATA_DIR=/tmp/moneki-g1-05-6yeq26mj/replacement-data",
+      "VAR_DIR=/tmp/moneki-g1-05-6yeq26mj/replacement-var"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "rebuild-replacement.txt",
+    "extra_env": {}
+  },
+  {
+    "command": [
+      "python3.12",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g1-05/audit_fixture.py",
+      "--base-url",
+      "http://127.0.0.1:8016"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "audit-replacement.json",
+    "extra_env": {}
+  },
+  {
+    "command": [
+      "sh",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g1-05/run_browser.sh",
+      "g1-05-delivery.spec.ts"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "browser-replacement.txt",
+    "extra_env": {
+      "BROWSER_BASE_URL": "http://127.0.0.1:8016",
+      "G1_OUTPUT": "/tmp/moneki-g1-05-6yeq26mj/browser-replacement",
+      "DELIVERY_CASE": "replacement",
+      "DELIVERY_OUTPUT": "/tmp/moneki-g1-05-6yeq26mj/screenshots"
+    }
+  },
+  {
+    "command": [
+      "python3.12",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g1-05/fixture.py",
+      "/tmp/moneki-g1-05-6yeq26mj/empty-data",
+      "--source",
+      "/tmp/moneki-g1-05-6yeq26mj/source/data/pos.db",
+      "--empty"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "fixture-empty.txt",
+    "extra_env": {}
+  },
+  {
+    "command": [
+      "make",
+      "rebuild",
+      "DATA_DIR=/tmp/moneki-g1-05-6yeq26mj/empty-data",
+      "VAR_DIR=/tmp/moneki-g1-05-6yeq26mj/empty-var"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "rebuild-empty.txt",
+    "extra_env": {}
+  },
+  {
+    "command": [
+      "python3.12",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g1-05/audit_fixture.py",
+      "--base-url",
+      "http://127.0.0.1:8017",
+      "--empty"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "audit-empty.json",
+    "extra_env": {}
+  },
+  {
+    "command": [
+      "sh",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g1-05/run_browser.sh",
+      "g1-05-delivery.spec.ts"
+    ],
+    "cwd": "/tmp/moneki-g1-05-6yeq26mj/source",
+    "log": "browser-empty.txt",
+    "extra_env": {
+      "BROWSER_BASE_URL": "http://127.0.0.1:8017",
+      "G1_OUTPUT": "/tmp/moneki-g1-05-6yeq26mj/browser-empty",
+      "DELIVERY_CASE": "empty",
+      "DELIVERY_OUTPUT": "/tmp/moneki-g1-05-6yeq26mj/screenshots"
+    }
+  }
+]

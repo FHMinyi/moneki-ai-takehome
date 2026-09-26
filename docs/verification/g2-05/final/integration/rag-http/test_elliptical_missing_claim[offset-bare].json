@@ -1,0 +1,757 @@
+{
+  "source": "/private/tmp/moneki-g205-final-rag/pytest-temp/test_elliptical_missing_claim_4/starter",
+  "records": [
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/tmp/moneki-g205-final-rag/pytest-temp/test_elliptical_missing_claim_4/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/private/tmp/moneki-g1-05-6yeq26mj/source/data\n知识库目录：/private/tmp/moneki-g205-final-rag/pytest-temp/test_elliptical_missing_claim_4/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 dd3413d91bca\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/tmp/moneki-g205-final-rag/pytest-temp/test_elliptical_missing_claim_4/var/clean.db、/private/tmp/moneki-g205-final-rag/pytest-temp/test_elliptical_missing_claim_4/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/moneki-g1-05-6yeq26mj/source/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "61744"
+      ],
+      "pid": 19531,
+      "port": 61744,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "dd3413d91bca",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "员工迟到能用积分抵扣",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "知识库里没有找到能回答这个问题的内容，我不能编。可以换个说法，或者确认这件事是否有成文规定。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "single",
+            "question": "员工迟到能用积分抵扣",
+            "started_at": "2026-09-27T06:09:29.229",
+            "total_ms": 14.0,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 4.2,
+                "took_ms": 4.2,
+                "detail": {
+                  "question": "员工迟到能用积分抵扣",
+                  "standalone_question": "员工迟到能用积分抵扣",
+                  "search_query": "员工迟到能用积分抵扣",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 8.5,
+                "took_ms": 4.3,
+                "detail": {
+                  "query": "员工迟到能用积分抵扣",
+                  "terms": [
+                    "员工",
+                    "工迟",
+                    "迟到",
+                    "到能",
+                    "能用",
+                    "用积",
+                    "积分",
+                    "分抵",
+                    "抵扣"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-011#4",
+                      "doc_id": "KB-011",
+                      "score": 17.7288,
+                      "lexical_score": 13.1325,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "用积",
+                        "积分"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-016#3",
+                      "doc_id": "KB-016",
+                      "score": 12.6762,
+                      "lexical_score": 9.3898,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "迟到"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#3",
+                      "doc_id": "KB-011",
+                      "score": 8.4635,
+                      "lexical_score": 3.8671,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "能用"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#5",
+                      "doc_id": "KB-011",
+                      "score": 8.1468,
+                      "lexical_score": 3.5505,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "积分"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#2",
+                      "doc_id": "KB-014",
+                      "score": 6.9986,
+                      "lexical_score": 5.1842,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#1",
+                      "doc_id": "KB-014",
+                      "score": 6.9479,
+                      "lexical_score": 5.1334,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#3",
+                      "doc_id": "KB-014",
+                      "score": 6.9292,
+                      "lexical_score": 5.1147,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#4",
+                      "doc_id": "KB-014",
+                      "score": 6.7596,
+                      "lexical_score": 4.9452,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#5",
+                      "doc_id": "KB-014",
+                      "score": 6.4861,
+                      "lexical_score": 4.6716,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#11",
+                      "doc_id": "KB-029",
+                      "score": 3.9554,
+                      "lexical_score": 2.9299,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#3",
+                      "doc_id": "KB-061",
+                      "score": 3.8156,
+                      "lexical_score": 2.8264,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "能用"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#3",
+                      "doc_id": "KB-023",
+                      "score": 3.5553,
+                      "lexical_score": 2.6335,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#12",
+                      "doc_id": "KB-001",
+                      "score": 3.4492,
+                      "lexical_score": 2.555,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "能用"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#3",
+                      "doc_id": "KB-053",
+                      "score": 3.0896,
+                      "lexical_score": 2.2886,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#5",
+                      "doc_id": "KB-015",
+                      "score": 3.0214,
+                      "lexical_score": 2.238,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#4",
+                      "doc_id": "KB-051",
+                      "score": 3.0081,
+                      "lexical_score": 2.2282,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#9",
+                      "doc_id": "KB-029",
+                      "score": 2.9713,
+                      "lexical_score": 1.9458,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#3",
+                      "doc_id": "KB-026",
+                      "score": 2.8814,
+                      "lexical_score": 2.1343,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#2",
+                      "doc_id": "KB-051",
+                      "score": 2.5552,
+                      "lexical_score": 1.7754,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#2",
+                      "doc_id": "KB-021",
+                      "score": 2.4838,
+                      "lexical_score": 1.8398,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#2",
+                      "doc_id": "KB-020",
+                      "score": 2.1483,
+                      "lexical_score": 1.5914,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-052#2",
+                      "doc_id": "KB-052",
+                      "score": 1.9466,
+                      "lexical_score": 1.4419,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#3",
+                      "doc_id": "KB-024",
+                      "score": 0.9586,
+                      "lexical_score": 2.8402,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.204,
+                  "hits": [
+                    {
+                      "doc_id": "KB-011",
+                      "chunk_id": "KB-011#4",
+                      "score": 17.7288,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-016",
+                      "chunk_id": "KB-016#3",
+                      "score": 12.6762,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "chunk_id": "KB-014#2",
+                      "score": 6.9986,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-029",
+                      "chunk_id": "KB-029#11",
+                      "score": 3.9554,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "chunk_id": "KB-061#3",
+                      "score": 3.8156,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 14.0,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": {
+                    "subject": "员工迟到",
+                    "attribute": "积分抵扣",
+                    "subject_terms": [
+                      "员工",
+                      "迟到"
+                    ],
+                    "attribute_terms": [
+                      "积分",
+                      "抵扣"
+                    ],
+                    "subject_entities": []
+                  },
+                  "candidates": [],
+                  "rejected": [
+                    {
+                      "doc_id": "KB-011",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "3. 生日当月赠饮料 1 杯，在小程序领券后到店核销，当月有效，过期不补，不占用积分。"
+                    },
+                    {
+                      "doc_id": "KB-011",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "4. 积分有效期至次年 12 月 31 日，过期清零。"
+                    },
+                    {
+                      "doc_id": "KB-011",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "1. 每消费 1 元积 2 分，不足 1 元的部分不积分。"
+                    },
+                    {
+                      "doc_id": "KB-011",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "2. 积分在小程序“我的积分”里查看，满 500 分可兑换指定饮料一杯。"
+                    },
+                    {
+                      "doc_id": "KB-016",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "4. 早退、脱岗比照迟到处理；连续旷工 2 天按自动离职处理。"
+                    },
+                    {
+                      "doc_id": "KB-016",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "3. **当月迟到 3 次以上由店长约谈**，并记入当月门店考勤小结；店长本人迟到由运营部约谈。"
+                    },
+                    {
+                      "doc_id": "KB-016",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "2. **迟到 15 分钟以上记 1 次**，15 分钟以内为轻微迟到，当月累计 3 次轻微迟到折算为 1 次。"
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "5. 员工餐只能在店内用，不外带、不代点、不给亲友。"
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "1. 每班次每人 1 份员工餐，限 ¥30 以内，由当班店长在排班表上确认。"
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "3. 员工餐从当日备料中出，原则上用当天需要消耗的食材，不为员工餐单独开新料。"
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "2. 员工餐不进 POS，不开单、不计入营业额、不计入销量，由门店在《员工餐领用表》上登记。"
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "4. 连班或加班超过 4 小时的，可再增加 1 份，需店长签字。"
+                    },
+                    {
+                      "doc_id": "KB-029",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "培训方面，8 月安排两场：一场是收货与冷链的实操培训，面向各店早班，由品控部讲；一场是新品出品标准的复训，面向吧台岗，由市场部和运营部一起讲。两场都录像存档，新员工入职时自行补看。"
+                    },
+                    {
+                      "doc_id": "KB-029",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "人事口径由徐敏代为通报。S03 新任副店长 8 月 10 日入职，先跟班两周再独立带班；S05 招聘两名全职，8 月内到岗；S01 一名老员工 8 月 20 日离职，交接由周岚安排。"
+                    },
+                    {
+                      "doc_id": "KB-061",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工迟到",
+                        "attribute": "积分抵扣",
+                        "subject_terms": [
+                          "员工",
+                          "迟到"
+                        ],
+                        "attribute_terms": [
+                          "积分",
+                          "抵扣"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "不可以。第三方外卖平台的订单只能用平台自己的支付方式，会员储值余额可以在门店堂食、自提和小程序自营外卖使用。"
+                    }
+                  ],
+                  "selected": []
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 14.0,
+                "took_ms": 9.8,
+                "detail": {
+                  "answer_type": "refusal"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 14.0,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "refusal",
+                  "notes": [
+                    "没有可以逐字引用的原文"
+                  ]
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

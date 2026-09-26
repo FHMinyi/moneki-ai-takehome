@@ -1,0 +1,1 @@
+{"commit": "b5c756e04302b14583b50ca83d07eee106285efa", "documents": 35, "chunks": 215, "missing_characters": 0, "http_queries": 15, "http_hits_checked": 75, "mismatched_sources": 0}

@@ -1,0 +1,13 @@
+{
+  "pid": 18603,
+  "pgid": 18603,
+  "port": 8017,
+  "command": [
+    "make",
+    "run",
+    "PORT=8017",
+    "DATA_DIR=/tmp/moneki-g1-05-6yeq26mj/empty-data",
+    "VAR_DIR=/tmp/moneki-g1-05-6yeq26mj/empty-var"
+  ],
+  "cwd": "/tmp/moneki-g1-05-6yeq26mj/source"
+}

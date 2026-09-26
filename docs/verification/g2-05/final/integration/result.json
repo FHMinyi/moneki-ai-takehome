@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "commit": "b5c756e04302b14583b50ca83d07eee106285efa",
+  "source": "/private/tmp/moneki-g1-05-6yeq26mj/source",
+  "rag_tests": 199,
+  "diagnostic_original_expected_overlap_failures": 3
+}

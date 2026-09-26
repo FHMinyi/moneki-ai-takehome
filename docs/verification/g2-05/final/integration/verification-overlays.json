@@ -1,0 +1,41 @@
+{
+  "history": [
+    {
+      "commit": "8b72f47f712eab309bcc5e65841acfce45f0e17e",
+      "path": "starter/kbqa/index.py",
+      "sha256": "3ac507cf07f1bd69d4b4b5fbd1267db4d9d2870c9eee77c088ec78319d44bf88",
+      "fixture": "/private/tmp/moneki-g205-final-rag/history-fixture/index.py"
+    },
+    {
+      "commit": "8b72f47f712eab309bcc5e65841acfce45f0e17e",
+      "path": "starter/kbqa/chunker.py",
+      "sha256": "0bf8f6c69d6f328bab990b63fee47d8432c850f4135e53c19ad93dc5d2882e3f",
+      "fixture": "/private/tmp/moneki-g205-final-rag/history-fixture/chunker.py"
+    },
+    {
+      "commit": "358859a5be641b04395f314029e4b9325631dd8a",
+      "path": "starter/kbqa/loader.py",
+      "sha256": "0461ba2295c08a5231775db3f1995a80e3cdb001f898712ef4cc695b52d8331c",
+      "fixture": "/private/tmp/moneki-g205-final-rag/heading-history-fixture/loader.py"
+    },
+    {
+      "commit": "358859a5be641b04395f314029e4b9325631dd8a",
+      "path": "starter/kbqa/units.py",
+      "sha256": "d0e4123e0349c8941e6bf5d556e77af1e25202eae790e5bebe71d76732292460",
+      "fixture": "/private/tmp/moneki-g205-final-rag/heading-history-fixture/units.py"
+    }
+  ],
+  "overlays": [
+    {
+      "path": "docs/verification/g2-02/test_evidence.py",
+      "original_sha256": "49990303e5c80675df09afb1a5c7a24026ce5fd7f0b11fa8fce150ebd39759fb",
+      "overlay_sha256": "00af7a26ef0d581fc018cb9196c16e752b62be0f34cf37bd00a1415ebf677582"
+    },
+    {
+      "path": "docs/verification/g2-04-heading-fix/test_heading.py",
+      "original_sha256": "52b0c037ffad6043fb684d43a4589c8ec3fe625233f8c3f110fbdc7dd5a054b3",
+      "overlay_sha256": "e698fe7cd548302ca2273bd85b3643a0a5a43281507c2b58e5bb6b08ba5a9f21"
+    }
+  ],
+  "reason": "Replace only git fixture acquisition with fixed read-only historical bytes; assertions unchanged."
+}

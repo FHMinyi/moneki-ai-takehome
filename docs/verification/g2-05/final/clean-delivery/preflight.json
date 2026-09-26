@@ -1,0 +1,14 @@
+{
+  "commit": "b5c756e04302b14583b50ca83d07eee106285efa",
+  "source": "/tmp/moneki-g1-05-6yeq26mj/source",
+  "absent": [
+    "starter/.venv",
+    "frontend/node_modules",
+    "frontend/dist",
+    "starter/var",
+    "starter/.cache",
+    ".env.live",
+    "starter/.env.live"
+  ],
+  "clean": true
+}

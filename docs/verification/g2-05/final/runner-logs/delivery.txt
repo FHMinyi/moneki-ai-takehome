@@ -1,0 +1,16 @@
+setup.txt PASS
+rebuild-original.txt PASS
+python-dependencies.txt PASS
+backend-tests.txt PASS
+typecheck.txt PASS
+metrics.txt PASS
+browser-original.txt PASS
+fixture-replacement.txt PASS
+rebuild-replacement.txt PASS
+audit-replacement.json PASS
+browser-replacement.txt PASS
+fixture-empty.txt PASS
+rebuild-empty.txt PASS
+audit-empty.json PASS
+browser-empty.txt PASS
+COMPLETE /tmp/moneki-g1-05-6yeq26mj

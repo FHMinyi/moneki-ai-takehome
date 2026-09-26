@@ -1,0 +1,13 @@
+{
+  "pid": 18469,
+  "pgid": 18469,
+  "port": 8016,
+  "command": [
+    "make",
+    "run",
+    "PORT=8016",
+    "DATA_DIR=/tmp/moneki-g1-05-6yeq26mj/replacement-data",
+    "VAR_DIR=/tmp/moneki-g1-05-6yeq26mj/replacement-var"
+  ],
+  "cwd": "/tmp/moneki-g1-05-6yeq26mj/source"
+}
