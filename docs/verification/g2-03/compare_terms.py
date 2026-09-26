@@ -3,13 +3,14 @@ import json,re,sys
 from pathlib import Path
 from datetime import date
 ROOT=Path(__file__).resolve().parents[3]
-sys.path.insert(0,str(ROOT/'starter'))
+SOURCE=Path(sys.argv[3]) if len(sys.argv)>3 else ROOT
+sys.path.insert(0,str(SOURCE/'starter'))
 from kbqa import tokenizer
 scheme=sys.argv[1]
 original=tokenizer.tokenize
 
 def tokens(text):
-    if scheme=='whitespace': return original(text)
+    if scheme=='whitespace': return tokenizer.normalise(text).split()
     out=[]
     for run in re.findall(r'[\u3400-\u9fff]+|[a-z0-9]+',tokenizer.normalise(text)):
         if run.isascii(): out.append(run);continue

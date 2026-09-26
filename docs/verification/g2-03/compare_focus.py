@@ -3,7 +3,8 @@ import json,re,sys
 from pathlib import Path
 from datetime import date
 ROOT=Path(__file__).resolve().parents[3]
-sys.path.insert(0,str(ROOT/'starter'))
+SOURCE=Path(sys.argv[2]) if len(sys.argv)>2 else ROOT
+sys.path.insert(0,str(SOURCE/'starter'))
 from kbqa.index import build_index
 from kbqa.retriever import Retriever
 from kbqa.entities import focus_kinds

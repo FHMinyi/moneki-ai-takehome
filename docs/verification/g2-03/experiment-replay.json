@@ -1,0 +1,36 @@
+[
+  {
+    "ref": "4a076864",
+    "source": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g2-03-experiment-replay-gl16j3_z",
+    "command": [
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g2-03/compare_terms.py",
+      "bigram",
+      "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g2-03-experiment-replay-gl16j3_z/result.json",
+      "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g2-03-experiment-replay-gl16j3_z"
+    ],
+    "stdout": "bigram 15 / 15\n"
+  },
+  {
+    "ref": "a89f28e",
+    "source": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g2-03-experiment-replay-ihr_8eyt",
+    "command": [
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g2-03/compare_focus.py",
+      "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g2-03-experiment-replay-ihr_8eyt/result.json",
+      "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g2-03-experiment-replay-ihr_8eyt"
+    ],
+    "stdout": "1.0 三文鱼那次断供供应商赔了多少钱 KB-022#9 0 4. SUPPLY RESUMPTION\n\n\n1.0 S04 为什么不卖吞拿鱼三明治了 KB-029#7 0 ## 议题四：S04 吞拿鱼三明治的去留\n\n\n1.5 三文鱼那次断供供应商赔了多少钱 KB-022#8 1 We will issue a credit note of CNY 8,600 against your July accoun\n1.5 S04 为什么不卖吞拿鱼三明治了 KB-029#8 1 林知夏汇报了吞拿鱼三明治的情况。这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际\n2.0 三文鱼那次断供供应商赔了多少钱 KB-022#8 1 We will issue a credit note of CNY 8,600 against your July accoun\n2.0 S04 为什么不卖吞拿鱼三明治了 KB-029#8 1 林知夏汇报了吞拿鱼三明治的情况。这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际\n3.0 三文鱼那次断供供应商赔了多少钱 KB-022#8 1 We will issue a credit note of CNY 8,600 against your July accoun\n3.0 S04 为什么不卖吞拿鱼三明治了 KB-029#8 1 林知夏汇报了吞拿鱼三明治的情况。这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际\n"
+  },
+  {
+    "ref": "8841a2e",
+    "source": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g2-03-experiment-replay-rlz3jbnc",
+    "command": [
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g2-03/compare_alias_weight.py",
+      "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g2-03-experiment-replay-rlz3jbnc/result.json",
+      "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g2-03-experiment-replay-rlz3jbnc"
+    ],
+    "stdout": "0.6 15\n1.0 16\n1.5 16\n2.0 16\n"
+  }
+]

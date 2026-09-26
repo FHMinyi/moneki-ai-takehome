@@ -1,0 +1,788 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-102/test_public_positive_R14_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-102/test_public_positive_R14_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-102/test_public_positive_R14_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 eb92e7c260b0\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-102/test_public_positive_R14_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-102/test_public_positive_R14_0/starter/.cache/index.json（0.2 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "60331"
+      ],
+      "pid": 98291,
+      "port": 60331,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "eb92e7c260b0",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "S05 那天为什么只能收现金",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-027",
+                "chunk_id": "KB-027#3",
+                "score": 29.1318,
+                "text": "**2026-08-03 10:40 起**，Super Tetsudo（S05，上海·黄浦）的刷卡与扫码支付终端全部无法连到支付网关，刷卡、微信、支付宝、会员储值都提示网络异常，收银机本身能正常开单打单。\n故障是开店前例行检查收银设备时发现的，当时离 11:00 开门还有二十分钟。10:45 上报商场物业和总部 IT 部，11:00 前后确认原因：**商场当天进行网络交换机升级**，商户专线在切换过程中中断，同层受影响的商户不止我们一家。\n门店 **11:00 按时开门，当天从开门到打烊全程只收现金**，收银台和门口各贴一张告知，排队的顾客提前口头告知，附近有取现网点的位置也一并告知。\n",
+                "retrieval_text": "S05 Super Tetsudo POS 终端故障报告\n# S05 Super Tetsudo POS 终端故障报告\n## 一、经过\n**2026-08-03 10:40 起**，Super Tetsudo（S05，上海·黄浦）的刷卡与扫码支付终端全部无法连到支付网关，刷卡、微信、支付宝、会员储值都提示网络异常，收银机本身能正常开单打单。\n故障是开店前例行检查收银设备时发现的，当时离 11:00 开门还有二十分钟。10:45 上报商场物业和总部 IT 部，11:00 前后确认原因：**商场当天进行网络交换机升级**，商户专线在切换过程中中断，同层受影响的商户不止我们一家。\n门店 **11:00 按时开门，当天从开门到打烊全程只收现金**，收银台和门口各贴一张告知，排队的顾客提前口头告知，附近有取现网点的位置也一并告知。\n",
+                "source_start": 90,
+                "source_end": 388,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 31,
+                    "text": "# S05 Super Tetsudo POS 终端故障报告\n"
+                  },
+                  {
+                    "start": 81,
+                    "end": 89,
+                    "text": "## 一、经过\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-034",
+                "chunk_id": "KB-034#3",
+                "score": 19.9909,
+                "text": "## 特色\n\n五家店里座位最多、品类最全的一家，主食、点心、小食、饮料都做，晚市有酒水，啤酒和梅子酒卖得最好。\n开在商场三层的餐饮层，靠近影院出口，晚市和周末是主场，工作日午市靠周边写字楼撑。\n店内有一条八人长吧台，单客和情侣多坐吧台，靠窗一排是四人桌，可以拼成长桌接待小型聚餐。\n因为品类全、座位多，总部的新品试销和陈列方案通常先在这家店跑一轮，再决定要不要推到其他门店。\n\n",
+                "retrieval_text": "门店档案 S05 Super Tetsudo\n# 门店档案：S05 Super Tetsudo\n## 特色\n\n五家店里座位最多、品类最全的一家，主食、点心、小食、饮料都做，晚市有酒水，啤酒和梅子酒卖得最好。\n开在商场三层的餐饮层，靠近影院出口，晚市和周末是主场，工作日午市靠周边写字楼撑。\n店内有一条八人长吧台，单客和情侣多坐吧台，靠窗一排是四人桌，可以拼成长桌接待小型聚餐。\n因为品类全、座位多，总部的新品试销和陈列方案通常先在这家店跑一轮，再决定要不要推到其他门店。\n\n",
+                "source_start": 247,
+                "source_end": 436,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 25,
+                    "text": "# 门店档案：S05 Super Tetsudo\n"
+                  },
+                  {
+                    "start": 247,
+                    "end": 253,
+                    "text": "## 特色\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-052",
+                "chunk_id": "KB-052#2",
+                "score": 19.7071,
+                "text": "## 本周情况\n\n周一就出事了。3 号开门前二十分钟，我照例试了一下收银，刷卡和扫码全线连不上，只有收银机还能开单，商场那边在升级网络交换机，把商户专线切断了。十一点照常开的门，从开门到打烊全程只收现金，一直到第二天早上七点半物业弄好才恢复。\n影响是实打实的。中午那一波很多人只带手机，排到收银台一听只收现金就走了，有几位是走到门口又折回来问能不能挂账，只能说抱歉。我估摸着当天营业额大概少了三成，这个是我凭感觉说的，准确的还是得看系统。\n零钱也不够，中午十二点多就把备用金用光了，我让员工跑了两趟对面便利店换零钱，后面才勉强周转开。\n\n",
+                "retrieval_text": "S05 店长周报 2026-08-03 至 2026-08-09\n# S05 Super Tetsudo 店长周报（2026-08-03 至 2026-08-09）\n## 本周情况\n\n周一就出事了。3 号开门前二十分钟，我照例试了一下收银，刷卡和扫码全线连不上，只有收银机还能开单，商场那边在升级网络交换机，把商户专线切断了。十一点照常开的门，从开门到打烊全程只收现金，一直到第二天早上七点半物业弄好才恢复。\n影响是实打实的。中午那一波很多人只带手机，排到收银台一听只收现金就走了，有几位是走到门口又折回来问能不能挂账，只能说抱歉。我估摸着当天营业额大概少了三成，这个是我凭感觉说的，准确的还是得看系统。\n零钱也不够，中午十二点多就把备用金用光了，我让员工跑了两趟对面便利店换零钱，后面才勉强周转开。\n\n",
+                "source_start": 74,
+                "source_end": 343,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 50,
+                    "text": "# S05 Super Tetsudo 店长周报（2026-08-03 至 2026-08-09）\n"
+                  },
+                  {
+                    "start": 74,
+                    "end": 82,
+                    "text": "## 本周情况\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-042",
+                "chunk_id": "KB-042#3",
+                "score": 13.074,
+                "text": "| S05 | Super Tetsudo | 日料 | 上海·黄浦 | 11:00–22:00 |\n\n",
+                "retrieval_text": "门店营业时间总表\n# 门店营业时间总表\n| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S05 | Super Tetsudo | 日料 | 上海·黄浦 | 11:00–22:00 |\n\n",
+                "source_start": 319,
+                "source_end": 371,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 11,
+                    "text": "# 门店营业时间总表\n"
+                  },
+                  {
+                    "start": 61,
+                    "end": 118,
+                    "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-029",
+                "chunk_id": "KB-029#3",
+                "score": 10.3027,
+                "text": "何静先过了一遍 7 月的整体情况。7 月受两件事影响比较明显：一是 7 月 6 日至 7 月 12 日三文鱼poke 停售，轻食这条线的结构被打乱了一周；二是 7 月 24 日台风“白鹭”全部门店 14:00 提前闭店，当天五家店都只做了半天。\n沈望舒提醒各位，纪要里不写具体的营业额和订单数，各部门要数字一律到系统报表里取，口径按 KB-001，不要在群里互相转发手工统计的版本，更不要拿门店现场清点的数字去对外。\n店长普遍反映停售那一周替代品的接受度比预想好，但客诉集中在“为什么不提前说”。市场部认领：下次再出现同类停售，提前一天在会员群和外卖平台门店公告里同步说明，话术由市场部统一给。\n\n",
+                "retrieval_text": "2026 年 8 月运营例会纪要\n# 2026 年 8 月运营例会纪要\n## 议题一：7 月经营情况回顾\n何静先过了一遍 7 月的整体情况。7 月受两件事影响比较明显：一是 7 月 6 日至 7 月 12 日三文鱼poke 停售，轻食这条线的结构被打乱了一周；二是 7 月 24 日台风“白鹭”全部门店 14:00 提前闭店，当天五家店都只做了半天。\n沈望舒提醒各位，纪要里不写具体的营业额和订单数，各部门要数字一律到系统报表里取，口径按 KB-001，不要在群里互相转发手工统计的版本，更不要拿门店现场清点的数字去对外。\n店长普遍反映停售那一周替代品的接受度比预想好，但客诉集中在“为什么不提前说”。市场部认领：下次再出现同类停售，提前一天在会员群和外卖平台门店公告里同步说明，话术由市场部统一给。\n\n",
+                "source_start": 229,
+                "source_end": 528,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 19,
+                    "text": "# 2026 年 8 月运营例会纪要\n"
+                  },
+                  {
+                    "start": 211,
+                    "end": 228,
+                    "text": "## 议题一：7 月经营情况回顾\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "s05 那天为什么只能收现金",
+              "terms": [
+                "s05",
+                "那天",
+                "天为",
+                "么只",
+                "只能",
+                "能收",
+                "收现",
+                "现金"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": "S05",
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-027#3",
+                  "doc_id": "KB-027",
+                  "score": 29.1318,
+                  "lexical_score": 12.1666,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s05",
+                    "收现",
+                    "现金"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-027#1",
+                  "doc_id": "KB-027",
+                  "score": 27.4557,
+                  "lexical_score": 11.195,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-027#6",
+                  "doc_id": "KB-027",
+                  "score": 20.9425,
+                  "lexical_score": 13.4895,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05",
+                    "收现",
+                    "现金"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-027#5",
+                  "doc_id": "KB-027",
+                  "score": 20.8386,
+                  "lexical_score": 13.3992,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05",
+                    "现金"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-034#3",
+                  "doc_id": "KB-034",
+                  "score": 19.9909,
+                  "lexical_score": 7.3238,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-052#2",
+                  "doc_id": "KB-052",
+                  "score": 19.7071,
+                  "lexical_score": 12.6938,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05",
+                    "只能",
+                    "收现",
+                    "现金"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-027#2",
+                  "doc_id": "KB-027",
+                  "score": 18.924,
+                  "lexical_score": 11.7343,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-034#1",
+                  "doc_id": "KB-034",
+                  "score": 18.9186,
+                  "lexical_score": 12.1859,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-034#2",
+                  "doc_id": "KB-034",
+                  "score": 17.5212,
+                  "lexical_score": 10.9708,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-027#4",
+                  "doc_id": "KB-027",
+                  "score": 16.8144,
+                  "lexical_score": 9.8999,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-052#1",
+                  "doc_id": "KB-052",
+                  "score": 15.9797,
+                  "lexical_score": 9.4525,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-052#3",
+                  "doc_id": "KB-052",
+                  "score": 15.9384,
+                  "lexical_score": 9.4167,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05",
+                    "现金"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-034#4",
+                  "doc_id": "KB-034",
+                  "score": 15.4644,
+                  "lexical_score": 9.1822,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-052#5",
+                  "doc_id": "KB-052",
+                  "score": 14.5734,
+                  "lexical_score": 8.2297,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-052#4",
+                  "doc_id": "KB-052",
+                  "score": 13.2397,
+                  "lexical_score": 7.07,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-042#3",
+                  "doc_id": "KB-042",
+                  "score": 13.074,
+                  "lexical_score": 8.4213,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#3",
+                  "doc_id": "KB-029",
+                  "score": 10.3027,
+                  "lexical_score": 4.4241,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-025#4",
+                  "doc_id": "KB-025",
+                  "score": 10.1368,
+                  "lexical_score": 7.5088,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-060#6",
+                  "doc_id": "KB-060",
+                  "score": 9.8552,
+                  "lexical_score": 6.3479,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-025#1",
+                  "doc_id": "KB-025",
+                  "score": 8.54,
+                  "lexical_score": 3.0653,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "只能"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#9",
+                  "doc_id": "KB-060",
+                  "score": 8.154,
+                  "lexical_score": 4.8687,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-026#2",
+                  "doc_id": "KB-026",
+                  "score": 8.0652,
+                  "lexical_score": 3.4633,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s05",
+                    "现金"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#3",
+                  "doc_id": "KB-060",
+                  "score": 8.0431,
+                  "lexical_score": 4.7723,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#8",
+                  "doc_id": "KB-060",
+                  "score": 7.0393,
+                  "lexical_score": 3.8993,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#7",
+                  "doc_id": "KB-003",
+                  "score": 6.3883,
+                  "lexical_score": 8.2297,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-013#5",
+                  "doc_id": "KB-013",
+                  "score": 6.1042,
+                  "lexical_score": 4.5216,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "现金"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-042#2",
+                  "doc_id": "KB-042",
+                  "score": 5.8517,
+                  "lexical_score": 2.141,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-061#1",
+                  "doc_id": "KB-061",
+                  "score": 5.4649,
+                  "lexical_score": 4.0481,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-029#10",
+                  "doc_id": "KB-029",
+                  "score": 5.0735,
+                  "lexical_score": 1.3927,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#5",
+                  "doc_id": "KB-029",
+                  "score": 4.5096,
+                  "lexical_score": 1.0658,
+                  "source_focus_boost": 1.5,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#10",
+                  "doc_id": "KB-060",
+                  "score": 4.2345,
+                  "lexical_score": 1.4604,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-013#4",
+                  "doc_id": "KB-013",
+                  "score": 4.1216,
+                  "lexical_score": 2.539,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "现金"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-011#3",
+                  "doc_id": "KB-011",
+                  "score": 4.0779,
+                  "lexical_score": 3.0207,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "只能"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#1",
+                  "doc_id": "KB-029",
+                  "score": 3.8,
+                  "lexical_score": 1.7559,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-014#4",
+                  "doc_id": "KB-014",
+                  "score": 3.7846,
+                  "lexical_score": 2.8034,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "只能"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-011#6",
+                  "doc_id": "KB-011",
+                  "score": 3.6296,
+                  "lexical_score": 2.5723,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "现金"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-061#3",
+                  "doc_id": "KB-061",
+                  "score": 3.6246,
+                  "lexical_score": 2.2078,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "只能"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#11",
+                  "doc_id": "KB-029",
+                  "score": 3.4857,
+                  "lexical_score": 1.4826,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-014#2",
+                  "doc_id": "KB-014",
+                  "score": 3.4711,
+                  "lexical_score": 2.4899,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "只能"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#6",
+                  "doc_id": "KB-029",
+                  "score": 3.1197,
+                  "lexical_score": 1.1643,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-028#2",
+                  "doc_id": "KB-028",
+                  "score": 2.9661,
+                  "lexical_score": 1.9105,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-062#2",
+                  "doc_id": "KB-062",
+                  "score": 2.9628,
+                  "lexical_score": 2.1947,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-062#1",
+                  "doc_id": "KB-062",
+                  "score": 2.7464,
+                  "lexical_score": 1.9783,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-001#12",
+                  "doc_id": "KB-001",
+                  "score": 2.6943,
+                  "lexical_score": 1.9957,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "只能"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-021#2",
+                  "doc_id": "KB-021",
+                  "score": 2.2014,
+                  "lexical_score": 1.418,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-024#2",
+                  "doc_id": "KB-024",
+                  "score": 0.9753,
+                  "lexical_score": 2.513,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-024#4",
+                  "doc_id": "KB-024",
+                  "score": 0.9662,
+                  "lexical_score": 2.481,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "s05"
+                  ]
+                }
+              ],
+              "expansions": [
+                "Super Tetsudo",
+                "铁道",
+                "ST"
+              ],
+              "coverage": 0.257,
+              "hits": [
+                {
+                  "doc_id": "KB-027",
+                  "chunk_id": "KB-027#3",
+                  "score": 29.1318,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-034",
+                  "chunk_id": "KB-034#3",
+                  "score": 19.9909,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-052",
+                  "chunk_id": "KB-052#2",
+                  "score": 19.7071,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-042",
+                  "chunk_id": "KB-042#3",
+                  "score": 13.074,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-029",
+                  "chunk_id": "KB-029#3",
+                  "score": 10.3027,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-002",
+                  "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                },
+                {
+                  "doc_id": "KB-020",
+                  "reason": "文档声明只适用于 S03，与问题里的 S05 不符"
+                },
+                {
+                  "doc_id": "KB-023",
+                  "reason": "文档声明只适用于 S02，与问题里的 S05 不符"
+                },
+                {
+                  "doc_id": "KB-010",
+                  "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                },
+                {
+                  "doc_id": "KB-012",
+                  "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                },
+                {
+                  "doc_id": "KB-050",
+                  "reason": "文档声明只适用于 S02，与问题里的 S05 不符"
+                },
+                {
+                  "doc_id": "KB-051",
+                  "reason": "文档声明只适用于 S03，与问题里的 S05 不符"
+                },
+                {
+                  "doc_id": "KB-053",
+                  "reason": "文档声明只适用于 S01，与问题里的 S05 不符"
+                },
+                {
+                  "doc_id": "KB-030",
+                  "reason": "文档声明只适用于 S01，与问题里的 S05 不符"
+                },
+                {
+                  "doc_id": "KB-031",
+                  "reason": "文档声明只适用于 S02，与问题里的 S05 不符"
+                },
+                {
+                  "doc_id": "KB-032",
+                  "reason": "文档声明只适用于 S03，与问题里的 S05 不符"
+                },
+                {
+                  "doc_id": "KB-033",
+                  "reason": "文档声明只适用于 S04，与问题里的 S05 不符"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

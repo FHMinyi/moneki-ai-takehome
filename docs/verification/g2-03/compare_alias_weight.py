@@ -2,7 +2,8 @@ import json,sys
 from pathlib import Path
 from datetime import date
 ROOT=Path(__file__).resolve().parents[3]
-sys.path.insert(0,str(ROOT/'starter'))
+SOURCE=Path(sys.argv[2]) if len(sys.argv)>2 else ROOT
+sys.path.insert(0,str(SOURCE/'starter'))
 import kbqa.retriever as module
 from kbqa.index import build_index
 index=build_index(ROOT/'knowledge_base')
