@@ -99,7 +99,7 @@ DATA_OBJECTS = (
 #: 看起来像动词但其实是业务名词的说法，不应触发拒答（“调价通知”“数据质量”）。
 _WRITE_EXCEPTIONS = re.compile(r"(调价|调休|调班|调整期|数据质量|数据来源|口径)")
 _SQL_WRITE = re.compile(
-    r"\b(drop|delete|truncate|alter|update|insert|replace|create|grant)\b", re.I
+    r"(?<![a-z0-9_])(drop|delete|truncate|alter|update|insert|replace|create|grant)(?![a-z0-9_])", re.I
 )
 _RUN_SQL = re.compile(r"(执行|跑一下|运行|帮我跑).{0,8}(sql|语句|脚本|命令)", re.I)
 #: 动词与对象之间允许隔多远。中文动宾可以颠倒，两个方向都要看。
