@@ -1,0 +1,292 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_same_search_http_and_trac0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_same_search_http_and_trac0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_same_search_http_and_trac0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 491fb74d0b74\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_same_search_http_and_trac0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_same_search_http_and_trac0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56358"
+      ],
+      "pid": 90274,
+      "port": 56358,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "491fb74d0b74",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "2026-06-14当时的外卖退款政策规定",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#1",
+                "score": 19.8389,
+                "text": "# 退款政策 v2\n\n制定部门：总部运营部\n生效日期：2026-06-15\n\nv1 的受理窗口在执行中争议很多：隔了好几天再回来要退的单子，既核不了餐品状态，也对不上当班人员。从本版起收紧受理窗口，并明确审批门槛。\n\n",
+                "retrieval_text": "退款政策 v2\n# 退款政策 v2\n\n制定部门：总部运营部\n生效日期：2026-06-15\n\nv1 的受理窗口在执行中争议很多：隔了好几天再回来要退的单子，既核不了餐品状态，也对不上当班人员。从本版起收紧受理窗口，并明确审批门槛。\n\n",
+                "source_start": 0,
+                "source_end": 109,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v2\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-012",
+                "chunk_id": "KB-012#2",
+                "score": 18.9581,
+                "text": "## 一、受理条件\n\n1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。\n2. 没有小票、也无法在小程序里查到对应订单的，不予退款。\n3. 已经食用超过三分之一的商品不予退款，由店员现场判断。\n\n",
+                "retrieval_text": "退款政策 v1\n# 退款政策 v1\n## 一、受理条件\n\n1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。\n2. 没有小票、也无法在小程序里查到对应订单的，不予退款。\n3. 已经食用超过三分之一的商品不予退款，由店员现场判断。\n\n",
+                "source_start": 63,
+                "source_end": 174,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v1\n"
+                  },
+                  {
+                    "start": 63,
+                    "end": 73,
+                    "text": "## 一、受理条件\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-051",
+                "chunk_id": "KB-051#1",
+                "score": 16.2325,
+                "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n\n店长：鲍一鸣\n提交日期：2026-06-15\n\n",
+                "retrieval_text": "S03 店长周报 2026-06-08 至 2026-06-14\n# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n\n店长：鲍一鸣\n提交日期：2026-06-15\n\n",
+                "source_start": 0,
+                "source_end": 75,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 50,
+                    "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-026",
+                "chunk_id": "KB-026#2",
+                "score": 12.7845,
+                "text": "1. **全部门店（S01 至 S05）于 2026 年 7 月 24 日 14:00 提前闭店**，14:00 起不再接单，店内顾客请于 14:30 前离店。\n2. 第三方外卖平台与自营外卖 13:30 起关闭接单，已接的单子做完再关，骑手取餐超时的直接取消并致歉。\n3. **2026 年 7 月 25 日恢复正常营业**，各店按标准营业时间开店。\n4. 闭店前检查：外摆桌椅、立牌、遮阳棚全部收回室内；门窗紧闭；地漏与排水口清理干净；冷柜、制冰机保持通电，其余设备断电。\n5. 现金当天全部带走或入保险柜，不留在收银抽屉。\n",
+                "retrieval_text": "台风“白鹭”提前闭店通知\n# 台风“白鹭”提前闭店通知\n1. **全部门店（S01 至 S05）于 2026 年 7 月 24 日 14:00 提前闭店**，14:00 起不再接单，店内顾客请于 14:30 前离店。\n2. 第三方外卖平台与自营外卖 13:30 起关闭接单，已接的单子做完再关，骑手取餐超时的直接取消并致歉。\n3. **2026 年 7 月 25 日恢复正常营业**，各店按标准营业时间开店。\n4. 闭店前检查：外摆桌椅、立牌、遮阳棚全部收回室内；门窗紧闭；地漏与排水口清理干净；冷柜、制冰机保持通电，其余设备断电。\n5. 现金当天全部带走或入保险柜，不留在收银抽屉。\n",
+                "source_start": 124,
+                "source_end": 389,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 15,
+                    "text": "# 台风“白鹭”提前闭店通知\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-062",
+                "chunk_id": "KB-062#3",
+                "score": 11.7252,
+                "text": "　　三、小程序、地图、外卖平台上登记的营业时间，由市场部于 2026 年 8 月 14 日前\n同步更新，延长时段的外卖接单时间一并顺延。\n\n　　四、延长时段的供餐范围与平时一致，22:00 后停止接收堂食新单，只完成已下单的\n出品与外带；收档、清洁按原流程执行，不得压缩。\n\n　　五、本次调整执行至另行通知为止。运营部将在 9 月下旬评估延长时段的客流与\n人力投入，再决定后续安排。\n\n　　特此通知。\n\n",
+                "retrieval_text": "合味餐饮管理（上海）有限公司   OA 公文系统   导出文件\n　　三、小程序、地图、外卖平台上登记的营业时间，由市场部于 2026 年 8 月 14 日前\n同步更新，延长时段的外卖接单时间一并顺延。\n\n　　四、延长时段的供餐范围与平时一致，22:00 后停止接收堂食新单，只完成已下单的\n出品与外带；收档、清洁按原流程执行，不得压缩。\n\n　　五、本次调整执行至另行通知为止。运营部将在 9 月下旬评估延长时段的客流与\n人力投入，再决定后续安排。\n\n　　特此通知。\n\n",
+                "source_start": 569,
+                "source_end": 771,
+                "context_spans": []
+              }
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "session_id": "same",
+            "question": "2026-06-14当时的外卖退款政策规定"
+          },
+          "response": {
+            "answer": "退款政策 v1\n# 退款政策 v1\n\n> 本版本已废止，现行版本见 KB-013。\n\n制定部门：总部运营部\n生效日期：2025-10-01\n\n\n退款政策 v1\n# 退款政策 v1\n## 一、受理条件\n\n1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。\n2. 没有小票、也无法在小程序里查到对应订单的，不予退款。\n3. 已经食用超过三分之一的商品不予退款，由店员现场判断。\n\n\n退款政策 v1\n# 退款政策 v1\n## 二、操作方式\n\n1. 店员可以直接在 POS 上操作退款，不需要审批，也不限金额。\n2. 退款原路返回：微信、支付宝、银行卡退回原支付渠道，现金当场退现金，会员储值退回储值余额。\n3. 操作完成后把小票收回，在退款登记本上写明日期、订单号、金额、原因、经办人。\n\n\n退款政策 v1\n# 退款政策 v1\n## 三、事后复核\n\n1. 店长每天闭店时核对当天的退款登记本与 POS 退款记录，两边条数要对得上。\n2. 单店当月退款笔数超过 20 笔的，运营部会找店长了解原因。\n3. 退款登记本按月装订，保存一年。\n\n\n退款政策 v1\n# 退款政策 v1\n## 四、常见情形\n\n- 出餐错误、漏配、洒漏：现场核实后直接退或重做，由顾客选择，重做的不再另外补偿。\n- 口味不满意：首次可退，第二次起劝退不退，由当班店员记录在案。\n- 顾客点错、临时不要了：出餐前可退，已经出餐的原则上不退，视排队情况和商品状态灵活处理。\n- 外卖平台内的退款按平台规则走，门店不重复退款；自营外卖的退款按本政策执行。\n- 团体订单、预订单的退款由店长处理，不走普通流程。\n\n\n退款政策 v1\n# 退款政策 v1\n## 五、沟通要求\n\n1. 受理退款时先听完顾客说明，不打断、不辩解，能当场解决的不往上推。\n2. 不在顾客面前讨论责任归属，也不当面批评员工。\n3. 涉及食品安全的投诉一律先停止销售该批次，同时报运营部和品控部，不以退款了结。\nKB-010《会员储值政策 v1》（2026-01-01 起生效）：生效日期：2026-01-01\nKB-020《S03 Juicy Bao Bao 临时停业通知》（2026-06-08 起生效）：发布日期：2026-06-06",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-010",
+                "quote": "生效日期：2026-01-01"
+              },
+              {
+                "doc_id": "KB-020",
+                "quote": "发布日期：2026-06-06"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "same",
+            "question": "2026-06-14当时的外卖退款政策规定",
+            "started_at": "2026-09-27T03:52:10.390",
+            "total_ms": 6.3,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 0.7,
+                "took_ms": 0.7,
+                "detail": {
+                  "question": "2026-06-14当时的外卖退款政策规定",
+                  "standalone_question": "2026-06-14当时的外卖退款政策规定",
+                  "search_query": "2026-06-14当时的外卖退款政策规定",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-06-14",
+                    "2026-06-14"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-06-14",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=['2026-06-14']"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 1.4,
+                "took_ms": 0.7,
+                "detail": {
+                  "query": "2026-06-14当时的外卖退款政策规定",
+                  "expansions": [],
+                  "coverage": 0.2,
+                  "hits": [
+                    {
+                      "doc_id": "KB-012",
+                      "chunk_id": "KB-012#2",
+                      "score": 18.9581,
+                      "padded": false,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-051",
+                      "chunk_id": "KB-051#1",
+                      "score": 9.7395,
+                      "padded": false,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-020",
+                      "chunk_id": "KB-020#2",
+                      "score": 9.0939,
+                      "padded": false,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "chunk_id": "KB-010#2",
+                      "score": 8.4893,
+                      "padded": false,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-011",
+                      "reason": "该版本自 2026-07-01 起才生效，晚于问题所指的 2026-06-14"
+                    },
+                    {
+                      "doc_id": "KB-013",
+                      "reason": "该版本自 2026-06-15 起才生效，晚于问题所指的 2026-06-14"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 6.3,
+                "took_ms": 5.6,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 6.3,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

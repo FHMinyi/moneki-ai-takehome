@@ -1,0 +1,174 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions__u73b0_u5720/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions__u73b0_u5720/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions__u73b0_u5720/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 168a847fcb3e\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions__u73b0_u5720/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-87/test_real_versions__u73b0_u5720/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56249"
+      ],
+      "pid": 90157,
+      "port": 56249,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "168a847fcb3e",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "现在外卖退款的政策规定",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#4",
+                "score": 16.3211,
+                "text": "## 三、系统记录\n\n1. 退款在 POS 中以负金额行记录，并沿用原订单号，不新开订单号。\n2. 退款行的商品、数量与原订单一致，`amount` 为原金额的相反数。\n3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。\n4. 不允许用“新开一笔负数订单”“现金找零”等方式绕开系统退款。\n\n",
+                "retrieval_text": "退款政策 v2\n# 退款政策 v2\n## 三、系统记录\n\n1. 退款在 POS 中以负金额行记录，并沿用原订单号，不新开订单号。\n2. 退款行的商品、数量与原订单一致，`amount` 为原金额的相反数。\n3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。\n4. 不允许用“新开一笔负数订单”“现金找零”等方式绕开系统退款。\n\n",
+                "source_start": 363,
+                "source_end": 540,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v2\n"
+                  },
+                  {
+                    "start": 363,
+                    "end": 373,
+                    "text": "## 三、系统记录\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-012",
+                "chunk_id": "KB-012#2",
+                "score": 13.2287,
+                "text": "## 一、受理条件\n\n1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。\n2. 没有小票、也无法在小程序里查到对应订单的，不予退款。\n3. 已经食用超过三分之一的商品不予退款，由店员现场判断。\n\n",
+                "retrieval_text": "退款政策 v1\n# 退款政策 v1\n## 一、受理条件\n\n1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。\n2. 没有小票、也无法在小程序里查到对应订单的，不予退款。\n3. 已经食用超过三分之一的商品不予退款，由店员现场判断。\n\n",
+                "source_start": 63,
+                "source_end": 174,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v1\n"
+                  },
+                  {
+                    "start": 63,
+                    "end": 73,
+                    "text": "## 一、受理条件\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-010",
+                "chunk_id": "KB-010#2",
+                "score": 8.4893,
+                "text": "## 一、适用范围\n\n五家门店通用的会员储值卡（小程序电子卡，无实体卡），堂食、自提、外卖自营渠道均可使用。\n第三方外卖平台的订单不支持储值支付。\n\n",
+                "retrieval_text": "会员储值政策 v1\n# 会员储值政策 v1\n## 一、适用范围\n\n五家门店通用的会员储值卡（小程序电子卡，无实体卡），堂食、自提、外卖自营渠道均可使用。\n第三方外卖平台的订单不支持储值支付。\n\n",
+                "source_start": 71,
+                "source_end": 146,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 会员储值政策 v1\n"
+                  },
+                  {
+                    "start": 71,
+                    "end": 81,
+                    "text": "## 一、适用范围\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#2",
+                "score": 8.4893,
+                "text": "## 一、适用范围\n\n五家门店通用的会员储值卡（小程序电子卡，无实体卡），堂食、自提、外卖自营渠道均可使用。\n第三方外卖平台的订单不支持储值支付。\n\n",
+                "retrieval_text": "会员储值政策 v2\n# 会员储值政策 v2\n## 一、适用范围\n\n五家门店通用的会员储值卡（小程序电子卡，无实体卡），堂食、自提、外卖自营渠道均可使用。\n第三方外卖平台的订单不支持储值支付。\n\n",
+                "source_start": 71,
+                "source_end": 146,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 会员储值政策 v2\n"
+                  },
+                  {
+                    "start": 71,
+                    "end": 81,
+                    "text": "## 一、适用范围\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-061",
+                "chunk_id": "KB-061#3",
+                "score": 7.2396,
+                "text": "可以预订座位吗？\n预订\n小桌不接受预订，到店取号。8 人以上的聚餐可以提前一天电话预订，由门店安排拼桌，门店电话见“门店”页面。\n东西落在店里了怎么办？\n失物\n请尽快联系门店。拾到的物品由门店登记保管 7 天，贵重物品会交商场服务台或就近派出所，领取时需要说明物品特征。\n可以用会员储值余额在外卖平台付款吗？\n会员\n不可以。第三方外卖平台的订单只能用平台自己的支付方式，会员储值余额可以在门店堂食、自提和小程序自营外卖使用。\n",
+                "retrieval_text": "常见问题 FAQ - 合味餐饮\n可以预订座位吗？\n预订\n小桌不接受预订，到店取号。8 人以上的聚餐可以提前一天电话预订，由门店安排拼桌，门店电话见“门店”页面。\n东西落在店里了怎么办？\n失物\n请尽快联系门店。拾到的物品由门店登记保管 7 天，贵重物品会交商场服务台或就近派出所，领取时需要说明物品特征。\n可以用会员储值余额在外卖平台付款吗？\n会员\n不可以。第三方外卖平台的订单只能用平台自己的支付方式，会员储值余额可以在门店堂食、自提和小程序自营外卖使用。\n",
+                "source_start": 588,
+                "source_end": 801,
+                "context_spans": []
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}
