@@ -98,7 +98,12 @@ class DocFacts:
         """
         text = normalise(query).strip().rstrip("?！!。.")
         explicit = re.search(r"是否|能否|可否|是不是|有没有|需不需要|可不可以|(.)不\1", text)
-        closed = bool(explicit or re.search(r"[吗么不没]$", text))
+        relation_pattern = (
+            r"(?:不)?(?:是否|需要|可以|必须|应当|支持|允许|包含|含有|具备|提供|出示|提交|使用|能|要|需|可|有|含|用)"
+        )
+        open_question = re.search(r"多少|多久|几[点天次时个折]|什么|哪[个些天家种里]|何时|为何|为什么|怎么|怎样|如何", text)
+        closed = bool(explicit or re.search(r"[吗么不没]$", text) or
+                      (re.search(relation_pattern, text) and not open_question))
         if not closed:
             return None
         text = re.sub(r"^(?:请问|请说明|麻烦问一下)", "", text)
@@ -109,10 +114,7 @@ class DocFacts:
                          ("能否", "能"), ("可否", "可")):
             text = text.replace(old, new)
         text = re.sub(r"(.)不\1", r"\1", text)
-        marker = re.search(
-            r"是否|需要|可以|必须|应当|支持|允许|包含|含有|具备|提供|出示|提交|使用|能|要|需|可|有|含|用",
-            text,
-        )
+        marker = re.search(relation_pattern, text)
         subject = text[:marker.start()] if marker else ""
         attribute = text[marker.end():] if marker else text
         subject = re.sub(r"(?:的|里面|里边|之中|规定|政策|制度|中|里)+$", "", subject)
