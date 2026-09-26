@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import date
 from pathlib import Path
 from typing import Any, Optional
@@ -52,13 +53,22 @@ class RetrieveRequest(BaseModel):
 def _bad_date(*values: str) -> Optional[JSONResponse]:
     for value in values:
         try:
+            if not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}", value):
+                raise ValueError("Noncanonical date")
             date.fromisoformat(value)
         except (TypeError, ValueError):
             return JSONResponse(
                 status_code=400,
                 content={"error": "日期格式必须是 YYYY-MM-DD，收到 %r" % value},
             )
+    if len(values) == 2 and values[0] > values[1]:
+        return JSONResponse(status_code=400, content={"error": "开始日期不能晚于结束日期"})
     return None
+
+
+@app.get("/api/stores")
+def stores() -> dict:
+    return {"stores": service().tools.stores()}
 
 
 @app.get("/api/health")
