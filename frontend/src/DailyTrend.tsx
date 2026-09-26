@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Alert, Button, Card, Skeleton } from 'antd';
 import { metricsUrl, useDashboardRequest, validDate } from './dashboardApi';
 import type { DashboardFilters } from './dashboardApi';
@@ -25,8 +25,17 @@ function parseDaily(value: unknown): DailyResponse {
 }
 
 function TrendChart({ days, selectedDate, onSelect }: { days: DailyPoint[]; selectedDate: string; onSelect: (date: string) => void }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [availableWidth, setAvailableWidth] = useState(0);
+  useEffect(() => {
+    const element = scrollRef.current;
+    if (!element) return;
+    const observer = new ResizeObserver(entries => setAvailableWidth(entries[0].contentRect.width));
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
   const left = 82, right = 28, top = 24, bottom = 50, height = 270;
-  const width = Math.max(620, left + right + (days.length - 1) * 38);
+  const width = Math.max(320, availableWidth, left + right + (days.length - 1) * 26);
   const plotWidth = width - left - right, plotHeight = height - top - bottom;
   const minimum = Math.min(0, ...days.map(day => day.net_revenue));
   const maximum = Math.max(0, ...days.map(day => day.net_revenue));
@@ -36,7 +45,7 @@ function TrendChart({ days, selectedDate, onSelect }: { days: DailyPoint[]; sele
   const x = (index: number) => days.length === 1 ? left + plotWidth / 2 : left + index * plotWidth / (days.length - 1);
   const points = days.map((day, index) => `${x(index)},${y(day.net_revenue)}`).join(' ');
   const labelEvery = Math.max(1, Math.ceil(days.length / Math.max(2, width / 120)));
-  return <div className="daily-chart-scroll" role="region" aria-label="每日净营业额图表，可横向滚动" tabIndex={0}>
+  return <div ref={scrollRef} className="daily-chart-scroll" role="region" aria-label="每日净营业额图表，可横向滚动" tabIndex={0}>
     <svg className="daily-chart" width={width} height={height} viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`每日净营业额，${days[0].date} 至 ${days[days.length - 1].date}`}>
       <line x1={left} x2={width - right} y1={y(0)} y2={y(0)} className="daily-zero-line" />
       <text x={left - 10} y={y(0) + 4} textAnchor="end" className="daily-axis-label">¥0</text>

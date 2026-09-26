@@ -56,9 +56,10 @@ function Workspace() {
     <main>
       <div className="page-heading"><div><div className="eyebrow">经营看板</div><h1>看清每一天的经营</h1><p>按日期和门店查看真实经营数据，核对清洗结果与指标口径。</p></div><Button onClick={() => setRevision(x => x + 1)} loading={state.kind === 'loading'}>刷新数据</Button></div>
       {period && <Dashboard period={period} />}
-      <div className="section-heading"><h2>数据质量</h2><Tag color="green">KB-001 · 现行口径</Tag></div>
-      <p className="scope-note">全量重建结果 · 不随看板筛选变化</p>
-      <div aria-live="polite" aria-busy={state.kind === 'loading'}>
+      <section className="quality-section" aria-label="数据质量台账">
+        <div className="section-heading"><h2>数据质量</h2><Tag color="green">KB-001 · 现行口径</Tag></div>
+        <p className="scope-note">全量重建结果 · 不随看板筛选变化</p>
+        <div aria-live="polite" aria-busy={state.kind === 'loading'}>
         {state.kind === 'loading' && <Card><p role="status">正在读取数据质量…</p><Skeleton active paragraph={{ rows: 5 }} /></Card>}
         {state.kind === 'error' && <Alert type="error" showIcon message="数据质量加载失败" description="暂时无法读取完整台账，请确认服务已启动且已完成重建。" action={<Button onClick={() => setRevision(x => x + 1)}>重试</Button>} />}
         {state.kind === 'ready' && report && <>
@@ -81,7 +82,8 @@ function Workspace() {
           </Card>
           <p className="footnote">原始数据保持不变。重建完成后重启服务，再刷新此页查看最新结果。</p>
         </>}
-      </div>
+        </div>
+      </section>
     </main>
     <footer>MONEKI / 数据口径以《指标口径手册 v3》为准</footer>
   </div>;

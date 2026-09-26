@@ -1,0 +1,16 @@
+node_modules/antd/es/color-picker/components/ColorRgbInput.js (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/antd/es/color-picker/components/ColorRgbInput.js" was ignored.
+node_modules/antd/es/table/hooks/useFilter/FilterSearch.js (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/antd/es/table/hooks/useFilter/FilterSearch.js" was ignored.
+node_modules/antd/es/table/hooks/useFilter/FilterWrapper.js (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/antd/es/table/hooks/useFilter/FilterWrapper.js" was ignored.
+node_modules/antd/es/color-picker/components/ColorSteppers.js (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/antd/es/color-picker/components/ColorSteppers.js" was ignored.
+✓ 1441 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.42 kB │ gzip:   0.31 kB
+dist/assets/index-BzlJnGoX.css   12.49 kB │ gzip:   3.59 kB
+dist/assets/index-BWHUe1Zi.js   966.26 kB │ gzip: 304.04 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.36s
