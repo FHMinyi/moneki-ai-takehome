@@ -180,3 +180,16 @@ def test_quote_normalized_limit(rt):
         norm=re.sub(r'[\s*`|#>]','',unicodedata.normalize('NFKC',c['quote']))
         assert len(norm)<=400,(len(norm),a)
     assert a['answer_type']=='refusal' and not a['citations'],a
+
+@pytest.mark.parametrize('q',[
+    '8 月 3 日 S05 的现金支付占比是多少？为什么会这样？',
+    'S05在2026-08-03现金支付占比多少，原因是什么？',
+])
+def test_existing_payment_explanation_regression(rt,q):
+    payload=original(rt)
+    with rt.serve() as req:a,t=chat(req,q)
+    assert a['answer_type']=='hybrid' and '100' in a['answer'],a
+    assert a['data_evidence'],a
+    assert {c['doc_id'] for c in a['citations']}&{'KB-027','KB-052'},a
+    assert detail(t,'plan')['needs_data']
+    quotes(a,payload)

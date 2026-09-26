@@ -1,0 +1,44 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_existing_payment_explanation_regression[8 \u6708 3 \u65e5 S05 \u7684\u73b0\u91d1\u652f\u4ed8\u5360\u6bd4\u662f\u591a\u5c11\uff1f\u4e3a\u4ec0\u4e48\u4f1a\u8fd9\u6837\uff1f] _
+
+rt = <g203.Runtime object at 0x106d34620>, q = '8 月 3 日 S05 的现金支付占比是多少？为什么会这样？'
+
+    @pytest.mark.parametrize('q',[
+        '8 月 3 日 S05 的现金支付占比是多少？为什么会这样？',
+        'S05在2026-08-03现金支付占比多少，原因是什么？',
+    ])
+    def test_existing_payment_explanation_regression(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='hybrid' and '100' in a['answer'],a
+E       AssertionError: {'answer': 'KB-034《门店档案 S05 Super Tetsudo》：因为品类全、座位多，总部的新品试销和陈列方案通常先在这家店跑一轮，再决定要不要推到其他门店。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-034', 'quote': '因为品类全、座位多，总部的新品试销和陈列方案通常先在这家店跑一轮，再决定要不要推到其他门店。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'hybrid'
+E         
+E         - hybrid
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:191: AssertionError
+_ test_existing_payment_explanation_regression[S05\u57282026-08-03\u73b0\u91d1\u652f\u4ed8\u5360\u6bd4\u591a\u5c11\uff0c\u539f\u56e0\u662f\u4ec0\u4e48\uff1f] _
+
+rt = <g203.Runtime object at 0x106c4a7b0>, q = 'S05在2026-08-03现金支付占比多少，原因是什么？'
+
+    @pytest.mark.parametrize('q',[
+        '8 月 3 日 S05 的现金支付占比是多少？为什么会这样？',
+        'S05在2026-08-03现金支付占比多少，原因是什么？',
+    ])
+    def test_existing_payment_explanation_regression(rt,q):
+        payload=original(rt)
+        with rt.serve() as req:a,t=chat(req,q)
+>       assert a['answer_type']=='hybrid' and '100' in a['answer'],a
+E       AssertionError: {'answer': 'KB-034《门店档案 S05 Super Tetsudo》：因为品类全、座位多，总部的新品试销和陈列方案通常先在这家店跑一轮，再决定要不要推到其他门店。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-034', 'quote': '因为品类全、座位多，总部的新品试销和陈列方案通常先在这家店跑一轮，再决定要不要推到其他门店。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'hybrid'
+E         
+E         - hybrid
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:191: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-04/test_doc_qa.py::test_existing_payment_explanation_regression[8 \u6708 3 \u65e5 S05 \u7684\u73b0\u91d1\u652f\u4ed8\u5360\u6bd4\u662f\u591a\u5c11\uff1f\u4e3a\u4ec0\u4e48\u4f1a\u8fd9\u6837\uff1f]
+FAILED docs/verification/g2-04/test_doc_qa.py::test_existing_payment_explanation_regression[S05\u57282026-08-03\u73b0\u91d1\u652f\u4ed8\u5360\u6bd4\u591a\u5c11\uff0c\u539f\u56e0\u662f\u4ec0\u4e48\uff1f]
+2 failed, 49 deselected in 1.70s

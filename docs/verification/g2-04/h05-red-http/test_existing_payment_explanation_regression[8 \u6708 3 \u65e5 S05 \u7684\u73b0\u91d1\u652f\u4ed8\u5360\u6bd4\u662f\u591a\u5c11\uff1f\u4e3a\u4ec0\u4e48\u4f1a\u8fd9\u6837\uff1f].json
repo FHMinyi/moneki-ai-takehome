@@ -1,0 +1,1600 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-126/test_existing_payment_explanat0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-126/test_existing_payment_explanat0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-126/test_existing_payment_explanat0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 277a7415fea7\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-126/test_existing_payment_explanat0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-126/test_existing_payment_explanat0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "58818"
+      ],
+      "pid": 34766,
+      "port": 58818,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "277a7415fea7",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "8 月 3 日 S05 的现金支付占比是多少？为什么会这样？",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "KB-034《门店档案 S05 Super Tetsudo》：因为品类全、座位多，总部的新品试销和陈列方案通常先在这家店跑一轮，再决定要不要推到其他门店。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-034",
+                "quote": "因为品类全、座位多，总部的新品试销和陈列方案通常先在这家店跑一轮，再决定要不要推到其他门店。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "single",
+            "question": "8 月 3 日 S05 的现金支付占比是多少？为什么会这样？",
+            "started_at": "2026-09-27T04:34:00.534",
+            "total_ms": 34.0,
+            "steps": [
+              {
+                "step": "plan",
+                "at_ms": 13.6,
+                "took_ms": 13.6,
+                "detail": {
+                  "question": "8 月 3 日 S05 的现金支付占比是多少？为什么会这样？",
+                  "standalone_question": "8 月 3 日 S05 的现金支付占比是多少？为什么会这样？",
+                  "search_query": "8 月 3 日 S05 的现金支付占比是多少？为什么会这样？ S05 Super Tetsudo",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-08-03",
+                    "2026-08-03"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": "S05",
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=S05 商品=全部 时间=['8月3日']",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 31.1,
+                "took_ms": 17.5,
+                "detail": {
+                  "query": "8 月 3 日 s05 的现金支付占比是多少?为什么会这样? s05 super tetsudo",
+                  "terms": [
+                    "8",
+                    "月",
+                    "3",
+                    "日",
+                    "s05",
+                    "的现",
+                    "现金",
+                    "金支",
+                    "支付",
+                    "付占",
+                    "占比",
+                    "比是",
+                    "s05",
+                    "super",
+                    "tetsudo"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": "S05",
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-027#1",
+                      "doc_id": "KB-027",
+                      "score": 88.4385,
+                      "lexical_score": 37.3733,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s05",
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-027#3",
+                      "doc_id": "KB-027",
+                      "score": 78.5099,
+                      "lexical_score": 31.6175,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s05",
+                        "super",
+                        "tetsudo",
+                        "支付",
+                        "现金"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-034#3",
+                      "doc_id": "KB-034",
+                      "score": 67.636,
+                      "lexical_score": 24.7791,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "s05",
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-034#1",
+                      "doc_id": "KB-034",
+                      "score": 64.0083,
+                      "lexical_score": 41.2292,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s05",
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-027#2",
+                      "doc_id": "KB-027",
+                      "score": 61.6362,
+                      "lexical_score": 39.7012,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s05",
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-034#2",
+                      "doc_id": "KB-034",
+                      "score": 59.6437,
+                      "lexical_score": 37.4339,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "s05",
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-027#5",
+                      "doc_id": "KB-027",
+                      "score": 59.3067,
+                      "lexical_score": 37.6756,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "s05",
+                        "super",
+                        "tetsudo",
+                        "现金"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-027#4",
+                      "doc_id": "KB-027",
+                      "score": 54.4988,
+                      "lexical_score": 33.4948,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s05",
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-034#4",
+                      "doc_id": "KB-034",
+                      "score": 53.0535,
+                      "lexical_score": 31.7033,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8",
+                        "s05",
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-027#6",
+                      "doc_id": "KB-027",
+                      "score": 49.561,
+                      "lexical_score": 29.201,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "8",
+                        "s05",
+                        "super",
+                        "tetsudo",
+                        "现金"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-052#1",
+                      "doc_id": "KB-052",
+                      "score": 48.058,
+                      "lexical_score": 30.9552,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s05",
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#3",
+                      "doc_id": "KB-042",
+                      "score": 44.2339,
+                      "lexical_score": 28.4921,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s05",
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-052#5",
+                      "doc_id": "KB-052",
+                      "score": 43.2124,
+                      "lexical_score": 26.7417,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s05",
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-052#3",
+                      "doc_id": "KB-052",
+                      "score": 40.6414,
+                      "lexical_score": 24.506,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "s05",
+                        "super",
+                        "tetsudo",
+                        "现金"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-052#4",
+                      "doc_id": "KB-052",
+                      "score": 38.6754,
+                      "lexical_score": 22.7965,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s05",
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#6",
+                      "doc_id": "KB-060",
+                      "score": 35.795,
+                      "lexical_score": 23.0564,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "s05",
+                        "super",
+                        "tetsudo",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-052#2",
+                      "doc_id": "KB-052",
+                      "score": 31.3697,
+                      "lexical_score": 16.4437,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "s05",
+                        "super",
+                        "tetsudo",
+                        "现金"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#3",
+                      "doc_id": "KB-060",
+                      "score": 29.1294,
+                      "lexical_score": 17.2601,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "s05",
+                        "super",
+                        "tetsudo",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#7",
+                      "doc_id": "KB-003",
+                      "score": 21.9954,
+                      "lexical_score": 28.3354,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s05",
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#1",
+                      "doc_id": "KB-061",
+                      "score": 21.8595,
+                      "lexical_score": 16.1922,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "super",
+                        "tetsudo"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#2",
+                      "doc_id": "KB-042",
+                      "score": 21.3166,
+                      "lexical_score": 8.5639,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#9",
+                      "doc_id": "KB-060",
+                      "score": 18.0709,
+                      "lexical_score": 7.6441,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s05",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#2",
+                      "doc_id": "KB-061",
+                      "score": 16.5571,
+                      "lexical_score": 5.3708,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": []
+                    },
+                    {
+                      "chunk_id": "KB-060#8",
+                      "doc_id": "KB-060",
+                      "score": 15.9667,
+                      "lexical_score": 5.8143,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s05",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#2",
+                      "doc_id": "KB-026",
+                      "score": 14.4953,
+                      "lexical_score": 6.2245,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "3",
+                        "s05",
+                        "日",
+                        "月",
+                        "现金"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#10",
+                      "doc_id": "KB-060",
+                      "score": 14.0764,
+                      "lexical_score": 4.1706,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "8",
+                        "s05",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#2",
+                      "doc_id": "KB-062",
+                      "score": 13.239,
+                      "lexical_score": 9.8067,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "8",
+                        "super",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#3",
+                      "doc_id": "KB-029",
+                      "score": 13.0496,
+                      "lexical_score": 5.5664,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "8",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#5",
+                      "doc_id": "KB-029",
+                      "score": 12.9784,
+                      "lexical_score": 5.5251,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "8",
+                        "s05",
+                        "的现"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#5",
+                      "doc_id": "KB-013",
+                      "score": 12.2084,
+                      "lexical_score": 9.0433,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "支付",
+                        "现金"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#10",
+                      "doc_id": "KB-029",
+                      "score": 11.9179,
+                      "lexical_score": 4.9103,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "3",
+                        "8",
+                        "s05",
+                        "日",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-042#4",
+                      "doc_id": "KB-042",
+                      "score": 11.6764,
+                      "lexical_score": 0.1812,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#1",
+                      "doc_id": "KB-062",
+                      "score": 11.3455,
+                      "lexical_score": 7.9132,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "super"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#1",
+                      "doc_id": "KB-060",
+                      "score": 11.2077,
+                      "lexical_score": 1.6761,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "日",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#4",
+                      "doc_id": "KB-025",
+                      "score": 10.5064,
+                      "lexical_score": 7.7825,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#2",
+                      "doc_id": "KB-060",
+                      "score": 10.3418,
+                      "lexical_score": 0.9231,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#5",
+                      "doc_id": "KB-060",
+                      "score": 10.3418,
+                      "lexical_score": 0.9231,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#7",
+                      "doc_id": "KB-060",
+                      "score": 10.2608,
+                      "lexical_score": 0.8527,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-060#4",
+                      "doc_id": "KB-060",
+                      "score": 10.1985,
+                      "lexical_score": 0.7985,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#6",
+                      "doc_id": "KB-011",
+                      "score": 10.1404,
+                      "lexical_score": 7.5114,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "支付",
+                        "现金"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#2",
+                      "doc_id": "KB-028",
+                      "score": 9.4055,
+                      "lexical_score": 6.0583,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "8",
+                        "s05",
+                        "日",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#1",
+                      "doc_id": "KB-029",
+                      "score": 8.8652,
+                      "lexical_score": 5.7103,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8",
+                        "s05",
+                        "日",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#3",
+                      "doc_id": "KB-061",
+                      "score": 8.1838,
+                      "lexical_score": 2.5165,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8",
+                        "支付"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#7",
+                      "doc_id": "KB-011",
+                      "score": 7.6959,
+                      "lexical_score": 5.0669,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "支付"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#11",
+                      "doc_id": "KB-029",
+                      "score": 7.6345,
+                      "lexical_score": 4.6401,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8",
+                        "s05",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#5",
+                      "doc_id": "KB-014",
+                      "score": 7.4803,
+                      "lexical_score": 3.694,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "3",
+                        "占比"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#6",
+                      "doc_id": "KB-029",
+                      "score": 6.1703,
+                      "lexical_score": 3.3668,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8",
+                        "s05",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#4",
+                      "doc_id": "KB-003",
+                      "score": 6.0072,
+                      "lexical_score": 0.5299,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#2",
+                      "doc_id": "KB-011",
+                      "score": 5.9786,
+                      "lexical_score": 3.3496,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "支付"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#4",
+                      "doc_id": "KB-013",
+                      "score": 5.9519,
+                      "lexical_score": 2.7867,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "现金"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-003#8",
+                      "doc_id": "KB-003",
+                      "score": 5.8352,
+                      "lexical_score": 0.2308,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#4",
+                      "doc_id": "KB-062",
+                      "score": 5.7389,
+                      "lexical_score": 2.3066,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8",
+                        "日",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#3",
+                      "doc_id": "KB-028",
+                      "score": 5.4923,
+                      "lexical_score": 2.6555,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8",
+                        "日",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#5",
+                      "doc_id": "KB-011",
+                      "score": 5.4393,
+                      "lexical_score": 2.8103,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "支付"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#2",
+                      "doc_id": "KB-021",
+                      "score": 5.2929,
+                      "lexical_score": 3.4093,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "s05",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#8",
+                      "doc_id": "KB-029",
+                      "score": 5.1998,
+                      "lexical_score": 1.0158,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "8",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#7",
+                      "doc_id": "KB-001",
+                      "score": 5.0284,
+                      "lexical_score": 3.7247,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "支付"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#1",
+                      "doc_id": "KB-026",
+                      "score": 4.655,
+                      "lexical_score": 0.52,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#9",
+                      "doc_id": "KB-029",
+                      "score": 4.5219,
+                      "lexical_score": 1.9335,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#3",
+                      "doc_id": "KB-026",
+                      "score": 4.4887,
+                      "lexical_score": 0.4236,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#12",
+                      "doc_id": "KB-001",
+                      "score": 4.43,
+                      "lexical_score": 3.1264,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "的现"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#15",
+                      "doc_id": "KB-029",
+                      "score": 4.3052,
+                      "lexical_score": 1.7451,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8",
+                        "日",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-062#3",
+                      "doc_id": "KB-062",
+                      "score": 4.2981,
+                      "lexical_score": 0.8657,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#4",
+                      "doc_id": "KB-011",
+                      "score": 4.2324,
+                      "lexical_score": 1.6034,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "日",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#12",
+                      "doc_id": "KB-029",
+                      "score": 4.2034,
+                      "lexical_score": 1.6565,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "8",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#3",
+                      "doc_id": "KB-025",
+                      "score": 3.6013,
+                      "lexical_score": 0.8774,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#13",
+                      "doc_id": "KB-029",
+                      "score": 3.5924,
+                      "lexical_score": 1.1253,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#2",
+                      "doc_id": "KB-029",
+                      "score": 3.5692,
+                      "lexical_score": 1.1051,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#7",
+                      "doc_id": "KB-029",
+                      "score": 3.5579,
+                      "lexical_score": 1.0952,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#4",
+                      "doc_id": "KB-029",
+                      "score": 3.5359,
+                      "lexical_score": 1.0761,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "8"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#2",
+                      "doc_id": "KB-013",
+                      "score": 3.4512,
+                      "lexical_score": 0.286,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-013#3",
+                      "doc_id": "KB-013",
+                      "score": 3.4498,
+                      "lexical_score": 0.2846,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#2",
+                      "doc_id": "KB-025",
+                      "score": 3.2907,
+                      "lexical_score": 0.5669,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#14",
+                      "doc_id": "KB-029",
+                      "score": 3.2217,
+                      "lexical_score": 0.8029,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "8"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#4",
+                      "doc_id": "KB-001",
+                      "score": 3.2107,
+                      "lexical_score": 1.907,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "日",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#6",
+                      "doc_id": "KB-028",
+                      "score": 3.1779,
+                      "lexical_score": 0.643,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#3",
+                      "doc_id": "KB-011",
+                      "score": 2.9067,
+                      "lexical_score": 0.2777,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#4",
+                      "doc_id": "KB-028",
+                      "score": 2.7691,
+                      "lexical_score": 0.2875,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#5",
+                      "doc_id": "KB-028",
+                      "score": 2.7503,
+                      "lexical_score": 0.2712,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#2",
+                      "doc_id": "KB-024",
+                      "score": 2.2019,
+                      "lexical_score": 5.6731,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s05",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#4",
+                      "doc_id": "KB-024",
+                      "score": 1.9974,
+                      "lexical_score": 4.9621,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "s05"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-016#4",
+                      "doc_id": "KB-016",
+                      "score": 1.7894,
+                      "lexical_score": 1.3255,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#6",
+                      "doc_id": "KB-001",
+                      "score": 1.7162,
+                      "lexical_score": 0.4126,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#3",
+                      "doc_id": "KB-014",
+                      "score": 1.6394,
+                      "lexical_score": 0.3465,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#5",
+                      "doc_id": "KB-001",
+                      "score": 1.6362,
+                      "lexical_score": 0.3325,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#4",
+                      "doc_id": "KB-014",
+                      "score": 1.5506,
+                      "lexical_score": 0.2578,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#15",
+                      "doc_id": "KB-001",
+                      "score": 1.5308,
+                      "lexical_score": 0.2271,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#2",
+                      "doc_id": "KB-014",
+                      "score": 1.5218,
+                      "lexical_score": 0.2289,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#18",
+                      "doc_id": "KB-001",
+                      "score": 1.486,
+                      "lexical_score": 0.1823,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-016#3",
+                      "doc_id": "KB-016",
+                      "score": 1.3292,
+                      "lexical_score": 0.4222,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#5",
+                      "doc_id": "KB-022",
+                      "score": 1.3001,
+                      "lexical_score": 0.963,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "8"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#8",
+                      "doc_id": "KB-022",
+                      "score": 1.2799,
+                      "lexical_score": 0.9429,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "8"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#5",
+                      "doc_id": "KB-024",
+                      "score": 0.9167,
+                      "lexical_score": 1.2031,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3",
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#2",
+                      "doc_id": "KB-022",
+                      "score": 0.817,
+                      "lexical_score": 0.48,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#7",
+                      "doc_id": "KB-022",
+                      "score": 0.8091,
+                      "lexical_score": 0.4721,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#6",
+                      "doc_id": "KB-024",
+                      "score": 0.7986,
+                      "lexical_score": 0.7922,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "月"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#6",
+                      "doc_id": "KB-022",
+                      "score": 0.7799,
+                      "lexical_score": 0.4429,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#4",
+                      "doc_id": "KB-022",
+                      "score": 0.7732,
+                      "lexical_score": 0.4361,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#9",
+                      "doc_id": "KB-022",
+                      "score": 0.7483,
+                      "lexical_score": 0.4112,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#15",
+                      "doc_id": "KB-022",
+                      "score": 0.6816,
+                      "lexical_score": 0.3445,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#11",
+                      "doc_id": "KB-022",
+                      "score": 0.6755,
+                      "lexical_score": 0.3384,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-016#2",
+                      "doc_id": "KB-016",
+                      "score": 0.6698,
+                      "lexical_score": 0.2059,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#12",
+                      "doc_id": "KB-022",
+                      "score": 0.6676,
+                      "lexical_score": 0.3306,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#1",
+                      "doc_id": "KB-022",
+                      "score": 0.6658,
+                      "lexical_score": 0.3287,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#3",
+                      "doc_id": "KB-024",
+                      "score": 0.6632,
+                      "lexical_score": 0.3213,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#13",
+                      "doc_id": "KB-022",
+                      "score": 0.662,
+                      "lexical_score": 0.325,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#3",
+                      "doc_id": "KB-022",
+                      "score": 0.6602,
+                      "lexical_score": 0.3231,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#10",
+                      "doc_id": "KB-022",
+                      "score": 0.6566,
+                      "lexical_score": 0.3195,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#4",
+                      "doc_id": "KB-015",
+                      "score": 0.6471,
+                      "lexical_score": 0.3195,
+                      "source_focus_boost": 1.5,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-022#14",
+                      "doc_id": "KB-022",
+                      "score": 0.6446,
+                      "lexical_score": 0.3075,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#2",
+                      "doc_id": "KB-041",
+                      "score": 0.3862,
+                      "lexical_score": 0.286,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#3",
+                      "doc_id": "KB-015",
+                      "score": 0.3731,
+                      "lexical_score": 0.2613,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#5",
+                      "doc_id": "KB-015",
+                      "score": 0.365,
+                      "lexical_score": 0.2532,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#4",
+                      "doc_id": "KB-041",
+                      "score": 0.3522,
+                      "lexical_score": 0.2521,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#2",
+                      "doc_id": "KB-015",
+                      "score": 0.3474,
+                      "lexical_score": 0.2355,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-041#5",
+                      "doc_id": "KB-041",
+                      "score": 0.3366,
+                      "lexical_score": 0.2365,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-040#7",
+                      "doc_id": "KB-040",
+                      "score": 0.2438,
+                      "lexical_score": 0.1806,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "3"
+                      ]
+                    }
+                  ],
+                  "expansions": [
+                    "Super Tetsudo",
+                    "铁道",
+                    "ST",
+                    "Super Tetsudo",
+                    "铁道",
+                    "ST",
+                    "Super Tetsudo",
+                    "铁道",
+                    "ST"
+                  ],
+                  "coverage": 0.255,
+                  "hits": [
+                    {
+                      "doc_id": "KB-027",
+                      "chunk_id": "KB-027#1",
+                      "score": 88.4385,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-034",
+                      "chunk_id": "KB-034#3",
+                      "score": 67.636,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-052",
+                      "chunk_id": "KB-052#1",
+                      "score": 48.058,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-042",
+                      "chunk_id": "KB-042#3",
+                      "score": 44.2339,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-060",
+                      "chunk_id": "KB-060#6",
+                      "score": 35.795,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-020",
+                      "reason": "文档声明只适用于 S03，与问题里的 S05 不符"
+                    },
+                    {
+                      "doc_id": "KB-023",
+                      "reason": "文档声明只适用于 S02，与问题里的 S05 不符"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    },
+                    {
+                      "doc_id": "KB-050",
+                      "reason": "文档声明只适用于 S02，与问题里的 S05 不符"
+                    },
+                    {
+                      "doc_id": "KB-051",
+                      "reason": "文档声明只适用于 S03，与问题里的 S05 不符"
+                    },
+                    {
+                      "doc_id": "KB-053",
+                      "reason": "文档声明只适用于 S01，与问题里的 S05 不符"
+                    },
+                    {
+                      "doc_id": "KB-030",
+                      "reason": "文档声明只适用于 S01，与问题里的 S05 不符"
+                    },
+                    {
+                      "doc_id": "KB-031",
+                      "reason": "文档声明只适用于 S02，与问题里的 S05 不符"
+                    },
+                    {
+                      "doc_id": "KB-032",
+                      "reason": "文档声明只适用于 S03，与问题里的 S05 不符"
+                    },
+                    {
+                      "doc_id": "KB-033",
+                      "reason": "文档声明只适用于 S04，与问题里的 S05 不符"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 34.0,
+                "took_ms": null,
+                "detail": {
+                  "candidates": [
+                    {
+                      "doc_id": "KB-034",
+                      "chunk_id": "KB-034#3",
+                      "score": 0.14861156113490795,
+                      "text": "因为品类全、座位多，总部的新品试销和陈列方案通常先在这家店跑一轮，再决定要不要推到其他门店。"
+                    }
+                  ],
+                  "rejected": [],
+                  "selected": [
+                    {
+                      "doc_id": "KB-034",
+                      "chunk_id": "KB-034#3",
+                      "score": 0.14861156113490795,
+                      "source_start": 247,
+                      "source_end": 436,
+                      "quote": "因为品类全、座位多，总部的新品试销和陈列方案通常先在这家店跑一轮，再决定要不要推到其他门店。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 34.0,
+                "took_ms": 20.5,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 34.0,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}
