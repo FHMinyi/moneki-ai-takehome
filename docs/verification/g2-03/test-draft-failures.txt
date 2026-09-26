@@ -1,0 +1,668 @@
+F..FFF....F.F.FFFFFFFFFFFFFFFFFFFFF.FFF                                  [100%]
+=================================== FAILURES ===================================
+__________________________ test_public_positive[R01] ___________________________
+
+rt = <test_retrieval.Runtime object at 0x109203aa0>
+q = {'category': 'retrieval', 'gold_all': ['KB-013'], 'id': 'R01', 'points': 1, ...}
+
+    @pytest.mark.parametrize('q', PUBLIC, ids=lambda q:q['id'])
+    def test_public_positive(rt,q):
+        payload = original(rt)
+        with rt.serve() as request:
+            response=get(request,q['query'],q['top_k'])
+        hits=response['results']
+        assert len(hits)==q['results_count']
+        assert [h['score'] for h in hits]==sorted([h['score'] for h in hits],reverse=True)
+        ids={h['doc_id'] for h in evidence(response)}
+>       assert set(q.get('gold_all',[]))<=ids
+E       AssertionError: assert {'KB-013'} <= set()
+E         
+E         Extra items in the left set:
+E         'KB-013'
+
+docs/verification/g2-03/test_retrieval.py:91: AssertionError
+__________________________ test_public_positive[R04] ___________________________
+
+rt = <test_retrieval.Runtime object at 0x109380d70>
+q = {'category': 'retrieval', 'gold_all': ['KB-022'], 'id': 'R04', 'points': 1, ...}
+
+    @pytest.mark.parametrize('q', PUBLIC, ids=lambda q:q['id'])
+    def test_public_positive(rt,q):
+        payload = original(rt)
+        with rt.serve() as request:
+            response=get(request,q['query'],q['top_k'])
+        hits=response['results']
+        assert len(hits)==q['results_count']
+        assert [h['score'] for h in hits]==sorted([h['score'] for h in hits],reverse=True)
+        ids={h['doc_id'] for h in evidence(response)}
+>       assert set(q.get('gold_all',[]))<=ids
+E       AssertionError: assert {'KB-022'} <= set()
+E         
+E         Extra items in the left set:
+E         'KB-022'
+
+docs/verification/g2-03/test_retrieval.py:91: AssertionError
+__________________________ test_public_positive[R05] ___________________________
+
+rt = <test_retrieval.Runtime object at 0x1092e0500>
+q = {'category': 'retrieval', 'gold_all': ['KB-061'], 'id': 'R05', 'points': 1, ...}
+
+    @pytest.mark.parametrize('q', PUBLIC, ids=lambda q:q['id'])
+    def test_public_positive(rt,q):
+        payload = original(rt)
+        with rt.serve() as request:
+            response=get(request,q['query'],q['top_k'])
+        hits=response['results']
+        assert len(hits)==q['results_count']
+        assert [h['score'] for h in hits]==sorted([h['score'] for h in hits],reverse=True)
+        ids={h['doc_id'] for h in evidence(response)}
+>       assert set(q.get('gold_all',[]))<=ids
+E       AssertionError: assert {'KB-061'} <= set()
+E         
+E         Extra items in the left set:
+E         'KB-061'
+
+docs/verification/g2-03/test_retrieval.py:91: AssertionError
+__________________________ test_public_positive[R06] ___________________________
+
+rt = <test_retrieval.Runtime object at 0x109900c50>
+q = {'category': 'retrieval', 'gold_all': ['KB-001'], 'id': 'R06', 'points': 1, ...}
+
+    @pytest.mark.parametrize('q', PUBLIC, ids=lambda q:q['id'])
+    def test_public_positive(rt,q):
+        payload = original(rt)
+        with rt.serve() as request:
+            response=get(request,q['query'],q['top_k'])
+        hits=response['results']
+        assert len(hits)==q['results_count']
+        assert [h['score'] for h in hits]==sorted([h['score'] for h in hits],reverse=True)
+        ids={h['doc_id'] for h in evidence(response)}
+>       assert set(q.get('gold_all',[]))<=ids
+E       AssertionError: assert {'KB-001'} <= set()
+E         
+E         Extra items in the left set:
+E         'KB-001'
+
+docs/verification/g2-03/test_retrieval.py:91: AssertionError
+__________________________ test_public_positive[R11] ___________________________
+
+rt = <test_retrieval.Runtime object at 0x1099759a0>
+q = {'category': 'retrieval', 'gold_all': ['KB-028'], 'id': 'R11', 'points': 1, ...}
+
+    @pytest.mark.parametrize('q', PUBLIC, ids=lambda q:q['id'])
+    def test_public_positive(rt,q):
+        payload = original(rt)
+        with rt.serve() as request:
+            response=get(request,q['query'],q['top_k'])
+        hits=response['results']
+        assert len(hits)==q['results_count']
+        assert [h['score'] for h in hits]==sorted([h['score'] for h in hits],reverse=True)
+        ids={h['doc_id'] for h in evidence(response)}
+>       assert set(q.get('gold_all',[]))<=ids
+E       AssertionError: assert {'KB-028'} <= {'KB-003', 'K...40', 'KB-041'}
+E         
+E         Extra items in the left set:
+E         'KB-028'
+
+docs/verification/g2-03/test_retrieval.py:91: AssertionError
+__________________________ test_public_positive[R13] ___________________________
+
+rt = <test_retrieval.Runtime object at 0x1099e2d50>
+q = {'category': 'retrieval', 'gold_any': ['KB-026', 'KB-053'], 'id': 'R13', 'points': 1, ...}
+
+    @pytest.mark.parametrize('q', PUBLIC, ids=lambda q:q['id'])
+    def test_public_positive(rt,q):
+        payload = original(rt)
+        with rt.serve() as request:
+            response=get(request,q['query'],q['top_k'])
+        hits=response['results']
+        assert len(hits)==q['results_count']
+        assert [h['score'] for h in hits]==sorted([h['score'] for h in hits],reverse=True)
+        ids={h['doc_id'] for h in evidence(response)}
+        assert set(q.get('gold_all',[]))<=ids
+>       assert not q.get('gold_any') or set(q['gold_any'])&ids
+E       AssertionError: assert (not ['KB-026', 'KB-053'] or ({'KB-026', 'KB-053'} & set()))
+E        +  where ['KB-026', 'KB-053'] = <built-in method get of dict object at 0x109275b40>('gold_any')
+E        +    where <built-in method get of dict object at 0x109275b40> = {'category': 'retrieval', 'gold_any': ['KB-026', 'KB-053'], 'id': 'R13', 'points': 1, ...}.get
+E        +  and   {'KB-026', 'KB-053'} = set(['KB-026', 'KB-053'])
+
+docs/verification/g2-03/test_retrieval.py:92: AssertionError
+__________________________ test_public_positive[R15] ___________________________
+
+rt = <test_retrieval.Runtime object at 0x109202e40>
+q = {'category': 'retrieval', 'gold_all': ['KB-014'], 'id': 'R15', 'points': 1, ...}
+
+    @pytest.mark.parametrize('q', PUBLIC, ids=lambda q:q['id'])
+    def test_public_positive(rt,q):
+        payload = original(rt)
+        with rt.serve() as request:
+            response=get(request,q['query'],q['top_k'])
+        hits=response['results']
+        assert len(hits)==q['results_count']
+        assert [h['score'] for h in hits]==sorted([h['score'] for h in hits],reverse=True)
+        ids={h['doc_id'] for h in evidence(response)}
+>       assert set(q.get('gold_all',[]))<=ids
+E       AssertionError: assert {'KB-014'} <= set()
+E         
+E         Extra items in the left set:
+E         'KB-014'
+
+docs/verification/g2-03/test_retrieval.py:91: AssertionError
+_ test_variants[\u8bf7\u8bf4\u660e\u5916\u5356\u9000\u6b3e\u7684\u7533\u8bf7\u65f6\u9650-KB-013-\u9000\u6b3e] _
+
+rt = <test_retrieval.Runtime object at 0x109383a10>, query = '请说明外卖退款的申请时限'
+gold = 'KB-013', support = '退款'
+
+    @pytest.mark.parametrize('query,gold,support', VARIANTS)
+    def test_variants(rt,query,gold,support):
+        original(rt)
+        with rt.serve() as request:
+            hits=evidence(get(request,query))
+>       assert any(h['doc_id']==gold and support in h['retrieval_text'] for h in hits),hits
+E       AssertionError: []
+E       assert False
+E        +  where False = any(<generator object test_variants.<locals>.<genexpr> at 0x1093920a0>)
+
+docs/verification/g2-03/test_retrieval.py:115: AssertionError
+_ test_variants[\u5458\u5de5\u4e70\u9910\u6298\u6263\u80fd\u4e0e\u4fc3\u9500\u53e0\u52a0\u5417-KB-014-\u6298] _
+
+rt = <test_retrieval.Runtime object at 0x1092e23f0>, query = '员工买餐折扣能与促销叠加吗'
+gold = 'KB-014', support = '折'
+
+    @pytest.mark.parametrize('query,gold,support', VARIANTS)
+    def test_variants(rt,query,gold,support):
+        original(rt)
+        with rt.serve() as request:
+            hits=evidence(get(request,query))
+>       assert any(h['doc_id']==gold and support in h['retrieval_text'] for h in hits),hits
+E       AssertionError: []
+E       assert False
+E        +  where False = any(<generator object test_variants.<locals>.<genexpr> at 0x109390820>)
+
+docs/verification/g2-03/test_retrieval.py:115: AssertionError
+_ test_variants[Beef Poke\u91cc\u9762\u6709\u54ea\u4e9b\u8fc7\u654f\u539f\uff1f-KB-040-\u725b\u8089] _
+
+rt = <test_retrieval.Runtime object at 0x109383a40>
+query = 'Beef Poke里面有哪些过敏原？', gold = 'KB-040', support = '牛肉'
+
+    @pytest.mark.parametrize('query,gold,support', VARIANTS)
+    def test_variants(rt,query,gold,support):
+        original(rt)
+        with rt.serve() as request:
+            hits=evidence(get(request,query))
+>       assert any(h['doc_id']==gold and support in h['retrieval_text'] for h in hits),hits
+E       AssertionError: [{'doc_id': 'KB-031', 'chunk_id': 'KB-031#1', 'score': 3.9298, 'text': '# 门店档案：S02 Makai Poke
+E         
+E         ', ...}, {'doc_id': '...00 |
+E         | S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |
+E         | S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |
+E         ', ...}]
+E       assert False
+E        +  where False = any(<generator object test_variants.<locals>.<genexpr> at 0x109391700>)
+
+docs/verification/g2-03/test_retrieval.py:115: AssertionError
+_ test_variants[\uff22\uff45\uff45\uff46\u3000\uff30\uff4f\uff4b\uff45\uff1a\u8fc7\u654f\u539f\uff1f-KB-040-\u725b\u8089] _
+
+rt = <test_retrieval.Runtime object at 0x109381f70>
+query = 'Ｂｅｅｆ\u3000Ｐｏｋｅ：过敏原？', gold = 'KB-040', support = '牛肉'
+
+    @pytest.mark.parametrize('query,gold,support', VARIANTS)
+    def test_variants(rt,query,gold,support):
+        original(rt)
+        with rt.serve() as request:
+            hits=evidence(get(request,query))
+>       assert any(h['doc_id']==gold and support in h['retrieval_text'] for h in hits),hits
+E       AssertionError: [{'doc_id': 'KB-031', 'chunk_id': 'KB-031#1', 'score': 3.9298, 'text': '# 门店档案：S02 Makai Poke
+E         
+E         ', ...}, {'doc_id': '...00 |
+E         | S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |
+E         | S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |
+E         ', ...}]
+E       assert False
+E        +  where False = any(<generator object test_variants.<locals>.<genexpr> at 0x1092f67a0>)
+
+docs/verification/g2-03/test_retrieval.py:115: AssertionError
+_ test_variants[\u541e\u62ff\u9c7c\u4e09\u660e\u6cbb\u5728\uff33\uff10\uff14\u505c\u552e\u7684\u539f\u56e0-KB-029-\u4e09\u660e\u6cbb] _
+
+rt = <test_retrieval.Runtime object at 0x1092e20f0>, query = '吞拿鱼三明治在Ｓ０４停售的原因'
+gold = 'KB-029', support = '三明治'
+
+    @pytest.mark.parametrize('query,gold,support', VARIANTS)
+    def test_variants(rt,query,gold,support):
+        original(rt)
+        with rt.serve() as request:
+            hits=evidence(get(request,query))
+>       assert any(h['doc_id']==gold and support in h['retrieval_text'] for h in hits),hits
+E       AssertionError: [{'doc_id': 'KB-033', 'chunk_id': 'KB-033#1', 'score': 4.6601, 'text': '# 门店档案：S04 Arigato Sando
+E         
+E         ', ...}, {'doc_id'...两个商品，不要混 |
+E         | 灌汤包 | 蟹粉灌汤包 | |
+E         | 冷萃乌龙茶 | 冷萃乌龙、Cold Brew Oolong | 2026 年 8 月上市的新品 |
+E         | 抹茶拿铁 | Matcha Latte | |
+E         ', ...}]
+E       assert False
+E        +  where False = any(<generator object test_variants.<locals>.<genexpr> at 0x1092f5a80>)
+
+docs/verification/g2-03/test_retrieval.py:115: AssertionError
+_ test_variants[\u83b3\u841d\u7684\u541e\u62ff\u9c7c\u4e09\u660e\u6cbb\u4e3a\u4f55\u505c\u552e-KB-029-\u4e09\u660e\u6cbb] _
+
+rt = <test_retrieval.Runtime object at 0x1099018e0>, query = '莳萝的吞拿鱼三明治为何停售'
+gold = 'KB-029', support = '三明治'
+
+    @pytest.mark.parametrize('query,gold,support', VARIANTS)
+    def test_variants(rt,query,gold,support):
+        original(rt)
+        with rt.serve() as request:
+            hits=evidence(get(request,query))
+>       assert any(h['doc_id']==gold and support in h['retrieval_text'] for h in hits),hits
+E       AssertionError: [{'doc_id': 'KB-033', 'chunk_id': 'KB-033#1', 'score': 4.6601, 'text': '# 门店档案：S04 Arigato Sando
+E         
+E         ', ...}, {'doc_id'...两个商品，不要混 |
+E         | 灌汤包 | 蟹粉灌汤包 | |
+E         | 冷萃乌龙茶 | 冷萃乌龙、Cold Brew Oolong | 2026 年 8 月上市的新品 |
+E         | 抹茶拿铁 | Matcha Latte | |
+E         ', ...}]
+E       assert False
+E        +  where False = any(<generator object test_variants.<locals>.<genexpr> at 0x10912bca0>)
+
+docs/verification/g2-03/test_retrieval.py:115: AssertionError
+_ test_variants[\u8d85\u6c64\u5468\u4e94\u51e0\u70b9\u5173\u95e8-KB-062-\u5468\u4e94] _
+
+rt = <test_retrieval.Runtime object at 0x109178cb0>, query = '超汤周五几点关门'
+gold = 'KB-062', support = '周五'
+
+    @pytest.mark.parametrize('query,gold,support', VARIANTS)
+    def test_variants(rt,query,gold,support):
+        original(rt)
+        with rt.serve() as request:
+            hits=evidence(get(request,query))
+>       assert any(h['doc_id']==gold and support in h['retrieval_text'] for h in hits),hits
+E       AssertionError: []
+E       assert False
+E        +  where False = any(<generator object test_variants.<locals>.<genexpr> at 0x10912af80>)
+
+docs/verification/g2-03/test_retrieval.py:115: AssertionError
+__ test_variants[S05\u5468\u4e94\u51e0\u70b9\u5173\u95e8-KB-062-\u5468\u4e94] __
+
+rt = <test_retrieval.Runtime object at 0x1099036b0>, query = 'S05周五几点关门'
+gold = 'KB-062', support = '周五'
+
+    @pytest.mark.parametrize('query,gold,support', VARIANTS)
+    def test_variants(rt,query,gold,support):
+        original(rt)
+        with rt.serve() as request:
+            hits=evidence(get(request,query))
+>       assert any(h['doc_id']==gold and support in h['retrieval_text'] for h in hits),hits
+E       AssertionError: []
+E       assert False
+E        +  where False = any(<generator object test_variants.<locals>.<genexpr> at 0x1091e7140>)
+
+docs/verification/g2-03/test_retrieval.py:115: AssertionError
+_ test_variants[\u5f00\u5177\u7535\u5b50\u53d1\u7968\u7684\u64cd\u4f5c\u6d41\u7a0b-KB-061-\u53d1\u7968] _
+
+rt = <test_retrieval.Runtime object at 0x1093822a0>, query = '开具电子发票的操作流程'
+gold = 'KB-061', support = '发票'
+
+    @pytest.mark.parametrize('query,gold,support', VARIANTS)
+    def test_variants(rt,query,gold,support):
+        original(rt)
+        with rt.serve() as request:
+            hits=evidence(get(request,query))
+>       assert any(h['doc_id']==gold and support in h['retrieval_text'] for h in hits),hits
+E       AssertionError: []
+E       assert False
+E        +  where False = any(<generator object test_variants.<locals>.<genexpr> at 0x109393840>)
+
+docs/verification/g2-03/test_retrieval.py:115: AssertionError
+_ test_variants[\u53f0\u98ce\u5bfc\u81f4\u63d0\u524d\u95ed\u5e97\u7684\u5177\u4f53\u65f6\u95f4-KB-026-\u95ed\u5e97] _
+
+rt = <test_retrieval.Runtime object at 0x109226db0>, query = '台风导致提前闭店的具体时间'
+gold = 'KB-026', support = '闭店'
+
+    @pytest.mark.parametrize('query,gold,support', VARIANTS)
+    def test_variants(rt,query,gold,support):
+        original(rt)
+        with rt.serve() as request:
+            hits=evidence(get(request,query))
+>       assert any(h['doc_id']==gold and support in h['retrieval_text'] for h in hits),hits
+E       AssertionError: []
+E       assert False
+E        +  where False = any(<generator object test_variants.<locals>.<genexpr> at 0x109391460>)
+
+docs/verification/g2-03/test_retrieval.py:115: AssertionError
+_ test_real_versions[\u73b0\u5728\u5916\u5356\u9000\u6b3e\u7684\u653f\u7b56\u89c4\u5b9a-KB-013-KB-012] _
+
+rt = <test_retrieval.Runtime object at 0x1091790a0>, query = '现在外卖退款的政策规定'
+gold = 'KB-013', excluded = 'KB-012'
+
+    @pytest.mark.parametrize('query,gold,excluded',[
+     ('现在外卖退款的政策规定','KB-013','KB-012'),
+     ('2026-06-30当时的外卖退款规定','KB-012','KB-013'),
+     ('2026-07-01当时的外卖退款规定','KB-013','KB-012'),
+    ])
+    def test_real_versions(rt,query,gold,excluded):
+        original(rt)
+        with rt.serve() as request:
+            r=get(request,query)
+        ids={h['doc_id'] for h in evidence(r)}
+>       assert gold in ids and excluded not in ids, r
+E       AssertionError: {'results': [{'doc_id': 'KB-001', 'chunk_id': 'KB-001#1', 'score': 0.0, 'text': '# 指标口径手册 v3
+E         
+E         适用范围：总部运营部、财务部、各门店店长，以...cy Bao Bao（S03，上海·浦东）做日常检查，指出后厨排烟管道油垢堆积、局部风管接口密封不严，要求限期整改。
+E         整改需要停火作业并拆装部分风管，无法在营业时间内穿插完成。经与商场物业、施工方确认，现决定：
+E         
+E         ', ...}]}
+E       assert ('KB-013' in set())
+
+docs/verification/g2-03/test_retrieval.py:127: AssertionError
+_ test_real_versions[2026-06-30\u5f53\u65f6\u7684\u5916\u5356\u9000\u6b3e\u89c4\u5b9a-KB-012-KB-013] _
+
+rt = <test_retrieval.Runtime object at 0x1099023f0>
+query = '2026-06-30当时的外卖退款规定', gold = 'KB-012', excluded = 'KB-013'
+
+    @pytest.mark.parametrize('query,gold,excluded',[
+     ('现在外卖退款的政策规定','KB-013','KB-012'),
+     ('2026-06-30当时的外卖退款规定','KB-012','KB-013'),
+     ('2026-07-01当时的外卖退款规定','KB-013','KB-012'),
+    ])
+    def test_real_versions(rt,query,gold,excluded):
+        original(rt)
+        with rt.serve() as request:
+            r=get(request,query)
+        ids={h['doc_id'] for h in evidence(r)}
+>       assert gold in ids and excluded not in ids, r
+E       AssertionError: {'results': [{'doc_id': 'KB-001', 'chunk_id': 'KB-001#1', 'score': 0.0, 'text': '# 指标口径手册 v3
+E         
+E         适用范围：总部运营部、财务部、各门店店长，以...cy Bao Bao（S03，上海·浦东）做日常检查，指出后厨排烟管道油垢堆积、局部风管接口密封不严，要求限期整改。
+E         整改需要停火作业并拆装部分风管，无法在营业时间内穿插完成。经与商场物业、施工方确认，现决定：
+E         
+E         ', ...}]}
+E       assert ('KB-012' in set())
+
+docs/verification/g2-03/test_retrieval.py:127: AssertionError
+_ test_real_versions[2026-07-01\u5f53\u65f6\u7684\u5916\u5356\u9000\u6b3e\u89c4\u5b9a-KB-013-KB-012] _
+
+rt = <test_retrieval.Runtime object at 0x109381cd0>
+query = '2026-07-01当时的外卖退款规定', gold = 'KB-013', excluded = 'KB-012'
+
+    @pytest.mark.parametrize('query,gold,excluded',[
+     ('现在外卖退款的政策规定','KB-013','KB-012'),
+     ('2026-06-30当时的外卖退款规定','KB-012','KB-013'),
+     ('2026-07-01当时的外卖退款规定','KB-013','KB-012'),
+    ])
+    def test_real_versions(rt,query,gold,excluded):
+        original(rt)
+        with rt.serve() as request:
+            r=get(request,query)
+        ids={h['doc_id'] for h in evidence(r)}
+>       assert gold in ids and excluded not in ids, r
+E       AssertionError: {'results': [{'doc_id': 'KB-001', 'chunk_id': 'KB-001#1', 'score': 0.0, 'text': '# 指标口径手册 v3
+E         
+E         适用范围：总部运营部、财务部、各门店店长，以...cy Bao Bao（S03，上海·浦东）做日常检查，指出后厨排烟管道油垢堆积、局部风管接口密封不严，要求限期整改。
+E         整改需要停火作业并拆装部分风管，无法在营业时间内穿插完成。经与商场物业、施工方确认，现决定：
+E         
+E         ', ...}]}
+E       assert ('KB-013' in set())
+
+docs/verification/g2-03/test_retrieval.py:127: AssertionError
+_ test_version_boundaries[\u73b0\u5728refundtoken\u9000\u6b3e\u89c4\u5b9a-KB-902] _
+
+rt = <test_retrieval.Runtime object at 0x1092272c0>, query = '现在refundtoken退款规定'
+gold = 'KB-902'
+
+    @pytest.mark.parametrize('query,gold',[
+     ('现在refundtoken退款规定','KB-902'),
+     ('2026-05-31当时refundtoken退款规定','KB-901'),
+     ('2026-06-01当时refundtoken退款规定','KB-902'),
+    ])
+    def test_version_boundaries(rt,query,gold):
+        write(rt,901,'refundtoken退款申请限时9小时。','status: 已被取代\neffective_from: 2026-01-01\nsuperseded_by: KB-902')
+        write(rt,902,'refundtoken退款申请限时7小时。','status: 现行\neffective_from: 2026-06-01')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,query,5)
+        assert len(r['results'])==len(payload['chunks'])
+>       assert {h['doc_id'] for h in evidence(r)}=={gold}, r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 0.0, 'text': 'refundtoken退款申请限时9小时。', ...}, {'doc_id': 'KB-902', 'chunk_id': 'KB-902#1', 'score': 0.0, 'text': 'refundtoken退款申请限时7小时。', ...}]}
+E       assert set() == {'KB-902'}
+E         
+E         Extra items in the right set:
+E         'KB-902'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:141: AssertionError
+_ test_version_boundaries[2026-05-31\u5f53\u65f6refundtoken\u9000\u6b3e\u89c4\u5b9a-KB-901] _
+
+rt = <test_retrieval.Runtime object at 0x109227320>
+query = '2026-05-31当时refundtoken退款规定', gold = 'KB-901'
+
+    @pytest.mark.parametrize('query,gold',[
+     ('现在refundtoken退款规定','KB-902'),
+     ('2026-05-31当时refundtoken退款规定','KB-901'),
+     ('2026-06-01当时refundtoken退款规定','KB-902'),
+    ])
+    def test_version_boundaries(rt,query,gold):
+        write(rt,901,'refundtoken退款申请限时9小时。','status: 已被取代\neffective_from: 2026-01-01\nsuperseded_by: KB-902')
+        write(rt,902,'refundtoken退款申请限时7小时。','status: 现行\neffective_from: 2026-06-01')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,query,5)
+        assert len(r['results'])==len(payload['chunks'])
+>       assert {h['doc_id'] for h in evidence(r)}=={gold}, r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 0.0, 'text': 'refundtoken退款申请限时9小时。', ...}, {'doc_id': 'KB-902', 'chunk_id': 'KB-902#1', 'score': 0.0, 'text': 'refundtoken退款申请限时7小时。', ...}]}
+E       assert set() == {'KB-901'}
+E         
+E         Extra items in the right set:
+E         'KB-901'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:141: AssertionError
+_ test_version_boundaries[2026-06-01\u5f53\u65f6refundtoken\u9000\u6b3e\u89c4\u5b9a-KB-902] _
+
+rt = <test_retrieval.Runtime object at 0x109900b30>
+query = '2026-06-01当时refundtoken退款规定', gold = 'KB-902'
+
+    @pytest.mark.parametrize('query,gold',[
+     ('现在refundtoken退款规定','KB-902'),
+     ('2026-05-31当时refundtoken退款规定','KB-901'),
+     ('2026-06-01当时refundtoken退款规定','KB-902'),
+    ])
+    def test_version_boundaries(rt,query,gold):
+        write(rt,901,'refundtoken退款申请限时9小时。','status: 已被取代\neffective_from: 2026-01-01\nsuperseded_by: KB-902')
+        write(rt,902,'refundtoken退款申请限时7小时。','status: 现行\neffective_from: 2026-06-01')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,query,5)
+        assert len(r['results'])==len(payload['chunks'])
+>       assert {h['doc_id'] for h in evidence(r)}=={gold}, r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 0.0, 'text': 'refundtoken退款申请限时9小时。', ...}, {'doc_id': 'KB-902', 'chunk_id': 'KB-902#1', 'score': 0.0, 'text': 'refundtoken退款申请限时7小时。', ...}]}
+E       assert set() == {'KB-902'}
+E         
+E         Extra items in the right set:
+E         'KB-902'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:141: AssertionError
+____________________ test_filter_before_topk_and_padding[1] ____________________
+
+rt = <test_retrieval.Runtime object at 0x109381130>, k = 1
+
+    @pytest.mark.parametrize('k',[1,2,5,100])
+    def test_filter_before_topk_and_padding(rt,k):
+        write(rt,901,'cooltoken cooltoken refrigeration规定4度。','stores: [S01]')
+        write(rt,902,'cooltoken refrigeration规定8度。','stores: [S02]')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,'S02 cooltoken refrigeration规定',k)
+            chat=request('/api/chat',dict(session_id='scope',question='S02 cooltoken refrigeration规定'))
+            trace=request('/api/trace/'+chat['trace_id'])
+        assert len(r['results'])==min(k,len(payload['chunks']))
+>       assert {h['doc_id'] for h in evidence(r)}=={'KB-902'},r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 0.4299, 'text': 'cooltoken cooltoken refrigeration规定4度。', ...}]}
+E       assert {'KB-901'} == {'KB-902'}
+E         
+E         Extra items in the left set:
+E         'KB-901'
+E         Extra items in the right set:
+E         'KB-902'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:155: AssertionError
+____________________ test_filter_before_topk_and_padding[2] ____________________
+
+rt = <test_retrieval.Runtime object at 0x109179730>, k = 2
+
+    @pytest.mark.parametrize('k',[1,2,5,100])
+    def test_filter_before_topk_and_padding(rt,k):
+        write(rt,901,'cooltoken cooltoken refrigeration规定4度。','stores: [S01]')
+        write(rt,902,'cooltoken refrigeration规定8度。','stores: [S02]')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,'S02 cooltoken refrigeration规定',k)
+            chat=request('/api/chat',dict(session_id='scope',question='S02 cooltoken refrigeration规定'))
+            trace=request('/api/trace/'+chat['trace_id'])
+        assert len(r['results'])==min(k,len(payload['chunks']))
+>       assert {h['doc_id'] for h in evidence(r)}=={'KB-902'},r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 0.4299, 'text': 'cooltoken cooltoken refrigeration规定4度。', ...}, {'doc_id': 'KB-902', 'chunk_id': 'KB-902#1', 'score': 0.3758, 'text': 'cooltoken refrigeration规定8度。', ...}]}
+E       assert {'KB-901', 'KB-902'} == {'KB-902'}
+E         
+E         Extra items in the left set:
+E         'KB-901'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:155: AssertionError
+____________________ test_filter_before_topk_and_padding[5] ____________________
+
+rt = <test_retrieval.Runtime object at 0x109976b40>, k = 5
+
+    @pytest.mark.parametrize('k',[1,2,5,100])
+    def test_filter_before_topk_and_padding(rt,k):
+        write(rt,901,'cooltoken cooltoken refrigeration规定4度。','stores: [S01]')
+        write(rt,902,'cooltoken refrigeration规定8度。','stores: [S02]')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,'S02 cooltoken refrigeration规定',k)
+            chat=request('/api/chat',dict(session_id='scope',question='S02 cooltoken refrigeration规定'))
+            trace=request('/api/trace/'+chat['trace_id'])
+        assert len(r['results'])==min(k,len(payload['chunks']))
+>       assert {h['doc_id'] for h in evidence(r)}=={'KB-902'},r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 0.4299, 'text': 'cooltoken cooltoken refrigeration规定4度。', ...}, {'doc_id': 'KB-902', 'chunk_id': 'KB-902#1', 'score': 0.3758, 'text': 'cooltoken refrigeration规定8度。', ...}]}
+E       assert {'KB-901', 'KB-902'} == {'KB-902'}
+E         
+E         Extra items in the left set:
+E         'KB-901'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:155: AssertionError
+___________________ test_filter_before_topk_and_padding[100] ___________________
+
+rt = <test_retrieval.Runtime object at 0x109975610>, k = 100
+
+    @pytest.mark.parametrize('k',[1,2,5,100])
+    def test_filter_before_topk_and_padding(rt,k):
+        write(rt,901,'cooltoken cooltoken refrigeration规定4度。','stores: [S01]')
+        write(rt,902,'cooltoken refrigeration规定8度。','stores: [S02]')
+        payload=rt.build()
+        with rt.serve() as request:
+            r=get(request,'S02 cooltoken refrigeration规定',k)
+            chat=request('/api/chat',dict(session_id='scope',question='S02 cooltoken refrigeration规定'))
+            trace=request('/api/trace/'+chat['trace_id'])
+        assert len(r['results'])==min(k,len(payload['chunks']))
+>       assert {h['doc_id'] for h in evidence(r)}=={'KB-902'},r
+E       AssertionError: {'results': [{'doc_id': 'KB-901', 'chunk_id': 'KB-901#1', 'score': 0.4299, 'text': 'cooltoken cooltoken refrigeration规定4度。', ...}, {'doc_id': 'KB-902', 'chunk_id': 'KB-902#1', 'score': 0.3758, 'text': 'cooltoken refrigeration规定8度。', ...}]}
+E       assert {'KB-901', 'KB-902'} == {'KB-902'}
+E         
+E         Extra items in the left set:
+E         'KB-901'
+E         Use -v to get more diff
+
+docs/verification/g2-03/test_retrieval.py:155: AssertionError
+________________________ test_unknown_and_padding_chat _________________________
+
+rt = <test_retrieval.Runtime object at 0x109224d70>
+
+    def test_unknown_and_padding_chat(rt):
+        write(rt,901,'cobaltsecret 规章规定领取17枚硬币。','stores: [S01]')
+        rt.build()
+        with rt.serve() as request:
+            r=get(request,'S02 cobaltsecret规章规定',5)
+            chat=request('/api/chat',dict(session_id='none',question='S02 cobaltsecret规章规定'))
+            unknown=get(request,'zzzxylophoneqqq')
+        assert not evidence(r),r
+        assert not chat['citations'] and chat['answer_type']=='refusal',chat
+        assert not evidence(unknown)
+>       assert unknown['diagnostics']['coverage']==0
+               ^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'diagnostics'
+
+docs/verification/g2-03/test_retrieval.py:180: KeyError
+_______________________ test_same_search_http_and_trace ________________________
+
+rt = <test_retrieval.Runtime object at 0x109224380>
+
+    def test_same_search_http_and_trace(rt):
+        original(rt)
+        with rt.serve() as request:
+            q='2026-06-30当时的外卖退款政策规定'
+            r=get(request,q)
+            chat=request('/api/chat',dict(session_id='same',question=q))
+            trace=request('/api/trace/'+chat['trace_id'])
+        searches=[s['detail'] for s in trace['steps'] if s['step']=='search']
+        assert searches,trace
+>       assert r['diagnostics']['terms']
+               ^^^^^^^^^^^^^^^^
+E       KeyError: 'diagnostics'
+
+docs/verification/g2-03/test_retrieval.py:192: KeyError
+_______________________ test_replacement_alias_and_fact ________________________
+
+rt = <test_retrieval.Runtime object at 0x109901a90>
+
+    def test_replacement_alias_and_fact(rt):
+        for alias,fact in [('Azure Bowl','17'),('Violet Bowl','23')]:
+            write(rt,970,'| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | '+alias+' |')
+            write(rt,971,'翡翠饭的配送时限为'+fact+'分钟。')
+            rt.build()
+            with rt.serve() as request:
+                r=get(request,alias+'的配送时限规定')
+                old=get(request,'Azure Bowl' if alias=='Violet Bowl' else 'zzzxylophoneqqq')
+>           assert any(h['doc_id']=='KB-971' and fact in h['text'] for h in evidence(r)),r
+E           AssertionError: {'results': [{'doc_id': 'KB-970', 'chunk_id': 'KB-970#1', 'score': 0.7595, 'text': '| 标准写法 | alias |
+E             |---|---|
+E             | 翡翠饭 | Azure Bowl |', ...}, {'doc_id': 'KB-971', 'chunk_id': 'KB-971#1', 'score': 0.0, 'text': '翡翠饭的配送时限为17分钟。', ...}]}
+E           assert False
+E            +  where False = any(<generator object test_replacement_alias_and_fact.<locals>.<genexpr> at 0x109393840>)
+
+docs/verification/g2-03/test_retrieval.py:207: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-03/test_retrieval.py::test_public_positive[R01]
+FAILED docs/verification/g2-03/test_retrieval.py::test_public_positive[R04]
+FAILED docs/verification/g2-03/test_retrieval.py::test_public_positive[R05]
+FAILED docs/verification/g2-03/test_retrieval.py::test_public_positive[R06]
+FAILED docs/verification/g2-03/test_retrieval.py::test_public_positive[R11]
+FAILED docs/verification/g2-03/test_retrieval.py::test_public_positive[R13]
+FAILED docs/verification/g2-03/test_retrieval.py::test_public_positive[R15]
+FAILED docs/verification/g2-03/test_retrieval.py::test_variants[\u8bf7\u8bf4\u660e\u5916\u5356\u9000\u6b3e\u7684\u7533\u8bf7\u65f6\u9650-KB-013-\u9000\u6b3e]
+FAILED docs/verification/g2-03/test_retrieval.py::test_variants[\u5458\u5de5\u4e70\u9910\u6298\u6263\u80fd\u4e0e\u4fc3\u9500\u53e0\u52a0\u5417-KB-014-\u6298]
+FAILED docs/verification/g2-03/test_retrieval.py::test_variants[Beef Poke\u91cc\u9762\u6709\u54ea\u4e9b\u8fc7\u654f\u539f\uff1f-KB-040-\u725b\u8089]
+FAILED docs/verification/g2-03/test_retrieval.py::test_variants[\uff22\uff45\uff45\uff46\u3000\uff30\uff4f\uff4b\uff45\uff1a\u8fc7\u654f\u539f\uff1f-KB-040-\u725b\u8089]
+FAILED docs/verification/g2-03/test_retrieval.py::test_variants[\u541e\u62ff\u9c7c\u4e09\u660e\u6cbb\u5728\uff33\uff10\uff14\u505c\u552e\u7684\u539f\u56e0-KB-029-\u4e09\u660e\u6cbb]
+FAILED docs/verification/g2-03/test_retrieval.py::test_variants[\u83b3\u841d\u7684\u541e\u62ff\u9c7c\u4e09\u660e\u6cbb\u4e3a\u4f55\u505c\u552e-KB-029-\u4e09\u660e\u6cbb]
+FAILED docs/verification/g2-03/test_retrieval.py::test_variants[\u8d85\u6c64\u5468\u4e94\u51e0\u70b9\u5173\u95e8-KB-062-\u5468\u4e94]
+FAILED docs/verification/g2-03/test_retrieval.py::test_variants[S05\u5468\u4e94\u51e0\u70b9\u5173\u95e8-KB-062-\u5468\u4e94]
+FAILED docs/verification/g2-03/test_retrieval.py::test_variants[\u5f00\u5177\u7535\u5b50\u53d1\u7968\u7684\u64cd\u4f5c\u6d41\u7a0b-KB-061-\u53d1\u7968]
+FAILED docs/verification/g2-03/test_retrieval.py::test_variants[\u53f0\u98ce\u5bfc\u81f4\u63d0\u524d\u95ed\u5e97\u7684\u5177\u4f53\u65f6\u95f4-KB-026-\u95ed\u5e97]
+FAILED docs/verification/g2-03/test_retrieval.py::test_real_versions[\u73b0\u5728\u5916\u5356\u9000\u6b3e\u7684\u653f\u7b56\u89c4\u5b9a-KB-013-KB-012]
+FAILED docs/verification/g2-03/test_retrieval.py::test_real_versions[2026-06-30\u5f53\u65f6\u7684\u5916\u5356\u9000\u6b3e\u89c4\u5b9a-KB-012-KB-013]
+FAILED docs/verification/g2-03/test_retrieval.py::test_real_versions[2026-07-01\u5f53\u65f6\u7684\u5916\u5356\u9000\u6b3e\u89c4\u5b9a-KB-013-KB-012]
+FAILED docs/verification/g2-03/test_retrieval.py::test_version_boundaries[\u73b0\u5728refundtoken\u9000\u6b3e\u89c4\u5b9a-KB-902]
+FAILED docs/verification/g2-03/test_retrieval.py::test_version_boundaries[2026-05-31\u5f53\u65f6refundtoken\u9000\u6b3e\u89c4\u5b9a-KB-901]
+FAILED docs/verification/g2-03/test_retrieval.py::test_version_boundaries[2026-06-01\u5f53\u65f6refundtoken\u9000\u6b3e\u89c4\u5b9a-KB-902]
+FAILED docs/verification/g2-03/test_retrieval.py::test_filter_before_topk_and_padding[1]
+FAILED docs/verification/g2-03/test_retrieval.py::test_filter_before_topk_and_padding[2]
+FAILED docs/verification/g2-03/test_retrieval.py::test_filter_before_topk_and_padding[5]
+FAILED docs/verification/g2-03/test_retrieval.py::test_filter_before_topk_and_padding[100]
+FAILED docs/verification/g2-03/test_retrieval.py::test_unknown_and_padding_chat
+FAILED docs/verification/g2-03/test_retrieval.py::test_same_search_http_and_trace
+FAILED docs/verification/g2-03/test_retrieval.py::test_replacement_alias_and_fact
+30 failed, 9 passed in 24.14s

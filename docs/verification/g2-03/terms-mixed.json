@@ -1,0 +1,766 @@
+{
+  "scheme": "mixed",
+  "passed": 15,
+  "total": 15,
+  "rows": [
+    {
+      "id": "R01",
+      "passed": true,
+      "query": "外卖订单多久内可以申请退款",
+      "trace": {
+        "query": "外卖订单多久内可以申请退款",
+        "expansions": [],
+        "coverage": 0.585,
+        "hits": [
+          {
+            "doc_id": "KB-012",
+            "chunk_id": "KB-012#2",
+            "score": 52.5319,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-011",
+            "chunk_id": "KB-011#5",
+            "score": 27.4682,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-013",
+            "chunk_id": "KB-013#2",
+            "score": 24.9424,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-061",
+            "chunk_id": "KB-061#3",
+            "score": 17.9147,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-001",
+            "chunk_id": "KB-001#18",
+            "score": 17.5729,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R02",
+      "passed": true,
+      "query": "牛肉poke 含哪些过敏原",
+      "trace": {
+        "query": "牛肉poke 含哪些过敏原",
+        "expansions": [
+          "牛肉poke",
+          "牛肉波奇饭",
+          "Beef Poke"
+        ],
+        "coverage": 0.665,
+        "hits": [
+          {
+            "doc_id": "KB-040",
+            "chunk_id": "KB-040#3",
+            "score": 43.5242,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-031",
+            "chunk_id": "KB-031#3",
+            "score": 26.0235,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-041",
+            "chunk_id": "KB-041#4",
+            "score": 22.6042,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-025",
+            "chunk_id": "KB-025#1",
+            "score": 22.3611,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-023",
+            "chunk_id": "KB-023#4",
+            "score": 20.5474,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R03",
+      "passed": true,
+      "query": "Super Souper 周五晚上营业到几点",
+      "trace": {
+        "query": "Super Souper 周五晚上营业到几点",
+        "expansions": [
+          "Super Souper",
+          "SS",
+          "汤面店"
+        ],
+        "coverage": 0.326,
+        "hits": [
+          {
+            "doc_id": "KB-062",
+            "chunk_id": "KB-062#2",
+            "score": 25.6187,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-030",
+            "chunk_id": "KB-030#4",
+            "score": 24.7261,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-042",
+            "chunk_id": "KB-042#2",
+            "score": 18.6987,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-053",
+            "chunk_id": "KB-053#2",
+            "score": 17.4967,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-034",
+            "chunk_id": "KB-034#2",
+            "score": 11.9278,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R04",
+      "passed": true,
+      "query": "三文鱼那次断供供应商赔了多少钱",
+      "trace": {
+        "query": "三文鱼那次断供供应商赔了多少钱",
+        "expansions": [
+          "三文鱼poke",
+          "鲑鱼波奇饭",
+          "Salmon Poke"
+        ],
+        "coverage": 0.25,
+        "hits": [
+          {
+            "doc_id": "KB-041",
+            "chunk_id": "KB-041#2",
+            "score": 36.0434,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-021",
+            "chunk_id": "KB-021#1",
+            "score": 34.3729,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-029",
+            "chunk_id": "KB-029#5",
+            "score": 30.1348,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-022",
+            "chunk_id": "KB-022#9",
+            "score": 23.412,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-003",
+            "chunk_id": "KB-003#4",
+            "score": 22.7306,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R05",
+      "passed": true,
+      "query": "发票怎么开",
+      "trace": {
+        "query": "发票怎么开",
+        "expansions": [],
+        "coverage": 0.729,
+        "hits": [
+          {
+            "doc_id": "KB-061",
+            "chunk_id": "KB-061#1",
+            "score": 27.0651,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-051",
+            "chunk_id": "KB-051#4",
+            "score": 8.3905,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-053",
+            "chunk_id": "KB-053#3",
+            "score": 7.6431,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-011",
+            "chunk_id": "KB-011#3",
+            "score": 1.9281,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-012",
+            "chunk_id": "KB-012#2",
+            "score": 1.8591,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R06",
+      "passed": true,
+      "query": "净营业额怎么算，退款算不算进去",
+      "trace": {
+        "query": "净营业额怎么算，退款算不算进去",
+        "expansions": [],
+        "coverage": 0.405,
+        "hits": [
+          {
+            "doc_id": "KB-001",
+            "chunk_id": "KB-001#9",
+            "score": 31.0435,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-002",
+            "chunk_id": "KB-002#3",
+            "score": 17.2448,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-051",
+            "chunk_id": "KB-051#4",
+            "score": 16.8909,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-013",
+            "chunk_id": "KB-013#4",
+            "score": 11.2309,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-012",
+            "chunk_id": "KB-012#3",
+            "score": 11.0653,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R07",
+      "passed": true,
+      "query": "今年 618 牛肉poke 的活动价和目标销量",
+      "trace": {
+        "query": "今年 618 牛肉poke 的活动价和目标销量",
+        "expansions": [
+          "牛肉poke",
+          "牛肉波奇饭",
+          "Beef Poke"
+        ],
+        "coverage": 0.651,
+        "hits": [
+          {
+            "doc_id": "KB-023",
+            "chunk_id": "KB-023#4",
+            "score": 63.8413,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-024",
+            "chunk_id": "KB-024#4",
+            "score": 43.7749,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-031",
+            "chunk_id": "KB-031#3",
+            "score": 28.5799,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-050",
+            "chunk_id": "KB-050#3",
+            "score": 27.4191,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-028",
+            "chunk_id": "KB-028#3",
+            "score": 24.2537,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R08",
+      "passed": true,
+      "query": "现在单笔充值 500 送多少",
+      "trace": {
+        "query": "现在单笔充值 500 送多少",
+        "expansions": [],
+        "coverage": 0.634,
+        "hits": [
+          {
+            "doc_id": "KB-011",
+            "chunk_id": "KB-011#3",
+            "score": 44.8718,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-010",
+            "chunk_id": "KB-010#3",
+            "score": 35.8267,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-013",
+            "chunk_id": "KB-013#3",
+            "score": 11.3603,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-027",
+            "chunk_id": "KB-027#5",
+            "score": 8.9583,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-050",
+            "chunk_id": "KB-050#2",
+            "score": 6.3816,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R09",
+      "passed": true,
+      "query": "味噌拉面在数据库里叫什么",
+      "trace": {
+        "query": "味噌拉面在数据库里叫什么",
+        "expansions": [
+          "味增拉面",
+          "味噌拉面",
+          "Miso Ramen"
+        ],
+        "coverage": 0.616,
+        "hits": [
+          {
+            "doc_id": "KB-003",
+            "chunk_id": "KB-003#3",
+            "score": 40.6531,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-040",
+            "chunk_id": "KB-040#2",
+            "score": 37.7389,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-030",
+            "chunk_id": "KB-030#3",
+            "score": 33.459,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-041",
+            "chunk_id": "KB-041#3",
+            "score": 28.4768,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-042",
+            "chunk_id": "KB-042#2",
+            "score": 15.3932,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R10",
+      "passed": true,
+      "query": "S04 为什么不卖吞拿鱼三明治了",
+      "trace": {
+        "query": "S04 为什么不卖吞拿鱼三明治了",
+        "expansions": [
+          "吞拿鱼三明治",
+          "金枪鱼三明治",
+          "Tuna Sando",
+          "Arigato Sando",
+          "阿里嘎多",
+          "AS"
+        ],
+        "coverage": 0.594,
+        "hits": [
+          {
+            "doc_id": "KB-029",
+            "chunk_id": "KB-029#7",
+            "score": 78.343,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-040",
+            "chunk_id": "KB-040#4",
+            "score": 71.7523,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-041",
+            "chunk_id": "KB-041#2",
+            "score": 51.9971,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-003",
+            "chunk_id": "KB-003#4",
+            "score": 35.3997,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-033",
+            "chunk_id": "KB-033#2",
+            "score": 35.2553,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R11",
+      "passed": true,
+      "query": "冷萃乌龙茶首月的目标销量是多少",
+      "trace": {
+        "query": "冷萃乌龙茶首月的目标销量是多少",
+        "expansions": [
+          "冷萃乌龙茶",
+          "冷萃乌龙",
+          "Cold Brew Oolong"
+        ],
+        "coverage": 0.665,
+        "hits": [
+          {
+            "doc_id": "KB-028",
+            "chunk_id": "KB-028#3",
+            "score": 79.4981,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-022",
+            "chunk_id": "KB-022#9",
+            "score": 47.0396,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-029",
+            "chunk_id": "KB-029#6",
+            "score": 45.529,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-040",
+            "chunk_id": "KB-040#6",
+            "score": 40.3364,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-052",
+            "chunk_id": "KB-052#4",
+            "score": 31.5064,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R12",
+      "passed": true,
+      "query": "S03 六月停业几天，什么原因",
+      "trace": {
+        "query": "S03 六月停业几天，什么原因",
+        "expansions": [
+          "Juicy Bao Bao",
+          "JBB",
+          "包包店"
+        ],
+        "coverage": 0.276,
+        "hits": [
+          {
+            "doc_id": "KB-051",
+            "chunk_id": "KB-051#4",
+            "score": 22.1076,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-020",
+            "chunk_id": "KB-020#1",
+            "score": 20.6726,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-032",
+            "chunk_id": "KB-032#4",
+            "score": 15.5124,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-042",
+            "chunk_id": "KB-042#2",
+            "score": 10.282,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-060",
+            "chunk_id": "KB-060#8",
+            "score": 9.6198,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R13",
+      "passed": true,
+      "query": "台风那天几点提前闭店",
+      "trace": {
+        "query": "台风那天几点提前闭店",
+        "expansions": [],
+        "coverage": 0.645,
+        "hits": [
+          {
+            "doc_id": "KB-026",
+            "chunk_id": "KB-026#1",
+            "score": 30.2155,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-053",
+            "chunk_id": "KB-053#2",
+            "score": 26.1319,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-060",
+            "chunk_id": "KB-060#4",
+            "score": 24.4744,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-029",
+            "chunk_id": "KB-029#3",
+            "score": 15.0291,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-042",
+            "chunk_id": "KB-042#4",
+            "score": 11.752,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R14",
+      "passed": true,
+      "query": "S05 那天为什么只能收现金",
+      "trace": {
+        "query": "S05 那天为什么只能收现金",
+        "expansions": [
+          "Super Tetsudo",
+          "铁道",
+          "ST"
+        ],
+        "coverage": 0.467,
+        "hits": [
+          {
+            "doc_id": "KB-052",
+            "chunk_id": "KB-052#2",
+            "score": 21.7815,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-027",
+            "chunk_id": "KB-027#5",
+            "score": 19.7469,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-025",
+            "chunk_id": "KB-025#4",
+            "score": 14.1781,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-034",
+            "chunk_id": "KB-034#4",
+            "score": 13.7084,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-050",
+            "chunk_id": "KB-050#4",
+            "score": 13.6683,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    },
+    {
+      "id": "R15",
+      "passed": true,
+      "query": "员工折扣几折，能不能和活动叠加",
+      "trace": {
+        "query": "员工折扣几折，能不能和活动叠加",
+        "expansions": [],
+        "coverage": 0.609,
+        "hits": [
+          {
+            "doc_id": "KB-014",
+            "chunk_id": "KB-014#3",
+            "score": 57.0963,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-024",
+            "chunk_id": "KB-024#3",
+            "score": 38.4674,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-023",
+            "chunk_id": "KB-023#3",
+            "score": 36.2063,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-060",
+            "chunk_id": "KB-060#9",
+            "score": 15.3057,
+            "padded": false,
+            "dropped_instructions": []
+          },
+          {
+            "doc_id": "KB-001",
+            "chunk_id": "KB-001#12",
+            "score": 14.6069,
+            "padded": false,
+            "dropped_instructions": []
+          }
+        ],
+        "filtered": []
+      }
+    }
+  ]
+}

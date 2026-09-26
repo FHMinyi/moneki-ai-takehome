@@ -1,0 +1,159 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_public_positive_R03_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_public_positive_R03_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_public_positive_R03_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 fd685ef77ae8\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_public_positive_R03_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-84/test_public_positive_R03_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55320"
+      ],
+      "pid": 88913,
+      "port": 55320,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "fd685ef77ae8",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "Super Souper 周五晚上营业到几点",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-030",
+                "chunk_id": "KB-030#1",
+                "score": 18.4034,
+                "text": "# 门店档案：S01 Super Souper\n\n",
+                "retrieval_text": "门店档案 S01 Super Souper\n# 门店档案：S01 Super Souper\n\n",
+                "source_start": 0,
+                "source_end": 25,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 24,
+                    "text": "# 门店档案：S01 Super Souper\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-053",
+                "chunk_id": "KB-053#1",
+                "score": 12.6814,
+                "text": "# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n\n店长：周岚\n提交日期：2026-07-27\n\n",
+                "retrieval_text": "S01 店长周报 2026-07-20 至 2026-07-26\n# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n\n店长：周岚\n提交日期：2026-07-27\n\n",
+                "source_start": 0,
+                "source_end": 73,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 49,
+                    "text": "# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-062",
+                "chunk_id": "KB-062#1",
+                "score": 10.0735,
+                "text": "==========================================================\n  合味餐饮管理（上海）有限公司   OA 公文系统   导出文件\n  导出时间：2026-08-12 09:41:07\n  导出人：运营部 徐敏（工号 A0117）\n  文号：运营通字〔2026〕047 号\n  密级：内部\n==========================================================\n\n标题：关于 Super Souper 门店营业时间调整的通知\n\n主送：各门店\n抄送：人事行政部、市场部、IT 部\n\n正文：\n\n",
+                "retrieval_text": "合味餐饮管理（上海）有限公司   OA 公文系统   导出文件\n==========================================================\n  合味餐饮管理（上海）有限公司   OA 公文系统   导出文件\n  导出时间：2026-08-12 09:41:07\n  导出人：运营部 徐敏（工号 A0117）\n  文号：运营通字〔2026〕047 号\n  密级：内部\n==========================================================\n\n标题：关于 Super Souper 门店营业时间调整的通知\n\n主送：各门店\n抄送：人事行政部、市场部、IT 部\n\n正文：\n\n",
+                "source_start": 0,
+                "source_end": 295,
+                "context_spans": []
+              },
+              {
+                "doc_id": "KB-034",
+                "chunk_id": "KB-034#1",
+                "score": 7.6586,
+                "text": "# 门店档案：S05 Super Tetsudo\n\n",
+                "retrieval_text": "门店档案 S05 Super Tetsudo\n# 门店档案：S05 Super Tetsudo\n\n",
+                "source_start": 0,
+                "source_end": 26,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 25,
+                    "text": "# 门店档案：S05 Super Tetsudo\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-027",
+                "chunk_id": "KB-027#2",
+                "score": 7.1027,
+                "text": "## 一、经过\n\n",
+                "retrieval_text": "S05 Super Tetsudo POS 终端故障报告\n# S05 Super Tetsudo POS 终端故障报告\n## 一、经过\n\n",
+                "source_start": 81,
+                "source_end": 90,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 31,
+                    "text": "# S05 Super Tetsudo POS 终端故障报告\n"
+                  },
+                  {
+                    "start": 81,
+                    "end": 89,
+                    "text": "## 一、经过\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R12_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R12_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R12_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 42ee16bb15d3\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R12_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-83/test_public_positive_R12_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55015"
+      ],
+      "pid": 88552,
+      "port": 55015,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "42ee16bb15d3",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "S03 六月停业几天，什么原因",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-020",
+                "chunk_id": "KB-020#3",
+                "score": 13.3287,
+                "text": "整改完成后由市场监管所复查确认，复查与验收材料由店长鲍一鸣归档，报总部运营部备案。\n施工期间的安全责任由施工方承担，门店负责现场监督与每日进度回报。\n\n联系人：总部运营部 徐敏，021-5555-0120。",
+                "retrieval_text": "S03 Juicy Bao Bao 临时停业通知\n# S03 Juicy Bao Bao 临时停业通知\n整改完成后由市场监管所复查确认，复查与验收材料由店长鲍一鸣归档，报总部运营部备案。\n施工期间的安全责任由施工方承担，门店负责现场监督与每日进度回报。\n\n联系人：总部运营部 徐敏，021-5555-0120。",
+                "source_start": 484,
+                "source_end": 587,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "# S03 Juicy Bao Bao 临时停业通知\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-032",
+                "chunk_id": "KB-032#1",
+                "score": 12.8626,
+                "text": "# 门店档案：S03 Juicy Bao Bao\n\n",
+                "retrieval_text": "门店档案 S03 Juicy Bao Bao\n# 门店档案：S03 Juicy Bao Bao\n\n",
+                "source_start": 0,
+                "source_end": 26,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 25,
+                    "text": "# 门店档案：S03 Juicy Bao Bao\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-051",
+                "chunk_id": "KB-051#1",
+                "score": 11.7394,
+                "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n\n店长：鲍一鸣\n提交日期：2026-06-15\n\n",
+                "retrieval_text": "S03 店长周报 2026-06-08 至 2026-06-14\n# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n\n店长：鲍一鸣\n提交日期：2026-06-15\n\n",
+                "source_start": 0,
+                "source_end": 75,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 50,
+                    "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-042",
+                "chunk_id": "KB-042#2",
+                "score": 5.4183,
+                "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "retrieval_text": "门店营业时间总表\n# 门店营业时间总表\n| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "source_start": 61,
+                "source_end": 319,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 11,
+                    "text": "# 门店营业时间总表\n"
+                  },
+                  {
+                    "start": 61,
+                    "end": 118,
+                    "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-029",
+                "chunk_id": "KB-029#6",
+                "score": 4.7022,
+                "text": "## 议题三：新品冷萃乌龙茶上市首周情况\n\n项怡通报，冷萃乌龙茶 8 月 1 日上市，首周出杯的势头还可以，S05 和 S02 相对突出，S03 偏弱，估计和早餐客群结构有关。首月目标不变，各店按之前分解的数量推进。\n门店反馈两个问题：一是冷萃基底 07:00 前备好这个时间点对 S03 有点紧，S03 开店早，早班要同时出点心和备基底；二是冰杯出杯时封口膜偶尔封不牢。项怡认领第二项，换一批封口膜试用。第一项由运营部和 S03 单独商量，必要时把基底改成前一晚备。\n沈望舒要求，新品上市首月各店每天记录出杯数和剩余基底量的动作不要停，月底做一次完整复盘，再决定是否进常规菜单。\n\n",
+                "retrieval_text": "2026 年 8 月运营例会纪要\n# 2026 年 8 月运营例会纪要\n## 议题三：新品冷萃乌龙茶上市首周情况\n\n项怡通报，冷萃乌龙茶 8 月 1 日上市，首周出杯的势头还可以，S05 和 S02 相对突出，S03 偏弱，估计和早餐客群结构有关。首月目标不变，各店按之前分解的数量推进。\n门店反馈两个问题：一是冷萃基底 07:00 前备好这个时间点对 S03 有点紧，S03 开店早，早班要同时出点心和备基底；二是冰杯出杯时封口膜偶尔封不牢。项怡认领第二项，换一批封口膜试用。第一项由运营部和 S03 单独商量，必要时把基底改成前一晚备。\n沈望舒要求，新品上市首月各店每天记录出杯数和剩余基底量的动作不要停，月底做一次完整复盘，再决定是否进常规菜单。\n\n",
+                "source_start": 835,
+                "source_end": 1127,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 19,
+                    "text": "# 2026 年 8 月运营例会纪要\n"
+                  },
+                  {
+                    "start": 835,
+                    "end": 856,
+                    "text": "## 议题三：新品冷萃乌龙茶上市首周情况\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}
