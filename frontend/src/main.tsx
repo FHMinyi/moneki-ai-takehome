@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Alert, Button, Card, ConfigProvider, Empty, Skeleton, Table, Tag } from 'antd';
 import 'antd/dist/reset.css';
 import './style.css';
+import { Dashboard } from './Dashboard';
 
 type Report = { raw_rows: number; kept_rows: number; removed_rows: number; removed: Record<string, number> };
 type Quality = { cleaning_report: Report; data_period: { start: string | null; end: string | null } };
@@ -30,6 +31,7 @@ function validQuality(value: unknown): value is Quality {
 function Workspace() {
   const [state, setState] = useState<State>({ kind: 'loading' });
   const [revision, setRevision] = useState(0);
+  const [period, setPeriod] = useState<Quality['data_period'] | null>(null);
   useEffect(() => {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 15000);
@@ -41,7 +43,7 @@ function Workspace() {
         if (!response.ok) throw new Error('Request failed');
         const data: unknown = await response.json();
         if (!validQuality(data)) throw new Error('Invalid cleaning ledger');
-        if (active) setState({ kind: 'ready', data });
+        if (active) { setState({ kind: 'ready', data }); setPeriod(data.data_period); }
       } catch {
         if (active) setState({ kind: 'error' });
       } finally { window.clearTimeout(timeout); }
@@ -52,7 +54,8 @@ function Workspace() {
   return <div className="workspace">
     <header className="brandbar"><a href="/" className="brand"><span className="brandmark">m</span>moneki<span className="brand-sub">运营工作台</span></a><span className="workspace-label">总部运营 / 经营看板</span></header>
     <main>
-      <div className="page-heading"><div><div className="eyebrow">经营看板</div><h1>从可信的数据开始</h1><p>查看 POS 明细的清洗结果，确认经营分析的数据基础。</p></div><Button onClick={() => setRevision(x => x + 1)} loading={state.kind === 'loading'}>刷新数据</Button></div>
+      <div className="page-heading"><div><div className="eyebrow">经营看板</div><h1>看清每一天的经营</h1><p>按日期和门店查看真实经营数据，核对清洗结果与指标口径。</p></div><Button onClick={() => setRevision(x => x + 1)} loading={state.kind === 'loading'}>刷新数据</Button></div>
+      {period && <Dashboard period={period} />}
       <div className="section-heading"><h2>数据质量</h2><Tag color="green">KB-001 · 现行口径</Tag></div>
       <p className="scope-note">全量重建结果 · 不随看板筛选变化</p>
       <div aria-live="polite" aria-busy={state.kind === 'loading'}>

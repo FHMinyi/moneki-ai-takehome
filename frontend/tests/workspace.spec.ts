@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-const evidence = '../docs/verification/g1-01';
+const evidence = process.env.EVIDENCE_DIR || '../docs/verification/g1-01';
 for (const width of [1280, 1440, 390]) {
   test(`real API ledger at ${width}px`, async ({ page, request }) => {
     await page.setViewportSize({ width, height: 1000 });
