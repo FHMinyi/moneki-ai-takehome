@@ -1,0 +1,65 @@
+{
+  "repository": "FHMinyi/moneki-ai-takehome",
+  "issues": [
+    {
+      "task": "G2-01",
+      "title": "G2-01：维护者重建后获得完整、最新且计数真实的知识库",
+      "number": 13,
+      "id": 5596585902,
+      "url": "https://github.com/FHMinyi/moneki-ai-takehome/issues/13",
+      "source": "01-trustworthy-ingestion.md",
+      "body_sha256": "ecf593a6609aac070e7d16a5d27ebe6523867d49f5da053de6d01b999fe0512c",
+      "blocked_by": []
+    },
+    {
+      "task": "G2-02",
+      "title": "G2-02：运营检索到完整且来源一致的证据片段",
+      "number": 14,
+      "id": 5596586215,
+      "url": "https://github.com/FHMinyi/moneki-ai-takehome/issues/14",
+      "source": "02-complete-evidence.md",
+      "body_sha256": "d624859c6f80af4f151d27d5ff8434b79badc7132729932d06456dbad32db7b1",
+      "blocked_by": [
+        13
+      ]
+    },
+    {
+      "task": "G2-03",
+      "title": "G2-03：运营用自然问法检索到相关且适用的资料",
+      "number": 15,
+      "id": 5596586698,
+      "url": "https://github.com/FHMinyi/moneki-ai-takehome/issues/15",
+      "source": "03-relevant-retrieval.md",
+      "body_sha256": "c50b670010aecf4087b7756eeee1771ca23dca9451e0bc8d57adbc546e6475a4",
+      "blocked_by": [
+        14
+      ]
+    },
+    {
+      "task": "G2-04",
+      "title": "G2-04：运营通过单轮问答获得正确文档事实与真实引用",
+      "number": 16,
+      "id": 5596587252,
+      "url": "https://github.com/FHMinyi/moneki-ai-takehome/issues/16",
+      "source": "04-single-turn-doc-qa.md",
+      "body_sha256": "7c46172bf65805e349a5c6f9363271b1871b52289c43bb81b63a999b90b68b37",
+      "blocked_by": [
+        15
+      ]
+    },
+    {
+      "task": "G2-05",
+      "title": "G2-05：评审能复现第二关交付并验证知识库替换后的行为",
+      "number": 17,
+      "id": 5596587701,
+      "url": "https://github.com/FHMinyi/moneki-ai-takehome/issues/17",
+      "source": "05-integrated-acceptance.md",
+      "body_sha256": "3022998b998548d5b4d1968a9654313a213a304cef362a44e5a6d9b549a6fa30",
+      "blocked_by": [
+        16
+      ]
+    }
+  ],
+  "complete": true,
+  "verification": "Read back bodies, labels, open state, no assignees and native blocking edges"
+}
