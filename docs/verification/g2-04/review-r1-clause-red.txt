@@ -1,0 +1,23 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+__________________ test_boolean_subject_cannot_cross_clauses ___________________
+
+rt = <g203.Runtime object at 0x10af462d0>
+
+    def test_boolean_subject_cannot_cross_clauses(rt):
+        m.write(rt,901,'# 通用管理规定\n\n员工迟到按正常流程登记；会员消费可以使用积分抵扣。\n')
+        payload=rt.build()
+        with rt.serve() as req:
+            a,t=chat(req,'员工迟到规定能用积分抵扣吗？')
+            b,u=chat(req,'会员消费规定能用积分抵扣吗？')
+>       assert a['answer_type']=='refusal' and not a['citations'],a
+E       AssertionError: {'answer': 'KB-901《通用管理规定》：员工迟到按正常流程登记；会员消费可以使用积分抵扣。', 'answer_type': 'doc', 'citations': [{'doc_id': 'KB-901', 'quote': '员工迟到按正常流程登记；会员消费可以使用积分抵扣。'}], 'data_evidence': [], ...}
+E       assert ('doc' == 'refusal'
+E         
+E         - refusal
+E         + doc)
+
+docs/verification/g2-04/test_doc_qa.py:267: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-04/test_doc_qa.py::test_boolean_subject_cannot_cross_clauses
+1 failed, 68 deselected in 0.91s

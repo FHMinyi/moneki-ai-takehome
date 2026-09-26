@@ -209,3 +209,61 @@ def test_existing_payment_explanation_regression(rt,q):
     assert {c['doc_id'] for c in a['citations']}&{'KB-027','KB-052'},a
     assert detail(t,'plan')['needs_data']
     quotes(a,payload,t)
+
+@pytest.mark.parametrize('q',[
+ '外卖退款申请要提供身份证吗？',
+ '员工迟到能用积分抵扣吗？',
+ '牛肉poke里有花生吗？',
+ '外卖退款申请需不需要提供身份证？',
+ '员工迟到用积分抵扣行不行？',
+ '牛肉poke含不含花生？',
+ '外卖退款申请需要出示身份证不？',
+ '牛肉poke有没有花生？',
+],ids=['need-id','can-offset','has-ingredient','need-or-not','is-it-ok','contains-or-not','negative-particle','has-or-not'])
+def test_natural_missing_attribute(rt,q):
+    original(rt)
+    with rt.serve() as req:a,t=chat(req,q)
+    assert a['answer_type']=='refusal' and not a['citations'],a
+
+@pytest.mark.parametrize('q,gold,support',[
+ ('外卖退款申请要审批吗？','KB-013','审批'),
+ ('员工折扣能和促销活动叠加吗？','KB-014','叠加'),
+ ('会员赠送金额可以提现吗？','KB-011','不可提现'),
+ ('会员赠送金额可不可以提现？','KB-011','不可提现'),
+ ('牛肉poke里有芝麻吗？','KB-040','芝麻'),
+ ('牛肉poke有没有芝麻？','KB-040','芝麻'),
+ ('外卖退款申请需要审批不？','KB-013','审批'),
+ ('外卖退款申请是不是需要审批？','KB-013','审批'),
+],ids=['need-approval','can-stack','can-withdraw','can-or-not','has-sesame','has-or-not','negative-particle','is-it'])
+def test_natural_supported_attribute(rt,q,gold,support):
+    payload=original(rt)
+    with rt.serve() as req:a,t=chat(req,q)
+    assert a['answer_type']=='doc' and support in a['answer'],a
+    assert gold in {c['doc_id'] for c in a['citations']},a
+    quotes(a,payload,t)
+
+
+def test_boolean_subject_and_replacement(rt):
+    # Identical requested predicate exists for another subject: lexical presence
+    # alone must not transfer membership rights to attendance rules.
+    p=rt.kb/'KB-901.md'
+    for subject,other in [('会员消费','员工迟到'),('员工迟到','会员消费')]:
+        p.write_text('# 通用管理规定\n\n'+other+'按正常流程登记。\n\n'+subject+'可以使用积分抵扣。\n')
+        payload=rt.build()
+        with rt.serve() as req:
+            a,t=chat(req,other+'规定能用积分抵扣吗？')
+            b,u=chat(req,subject+'规定能用积分抵扣吗？')
+        assert a['answer_type']=='refusal' and not a['citations'],a
+        assert b['answer_type']=='doc' and subject in b['answer'] and '积分抵扣' in b['answer'],b
+        quotes(b,payload,u)
+
+
+def test_boolean_subject_cannot_cross_clauses(rt):
+    m.write(rt,901,'# 通用管理规定\n\n员工迟到按正常流程登记；会员消费可以使用积分抵扣。\n')
+    payload=rt.build()
+    with rt.serve() as req:
+        a,t=chat(req,'员工迟到规定能用积分抵扣吗？')
+        b,u=chat(req,'会员消费规定能用积分抵扣吗？')
+    assert a['answer_type']=='refusal' and not a['citations'],a
+    assert b['answer_type']=='doc' and '会员消费' in b['answer'],b
+    quotes(b,payload,u)
