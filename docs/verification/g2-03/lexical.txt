@@ -1,0 +1,27 @@
+.........................F                                               [100%]
+=================================== FAILURES ===================================
+_______________________ test_replacement_alias_and_fact ________________________
+
+rt = <test_retrieval.Runtime object at 0x10a8389e0>
+
+    def test_replacement_alias_and_fact(rt):
+        for alias,fact in [('Azure Bowl','17'),('Violet Bowl','23')]:
+            write(rt,970,'| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | '+alias+' |')
+            write(rt,971,'翡翠饭的配送时限为'+fact+'分钟。')
+            rt.build()
+            with rt.serve() as request:
+                r=get(request,alias+'的配送时限规定')
+                old=get(request,'Azure Bowl' if alias=='Violet Bowl' else 'zzzxylophoneqqq')
+            assert any(h['doc_id']=='KB-971' and fact in h['text'] for h in evidence(r)),r
+            if alias=='Violet Bowl':
+>               assert not evidence(old),old
+E               AssertionError: {'results': [{'doc_id': 'KB-970', 'chunk_id': 'KB-970#1', 'score': 0.5272, 'text': '| 标准写法 | alias |
+E                 |---|---|
+E                 | 翡翠饭 | Violet Bowl |', ...}, {'doc_id': 'KB-971', 'chunk_id': 'KB-971#1', 'score': 0.0, 'text': '翡翠饭的配送时限为23分钟。', ...}]}
+E               assert not [{'doc_id': 'KB-970', 'chunk_id': 'KB-970#1', 'score': 0.5272, 'text': '| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Violet Bowl |', ...}]
+E                +  where [{'doc_id': 'KB-970', 'chunk_id': 'KB-970#1', 'score': 0.5272, 'text': '| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Violet Bowl |', ...}] = evidence({'results': [{'doc_id': 'KB-970', 'chunk_id': 'KB-970#1', 'score': 0.5272, 'text': '| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Violet Bowl |', ...}, {'doc_id': 'KB-971', 'chunk_id': 'KB-971#1', 'score': 0.0, 'text': '翡翠饭的配送时限为23分钟。', ...}]})
+
+docs/verification/g2-03/test_retrieval.py:209: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g2-03/test_retrieval.py::test_replacement_alias_and_fact
+1 failed, 25 passed, 13 deselected in 17.33s

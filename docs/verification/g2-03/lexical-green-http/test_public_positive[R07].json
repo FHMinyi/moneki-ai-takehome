@@ -1,0 +1,185 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R07_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R07_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R07_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 c0709e378dea\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R07_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R07_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55979"
+      ],
+      "pid": 89836,
+      "port": 55979,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "c0709e378dea",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "今年 618 牛肉poke 的活动价和目标销量",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-023",
+                "chunk_id": "KB-023#4",
+                "score": 44.8677,
+                "text": "## 三、目标\n\n**当天牛肉poke 目标销量 120 份。**\n同时希望带动饮料和小食的连带，连带率目标是每 2 单里至少有 1 杯饮料。\n\n",
+                "retrieval_text": "2026 年 618 活动方案\n# 2026 年 618 活动方案\n## 三、目标\n\n**当天牛肉poke 目标销量 120 份。**\n同时希望带动饮料和小食的连带，连带率目标是每 2 单里至少有 1 杯饮料。\n\n",
+                "source_start": 316,
+                "source_end": 389,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 18,
+                    "text": "# 2026 年 618 活动方案\n"
+                  },
+                  {
+                    "start": 316,
+                    "end": 324,
+                    "text": "## 三、目标\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-024",
+                "chunk_id": "KB-024#4",
+                "score": 32.7274,
+                "text": "## 三、目标\n\n**全部门店合计目标销量 300 份。**\n按门店分解：S02 100 份，S05 70 份，S01 50 份，S03 40 份，S04 40 份。\n\n",
+                "retrieval_text": "2025 年 618 活动方案\n# 2025 年 618 活动方案\n## 三、目标\n\n**全部门店合计目标销量 300 份。**\n按门店分解：S02 100 份，S05 70 份，S01 50 份，S03 40 份，S04 40 份。\n\n",
+                "source_start": 220,
+                "source_end": 305,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 18,
+                    "text": "# 2025 年 618 活动方案\n"
+                  },
+                  {
+                    "start": 220,
+                    "end": 228,
+                    "text": "## 三、目标\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-028",
+                "chunk_id": "KB-028#3",
+                "score": 19.3462,
+                "text": "## 二、目标\n\n**首月（8 月 1 日至 8 月 31 日）全门店合计目标销量 900 杯。**\n目标按门店客流分解到各店，具体数字在店长群里单独发，门店以自己那张为准。\n\n",
+                "retrieval_text": "新品上市通知：冷萃乌龙茶\n# 新品上市通知：冷萃乌龙茶\n## 二、目标\n\n**首月（8 月 1 日至 8 月 31 日）全门店合计目标销量 900 杯。**\n目标按门店客流分解到各店，具体数字在店长群里单独发，门店以自己那张为准。\n\n",
+                "source_start": 258,
+                "source_end": 347,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 15,
+                    "text": "# 新品上市通知：冷萃乌龙茶\n"
+                  },
+                  {
+                    "start": 258,
+                    "end": 266,
+                    "text": "## 二、目标\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-050",
+                "chunk_id": "KB-050#3",
+                "score": 17.323,
+                "text": "## 活动执行\n\n限购 3 份执行下来没什么阻力，只有两三桌想多买，解释一下也就接受了。\n备货是按 10 倍备的，基本够，牛肉大概下午三点多有点紧张，临时从冷柜里又拿了一批出来解冻，最后收档还剩一点点，不算浪费。\n米饭备多了，晚上收档倒掉了两盆，下次同样的活动米饭按 2.5 倍备就够。\n\n",
+                "retrieval_text": "S02 店长周报 2026-06-15 至 2026-06-21\n# S02 Makai Poke 店长周报（2026-06-15 至 2026-06-21）\n## 活动执行\n\n限购 3 份执行下来没什么阻力，只有两三桌想多买，解释一下也就接受了。\n备货是按 10 倍备的，基本够，牛肉大概下午三点多有点紧张，临时从冷柜里又拿了一批出来解冻，最后收档还剩一点点，不算浪费。\n米饭备多了，晚上收档倒掉了两盆，下次同样的活动米饭按 2.5 倍备就够。\n\n",
+                "source_start": 256,
+                "source_end": 401,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 47,
+                    "text": "# S02 Makai Poke 店长周报（2026-06-15 至 2026-06-21）\n"
+                  },
+                  {
+                    "start": 256,
+                    "end": 264,
+                    "text": "## 活动执行\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-014",
+                "chunk_id": "KB-014#3",
+                "score": 14.6392,
+                "text": "## 二、员工折扣\n\n1. 员工本人到店消费享 7 折，出示工牌，由当班店员在收银时选择“员工折扣”。\n2. **员工折扣不与活动叠加**，活动期间的活动商品按活动价结算，不再打折。\n3. 员工折扣同样不与会员券、储值赠送、平台补贴叠加。\n4. 折后金额就是实收金额，照常进 POS，按实收入账。\n5. 员工折扣限本人及同行不超过 3 人的一桌，单日不超过 2 次。\n\n",
+                "retrieval_text": "员工餐与员工折扣制度\n# 员工餐与员工折扣制度\n## 二、员工折扣\n\n1. 员工本人到店消费享 7 折，出示工牌，由当班店员在收银时选择“员工折扣”。\n2. **员工折扣不与活动叠加**，活动期间的活动商品按活动价结算，不再打折。\n3. 员工折扣同样不与会员券、储值赠送、平台补贴叠加。\n4. 折后金额就是实收金额，照常进 POS，按实收入账。\n5. 员工折扣限本人及同行不超过 3 人的一桌，单日不超过 2 次。\n\n",
+                "source_start": 246,
+                "source_end": 431,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 13,
+                    "text": "# 员工餐与员工折扣制度\n"
+                  },
+                  {
+                    "start": 246,
+                    "end": 256,
+                    "text": "## 二、员工折扣\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

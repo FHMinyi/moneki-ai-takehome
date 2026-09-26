@@ -1,0 +1,180 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R12_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R12_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R12_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 16af015fd322\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R12_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R12_0/starter/.cache/index.json（0.2 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56049"
+      ],
+      "pid": 89936,
+      "port": 56049,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "16af015fd322",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "S03 六月停业几天，什么原因",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-020",
+                "chunk_id": "KB-020#1",
+                "score": 18.117,
+                "text": "# S03 Juicy Bao Bao 临时停业通知\n\n发布部门：总部运营部\n发布日期：2026-06-06\n\n浦东新区市场监管所于 2026-06-05 到 Juicy Bao Bao（S03，上海·浦东）做日常检查，指出后厨排烟管道油垢堆积、局部风管接口密封不严，要求限期整改。\n整改需要停火作业并拆装部分风管，无法在营业时间内穿插完成。经与商场物业、施工方确认，现决定：\n\n",
+                "retrieval_text": "S03 Juicy Bao Bao 临时停业通知\n# S03 Juicy Bao Bao 临时停业通知\n\n发布部门：总部运营部\n发布日期：2026-06-06\n\n浦东新区市场监管所于 2026-06-05 到 Juicy Bao Bao（S03，上海·浦东）做日常检查，指出后厨排烟管道油垢堆积、局部风管接口密封不严，要求限期整改。\n整改需要停火作业并拆装部分风管，无法在营业时间内穿插完成。经与商场物业、施工方确认，现决定：\n\n",
+                "source_start": 0,
+                "source_end": 190,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "# S03 Juicy Bao Bao 临时停业通知\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-051",
+                "chunk_id": "KB-051#4",
+                "score": 17.3305,
+                "text": "## 问题\n\n1. 停业期间的鲜货是提前停的，没有浪费，但半成品倒掉了一些，下次可以再早一天开始减量。\n2. 施工那几天后厨断断续续没法用，员工午饭是在外面吃的，这部分怎么算请人事给个说法。\n3. 蒸箱有一个门封条施工时被压到，已经换了新的。\n\n",
+                "retrieval_text": "S03 店长周报 2026-06-08 至 2026-06-14\n# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n## 问题\n\n1. 停业期间的鲜货是提前停的，没有浪费，但半成品倒掉了一些，下次可以再早一天开始减量。\n2. 施工那几天后厨断断续续没法用，员工午饭是在外面吃的，这部分怎么算请人事给个说法。\n3. 蒸箱有一个门封条施工时被压到，已经换了新的。\n\n",
+                "source_start": 443,
+                "source_end": 566,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 50,
+                    "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n"
+                  },
+                  {
+                    "start": 443,
+                    "end": 449,
+                    "text": "## 问题\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-032",
+                "chunk_id": "KB-032#1",
+                "score": 14.6765,
+                "text": "# 门店档案：S03 Juicy Bao Bao\n\n",
+                "retrieval_text": "门店档案 S03 Juicy Bao Bao\n# 门店档案：S03 Juicy Bao Bao\n\n",
+                "source_start": 0,
+                "source_end": 26,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 25,
+                    "text": "# 门店档案：S03 Juicy Bao Bao\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-042",
+                "chunk_id": "KB-042#2",
+                "score": 9.0496,
+                "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "retrieval_text": "门店营业时间总表\n# 门店营业时间总表\n| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "source_start": 61,
+                "source_end": 319,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 11,
+                    "text": "# 门店营业时间总表\n"
+                  },
+                  {
+                    "start": 61,
+                    "end": 118,
+                    "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-060",
+                "chunk_id": "KB-060#6",
+                "score": 7.4003,
+                "text": "| 门店 | 反馈条数 | 主要类型 |\n|---|---|---|\n| S01 Super Souper | 14 | 汤底偏咸 3 条，等位 3 条，其余为好评 |\n| S02 Makai Poke | 21 | 三文鱼缺货 9 条，配菜分量 4 条，其余为好评 |\n| S03 Juicy Bao Bao | 12 | 早餐出品稳定，好评为主，2 条反映座位不够 |\n| S04 Arigato Sando | 22 | 出餐慢 12 条，面包偏干 3 条，其余为好评 |\n| S05 Super Tetsudo | 18 | 好评为主，2 条反映晚市噪音 |\n\n",
+                "retrieval_text": "顾客反馈汇总 2026 年 7 月\n# 顾客反馈汇总（2026 年 7 月）\n## 二、分店情况\n| 门店 | 反馈条数 | 主要类型 |\n|---|---|---|\n| S01 Super Souper | 14 | 汤底偏咸 3 条，等位 3 条，其余为好评 |\n| S02 Makai Poke | 21 | 三文鱼缺货 9 条，配菜分量 4 条，其余为好评 |\n| S03 Juicy Bao Bao | 12 | 早餐出品稳定，好评为主，2 条反映座位不够 |\n| S04 Arigato Sando | 22 | 出餐慢 12 条，面包偏干 3 条，其余为好评 |\n| S05 Super Tetsudo | 18 | 好评为主，2 条反映晚市噪音 |\n\n",
+                "source_start": 489,
+                "source_end": 774,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 21,
+                    "text": "# 顾客反馈汇总（2026 年 7 月）\n"
+                  },
+                  {
+                    "start": 478,
+                    "end": 488,
+                    "text": "## 二、分店情况\n"
+                  },
+                  {
+                    "start": 489,
+                    "end": 524,
+                    "text": "| 门店 | 反馈条数 | 主要类型 |\n|---|---|---|\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

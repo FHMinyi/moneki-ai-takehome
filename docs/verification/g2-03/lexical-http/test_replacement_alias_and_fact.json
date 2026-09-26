@@ -1,0 +1,275 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_replacement_alias_and_fac0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_replacement_alias_and_fac0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_replacement_alias_and_fac0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：2 篇文档，2 个片段，缓存键 971ea2ce58a9\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_replacement_alias_and_fac0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_replacement_alias_and_fac0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55903"
+      ],
+      "pid": 89720,
+      "port": 55903,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 2,
+            "kb_chunks": 2,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "971ea2ce58a9",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "Azure Bowl的配送时限规定",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 5.34,
+                "text": "翡翠饭的配送时限为17分钟。",
+                "retrieval_text": "翡翠饭的配送时限为17分钟。\n翡翠饭的配送时限为17分钟。",
+                "source_start": 0,
+                "source_end": 14,
+                "context_spans": []
+              },
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 1.687,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Azure Bowl |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Azure Bowl |",
+                "source_start": 0,
+                "source_end": 47,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "zzzxylophoneqqq",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 0.0,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Azure Bowl |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Azure Bowl |",
+                "source_start": 0,
+                "source_end": 47,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 0.0,
+                "text": "翡翠饭的配送时限为17分钟。",
+                "retrieval_text": "翡翠饭的配送时限为17分钟。\n翡翠饭的配送时限为17分钟。",
+                "source_start": 0,
+                "source_end": 14,
+                "context_spans": []
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_replacement_alias_and_fac0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_replacement_alias_and_fac0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：2 篇文档，2 个片段，缓存键 6f7dd14d8c40\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_replacement_alias_and_fac0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_replacement_alias_and_fac0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55912"
+      ],
+      "pid": 89732,
+      "port": 55912,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 2,
+            "kb_chunks": 2,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "6f7dd14d8c40",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "Violet Bowl的配送时限规定",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 5.34,
+                "text": "翡翠饭的配送时限为23分钟。",
+                "retrieval_text": "翡翠饭的配送时限为23分钟。\n翡翠饭的配送时限为23分钟。",
+                "source_start": 0,
+                "source_end": 14,
+                "context_spans": []
+              },
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 1.687,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Violet Bowl |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Violet Bowl |",
+                "source_start": 0,
+                "source_end": 48,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "Azure Bowl",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-970",
+                "chunk_id": "KB-970#1",
+                "score": 0.5272,
+                "text": "| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Violet Bowl |",
+                "retrieval_text": "| 标准写法 | alias |\n| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | Violet Bowl |",
+                "source_start": 0,
+                "source_end": 48,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "| 标准写法 | alias |\n|---|---|\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-971",
+                "chunk_id": "KB-971#1",
+                "score": 0.0,
+                "text": "翡翠饭的配送时限为23分钟。",
+                "retrieval_text": "翡翠饭的配送时限为23分钟。\n翡翠饭的配送时限为23分钟。",
+                "source_start": 0,
+                "source_end": 14,
+                "context_spans": []
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

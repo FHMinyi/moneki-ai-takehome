@@ -1,0 +1,174 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_public_positive_R03_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_public_positive_R03_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_public_positive_R03_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 73d20fa648d4\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_public_positive_R03_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_public_positive_R03_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55725"
+      ],
+      "pid": 89528,
+      "port": 55725,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "73d20fa648d4",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "Super Souper 周五晚上营业到几点",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-062",
+                "chunk_id": "KB-062#2",
+                "score": 21.3094,
+                "text": "各门店、各职能部门：\n\n　　经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇）\n调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至\n周四的营业时间不变，仍为 10:30-21:30。\n\n　　现将有关事项通知如下：\n\n　　一、本次调整只涉及 Super Souper 一家门店，其余四家门店的营业时间不变。\n\n　　二、店长应在接到本通知后，按《排班与考勤制度》的要求调整周五、周六的排班\n并在店内公示，延长时段至少配置 3 人（前厅 1 人、后厨 2 人）。\n\n",
+                "retrieval_text": "合味餐饮管理（上海）有限公司   OA 公文系统   导出文件\n各门店、各职能部门：\n\n　　经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇）\n调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至\n周四的营业时间不变，仍为 10:30-21:30。\n\n　　现将有关事项通知如下：\n\n　　一、本次调整只涉及 Super Souper 一家门店，其余四家门店的营业时间不变。\n\n　　二、店长应在接到本通知后，按《排班与考勤制度》的要求调整周五、周六的排班\n并在店内公示，延长时段至少配置 3 人（前厅 1 人、后厨 2 人）。\n\n",
+                "source_start": 295,
+                "source_end": 569,
+                "context_spans": []
+              },
+              {
+                "doc_id": "KB-030",
+                "chunk_id": "KB-030#2",
+                "score": 19.7461,
+                "text": "| 项目 | 内容 |\n|---|---|\n| 门店编号 | S01 |\n| 门店名称 | Super Souper |\n| 品类 | 拉面 |\n| 商圈 | 上海·徐汇 |\n| 地址 | 上海市徐汇区虹漕南路 128 号 A 座 1 层 105 室 |\n| 店长 | 周岚 |\n| 联系电话 | 021-5555-0101 |\n| 标准营业时间 | 10:30–21:30 |\n| 座位数 | 42 |\n| 开业日期 | 2021-03-18 |\n\n",
+                "retrieval_text": "门店档案 S01 Super Souper\n# 门店档案：S01 Super Souper\n| 项目 | 内容 |\n|---|---|\n| 门店编号 | S01 |\n| 门店名称 | Super Souper |\n| 品类 | 拉面 |\n| 商圈 | 上海·徐汇 |\n| 地址 | 上海市徐汇区虹漕南路 128 号 A 座 1 层 105 室 |\n| 店长 | 周岚 |\n| 联系电话 | 021-5555-0101 |\n| 标准营业时间 | 10:30–21:30 |\n| 座位数 | 42 |\n| 开业日期 | 2021-03-18 |\n\n",
+                "source_start": 25,
+                "source_end": 251,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 24,
+                    "text": "# 门店档案：S01 Super Souper\n"
+                  },
+                  {
+                    "start": 25,
+                    "end": 47,
+                    "text": "| 项目 | 内容 |\n|---|---|\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-042",
+                "chunk_id": "KB-042#2",
+                "score": 15.0225,
+                "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "retrieval_text": "门店营业时间总表\n# 门店营业时间总表\n| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n| S01 | Super Souper | 拉面 | 上海·徐汇 | 10:30–21:30 |\n| S02 | Makai Poke | 轻食 | 上海·静安 | 10:00–21:00 |\n| S03 | Juicy Bao Bao | 点心 | 上海·浦东 | 07:30–20:30 |\n| S04 | Arigato Sando | 三明治 | 上海·长宁 | 08:00–20:00 |\n",
+                "source_start": 61,
+                "source_end": 319,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 11,
+                    "text": "# 门店营业时间总表\n"
+                  },
+                  {
+                    "start": 61,
+                    "end": 118,
+                    "text": "| 门店编号 | 门店名称 | 品类 | 商圈 | 标准营业时间 |\n|---|---|---|---|---|\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-053",
+                "chunk_id": "KB-053#1",
+                "score": 13.8705,
+                "text": "# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n\n店长：周岚\n提交日期：2026-07-27\n\n",
+                "retrieval_text": "S01 店长周报 2026-07-20 至 2026-07-26\n# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n\n店长：周岚\n提交日期：2026-07-27\n\n",
+                "source_start": 0,
+                "source_end": 73,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 49,
+                    "text": "# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-060",
+                "chunk_id": "KB-060#6",
+                "score": 10.5636,
+                "text": "| 门店 | 反馈条数 | 主要类型 |\n|---|---|---|\n| S01 Super Souper | 14 | 汤底偏咸 3 条，等位 3 条，其余为好评 |\n| S02 Makai Poke | 21 | 三文鱼缺货 9 条，配菜分量 4 条，其余为好评 |\n| S03 Juicy Bao Bao | 12 | 早餐出品稳定，好评为主，2 条反映座位不够 |\n| S04 Arigato Sando | 22 | 出餐慢 12 条，面包偏干 3 条，其余为好评 |\n| S05 Super Tetsudo | 18 | 好评为主，2 条反映晚市噪音 |\n\n",
+                "retrieval_text": "顾客反馈汇总 2026 年 7 月\n# 顾客反馈汇总（2026 年 7 月）\n## 二、分店情况\n| 门店 | 反馈条数 | 主要类型 |\n|---|---|---|\n| S01 Super Souper | 14 | 汤底偏咸 3 条，等位 3 条，其余为好评 |\n| S02 Makai Poke | 21 | 三文鱼缺货 9 条，配菜分量 4 条，其余为好评 |\n| S03 Juicy Bao Bao | 12 | 早餐出品稳定，好评为主，2 条反映座位不够 |\n| S04 Arigato Sando | 22 | 出餐慢 12 条，面包偏干 3 条，其余为好评 |\n| S05 Super Tetsudo | 18 | 好评为主，2 条反映晚市噪音 |\n\n",
+                "source_start": 489,
+                "source_end": 774,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 21,
+                    "text": "# 顾客反馈汇总（2026 年 7 月）\n"
+                  },
+                  {
+                    "start": 478,
+                    "end": 488,
+                    "text": "## 二、分店情况\n"
+                  },
+                  {
+                    "start": 489,
+                    "end": 524,
+                    "text": "| 门店 | 反馈条数 | 主要类型 |\n|---|---|---|\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

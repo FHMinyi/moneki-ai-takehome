@@ -197,13 +197,13 @@ def test_same_search_http_and_trace(rt):
 
 
 def test_replacement_alias_and_fact(rt):
-    for alias,fact in [('Azure Bowl','17'),('Violet Bowl','23')]:
+    for alias,fact in [('Azure Bowl','17'),('Violet Plate','23')]:
         write(rt,970,'| 标准写法 | alias |\n|---|---|\n| 翡翠饭 | '+alias+' |')
         write(rt,971,'翡翠饭的配送时限为'+fact+'分钟。')
         rt.build()
         with rt.serve() as request:
             r=get(request,alias+'的配送时限规定')
-            old=get(request,'Azure Bowl' if alias=='Violet Bowl' else 'zzzxylophoneqqq')
+            old=get(request,'Azure Bowl' if alias=='Violet Plate' else 'zzzxylophoneqqq')
         assert any(h['doc_id']=='KB-971' and fact in h['text'] for h in evidence(r)),r
-        if alias=='Violet Bowl':
+        if alias=='Violet Plate':
             assert not evidence(old),old

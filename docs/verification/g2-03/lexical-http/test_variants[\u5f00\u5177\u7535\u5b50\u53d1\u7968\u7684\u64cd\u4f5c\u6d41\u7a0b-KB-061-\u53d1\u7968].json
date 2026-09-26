@@ -1,0 +1,174 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_variants__u5f00_u5177_u750/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_variants__u5f00_u5177_u750/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_variants__u5f00_u5177_u750/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 f543b649a8f7\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_variants__u5f00_u5177_u750/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-85/test_variants__u5f00_u5177_u750/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "55888"
+      ],
+      "pid": 89700,
+      "port": 55888,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "f543b649a8f7",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "开具电子发票的操作流程",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-061",
+                "chunk_id": "KB-061#1",
+                "score": 28.3271,
+                "text": "合味餐饮\n首页 门店 菜单 会员 常见问题 加盟合作 关于我们\n常见问题 FAQ\n最后更新：2026-03-01 | 维护：总部市场部 | 适用范围：Super Souper、Makai Poke、Juicy Bao Bao、Arigato Sando、Super Tetsudo 五家门店\n怎么开发票？\n发票小程序\n发票在小程序“我的订单”里自助开具。找到对应订单点“开发票”，填抬头和税号后提交，电子发票会发到填写的邮箱，通常几分钟内到，最长不超过 24 小时。\n门店不提供纸质发票，也不代开。订单超过 90 天的无法自助开具，请联系客服处理。\n可以带宠物进店吗？\n宠物就餐规则\n",
+                "retrieval_text": "常见问题 FAQ - 合味餐饮\n合味餐饮\n首页 门店 菜单 会员 常见问题 加盟合作 关于我们\n常见问题 FAQ\n最后更新：2026-03-01 | 维护：总部市场部 | 适用范围：Super Souper、Makai Poke、Juicy Bao Bao、Arigato Sando、Super Tetsudo 五家门店\n怎么开发票？\n发票小程序\n发票在小程序“我的订单”里自助开具。找到对应订单点“开发票”，填抬头和税号后提交，电子发票会发到填写的邮箱，通常几分钟内到，最长不超过 24 小时。\n门店不提供纸质发票，也不代开。订单超过 90 天的无法自助开具，请联系客服处理。\n可以带宠物进店吗？\n宠物就餐规则\n",
+                "source_start": 0,
+                "source_end": 292,
+                "context_spans": []
+              },
+              {
+                "doc_id": "KB-053",
+                "chunk_id": "KB-053#4",
+                "score": 11.3523,
+                "text": "## 问题\n\n1. 台风通知到得还算及时，但外卖平台关接单的操作我们练得不熟，来回点了几次才关掉，建议出个操作图。\n2. 25 号开店前的检查清单是我口头过的，最好有一张纸质表能打勾签字。\n3. 制冰机在闭店前那两天午市就跟不上，已经报了采购。\n\n",
+                "retrieval_text": "S01 店长周报 2026-07-20 至 2026-07-26\n# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n## 问题\n\n1. 台风通知到得还算及时，但外卖平台关接单的操作我们练得不熟，来回点了几次才关掉，建议出个操作图。\n2. 25 号开店前的检查清单是我口头过的，最好有一张纸质表能打勾签字。\n3. 制冰机在闭店前那两天午市就跟不上，已经报了采购。\n\n",
+                "source_start": 418,
+                "source_end": 542,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 49,
+                    "text": "# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n"
+                  },
+                  {
+                    "start": 418,
+                    "end": 424,
+                    "text": "## 问题\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-012",
+                "chunk_id": "KB-012#3",
+                "score": 6.6309,
+                "text": "## 二、操作方式\n\n1. 店员可以直接在 POS 上操作退款，不需要审批，也不限金额。\n2. 退款原路返回：微信、支付宝、银行卡退回原支付渠道，现金当场退现金，会员储值退回储值余额。\n3. 操作完成后把小票收回，在退款登记本上写明日期、订单号、金额、原因、经办人。\n\n",
+                "retrieval_text": "退款政策 v1\n# 退款政策 v1\n## 二、操作方式\n\n1. 店员可以直接在 POS 上操作退款，不需要审批，也不限金额。\n2. 退款原路返回：微信、支付宝、银行卡退回原支付渠道，现金当场退现金，会员储值退回储值余额。\n3. 操作完成后把小票收回，在退款登记本上写明日期、订单号、金额、原因、经办人。\n\n",
+                "source_start": 174,
+                "source_end": 309,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v1\n"
+                  },
+                  {
+                    "start": 174,
+                    "end": 184,
+                    "text": "## 二、操作方式\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-010",
+                "chunk_id": "KB-010#2",
+                "score": 6.5421,
+                "text": "## 一、适用范围\n\n五家门店通用的会员储值卡（小程序电子卡，无实体卡），堂食、自提、外卖自营渠道均可使用。\n第三方外卖平台的订单不支持储值支付。\n\n",
+                "retrieval_text": "会员储值政策 v1\n# 会员储值政策 v1\n## 一、适用范围\n\n五家门店通用的会员储值卡（小程序电子卡，无实体卡），堂食、自提、外卖自营渠道均可使用。\n第三方外卖平台的订单不支持储值支付。\n\n",
+                "source_start": 71,
+                "source_end": 146,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 会员储值政策 v1\n"
+                  },
+                  {
+                    "start": 71,
+                    "end": 81,
+                    "text": "## 一、适用范围\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#2",
+                "score": 6.5421,
+                "text": "## 一、适用范围\n\n五家门店通用的会员储值卡（小程序电子卡，无实体卡），堂食、自提、外卖自营渠道均可使用。\n第三方外卖平台的订单不支持储值支付。\n\n",
+                "retrieval_text": "会员储值政策 v2\n# 会员储值政策 v2\n## 一、适用范围\n\n五家门店通用的会员储值卡（小程序电子卡，无实体卡），堂食、自提、外卖自营渠道均可使用。\n第三方外卖平台的订单不支持储值支付。\n\n",
+                "source_start": 71,
+                "source_end": 146,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 会员储值政策 v2\n"
+                  },
+                  {
+                    "start": 71,
+                    "end": 81,
+                    "text": "## 一、适用范围\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

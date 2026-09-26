@@ -1,0 +1,180 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_variants__u8bf7_u8bf4_u660/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_variants__u8bf7_u8bf4_u660/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_variants__u8bf7_u8bf4_u660/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 1631cfe1454d\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_variants__u8bf7_u8bf4_u660/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_variants__u8bf7_u8bf4_u660/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56121"
+      ],
+      "pid": 89971,
+      "port": 56121,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "1631cfe1454d",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "请说明外卖退款的申请时限",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-012",
+                "chunk_id": "KB-012#2",
+                "score": 14.5529,
+                "text": "## 一、受理条件\n\n1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。\n2. 没有小票、也无法在小程序里查到对应订单的，不予退款。\n3. 已经食用超过三分之一的商品不予退款，由店员现场判断。\n\n",
+                "retrieval_text": "退款政策 v1\n# 退款政策 v1\n## 一、受理条件\n\n1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。\n2. 没有小票、也无法在小程序里查到对应订单的，不予退款。\n3. 已经食用超过三分之一的商品不予退款，由店员现场判断。\n\n",
+                "source_start": 63,
+                "source_end": 174,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v1\n"
+                  },
+                  {
+                    "start": 63,
+                    "end": 73,
+                    "text": "## 一、受理条件\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#4",
+                "score": 12.5998,
+                "text": "## 三、系统记录\n\n1. 退款在 POS 中以负金额行记录，并沿用原订单号，不新开订单号。\n2. 退款行的商品、数量与原订单一致，`amount` 为原金额的相反数。\n3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。\n4. 不允许用“新开一笔负数订单”“现金找零”等方式绕开系统退款。\n\n",
+                "retrieval_text": "退款政策 v2\n# 退款政策 v2\n## 三、系统记录\n\n1. 退款在 POS 中以负金额行记录，并沿用原订单号，不新开订单号。\n2. 退款行的商品、数量与原订单一致，`amount` 为原金额的相反数。\n3. 退款行的日期是实际操作退款的那一天，可能晚于原订单日期，报表按退款行自己的日期统计，口径见 KB-001。\n4. 不允许用“新开一笔负数订单”“现金找零”等方式绕开系统退款。\n\n",
+                "source_start": 363,
+                "source_end": 540,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 10,
+                    "text": "# 退款政策 v2\n"
+                  },
+                  {
+                    "start": 363,
+                    "end": 373,
+                    "text": "## 三、系统记录\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#5",
+                "score": 9.4915,
+                "text": "## 四、余额退回\n\n1. 未消费的储值本金余额，自最后一次充值之日起 30 天内可无理由申请退回，原路退到原支付渠道。\n2. 充值时赠送的金额不退；本金退回后，本次充值产生的积分相应扣减。\n3. 申请在小程序提交，会员客服在 3 个工作日内处理，门店不受理现场退款。\n4. 超过 30 天的余额不再受理退回，可继续消费，不设有效期。\n\n",
+                "retrieval_text": "会员储值政策 v2\n# 会员储值政策 v2\n## 四、余额退回\n\n1. 未消费的储值本金余额，自最后一次充值之日起 30 天内可无理由申请退回，原路退到原支付渠道。\n2. 充值时赠送的金额不退；本金退回后，本次充值产生的积分相应扣减。\n3. 申请在小程序提交，会员客服在 3 个工作日内处理，门店不受理现场退款。\n4. 超过 30 天的余额不再受理退回，可继续消费，不设有效期。\n\n",
+                "source_start": 439,
+                "source_end": 608,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 会员储值政策 v2\n"
+                  },
+                  {
+                    "start": 439,
+                    "end": 449,
+                    "text": "## 四、余额退回\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-020",
+                "chunk_id": "KB-020#2",
+                "score": 6.6269,
+                "text": "1. **S03 自 2026-06-08 起停业 4 天，即 6 月 8 日至 6 月 11 日不营业**，堂食、外卖、预订全部暂停。\n2. **2026-06-12 起恢复正常营业**，营业时间不变。\n3. 停业期间外卖平台门店状态置为“休息中”，由市场部提前一天在会员群和门店公众号说明，不做促销预告。\n4. 已收的预订单由店长逐一电话联系，可改期或全额退款，改期的备注在预订本上。\n5. 鲜货备货从 6 月 7 日起暂停，包子馅料与点心半成品按保质期处理，不得留用到复业当天。\n6. 门店员工不放假，按原排班到岗，配合施工方做清洁与复位；复业前完成一次全店卫生自查并拍照留档。\n\n",
+                "retrieval_text": "S03 Juicy Bao Bao 临时停业通知\n# S03 Juicy Bao Bao 临时停业通知\n1. **S03 自 2026-06-08 起停业 4 天，即 6 月 8 日至 6 月 11 日不营业**，堂食、外卖、预订全部暂停。\n2. **2026-06-12 起恢复正常营业**，营业时间不变。\n3. 停业期间外卖平台门店状态置为“休息中”，由市场部提前一天在会员群和门店公众号说明，不做促销预告。\n4. 已收的预订单由店长逐一电话联系，可改期或全额退款，改期的备注在预订本上。\n5. 鲜货备货从 6 月 7 日起暂停，包子馅料与点心半成品按保质期处理，不得留用到复业当天。\n6. 门店员工不放假，按原排班到岗，配合施工方做清洁与复位；复业前完成一次全店卫生自查并拍照留档。\n\n",
+                "source_start": 190,
+                "source_end": 484,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 27,
+                    "text": "# S03 Juicy Bao Bao 临时停业通知\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#9",
+                "score": 6.2207,
+                "text": "- **退款行**：通过上述剔除规则后 `amount < 0` 的行。\n- **销售行**：通过上述剔除规则后 `amount > 0` 的行。\n- **净营业额** = 销售行金额之和 + 退款行金额之和。退款行的金额本身是负数，所以实际效果是相减。\n- **退款金额** = 退款行金额之和的绝对值。\n- **有效订单数** = 销售行中不同 `order_id` 的个数。多行订单算 1 单；退款行不单独计为订单。\n- **客单价** = 净营业额 ÷ 有效订单数，四舍五入保留 2 位小数。\n- **销量** = 销售行 `qty` 之和减去退款行 `qty` 之和。\n",
+                "retrieval_text": "指标口径手册 v3\n# 指标口径手册 v3\n## 4. 指标定义\n- **退款行**：通过上述剔除规则后 `amount < 0` 的行。\n- **销售行**：通过上述剔除规则后 `amount > 0` 的行。\n- **净营业额** = 销售行金额之和 + 退款行金额之和。退款行的金额本身是负数，所以实际效果是相减。\n- **退款金额** = 退款行金额之和的绝对值。\n- **有效订单数** = 销售行中不同 `order_id` 的个数。多行订单算 1 单；退款行不单独计为订单。\n- **客单价** = 净营业额 ÷ 有效订单数，四舍五入保留 2 位小数。\n- **销量** = 销售行 `qty` 之和减去退款行 `qty` 之和。\n",
+                "source_start": 1136,
+                "source_end": 1426,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 指标口径手册 v3\n"
+                  },
+                  {
+                    "start": 1124,
+                    "end": 1135,
+                    "text": "## 4. 指标定义\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

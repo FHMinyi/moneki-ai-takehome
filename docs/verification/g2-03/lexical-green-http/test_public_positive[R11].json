@@ -1,0 +1,174 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R11_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R11_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R11_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 90f040bbff12\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R11_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-86/test_public_positive_R11_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "56011"
+      ],
+      "pid": 89876,
+      "port": 56011,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "90f040bbff12",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "冷萃乌龙茶首月的目标销量是多少",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-028",
+                "chunk_id": "KB-028#3",
+                "score": 53.8745,
+                "text": "## 二、目标\n\n**首月（8 月 1 日至 8 月 31 日）全门店合计目标销量 900 杯。**\n目标按门店客流分解到各店，具体数字在店长群里单独发，门店以自己那张为准。\n\n",
+                "retrieval_text": "新品上市通知：冷萃乌龙茶\n# 新品上市通知：冷萃乌龙茶\n## 二、目标\n\n**首月（8 月 1 日至 8 月 31 日）全门店合计目标销量 900 杯。**\n目标按门店客流分解到各店，具体数字在店长群里单独发，门店以自己那张为准。\n\n",
+                "source_start": 258,
+                "source_end": 347,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 15,
+                    "text": "# 新品上市通知：冷萃乌龙茶\n"
+                  },
+                  {
+                    "start": 258,
+                    "end": 266,
+                    "text": "## 二、目标\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-029",
+                "chunk_id": "KB-029#6",
+                "score": 27.6698,
+                "text": "## 议题三：新品冷萃乌龙茶上市首周情况\n\n项怡通报，冷萃乌龙茶 8 月 1 日上市，首周出杯的势头还可以，S05 和 S02 相对突出，S03 偏弱，估计和早餐客群结构有关。首月目标不变，各店按之前分解的数量推进。\n门店反馈两个问题：一是冷萃基底 07:00 前备好这个时间点对 S03 有点紧，S03 开店早，早班要同时出点心和备基底；二是冰杯出杯时封口膜偶尔封不牢。项怡认领第二项，换一批封口膜试用。第一项由运营部和 S03 单独商量，必要时把基底改成前一晚备。\n沈望舒要求，新品上市首月各店每天记录出杯数和剩余基底量的动作不要停，月底做一次完整复盘，再决定是否进常规菜单。\n\n",
+                "retrieval_text": "2026 年 8 月运营例会纪要\n# 2026 年 8 月运营例会纪要\n## 议题三：新品冷萃乌龙茶上市首周情况\n\n项怡通报，冷萃乌龙茶 8 月 1 日上市，首周出杯的势头还可以，S05 和 S02 相对突出，S03 偏弱，估计和早餐客群结构有关。首月目标不变，各店按之前分解的数量推进。\n门店反馈两个问题：一是冷萃基底 07:00 前备好这个时间点对 S03 有点紧，S03 开店早，早班要同时出点心和备基底；二是冰杯出杯时封口膜偶尔封不牢。项怡认领第二项，换一批封口膜试用。第一项由运营部和 S03 单独商量，必要时把基底改成前一晚备。\n沈望舒要求，新品上市首月各店每天记录出杯数和剩余基底量的动作不要停，月底做一次完整复盘，再决定是否进常规菜单。\n\n",
+                "source_start": 835,
+                "source_end": 1127,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 19,
+                    "text": "# 2026 年 8 月运营例会纪要\n"
+                  },
+                  {
+                    "start": 835,
+                    "end": 856,
+                    "text": "## 议题三：新品冷萃乌龙茶上市首周情况\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-022",
+                "chunk_id": "KB-022#9",
+                "score": 26.3389,
+                "text": "4. SUPPLY RESUMPTION\n\n",
+                "retrieval_text": "[Tasman Cold Chain Seafood] Salmon delivery of 2026-07-04 - reefer failure, all 3 pallets rejected\n4. SUPPLY RESUMPTION\n\n",
+                "source_start": 1785,
+                "source_end": 1807,
+                "context_spans": []
+              },
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#6",
+                "score": 24.9094,
+                "text": "| P20 | 梅子酒 | — | — | — | — | — | — | — | — | ✓ |\n| P21 | 冷萃乌龙茶 | — | — | — | — | — | — | — | — | — |\n\n",
+                "retrieval_text": "过敏原对照表\n# 过敏原对照表\n| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| P20 | 梅子酒 | — | — | — | — | — | — | — | — | ✓ |\n| P21 | 冷萃乌龙茶 | — | — | — | — | — | — | — | — | — |\n\n",
+                "source_start": 1197,
+                "source_end": 1300,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 9,
+                    "text": "# 过敏原对照表\n"
+                  },
+                  {
+                    "start": 127,
+                    "end": 233,
+                    "text": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n"
+                  }
+                ]
+              },
+              {
+                "doc_id": "KB-023",
+                "chunk_id": "KB-023#4",
+                "score": 21.0803,
+                "text": "## 三、目标\n\n**当天牛肉poke 目标销量 120 份。**\n同时希望带动饮料和小食的连带，连带率目标是每 2 单里至少有 1 杯饮料。\n\n",
+                "retrieval_text": "2026 年 618 活动方案\n# 2026 年 618 活动方案\n## 三、目标\n\n**当天牛肉poke 目标销量 120 份。**\n同时希望带动饮料和小食的连带，连带率目标是每 2 单里至少有 1 杯饮料。\n\n",
+                "source_start": 316,
+                "source_end": 389,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 18,
+                    "text": "# 2026 年 618 活动方案\n"
+                  },
+                  {
+                    "start": 316,
+                    "end": 324,
+                    "text": "## 三、目标\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}
