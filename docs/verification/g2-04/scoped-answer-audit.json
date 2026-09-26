@@ -1,0 +1,1127 @@
+{
+  "requests": 54,
+  "document_answers": 42,
+  "trace_available": 54,
+  "positive_nonpadding_source_mismatches": 0,
+  "records": [
+    {
+      "test": "test_document_facts[C01].json",
+      "question": "外卖订单多久内可以申请退款？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-013",
+          "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-013",
+          "chunk_id": "KB-013#2",
+          "score": 0.6825105201308732,
+          "source_start": 109,
+          "source_end": 237,
+          "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_facts[C02].json",
+      "question": "有顾客问牛肉poke 里有哪些过敏原，怎么答？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-040",
+          "quote": "| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |"
+        },
+        {
+          "doc_id": "KB-040",
+          "quote": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-040",
+          "chunk_id": "KB-040#3",
+          "score": 0.3033741280994084,
+          "source_start": 386,
+          "source_end": 646,
+          "quote": "| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_facts[C03].json",
+      "question": "Super Souper 现在周五晚上营业到几点？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-062",
+          "quote": "经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇） 调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至 周四的营业时间不变，仍为 10:30-21:30。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-062",
+          "chunk_id": "KB-062#2",
+          "score": 0.9762133436835861,
+          "source_start": 295,
+          "source_end": 569,
+          "quote": "经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇） 调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至 周四的营业时间不变，仍为 10:30-21:30。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_facts[C04].json",
+      "question": "三文鱼那次断供，供应商最后赔了我们多少钱？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-022",
+          "quote": "We will issue a credit note of CNY 8,600 against your July account. This covers the full value of the rejected consignment. There is nothing for you to pay and nothing for you to claim separately. The credit note will be raised on 6 July and should appear on your statement the same week."
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-022",
+          "chunk_id": "KB-022#8",
+          "score": 0.1366174105028819,
+          "source_start": 1495,
+          "source_end": 1785,
+          "quote": "We will issue a credit note of CNY 8,600 against your July account. This covers the full value of the rejected consignment. There is nothing for you to pay and nothing for you to claim separately. The credit note will be raised on 6 July and should appear on your statement the same week."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_facts[C05].json",
+      "question": "顾客要开发票，怎么跟他说？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-061",
+          "quote": "发票在小程序“我的订单”里自助开具。找到对应订单点“开发票”，填抬头和税号后提交，电子发票会发到填写的邮箱，通常几分钟内到，最长不超过 24 小时。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-061",
+          "chunk_id": "KB-061#1",
+          "score": 0.5312368605591385,
+          "source_start": 0,
+          "source_end": 292,
+          "quote": "发票在小程序“我的订单”里自助开具。找到对应订单点“开发票”，填抬头和税号后提交，电子发票会发到填写的邮箱，通常几分钟内到，最长不超过 24 小时。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_facts[C06].json",
+      "question": "退款在净营业额里是怎么算的？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-001",
+          "quote": "- **净营业额** = 销售行金额之和 + 退款行金额之和。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-001",
+          "chunk_id": "KB-001#9",
+          "score": 0.7487717806571236,
+          "source_start": 1136,
+          "source_end": 1426,
+          "quote": "- **净营业额** = 销售行金额之和 + 退款行金额之和。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_facts[C07].json",
+      "question": "S04 为什么不卖吞拿鱼三明治了？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-029",
+          "quote": "这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-029",
+          "chunk_id": "KB-029#8",
+          "score": 0.747819811061652,
+          "source_start": 1149,
+          "source_end": 1336,
+          "quote": "这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_facts[C08].json",
+      "question": "员工迟到多久算一次？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-016",
+          "quote": "2. **迟到 15 分钟以上记 1 次**，15 分钟以内为轻微迟到，当月累计 3 次轻微迟到折算为 1 次。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-016",
+          "chunk_id": "KB-016#3",
+          "score": 0.6212934179278026,
+          "source_start": 269,
+          "source_end": 459,
+          "quote": "2. **迟到 15 分钟以上记 1 次**，15 分钟以内为轻微迟到，当月累计 3 次轻微迟到折算为 1 次。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_facts[S01].json",
+      "question": "7 月顾客投诉最集中的是什么问题？有多少条？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-060",
+          "quote": "1. **S04 Arigato Sando 出餐慢，12 条**，是本月最集中的一类问题，集中在工作日 12:00 至 13:00，投诉里出现最多的说法是“排队比吃饭时间长”。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-060",
+          "chunk_id": "KB-060#3",
+          "score": 1.1319301233030354,
+          "source_start": 166,
+          "source_end": 421,
+          "quote": "1. **S04 Arigato Sando 出餐慢，12 条**，是本月最集中的一类问题，集中在工作日 12:00 至 13:00，投诉里出现最多的说法是“排队比吃饭时间长”。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_facts[V01].json",
+      "question": "今年 618 做活动的是哪个商品，活动价多少？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-023",
+          "quote": "1. **牛肉poke 活动价 ¥29**，仅限当天。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-023",
+          "chunk_id": "KB-023#3",
+          "score": 0.6055317096963796,
+          "source_start": 191,
+          "source_end": 316,
+          "quote": "1. **牛肉poke 活动价 ¥29**，仅限当天。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_facts[V02].json",
+      "question": "会员现在单笔充值满 500 送多少？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-011",
+          "quote": "1. 单笔充值满 500 元，赠送 60 元。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-011",
+          "chunk_id": "KB-011#3",
+          "score": 1.544211260624269,
+          "source_start": 146,
+          "source_end": 290,
+          "quote": "1. 单笔充值满 500 元，赠送 60 元。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_route[C01].json",
+      "question": "外卖订单多久内可以申请退款？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-013",
+          "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-013",
+          "chunk_id": "KB-013#2",
+          "score": 0.6825105201308731,
+          "source_start": 109,
+          "source_end": 237,
+          "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_route[C02].json",
+      "question": "有顾客问牛肉poke 里有哪些过敏原，怎么答？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-040",
+          "quote": "| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |"
+        },
+        {
+          "doc_id": "KB-040",
+          "quote": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-040",
+          "chunk_id": "KB-040#3",
+          "score": 0.30337412809940834,
+          "source_start": 386,
+          "source_end": 646,
+          "quote": "| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_route[C03].json",
+      "question": "Super Souper 现在周五晚上营业到几点？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-062",
+          "quote": "经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇） 调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至 周四的营业时间不变，仍为 10:30-21:30。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-062",
+          "chunk_id": "KB-062#2",
+          "score": 0.9762133436835863,
+          "source_start": 295,
+          "source_end": 569,
+          "quote": "经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇） 调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至 周四的营业时间不变，仍为 10:30-21:30。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_route[C04].json",
+      "question": "三文鱼那次断供，供应商最后赔了我们多少钱？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-022",
+          "quote": "We will issue a credit note of CNY 8,600 against your July account. This covers the full value of the rejected consignment. There is nothing for you to pay and nothing for you to claim separately. The credit note will be raised on 6 July and should appear on your statement the same week."
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-022",
+          "chunk_id": "KB-022#8",
+          "score": 0.1366174105028819,
+          "source_start": 1495,
+          "source_end": 1785,
+          "quote": "We will issue a credit note of CNY 8,600 against your July account. This covers the full value of the rejected consignment. There is nothing for you to pay and nothing for you to claim separately. The credit note will be raised on 6 July and should appear on your statement the same week."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_route[C05].json",
+      "question": "顾客要开发票，怎么跟他说？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-061",
+          "quote": "发票在小程序“我的订单”里自助开具。找到对应订单点“开发票”，填抬头和税号后提交，电子发票会发到填写的邮箱，通常几分钟内到，最长不超过 24 小时。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-061",
+          "chunk_id": "KB-061#1",
+          "score": 0.5312368605591385,
+          "source_start": 0,
+          "source_end": 292,
+          "quote": "发票在小程序“我的订单”里自助开具。找到对应订单点“开发票”，填抬头和税号后提交，电子发票会发到填写的邮箱，通常几分钟内到，最长不超过 24 小时。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_route[C06].json",
+      "question": "退款在净营业额里是怎么算的？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-001",
+          "quote": "- **净营业额** = 销售行金额之和 + 退款行金额之和。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-001",
+          "chunk_id": "KB-001#9",
+          "score": 0.7487717806571236,
+          "source_start": 1136,
+          "source_end": 1426,
+          "quote": "- **净营业额** = 销售行金额之和 + 退款行金额之和。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_route[C07].json",
+      "question": "S04 为什么不卖吞拿鱼三明治了？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-029",
+          "quote": "这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-029",
+          "chunk_id": "KB-029#8",
+          "score": 0.747819811061652,
+          "source_start": 1149,
+          "source_end": 1336,
+          "quote": "这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_route[C08].json",
+      "question": "员工迟到多久算一次？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-016",
+          "quote": "2. **迟到 15 分钟以上记 1 次**，15 分钟以内为轻微迟到，当月累计 3 次轻微迟到折算为 1 次。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-016",
+          "chunk_id": "KB-016#3",
+          "score": 0.6212934179278026,
+          "source_start": 269,
+          "source_end": 459,
+          "quote": "2. **迟到 15 分钟以上记 1 次**，15 分钟以内为轻微迟到，当月累计 3 次轻微迟到折算为 1 次。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_route[S01].json",
+      "question": "7 月顾客投诉最集中的是什么问题？有多少条？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-060",
+          "quote": "1. **S04 Arigato Sando 出餐慢，12 条**，是本月最集中的一类问题，集中在工作日 12:00 至 13:00，投诉里出现最多的说法是“排队比吃饭时间长”。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-060",
+          "chunk_id": "KB-060#3",
+          "score": 1.131930123303035,
+          "source_start": 166,
+          "source_end": 421,
+          "quote": "1. **S04 Arigato Sando 出餐慢，12 条**，是本月最集中的一类问题，集中在工作日 12:00 至 13:00，投诉里出现最多的说法是“排队比吃饭时间长”。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_route[V01].json",
+      "question": "今年 618 做活动的是哪个商品，活动价多少？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-023",
+          "quote": "1. **牛肉poke 活动价 ¥29**，仅限当天。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-023",
+          "chunk_id": "KB-023#3",
+          "score": 0.6055317096963796,
+          "source_start": 191,
+          "source_end": 316,
+          "quote": "1. **牛肉poke 活动价 ¥29**，仅限当天。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_document_route[V02].json",
+      "question": "会员现在单笔充值满 500 送多少？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-011",
+          "quote": "1. 单笔充值满 500 元，赠送 60 元。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-011",
+          "chunk_id": "KB-011#3",
+          "score": 1.5442112606242688,
+          "source_start": 146,
+          "source_end": 290,
+          "quote": "1. 单笔充值满 500 元，赠送 60 元。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_error_trace[evidence].json",
+      "question": "外卖退款政策是什么？",
+      "type": "refusal",
+      "trace_id": "t-20260901-0001",
+      "citations": [],
+      "selected": [],
+      "errors": [
+        {
+          "where": "answer",
+          "type": "RuntimeError",
+          "message": "g204 injected failure",
+          "traceback": "Traceback (most recent call last):\n  File \"/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-131/test_error_trace_evidence_0/starter/kbqa/service.py\", line 164, in _answer\n    answer = self._run_engine(plan, trace, history)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-131/test_error_trace_evidence_0/starter/kbqa/service.py\", line 187, in _run_engine\n    answer = self.answerer.answer(plan, trace)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-131/test_error_trace_evidence_0/starter/kbqa/answerer.py\", line 202, in answer\n    answer = self._answer_doc(plan, trace)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-131/test_error_trace_evidence_0/starter/kbqa/answerer.py\", line 386, in _answer_doc\n    body, citations, confidence = (_ for _ in ()).throw(RuntimeError('g204 injected failure'))\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-131/test_error_trace_evidence_0/starter/kbqa/answerer.py\", line 386, in <genexpr>\n    body, citations, confidence = (_ for _ in ()).throw(RuntimeError('g204 injected failure'))\nRuntimeError: g204 injected failure\n"
+        }
+      ]
+    },
+    {
+      "test": "test_error_trace[plan].json",
+      "question": "外卖退款政策是什么？",
+      "type": "refusal",
+      "trace_id": "t-20260901-0001",
+      "citations": [],
+      "selected": [],
+      "errors": [
+        {
+          "where": "answer",
+          "type": "RuntimeError",
+          "message": "g204 injected failure",
+          "traceback": "Traceback (most recent call last):\n  File \"/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-131/test_error_trace_plan_0/starter/kbqa/service.py\", line 162, in _answer\n    plan = (_ for _ in ()).throw(RuntimeError('g204 injected failure'))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-131/test_error_trace_plan_0/starter/kbqa/service.py\", line 162, in <genexpr>\n    plan = (_ for _ in ()).throw(RuntimeError('g204 injected failure'))\nRuntimeError: g204 injected failure\n"
+        }
+      ]
+    },
+    {
+      "test": "test_existing_payment_explanation_regression[8 \\u6708 3 \\u65e5 S05 \\u7684\\u73b0\\u91d1\\u652f\\u4ed8\\u5360\\u6bd4\\u662f\\u591a\\u5c11\\uff1f\\u4e3a\\u4ec0\\u4e48\\u4f1a\\u8fd9\\u6837\\uff1f].json",
+      "question": "8 月 3 日 S05 的现金支付占比是多少？为什么会这样？",
+      "type": "hybrid",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-027",
+          "quote": "故障是开店前例行检查收银设备时发现的，当时离 11:00 开门还有二十分钟。10:45 上报商场物业和总部 IT 部，11:00 前后确认原因：**商场当天进行网络交换机升级**，商户专线在切换过程中中断，同层受影响的商户不止我们一家。"
+        }
+      ],
+      "selected": [],
+      "errors": []
+    },
+    {
+      "test": "test_existing_payment_explanation_regression[S05\\u57282026-08-03\\u73b0\\u91d1\\u652f\\u4ed8\\u5360\\u6bd4\\u591a\\u5c11\\uff0c\\u539f\\u56e0\\u662f\\u4ec0\\u4e48\\uff1f].json",
+      "question": "S05在2026-08-03现金支付占比多少，原因是什么？",
+      "type": "hybrid",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-027",
+          "quote": "故障是开店前例行检查收银设备时发现的，当时离 11:00 开门还有二十分钟。10:45 上报商场物业和总部 IT 部，11:00 前后确认原因：**商场当天进行网络交换机升级**，商户专线在切换过程中中断，同层受影响的商户不止我们一家。"
+        }
+      ],
+      "selected": [],
+      "errors": []
+    },
+    {
+      "test": "test_history_boundary[2026-06-14\\u5f53\\u65f6\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u7533\\u8bf7\\u9000\\u6b3e\\uff1f-KB-012-KB-013-7 \\u5929].json",
+      "question": "2026-06-14当时外卖订单多久内可以申请退款？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-012",
+          "quote": "1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-012",
+          "chunk_id": "KB-012#2",
+          "score": 0.8449157556691453,
+          "source_start": 63,
+          "source_end": 174,
+          "quote": "1. 顾客在购买后 7 天内凭小票可以申请退款，堂食、自提、外卖订单都适用。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_history_boundary[2026-06-15\\u5f53\\u65f6\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u7533\\u8bf7\\u9000\\u6b3e\\uff1f-KB-013-KB-012-24 \\u5c0f\\u65f6].json",
+      "question": "2026-06-15当时外卖订单多久内可以申请退款？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-013",
+          "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-013",
+          "chunk_id": "KB-013#2",
+          "score": 0.46784975956296465,
+          "source_start": 109,
+          "source_end": 237,
+          "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_history_boundary[2026-06-30\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1500\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-010-KB-011-50 \\u5143].json",
+      "question": "2026-06-30当时会员单笔充值满500元赠送多少？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-010",
+          "quote": "1. 单笔充值满 500 元，赠送 50 元。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-010",
+          "chunk_id": "KB-010#3",
+          "score": 1.0175575276111333,
+          "source_start": 146,
+          "source_end": 302,
+          "quote": "1. 单笔充值满 500 元，赠送 50 元。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_history_boundary[2026-07-01\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1500\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-011-KB-010-60 \\u5143].json",
+      "question": "2026-07-01当时会员单笔充值满500元赠送多少？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-011",
+          "quote": "1. 单笔充值满 500 元，赠送 60 元。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-011",
+          "chunk_id": "KB-011#3",
+          "score": 1.0249096737398546,
+          "source_start": 146,
+          "source_end": 290,
+          "quote": "1. 单笔充值满 500 元，赠送 60 元。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_history_boundary[\\uff12\\uff10\\uff12\\uff16\\u5e74\\uff16\\u6708\\uff13\\uff10\\u65e5\\u5f53\\u65f6\\u4f1a\\u5458\\u5355\\u7b14\\u5145\\u503c\\u6ee1\\uff15\\uff10\\uff10\\u5143\\u8d60\\u9001\\u591a\\u5c11\\uff1f-KB-010-KB-011-50 \\u5143].json",
+      "question": "２０２６年６月３０日当时会员单笔充值满５００元赠送多少？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-010",
+          "quote": "1. 单笔充值满 500 元，赠送 50 元。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-010",
+          "chunk_id": "KB-010#3",
+          "score": 0.867833168545925,
+          "source_start": 146,
+          "source_end": 302,
+          "quote": "1. 单笔充值满 500 元，赠送 50 元。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_missing_attribute[\\u5458\\u5de5\\u8fdf\\u5230\\u53ef\\u4ee5\\u7528\\u79ef\\u5206\\u62b5\\u6263\\u5417\\uff1f].json",
+      "question": "员工迟到可以用积分抵扣吗？",
+      "type": "refusal",
+      "trace_id": "t-20260901-0001",
+      "citations": [],
+      "selected": [],
+      "errors": []
+    },
+    {
+      "test": "test_missing_attribute[\\u5916\\u5356\\u9000\\u6b3e\\u7533\\u8bf7\\u662f\\u5426\\u9700\\u8981\\u987e\\u5ba2\\u63d0\\u4f9b\\u8eab\\u4efd\\u8bc1\\uff1f].json",
+      "question": "外卖退款申请是否需要顾客提供身份证？",
+      "type": "refusal",
+      "trace_id": "t-20260901-0001",
+      "citations": [],
+      "selected": [],
+      "errors": []
+    },
+    {
+      "test": "test_missing_attribute[\\u725b\\u8089poke\\u662f\\u5426\\u542b\\u82b1\\u751f\\uff1f].json",
+      "question": "牛肉poke是否含花生？",
+      "type": "refusal",
+      "trace_id": "t-20260901-0001",
+      "citations": [],
+      "selected": [],
+      "errors": []
+    },
+    {
+      "test": "test_near_topic_missing[\\u5458\\u5de5\\u8fdf\\u5230\\u7533\\u8bc9\\u9700\\u8981\\u51e0\\u5929\\u529e\\u7ed3\\uff1f].json",
+      "question": "员工迟到申诉需要几天办结？",
+      "type": "refusal",
+      "trace_id": "t-20260901-0001",
+      "citations": [],
+      "selected": [],
+      "errors": []
+    },
+    {
+      "test": "test_near_topic_missing[\\u5916\\u5356\\u9000\\u6b3e\\u9700\\u8981\\u7f34\\u7eb3\\u591a\\u5c11\\u5143\\u624b\\u7eed\\u8d39\\uff1f].json",
+      "question": "外卖退款需要缴纳多少元手续费？",
+      "type": "refusal",
+      "trace_id": "t-20260901-0001",
+      "citations": [],
+      "selected": [],
+      "errors": []
+    },
+    {
+      "test": "test_near_topic_missing[\\u725b\\u8089poke\\u7684\\u82b1\\u751f\\u542b\\u91cf\\u662f\\u591a\\u5c11\\u514b\\uff1f].json",
+      "question": "牛肉poke的花生含量是多少克？",
+      "type": "refusal",
+      "trace_id": "t-20260901-0001",
+      "citations": [],
+      "selected": [],
+      "errors": []
+    },
+    {
+      "test": "test_quote_normalized_limit.json",
+      "question": "夜班配送规定需要多少小时？",
+      "type": "refusal",
+      "trace_id": "t-20260901-0001",
+      "citations": [],
+      "selected": [],
+      "errors": []
+    },
+    {
+      "test": "test_rephrasing[Beef Poke\\u91cc\\u9762\\u6709\\u54ea\\u4e9b\\u8fc7\\u654f\\u539f\\uff1f-KB-040-\\u829d\\u9ebb].json",
+      "question": "Beef Poke里面有哪些过敏原？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-040",
+          "quote": "| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |"
+        },
+        {
+          "doc_id": "KB-040",
+          "quote": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-040",
+          "chunk_id": "KB-040#3",
+          "score": 0.2775935773946229,
+          "source_start": 386,
+          "source_end": 646,
+          "quote": "| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_rephrasing[\\u5f00\\u5177\\u7535\\u5b50\\u53d1\\u7968\\u7684\\u64cd\\u4f5c\\u6d41\\u7a0b-KB-061-\\u5c0f\\u7a0b\\u5e8f].json",
+      "question": "开具电子发票的操作流程",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-061",
+          "quote": "发票在小程序“我的订单”里自助开具。找到对应订单点“开发票”，填抬头和税号后提交，电子发票会发到填写的邮箱，通常几分钟内到，最长不超过 24 小时。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-061",
+          "chunk_id": "KB-061#1",
+          "score": 0.3489557508387962,
+          "source_start": 0,
+          "source_end": 292,
+          "quote": "发票在小程序“我的订单”里自助开具。找到对应订单点“开发票”，填抬头和税号后提交，电子发票会发到填写的邮箱，通常几分钟内到，最长不超过 24 小时。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_rephrasing[\\u6c64\\u9762\\u5e97\\u5468\\u4e94\\u51e0\\u70b9\\u5173\\u95e8-KB-062-23:00].json",
+      "question": "汤面店周五几点关门",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-062",
+          "quote": "经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇） 调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至 周四的营业时间不变，仍为 10:30-21:30。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-062",
+          "chunk_id": "KB-062#2",
+          "score": 0.6226592011612887,
+          "source_start": 295,
+          "source_end": 569,
+          "quote": "经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇） 调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至 周四的营业时间不变，仍为 10:30-21:30。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_rephrasing[\\u8bf7\\u8bf4\\u660e\\u5916\\u5356\\u9000\\u6b3e\\u7684\\u7533\\u8bf7\\u65f6\\u9650-KB-013-24].json",
+      "question": "请说明外卖退款的申请时限",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-013",
+          "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-013",
+          "chunk_id": "KB-013#2",
+          "score": 0.4004755813684629,
+          "source_start": 109,
+          "source_end": 237,
+          "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_rephrasing[\\u963f\\u91cc\\u560e\\u591a\\u7684\\u541e\\u62ff\\u9c7c\\u4e09\\u660e\\u6cbb\\u4e3a\\u4f55\\u505c\\u552e-KB-029-35%].json",
+      "question": "阿里嘎多的吞拿鱼三明治为何停售",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-029",
+          "quote": "这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-029",
+          "chunk_id": "KB-029#8",
+          "score": 0.5177623375166919,
+          "source_start": 1149,
+          "source_end": 1336,
+          "quote": "这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_rephrasing[\\u9c91\\u9c7c\\u6ce2\\u5947\\u996d\\u65ad\\u4f9b\\u540e\\u4f9b\\u5e94\\u5546\\u8d54\\u4ed8\\u91d1\\u989d\\u662f\\u591a\\u5c11-KB-022-8,600].json",
+      "question": "鲑鱼波奇饭断供后供应商赔付金额是多少",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-022",
+          "quote": "We will issue a credit note of CNY 8,600 against your July account. This covers the full value of the rejected consignment. There is nothing for you to pay and nothing for you to claim separately. The credit note will be raised on 6 July and should appear on your statement the same week."
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-022",
+          "chunk_id": "KB-022#8",
+          "score": 0.06209620921350119,
+          "source_start": 1495,
+          "source_end": 1785,
+          "quote": "We will issue a credit note of CNY 8,600 against your July account. This covers the full value of the rejected consignment. There is nothing for you to pay and nothing for you to claim separately. The credit note will be raised on 6 July and should appear on your statement the same week."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_replacement_tail_and_instruction[gbk].json",
+      "question": "夜班配送申请应提前多少小时提交？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-901",
+          "quote": "夜班配送申请应提前17小时提交。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-901",
+          "chunk_id": "KB-901#2",
+          "score": 1.578704434752653,
+          "source_start": 295,
+          "source_end": 593,
+          "quote": "夜班配送申请应提前17小时提交。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_replacement_tail_and_instruction[gbk].json",
+      "question": "夜班配送申请应提前多少小时提交？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-901",
+          "quote": "夜班配送申请应提前23小时提交。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-901",
+          "chunk_id": "KB-901#2",
+          "score": 1.578704434752653,
+          "source_start": 295,
+          "source_end": 593,
+          "quote": "夜班配送申请应提前23小时提交。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_replacement_tail_and_instruction[html].json",
+      "question": "夜班配送申请应提前多少小时提交？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-901",
+          "quote": "夜班配送申请应提前17小时提交。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-901",
+          "chunk_id": "KB-901#2",
+          "score": 1.5787044347526527,
+          "source_start": 289,
+          "source_end": 556,
+          "quote": "夜班配送申请应提前17小时提交。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_replacement_tail_and_instruction[html].json",
+      "question": "夜班配送申请应提前多少小时提交？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-901",
+          "quote": "夜班配送申请应提前23小时提交。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-901",
+          "chunk_id": "KB-901#2",
+          "score": 1.578704434752653,
+          "source_start": 289,
+          "source_end": 556,
+          "quote": "夜班配送申请应提前23小时提交。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_replacement_tail_and_instruction[md].json",
+      "question": "夜班配送申请应提前多少小时提交？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-901",
+          "quote": "夜班配送申请应提前17小时提交。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-901",
+          "chunk_id": "KB-901#2",
+          "score": 1.5787044347526527,
+          "source_start": 295,
+          "source_end": 593,
+          "quote": "夜班配送申请应提前17小时提交。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_replacement_tail_and_instruction[md].json",
+      "question": "夜班配送申请应提前多少小时提交？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-901",
+          "quote": "夜班配送申请应提前23小时提交。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-901",
+          "chunk_id": "KB-901#2",
+          "score": 1.578704434752653,
+          "source_start": 295,
+          "source_end": 593,
+          "quote": "夜班配送申请应提前23小时提交。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_supported_attribute[\\u4f1a\\u5458\\u8d60\\u9001\\u91d1\\u989d\\u662f\\u5426\\u53ef\\u4ee5\\u63d0\\u73b0\\uff1f-KB-011-\\u4e0d\\u53ef\\u63d0\\u73b0].json",
+      "question": "会员赠送金额是否可以提现？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-011",
+          "quote": "4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-011",
+          "chunk_id": "KB-011#3",
+          "score": 0.5366298151562396,
+          "source_start": 146,
+          "source_end": 290,
+          "quote": "4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_supported_attribute[\\u5458\\u5de5\\u6298\\u6263\\u662f\\u5426\\u53ef\\u4ee5\\u548c\\u4fc3\\u9500\\u6d3b\\u52a8\\u53e0\\u52a0\\uff1f-KB-014-\\u53e0\\u52a0].json",
+      "question": "员工折扣是否可以和促销活动叠加？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-014",
+          "quote": "2. **员工折扣不与活动叠加**，活动期间的活动商品按活动价结算，不再打折。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-014",
+          "chunk_id": "KB-014#3",
+          "score": 0.570285313497113,
+          "source_start": 246,
+          "source_end": 431,
+          "quote": "2. **员工折扣不与活动叠加**，活动期间的活动商品按活动价结算，不再打折。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_supported_attribute[\\u5916\\u5356\\u9000\\u6b3e\\u7533\\u8bf7\\u662f\\u5426\\u9700\\u8981\\u5ba1\\u6279\\uff1f-KB-013-\\u5ba1\\u6279].json",
+      "question": "外卖退款申请是否需要审批？",
+      "type": "doc",
+      "trace_id": "t-20260901-0001",
+      "citations": [
+        {
+          "doc_id": "KB-013",
+          "quote": "3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。"
+        }
+      ],
+      "selected": [
+        {
+          "doc_id": "KB-013",
+          "chunk_id": "KB-013#3",
+          "score": 0.5226646653025763,
+          "source_start": 237,
+          "source_end": 363,
+          "quote": "3. 同一顾客一个月内第三次及以上的退款申请，一律报店长审批。"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test": "test_unretrieved_fact_not_borrowed.json",
+      "question": "夜班配送手续费是多少元？",
+      "type": "refusal",
+      "trace_id": "t-20260901-0001",
+      "citations": [],
+      "selected": [
+        {
+          "doc_id": "KB-901",
+          "chunk_id": "KB-901#2",
+          "score": 1.031259632132692,
+          "source_start": 296,
+          "source_end": 512,
+          "quote": "会员开卡手续费为83元。"
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

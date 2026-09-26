@@ -1,0 +1,7 @@
+数据目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-luwf_hwe/data
+知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-luwf_hwe/knowledge_base
+清洗完成：{"raw_rows": 18628, "removed": {"1_unparseable_date": 8, "2_empty_amount": 150, "3_qty_le_zero": 30, "4_store_not_in_stores": 10, "5_product_not_in_products": 40, "6_duplicate_row": 100}, "removed_rows": 338, "kept_rows": 18290, "kept_sales_rows": 18196, "kept_refund_rows": 94}
+索引完成：35 篇文档，215 个片段，缓存键 1865af83e19f
+告警：跳过没有 KB 编号的文件：README.md
+告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt
+产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-luwf_hwe/starter/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g2-source-luwf_hwe/starter/.cache/index.json（0.1 秒）

@@ -30,12 +30,28 @@ def chat(request,q):
 def detail(t,name):
     return next(s['detail'] for s in t['steps'] if s['step']==name)
 
-def quotes(a,payload):
+def quotes(a,payload,t):
     assert len(a['citations'])<=4
     for c in a['citations']:
         norm=lambda s:re.sub(r'\s+','',s)
         assert 0<len(norm(c['quote']))<=400
         assert norm(c['quote']) in norm(payload['texts'][c['doc_id']])
+    if a['answer_type']=='doc':
+        chunks={c['chunk_id']:c for c in payload['chunks']}
+        selected=detail(t,'evidence')['selected']
+        hits={h['chunk_id']:h for h in detail(t,'search')['hits']}
+        for pick in selected:
+            h=hits[pick['chunk_id']];c=chunks[pick['chunk_id']]
+            assert h['score']>0 and not h['padded'] and not h['exclusion_reason']
+            assert h['doc_id']==pick['doc_id']==c['doc_id']
+            assert norm(pick['quote']) in norm(c['source_text'])
+        for cite in a['citations']:
+            assert any(cite['doc_id']==pick['doc_id'] and any(
+                norm(cite['quote']) in norm(span)
+                for span in [chunks[pick['chunk_id']]['source_text']]+
+                [x['text'] for x in chunks[pick['chunk_id']]['context_spans']])
+                for pick in selected), cite
+
 
 PUBLIC=[json.loads(l) for l in (ROOT/'eval/public_questions.jsonl').read_text().splitlines() if json.loads(l)['category']=='doc' or json.loads(l)['id'] in ('V01','V02','S01')]
 
@@ -55,7 +71,7 @@ def test_document_facts(rt,q):
     assert a['answer_type']=='doc',a
     assert set(checks.get('cite_all',[]))<=ids,a
     assert not set(checks.get('cite_none',[]))&ids,a
-    quotes(a,payload)
+    quotes(a,payload,t)
     for mode in ('fact_all','fact_any'):
         f=checks.get(mode)
         if not f:continue
@@ -103,7 +119,7 @@ def test_history_boundary(rt,q,gold,excluded,fact):
     assert gold in {c['doc_id'] for c in a['citations']},a
     assert excluded not in {c['doc_id'] for c in a['citations']},a
     assert fact in a['answer'],a
-    quotes(a,payload)
+    quotes(a,payload,t)
 
 @pytest.mark.parametrize('q,gold,fact',[
  ('请说明外卖退款的申请时限','KB-013','24'),
@@ -118,7 +134,7 @@ def test_rephrasing(rt,q,gold,fact):
     with rt.serve() as req:a,t=chat(req,q)
     assert a['answer_type']=='doc' and fact in a['answer'],a
     assert gold in {c['doc_id'] for c in a['citations']},a
-    quotes(a,payload)
+    quotes(a,payload,t)
 
 @pytest.mark.parametrize('fmt',['md','html','gbk'])
 def test_replacement_tail_and_instruction(rt,fmt):
@@ -135,13 +151,13 @@ def test_replacement_tail_and_instruction(rt,fmt):
         assert a['answer_type']=='doc' and fact+'小时' in a['answer'],a
         assert old+'小时' not in a['answer'] and '9999999' not in a['answer'],a
         assert '忽略' not in str(a['citations']),a
-        quotes(a,payload)
+        quotes(a,payload,t)
         assert detail(t,'evidence')['selected']
 
 
 def test_unretrieved_fact_not_borrowed(rt):
-    # The retrieved span is about deposits; unrelated material in the same doc
-    # must not become an answer to an absent delivery-fee question.
+    # A membership fee in a delivery-themed document is only a weak topical
+    # match; it must not be presented as an affirmative delivery-fee answer.
     m.write(rt,901,'# 配送规则\n\n配送规则适用于夜班。\n\n'+
             '门店请遵守登记流程。\n\n'*40+'会员开卡手续费为83元。\n')
     rt.build()
@@ -168,7 +184,7 @@ def test_supported_attribute(rt,q,gold,fact):
     with rt.serve() as req:a,t=chat(req,q)
     assert a['answer_type']=='doc' and fact in a['answer'],a
     assert gold in {c['doc_id'] for c in a['citations']},a
-    quotes(a,payload)
+    quotes(a,payload,t)
 
 
 def test_quote_normalized_limit(rt):
@@ -192,4 +208,4 @@ def test_existing_payment_explanation_regression(rt,q):
     assert a['data_evidence'],a
     assert {c['doc_id'] for c in a['citations']}&{'KB-027','KB-052'},a
     assert detail(t,'plan')['needs_data']
-    quotes(a,payload)
+    quotes(a,payload,t)
