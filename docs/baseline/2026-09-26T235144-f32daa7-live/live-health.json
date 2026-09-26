@@ -1,0 +1,31 @@
+{
+  "status": "ok",
+  "llm_mode": "live",
+  "kb_docs": 36,
+  "kb_chunks": 53,
+  "valid_sales_rows": 18628,
+  "today": "2026-09-01",
+  "data_period": {
+    "start": "",
+    "end": "N/A"
+  },
+  "cleaning_report": {
+    "raw_rows": 18628,
+    "removed": {
+      "1_unparseable_date": 0,
+      "2_empty_amount": 0,
+      "3_qty_le_zero": 0,
+      "4_store_not_in_stores": 0,
+      "5_product_not_in_products": 0,
+      "6_duplicate_row": 0,
+      "note_unparseable_amount": 0
+    },
+    "kept_rows": 18628,
+    "kept_sales_rows": 18534,
+    "kept_refund_rows": 94
+  },
+  "index_key": "8651fac326e2",
+  "kb_warnings": [
+    "跳过没有 KB 编号的文件：README.md"
+  ]
+}

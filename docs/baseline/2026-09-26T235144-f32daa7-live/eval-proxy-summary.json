@@ -1,0 +1,15 @@
+{
+  "requests": 119,
+  "status_counts": {
+    "200": 119
+  },
+  "usage_records": 119,
+  "usage_totals": {
+    "prompt_tokens": 749463,
+    "completion_tokens": 42061,
+    "total_tokens": 791524,
+    "prompt_cache_hit_tokens": 522496,
+    "prompt_cache_miss_tokens": 226967
+  },
+  "reasoning_tokens": 25973
+}

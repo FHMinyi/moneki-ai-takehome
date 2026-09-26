@@ -1,0 +1,28 @@
+{
+  "answer": "2026 年 7 月（全部门店）：净营业额 158215.00 元，有效订单数 4412 单，客单价 35.86 元，销量 6641 件，退款金额 0.00 元。",
+  "answer_type": "data",
+  "citations": [],
+  "data_evidence": [
+    {
+      "tool": "query_metrics",
+      "params": {
+        "start": "2026-07-01",
+        "end": "2026-07-31",
+        "store_id": null,
+        "product_id": null
+      },
+      "result": {
+        "start": "2026-07-01",
+        "end": "2026-07-31",
+        "store_id": null,
+        "product_id": null,
+        "net_revenue": 158215.0,
+        "refund_amount": 0.0,
+        "orders": 4412,
+        "aov": 35.86,
+        "qty": 6641
+      }
+    }
+  ],
+  "trace_id": "t-20260901-0001"
+}
