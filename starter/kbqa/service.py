@@ -197,6 +197,8 @@ class Service:
             reference, problem = validate_trend_context(context, self.catalog, self.data_period)
             trace.step("context_validation", {"valid": problem is None, "reason": problem, "reference": reference})
             if problem:
+                self.sessions.forget(session_id)
+                trace.step("session_context_cleared", {"reason": "invalid_trend_reference"})
                 return Answer(answer=problem, answer_type="refusal")
             if not question.strip():
                 return Answer(answer="没有收到问题内容，请再说一次。", answer_type="clarify")

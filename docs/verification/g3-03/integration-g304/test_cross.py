@@ -110,3 +110,29 @@ def test_six_round_mixed_finalization_and_secrets(server):
  assert t['llm_calls'][-1]['request']['tool_choice']=='none'
  assert 'controlled-not-a-secret' not in json.dumps(t,ensure_ascii=False)
  assert 'G303_G304_CONTROLLED_ONLY' not in json.dumps(a,ensure_ascii=False)
+
+@pytest.mark.parametrize('q,params',[
+ ('这段时间鸡肉poke净营业额是多少？',dict(start='2026-06-08',end='2026-06-14',store_id='S03',product_id='P05')),
+ ('7月S01鸡肉poke净营业额是多少？',dict(start='2026-07-01',end='2026-07-31',store_id='S01',product_id='P05')),
+])
+def test_reference_explicit_product_date_and_store_win(server,q,params):
+ sid='explicit'+q
+ a,_,_=ask(server,sid,QUESTIONS['H02']);assert a['answer_type']=='hybrid'
+ b,t,_=ask(server,sid,q,data('query_metrics',params,'net_revenue'),REF)
+ assert b['answer_type']=='data' and b['data_evidence'][0]['params']==params
+ assert b['data_evidence'][0]['result']['net_revenue']==oracle(server,params)[0]
+ plan=step(t,'plan');effective=step(t,'context_resolution')['effective']
+ assert plan['product_id']==effective['product_id']=='P05'
+ assert plan['store_id']==effective['store_id']==params['store_id']
+ assert plan['window']==[params['start'],params['end']]
+
+def test_cleared_reference_product_not_resurrected_next_turn(server):
+ sid='resurrection';a,_,_=ask(server,sid,QUESTIONS['H02']);assert a['answer_type']=='hybrid'
+ c={**CASES['H01'],'tool':'query_metrics','params':dict(start=REF['start'],end=REF['end'],store_id='S03'),'query':QUESTIONS['H01']}
+ b,t,_=ask(server,sid,'那这段时间呢？',c,REF);assert b['answer_type']=='hybrid'
+ assert step(t,'plan')['standalone_question']=='那这段时间呢？'
+ p=dict(start='2026-07-01',end='2026-07-31',store_id='S03')
+ d,u,_=ask(server,sid,'那7月呢？',data('query_metrics',p,'net_revenue'))
+ assert d['answer_type']=='data' and d['data_evidence'][0]['params']==p
+ assert step(u,'plan')['product_id'] is None
+ assert d['data_evidence'][0]['result']['net_revenue']==oracle(server,p)[0]

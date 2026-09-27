@@ -121,9 +121,14 @@ def resolve(plan, question: str, context: dict, catalog, today: date, period: di
     source["store_id"] = "question" if explicit_store or all_stores else "reference"
     plan.metric = explicit_metric or context["metric"]
     source["metric"] = "question" if explicit_metric else "reference"
-    if explicit_product:
-        plan.product_id = explicit_product
-        source["product_id"] = "question"
+    if plan.product_id and not explicit_product and plan.standalone != question:
+        # The attached whole-store trend has no product dimension. An inherited
+        # product must not survive in either executable slots or the stored
+        # rewritten question, where a later turn could resurrect it.
+        plan.standalone = question
+        plan.search_query = question
+    plan.product_id = explicit_product
+    source["product_id"] = "question" if explicit_product else "reference"
 
     plan.slots.update({"window": plan.window, "compare_window": plan.compare_window,
                        "store_id": plan.store_id, "product_id": plan.product_id,
