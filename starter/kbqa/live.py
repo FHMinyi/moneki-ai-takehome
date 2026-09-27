@@ -124,8 +124,21 @@ class LiveEngine:
                 started = time.perf_counter()
                 result = self.run_tool(name, params, plan=plan) if name == "search_kb" else self.run_tool(name, params)
                 if "error" in result:
-                    tool_failures.append({"call_id": call.get("id"), "tool": name})
+                    failure = {"call_id": call.get("id"), "tool": name}
+                    # Only this pre-execution validation error is recoverable by
+                    # a later successful search; the model may refine its query.
+                    # Execution/source errors remain pending, even after success.
+                    if (name == "search_kb" and set(params) <= {"query", "top_k"}
+                            and isinstance(params.get("query"), str)
+                            and result["error"] == "参数 top_k 必须是 1 至 10 的整数"):
+                        failure["recoverable_validation"] = "top_k"
+                    tool_failures.append(failure)
                 if name == "search_kb" and "error" not in result:
+                    recovered = [f for f in tool_failures
+                                 if f.get("recoverable_validation") == "top_k"]
+                    if recovered:
+                        trace.step("tool_failure_recovered", {"failures": recovered, "by_call_id": call.get("id")})
+                        tool_failures = [f for f in tool_failures if f not in recovered]
                     trace.step("search", result["diagnostics"])
                     added = retrieved.add(result["evidence"])
                     trace.step("document_evidence", {"evidence": result["evidence"], "rejected": result["rejected"]})
@@ -205,7 +218,9 @@ class LiveEngine:
         if isinstance(structured, dict) and structured.get("answer_type") == "hybrid":
             return render_mixed(structured, evidence, retrieved, plan, self.answerer.catalog, trace,
                 search_performed=any(s["step"] == "search" for s in trace.steps), tool_failures=tool_failures)
-        if evidence:
+        if isinstance(structured, dict) and structured.get("answer_type") == "doc":
+            return retrieved.render(content, plan.standalone, trace, plan=plan)
+        if isinstance(structured, dict) and structured.get("answer_type") == "data":
             if plan.slots.get("context_effective"):
                 try:
                     if any(item.get("metric") != plan.metric for item in structured.get("results", [])):
@@ -215,7 +230,7 @@ class LiveEngine:
             answer = render_data(content, evidence, self.answerer.catalog)
             trace.step("data_binding", {"source_calls": [e["_call_id"] for e in evidence], "answer": answer.answer})
             return answer
-        return retrieved.render(content, plan.standalone, trace, plan=plan)
+        raise LLMError("answer_binding", "最终答复必须显式选择 doc/data/hybrid/refusal/clarify 类型")
 
 
 def _numbers_in(text: str) -> list[float]:

@@ -14,6 +14,12 @@
    curl -fsS http://127.0.0.1:8000/api/health
    ```
 
+   若对象包含 `_trace_references`，部分完全重复字段会显示 `null`；先在仓库根目录执行下列命令恢复完整对象，再把展开文件交给诊断（保留原文件）。格式与兼容性见 [可逆 trace 引用](verification/g3-optional-rescue/README.md)。
+
+   ```bash
+   PYTHONPATH=starter starter/.venv/bin/python -c 'import json,sys; from kbqa.trace import expand_trace; json.dump(expand_trace(json.load(sys.stdin)),sys.stdout,ensure_ascii=False)' < /tmp/moneki-trace.json > /tmp/moneki-trace-expanded.json
+   ```
+
 3. 同时记录：实际回答、独立预期和依据（原始 SQLite 只读查询或 KB 连续原文）、提交 SHA、`llm_mode`/模型名/输出上限（不含 Key）、重建与重启状态。先检查 trace 的最终条件、检索候选与过滤理由、工具参数和结果、模型请求/原始响应、耗时及 errors，定位是哪一层与预期分叉。
 4. 把这些本地文件路径与下面的提示词交给 Codex。请它**先诊断并列最小复现，不立刻改代码**；确认原因后增加最小行为测试，修复同一调用路径，再跑该测试、相关回归和未改官方评测。自建题和官方 55 题结果分别保存。
 
