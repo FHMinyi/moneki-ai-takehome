@@ -1,0 +1,41 @@
+.......F.....................F.....................................      [100%]
+=================================== FAILURES ===================================
+_ test_explicit_evidence_selection[2026\u5e742\u67081\u65e5\u5f53\u65f6\u4f1a\u5458\u5145\u503c500\u5143\u8d60\u9001\u591a\u5c11\uff1f-KB-010-50] _
+
+service = <kbqa.service.Service object at 0x10b3b4c20>
+question = '2026年2月1日当时会员充值500元赠送多少？', doc = 'KB-010', needle = '50'
+
+    @pytest.mark.parametrize('question,doc,needle',[
+     ('外卖订单多久内可以退款？','KB-013','24'),
+     ('2026年6月14日当时外卖订单多久内可以退款？','KB-012','7 天'),
+     ('2026年2月1日当时会员充值500元赠送多少？','KB-010','50'),
+     ('Beef Poke里面有哪些过敏原？','KB-040','牛肉poke'),
+    ])
+    def test_explicit_evidence_selection(service,question,doc,needle):
+        answer,trace=run(service,question,lambda r:select(r,doc,needle),query='外卖退款政策' if doc=='KB-012' else None)
+>       assert answer.answer_type=='doc'
+E       AssertionError: assert 'refusal' == 'doc'
+E         
+E         - doc
+E         + refusal
+
+docs/verification/g3-02/test_document_binding.py:60: AssertionError
+__________________ test_original_policy_cases_controlled[S01] __________________
+
+service = <kbqa.service.Service object at 0x10b3b4c20>, qid = 'S01'
+
+    @pytest.mark.parametrize('qid',PUBLIC_SELECTIONS)
+    def test_original_policy_cases_controlled(service,qid):
+        doc,needle=PUBLIC_SELECTIONS[qid]
+        answer,trace=run(service,QUESTIONS[qid],lambda r:select(r,doc,needle))
+>       assert answer.answer_type=='doc'
+E       AssertionError: assert 'refusal' == 'doc'
+E         
+E         - doc
+E         + refusal
+
+docs/verification/g3-02/test_document_binding.py:96: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/test_document_binding.py::test_explicit_evidence_selection[2026\u5e742\u67081\u65e5\u5f53\u65f6\u4f1a\u5458\u5145\u503c500\u5143\u8d60\u9001\u591a\u5c11\uff1f-KB-010-50]
+FAILED docs/verification/g3-02/test_document_binding.py::test_original_policy_cases_controlled[S01]
+2 failed, 65 passed in 4.10s

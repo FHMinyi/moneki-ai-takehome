@@ -1,0 +1,116 @@
+...................FFFF.......................................           [100%]
+=================================== FAILURES ===================================
+____________ test_replaced_material_supports_new_fact_and_alias[md] ____________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-248/test_replaced_material_support0')
+fmt = 'md'
+
+    @pytest.mark.parametrize('fmt',['md','txt','gbk','html'])
+    def test_replaced_material_supports_new_fact_and_alias(tmp_path,fmt):
+     kb=tmp_path/'kb';kb.mkdir()
+     (kb/'KB-981.md').write_text('| 标准写法 | alias |\n|---|---|\n| 星云订单 | Nebula Order |')
+     suffix='txt' if fmt=='gbk' else fmt
+     for n in (37,83):
+      fact=f'星云订单退款须在{n}分钟内提出。'
+      body=('<h2>退款受理</h2><p>'+fact+'</p>') if fmt=='html' else fact
+      (kb/('KB-982.'+suffix)).write_bytes(body.encode('gbk' if fmt=='gbk' else 'utf-8'))
+      s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/str(n),llm_api_key='',llm_base_url='',llm_model=''))
+      s.rebuild()
+      for q in ('星云订单退款多久内提出？','Nebula Order退款时限？'):
+       subj='Nebula Order' if 'Nebula' in q else '星云订单'
+       a,t=execute(s,q,anchored('KB-982',str(n),(subj,'星云订单'),('退款','退款'),duration('时限' if '时限' in q else '多久',f'{n}分钟')))
+>      assert a.answer_type=='doc' and str(n) in a.answer,a
+E      AssertionError: Answer(answer='本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。', answer_type='refusal', citations=[], data_evidence=[], notes=[])
+E      assert ('refusal' == 'doc'
+E        
+E        - doc
+E        + refusal)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:76: AssertionError
+___________ test_replaced_material_supports_new_fact_and_alias[txt] ____________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-248/test_replaced_material_support1')
+fmt = 'txt'
+
+    @pytest.mark.parametrize('fmt',['md','txt','gbk','html'])
+    def test_replaced_material_supports_new_fact_and_alias(tmp_path,fmt):
+     kb=tmp_path/'kb';kb.mkdir()
+     (kb/'KB-981.md').write_text('| 标准写法 | alias |\n|---|---|\n| 星云订单 | Nebula Order |')
+     suffix='txt' if fmt=='gbk' else fmt
+     for n in (37,83):
+      fact=f'星云订单退款须在{n}分钟内提出。'
+      body=('<h2>退款受理</h2><p>'+fact+'</p>') if fmt=='html' else fact
+      (kb/('KB-982.'+suffix)).write_bytes(body.encode('gbk' if fmt=='gbk' else 'utf-8'))
+      s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/str(n),llm_api_key='',llm_base_url='',llm_model=''))
+      s.rebuild()
+      for q in ('星云订单退款多久内提出？','Nebula Order退款时限？'):
+       subj='Nebula Order' if 'Nebula' in q else '星云订单'
+       a,t=execute(s,q,anchored('KB-982',str(n),(subj,'星云订单'),('退款','退款'),duration('时限' if '时限' in q else '多久',f'{n}分钟')))
+>      assert a.answer_type=='doc' and str(n) in a.answer,a
+E      AssertionError: Answer(answer='本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。', answer_type='refusal', citations=[], data_evidence=[], notes=[])
+E      assert ('refusal' == 'doc'
+E        
+E        - doc
+E        + refusal)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:76: AssertionError
+___________ test_replaced_material_supports_new_fact_and_alias[gbk] ____________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-248/test_replaced_material_support2')
+fmt = 'gbk'
+
+    @pytest.mark.parametrize('fmt',['md','txt','gbk','html'])
+    def test_replaced_material_supports_new_fact_and_alias(tmp_path,fmt):
+     kb=tmp_path/'kb';kb.mkdir()
+     (kb/'KB-981.md').write_text('| 标准写法 | alias |\n|---|---|\n| 星云订单 | Nebula Order |')
+     suffix='txt' if fmt=='gbk' else fmt
+     for n in (37,83):
+      fact=f'星云订单退款须在{n}分钟内提出。'
+      body=('<h2>退款受理</h2><p>'+fact+'</p>') if fmt=='html' else fact
+      (kb/('KB-982.'+suffix)).write_bytes(body.encode('gbk' if fmt=='gbk' else 'utf-8'))
+      s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/str(n),llm_api_key='',llm_base_url='',llm_model=''))
+      s.rebuild()
+      for q in ('星云订单退款多久内提出？','Nebula Order退款时限？'):
+       subj='Nebula Order' if 'Nebula' in q else '星云订单'
+       a,t=execute(s,q,anchored('KB-982',str(n),(subj,'星云订单'),('退款','退款'),duration('时限' if '时限' in q else '多久',f'{n}分钟')))
+>      assert a.answer_type=='doc' and str(n) in a.answer,a
+E      AssertionError: Answer(answer='本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。', answer_type='refusal', citations=[], data_evidence=[], notes=[])
+E      assert ('refusal' == 'doc'
+E        
+E        - doc
+E        + refusal)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:76: AssertionError
+___________ test_replaced_material_supports_new_fact_and_alias[html] ___________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-248/test_replaced_material_support3')
+fmt = 'html'
+
+    @pytest.mark.parametrize('fmt',['md','txt','gbk','html'])
+    def test_replaced_material_supports_new_fact_and_alias(tmp_path,fmt):
+     kb=tmp_path/'kb';kb.mkdir()
+     (kb/'KB-981.md').write_text('| 标准写法 | alias |\n|---|---|\n| 星云订单 | Nebula Order |')
+     suffix='txt' if fmt=='gbk' else fmt
+     for n in (37,83):
+      fact=f'星云订单退款须在{n}分钟内提出。'
+      body=('<h2>退款受理</h2><p>'+fact+'</p>') if fmt=='html' else fact
+      (kb/('KB-982.'+suffix)).write_bytes(body.encode('gbk' if fmt=='gbk' else 'utf-8'))
+      s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/str(n),llm_api_key='',llm_base_url='',llm_model=''))
+      s.rebuild()
+      for q in ('星云订单退款多久内提出？','Nebula Order退款时限？'):
+       subj='Nebula Order' if 'Nebula' in q else '星云订单'
+       a,t=execute(s,q,anchored('KB-982',str(n),(subj,'星云订单'),('退款','退款'),duration('时限' if '时限' in q else '多久',f'{n}分钟')))
+>      assert a.answer_type=='doc' and str(n) in a.answer,a
+E      AssertionError: Answer(answer='本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。', answer_type='refusal', citations=[], data_evidence=[], notes=[])
+E      assert ('refusal' == 'doc'
+E        
+E        - doc
+E        + refusal)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:76: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_replaced_material_supports_new_fact_and_alias[md]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_replaced_material_supports_new_fact_and_alias[txt]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_replaced_material_supports_new_fact_and_alias[gbk]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_replaced_material_supports_new_fact_and_alias[html]
+4 failed, 58 passed in 4.27s

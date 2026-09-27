@@ -101,7 +101,7 @@ class Service:
 
     # -- 工具执行（live 模式下由模型驱动） ---------------------------------------
 
-    def run_tool(self, name: str, params: dict) -> dict:
+    def run_tool(self, name: str, params: dict, *, plan=None) -> dict:
         if name not in TOOL_NAMES:
             return {"error": "没有这个工具：%s，可用工具：%s" % (name, "、".join(TOOL_NAMES))}
         schema = next(
@@ -148,9 +148,16 @@ class Service:
                 return {"error": "查询区间超出已有数据范围"}
         try:
             if name == "search_kb":
-                response = self.retrieve(cleaned["query"], cleaned.get("top_k", 5))
-                # Tool consumers receive evidence only, never count-contract fillers.
-                return {"results": [h for h in response["results"] if h["evidence_eligible"]]}
+                search = self.retriever.search(cleaned["query"], top_k=cleaned.get("top_k", 5),
+                    as_of=(plan.as_of or self.settings.today) if plan else None,
+                    store_id=plan.store_id if plan else None, year=plan.year if plan else None,
+                    historical=bool(plan.slots.get("historical")) if plan else None)
+                from .document_evidence import DocumentEvidence
+                pool = DocumentEvidence(self.facts, search,
+                    self.answerer.answerable_hits(plan, search, limit=10) if plan else None)
+                return {"results": [h.as_result() for h in search.ranked],
+                        "evidence": pool.public(), "scope": search.scope,
+                        "diagnostics": search.as_trace(), "rejected": pool.rejected}
             return getattr(self.tools, name)(**cleaned)
         except (TypeError, ValueError) as exc:
             return {"error": "工具 %s 执行失败：%s" % (name, exc)}
@@ -245,10 +252,15 @@ class Service:
             self.settings.llm_model,
             timeout=self.settings.llm_timeout,
         )
+        def scoped_tool(name, params, *, plan=plan):
+            # The document executor supplies its original Plan as a private
+            # keyword. Preserve it through the trend scope wrapper as well.
+            return self._run_scoped_tool(name, params, effective, plan)
+
         engine = LiveEngine(
             client,
             self.answerer,
-            (lambda name, params: self._run_scoped_tool(name, params, effective, plan)) if effective else self.run_tool,
+            scoped_tool if effective else self.run_tool,
             self.settings.today.isoformat(),
             self.data_period,
             budget=self.settings.chat_budget,
@@ -299,7 +311,7 @@ class Service:
                     return {"error": "此工具不能按问题中的商品查询"}
             elif params.get("product_id") != effective.get("product_id"):
                 return {"error": "查询商品与本轮有效条件不一致"}
-        return self.run_tool(name, params)
+        return self.run_tool(name, params, plan=plan) if name == "search_kb" else self.run_tool(name, params)
 
     # -- trace ------------------------------------------------------------------
 
@@ -321,5 +333,7 @@ def _reason_cn(exc: LLMError) -> str:
         "budget": "整体耗时接近时限",
         "transport": "网络异常",
         "tool_loop": "工具调用没有收敛",
+        "tool_failure": "工具执行失败",
+        "clarification_binding": "澄清结构无效",
     }
     return mapping.get(exc.kind, exc.kind)

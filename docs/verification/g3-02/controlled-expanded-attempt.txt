@@ -1,0 +1,177 @@
+............FF.........F......                                           [100%]
+=================================== FAILURES ===================================
+_ test_real_nearby_span_not_sufficient[\u9000\u6b3e\u9700\u8981\u8eab\u4efd\u8bc1\u5417\uff1f-KB-013-24] _
+
+service = <kbqa.service.Service object at 0x107726000>, question = '退款需要身份证吗？'
+doc = 'KB-013', needle = '24'
+
+    @pytest.mark.parametrize('question,doc,needle',[
+     ('Beef Poke含花生吗？','KB-040','牛肉poke'),
+     ('员工迟到申诉需要几天办结？','KB-016','15'),
+     ('牛肉poke的花生含量是多少克？','KB-040','牛肉poke'),
+     ('退款需要身份证吗？','KB-013','24'),
+     ('外卖退款需要缴纳多少元手续费？','KB-013','24'),
+     ('请核实员工餐能否享受免费配送？','KB-014','折'),
+    ])
+    def test_real_nearby_span_not_sufficient(service,question,doc,needle):
+>       with pytest.raises(LLMError):run(service,question,lambda r:select(r,doc,needle))
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/test_document_binding.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-02/test_document_binding.py:32: in run
+    return engine.answer(service.planner.plan(question),trace,[]),trace
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:70: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:27: in respond
+    content=final(result) if callable(final) else final
+            ^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:71: in <lambda>
+    with pytest.raises(LLMError):run(service,question,lambda r:select(r,doc,needle))
+                                                               ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = {'results': [{'doc_id': 'KB-013', 'chunk_id': 'KB-013#4', 'score': 6.6217, 'text': '## 三、系统记录\n\n1. 退款在 POS 中以负金额行记录，并...ount > 0` 的行。', ...}, ...], 'scope': {'as_of': '2026-09-01', 'store_id': None, 'year': 2026, 'historical': False, ...}}
+doc = 'KB-013', needle = '24'
+
+    def select(result, doc, needle):
+        candidates=[e for e in result.get('evidence',[]) if e['doc_id']==doc and needle in e['quote']]
+>       assert candidates, result
+E       AssertionError: {'results': [{'doc_id': 'KB-013', 'chunk_id': 'KB-013#4', 'score': 6.6217, 'text': '## 三、系统记录
+E         
+E         1. 退款在 POS 中以负金额行记录，并...ount > 0` 的行。', ...}, ...], 'scope': {'as_of': '2026-09-01', 'store_id': None, 'year': 2026, 'historical': False, ...}}
+E       assert []
+
+docs/verification/g3-02/test_document_binding.py:46: AssertionError
+_ test_real_nearby_span_not_sufficient[\u5916\u5356\u9000\u6b3e\u9700\u8981\u7f34\u7eb3\u591a\u5c11\u5143\u624b\u7eed\u8d39\uff1f-KB-013-24] _
+
+service = <kbqa.service.Service object at 0x107726000>
+question = '外卖退款需要缴纳多少元手续费？', doc = 'KB-013', needle = '24'
+
+    @pytest.mark.parametrize('question,doc,needle',[
+     ('Beef Poke含花生吗？','KB-040','牛肉poke'),
+     ('员工迟到申诉需要几天办结？','KB-016','15'),
+     ('牛肉poke的花生含量是多少克？','KB-040','牛肉poke'),
+     ('退款需要身份证吗？','KB-013','24'),
+     ('外卖退款需要缴纳多少元手续费？','KB-013','24'),
+     ('请核实员工餐能否享受免费配送？','KB-014','折'),
+    ])
+    def test_real_nearby_span_not_sufficient(service,question,doc,needle):
+>       with pytest.raises(LLMError):run(service,question,lambda r:select(r,doc,needle))
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/test_document_binding.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-02/test_document_binding.py:32: in run
+    return engine.answer(service.planner.plan(question),trace,[]),trace
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:70: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:27: in respond
+    content=final(result) if callable(final) else final
+            ^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:71: in <lambda>
+    with pytest.raises(LLMError):run(service,question,lambda r:select(r,doc,needle))
+                                                               ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = {'results': [{'doc_id': 'KB-013', 'chunk_id': 'KB-013#3', 'score': 10.029, 'text': '## 二、审批\n\n1. 单笔退款金额不超过 ¥200 的，当班店...，门店电话见“门店”页面。', ...}, ...], 'scope': {'as_of': '2026-09-01', 'store_id': None, 'year': 2026, 'historical': False, ...}}
+doc = 'KB-013', needle = '24'
+
+    def select(result, doc, needle):
+        candidates=[e for e in result.get('evidence',[]) if e['doc_id']==doc and needle in e['quote']]
+>       assert candidates, result
+E       AssertionError: {'results': [{'doc_id': 'KB-013', 'chunk_id': 'KB-013#3', 'score': 10.029, 'text': '## 二、审批
+E         
+E         1. 单笔退款金额不超过 ¥200 的，当班店...，门店电话见“门店”页面。', ...}, ...], 'scope': {'as_of': '2026-09-01', 'store_id': None, 'year': 2026, 'historical': False, ...}}
+E       assert []
+
+docs/verification/g3-02/test_document_binding.py:46: AssertionError
+__________________ test_original_policy_cases_controlled[C05] __________________
+
+service = <kbqa.service.Service object at 0x107726000>, qid = 'C05'
+
+    @pytest.mark.parametrize('qid',PUBLIC_SELECTIONS)
+    def test_original_policy_cases_controlled(service,qid):
+        doc,needle=PUBLIC_SELECTIONS[qid]
+>       answer,trace=run(service,QUESTIONS[qid],lambda r:select(r,doc,needle))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/test_document_binding.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-02/test_document_binding.py:32: in run
+    return engine.answer(service.planner.plan(question),trace,[]),trace
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:74: in answer
+    return self._finalise(plan, reply.content, evidence, retrieved, trace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:171: in _finalise
+    return retrieved.render(content, plan.standalone, trace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <kbqa.document_evidence.DocumentEvidence object at 0x107eaef00>
+content = '{"answer_type": "doc", "facts": [{"evidence_id": "doc-58e5811cf694195445c1"}]}'
+question = '顾客要开发票，怎么跟他说？'
+trace = Trace(trace_id='controlled', question='顾客要开发票，怎么跟他说？', session_id=None, started_at='2026-09-27T13:50:50.536', steps=[{...equired_claim': None, 'reason': 'subject_or_attribute_not_supported'}}], errors=[], llm_calls=[], _t0=932345.581755833)
+
+    def render(self, content, question, trace):
+        try:
+            payload=json.loads(content)
+        except (ValueError,TypeError):
+            raise LLMError('document_binding','文档回答必须显式选择检索证据，不能提交自由陈述')
+        if not isinstance(payload,dict) or set(payload)!={'answer_type','facts'} or payload['answer_type']!='doc':
+            raise LLMError('document_binding','文档回答结构无效')
+        refs=payload['facts']
+        if not isinstance(refs,list) or not 1<=len(refs)<=4:
+            raise LLMError('document_binding','必须选择一至四条文档事实')
+        selected=[]
+        for ref in refs:
+            if not isinstance(ref,dict) or set(ref)!={'evidence_id'} or not isinstance(ref['evidence_id'],str):
+                raise LLMError('document_binding','文档事实只接受证据ID，不接受改写的事实或数字')
+            item=self.items.get(ref['evidence_id'])
+            if item is None:
+                raise LLMError('document_binding','证据不属于本次实际检索集合')
+            if item in selected:
+                raise LLMError('document_binding','文档事实重复')
+            selected.append(item)
+        claim=self.facts.requested_claim(question)
+        citations=[]; lines=[]
+        for item in selected:
+            unit=self.units[item['evidence_id']]
+            # Check closed subject/predicate questions against this exact span,
+            # and open questions against entity and requested value shape. This
+            # reuses bounded evidence checks, never invokes the mock answerer.
+            ranked=self.facts.rank(question,item['doc_id'],limit=1,require_value=claim is None,units=[unit])
+            entities=set(self.facts.index.aliases.strict_mentions(question))
+            source_entities=set(self.facts.index.aliases.strict_mentions(unit.text+' '+ ' '.join(c['quote'] for c in item['context'])))
+            if not ranked or not self.facts.supports_claim(claim,unit) or not entities<=source_entities:
+                trace.step('document_binding_rejected',{'evidence_id':item['evidence_id'],'required_claim':claim,'reason':'subject_or_attribute_not_supported'})
+>               raise LLMError('document_binding','所选证据不支持问题的主体或属性')
+E               kbqa.llm.LLMError: document_binding: 所选证据不支持问题的主体或属性
+
+starter/kbqa/document_evidence.py:101: LLMError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/test_document_binding.py::test_real_nearby_span_not_sufficient[\u9000\u6b3e\u9700\u8981\u8eab\u4efd\u8bc1\u5417\uff1f-KB-013-24]
+FAILED docs/verification/g3-02/test_document_binding.py::test_real_nearby_span_not_sufficient[\u5916\u5356\u9000\u6b3e\u9700\u8981\u7f34\u7eb3\u591a\u5c11\u5143\u624b\u7eed\u8d39\uff1f-KB-013-24]
+FAILED docs/verification/g3-02/test_document_binding.py::test_original_policy_cases_controlled[C05]
+3 failed, 27 passed in 0.99s

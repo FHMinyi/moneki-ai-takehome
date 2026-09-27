@@ -16,6 +16,7 @@ from .retriever import Retriever, SearchResult
 from .schemas import Answer
 from .tokenizer import content_tokens, tokenize
 from .sanitize import is_instruction_like
+from .document_evidence import DocumentEvidence
 
 #: 拒答闸门。两个互补的信号：
 #: `vocab` —— 问题里的词有多少在整个知识库的词表里出现过（“工资”“下雨”一个都找不到）；
@@ -318,7 +319,8 @@ class Answerer(HybridAnswers):
         Source offsets stay on the original visible text. Table headings may
         explain cells but receive their own continuous citation.
         """
-        candidates, rejected = [], []
+        pool = DocumentEvidence(self.facts, result, self.answerable_hits(plan, result))
+        candidates, rejected = [], list(pool.rejected)
         claim = self.facts.requested_claim(plan.standalone)
         for hit in self.answerable_hits(plan, result):
             source = self.retriever.index.texts[hit.doc_id]
@@ -347,7 +349,8 @@ class Answerer(HybridAnswers):
         # Select the strongest supported span without appending near-topic facts.
         for candidate in candidates:
             unit, hit = candidate["unit"], candidate["hit"]
-            cite = self.facts.cite(hit.doc_id, unit.text)
+            identity = pool.find(hit.doc_id, unit)
+            cite = self.facts.cite(hit.doc_id, identity["quote"]) if identity else None
             if not cite:
                 rejected.append({"doc_id":hit.doc_id,"reason":"quote_invalid_or_too_long"})
                 continue
@@ -359,7 +362,7 @@ class Answerer(HybridAnswers):
                         if header and header not in citations:
                             citations.append(header)
             body = ["%s《%s》：%s" % (hit.doc_id, hit.meta.get("title", ""), self.facts.render(hit.doc_id, unit.text))]
-            selected = [{"doc_id":hit.doc_id,"chunk_id":hit.chunk_id,"score":candidate["score"],
+            selected = [{"evidence_id":identity["evidence_id"],"scope":identity["scope"],"doc_id":hit.doc_id,"chunk_id":hit.chunk_id,"score":candidate["score"],
                          "source_start":hit.source_start,"source_end":hit.source_end,"quote":unit.text}]
             break
         if trace is not None:

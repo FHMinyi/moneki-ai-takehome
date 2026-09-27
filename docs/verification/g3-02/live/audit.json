@@ -1,0 +1,81 @@
+{
+  "records": [
+    {
+      "chat": 1,
+      "outcome": "supported doc",
+      "commit": "b62e6dcfa6dc91044c82b0738da8a34cea00dc2b"
+    },
+    {
+      "chat": 2,
+      "outcome": "supported doc",
+      "commit": "b62e6dcfa6dc91044c82b0738da8a34cea00dc2b"
+    },
+    {
+      "chat": 3,
+      "outcome": "supported doc",
+      "commit": "b62e6dcfa6dc91044c82b0738da8a34cea00dc2b"
+    },
+    {
+      "chat": 4,
+      "outcome": "engineering fallback; missing-attribute semantics NOT passed",
+      "error": "http_error",
+      "commit": "b62e6dcfa6dc91044c82b0738da8a34cea00dc2b",
+      "request_bytes": [
+        11266,
+        103994,
+        223173,
+        299868
+      ]
+    },
+    {
+      "chat": 5,
+      "outcome": "engineering fallback; missing-attribute semantics NOT passed",
+      "error": "tool_loop",
+      "commit": "b37af3d7831d4c469d60275050ca26a3881c221f",
+      "request_bytes": [
+        11406,
+        46418,
+        68992,
+        94204,
+        118762
+      ]
+    },
+    {
+      "chat": 6,
+      "outcome": "engineering fallback; missing-attribute semantics NOT passed",
+      "error": "tool_loop",
+      "commit": "437aac196463377611a39bbce053206c299f8a9e",
+      "request_bytes": [
+        11406,
+        43477,
+        56146,
+        82321,
+        107673,
+        118434,
+        119067
+      ]
+    },
+    {
+      "chat": 7,
+      "outcome": "engineering fallback; missing-attribute semantics NOT passed",
+      "error": "data_binding",
+      "commit": "777792a4db22a8239cccf113966a7ea5629e6994",
+      "request_bytes": [
+        11406,
+        51428,
+        105965,
+        118300
+      ]
+    }
+  ],
+  "actual_outbound_calls": 25,
+  "local_rejected_calls": 1,
+  "input_tokens": 524805,
+  "output_tokens": 4965,
+  "peak_cache_miss_estimate_cny": 1.08933,
+  "billing_confirmed": false,
+  "remaining_ticket_cny": 6.91067,
+  "g3_total_estimate_cny": 1.136358,
+  "g3_remaining_cny": 48.863642,
+  "pending_reservations": 0
+}

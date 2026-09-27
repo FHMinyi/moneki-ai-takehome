@@ -1,0 +1,145 @@
+{
+  "question": "外卖退款多久能到账？",
+  "evidence": {
+    "evidence_id": "doc-8ca0729cb858dc66abd6",
+    "doc_id": "KB-013",
+    "chunk_id": "KB-013#2",
+    "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。",
+    "source_start": 144,
+    "source_end": 178,
+    "kind": "text",
+    "context": [
+      {
+        "quote": "# 退款政策 v2\n",
+        "source_start": 0,
+        "source_end": 10
+      },
+      {
+        "quote": "## 一、受理窗口\n",
+        "source_start": 109,
+        "source_end": 119
+      }
+    ],
+    "score": 11.489882702372102,
+    "scope": {
+      "as_of": "2026-09-01",
+      "store_id": null,
+      "year": 2026,
+      "historical": false,
+      "window": null
+    },
+    "metadata": {
+      "title": "退款政策 v2",
+      "effective_from": "2026-06-15",
+      "status": "现行",
+      "stores": [],
+      "stores_explicit": false,
+      "superseded_by": null
+    }
+  },
+  "binding": {
+    "subject": [
+      {
+        "question": "退款",
+        "source": "title",
+        "text": "退款"
+      }
+    ],
+    "attribute": [
+      {
+        "question": "多久",
+        "source": "quote",
+        "text": "24 小时"
+      }
+    ],
+    "value": {
+      "kind": "duration",
+      "question": "多久",
+      "text": "24 小时"
+    }
+  },
+  "answer": "KB-013《退款政策 v2》：2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。",
+  "answer_type": "doc",
+  "trace": {
+    "trace_id": "test",
+    "session_id": null,
+    "question": "外卖退款多久能到账？",
+    "started_at": "2026-09-27T15:12:41.424",
+    "total_ms": 2.0,
+    "steps": [
+      {
+        "step": "document_binding",
+        "at_ms": 2.0,
+        "took_ms": null,
+        "detail": {
+          "selected": [
+            {
+              "evidence_id": "doc-8ca0729cb858dc66abd6",
+              "doc_id": "KB-013",
+              "chunk_id": "KB-013#2",
+              "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。",
+              "source_start": 144,
+              "source_end": 178,
+              "kind": "text",
+              "context": [
+                {
+                  "quote": "# 退款政策 v2\n",
+                  "source_start": 0,
+                  "source_end": 10
+                },
+                {
+                  "quote": "## 一、受理窗口\n",
+                  "source_start": 109,
+                  "source_end": 119
+                }
+              ],
+              "score": 11.489882702372102,
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "metadata": {
+                "title": "退款政策 v2",
+                "effective_from": "2026-06-15",
+                "status": "现行",
+                "stores": [],
+                "stores_explicit": false,
+                "superseded_by": null
+              },
+              "_checked_anchors": [
+                {
+                  "role": "subject",
+                  "question": "退款",
+                  "quote": "退款",
+                  "source_start": null,
+                  "source_end": null,
+                  "source_field": "metadata.title",
+                  "context": "title",
+                  "interpretation": "literal"
+                },
+                {
+                  "role": "attribute",
+                  "question": "多久",
+                  "quote": "24 小时",
+                  "source_start": 156,
+                  "source_end": 161,
+                  "source_field": "visible_text",
+                  "context": "quote",
+                  "interpretation": "value_shape"
+                }
+              ],
+              "_value_kind": "duration"
+            }
+          ],
+          "required_claim": null,
+          "mode": "extractive"
+        }
+      }
+    ],
+    "llm_calls": [],
+    "errors": []
+  }
+}

@@ -36,6 +36,21 @@ def carries(kind: str, text: str) -> bool:
     return bool(pattern and pattern.search(text))
 
 
+def quantity_spans(kind: str, text: str) -> list[tuple[int, int]]:
+    """Positions of the existing scalar recognizer, without interpreting roles."""
+    pattern = _CARRIES.get(kind)
+    return [m.span() for m in pattern.finditer(text)] if pattern else []
+
+
+def quantity_units(kind: str, text: str) -> set[str]:
+    """Unit labels actually attached to verified scalar spans (not predicates)."""
+    pattern = _CARRIES.get(kind)
+    if kind not in {'duration', 'clock', 'money', 'count', 'value'} or pattern is None:
+        return set()
+    return {unit for match in pattern.finditer(text)
+            if (unit := re.sub(r'[\d,.\s¥￥+%/:：-]', '', match.group(0)))}
+
+
 def carries_any_reason(text: str) -> bool:
     """明说原因，或者描述了“出了什么事”。"""
     return carries("reason", text) or carries("reason_event", text)

@@ -1,0 +1,263 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：1 篇文档，1 个片段，缓存键 b9f1c4168dc3\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "58292"
+      ],
+      "pid": 21895,
+      "port": 58292,
+      "kb_dir": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/kb",
+      "health": {
+        "status": "ok",
+        "llm_mode": "mock",
+        "kb_docs": 1,
+        "kb_chunks": 1,
+        "valid_sales_rows": 18290,
+        "today": "2026-09-01",
+        "data_period": {
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "cleaning_report": {
+          "raw_rows": 18628,
+          "removed": {
+            "1_unparseable_date": 8,
+            "2_empty_amount": 150,
+            "3_qty_le_zero": 30,
+            "4_store_not_in_stores": 10,
+            "5_product_not_in_products": 40,
+            "6_duplicate_row": 100
+          },
+          "removed_rows": 338,
+          "kept_rows": 18290,
+          "kept_sales_rows": 18196,
+          "kept_refund_rows": 94
+        },
+        "index_key": "b9f1c4168dc3",
+        "kb_warnings": []
+      },
+      "retrieval": {
+        "oldtoken": {
+          "results": [
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#1",
+              "score": 0.5548,
+              "text": "oldtoken oldfact",
+              "retrieval_text": "oldtoken oldfact\noldtoken oldfact",
+              "source_start": 0,
+              "source_end": 16,
+              "context_spans": [],
+              "padded": false,
+              "evidence_eligible": true,
+              "exclusion_reason": null
+            }
+          ],
+          "diagnostics": {
+            "query": "oldtoken",
+            "terms": [
+              "oldtoken"
+            ],
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "candidates": [
+              {
+                "chunk_id": "KB-901#1",
+                "doc_id": "KB-901",
+                "score": 0.5548,
+                "lexical_score": 0.411,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "oldtoken"
+                ]
+              }
+            ],
+            "expansions": [],
+            "coverage": 1.0,
+            "hits": [
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#1",
+                "score": 0.5548,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": []
+          }
+        }
+      },
+      "stopped": true
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：2 篇文档，2 个片段，缓存键 91f1e87b23b8\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "58304"
+      ],
+      "pid": 21911,
+      "port": 58304,
+      "kb_dir": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/kb",
+      "health": {
+        "status": "ok",
+        "llm_mode": "mock",
+        "kb_docs": 2,
+        "kb_chunks": 2,
+        "valid_sales_rows": 18290,
+        "today": "2026-09-01",
+        "data_period": {
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "cleaning_report": {
+          "raw_rows": 18628,
+          "removed": {
+            "1_unparseable_date": 8,
+            "2_empty_amount": 150,
+            "3_qty_le_zero": 30,
+            "4_store_not_in_stores": 10,
+            "5_product_not_in_products": 40,
+            "6_duplicate_row": 100
+          },
+          "removed_rows": 338,
+          "kept_rows": 18290,
+          "kept_sales_rows": 18196,
+          "kept_refund_rows": 94
+        },
+        "index_key": "91f1e87b23b8",
+        "kb_warnings": []
+      },
+      "retrieval": {
+        "newtoken": {
+          "results": [
+            {
+              "doc_id": "KB-902",
+              "chunk_id": "KB-902#1",
+              "score": 1.3368,
+              "text": "newtoken newfact",
+              "retrieval_text": "newtoken newfact\nnewtoken newfact",
+              "source_start": 0,
+              "source_end": 16,
+              "context_spans": [],
+              "padded": false,
+              "evidence_eligible": true,
+              "exclusion_reason": null
+            },
+            {
+              "doc_id": "KB-901",
+              "chunk_id": "KB-901#1",
+              "score": 0.0,
+              "text": "oldtoken oldfact",
+              "retrieval_text": "oldtoken oldfact\noldtoken oldfact",
+              "source_start": 0,
+              "source_end": 16,
+              "context_spans": [],
+              "padded": true,
+              "evidence_eligible": false,
+              "exclusion_reason": null
+            }
+          ],
+          "diagnostics": {
+            "query": "newtoken",
+            "terms": [
+              "newtoken"
+            ],
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "candidates": [
+              {
+                "chunk_id": "KB-902#1",
+                "doc_id": "KB-902",
+                "score": 1.3368,
+                "lexical_score": 0.9902,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "newtoken"
+                ]
+              }
+            ],
+            "expansions": [],
+            "coverage": 1.0,
+            "hits": [
+              {
+                "doc_id": "KB-902",
+                "chunk_id": "KB-902#1",
+                "score": 1.3368,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#1",
+                "score": 0.0,
+                "padded": true,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": []
+          }
+        }
+      },
+      "stopped": true
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：2 篇文档，2 个片段，缓存键 91f1e87b23b8\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-194/test_lifecycle_rebuild_restart0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    }
+  ]
+}

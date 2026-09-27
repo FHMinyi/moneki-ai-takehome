@@ -1,0 +1,307 @@
+FFFF.FFFF                                                                [100%]
+=================================== FAILURES ===================================
+_ test_unbound_claims_rejected[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-\u5916\u5356\u8ba2\u5355\u53ef\u4ee5\u57287\u5929\u5185\u9000\u6b3e\u3002[KB-012]] _
+
+service = <kbqa.service.Service object at 0x108fefd10>
+question = '外卖订单多久内可以退款？', content = '外卖订单可以在7天内退款。[KB-012]'
+
+    @pytest.mark.parametrize('question,content',[
+     ('外卖订单多久内可以退款？','外卖订单可以在7天内退款。[KB-012]'),
+     ('Beef Poke含花生吗？','Beef Poke含花生。[KB-040]'),
+     ('员工餐免费吗？','员工餐免费。[KB-014]'),
+     ('退款需要身份证吗？','退款需要身份证。[KB-013]'),
+     ('外卖订单多久内可以退款？','外卖订单退款时限为48小时。[KB-013]'),
+    ])
+    def test_unbound_claims_rejected(service,question,content):
+>       with pytest.raises(LLMError):run(service,question,content)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+docs/verification/g3-02/test_document_binding.py:42: Failed
+_ test_unbound_claims_rejected[Beef Poke\u542b\u82b1\u751f\u5417\uff1f-Beef Poke\u542b\u82b1\u751f\u3002[KB-040]] _
+
+service = <kbqa.service.Service object at 0x108fefd10>
+question = 'Beef Poke含花生吗？', content = 'Beef Poke含花生。[KB-040]'
+
+    @pytest.mark.parametrize('question,content',[
+     ('外卖订单多久内可以退款？','外卖订单可以在7天内退款。[KB-012]'),
+     ('Beef Poke含花生吗？','Beef Poke含花生。[KB-040]'),
+     ('员工餐免费吗？','员工餐免费。[KB-014]'),
+     ('退款需要身份证吗？','退款需要身份证。[KB-013]'),
+     ('外卖订单多久内可以退款？','外卖订单退款时限为48小时。[KB-013]'),
+    ])
+    def test_unbound_claims_rejected(service,question,content):
+>       with pytest.raises(LLMError):run(service,question,content)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+docs/verification/g3-02/test_document_binding.py:42: Failed
+_ test_unbound_claims_rejected[\u5458\u5de5\u9910\u514d\u8d39\u5417\uff1f-\u5458\u5de5\u9910\u514d\u8d39\u3002[KB-014]] _
+
+service = <kbqa.service.Service object at 0x108fefd10>, question = '员工餐免费吗？'
+content = '员工餐免费。[KB-014]'
+
+    @pytest.mark.parametrize('question,content',[
+     ('外卖订单多久内可以退款？','外卖订单可以在7天内退款。[KB-012]'),
+     ('Beef Poke含花生吗？','Beef Poke含花生。[KB-040]'),
+     ('员工餐免费吗？','员工餐免费。[KB-014]'),
+     ('退款需要身份证吗？','退款需要身份证。[KB-013]'),
+     ('外卖订单多久内可以退款？','外卖订单退款时限为48小时。[KB-013]'),
+    ])
+    def test_unbound_claims_rejected(service,question,content):
+>       with pytest.raises(LLMError):run(service,question,content)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+docs/verification/g3-02/test_document_binding.py:42: Failed
+_ test_unbound_claims_rejected[\u9000\u6b3e\u9700\u8981\u8eab\u4efd\u8bc1\u5417\uff1f-\u9000\u6b3e\u9700\u8981\u8eab\u4efd\u8bc1\u3002[KB-013]] _
+
+service = <kbqa.service.Service object at 0x108fefd10>, question = '退款需要身份证吗？'
+content = '退款需要身份证。[KB-013]'
+
+    @pytest.mark.parametrize('question,content',[
+     ('外卖订单多久内可以退款？','外卖订单可以在7天内退款。[KB-012]'),
+     ('Beef Poke含花生吗？','Beef Poke含花生。[KB-040]'),
+     ('员工餐免费吗？','员工餐免费。[KB-014]'),
+     ('退款需要身份证吗？','退款需要身份证。[KB-013]'),
+     ('外卖订单多久内可以退款？','外卖订单退款时限为48小时。[KB-013]'),
+    ])
+    def test_unbound_claims_rejected(service,question,content):
+>       with pytest.raises(LLMError):run(service,question,content)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+docs/verification/g3-02/test_document_binding.py:42: Failed
+_ test_explicit_evidence_selection[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-013-24] _
+
+service = <kbqa.service.Service object at 0x108fefd10>
+question = '外卖订单多久内可以退款？', doc = 'KB-013', needle = '24'
+
+    @pytest.mark.parametrize('question,doc,needle',[
+     ('外卖订单多久内可以退款？','KB-013','24'),
+     ('2026年6月14日当时外卖订单多久内可以退款？','KB-012','7 天'),
+     ('2025年12月1日当时会员充值500元赠送多少？','KB-010','50'),
+     ('Beef Poke里面有哪些过敏原？','KB-040','Beef Poke'),
+    ])
+    def test_explicit_evidence_selection(service,question,doc,needle):
+>       answer,trace=run(service,question,lambda r:select(r,doc,needle),query='外卖退款政策' if doc=='KB-012' else None)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/test_document_binding.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-02/test_document_binding.py:32: in run
+    return engine.answer(service.planner.plan(question),trace,[]),trace
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:69: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:27: in respond
+    content=final(result) if callable(final) else final
+            ^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:56: in <lambda>
+    answer,trace=run(service,question,lambda r:select(r,doc,needle),query='外卖退款政策' if doc=='KB-012' else None)
+                                               ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = {'results': [{'doc_id': 'KB-013', 'chunk_id': 'KB-013#2', 'score': 27.7824, 'text': '## 一、受理窗口\n\n1. 堂食订单须当场提出，顾客离店后不再...在预订本上。\n5. 鲜货备货从 6 月 7 日起暂停，包子馅料与点心半成品按保质期处理，不得留用到复业当天。\n6. 门店员工不放假，按原排班到岗，配合施工方做清洁与复位；复业前完成一次全店卫生自查并拍照留档。\n\n', ...}]}
+doc = 'KB-013', needle = '24'
+
+    def select(result, doc, needle):
+        candidates=[e for e in result.get('evidence',[]) if e['doc_id']==doc and needle in e['quote']]
+>       assert candidates, result
+E       AssertionError: {'results': [{'doc_id': 'KB-013', 'chunk_id': 'KB-013#2', 'score': 27.7824, 'text': '## 一、受理窗口
+E         
+E         1. 堂食订单须当场提出，顾客离店后不再...在预订本上。
+E         5. 鲜货备货从 6 月 7 日起暂停，包子馅料与点心半成品按保质期处理，不得留用到复业当天。
+E         6. 门店员工不放假，按原排班到岗，配合施工方做清洁与复位；复业前完成一次全店卫生自查并拍照留档。
+E         
+E         ', ...}]}
+E       assert []
+
+docs/verification/g3-02/test_document_binding.py:46: AssertionError
+_ test_explicit_evidence_selection[2026\u5e746\u670814\u65e5\u5f53\u65f6\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-012-7 \u5929] _
+
+service = <kbqa.service.Service object at 0x108fefd10>
+question = '2026年6月14日当时外卖订单多久内可以退款？', doc = 'KB-012', needle = '7 天'
+
+    @pytest.mark.parametrize('question,doc,needle',[
+     ('外卖订单多久内可以退款？','KB-013','24'),
+     ('2026年6月14日当时外卖订单多久内可以退款？','KB-012','7 天'),
+     ('2025年12月1日当时会员充值500元赠送多少？','KB-010','50'),
+     ('Beef Poke里面有哪些过敏原？','KB-040','Beef Poke'),
+    ])
+    def test_explicit_evidence_selection(service,question,doc,needle):
+>       answer,trace=run(service,question,lambda r:select(r,doc,needle),query='外卖退款政策' if doc=='KB-012' else None)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/test_document_binding.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-02/test_document_binding.py:32: in run
+    return engine.answer(service.planner.plan(question),trace,[]),trace
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:69: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:27: in respond
+    content=final(result) if callable(final) else final
+            ^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:56: in <lambda>
+    answer,trace=run(service,question,lambda r:select(r,doc,needle),query='外卖退款政策' if doc=='KB-012' else None)
+                                               ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = {'results': [{'doc_id': 'KB-013', 'chunk_id': 'KB-013#5', 'score': 19.3427, 'text': '## 四、退回渠道\n\n原路返回：微信、支付宝、银行卡退回原支付...能受影响。\n你们上了哪些外卖平台？\n外卖\n外卖平台为美团与饿了么，五家门店都已上线。除此之外还可以在小程序里下自营外卖单。\n平台上的活动和优惠由平台规则决定，可能和门店、小程序不一致，以下单时页面显示的为准。\n', ...}]}
+doc = 'KB-012', needle = '7 天'
+
+    def select(result, doc, needle):
+        candidates=[e for e in result.get('evidence',[]) if e['doc_id']==doc and needle in e['quote']]
+>       assert candidates, result
+E       AssertionError: {'results': [{'doc_id': 'KB-013', 'chunk_id': 'KB-013#5', 'score': 19.3427, 'text': '## 四、退回渠道
+E         
+E         原路返回：微信、支付宝、银行卡退回原支付...能受影响。
+E         你们上了哪些外卖平台？
+E         外卖
+E         外卖平台为美团与饿了么，五家门店都已上线。除此之外还可以在小程序里下自营外卖单。
+E         平台上的活动和优惠由平台规则决定，可能和门店、小程序不一致，以下单时页面显示的为准。
+E         ', ...}]}
+E       assert []
+
+docs/verification/g3-02/test_document_binding.py:46: AssertionError
+_ test_explicit_evidence_selection[2025\u5e7412\u67081\u65e5\u5f53\u65f6\u4f1a\u5458\u5145\u503c500\u5143\u8d60\u9001\u591a\u5c11\uff1f-KB-010-50] _
+
+service = <kbqa.service.Service object at 0x108fefd10>
+question = '2025年12月1日当时会员充值500元赠送多少？', doc = 'KB-010', needle = '50'
+
+    @pytest.mark.parametrize('question,doc,needle',[
+     ('外卖订单多久内可以退款？','KB-013','24'),
+     ('2026年6月14日当时外卖订单多久内可以退款？','KB-012','7 天'),
+     ('2025年12月1日当时会员充值500元赠送多少？','KB-010','50'),
+     ('Beef Poke里面有哪些过敏原？','KB-040','Beef Poke'),
+    ])
+    def test_explicit_evidence_selection(service,question,doc,needle):
+>       answer,trace=run(service,question,lambda r:select(r,doc,needle),query='外卖退款政策' if doc=='KB-012' else None)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/test_document_binding.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-02/test_document_binding.py:32: in run
+    return engine.answer(service.planner.plan(question),trace,[]),trace
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:69: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:27: in respond
+    content=final(result) if callable(final) else final
+            ^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:56: in <lambda>
+    answer,trace=run(service,question,lambda r:select(r,doc,needle),query='外卖退款政策' if doc=='KB-012' else None)
+                                               ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = {'results': [{'doc_id': 'KB-024', 'chunk_id': 'KB-024#2', 'score': 23.9432, 'text': '## 一、时间与范围\n\n**2025 年 6 月 18 日当天...4486, 'text': '# 指标口径手册 v2\n\n> 本版本已废止，现行版本见 KB-001。\n\n适用范围：总部运营部、财务部，以及各门店的月度经营报表。\n本手册自 2025-09-01 起生效。\n\n', ...}]}
+doc = 'KB-010', needle = '50'
+
+    def select(result, doc, needle):
+        candidates=[e for e in result.get('evidence',[]) if e['doc_id']==doc and needle in e['quote']]
+>       assert candidates, result
+E       AssertionError: {'results': [{'doc_id': 'KB-024', 'chunk_id': 'KB-024#2', 'score': 23.9432, 'text': '## 一、时间与范围
+E         
+E         **2025 年 6 月 18 日当天...4486, 'text': '# 指标口径手册 v2
+E         
+E         > 本版本已废止，现行版本见 KB-001。
+E         
+E         适用范围：总部运营部、财务部，以及各门店的月度经营报表。
+E         本手册自 2025-09-01 起生效。
+E         
+E         ', ...}]}
+E       assert []
+
+docs/verification/g3-02/test_document_binding.py:46: AssertionError
+_ test_explicit_evidence_selection[Beef Poke\u91cc\u9762\u6709\u54ea\u4e9b\u8fc7\u654f\u539f\uff1f-KB-040-Beef Poke] _
+
+service = <kbqa.service.Service object at 0x108fefd10>
+question = 'Beef Poke里面有哪些过敏原？', doc = 'KB-040', needle = 'Beef Poke'
+
+    @pytest.mark.parametrize('question,doc,needle',[
+     ('外卖订单多久内可以退款？','KB-013','24'),
+     ('2026年6月14日当时外卖订单多久内可以退款？','KB-012','7 天'),
+     ('2025年12月1日当时会员充值500元赠送多少？','KB-010','50'),
+     ('Beef Poke里面有哪些过敏原？','KB-040','Beef Poke'),
+    ])
+    def test_explicit_evidence_selection(service,question,doc,needle):
+>       answer,trace=run(service,question,lambda r:select(r,doc,needle),query='外卖退款政策' if doc=='KB-012' else None)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/test_document_binding.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-02/test_document_binding.py:32: in run
+    return engine.answer(service.planner.plan(question),trace,[]),trace
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:69: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:27: in respond
+    content=final(result) if callable(final) else final
+            ^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:56: in <lambda>
+    answer,trace=run(service,question,lambda r:select(r,doc,needle),query='外卖退款政策' if doc=='KB-012' else None)
+                                               ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = {'results': [{'doc_id': 'KB-040', 'chunk_id': 'KB-040#3', 'score': 28.1832, 'text': '| P04 | 三文鱼poke | — | ✓ | ✓ | — |...#4', 'score': 10.0851, 'text': '## 三、目标\n\n**当天牛肉poke 目标销量 120 份。**\n同时希望带动饮料和小食的连带，连带率目标是每 2 单里至少有 1 杯饮料。\n\n', ...}]}
+doc = 'KB-040', needle = 'Beef Poke'
+
+    def select(result, doc, needle):
+        candidates=[e for e in result.get('evidence',[]) if e['doc_id']==doc and needle in e['quote']]
+>       assert candidates, result
+E       AssertionError: {'results': [{'doc_id': 'KB-040', 'chunk_id': 'KB-040#3', 'score': 28.1832, 'text': '| P04 | 三文鱼poke | — | ✓ | ✓ | — |...#4', 'score': 10.0851, 'text': '## 三、目标
+E         
+E         **当天牛肉poke 目标销量 120 份。**
+E         同时希望带动饮料和小食的连带，连带率目标是每 2 单里至少有 1 杯饮料。
+E         
+E         ', ...}]}
+E       assert []
+
+docs/verification/g3-02/test_document_binding.py:46: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/test_document_binding.py::test_unbound_claims_rejected[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-\u5916\u5356\u8ba2\u5355\u53ef\u4ee5\u57287\u5929\u5185\u9000\u6b3e\u3002[KB-012]]
+FAILED docs/verification/g3-02/test_document_binding.py::test_unbound_claims_rejected[Beef Poke\u542b\u82b1\u751f\u5417\uff1f-Beef Poke\u542b\u82b1\u751f\u3002[KB-040]]
+FAILED docs/verification/g3-02/test_document_binding.py::test_unbound_claims_rejected[\u5458\u5de5\u9910\u514d\u8d39\u5417\uff1f-\u5458\u5de5\u9910\u514d\u8d39\u3002[KB-014]]
+FAILED docs/verification/g3-02/test_document_binding.py::test_unbound_claims_rejected[\u9000\u6b3e\u9700\u8981\u8eab\u4efd\u8bc1\u5417\uff1f-\u9000\u6b3e\u9700\u8981\u8eab\u4efd\u8bc1\u3002[KB-013]]
+FAILED docs/verification/g3-02/test_document_binding.py::test_explicit_evidence_selection[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-013-24]
+FAILED docs/verification/g3-02/test_document_binding.py::test_explicit_evidence_selection[2026\u5e746\u670814\u65e5\u5f53\u65f6\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-012-7 \u5929]
+FAILED docs/verification/g3-02/test_document_binding.py::test_explicit_evidence_selection[2025\u5e7412\u67081\u65e5\u5f53\u65f6\u4f1a\u5458\u5145\u503c500\u5143\u8d60\u9001\u591a\u5c11\uff1f-KB-010-50]
+FAILED docs/verification/g3-02/test_document_binding.py::test_explicit_evidence_selection[Beef Poke\u91cc\u9762\u6709\u54ea\u4e9b\u8fc7\u654f\u539f\uff1f-KB-040-Beef Poke]
+8 failed, 1 passed in 0.46s

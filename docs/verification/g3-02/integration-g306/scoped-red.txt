@@ -1,0 +1,95 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_ test_referenced_search_preserves_plan_and_document_binding[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u7533\u8bf7\u9000\u6b3e\uff1f-KB-013-24-24 \u5c0f\u65f6-2026-09-01-S02] _
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-253/test_referenced_search_preserv0')
+q = '外卖订单多久内可以申请退款？', doc = 'KB-013', needle = '24', amount = '24 小时'
+as_of = '2026-09-01', store = 'S02'
+
+    @pytest.mark.parametrize('q,doc,needle,amount,as_of,store',[
+     ('外卖订单多久内可以申请退款？','KB-013','24','24 小时','2026-09-01','S02'),
+     ('2026-06-14 S03 外卖订单多久内可以退款？','KB-012','7 天','7 天','2026-06-14','S03'),
+    ])
+    def test_referenced_search_preserves_plan_and_document_binding(tmp_path,q,doc,needle,amount,as_of,store):
+     with h.runtime(tmp_path,{'selector':anchored(doc,needle,('外卖订单','外卖订单'),('退款','退款'),duration('多久',amount))}) as (r,serve,payload):
+      with serve() as req:
+       a=req('/api/chat',{'session_id':'cross','question':q,'context':REF})
+       t=req('/api/trace/'+a['trace_id'])
+>    assert a['answer_type']=='doc',(a,t['errors'])
+E    AssertionError: ({'answer': '抱歉，我暂时无法回答。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}, [{'where': 'answer', ...^^^^^^^^^^^^^^^^^
+E      TypeError: Service._run_engine.<locals>.<lambda>() got an unexpected keyword argument \'plan\'
+E      '}])
+E    assert 'refusal' == 'doc'
+E      
+E      - doc
+E      + refusal
+
+docs/verification/g3-02/integration-g306/test_cross.py:21: AssertionError
+_ test_referenced_search_preserves_plan_and_document_binding[2026-06-14 S03 \u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-012-7 \u5929-7 \u5929-2026-06-14-S03] _
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-253/test_referenced_search_preserv1')
+q = '2026-06-14 S03 外卖订单多久内可以退款？', doc = 'KB-012', needle = '7 天'
+amount = '7 天', as_of = '2026-06-14', store = 'S03'
+
+    @pytest.mark.parametrize('q,doc,needle,amount,as_of,store',[
+     ('外卖订单多久内可以申请退款？','KB-013','24','24 小时','2026-09-01','S02'),
+     ('2026-06-14 S03 外卖订单多久内可以退款？','KB-012','7 天','7 天','2026-06-14','S03'),
+    ])
+    def test_referenced_search_preserves_plan_and_document_binding(tmp_path,q,doc,needle,amount,as_of,store):
+     with h.runtime(tmp_path,{'selector':anchored(doc,needle,('外卖订单','外卖订单'),('退款','退款'),duration('多久',amount))}) as (r,serve,payload):
+      with serve() as req:
+       a=req('/api/chat',{'session_id':'cross','question':q,'context':REF})
+       t=req('/api/trace/'+a['trace_id'])
+>    assert a['answer_type']=='doc',(a,t['errors'])
+E    AssertionError: ({'answer': '抱歉，我暂时无法回答。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}, [{'where': 'answer', ...^^^^^^^^^^^^^^^^^
+E      TypeError: Service._run_engine.<locals>.<lambda>() got an unexpected keyword argument \'plan\'
+E      '}])
+E    assert 'refusal' == 'doc'
+E      
+E      - doc
+E      + refusal
+
+docs/verification/g3-02/integration-g306/test_cross.py:21: AssertionError
+________ test_referenced_nonfact_states_cannot_deliver_policy[refusal] _________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-253/test_referenced_nonfact_states0')
+kind = 'refusal'
+
+    @pytest.mark.parametrize('kind',['refusal','clarify'])
+    def test_referenced_nonfact_states_cannot_deliver_policy(tmp_path,kind):
+     with h.runtime(tmp_path,{'content':json.dumps({'answer_type':kind,'answer':'外卖退款不需要顾客出示身份证。请问还需要核对什么？'})}) as (r,serve,payload):
+      with serve() as req:
+       a=req('/api/chat',{'session_id':'state','question':'外卖退款需要身份证吗？','context':REF})
+       t=req('/api/trace/'+a['trace_id'])
+     assert a['answer_type']==kind and not a['citations'] and not a['data_evidence']
+>    assert '身份证' not in a['answer'] and not t['errors']
+E    assert ('身份证' not in '抱歉，我暂时无法回答。'
+E      
+E      '身份证' is contained here:
+E        抱歉，我暂时无法回答。 and not [{'where': 'answer', 'type': 'TypeError', 'message': "Service._run_engine.<locals>.<lambda>() got an unexpected keywor...^^^^^^^^^^^^^^^^^^\nTypeError: Service._run_engine.<locals>.<lambda>() got an unexpected keyword argument \'plan\'\n'}])
+
+docs/verification/g3-02/integration-g306/test_cross.py:35: AssertionError
+________ test_referenced_nonfact_states_cannot_deliver_policy[clarify] _________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-253/test_referenced_nonfact_states1')
+kind = 'clarify'
+
+    @pytest.mark.parametrize('kind',['refusal','clarify'])
+    def test_referenced_nonfact_states_cannot_deliver_policy(tmp_path,kind):
+     with h.runtime(tmp_path,{'content':json.dumps({'answer_type':kind,'answer':'外卖退款不需要顾客出示身份证。请问还需要核对什么？'})}) as (r,serve,payload):
+      with serve() as req:
+       a=req('/api/chat',{'session_id':'state','question':'外卖退款需要身份证吗？','context':REF})
+       t=req('/api/trace/'+a['trace_id'])
+>    assert a['answer_type']==kind and not a['citations'] and not a['data_evidence']
+E    AssertionError: assert ('refusal' == 'clarify'
+E      
+E      - clarify
+E      + refusal)
+
+docs/verification/g3-02/integration-g306/test_cross.py:34: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/integration-g306/test_cross.py::test_referenced_search_preserves_plan_and_document_binding[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u7533\u8bf7\u9000\u6b3e\uff1f-KB-013-24-24 \u5c0f\u65f6-2026-09-01-S02]
+FAILED docs/verification/g3-02/integration-g306/test_cross.py::test_referenced_search_preserves_plan_and_document_binding[2026-06-14 S03 \u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-012-7 \u5929-7 \u5929-2026-06-14-S03]
+FAILED docs/verification/g3-02/integration-g306/test_cross.py::test_referenced_nonfact_states_cannot_deliver_policy[refusal]
+FAILED docs/verification/g3-02/integration-g306/test_cross.py::test_referenced_nonfact_states_cannot_deliver_policy[clarify]
+4 failed in 4.13s

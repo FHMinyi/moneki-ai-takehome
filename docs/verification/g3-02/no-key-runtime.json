@@ -1,0 +1,16 @@
+{
+  "work": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g302-nokey-1psymrhd",
+  "command": [
+    "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+    "eval/run_eval.py",
+    "--base-url",
+    "http://127.0.0.1:57048",
+    "--questions",
+    "eval/public_questions.jsonl",
+    "--out",
+    "docs/verification/g3-02/no-key"
+  ],
+  "commit": "b62e6dcfa6dc91044c82b0738da8a34cea00dc2b",
+  "exit_code": 0,
+  "service_pid": 15875
+}

@@ -60,7 +60,7 @@ class LLMClient:
     def endpoint(self) -> str:
         return self.base_url + "/chat/completions"
 
-    def _body(self, messages: list[dict], tools: Optional[list[dict]]) -> dict:
+    def _body(self, messages: list[dict], tools: Optional[list[dict]], tool_choice: str = "auto") -> dict:
         body: dict[str, Any] = {
             "model": self.model,
             "messages": messages,
@@ -68,7 +68,7 @@ class LLMClient:
         }
         if tools:
             body["tools"] = tools
-            body["tool_choice"] = "auto"
+            body["tool_choice"] = tool_choice
         return body
 
     def chat(
@@ -77,16 +77,17 @@ class LLMClient:
         tools: Optional[list[dict]] = None,
         timeout: Optional[float] = None,
         on_call: Optional[Any] = None,
+        tool_choice: str = "auto",
     ) -> LLMReply:
         """No provider exception or credential-bearing chain crosses this boundary."""
         started = time.perf_counter()
         try:
-            return self._chat(messages, tools, timeout, on_call)
+            return self._chat(messages, tools, timeout, on_call, tool_choice)
         except LLMError as exc:
             failure = LLMError(self._redact(exc.kind), self._redact(exc.detail), exc.status)
         except Exception as exc:
             detail = self._redact('%s: %s' % (type(exc).__name__, exc))
-            self._note(on_call, {'endpoint': self.endpoint, 'request': self._body(messages, tools),
+            self._note(on_call, {'endpoint': self.endpoint, 'request': self._body(messages, tools, tool_choice),
                                'error': 'client_error', 'detail': detail}, started)
             failure = LLMError('client_error', detail)
         # Raise outside the except suite: the original exception is not retained
@@ -102,9 +103,10 @@ class LLMClient:
         tools: Optional[list[dict]] = None,
         timeout: Optional[float] = None,
         on_call: Optional[Any] = None,
+        tool_choice: str = "auto",
     ) -> LLMReply:
         started = time.perf_counter()
-        body = self._body(messages, tools)
+        body = self._body(messages, tools, tool_choice)
         record: dict[str, Any] = {
             "endpoint": self.endpoint,
             "model": self.model,
@@ -204,6 +206,7 @@ class LLMClient:
         tools: Optional[list[dict]] = None,
         budget: Optional[float] = None,
         on_call: Optional[Any] = None,
+        tool_choice: str = "auto",
     ) -> LLMReply:
         """暂时性故障重试一次，且只在时间预算够的时候重试。"""
         deadline = time.perf_counter() + (budget if budget is not None else self.timeout)
@@ -212,7 +215,8 @@ class LLMClient:
             if remaining <= 0:
                 raise LLMError("budget", "模型请求剩余时间预算已耗尽")
             try:
-                return self.chat(messages, tools, timeout=min(self.timeout, remaining), on_call=on_call)
+                return self.chat(messages, tools, timeout=min(self.timeout, remaining), on_call=on_call,
+                                 **({"tool_choice": tool_choice} if tool_choice != "auto" else {}))
             except LLMError as exc:
                 remaining = deadline - time.perf_counter()
                 if attempt or not exc.retryable or remaining <= 1:

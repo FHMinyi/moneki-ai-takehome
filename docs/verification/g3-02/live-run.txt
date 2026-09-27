@@ -1,0 +1,5 @@
+chat 1: doc; 2 model attempts
+chat 2: doc; 2 model attempts
+chat 3: doc; 2 model attempts
+chat 4: refusal; 4 model attempts
+{"chat_count": 4, "conservative_committed_cny": 0.348902, "remaining_cny": 7.651098, "billing_confirmed": false}

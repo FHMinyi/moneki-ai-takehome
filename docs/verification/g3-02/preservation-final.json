@@ -1,0 +1,23 @@
+{
+  "initial_manifest_count": 2434,
+  "predecessor_manifest_count": 3066,
+  "predecessor_missing_now": [
+    "docs/baseline/2026-09-26-followup-draft.md"
+  ],
+  "predecessor_changed_now": [],
+  "authorized_external_exception": {
+    "path": "docs/baseline/2026-09-26-followup-draft.md",
+    "original_sha256": "a0f27928a31f8efe5c4dacdf67d1eec7829ecd11313cee37041a228e93dad6f9",
+    "confirmation": "2026-09-27 user confirmed deletion/move via coordinating chat 01a0dc94-4947-7a93-84b9-46b5c7249dfa. Do not restore."
+  },
+  "unexpected_missing": [],
+  "initial_omitted_predecessor_count": 772,
+  "cause": "Initial git ls-files lacked -z: quoted non-ASCII/backslash names skipped by prefix filter. Original incomplete 2434 manifest remains unchanged; current audit compares predecessor SHA256 and all fixed-point protected Git blobs with NUL-safe paths.",
+  "fixed_point": "587ae820185cd10839e189efa9fb2ed8863d1ca5",
+  "fixed_point_protected_tracked_count": 3186,
+  "fixed_point_differences": [],
+  "research_unchanged": {
+    "docs/research/2026-09-26-public-solutions.md": true,
+    "docs/research/2026-09-27-public-solutions-refresh.md": true
+  }
+}

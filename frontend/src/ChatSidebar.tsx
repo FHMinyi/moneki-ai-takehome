@@ -3,7 +3,9 @@ import { Button, Drawer, Input, Tag } from 'antd';
 import './ChatSidebar.css';
 import type { TrendAttachment } from './trendReference';
 
-type Response = { answer: string; answer_type: 'data' | 'doc' | 'hybrid' | 'refusal' | 'clarify'; citations: { doc_id: string; quote: string }[]; data_evidence: { tool?: string; params?: unknown; sql?: string; result: unknown }[]; trace_id: string };
+type Citation = { doc_id: string; quote: string; chunk_id?: unknown; metadata?: { title?: unknown; effective_from?: unknown; stores?: unknown }; scope?: { as_of?: unknown } };
+const field = (v: unknown) => typeof v === 'string' ? v : '';
+type Response = { answer: string; answer_type: 'data' | 'doc' | 'hybrid' | 'refusal' | 'clarify'; citations: Citation[]; data_evidence: { tool?: string; params?: unknown; sql?: string; result: unknown }[]; trace_id: string };
 type Turn = { id: string; question: string; attachment: TrendAttachment | null; response?: Response; error?: string };
 const labels = { data: '数据回答', doc: '文档回答', hybrid: '综合回答', refusal: '暂时无法回答', clarify: '需要补充信息' };
 function parse(value: unknown): Response {
@@ -72,13 +74,15 @@ export function ChatSidebar({ incoming }: { incoming: TrendAttachment | null }) 
       extra={<Button onClick={newSession}>新建对话</Button>}>
       <div className="chat-layout">
         <div className="chat-history" ref={history} role="log" aria-label="聊天记录" aria-live="polite">
-          {turns.length === 0 && <div className="chat-welcome"><h2>从一个经营问题开始</h2><p>写明日期、门店和想了解的指标，回答后可展开数据证据核对。</p><Button onClick={() => setDraft('S02 六月的净营业额是多少？')}>S02 六月的净营业额是多少？</Button><p className="chat-hint">请在问题中说明查询范围；看板筛选不会自动带入。新建对话可重新开始。</p></div>}
+          {turns.length === 0 && <div className="chat-welcome"><h2>从一个经营问题开始</h2><p>写明日期、门店和想了解的指标或制度，回答后可展开数据证据与原文核对。</p><Button onClick={() => setDraft('S02 六月的净营业额是多少？')}>S02 六月的净营业额是多少？</Button><p className="chat-hint">请在问题中说明查询范围；看板筛选不会自动带入。新建对话可重新开始。</p></div>}
           {turns.map(turn => <article className="chat-turn" key={turn.id}>
             <div className="chat-question"><span>你</span><p>{turn.question}</p>{turn.attachment && <ReferenceCard attachment={turn.attachment} />}</div>
             {(turn.response || turn.error) && <div className="chat-answer">
               {turn.response && <><Tag color={turn.response.answer_type === 'refusal' ? 'orange' : 'green'}>{labels[turn.response.answer_type]}</Tag><p>{turn.response.answer}</p>
                 {turn.response.data_evidence.length > 0 && <details><summary>展开数据证据（{turn.response.data_evidence.length}）</summary>{turn.response.data_evidence.map((e, i) => <section className="chat-evidence" key={i}><strong>{e.tool || '只读查询'}</strong><h4>查询条件</h4><pre>{JSON.stringify(e.params ?? e.sql, null, 2)}</pre><h4>实际结果</h4><pre>{JSON.stringify(e.result, null, 2)}</pre></section>)}</details>}
-                {turn.response.citations.length > 0 && <details><summary>展开文档引用（{turn.response.citations.length}）</summary>{turn.response.citations.map((c, i) => <blockquote key={i}><strong>{c.doc_id}</strong><p>{c.quote}</p></blockquote>)}</details>}
+                {turn.response.citations.length > 0 && <details><summary>展开文档引用（{turn.response.citations.length}）</summary>{turn.response.citations.map((c, i) => <blockquote key={i}><strong>{c.doc_id}{field(c.metadata?.title) && ` · ${field(c.metadata?.title)}`}</strong>
+                  {(field(c.metadata?.effective_from) || field(c.scope?.as_of)) && <div className="citation-meta">{field(c.metadata?.effective_from) && `生效日期：${field(c.metadata?.effective_from)}`}{field(c.scope?.as_of) && ` · 核对时点：${field(c.scope?.as_of)}`}</div>}
+                  <p>{c.quote}</p>{field(c.chunk_id) && <small>来源片段：{field(c.chunk_id)}</small>}</blockquote>)}</details>}
                 <small>追踪编号：{turn.response.trace_id}</small></>}
               {turn.error && <p role="alert">{turn.error}</p>}
               {(turn.error || turn.response?.answer_type === 'refusal') && <Button disabled={waiting} onClick={() => void send(turn.question, turn.attachment, turn.id)}>重试这条问题</Button>}

@@ -1,0 +1,10 @@
+{
+  "url": "https://api-docs.deepseek.com/api/create-chat-completion",
+  "checked_at": "2026-09-27T06:16:50.238387+00:00",
+  "facts": {
+    "none": "model returns a message instead of calling tools",
+    "auto": "model may return content or tool calls",
+    "thinking_mode_restriction": "required and named choices unsupported; none is supported"
+  },
+  "retrieval": "urllib HTTP official primary documentation; no model request"
+}
