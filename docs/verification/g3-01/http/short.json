@@ -11,8 +11,8 @@
     "trace_id": "t-20260901-0004",
     "session_id": "new-session",
     "question": "那七月呢？",
-    "started_at": "2026-09-27T13:13:01.342",
-    "total_ms": 0.0,
+    "started_at": "2026-09-27T13:33:19.398",
+    "total_ms": 0.1,
     "steps": [
       {
         "step": "plan",
@@ -47,7 +47,7 @@
       },
       {
         "step": "response",
-        "at_ms": 0.0,
+        "at_ms": 0.1,
         "took_ms": null,
         "detail": {
           "answer_type": "clarify",

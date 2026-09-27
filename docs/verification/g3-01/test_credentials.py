@@ -1,6 +1,7 @@
 """Full chat/trace boundary regression; synthetic credentials only, no paid calls."""
 import json
 import logging
+import os
 import sys
 import threading
 import traceback
@@ -62,6 +63,10 @@ def test_non_json_echo_is_redacted_across_complete_http_chat(app_client, caplog)
         assert SYNTHETIC_KEY not in json.dumps({'answer':answer,'trace':trace},ensure_ascii=False)
         assert SYNTHETIC_KEY not in caplog.text
         assert '[REDACTED]' in json.dumps(trace)
+        if os.environ.get('G3_CREDENTIAL_EVIDENCE'):
+            out=Path(os.environ['G3_CREDENTIAL_EVIDENCE']);out.mkdir(parents=True,exist_ok=True)
+            (out/'http-non-json.json').write_text(json.dumps({'response':answer,'trace':trace,'captured_logs':caplog.text,
+                'checks':{'trace_contains_synthetic_key':False,'logs_contain_synthetic_key':False,'status':200,'error':'bad_json'}},ensure_ascii=False,indent=2)+'\n')
     finally: upstream.shutdown();upstream.server_close()
 
 

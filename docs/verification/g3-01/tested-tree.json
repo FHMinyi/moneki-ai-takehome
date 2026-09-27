@@ -1,10 +1,11 @@
 {
-  "final_business_commit": "1608043fd5bdb9967c86d45626c49f1113004666",
+  "final_business_commit": "269de30e0c1dd16a07815e7e84423a83ea266690",
   "files": {
     "Makefile": "f1197ac3d52b8316989e831d2b9203202e0fa1d0a7bbda3890ee3821656ba669",
+    "starter/kbqa/redaction.py": "a08fab4b4d334401dc654668708f6a00b2c2b09527356768761d5ae2ad78e264",
     "starter/kbqa/planner.py": "ac678202b8ebf9d0852b083429b36f0d120bd5b95ac8858d31681a07761465b1",
-    "starter/kbqa/service.py": "42eabf782a9c313303ae672abcd0e7cc26db8c0815160807d60f2bc7a2dc5bfa",
-    "starter/kbqa/trace.py": "5174d5d2500e031cd9d9c11bc48ce5dc2e6c5744cea5be194b42a3291abcf313",
+    "starter/kbqa/service.py": "d59af59692b9459c1ae1e31ddececc6532d253de420eb9d306c04cdf05080c71",
+    "starter/kbqa/trace.py": "1041fe3399d607986d75215042193dd0fd8d2ff4b972c8cfc94221a8ed21061a",
     "starter/kbqa/sessions.py": "801e4b5a8fa83a123b3e8b0f31de96a470ccac65ed2260f7f007e19528b6a6a3",
     "starter/kbqa/server.py": "c87953f3a0a23c8991aa1463bc98fb2c972e6a02dbd47f34c4aaf55ce1ccc177",
     "starter/kbqa/config.py": "7d2a4885d88231651ef386fb7ff6968a67fa8685d652a8e40e98fbca4b11b4a2",
@@ -16,7 +17,7 @@
     "starter/kbqa/tools.py": "a01452ce6ba27e10f94f63734f3c0599bdd4fb07ae2efcd6c98f853b8f434db5",
     "starter/kbqa/retriever.py": "93948e1180bf0c9d4cafc9e5b892d5ec368627d734100f8ac31af9266fb1a15b",
     "starter/kbqa/__init__.py": "97a26634d49eeea6d032ecdc45ac3198e6d2838af824b596b99035adc70172ea",
-    "starter/kbqa/llm.py": "d2e10542b7be9a6a6569648138cee7d3c8cd79a0c8ab20415fbe8df6f75ebf2a",
+    "starter/kbqa/llm.py": "e70a05ed34538ac676901fda0de2f97e7d19f2b272ff6697e80cf75a0497a4de",
     "starter/kbqa/aliases.py": "3b8d702b9450459ded9ad4bf1812d151763d9816d3c702c5db01a3d4d4006cf4",
     "starter/kbqa/tokenizer.py": "f1fbd28befb8e31e76897dcdcbd0441106758c754cd2fbab9e4ee1b8519d31fe",
     "starter/kbqa/followup.py": "aeebfd64896264f73c3bf3671fcc72f6c659a381c78d071793c65a0d4741fe65",
@@ -47,5 +48,11 @@
   "live_success_commit": "354f6d4728374d89d92591d84e65687bc7cd3358",
   "final_change_after_live": "1608043 adds no-evidence clarify/refusal shape; no additional paid semantic test",
   "historical_gates": "53/199/no-key55 before call-reference/clarify-only live fixes; mock behavior unchanged",
-  "final_mock_gates": "Restarted mock 8031 at 1608043 and ran backend-final, no-key-final, rag-final; all fixed to final business code"
+  "final_mock_gates": "Restarted mock 8031 at 1608043 and ran backend-final, no-key-final, rag-final; all fixed to final business code",
+  "previous_business_commit": "1608043fd5bdb9967c86d45626c49f1113004666",
+  "p1_validation": {
+    "red": "def4475: 6 failed / 2 passed",
+    "green": "10 credential + 20 data chat + 53 backend = 83 passed; 12 controlled real HTTP checks passed",
+    "paid_calls_added": 0
+  }
 }

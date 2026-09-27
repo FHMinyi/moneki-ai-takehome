@@ -1,5 +1,7 @@
 # G3-01 验收映射
 
+**最新复审修正：PR30 P1凭证泄漏修复业务提交269de30，83项本地回归及12项受控真实HTTP通过，等待主会话再次独立验收。下方原交付记录保留其当时提交与结论；此前“无泄漏”验证不充分，详见末尾复审节。**
+
 权威规格：GitHub #24；固定基点 `2839c674dc2fe66bf52265cb58aafb5b3452182a`。
 执行配置：GPT-6 Astra / medium。原输入、评测器、历史证据与既有未跟踪材料的 SHA-256 见 `protected-before.json`。
 
@@ -92,3 +94,5 @@ starter/.venv/bin/python -m pytest docs/verification/g3-01/test_credentials.py d
 10项凭证回归+20项查数/协议+53原后端，共83通过。HTTP200坏JSON用真实本地HTTP假上游回显假Key，FastAPI TestClient经过真实chat/trace路由；相邻timeout/transport/unexpected/finish/HTTP错误、异常链、最终输出及捕获日志也检查。正常完整请求/响应和长诊断保留。没有真实模型复验和新增费用。
 
 非阻塞UX限制：展开证据目前直接展示JSON；消息变化时聊天列表会滚到底部，查看较早历史的体验仍可改进。按主会话要求留待后续证据展示工作，本次不扩大修复。
+
+P1修复固定269de30；最终HTTP非JSON回显记录见credential-http.json（完整response/trace及捕获日志），正常HTTP回归见credential-http-regression.txt。仅重启本票8032应用以加载修复，最新PID见resources.json；其他服务保持，未交付清理。

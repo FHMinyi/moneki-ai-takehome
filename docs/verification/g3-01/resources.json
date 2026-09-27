@@ -10,8 +10,8 @@
     },
     {
       "port": 8032,
-      "pid": 1319,
-      "purpose": "final controlled live app 1608043"
+      "pid": 6302,
+      "purpose": "P1 fixed controlled live app 269de30"
     },
     {
       "port": 8033,
@@ -31,5 +31,6 @@
     "/tmp/moneki-g3-01-paid-var"
   ],
   "temporary_verification_processes": "replacement/empty/budget/live runner subprocesses terminated by harness; fixture directories retained and named in records",
-  "cleanup": "waiting for coordinator explicit cleanup instruction; never clean shared checkout or unrelated worktrees"
+  "cleanup": "waiting for coordinator explicit cleanup instruction; never clean shared checkout or unrelated worktrees",
+  "p1_note": "Only owned 8032 app restarted for fixed-code validation; no delivery cleanup; paid count unchanged."
 }
