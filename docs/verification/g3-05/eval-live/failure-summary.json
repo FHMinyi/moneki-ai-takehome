@@ -1,0 +1,301 @@
+{
+  "fixed_point": "4591fab9a80ef63c440b9a117dbbc4fcbf03c430",
+  "total_failed_turns": 18,
+  "reason_counts": {
+    "binding:attribute_conflict": 4,
+    "binding:subject_conflict": 6,
+    "error:length": 3,
+    "error:mixed_binding": 4,
+    "model_state_or_clarify": 1
+  },
+  "failed_turns": [
+    {
+      "id": "C01",
+      "category": "doc",
+      "turn": 1,
+      "question": "外卖订单多久内可以申请退款？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0007",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "cite_all"
+      ],
+      "reason_class": "binding:attribute_conflict",
+      "errors": []
+    },
+    {
+      "id": "C02",
+      "category": "doc",
+      "turn": 1,
+      "question": "有顾客问牛肉poke 里有哪些过敏原，怎么答？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0008",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "cite_all"
+      ],
+      "reason_class": "binding:attribute_conflict",
+      "errors": []
+    },
+    {
+      "id": "C03",
+      "category": "doc",
+      "turn": 1,
+      "question": "Super Souper 现在周五晚上营业到几点？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0009",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_any",
+        "cite_all"
+      ],
+      "reason_class": "binding:attribute_conflict",
+      "errors": []
+    },
+    {
+      "id": "C04",
+      "category": "doc",
+      "turn": 1,
+      "question": "三文鱼那次断供，供应商最后赔了我们多少钱？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0010",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "cite_all"
+      ],
+      "reason_class": "binding:subject_conflict",
+      "errors": []
+    },
+    {
+      "id": "C05",
+      "category": "doc",
+      "turn": 1,
+      "question": "顾客要开发票，怎么跟他说？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0011",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_any",
+        "cite_all"
+      ],
+      "reason_class": "error:length",
+      "errors": [
+        "length: 模型异常结束：finish_reason=length"
+      ]
+    },
+    {
+      "id": "C06",
+      "category": "doc",
+      "turn": 1,
+      "question": "退款在净营业额里是怎么算的？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0012",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_any",
+        "cite_all"
+      ],
+      "reason_class": "binding:subject_conflict",
+      "errors": []
+    },
+    {
+      "id": "C07",
+      "category": "doc",
+      "turn": 1,
+      "question": "S04 为什么不卖吞拿鱼三明治了？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0013",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "fact_any",
+        "cite_all"
+      ],
+      "reason_class": "error:mixed_binding",
+      "errors": [
+        "mixed_binding: 混合回答未通过来源、指标与关系核验：查询日期或比较方向与问题不一致；当前区间必须是B"
+      ]
+    },
+    {
+      "id": "C08",
+      "category": "doc",
+      "turn": 1,
+      "question": "员工迟到多久算一次？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0014",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "cite_all"
+      ],
+      "reason_class": "binding:subject_conflict",
+      "errors": []
+    },
+    {
+      "id": "V01",
+      "category": "version",
+      "turn": 1,
+      "question": "今年 618 做活动的是哪个商品，活动价多少？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0015",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "fact_any",
+        "cite_all"
+      ],
+      "reason_class": "error:length",
+      "errors": [
+        "length: 模型异常结束：finish_reason=length"
+      ]
+    },
+    {
+      "id": "V02",
+      "category": "version",
+      "turn": 1,
+      "question": "会员现在单笔充值满 500 送多少？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0016",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "cite_all"
+      ],
+      "reason_class": "binding:subject_conflict",
+      "errors": []
+    },
+    {
+      "id": "V03",
+      "category": "version",
+      "turn": 1,
+      "question": "储值充值现在的赠送规则是什么？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0017",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "cite_all"
+      ],
+      "reason_class": "binding:subject_conflict",
+      "errors": []
+    },
+    {
+      "id": "V03",
+      "category": "version",
+      "turn": 2,
+      "question": "那 6 月的时候呢？",
+      "answer_type": "clarify",
+      "trace_id": "t-20260901-0018",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "cite_all"
+      ],
+      "reason_class": "model_state_or_clarify",
+      "errors": []
+    },
+    {
+      "id": "H04",
+      "category": "hybrid",
+      "turn": 1,
+      "question": "牛肉poke 现在卖多少钱一份？商品表里那个价能直接拿来用吗？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0022",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "fact_any",
+        "cite_all"
+      ],
+      "reason_class": "error:mixed_binding",
+      "errors": [
+        "mixed_binding: 混合回答未通过来源、指标与关系核验：建档价说明必须属于同一适用价格文档"
+      ]
+    },
+    {
+      "id": "T02",
+      "category": "multi_turn",
+      "turn": 1,
+      "question": "三文鱼poke 七月初为什么停售了？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0028",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_any",
+        "cite_any"
+      ],
+      "reason_class": "error:mixed_binding",
+      "errors": [
+        "mixed_binding: 混合回答未通过来源、指标与关系核验：查询日期或比较方向与问题不一致；当前区间必须是B"
+      ]
+    },
+    {
+      "id": "T02",
+      "category": "multi_turn",
+      "turn": 2,
+      "question": "那停售期间让顾客换成什么？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0029",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_any",
+        "cite_all"
+      ],
+      "reason_class": "binding:attribute_conflict",
+      "errors": []
+    },
+    {
+      "id": "T02",
+      "category": "multi_turn",
+      "turn": 3,
+      "question": "供应商后来赔了多少？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0030",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "cite_all"
+      ],
+      "reason_class": "error:length",
+      "errors": [
+        "length: 模型异常结束：finish_reason=length"
+      ]
+    },
+    {
+      "id": "T03",
+      "category": "multi_turn",
+      "turn": 2,
+      "question": "那 6 月 18 号那天呢？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0032",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "cite_any"
+      ],
+      "reason_class": "error:mixed_binding",
+      "errors": [
+        "mixed_binding: 混合回答未通过来源、指标与关系核验：文档门店范围不能绑定这次查询"
+      ]
+    },
+    {
+      "id": "S01",
+      "category": "safety",
+      "turn": 1,
+      "question": "7 月顾客投诉最集中的是什么问题？有多少条？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0037",
+      "failed_checks": [
+        "answer_type_in",
+        "fact_all",
+        "fact_any",
+        "cite_all"
+      ],
+      "reason_class": "binding:subject_conflict",
+      "errors": []
+    }
+  ]
+}

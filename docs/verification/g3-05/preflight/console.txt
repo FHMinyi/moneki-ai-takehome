@@ -1,0 +1,70 @@
+==============================================================================
+预检假模型已启动：http://127.0.0.1:64205/ds-gw
+它只提供 POST http://127.0.0.1:64205/ds-gw/chat/completions，其余任何路径都会返回 404 并被记下来。
+
+请用下面三个环境变量重启你的服务（模型名是故意取的怪名字，写死模型名会被查出来）：
+
+  export LLM_BASE_URL=http://127.0.0.1:64205/ds-gw
+  export LLM_API_KEY=preflight-key-3b9c1f
+  export LLM_MODEL=preflight-model-7f3a
+
+或者直接在启动命令前加上：
+  LLM_BASE_URL=http://127.0.0.1:64205/ds-gw LLM_API_KEY=preflight-key-3b9c1f LLM_MODEL=preflight-model-7f3a <你的启动命令>
+==============================================================================
+
+开始检查 http://127.0.0.1:8130 ……
+  [normal] 你们的退款规则是怎么规定的？ → HTTP 200，0.03 秒
+  [normal] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.03 秒
+  [thinking_starved] 你们的退款规则是怎么规定的？ → HTTP 200，0.02 秒
+  [thinking_starved] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.03 秒
+  [empty_content] 你们的退款规则是怎么规定的？ → HTTP 200，0.52 秒
+  [empty_content] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.54 秒
+  [json_empty] 你们的退款规则是怎么规定的？ → HTTP 200，0.04 秒
+  [json_empty] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.04 秒
+  [bad_tool_args] 你们的退款规则是怎么规定的？ → HTTP 200，0.01 秒
+  [bad_tool_args] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.02 秒
+  [content_filter] 你们的退款规则是怎么规定的？ → HTTP 200，0.01 秒
+  [content_filter] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.02 秒
+  [insufficient_resource] 你们的退款规则是怎么规定的？ → HTTP 200，0.52 秒
+  [insufficient_resource] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.55 秒
+  [aborted] 你们的退款规则是怎么规定的？ → HTTP 200，0.02 秒
+  [aborted] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.02 秒
+  [http_401] 你们的退款规则是怎么规定的？ → HTTP 200，0.01 秒
+  [http_401] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.02 秒
+  [http_402] 你们的退款规则是怎么规定的？ → HTTP 200，0.01 秒
+  [http_402] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.02 秒
+  [http_422] 你们的退款规则是怎么规定的？ → HTTP 200，0.01 秒
+  [http_422] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.01 秒
+  [http_429] 你们的退款规则是怎么规定的？ → HTTP 200，0.53 秒
+  [http_429] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.54 秒
+  [http_500] 你们的退款规则是怎么规定的？ → HTTP 200，0.53 秒
+  [http_500] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.54 秒
+  [http_503] 你们的退款规则是怎么规定的？ → HTTP 200，0.54 秒
+  [http_503] 最近一段时间的整体经营情况怎么样？ → HTTP 200，0.54 秒
+  [slow] 你们的退款规则是怎么规定的？ → HTTP 200，18.09 秒
+  [slow] 最近一段时间的整体经营情况怎么样？ → HTTP 200，18.10 秒
+  [hang] 你们的退款规则是怎么规定的？ → HTTP 200，120.02 秒
+  [hang] 最近一段时间的整体经营情况怎么样？ → HTTP 200，120.03 秒
+
+编号  检查项                                                            结果    说明
+------------------------------------------------------------------------------------
+P1    服务确实把请求发到了注入的 LLM_BASE_URL（含路径前缀）             通过    共观察到 60 次 POST /ds-gw/chat/completions。
+P2    请求里的 model 等于注入的 LLM_MODEL                               通过    全部请求都用了 preflight-model-7f3a。
+P3    注入的 Key 以 Authorization: Bearer 发送                          通过    全部请求都带了正确的 Bearer Key。
+P4    只用了 DeepSeek 文档列出的顶层参数                                通过    只出现了 DeepSeek 文档列出的顶层参数。
+P5    max_tokens 不设，或不小于 2048                                    通过    max_tokens 都不小于 2048。
+P6    没有访问 {prefix}/chat/completions 之外的任何路径                 通过    只访问了 POST /ds-gw/chat/completions，没有碰任何别的路径。
+P7    工具定义规范，且每一个工具调用都以 role=tool + tool_call_id 回传  通过    工具定义规范，44 个工具调用的结果都正确回传了。
+P8    每个场景下 /api/chat 都返回 HTTP 200 与字段完整的合法 JSON        通过    32 次问答全部返回 200 和字段完整的 JSON。
+P9    模型不可用时给出结构化 refusal，answer 从不是空串                 通过    模型不可用的场景下都给了结构化 refusal 或有据可查的回答，answer 从不是空串。
+P10   思考内容没有漏进 answer / citations / data_evidence               通过    32 次回答里，思考标记都没有出现在任何对外字段里。
+P11   /api/chat 在时限内返回（含长时间无响应的场景）                    通过    最慢的一次是 120.03 秒，都在 180 秒以内。
+P12   注入环境变量后 /api/health 报告 llm_mode = live                   通过    llm_mode = live。
+P13   多轮工具调用之间 reasoning_content 原样回传（没有触发 400）       通过    18 次多轮请求都原样回传了 reasoning_content。
+P14   保持连接的空行与 SSE 注释没有把服务弄坏                           未检查  normal 场景本身就没有拿到回答，无法判断保持连接是不是额外的问题，先修前面的检查。
+
+预检通过：在 OpenAI 兼容这条路线上，我们能原样接上你的服务。
+未检查：P14（没有素材，见报告里的逐项说明）。
+报告已写入 /Users/minyi/.codex/worktrees/g3-session-context/moneki-ai-takehome/docs/verification/g3-05/preflight/preflight_report.md 与 /Users/minyi/.codex/worktrees/g3-session-context/moneki-ai-takehome/docs/verification/g3-05/preflight/preflight_report.json。
+请把报告贴进 LLM_SETUP.md 第 7 节（自测结果）。
+PREFLIGHT_EXIT 0

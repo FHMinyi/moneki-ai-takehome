@@ -1,0 +1,8 @@
+ProductName:		macOS
+ProductVersion:		26.7
+BuildVersion:		25G229
+arm64
+Python 3.12.14
+v24.19.0
+12.0.2
+4591fab9a80ef63c440b9a117dbbc4fcbf03c430
