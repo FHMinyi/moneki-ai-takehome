@@ -1,0 +1,1232 @@
+[
+  {
+    "request": {
+      "session_id": "V03",
+      "question": "储值充值现在的赠送规则是什么？"
+    },
+    "response": {
+      "answer": "KB-011《会员储值政策 v2》：1. 单笔充值满 500 元，赠送 60 元。",
+      "answer_type": "doc",
+      "citations": [
+        {
+          "doc_id": "KB-011",
+          "quote": "1. 单笔充值满 500 元，赠送 60 元。"
+        }
+      ],
+      "data_evidence": [],
+      "trace_id": "t-20260901-0009"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0009",
+      "session_id": "V03",
+      "question": "储值充值现在的赠送规则是什么？",
+      "started_at": "2026-09-27T16:14:15.154",
+      "total_ms": 16.2,
+      "steps": [
+        {
+          "step": "request",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "session_id": "V03",
+            "question": "储值充值现在的赠送规则是什么？",
+            "context": null
+          }
+        },
+        {
+          "step": "context_validation",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "valid": true,
+            "reason": null,
+            "reference": null
+          }
+        },
+        {
+          "step": "session_context",
+          "at_ms": 4.1,
+          "took_ms": null,
+          "detail": {
+            "history_size": 0,
+            "source_questions": [],
+            "source_conditions": [],
+            "raw_question": "储值充值现在的赠送规则是什么？",
+            "standalone_question": "储值充值现在的赠送规则是什么？",
+            "inherited": false,
+            "effective_conditions": {
+              "question": "储值充值现在的赠送规则是什么？",
+              "standalone_question": "储值充值现在的赠送规则是什么？",
+              "search_query": "储值充值的赠送规则是什么？",
+              "intent": "doc",
+              "kind": "doc",
+              "window": [
+                "2026-05-01",
+                "2026-08-31"
+              ],
+              "compare_window": null,
+              "as_of": "2026-09-01",
+              "year": 2026,
+              "store_id": null,
+              "product_id": null,
+              "metric": "net_revenue",
+              "needs_data": false,
+              "needs_docs": true,
+              "refusal": null,
+              "notes": [
+                "识别：指标=未指定 门店=全部 商品=全部 时间=未指定"
+              ]
+            }
+          }
+        },
+        {
+          "step": "plan",
+          "at_ms": 4.1,
+          "took_ms": 4.1,
+          "detail": {
+            "question": "储值充值现在的赠送规则是什么？",
+            "standalone_question": "储值充值现在的赠送规则是什么？",
+            "search_query": "储值充值的赠送规则是什么？",
+            "intent": "doc",
+            "kind": "doc",
+            "window": [
+              "2026-05-01",
+              "2026-08-31"
+            ],
+            "compare_window": null,
+            "as_of": "2026-09-01",
+            "year": 2026,
+            "store_id": null,
+            "product_id": null,
+            "metric": "net_revenue",
+            "needs_data": false,
+            "needs_docs": true,
+            "refusal": null,
+            "notes": [
+              "识别：指标=未指定 门店=全部 商品=全部 时间=未指定"
+            ]
+          }
+        },
+        {
+          "step": "search",
+          "at_ms": 8.4,
+          "took_ms": 4.3,
+          "detail": {
+            "query": "储值充值的赠送规则是什么?",
+            "terms": [
+              "储值",
+              "值充",
+              "充值",
+              "值的",
+              "的赠",
+              "赠送",
+              "送规",
+              "规则",
+              "则是"
+            ],
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "candidates": [
+              {
+                "chunk_id": "KB-011#3",
+                "doc_id": "KB-011",
+                "score": 22.5022,
+                "lexical_score": 16.6683,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值",
+                  "充值",
+                  "赠送"
+                ]
+              },
+              {
+                "chunk_id": "KB-011#1",
+                "doc_id": "KB-011",
+                "score": 20.4591,
+                "lexical_score": 14.6251,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "值的",
+                  "储值",
+                  "充值"
+                ]
+              },
+              {
+                "chunk_id": "KB-011#7",
+                "doc_id": "KB-011",
+                "score": 17.9619,
+                "lexical_score": 12.128,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值",
+                  "充值",
+                  "赠送"
+                ]
+              },
+              {
+                "chunk_id": "KB-011#6",
+                "doc_id": "KB-011",
+                "score": 17.7793,
+                "lexical_score": 11.9454,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值",
+                  "充值",
+                  "赠送"
+                ]
+              },
+              {
+                "chunk_id": "KB-011#5",
+                "doc_id": "KB-011",
+                "score": 17.398,
+                "lexical_score": 11.5641,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值",
+                  "充值",
+                  "赠送"
+                ]
+              },
+              {
+                "chunk_id": "KB-011#2",
+                "doc_id": "KB-011",
+                "score": 10.3343,
+                "lexical_score": 4.5004,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-011#4",
+                "doc_id": "KB-011",
+                "score": 9.1048,
+                "lexical_score": 3.2709,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-025#4",
+                "doc_id": "KB-025",
+                "score": 7.7239,
+                "lexical_score": 5.7214,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-014#3",
+                "doc_id": "KB-014",
+                "score": 6.3508,
+                "lexical_score": 4.7043,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值",
+                  "赠送"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#9",
+                "doc_id": "KB-001",
+                "score": 5.9945,
+                "lexical_score": 4.4403,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "规则"
+                ]
+              },
+              {
+                "chunk_id": "KB-013#5",
+                "doc_id": "KB-013",
+                "score": 4.9425,
+                "lexical_score": 3.6611,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-029#10",
+                "doc_id": "KB-029",
+                "score": 4.9334,
+                "lexical_score": 3.6544,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "则是"
+                ]
+              },
+              {
+                "chunk_id": "KB-050#4",
+                "doc_id": "KB-050",
+                "score": 4.3264,
+                "lexical_score": 3.2048,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-050#3",
+                "doc_id": "KB-050",
+                "score": 4.1644,
+                "lexical_score": 3.0428,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-061#1",
+                "doc_id": "KB-061",
+                "score": 3.8208,
+                "lexical_score": 2.8302,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "规则"
+                ]
+              },
+              {
+                "chunk_id": "KB-027#4",
+                "doc_id": "KB-027",
+                "score": 3.7036,
+                "lexical_score": 2.7434,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-061#3",
+                "doc_id": "KB-061",
+                "score": 3.5981,
+                "lexical_score": 2.6075,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-060#9",
+                "doc_id": "KB-060",
+                "score": 3.5931,
+                "lexical_score": 2.6616,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-060#8",
+                "doc_id": "KB-060",
+                "score": 3.4626,
+                "lexical_score": 2.531,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-023#3",
+                "doc_id": "KB-023",
+                "score": 3.3379,
+                "lexical_score": 2.4725,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-029#3",
+                "doc_id": "KB-029",
+                "score": 3.3115,
+                "lexical_score": 2.0325,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-061#2",
+                "doc_id": "KB-061",
+                "score": 3.2204,
+                "lexical_score": 2.2298,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "规则"
+                ]
+              },
+              {
+                "chunk_id": "KB-027#3",
+                "doc_id": "KB-027",
+                "score": 2.4221,
+                "lexical_score": 1.4619,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              }
+            ],
+            "expansions": [],
+            "coverage": 0.26,
+            "hits": [
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#3",
+                "score": 22.5022,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-025",
+                "chunk_id": "KB-025#4",
+                "score": 7.7239,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-014",
+                "chunk_id": "KB-014#3",
+                "score": 6.3508,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#9",
+                "score": 5.9945,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#5",
+                "score": 4.9425,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": [
+              {
+                "doc_id": "KB-002",
+                "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+              },
+              {
+                "doc_id": "KB-010",
+                "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+              },
+              {
+                "doc_id": "KB-012",
+                "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+              }
+            ]
+          }
+        },
+        {
+          "step": "evidence",
+          "at_ms": 16.1,
+          "took_ms": null,
+          "detail": {
+            "required_claim": null,
+            "candidates": [
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#3",
+                "score": 0.390884572945974,
+                "text": "1. 单笔充值满 500 元，赠送 60 元。"
+              },
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#3",
+                "score": 0.38901876480856745,
+                "text": "2. 单笔充值满 1000 元，赠送 150 元。"
+              },
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#3",
+                "score": 0.36696462137451985,
+                "text": "3. 赠送档位不叠加，按单笔充值金额就高不就低；500 元以下的充值不赠送。"
+              },
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#3",
+                "score": 0.207738727693132,
+                "text": "4. 赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票。"
+              },
+              {
+                "doc_id": "KB-014",
+                "chunk_id": "KB-014#3",
+                "score": 0.14735323946207518,
+                "text": "3. 员工折扣同样不与会员券、储值赠送、平台补贴叠加。"
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#9",
+                "score": 0.08904544358312652,
+                "text": "- **退款行**：通过上述剔除规则后 `amount < 0` 的行。"
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#9",
+                "score": 0.08904544358312652,
+                "text": "- **销售行**：通过上述剔除规则后 `amount > 0` 的行。"
+              },
+              {
+                "doc_id": "KB-025",
+                "chunk_id": "KB-025#4",
+                "score": 0.0646599774562105,
+                "text": "3. 会员券、储值余额照常使用，按调整后的售价结算，按实收入账。"
+              },
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#5",
+                "score": 0.04955854730488604,
+                "text": "原路返回：微信、支付宝、银行卡退回原支付渠道，现金当场退现金，会员储值退回储值余额。"
+              }
+            ],
+            "rejected": [],
+            "selected": [
+              {
+                "evidence_id": "doc-6531d98820f0c3c081d7",
+                "scope": {
+                  "as_of": "2026-09-01",
+                  "store_id": null,
+                  "year": 2026,
+                  "historical": false,
+                  "window": null
+                },
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#3",
+                "score": 0.390884572945974,
+                "source_start": 146,
+                "source_end": 290,
+                "quote": "1. 单笔充值满 500 元，赠送 60 元。"
+              }
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 16.2,
+          "took_ms": 12.1,
+          "detail": {
+            "answer_type": "doc"
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 16.2,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "doc",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  },
+  {
+    "request": {
+      "session_id": "V03",
+      "question": "那 6 月的时候呢？"
+    },
+    "response": {
+      "answer": "KB-010《会员储值政策 v1》：1. 单笔充值满 500 元，赠送 50 元。",
+      "answer_type": "doc",
+      "citations": [
+        {
+          "doc_id": "KB-010",
+          "quote": "1. 单笔充值满 500 元，赠送 50 元。"
+        }
+      ],
+      "data_evidence": [],
+      "trace_id": "t-20260901-0010"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0010",
+      "session_id": "V03",
+      "question": "那 6 月的时候呢？",
+      "started_at": "2026-09-27T16:14:15.170",
+      "total_ms": 15.2,
+      "steps": [
+        {
+          "step": "request",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "session_id": "V03",
+            "question": "那 6 月的时候呢？",
+            "context": null
+          }
+        },
+        {
+          "step": "context_validation",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "valid": true,
+            "reason": null,
+            "reference": null
+          }
+        },
+        {
+          "step": "session_context",
+          "at_ms": 4.7,
+          "took_ms": null,
+          "detail": {
+            "history_size": 1,
+            "source_questions": [
+              "储值充值现在的赠送规则是什么？"
+            ],
+            "source_conditions": [
+              {
+                "metric_explicit": false,
+                "time_explicit": false,
+                "time_scoped": true,
+                "historical": false,
+                "as_of_dated": false,
+                "asks_why": false,
+                "about_names": false,
+                "two_part": false,
+                "underspecified": false,
+                "clean_question": "储值充值的赠送规则是什么？",
+                "recent_windows": [
+                  [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ]
+                ],
+                "store_id": null,
+                "product_id": null,
+                "metric": "net_revenue",
+                "window": [
+                  "2026-05-01",
+                  "2026-08-31"
+                ],
+                "kind": "doc"
+              }
+            ],
+            "raw_question": "那 6 月的时候呢？",
+            "standalone_question": "6 月 储值充值的赠送规则是什么？",
+            "inherited": true,
+            "effective_conditions": {
+              "question": "那 6 月的时候呢？",
+              "standalone_question": "6 月 储值充值的赠送规则是什么？",
+              "search_query": "6 月 储值充值的赠送规则是什么？",
+              "intent": "doc",
+              "kind": "doc",
+              "window": [
+                "2026-06-01",
+                "2026-06-30"
+              ],
+              "compare_window": null,
+              "as_of": "2026-06-30",
+              "year": 2026,
+              "store_id": null,
+              "product_id": null,
+              "metric": "net_revenue",
+              "needs_data": false,
+              "needs_docs": true,
+              "refusal": null,
+              "notes": [
+                "这是一句追问，已按上一轮补全为：6 月 储值充值的赠送规则是什么？",
+                "识别：指标=未指定 门店=全部 商品=全部 时间=['6月']"
+              ]
+            }
+          }
+        },
+        {
+          "step": "plan",
+          "at_ms": 4.7,
+          "took_ms": 4.7,
+          "detail": {
+            "question": "那 6 月的时候呢？",
+            "standalone_question": "6 月 储值充值的赠送规则是什么？",
+            "search_query": "6 月 储值充值的赠送规则是什么？",
+            "intent": "doc",
+            "kind": "doc",
+            "window": [
+              "2026-06-01",
+              "2026-06-30"
+            ],
+            "compare_window": null,
+            "as_of": "2026-06-30",
+            "year": 2026,
+            "store_id": null,
+            "product_id": null,
+            "metric": "net_revenue",
+            "needs_data": false,
+            "needs_docs": true,
+            "refusal": null,
+            "notes": [
+              "这是一句追问，已按上一轮补全为：6 月 储值充值的赠送规则是什么？",
+              "识别：指标=未指定 门店=全部 商品=全部 时间=['6月']"
+            ]
+          }
+        },
+        {
+          "step": "search",
+          "at_ms": 9.6,
+          "took_ms": 4.9,
+          "detail": {
+            "query": "6 月 储值充值的赠送规则是什么?",
+            "terms": [
+              "6",
+              "月",
+              "储值",
+              "值充",
+              "充值",
+              "值的",
+              "的赠",
+              "赠送",
+              "送规",
+              "规则",
+              "则是"
+            ],
+            "scope": {
+              "as_of": "2026-06-30",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "candidates": [
+              {
+                "chunk_id": "KB-010#3",
+                "doc_id": "KB-010",
+                "score": 20.5464,
+                "lexical_score": 15.2195,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值",
+                  "充值",
+                  "赠送"
+                ]
+              },
+              {
+                "chunk_id": "KB-010#6",
+                "doc_id": "KB-010",
+                "score": 16.4829,
+                "lexical_score": 11.156,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值",
+                  "充值",
+                  "赠送"
+                ]
+              },
+              {
+                "chunk_id": "KB-010#2",
+                "doc_id": "KB-010",
+                "score": 9.8272,
+                "lexical_score": 4.5004,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-010#1",
+                "doc_id": "KB-010",
+                "score": 9.3776,
+                "lexical_score": 4.0508,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-010#4",
+                "doc_id": "KB-010",
+                "score": 9.3573,
+                "lexical_score": 4.0304,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-010#5",
+                "doc_id": "KB-010",
+                "score": 9.3543,
+                "lexical_score": 4.0275,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-014#3",
+                "doc_id": "KB-014",
+                "score": 6.3508,
+                "lexical_score": 4.7043,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值",
+                  "赠送"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#9",
+                "doc_id": "KB-001",
+                "score": 5.9945,
+                "lexical_score": 4.4403,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "规则"
+                ]
+              },
+              {
+                "chunk_id": "KB-013#5",
+                "doc_id": "KB-013",
+                "score": 4.9425,
+                "lexical_score": 3.6611,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-050#4",
+                "doc_id": "KB-050",
+                "score": 4.3264,
+                "lexical_score": 3.2048,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-050#3",
+                "doc_id": "KB-050",
+                "score": 4.1644,
+                "lexical_score": 3.0428,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-061#1",
+                "doc_id": "KB-061",
+                "score": 3.8208,
+                "lexical_score": 2.8302,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "规则"
+                ]
+              },
+              {
+                "chunk_id": "KB-061#3",
+                "doc_id": "KB-061",
+                "score": 3.5981,
+                "lexical_score": 2.6075,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#3",
+                "doc_id": "KB-023",
+                "score": 3.3379,
+                "lexical_score": 2.4725,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "储值"
+                ]
+              },
+              {
+                "chunk_id": "KB-061#2",
+                "doc_id": "KB-061",
+                "score": 3.2204,
+                "lexical_score": 2.2298,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "规则"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#4",
+                "doc_id": "KB-001",
+                "score": 2.7203,
+                "lexical_score": 1.1662,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#13",
+                "doc_id": "KB-001",
+                "score": 2.5946,
+                "lexical_score": 1.0404,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#14",
+                "doc_id": "KB-001",
+                "score": 2.4737,
+                "lexical_score": 0.9196,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#5",
+                "doc_id": "KB-023",
+                "score": 2.4714,
+                "lexical_score": 1.606,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#2",
+                "doc_id": "KB-023",
+                "score": 2.2704,
+                "lexical_score": 1.405,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#6",
+                "doc_id": "KB-001",
+                "score": 2.2431,
+                "lexical_score": 0.689,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#16",
+                "doc_id": "KB-001",
+                "score": 2.2001,
+                "lexical_score": 0.646,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#19",
+                "doc_id": "KB-001",
+                "score": 2.185,
+                "lexical_score": 0.6309,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#6",
+                "doc_id": "KB-023",
+                "score": 2.1619,
+                "lexical_score": 1.2965,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-020#2",
+                "doc_id": "KB-020",
+                "score": 2.1275,
+                "lexical_score": 1.5759,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#15",
+                "doc_id": "KB-001",
+                "score": 2.0875,
+                "lexical_score": 0.5334,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#7",
+                "doc_id": "KB-001",
+                "score": 2.0854,
+                "lexical_score": 0.5313,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6"
+                ]
+              },
+              {
+                "chunk_id": "KB-016#4",
+                "doc_id": "KB-016",
+                "score": 1.1397,
+                "lexical_score": 0.8442,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-024#5",
+                "doc_id": "KB-024",
+                "score": 0.7346,
+                "lexical_score": 2.1766,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-024#6",
+                "doc_id": "KB-024",
+                "score": 0.6537,
+                "lexical_score": 1.8529,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-024#2",
+                "doc_id": "KB-024",
+                "score": 0.5688,
+                "lexical_score": 1.5135,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "月"
+                ]
+              }
+            ],
+            "expansions": [],
+            "coverage": 0.202,
+            "hits": [
+              {
+                "doc_id": "KB-010",
+                "chunk_id": "KB-010#3",
+                "score": 20.5464,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-014",
+                "chunk_id": "KB-014#3",
+                "score": 6.3508,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#9",
+                "score": 5.9945,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#5",
+                "score": 4.9425,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-050",
+                "chunk_id": "KB-050#4",
+                "score": 4.3264,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": [
+              {
+                "doc_id": "KB-002",
+                "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+              },
+              {
+                "doc_id": "KB-062",
+                "reason": "该版本自 2026-08-15 起才生效，晚于问题所指的 2026-06-30"
+              },
+              {
+                "doc_id": "KB-021",
+                "reason": "该版本自 2026-07-06 起才生效，晚于问题所指的 2026-06-30"
+              },
+              {
+                "doc_id": "KB-022",
+                "reason": "该版本自 2026-07-04 起才生效，晚于问题所指的 2026-06-30"
+              },
+              {
+                "doc_id": "KB-025",
+                "reason": "该版本自 2026-07-01 起才生效，晚于问题所指的 2026-06-30"
+              },
+              {
+                "doc_id": "KB-026",
+                "reason": "该版本自 2026-07-24 起才生效，晚于问题所指的 2026-06-30"
+              },
+              {
+                "doc_id": "KB-027",
+                "reason": "该版本自 2026-08-03 起才生效，晚于问题所指的 2026-06-30"
+              },
+              {
+                "doc_id": "KB-028",
+                "reason": "该版本自 2026-08-01 起才生效，晚于问题所指的 2026-06-30"
+              },
+              {
+                "doc_id": "KB-029",
+                "reason": "该版本自 2026-08-05 起才生效，晚于问题所指的 2026-06-30"
+              },
+              {
+                "doc_id": "KB-011",
+                "reason": "该版本自 2026-07-01 起才生效，晚于问题所指的 2026-06-30"
+              },
+              {
+                "doc_id": "KB-012",
+                "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+              },
+              {
+                "doc_id": "KB-040",
+                "reason": "该版本自 2026-08-01 起才生效，晚于问题所指的 2026-06-30"
+              },
+              {
+                "doc_id": "KB-060",
+                "reason": "该版本自 2026-08-03 起才生效，晚于问题所指的 2026-06-30"
+              },
+              {
+                "doc_id": "KB-052",
+                "reason": "该版本自 2026-08-10 起才生效，晚于问题所指的 2026-06-30"
+              },
+              {
+                "doc_id": "KB-053",
+                "reason": "该版本自 2026-07-27 起才生效，晚于问题所指的 2026-06-30"
+              }
+            ]
+          }
+        },
+        {
+          "step": "evidence",
+          "at_ms": 15.1,
+          "took_ms": null,
+          "detail": {
+            "required_claim": null,
+            "candidates": [
+              {
+                "doc_id": "KB-010",
+                "chunk_id": "KB-010#3",
+                "score": 0.32166039439486366,
+                "text": "1. 单笔充值满 500 元，赠送 50 元。"
+              },
+              {
+                "doc_id": "KB-010",
+                "chunk_id": "KB-010#3",
+                "score": 0.32166039439486366,
+                "text": "2. 单笔 500 元以下的充值不赠送。"
+              },
+              {
+                "doc_id": "KB-010",
+                "chunk_id": "KB-010#3",
+                "score": 0.23654231767501896,
+                "text": "4. 充值在小程序或门店收银台均可办理，门店办理时由店员核对会员手机号后四位。"
+              },
+              {
+                "doc_id": "KB-010",
+                "chunk_id": "KB-010#3",
+                "score": 0.1843921985726323,
+                "text": "3. 赠送金额只能用于消费，不可提现、不可开票。"
+              },
+              {
+                "doc_id": "KB-010",
+                "chunk_id": "KB-010#3",
+                "score": 0.17689680560162557,
+                "text": "1. 单笔充值满 500 元，赠送 50 元。赠送金额即时到账，与本金放在同一个余额里，不单独计息、不单独统计。"
+              },
+              {
+                "doc_id": "KB-014",
+                "chunk_id": "KB-014#3",
+                "score": 0.12689778788528186,
+                "text": "3. 员工折扣同样不与会员券、储值赠送、平台补贴叠加。"
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#9",
+                "score": 0.07668423071805394,
+                "text": "- **退款行**：通过上述剔除规则后 `amount < 0` 的行。"
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#9",
+                "score": 0.07668423071805394,
+                "text": "- **销售行**：通过上述剔除规则后 `amount > 0` 的行。"
+              },
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#5",
+                "score": 0.042678871850772744,
+                "text": "原路返回：微信、支付宝、银行卡退回原支付渠道，现金当场退现金，会员储值退回储值余额。"
+              }
+            ],
+            "rejected": [],
+            "selected": [
+              {
+                "evidence_id": "doc-060f3b37f18351421ead",
+                "scope": {
+                  "as_of": "2026-06-30",
+                  "store_id": null,
+                  "year": 2026,
+                  "historical": false,
+                  "window": null
+                },
+                "doc_id": "KB-010",
+                "chunk_id": "KB-010#3",
+                "score": 0.32166039439486366,
+                "source_start": 146,
+                "source_end": 302,
+                "quote": "1. 单笔充值满 500 元，赠送 50 元。"
+              }
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 15.2,
+          "took_ms": 10.5,
+          "detail": {
+            "answer_type": "doc"
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 15.2,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "doc",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  }
+]

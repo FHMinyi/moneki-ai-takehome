@@ -1,0 +1,13 @@
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' test tests/g3-session-context.spec.ts --workers=1
+
+Running 4 tests using 1 worker
+
+(node:79427) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/g3-session-context.spec.ts:10:3 › 多轮取数和新建对话 1280 (1.8s)
+  ✓  2 tests/g3-session-context.spec.ts:10:3 › 多轮取数和新建对话 1440 (1.7s)
+  ✓  3 tests/g3-session-context.spec.ts:10:3 › 多轮取数和新建对话 390 (2.0s)
+  ✓  4 tests/g3-session-context.spec.ts:55:1 › 旧请求迟到后不进入新会话 (616ms)
+
+  4 passed (6.4s)
