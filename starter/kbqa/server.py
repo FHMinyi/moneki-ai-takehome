@@ -42,6 +42,7 @@ def _as_text(value: Any) -> str:
 class ChatRequest(BaseModel):
     session_id: Optional[Any] = None
     question: Optional[Any] = None
+    context: Optional[Any] = None
 
 
 class RetrieveRequest(BaseModel):
@@ -116,7 +117,7 @@ def retrieve(request: RetrieveRequest) -> dict:
 @app.post("/api/chat")
 def chat(request: ChatRequest) -> dict:
     session_id = _as_text(request.session_id) or None
-    return service().chat(session_id, _as_text(request.question))
+    return service().chat(session_id, _as_text(request.question), request.context)
 
 
 @app.get("/api/trace/{trace_id}")

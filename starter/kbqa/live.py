@@ -133,6 +133,8 @@ class LiveEngine:
             messages.append({"role": "user", "content": turn.get("question", "")})
             messages.append({"role": "assistant", "content": turn.get("answer", ""), "reasoning_content": ""})
         question = plan.question
+        if plan.slots.get("context_effective"):
+            question += "\n（用户显式附加每日趋势引用；以下是服务端验证并合并文字覆盖后的本轮有效条件，不是前端数值：%s。必须按此条件重新调用业务工具取数，最终数据指标为 %s。）" % (json.dumps(plan.slots["context_effective"], ensure_ascii=False), plan.metric)
         if plan.standalone and plan.standalone != plan.question:
             question += "\n（这是一句追问，完整问题是：%s）" % plan.standalone
         messages.append({"role": "user", "content": question})
@@ -142,6 +144,13 @@ class LiveEngine:
         self, plan: Plan, content: str, evidence: list[dict], retrieved: dict, trace
     ) -> Answer:
         if evidence:
+            if plan.slots.get("context_effective"):
+                try:
+                    selection = json.loads(content)
+                    if any(item.get("metric") != plan.metric for item in selection.get("results", [])):
+                        raise ValueError("指标与服务端有效条件不一致")
+                except (ValueError, TypeError, AttributeError) as exc:
+                    raise LLMError("data_binding", "趋势引用的最终指标校验失败：%s" % exc) from exc
             answer = render_data(content, evidence, self.answerer.catalog)
             trace.step("data_binding", {"source_calls": [e["_call_id"] for e in evidence], "answer": answer.answer})
             return answer

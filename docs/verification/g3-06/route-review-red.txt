@@ -1,0 +1,74 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_clear_data_request_reaches_live_tools_despite_overbroad_preamble[None] __
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-219/test_clear_data_request_reache0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x108e052e0>
+context = None
+
+    @pytest.mark.parametrize('context', [None, CONTEXT])
+    def test_clear_data_request_reaches_live_tools_despite_overbroad_preamble(tmp_path, monkeypatch, context):
+        settings = replace(load_settings(), var_dir=tmp_path / 'var', llm_base_url='http://controlled.invalid',
+                           llm_api_key='synthetic-dummy', llm_model='controlled')
+        service = Service(settings)
+        assert service.planner.plan(QUESTION).kind == 'out_of_scope'
+        params = {'start': '2026-06-01', 'end': '2026-06-30', 'store_id': 'S02', 'product_id': 'P06'}
+        call = {'id': 'route-call', 'type': 'function',
+                'function': {'name': 'query_metrics', 'arguments': json.dumps(params)}}
+        replies = iter([
+            LLMReply({'role': 'assistant', 'content': '', 'tool_calls': [call]}, 'tool_calls', '', [call], 0),
+            LLMReply({'role': 'assistant', 'content': json.dumps({'answer_type': 'data', 'results': [
+                {'call_id': 'route-call', 'metric': 'net_revenue'}]})}, 'stop', json.dumps({'answer_type': 'data',
+                'results': [{'call_id': 'route-call', 'metric': 'net_revenue'}]}), [], 0),
+        ])
+        model_calls = []
+        def controlled(self, messages, tools, budget, on_call):
+            model_calls.append(messages)
+            return next(replies)
+        monkeypatch.setattr(LLMClient, 'chat_with_retry', controlled)
+        result = service.chat('route-regression', QUESTION, context)
+>       assert result['answer_type'] == 'data'
+E       AssertionError: assert 'refusal' == 'data'
+E
+E         - data
+E         + refusal
+
+docs/verification/g3-06/test_route_regression.py:41: AssertionError
+_ test_clear_data_request_reaches_live_tools_despite_overbroad_preamble[context1] _
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-219/test_clear_data_request_reache1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109c8ad80>
+context = {'type': 'daily_trend', 'start': '2026-06-01', 'end': '2026-06-30', 'store_id': 'S02', ...}
+
+    @pytest.mark.parametrize('context', [None, CONTEXT])
+    def test_clear_data_request_reaches_live_tools_despite_overbroad_preamble(tmp_path, monkeypatch, context):
+        settings = replace(load_settings(), var_dir=tmp_path / 'var', llm_base_url='http://controlled.invalid',
+                           llm_api_key='synthetic-dummy', llm_model='controlled')
+        service = Service(settings)
+        assert service.planner.plan(QUESTION).kind == 'out_of_scope'
+        params = {'start': '2026-06-01', 'end': '2026-06-30', 'store_id': 'S02', 'product_id': 'P06'}
+        call = {'id': 'route-call', 'type': 'function',
+                'function': {'name': 'query_metrics', 'arguments': json.dumps(params)}}
+        replies = iter([
+            LLMReply({'role': 'assistant', 'content': '', 'tool_calls': [call]}, 'tool_calls', '', [call], 0),
+            LLMReply({'role': 'assistant', 'content': json.dumps({'answer_type': 'data', 'results': [
+                {'call_id': 'route-call', 'metric': 'net_revenue'}]})}, 'stop', json.dumps({'answer_type': 'data',
+                'results': [{'call_id': 'route-call', 'metric': 'net_revenue'}]}), [], 0),
+        ])
+        model_calls = []
+        def controlled(self, messages, tools, budget, on_call):
+            model_calls.append(messages)
+            return next(replies)
+        monkeypatch.setattr(LLMClient, 'chat_with_retry', controlled)
+        result = service.chat('route-regression', QUESTION, context)
+>       assert result['answer_type'] == 'data'
+E       AssertionError: assert 'refusal' == 'data'
+E
+E         - data
+E         + refusal
+
+docs/verification/g3-06/test_route_regression.py:41: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-06/test_route_regression.py::test_clear_data_request_reaches_live_tools_despite_overbroad_preamble[None]
+FAILED docs/verification/g3-06/test_route_regression.py::test_clear_data_request_reaches_live_tools_despite_overbroad_preamble[context1]
+2 failed in 0.34s

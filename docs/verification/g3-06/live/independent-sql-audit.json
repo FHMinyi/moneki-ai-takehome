@@ -1,0 +1,128 @@
+{
+  "database": "/tmp/moneki-g306-paid-var/clean.db",
+  "source": "read-only SQLite aggregate queries in audit_live.py",
+  "ledger_chats": 2,
+  "ledger_outbound_attempts": 4,
+  "conservative_committed_cny": 0.030809999999999997,
+  "billing_confirmed": false,
+  "audits": [
+    {
+      "chat": 1,
+      "commit": "64c32919eed7081bba99727fee736bc7306e038c",
+      "question": "这段时间净营业额是多少？",
+      "context": {
+        "type": "daily_trend",
+        "start": "2026-06-01",
+        "end": "2026-06-30",
+        "store_id": "S02",
+        "metric": "net_revenue"
+      },
+      "resolution": {
+        "effective": {
+          "start": "2026-06-01",
+          "end": "2026-06-30",
+          "store_id": "S02",
+          "metric": "net_revenue"
+        },
+        "source": {
+          "window": "reference",
+          "store_id": "reference",
+          "metric": "question"
+        },
+        "overrides": [
+          "metric"
+        ]
+      },
+      "tool_params": {
+        "start": "2026-06-01",
+        "end": "2026-06-30",
+        "store_id": "S02"
+      },
+      "independent_sql_expected": {
+        "start": "2026-06-01",
+        "end": "2026-06-30",
+        "store_id": "S02",
+        "product_id": null,
+        "net_revenue": 43655.0,
+        "refund_amount": 308.0,
+        "orders": 930,
+        "aov": 46.94,
+        "qty": 1467
+      },
+      "actual_tool_result": {
+        "start": "2026-06-01",
+        "end": "2026-06-30",
+        "store_id": "S02",
+        "product_id": null,
+        "net_revenue": 43655.0,
+        "refund_amount": 308.0,
+        "orders": 930,
+        "aov": 46.94,
+        "qty": 1467
+      },
+      "answer": "2026 年 6 月（Makai Poke S02）：净营业额 43655.00 元。",
+      "trace_id": "t-20260901-0001",
+      "model_attempts": 2
+    },
+    {
+      "chat": 2,
+      "commit": "64c32919eed7081bba99727fee736bc7306e038c",
+      "question": "7月 S01 的净营业额是多少？",
+      "context": {
+        "type": "daily_trend",
+        "start": "2026-06-01",
+        "end": "2026-06-30",
+        "store_id": "S02",
+        "metric": "net_revenue"
+      },
+      "resolution": {
+        "effective": {
+          "start": "2026-07-01",
+          "end": "2026-07-31",
+          "store_id": "S01",
+          "metric": "net_revenue"
+        },
+        "source": {
+          "window": "question",
+          "store_id": "question",
+          "metric": "question"
+        },
+        "overrides": [
+          "window",
+          "store_id",
+          "metric"
+        ]
+      },
+      "tool_params": {
+        "start": "2026-07-01",
+        "end": "2026-07-31",
+        "store_id": "S01"
+      },
+      "independent_sql_expected": {
+        "start": "2026-07-01",
+        "end": "2026-07-31",
+        "store_id": "S01",
+        "product_id": null,
+        "net_revenue": 30986.0,
+        "refund_amount": 66.0,
+        "orders": 904,
+        "aov": 34.28,
+        "qty": 1360
+      },
+      "actual_tool_result": {
+        "start": "2026-07-01",
+        "end": "2026-07-31",
+        "store_id": "S01",
+        "product_id": null,
+        "net_revenue": 30986.0,
+        "refund_amount": 66.0,
+        "orders": 904,
+        "aov": 34.28,
+        "qty": 1360
+      },
+      "answer": "2026 年 7 月（Super Souper S01）：净营业额 30986.00 元。",
+      "trace_id": "t-20260901-0002",
+      "model_attempts": 2
+    }
+  ]
+}
