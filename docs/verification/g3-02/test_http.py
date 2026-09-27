@@ -18,7 +18,7 @@ class Controlled(BaseHTTPRequestHandler):
         body=json.loads(self.rfile.read(int(self.headers['Content-Length'])))
         messages=body['messages'];case=type(self).case
         tools=[x for x in messages if x['role']=='tool']
-        if len(tools)<case.get('search_rounds',1):
+        if len(tools)<case.get('search_rounds',1) and not (case.get('honor_final') and body.get('tool_choice')=='none'):
             question=next(x['content'] for x in reversed(messages) if x['role']=='user')
             name=case.get('tool','search_kb');params=case.get('params',{'query':case.get('query',question),'top_k':5})
             msg={'role':'assistant','content':'','reasoning_content':'CONTROLLED_ONLY','tool_calls':[{'id':'controlled-search-1','type':'function','function':{'name':name,'arguments':json.dumps(params)}}]}
@@ -33,6 +33,7 @@ class Controlled(BaseHTTPRequestHandler):
                 entries=[e for e in result.get('evidence',[]) if e['doc_id']==case['doc'] and case['needle'] in e['quote']]
                 content=json.dumps({'answer_type':'doc','facts':[{'evidence_id':entries[0]['evidence_id']}]} if entries else {'answer_type':'refusal','answer':'本次没有相应的证据。'})
             msg={'role':'assistant','content':content,'reasoning_content':'CONTROLLED_ONLY'};finish='stop'
+        if body.get('tool_choice')=='none' and case.get('final_fault'):finish=case['final_fault']
         response=json.dumps({'choices':[{'finish_reason':finish,'message':msg}],'usage':{'prompt_tokens':1,'completion_tokens':1}}).encode()
         self.send_response(200);self.send_header('Content-Type','application/json');self.send_header('Content-Length',str(len(response)));self.end_headers();self.wfile.write(response)
 
@@ -183,3 +184,24 @@ def test_round_boundary_real_http(tmp_path,rounds):
         assert len(t['llm_calls'])==min(rounds+1,7)
         if rounds<=6:assert a['answer_type']=='doc' and '24' in a['answer']
         else:assert a['answer_type']=='refusal' and not a['citations'] and any('tool_loop' in e['message'] for e in t['errors'])
+
+@pytest.mark.parametrize('outcome',['supported','insufficient','violation','length'])
+def test_final_opportunity_disables_tools_in_actual_http(tmp_path,outcome):
+    case={'doc':'KB-013','needle':'24','search_rounds':7,'honor_final':outcome!='violation'}
+    if outcome=='insufficient':case['content']=json.dumps({'answer_type':'refusal','answer':'目前检索证据不足以确认所问要求。'})
+    if outcome=='length':case['final_fault']='length'
+    with runtime(tmp_path,case) as (r,serve,payload):
+        question='外卖退款是否要求顾客出示身份证？' if outcome=='insufficient' else QUESTIONS['C01']
+        with serve() as request:a,t=chat(request,question)
+        assert len(t['llm_calls'])==7
+        last=t['llm_calls'][-1]['request']
+        assert last['tool_choice']=='none' and last['tools']
+        assert last['messages'][-1]['role']=='system' and '不得再调用工具' in last['messages'][-1]['content']
+        assert all(c['request']['tool_choice']=='auto' for c in t['llm_calls'][:-1])
+        assert len([s for s in t['steps'] if s['step']=='tool'])==6
+        if outcome=='supported':assert a['answer_type']=='doc' and '24' in a['answer']
+        else:
+            assert a['answer_type']=='refusal' and not a['citations']
+            if outcome=='insufficient':assert a['answer']=='目前检索证据不足以确认所问要求。' and not t['errors']
+            elif outcome=='violation':assert any(s['step']=='finalization_tools_rejected' for s in t['steps'])
+            else:assert any('length' in e['message'] for e in t['errors'])

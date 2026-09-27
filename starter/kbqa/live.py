@@ -66,11 +66,22 @@ class LiveEngine:
             remaining = deadline - time.perf_counter()
             if remaining < 10:
                 raise LLMError("budget", "整体耗时接近 /api/chat 的时限，已停止调用模型")
+            final_turn = round_index == MAX_TOOL_ROUNDS
+            if final_turn:
+                messages.append({"role": "system", "content":
+                    "检索和查数阶段已结束，这次必须给最终答复，不得再调用工具。"
+                    "只能使用此前真实工具证据，按既定data/doc JSON结构选择已有引用；"
+                    "若证据不足以支持问题的主体与属性，返回refusal JSON，诚实说明目前依据不足。"
+                    "不能因达到上限就断言资料不存在，不能编造事实或数字。"})
+                trace.step("finalization", {"tool_choice": "none", "executed_tool_rounds": round_index})
             reply = self.client.chat_with_retry(
-                messages, TOOLS, budget=remaining, on_call=trace.llm
+                messages, TOOLS, budget=remaining, on_call=trace.llm,
+                **({"tool_choice": "none"} if final_turn else {})
             )
             if not reply.tool_calls:
                 return self._finalise(plan, reply.content, evidence, retrieved, trace)
+            if final_turn:
+                trace.step("finalization_tools_rejected", {"calls": reply.tool_calls, "executed": False})
             if round_index >= MAX_TOOL_ROUNDS or len(reply.tool_calls) > 6:
                 raise LLMError("tool_loop", "工具调用轮数或单轮数量超过限制")
             # D8：assistant 消息整条追加，含 reasoning_content，否则下一轮 400。

@@ -178,3 +178,20 @@ def test_slow_repeated_tools_still_stop_at_total_budget(service,monkeypatch):
     engine=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period,budget=150)
     with pytest.raises(LLMError,match='budget'):engine.answer(service.planner.plan(trace.question),trace,[])
     assert budgets==[150,110,70,30]
+
+def test_final_tool_choice_survives_native_retry(monkeypatch):
+    import httpx
+    from kbqa.llm import LLMClient
+    from kbqa.toolspec import TOOLS
+    records=[];requests=[]
+    def post(self,body,timeout):
+        requests.append(body)
+        if len(requests)==1:return httpx.Response(503,json={'error':{'message':'controlled temporary failure'}})
+        return httpx.Response(200,json={'choices':[{'finish_reason':'stop','message':{'role':'assistant','content':'{"answer_type":"refusal","answer":"目前依据不足。"}'}}]})
+    monkeypatch.setattr(LLMClient,'_post',post)
+    reply=LLMClient('http://unused','synthetic-only','controlled').chat_with_retry(
+        [{'role':'user','content':'文档问题'}],TOOLS,budget=10,on_call=records.append,tool_choice='none')
+    assert reply.content and len(requests)==2
+    assert all(r['tool_choice']=='none' for r in requests)
+    assert all(r['request']['tool_choice']=='none' for r in records)
+    assert [r['status'] for r in records]==[503,200]
