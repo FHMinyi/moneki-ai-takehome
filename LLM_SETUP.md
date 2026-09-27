@@ -37,59 +37,18 @@ OpenAI 兼容 Chat Completions，Python `httpx`（安装版本见 requirements�
 
 ## 7. 自测结果
 
-原始官方预检：`python3 eval/llm_gateway.py preflight --service-url http://127.0.0.1:8033 --port 9033 --no-wait --out docs/verification/g3-01/preflight`。
-测试服务用预检工具打印的三个环境变量，通过 `make run-live PORT=8033` 启动。
+在首个第三关集成固定点 `4591fab`，原样运行官方 `eval/llm_gateway.py preflight`，结果 **P1–P13 PASS、P14 SKIP**。P14 的官方假模型最终自由文本不符合当前 typed 业务输出，normal 场景未拿到可对照的回答；没有修改官方预检。原报告见 [G3-05 预检](docs/verification/g3-05/preflight/preflight_report.json)。另用相同 typed 工具与最终结构做普通、正文前空白延迟、超时的**非流式 HTTP**补证，见 [传输记录](docs/verification/g3-05/controlled-transport/results.json)；它不等于官方 P14/SSE 通过。
 
-结果：**13 PASS，1 SKIP（P14）**。原始输出见 `docs/verification/g3-01/preflight/preflight_report.md` 和 JSON，首轮系统 SOCKS 环境故障的报告保存在 `preflight-first`，未覆盖。
+最终集成 `c7084d6f841d150c6672410719a4785b4a7696b1` 的 DeepSeek `deepseek-flash` 配置：`LLM_BASE_URL=https://api.deepseek.com`，`LLM_MODEL=deepseek-flash`，默认思考，`max_tokens=8192`。评测通过本地逐请求费用守卫代理到官方接口；实际 Key 只从环境进入后端进程，不在仓库、前端、trace 或报告中。完整未改官方原 55 题真实运行 **94/100、52/55**，每次请求/响应、工具、完整 usage、失败和逐轮 trace 在 [最终 G3-05 记录](docs/verification/g3-05/final-c7084d6/README.md)。这是一次固定版本观察，不是隐藏题或长期稳定性保证。
 
-P1—P13 通过：路径前缀、模型/Key、参数、输出额度、无探测、工具消息、JSON响应、失败拒答、思考不泄漏、总时限、live health、reasoning_content原样回传。
-P14 未检查：官方假模型的固定最终自由文本不符合本票数据回答的调用/指标引用 JSON，normal 和 slow 都拒绝该不受约束的数字表达，因此官方工具无法对照业务回答。没有修改评分工具或放松产品校验。
-补证命令 `starter/.venv/bin/python docs/verification/g3-01/verify_keepalive.py`：同一合法工具调用和最终 JSON，normal 与 slow 仅 HTTP 节奏不同；slow 每个模型响应先发送 18 秒真实空行，两次往返后 `/api/chat` 给出同样的真实数据与证据。另用 12 秒总预算证明持续空行仍超时并返回 refusal。原始请求/响应/trace/耗时见 `keepalive/`。这属于独立补证，不将官方 P14 改写为 PASS。非流式产品不适用 SSE 展示。
+每次实际出站 API（含重试）发送前保留 2.20 元，收到完整 `prompt_tokens` 与 `completion_tokens` 才按高峰全输入未命中价格结算；缺 usage 保留预留，不用字节数推测 token 上界，也不调用余额或模型列表。最终全题 102 API 都有 usage，估算 2.755886 元；加此前阶段与一次真实浏览器定向，第三关累计 6.537374 元，50 元授权下剩余 43.462626 元、无悬挂预留。费用是保守估算，**不是供应商账单**。
 
-## 8. 已知限制
+## 8. 当前回答协议与已知边界
 
-G3-01 验证完整单轮查数、区间比较、会话存储隔离和聊天交互。纯数据最终输出要求模型返回实际工具调用 id 与指标字段，代码从结果生成标签和数值；错误引用、任意数值散文或超过契约容量的证据会明确拒答。此时可缩小条件重试。
-G3-02 的单轮文档使用检索证据 ID 与原文摘录；混合分析、多轮语义继承和显式趋势引用仍由 G3-03/04/06 交付；保留原无 Key 已验收能力和响应字段，不以本票受控模型测试证明这些真实模型能力。会话最多 500 个、每会话六轮，无 ID 不存历史，不跨重启持久化。真实调用结果以本票 live 记录和验收回执为准；旧 live 25.5 分不是修复后结果。
+文档工具 `search_kb` 返回真实检索池的 `evidence_id`、文档/片段 ID、连续原文位置、适用 scope 与标题上下文。当前模型最终可用 `{"answer_type":"doc","facts":[{"evidence_id":"本次工具实际返回的ID"}]}` 选择一至四条原文；程序核对 ID、原文位置、确定性日期/门店适用范围并从原文渲染，不接受模型自造的 quote、数字或数据库结果。自然语言片段是否真正支持用户所问主体/属性，由**同一次模型选择**，不是代码对任意语义的完整证明。检索改写不能放宽原问题的确定范围；数据库数字必须经过只读白名单工具和代码计算。拒答或澄清使用受约束状态，不向用户展示自由政策断言。工具最多六轮、每轮六个调用，随后一次最终回答机会；真实工具错误与资料不足分别记录在 trace。
 
-G3-01真实接入补记：首次f991720因为模型将工具名误作call_id拒答；354f6d4显式回传ID后，相同查数与区间比较两样本成功，并由独立SQL核对。累计3chat/6API（包含失败），详见docs/verification/g3-01/live；最终1608043增加缺项澄清格式，只经受控验证。0.047028元是高峰未命中保守估算，不是账单确认。完整第三关真实评测仍待G3-05。
+最终真实评测未全通过 **C07、V03、H06**：C07 的模型结果绑定无效而技术拒答，V03 第二轮检索后仍选择依据不足，H06 混合核验失败且 trace 超过官方 2 MB 上限。一次真实浏览器退款到账负例在模型两次 `search_kb(top_k=15)` 超工具上限后技术拒答，不能证明它理解申请时限与到账时间的区别；带趋势引用的“比前一周低”比较在免费受控 HTTP 中被范围守卫拒绝，未发送真实模型请求。详情与原始失败见 [最终报告](EVAL_REPORT.md)和 [验收目录](docs/verification/g3-05/final-c7084d6/README.md)。无 Key 模式、受控模型和真实模型证据不能互相代替；trace 是内存诊断，重启前应保存。
 
-PR30凭证修正：此前仅LLM记录回调脱敏，HTTP200非JSON异常详情与异常链仍可能泄漏上游回显Key。现统一处理错误边界、Trace记录与最终序列化、session/API响应以及服务兜底日志；异常不携带原始cause/context，日志使用已脱敏traceback。Key清洗先于预览截断。保留正常完整诊断和有用错误原因；回归见test_credentials.py及credential-regressions.txt。
+## 9. 历史协议记录
 
-
-G3-02 文档协议：`search_kb` 的 `evidence` 给出 `evidence_id/doc_id/chunk_id/quote/source_start/source_end/scope/metadata/context`。source 位置基于 loader 解码后的可见正文（HTML 去标签、GBK 解码），不是原始文件字节偏移；ID 包含索引内容键，重建后旧 ID 不可复用。适用日期/门店来自原问题的 plan，检索改写不放宽它。模型最终只提交 `{"answer_type":"doc","facts":[{"evidence_id":"..."}]}`，一至四条；程序原文摘录或按真实表头渲染，不接收任意改写陈述、quote 或数值。没有支持证据时应返回 refusal。保留完整检索过滤/证据集合/模型往返/绑定诊断。已有 mock 文档取证也通过同一证据集合校验身份，但其既有保守语言规则不成为 live 的通用否决器。
-
-主体实体、已知封闭问题属性及明确单位检查是有界保护，不是任意语言的完整语义蕴含证明。live 单轮采用摘录式回答；它可能保守拒答、选取不够精炼的原文，不能据受控通过声称模型理解全面正确。实际付费样本与失败保存在 `docs/verification/g3-02/live/`（尚未执行时该目录不存在）。
-
-
-用户于2026-09-27明确将工具轮数上限从4调整为6：最多执行6轮工具，每轮最多6个工具调用，随后还有一次模型最终回答机会；该次再请求工具会拒绝执行。默认总耗时150秒（配置硬上限175秒）、单次请求至多120秒、暂时故障最多重试一次不变。重复检索只向模型提供新增的、按原文与适用scope绑定的证据；完整诊断留trace。G3-02前三自然样本在b62e6dc通过；身份证负例在b62e6dc触发本地尺寸保护、b37af3d触发tool_loop，均非语义拒答成功。后续单次六轮复验结果按本票live/chat-6.json及README记录；完整第三关验收仍须带上此负例。
-
-
-G3-02最终阶段修正：此前第7次请求仍为tool_choice=auto，这让模型无法明确知道必须收尾。当前在第6轮工具完成后，同一第7次调用设置tool_choice=none，并要求只按已有证据返回既定JSON；不足时诚实refusal，不把上限推断成资料不存在。原工具声明保留以兼容既有tool消息，reasoning_content仍原样；none随原生重试保留。供应商违约toolcalls在执行前拒绝。总回合、工具轮数、超时与重试次数均不增加。该修正已受控HTTP验证，尚无新真实样本；不能把chat6原失败视作本修正后结果。
-
-
-最终授权chat7实际在第4次auto请求较早返回refusal，未执行none阶段。原始模型说明缺少身份证要求依据，但带v2/KB-013，触发现有拒答数字校验，最终data_binding失败提示；端到端负例仍未验收。当前PR明确留此协议兼容性待审，未擅自放宽校验；不把此前失败或受控none测试说成真实全面通过。最终本票7chat/25实际API、保守估算1.089330元（非账单），真实调用已停止。
-
-
-PR31 R2协议修正：拒答输出使用`{"answer_type":"refusal","reason":"insufficient_evidence"}`，代码渲染固定的当前依据不足说明。不能在refusal里附政策断言/概括/编号；政策事实必须选择doc证据。为旧模型输出兼容`answer_type:refusal,answer:...`时，只解释refusal状态，整段answer均不展示，原文保留trace；这不是放宽数字校验或删数字。真实工具失败、网络错误等仍是技术错误，不转换为“资料不存在”。chat7免费完整回放可用该状态安全收尾，未新增真实调用。R1开放问句支持性缺口仍待设计/修正，当前不能视作整票通过。
-
-
-PR31 R1选择协议进一步明确：每个facts元素必须同时有evidence_id和binding，binding含subject/attribute两个锚点数组及value。锚点记录question逐字片段、source（quote、context数组下标；主体也可title）与text真实来源文字；value记录kind/question/text，复用既有时长/金额/时间等形状。禁止只给subject_supported布尔值。系统核实ID、原文位置、范围和可定位主体/属性冲突；元信息标题标metadata.title、不当正文offset。未新增模型核对阶段，普通文档仍在原工具/最终选择回合完成；同义/英汉语义解释仍由本次模型负责，代码不提供通用蕴含证明。控制器正反与替换已免费验证，新选择协议尚未新付费测试；旧真实结果和chat7免费回放分开记录。
-
-
-PR31第二轮审查进一步限制非事实状态：clarify使用`{"answer_type":"clarify","missing_fields":["date_range","store"]}`，允许date_range/store/product/metric/question，代码生成中性问题，不接受额外政策正文；旧自由answer仅兼容状态及已知字段标签，正文不展示。doc属性必须锚定业务动作/属性，不能只把多久对应24小时；value另记录量型。时长焦点之后明确业务谓词不能省略，主体不能由功能成分冒充。没有新增模型阶段或付费；合并趋势main后的交叉验证另列。
-
-## 9. G3-05 集成验收记录与切换边界
-
-固定业务提交 `4591fab` 从无环境缓存的源码导出并实际安装、重建、启动。无 Key 的 health 为 `mock`；使用已配置 DeepSeek 的服务 health 为 `live`，两者快照、完整未改官方 55 题与每个上游模型请求、工具消息、原始响应都在 [G3-05 验收目录](docs/verification/g3-05/README.md)。当前真实固定运行 **67.5/100、40/55**，不是原 starter live 25.5/100，也不是完成第三关的证明。原目录中的 `model-traffic.jsonl` 记录每次实际出站 API（含重试），`chat-trace.jsonl` 记录每轮请求、回答与 trace，Authorization 真 Key 不进入文件；旧 4591fab 每次请求的 `max_tokens` 为 4096。后续新固定点使用 8192 时，须另建目录和费用账本。
-
-在 `4591fab` fresh 服务上原样重跑官方 `eval/llm_gateway.py` 免费预检：**P1–P13 PASS，P14 SKIP**。P14 因正常场景的自由文本没有通过当前 typed 业务输出协议，无法比较 slow 场景；原始 [报告](docs/verification/g3-05/preflight/preflight_report.json)未更动。独立 [受控传输补证](docs/verification/g3-05/controlled-transport/results.json)让同一 typed `data` 输出分别走普通 HTTP 和正文前四次空白/延迟，二者均 HTTP 200 `data`；2 秒模型超时返回 HTTP 200 `refusal`。当前产品为非流式，不把这个补证称为 SSE 行为或官方 P14 PASS。
-
-G3-05 真实评测的执行守卫在每次实际发往上游的 API（含重试）**发送前**保留 2.20 元，收到完整 `prompt_tokens`/`completion_tokens` 才按高峰全未命中价格结算；usage 缺失则保留全部预留。第三关总授权 50 元，`4591fab` 全题实际 87 API 全有 usage，估算本轮 2.018338 元，加此前 1.440556 元为 3.458894 元，剩余 46.541106 元。这是保守估算，不是供应商实际账单，没有用 UTF-8 字节数当 token 上界，也不探测余额/模型列表。8192 上限与 1,048,576 输入上下文的峰值估算上界为 2.162688 元，仍低于每次 2.20 元预留；这个算术和输出配置的纯离线边界见 `docs/verification/g3-05/test_live_guard.py`，不能当作一次真实接口兼容性证明。
-
-用户随后明确把文档片段的自然语义选择交给**同一次模型**，保留程序对真实检索 ID、原文偏移、确定性适用范围、白名单只读工具和数值计算的校验。旧严格主体/属性逐字绑定导致 `4591fab` 的 C01 等正例拒答；后续修复须用新的固定代码及真实输出评估选择质量。若模型选择了内容真实却不支持问题的条款，单凭引用合法仍不足以认定事实正确。无 Key/受控模型、真实模型和用户可见浏览器证据在验收目录分别标注。
-
-### 最终 `c7084d6` 实测
-
-最终业务提交的真模型固定配置：`LLM_BASE_URL=https://api.deepseek.com`（执行时经本地逐请求费用守卫代理到官方地址）、`LLM_MODEL=deepseek-flash`、默认思考、`max_tokens=8192`，Key 只由本地进程读取，不写证据。完整官方原 55 题 **94/100、52/55**，C07/V03/H06 未全通过；全部请求/响应/trace/usage在 [最终验收目录](docs/verification/g3-05/final-c7084d6/README.md)。102 次 API 全 HTTP 200 且 usage 完整；这不等于所有题答对，H06 的 trace 超官方 2 MB 上限。执行前每次 API（含重试）预留 2.20 元，完整 usage 才按价格结算；本次全题估算 2.755886 元，连同一次真实浏览器定向及先前阶段累计 6.537374 元，余额 43.462626 元，非账单。
-
-真实浏览器定向“外卖退款审核通过后多久到账”因为模型两次请求 `search_kb(top_k=15)` 超过工具允许上限而技术拒答，未输出错误到账数字，但不能证明语义拒答能力。带趋势引用“这段时间比前一周低”在免费受控 live HTTP 里被比较范围守卫拒绝，**没有**发送真实模型请求；因此第三关存在该路径限制。当前没有新增第四关调试面板，现场可按 [trace 调试流程](docs/DEBUG_WORKFLOW.md)把本地脱敏 JSON 与源码交给 Codex 先诊断，不提交 `.env.live`。
+G3-01 的单轮接入、G3-02/PR31 曾尝试的逐字主体/属性 `binding`、封闭属性与单位硬门槛、以及当时“R1 待设计”的文字，均为**历史过程，已由 PR #36 的当前最小 `evidence_id` 选择协议替代**，不再是本版接口要求。旧轮的 4096 输出和 67.5/100、40/55 真实成绩保留用于前后对照，不把新代码的通过追认到旧版本。设计取舍、红绿证据和保留的反例见 [G3-02 修复证据](docs/verification/g3-02-live-repair/README.md)、[调试记录](DEBUG_LOG.md)与 [首轮 G3-05 原始结果](docs/verification/g3-05/README.md)。现场定位错答可按 [trace 调试流程](docs/DEBUG_WORKFLOW.md)把本地脱敏 JSON 与源码交给 Codex；不要复制 `.env.live`、Key 或整份知识库。
