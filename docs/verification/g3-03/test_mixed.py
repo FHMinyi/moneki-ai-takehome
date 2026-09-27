@@ -147,7 +147,9 @@ def test_payment_independent_ratio(tmp_path,denominator):
 def test_zero_with_old_unrelated_event_is_rejected(tmp_path):
  s=independent_service(tmp_path,extra='S02 在2026-06-18因网络故障停业。')
  c={**CASES['H06'],'doc':'KB-981','needle':'网络故障','role':'reason','query':'S02网络故障停业'}
- with pytest.raises(LLMError,match='查询区间外'):run(s,QUESTIONS['H06'],c)
+ a,t=run(s,QUESTIONS['H06'],c)
+ assert a.answer_type=='data' and not a.citations and '原因无法确定' in a.answer
+ assert a.data_evidence[0]['result']['net_revenue']==0 and '0.00' in a.answer
 
 def test_cannot_exchange_order_and_revenue_share(service):
  q='8月3日S05现金支付金额占比是多少，为什么？'
@@ -179,3 +181,26 @@ def test_notice_conflict_does_not_replace_actual(tmp_path):
  assert a.data_evidence[0]['result']['latest_price']==30
  assert a.data_evidence[0]['calculations'][0]['notice']['value']==47
  assert a.data_evidence[0]['calculations'][0]['result']==5
+
+@pytest.mark.parametrize('quote,expected',[
+ ('S02在2026-06-15至2026-06-20停业整改。','hybrid'),
+ ('S01在2026-06-18停业整改。','data'),
+ ('S02在2026-06-18开展员工培训。','data'),
+ ('S02在2026-05-15至2026-05-20停业整改。','data'),
+])
+def test_event_scope_and_explicit_continuing_interval(tmp_path,quote,expected):
+ s=independent_service(tmp_path)
+ (s.settings.kb_dir/'KB-983.md').write_text('---\ntitle: S02经营事件\neffective_from: 2026-06-15\nstores: [S02]\n---\n'+quote)
+ s.rebuild();q='6月18日S02营业额为什么异常？'
+ c=dict(mode='anomaly',tool='query_metrics',params=dict(start='2026-06-18',end='2026-06-18',store_id='S02'),metric='net_revenue',doc='KB-983',needle=quote,role='reason',query='S02经营事件停业整改员工培训')
+ a,t=run(s,q,c)
+ assert a.answer_type==expected and a.data_evidence[0]['result']['net_revenue']==150
+ if expected=='data':assert not a.citations and quote not in a.answer and '原因无法确定' in a.answer
+
+def test_event_wrong_product_not_overridden_by_title(tmp_path):
+ s=independent_service(tmp_path)
+ (s.settings.kb_dir/'KB-983.md').write_text('---\ntitle: S02牛肉poke事件\neffective_from: 2026-06-18\nstores: [S02]\n---\n三文鱼poke在2026-06-18临时停售。')
+ s.rebuild();q='6月18日S02牛肉poke销量为什么异常？'
+ c=dict(mode='anomaly',tool='query_metrics',params=CASES['H02']['params'],metric='qty',doc='KB-983',needle='临时停售',role='reason',query='S02牛肉poke三文鱼poke停售事件')
+ a,t=run(s,q,c)
+ assert a.answer_type=='data' and not a.citations and '三文鱼' not in a.answer and '原因无法确定' in a.answer

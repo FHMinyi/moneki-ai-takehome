@@ -72,6 +72,9 @@ def _event_scope(item, params):
     # Use a stated event date first; a heading can carry that date. Otherwise a
     # dated notice's effective date is the narrowest verifiable event anchor.
     windows = parse_time(item['quote'], date.fromisoformat(start)).windows
+    for a,b in re.findall(r'(\d{4}-\d{2}-\d{2})\s*(?:至|到|~|—)\s*(\d{4}-\d{2}-\d{2})',item['quote']):
+        if a<=b:
+            windows.append((a,b))
     if not windows:
         effective = item['metadata'].get('effective_from')
         windows = [(effective, effective)] if effective else []
@@ -155,26 +158,25 @@ def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_p
                 raise ValueError('文档角色不符合混合操作')
             doc=retrieved.items.get(ref['evidence_id'])
             if not doc or any(d['evidence_id']==doc['evidence_id'] for _,d in chosen):raise ValueError('文档身份无效或重复')
-            _fact_scope(doc,params,catalog,product=ref['role']!='price_policy')
             if ref['role']=='reason':
-                source_store, _ = catalog.find_store(_source(doc))
-                if params.get('store_id') and source_store != params['store_id'] and params['store_id'] not in (doc['metadata'].get('stores') or []):
-                    raise ValueError('事件没有支持所问门店的主体依据')
                 try:
+                    _fact_scope(doc,params,catalog)
+                    source_store, _ = catalog.find_store(_source(doc))
+                    if params.get('store_id') and source_store != params['store_id'] and params['store_id'] not in (doc['metadata'].get('stores') or []):
+                        raise ValueError('事件没有支持所问门店的主体依据')
                     event_window=_event_scope(doc,params)
+                    if mode=='payment' and not re.search(r'现金|刷卡|扫码|支付|收款',doc['quote']):
+                        raise ValueError('事件不是支付事件')
                 except ValueError as exc:
-                    if str(exc) != '事件日期与经营查询区间不相交':
-                        raise
                     filtered.append(dict(evidence_id=doc['evidence_id'],reason=str(exc)))
                     continue
-                if mode=='payment' and not re.search(r'现金|刷卡|扫码|支付|收款',doc['quote']):raise ValueError('事件不是支付事件')
                 bindings.append(dict(role='reason',evidence_id=doc['evidence_id'],event_windows=event_window,scope=params))
+            else:
+                _fact_scope(doc,params,catalog,product=ref['role']!='price_policy')
             if ref['role']=='price_policy' and not _PRICE_POLICY.search(doc['quote']):raise ValueError('所选原文不说明建档价口径')
             chosen.append((ref['role'],doc));citations.append(retrieved.citation(doc))
         if filtered:
             trace.step('mixed_evidence_filtered',{'rejected':filtered})
-            if not chosen:
-                raise ValueError('所选事件均在查询区间外，不能作为原因')
         public={k:item[k] for k in ('tool','params','result')}
         public['call_id']=item['_call_id']
         calculations=[]
@@ -240,7 +242,7 @@ def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_p
             if mode in {'anomaly','payment'}:sentence+='\n以上是材料记载；未据此估算事件对经营数字的因果影响。'
         elif mode in {'anomaly','payment'}:
             if not search_performed or any(f['tool']=='search_kb' for f in tool_failures or []):raise ValueError('未成功检索，不能将工具失败当作原因未知')
-            sentence+='知识库中本次未找到可核对的对应原因材料，原因无法确定。'
+            sentence+=('已查得经营数字，但所选材料未能同时核验对象、属性与事件日期，原因无法确定。' if filtered else '知识库中本次未找到可核对的对应原因材料，原因无法确定。')
         public['calculations']=calculations
         answer=_limits(Answer(sentence,'hybrid' if citations else 'data',citations=citations,data_evidence=[public]))
         trace.step('mixed_binding',dict(mode=mode,source_call=item['_call_id'],bindings=bindings,calculations=calculations,selected=[d['evidence_id'] for _,d in chosen]))

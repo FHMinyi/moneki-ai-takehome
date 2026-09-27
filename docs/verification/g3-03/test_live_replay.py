@@ -20,3 +20,18 @@ def test_real_h01_selection_filter_preserves_dated_event(service):
  assert len(a.citations)==1 and '2026-06-05' not in a.answer
  assert any(s['step']=='mixed_evidence_filtered' for s in trace.steps)
  (Path(__file__).parent/'live/replay-chat-2.json').write_text(json.dumps(dict(response=a.__dict__,steps=trace.steps,mode='FREE_REPLAY_NOT_NEW_PROVIDER_CALL'),ensure_ascii=False,indent=2))
+
+def test_real_payment_selection_excludes_unbound_background(service):
+ p=json.loads((Path(__file__).parent/'live/chat-3.json').read_text())
+ pool=DocumentEvidence(service.facts);ev=[]
+ for s in p['trace']['steps']:
+  if s['step']=='document_evidence':pool.add(s['detail']['evidence'])
+  if s['step']=='tool' and s['detail']['tool']!='search_kb':
+   d=s['detail'];ev.append(dict(_call_id=d['call_id'],tool=d['tool'],params=d['params'],result=d['result']))
+ payload=json.loads(p['trace']['llm_calls'][-1]['response']['choices'][0]['message']['content'])
+ trace=Trace('g303-free-replay-payment',QUESTIONS['H05'])
+ a=render_mixed(payload,ev,pool,service.planner.plan(QUESTIONS['H05']),service.catalog,trace,search_performed=True)
+ assert a.answer_type=='hybrid' and '100.00%' in a.answer
+ assert len(a.citations)==2 and '交换机升级' not in a.answer
+ assert a.data_evidence[0]['calculations'][0]['numerator']==27
+ (Path(__file__).parent/'live/replay-chat-3.json').write_text(json.dumps(dict(response=a.__dict__,steps=trace.steps,mode='FREE_REPLAY_NOT_NEW_PROVIDER_CALL'),ensure_ascii=False,indent=2))
