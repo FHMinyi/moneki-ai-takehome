@@ -204,3 +204,13 @@ def test_event_wrong_product_not_overridden_by_title(tmp_path):
  c=dict(mode='anomaly',tool='query_metrics',params=CASES['H02']['params'],metric='qty',doc='KB-983',needle='临时停售',role='reason',query='S02牛肉poke三文鱼poke停售事件')
  a,t=run(s,q,c)
  assert a.answer_type=='data' and not a.citations and '三文鱼' not in a.answer and '原因无法确定' in a.answer
+
+def test_target_cannot_substitute_another_valid_metric(tmp_path):
+ s=independent_service(tmp_path)
+ f=s.settings.kb_dir/'KB-981.md';f.write_text(f.read_text().replace('目标销量 10 份','目标订单数 10 单'));s.rebuild()
+ c={**CASES['H02'],'doc':'KB-981','needle':'目标订单数','metric':'orders','query':'牛肉poke目标订单数'}
+ with pytest.raises(LLMError,match='明确询问'):run(s,QUESTIONS['H02'],c)
+
+def test_order_share_cannot_use_valid_revenue_operand(service):
+ c={**CASES['H05'],'metric':'share_revenue'}
+ with pytest.raises(LLMError,match='订单占比'):run(service,'8月3日S05现金支付订单占比是多少，为什么？',c)

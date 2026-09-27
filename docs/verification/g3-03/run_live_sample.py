@@ -41,17 +41,7 @@ def save():
     LEDGER_PATH.write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + '\n')
 
 
-config = {}
-# Credentials remain in the existing shared root; this worktree only reads them.
-credential_file = Path(os.environ.get('G303_LIVE_ENV_PATH',
-    '/Volumes/MACPSSD/project/moneki-ai-takehome/.env.live'))
-for line in credential_file.read_text().splitlines():
-    if '=' in line and not line.lstrip().startswith('#'):
-        name, value = line.split('=', 1)
-        config[name.strip()] = value.strip().strip('"\'')
-assert config['LLM_BASE_URL'].rstrip('/') == 'https://api.deepseek.com'
-assert config['LLM_MODEL'] == 'deepseek-flash'
-key = config['LLM_API_KEY']
+key = ''  # Loaded only by the explicitly invoked paid runner, never offline tests.
 
 
 class Guard(BaseHTTPRequestHandler):
@@ -107,8 +97,19 @@ class Guard(BaseHTTPRequestHandler):
 
 
 def main():
+    global key
     if ledger['chat_count'] >= 4 or any(call['status'] == 'reserved' for call in ledger['calls']):
         raise RuntimeError('G3-03 chat limit reached or unresolved reservation')
+    config = {}
+    credential_file = Path(os.environ.get('G303_LIVE_ENV_PATH',
+        '/Volumes/MACPSSD/project/moneki-ai-takehome/.env.live'))
+    for line in credential_file.read_text().splitlines():
+        if '=' in line and not line.lstrip().startswith('#'):
+            name, value = line.split('=', 1)
+            config[name.strip()] = value.strip().strip('"\'')
+    assert config['LLM_BASE_URL'].rstrip('/') == 'https://api.deepseek.com'
+    assert config['LLM_MODEL'] == 'deepseek-flash'
+    key = config['LLM_API_KEY']
     with lock:
         save()
     guard = ThreadingHTTPServer(('127.0.0.1', 0), Guard)

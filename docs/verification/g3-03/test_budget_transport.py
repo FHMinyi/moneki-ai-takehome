@@ -11,6 +11,7 @@ def test_reserve_before_send_and_never_release_unknown(tmp_path,monkeypatch,mode
     if mode=='attempt_limit':ledger['calls']=[{'chat':1,'accounted_cny':0.0} for _ in range(14)]
     if mode=='insufficient':ledger['calls']=[{'chat':1,'accounted_cny':11.9}]
     monkeypatch.setattr(g,'ledger',ledger);monkeypatch.setattr(g,'LEDGER_PATH',tmp_path/'ledger.json')
+    monkeypatch.setattr(g,'OUT',tmp_path);monkeypatch.setattr(g,'key','offline-synthetic')
     reached=[]
     class FakeClient:
         def __init__(self,*a,**kw):pass

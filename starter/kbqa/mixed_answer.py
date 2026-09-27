@@ -146,8 +146,12 @@ def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_p
         if tool not in expected_tools[mode]:raise ValueError('工具不能用于所选混合操作')
         if mode=='anomaly' and metric!=plan.metric or mode=='price' and metric!='unit_price' or mode=='payment' and metric not in {'share_orders','share_revenue'}:
             raise ValueError('指标与混合操作或问题不一致')
+        if mode=='target' and plan.slots.get('metric_explicit') and metric!=plan.metric:
+            raise ValueError('目标指标不能替换用户明确询问的实绩指标')
         if mode=='payment' and ('金额' in plan.standalone or '营业额' in plan.standalone) and metric!='share_revenue':
             raise ValueError('金额占比不能替换为订单占比')
+        if mode=='payment' and '订单' in plan.standalone and '金额' not in plan.standalone and metric!='share_orders':
+            raise ValueError('订单占比不能替换为金额占比')
         if tool=='compare_periods':params.update(start=params['start_b'],end=params['end_b'])
         facts = payload['facts']
         if not isinstance(facts,list) or len(facts)>3:raise ValueError('最多选三条相关事实')

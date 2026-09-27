@@ -3,7 +3,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 const out = process.env.G303_BROWSER_OUT!;
 const cases = [
+ ['anomaly', 'S03 六月第二周（6 月 8 日到 6 月 14 日）的营业额为什么比别的周低这么多？', 'hybrid'],
  ['target', '618 当天 S02 的牛肉poke 卖了多少份？达到目标了吗？', 'hybrid'],
+ ['month-target', '冷萃乌龙茶上市第一个月的销量达标了吗？', 'hybrid'],
+ ['price', '牛肉poke 现在卖多少钱一份？商品表里那个价能直接拿来用吗？', 'hybrid'],
  ['zero', 'S02 在 8 月 17 日到 19 日为什么一分钱营业额都没有？', 'data'],
  ['payment', '8 月 3 日 S05 的现金支付占比是多少？为什么会这样？', 'hybrid'],
 ];
