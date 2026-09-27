@@ -46,3 +46,13 @@
 修正后，无引用请求继续走原有三参数 `_run_engine` 和固定 `plan.kind` 安全名单；趋势的未锚定时间另以 `trend_ambiguous_time` 澄清。对有引用且被启发式误判为 `out_of_scope` 的明确查询，从原问题补足已解析的日期、门店、指标，并在 live 工具入口约束生效条件。明确未知门店、越界日期仍不得借引用变成全量查询。`test_route_regression.py` 保留红灯及 5 项绿色回归，其中一项验证带引用路径的最终凭证脱敏、两项验证未知门店和越界日期不会触发模型。
 
 免费复核：`starter/.venv/bin/python -m pytest docs/verification/g3-06/test_route_regression.py docs/verification/g3-06/test_trend_context.py docs/verification/g3-06/test_live_budget.py docs/verification/g3-01/test_data_chat.py docs/verification/g3-01/test_credentials.py starter/tests -q` → **106 passed**；`starter/.venv/bin/python docs/verification/g3-06/verify_review_routes.py` → 无引用、有引用真实 HTTP 工具链 **2/2**，均有两次受控模型往返且工具结果等于独立 metrics API；请求/响应/trace 见 `review-r1/routes.json`。在当前代码后端 `:8038` 重跑 `G306_MODEL_URL=http://127.0.0.1:9036 G306_EVIDENCE_DIR=../docs/verification/g3-06/review-r1/browser-controlled BROWSER_BASE_URL=http://127.0.0.1:8038 npm run test:browser -- tests/g3-trend-context.spec.ts --workers=1` → **7 passed**。未增加真实模型调用，也未修改旧 G3-01 证据。
+
+## 第二轮复核：早退规划后的明确条件
+
+主会话在 `0c650e7` 又发现启发式 `out_of_scope` 提前返回时，原规划器尚未做门店、商品和时间合法性检查。`early-plan-review-red.txt` 保留 **5 项失败**：显式 `S99` 被静默换成引用 `S02`；`P99` 未被识别；“现在”未明确拦截；“全部时间”内部 `TypeError`；六月/七月比较只保留第一个窗口。
+
+修复在同一趋势解析入口统一使用 `parse_time`、门店/商品目录与当前数据范围：显式未知实体直接结构化拒答；“现在”落在数据范围外时明确拒答；“全部时间”按当前数据全集覆盖引用；两个明确月份且有比较意图时保留两个窗口，并要求模型调用受约束的 `compare_periods`；两个窗口却未说明比较时澄清。服务端对显式商品也约束真实工具参数。测试只增本票文件，不更改原始 G3-01 材料。
+
+字段解析修正后、商品守卫补强前的复核：`starter/.venv/bin/python docs/verification/g3-06/verify_early_plan_http.py` → 网络 HTTP **4 项安全停止 + 2 项真实工具查数**，正确样本由独立 metrics API 核对，完整请求/trace 在 `review-r2/early-plan-http.json`。受控后端 `:8040` 的浏览器 **7 passed**，证据在 `review-r2/browser-controlled/`。随后额外发现模型可在“全部商品”有效条件下擅加 `product_id`，`review-r2/extra-product-red.txt` 保留阻断前的红灯；修复后的工具约束将缺省商品也视为有效条件的一部分。
+
+最终免费复核：`starter/.venv/bin/python -m pytest docs/verification/g3-06/test_early_plan_context.py docs/verification/g3-06/test_route_regression.py docs/verification/g3-06/test_trend_context.py docs/verification/g3-06/test_live_budget.py docs/verification/g3-01/test_data_chat.py docs/verification/g3-01/test_credentials.py starter/tests -q` → **113 passed**（含显式商品、双窗口及缺省商品的工具参数约束）。`G306_REVIEW_BASE_URL=http://127.0.0.1:8041 G306_REVIEW_EVIDENCE_DIR=docs/verification/g3-06/review-r2-final starter/.venv/bin/python docs/verification/g3-06/verify_early_plan_http.py` → 当前代码网络 HTTP **4 项安全停止 + 2 项真实工具查数**；`G306_MODEL_URL=http://127.0.0.1:9036 G306_EVIDENCE_DIR=../docs/verification/g3-06/review-r2-final/browser-controlled BROWSER_BASE_URL=http://127.0.0.1:8041 npm run test:browser -- tests/g3-trend-context.spec.ts --workers=1` → **7 passed**（1280/1440/390）。没有新增付费调用。

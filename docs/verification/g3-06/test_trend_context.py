@@ -78,12 +78,14 @@ def test_live_tool_scope_gate_uses_resolved_conditions(api, monkeypatch):
     _, service = api
     plan = service.planner.plan('这段时间净营业额是多少？')
     from kbqa.trend_context import resolve
-    effective = resolve(plan, plan.question, REFERENCE, service.catalog, service.settings.today)['effective']
+    effective = resolve(plan, plan.question, REFERENCE, service.catalog, service.settings.today,
+                        service.data_period)['effective']
     def must_not_query(*args, **kwargs):
         raise AssertionError('wrong scope reached database')
     monkeypatch.setattr(service.tools, 'query_metrics', must_not_query)
     assert 'error' in service._run_scoped_tool('query_metrics', {'start': '2026-05-01', 'end': '2026-08-31', 'store_id': 'S02'}, effective, plan)
     assert 'error' in service._run_scoped_tool('query_metrics', {'start': '2026-06-01', 'end': '2026-06-30', 'store_id': 'S01'}, effective, plan)
+    assert 'error' in service._run_scoped_tool('query_metrics', {'start': '2026-06-01', 'end': '2026-06-30', 'store_id': 'S02', 'product_id': 'P06'}, effective, plan)
     assert 'error' in service._run_scoped_tool('by_store', {'start': '2026-06-01', 'end': '2026-06-30'}, effective, plan)
     assert 'error' in service._run_scoped_tool('compare_periods', {'start_a': '2026-06-01', 'end_a': '2026-06-30', 'start_b': '2026-07-01', 'end_b': '2026-07-31'}, effective, plan)
 

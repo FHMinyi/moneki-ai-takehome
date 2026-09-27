@@ -112,3 +112,22 @@ def test_two_windows_without_comparison_clarifies_instead_of_picking_first(live_
     assert calls == [] and trace['errors'] == []
     resolution = next(s['detail'] for s in trace['steps'] if s['step'] == 'context_resolution')
     assert resolution['clarification'] == 'multiple_periods_without_comparison'
+
+
+def test_explicit_product_and_both_compare_windows_are_tool_bound(live_api, monkeypatch):
+    _, service = live_api
+    from kbqa.trend_context import resolve
+    question = '预测模型训练前，请比较S02 P06六月和七月净营业额。'
+    plan = service.planner.plan(question)
+    effective = resolve(plan, question, REFERENCE, service.catalog,
+                        service.settings.today, service.data_period)['effective']
+    assert effective['product_id'] == 'P06'
+    assert effective['compare_window'] == ['2026-07-01', '2026-07-31']
+    def must_not_query(*args, **kwargs):
+        raise AssertionError('invalid model scope reached database')
+    monkeypatch.setattr(service.tools, 'compare_periods', must_not_query)
+    good = {'start_a': '2026-06-01', 'end_a': '2026-06-30',
+            'start_b': '2026-07-01', 'end_b': '2026-07-31',
+            'store_id': 'S02', 'product_id': 'P06'}
+    assert 'error' in service._run_scoped_tool('compare_periods', {**good, 'end_b': '2026-08-31'}, effective, plan)
+    assert 'error' in service._run_scoped_tool('compare_periods', {**good, 'product_id': 'P07'}, effective, plan)

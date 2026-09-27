@@ -194,7 +194,8 @@ class Service:
             # safety/identity failures and required clarifications stop here.
             hard_stop = {"prohibited_request", "need_context", "need_month", "unknown_entity", "out_of_period"}
             if reference and plan.kind not in hard_stop:
-                resolution = resolve_trend_context(plan, question, reference, self.catalog, self.settings.today)
+                resolution = resolve_trend_context(plan, question, reference, self.catalog,
+                                                   self.settings.today, self.data_period)
                 trace.step("context_resolution", resolution)
                 effective = resolution["effective"]
             elif reference and plan.kind in {"unknown_entity", "out_of_period"}:
@@ -231,7 +232,8 @@ class Service:
 
     def _run_engine(self, plan, trace: Trace, history: list[dict], effective: dict | None = None) -> Answer:
         if (not self.settings.live or
-                plan.kind in {"prohibited_request", "need_context", "need_month", "trend_ambiguous_time"} or
+                plan.kind in {"prohibited_request", "need_context", "need_month",
+                              "trend_ambiguous_time", "trend_invalid_condition"} or
                 plan.slots.get("trend_reference_rejection")):
             started = time.perf_counter()
             answer = self.answerer.answer(plan, trace)
@@ -272,20 +274,31 @@ class Service:
             return self.run_tool(name, params)
         if name != "search_kb":
             if name == "compare_periods":
-                if not plan.compare_window or any(params.get(key) != value for key, value in {
+                required = {
                     "start_a": plan.window[0], "end_a": plan.window[1],
-                    "start_b": plan.compare_window[0], "end_b": plan.compare_window[1],
                     "store_id": effective["store_id"],
-                }.items()):
+                    "product_id": effective.get("product_id"),
+                }
+                if plan.compare_window:
+                    required.update(start_b=plan.compare_window[0], end_b=plan.compare_window[1])
+                if not plan.compare_window or any(params.get(key) != value for key, value in required.items()):
                     return {"error": "比较查询与文字明确指定的有效条件不一致"}
                 return self.run_tool(name, params)
+            if plan.compare_window:
+                return {"error": "明确比较两个区间时必须查询两个区间"}
             if params.get("start") != effective["start"] or params.get("end") != effective["end"]:
                 return {"error": "查询日期与已验证的有效条件不一致"}
-            if "store_id" not in next(tool["function"]["parameters"]["properties"] for tool in TOOLS if tool["function"]["name"] == name):
+            properties = next(tool["function"]["parameters"]["properties"] for tool in TOOLS if tool["function"]["name"] == name)
+            if "store_id" not in properties:
                 if effective["store_id"] is not None:
                     return {"error": "此工具不能按引用门店查询"}
             elif params.get("store_id") != effective["store_id"]:
                 return {"error": "查询门店与已验证的有效条件不一致"}
+            if "product_id" not in properties:
+                if effective.get("product_id") is not None:
+                    return {"error": "此工具不能按问题中的商品查询"}
+            elif params.get("product_id") != effective.get("product_id"):
+                return {"error": "查询商品与本轮有效条件不一致"}
         return self.run_tool(name, params)
 
     # -- trace ------------------------------------------------------------------
