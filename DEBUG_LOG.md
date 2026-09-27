@@ -274,3 +274,7 @@ G2-05在新环境替换KB时发现：KB970表格别名翡翠饭/Ivory Bowl，KB9
 | 首次免费预检无出站请求 | health已live；trace显示socksio缺失，排除Key和模型配置 | httpx继承了本机SOCKS环境，安装依赖不包含socksio | 显式BASE_URL直连，不继承隐式代理；说明写入LLM_SETUP | preflight-first原报告保留；后续13PASS/1SKIP，P14另做合法协议端到端补证 |
 
 修复属于G3-01实现提交（位于3686878之后）。纯数据字段绑定不声称验证G3-02/03文档事实或混合推导；没有修改公开评分器或以新mock规则抬分。
+
+### G3-01 真实样本发现的协议缺口
+
+首条真实模型测试固定f991720，正确查询出S02/P06六月417份，却把最终JSON的call_id写成query_metrics，触发严格拒答。不是工具结果错，也不是数值计算错；原tool消息content只有结果，服务商分配的id仅在协议字段中。真实失败见live/chat-1.json，2次API均有usage；红灯探针test_tool_result_exposes_actual_call_reference在b555bdb前失败（KeyError call_id），修复后17项通过。修复将call_id显式放入tool content并在提示中要求逐字复制，仍拒绝工具名、未知ID和自行提供的数值。费用记录保留失败调用，不删除失败样本挑结果。
