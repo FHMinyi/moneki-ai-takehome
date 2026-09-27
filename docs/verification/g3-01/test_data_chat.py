@@ -1,0 +1,102 @@
+"""G3-01 regressions: real database tools, controlled model responses only."""
+import json
+import sys
+from dataclasses import replace
+from pathlib import Path
+from unittest.mock import Mock
+
+import httpx
+import pytest
+
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / 'starter'))
+from kbqa.config import load_settings
+from kbqa.service import Service
+from kbqa.sessions import SessionStore
+from kbqa.toolspec import TOOLS
+from kbqa.llm import LLMClient, LLMReply
+from kbqa.live import LiveEngine
+from kbqa.trace import Trace
+
+
+@pytest.fixture(scope='module')
+def service(tmp_path_factory):
+    return Service(replace(load_settings(), var_dir=tmp_path_factory.mktemp('g3'),
+                           llm_base_url='', llm_api_key='', llm_model=''))
+
+
+def test_sessions_are_isolated_and_snapshots_are_detached():
+    sessions = SessionStore(max_sessions=2, max_turns=2)
+    sessions.append('a', {'question': 'A', 'slots': {'x': 1}})
+    assert sessions.history('b') == []
+    snapshot = sessions.history('a')
+    snapshot[0]['slots']['x'] = 9
+    assert sessions.history('a')[0]['slots']['x'] == 1
+    sessions.append(None, {'question': 'anonymous'})
+    assert sessions.history(None) == []
+    sessions.append('b', {'question': 'B'})
+    sessions.append('c', {'question': 'C'})
+    assert sessions.history('a') == []
+
+
+def test_free_sql_is_not_declared_or_executable(service):
+    assert 'run_sql' not in [t['function']['name'] for t in TOOLS]
+    assert 'error' in service.run_tool('run_sql', {'sql': 'SELECT * FROM stores'})
+
+
+@pytest.mark.parametrize('params', [
+    {'start':'2026-06-01','end':'2026-06-30','sql':'DELETE FROM sales'},
+    {'start':'2026-02-30','end':'2026-06-30'},
+    {'start':'2026-06-30','end':'2026-06-01'},
+    {'start':'2026-06-01','end':'2026-06-30','store_id':'S99'},
+    {'start':['2026-06-01'],'end':'2026-06-30'},
+])
+def test_illegal_parameters_fail_before_query(service, params, monkeypatch):
+    spy = Mock(side_effect=AssertionError('must not execute'))
+    monkeypatch.setattr(service.tools, 'query_metrics', spy)
+    assert 'error' in service.run_tool('query_metrics', params)
+    spy.assert_not_called()
+
+
+def run_live(service, content):
+    params = {'start':'2026-06-01','end':'2026-06-30','store_id':'S02','product_id':'P06'}
+    call = {'id':'metrics-1','type':'function','function':{'name':'query_metrics','arguments':json.dumps(params)}}
+    replies = [LLMReply({'role':'assistant','content':'','tool_calls':[call], 'reasoning_content':'private thought'}, 'tool_calls','',[call],0),
+               LLMReply({'role':'assistant','content':content},'stop',content,[],0)]
+    client = Mock()
+    client.chat_with_retry.side_effect = replies
+    engine = LiveEngine(client, service.answerer, service.run_tool,'2026-09-01',service.data_period)
+    trace = Trace('test', 'S02 六月牛肉poke销量是多少？')
+    answer = engine.answer(service.planner.plan(trace.question), trace, [])
+    return answer, trace, service.tools.query_metrics(**params)
+
+
+def test_data_answer_binds_metric_to_real_tool_call(service):
+    content = json.dumps({'answer_type':'data','results':[{'call_id':'metrics-1','metric':'qty'}]})
+    answer, trace, actual = run_live(service, content)
+    assert answer.answer_type == 'data'
+    assert f"销量 {actual['qty']} 件" in answer.answer
+    assert answer.data_evidence[0]['result'] == actual
+    step = next(s for s in trace.steps if s['step'] == 'tool')
+    assert step['detail']['result'] == actual
+
+
+def test_arbitrary_prose_cannot_swap_metric_values(service):
+    actual = service.tools.query_metrics('2026-06-01','2026-06-30','S02','P06')
+    # This number really occurs in a result, but belongs to orders, not revenue.
+    from kbqa.llm import LLMError
+    with pytest.raises(LLMError):
+        run_live(service, f"净营业额为 {actual['orders']} 元。")
+
+
+def test_trace_keeps_complete_requests_responses_and_redacts_key(monkeypatch):
+    text = '完整内容' * 1500
+    payload = {'choices':[{'finish_reason':'stop','message':{'role':'assistant','content':text}}]}
+    monkeypatch.setattr(httpx, 'post', lambda *a, **kw: httpx.Response(200,json=payload))
+    records=[]
+    LLMClient('http://local/prefix','secret-test-key','model').chat(
+        [{'role':'user','content':text}], TOOLS, on_call=records.append)
+    assert records[0]['request']['messages'][0]['content'] == text
+    assert records[0]['request']['tools'] == TOOLS
+    assert records[0]['response']['choices'][0]['message']['content'] == text
+    assert 'secret-test-key' not in json.dumps(records)
