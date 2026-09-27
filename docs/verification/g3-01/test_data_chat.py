@@ -104,6 +104,7 @@ def test_trace_keeps_complete_requests_responses_and_redacts_key(monkeypatch):
 
 @pytest.mark.parametrize('content', [
     {'answer_type':'data','results':[{'call_id':'forged','metric':'qty'}]},
+    {'answer_type':'data','results':[{'call_id':'query_metrics','metric':'qty'}]},
     {'answer_type':'data','results':[{'call_id':'metrics-1','metric':'qty','value':6}]},
     {'answer_type':'data','results':[{'call_id':'metrics-1','metric':'store_id'}]},
 ])
@@ -130,6 +131,32 @@ def test_tool_result_exposes_actual_call_reference(service):
     trace=Trace('ref','S02六月牛肉poke销量')
     answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(trace.question),trace,[])
     assert answer.answer_type=='data'
+
+
+def test_two_calls_to_same_tool_bind_only_selected_id(service):
+    first={'start':'2026-06-01','end':'2026-06-30','store_id':'S02','product_id':'P06'}
+    second={**first,'start':'2026-07-01','end':'2026-07-31'}
+    calls=[{'id':name,'type':'function','function':{'name':'query_metrics','arguments':json.dumps(params)}} for name,params in [('june-call',first),('july-call',second)]]
+    final=json.dumps({'answer_type':'data','results':[{'call_id':'july-call','metric':'net_revenue'}]})
+    client=Mock()
+    client.chat_with_retry.side_effect=[LLMReply({'role':'assistant','content':'','tool_calls':calls},'tool_calls','',calls,0),LLMReply({'role':'assistant','content':final},'stop',final,[],0)]
+    trace=Trace('two','S02七月牛肉poke净营业额')
+    answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(trace.question),trace,[])
+    actual=service.tools.query_metrics(**second)
+    assert answer.data_evidence==[{'tool':'query_metrics','params':second,'result':actual}]
+    assert f"净营业额 {actual['net_revenue']:.2f} 元" in answer.answer
+    assert len([s for s in trace.steps if s['step']=='tool'])==2
+
+
+def test_model_can_return_structured_clarification_without_data(service):
+    final=json.dumps({'answer_type':'clarify','answer':'请补充日期范围和门店。'},ensure_ascii=False)
+    client=Mock()
+    client.chat_with_retry.return_value=LLMReply({'role':'assistant','content':final},'stop',final,[],0)
+    trace=Trace('clarify','请帮我查一下那家店的业绩。')
+    answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(trace.question),trace,[])
+    assert answer.answer_type=='clarify'
+    assert answer.answer=='请补充日期范围和门店。'
+    assert answer.data_evidence==[]
 
 
 def test_model_error_echo_cannot_retain_credential(monkeypatch):

@@ -278,3 +278,7 @@ G2-05在新环境替换KB时发现：KB970表格别名翡翠饭/Ivory Bowl，KB9
 ### G3-01 真实样本发现的协议缺口
 
 首条真实模型测试固定f991720，正确查询出S02/P06六月417份，却把最终JSON的call_id写成query_metrics，触发严格拒答。不是工具结果错，也不是数值计算错；原tool消息content只有结果，服务商分配的id仅在协议字段中。真实失败见live/chat-1.json，2次API均有usage；红灯探针test_tool_result_exposes_actual_call_reference在b555bdb前失败（KeyError call_id），修复后17项通过。修复将call_id显式放入tool content并在提示中要求逐字复制，仍拒绝工具名、未知ID和自行提供的数值。费用记录保留失败调用，不删除失败样本挑结果。
+
+### G3-01 自审：模型澄清类型
+
+自审发现无工具时模型发出的澄清JSON会被当作自由文字refusal展示。新增test_model_can_return_structured_clarification_without_data先失败（clarify-red.txt），再支持严格的clarify/refusal终结结构；不携带未经查询的数字，也不新增追问继承。最终20项通过。真实两样本的调用ID修复与业务数值在354f6d4已验证；这次增加缺项澄清格式，不声称重新验证真实模型的澄清语义。
