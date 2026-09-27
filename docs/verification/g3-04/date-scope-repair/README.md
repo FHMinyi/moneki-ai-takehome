@@ -23,4 +23,6 @@
 | `.venv/bin/python -m pytest docs/verification/g3-01/test_data_chat.py docs/verification/g3-02/test_document_binding.py docs/verification/g3-04/test_session_context.py docs/verification/g3-06/test_trend_context.py docs/verification/g3-06/test_early_plan_context.py -q` | `green-cross-stage.txt`，95 passed，基于起点主干 |
 | `G304_DATE_HTTP_OUTPUT=docs/verification/g3-04/date-scope-repair/actual-http-final.json .venv/bin/python docs/verification/g3-04/date-scope-repair/replay_http.py` | `actual-http-final.json`，独立 uvicorn/真实 HTTP 四组请求、响应、完整 trace：精确日7、邻日5、无日期全集12、趋势旧日被问句新日覆盖为7 |
 
-不部署、不调用付费模型，不修改 G3-05 的替换输入或官方评分器。此提交之后需 normal merge 最新主干，并补受影响验证；跨票集成结果单列记录。
+不部署、不调用付费模型，不修改 G3-05 的替换输入或官方评分器。首次业务提交后已 normal merge 最新主干并复验；跨票集成结果单列记录。
+
+与 G3-02 PR #36 合并后的独立集成记录见 [integration-8132f/README.md](integration-8132f/README.md)。

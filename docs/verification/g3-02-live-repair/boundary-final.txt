@@ -1,0 +1,24 @@
+...................................F.............                        [100%]
+=================================== FAILURES ===================================
+_________________ test_explicit_store_scope_is_not_model_owned _________________
+
+service = <kbqa.service.Service object at 0x108feeb10>
+
+    def test_explicit_store_scope_is_not_model_owned(service):
+     case=CASES[0];_,chosen=original(case)
+     # Real metadata fixture in a new KB avoids inventing applicability on old data.
+     from tempfile import TemporaryDirectory
+     with TemporaryDirectory() as directory:
+      root=Path(directory);kb=root/'kb';kb.mkdir()
+      (kb/'KB-998.md').write_text('---\ntitle: 配送标准\neffective_from: 2026-01-01\nstores: [S01]\n---\n配送须在31分钟内完成。')
+      local=Service(replace(load_settings(),kb_dir=kb,var_dir=root/'var',llm_api_key='',llm_base_url='',llm_model=''))
+      from kbqa.trace import Trace
+      plan=local.planner.plan('S01配送标准')
+>     result=local.retriever.search('配送标准',top_k=5,plan=plan)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E     TypeError: Retriever.search() got an unexpected keyword argument 'plan'
+
+docs/verification/g3-02-live-repair/test_selection_boundary.py:109: TypeError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02-live-repair/test_selection_boundary.py::test_explicit_store_scope_is_not_model_owned
+1 failed, 48 passed in 10.88s
