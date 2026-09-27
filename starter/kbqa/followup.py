@@ -46,6 +46,17 @@ class FollowUps:
     def resolve(self, question: str, history: list[dict]) -> tuple[str, dict]:
         """把“那 7 月呢”还原成完整问题，并带回上一轮的槽位。"""
         previous = history[-1] if history else None
+        if previous and previous.get("answer_type") == "clarify":
+            old = previous.get("standalone") or previous.get("question") or ""
+            missing_month = (previous.get("slots") or {}).get("needs_month")
+            month = re.search(r"(?<!\d)(1[0-2]|[1-9])\s*月", question)
+            if missing_month and month and re.fullmatch(r"\s*(?:20\d{2}\s*年\s*)?\d{1,2}\s*月\s*[。！!？?]?\s*", question):
+                resolved = re.sub(r"(?<!\d)(\d{1,2})\s*[号日]",
+                                  lambda match: month.group(1) + "月" + match.group(1) + "日",
+                                  old, count=1)
+                return resolved, {}
+            if len(question.strip()) <= 20 and not E.find_metric(question):
+                return old + " " + question, {}
         if not previous or not self._is_follow_up(question, previous):
             return question, {}
         base = previous.get("standalone") or previous.get("question") or ""
@@ -59,7 +70,27 @@ class FollowUps:
                 cleaned = cleaned.replace(word, "")
         extra = re.sub(r"^(那么|那|接着|然后)", "", question.strip())
         extra = re.sub(r"(呢)?[？?]?$", "", extra).strip()
-        if not (new_spec.windows or new_spec.whole_period) and not E.looks_like_follow_up(question):
+        product_id = (previous.get("slots") or {}).get("product_id")
+        product = next((p.get("product_name") for p in self.catalog.products
+                        if p.get("product_id") == product_id), None)
+        # A new document attribute/event needs the prior subject, not the
+        # entire earlier question (whose old intent can dominate retrieval).
+        if (product and not (new_spec.windows or new_spec.whole_period)
+                and not re.search(r"两个月|两段|两者|那一周|这一周", question)
+                and len(extra) > 8):
+            standalone = product + " " + extra
+            # A prior document title is a search hint only when the new
+            # question itself repeats part of that event. Facts still require
+            # fresh retrieval and binding in this turn.
+            title = next((t for t in previous.get("source_titles", [])
+                          if any(t[i:i+2] in extra for i in range(len(t)-1)
+                                 if '\u4e00' <= t[i] <= '\u9fff' and '\u4e00' <= t[i+1] <= '\u9fff')),
+                         None)
+            if title:
+                standalone += " " + title
+            if "换成" in extra:
+                standalone += " 替代 推荐"
+        elif not (new_spec.windows or new_spec.whole_period) and not E.looks_like_follow_up(question):
             # “供应商后来赔了多少”：保留问句本身，只把上一轮的主题词接在后面。
             standalone = extra + " " + _topic_terms(cleaned)
         else:

@@ -151,7 +151,7 @@ class Planner:
         self._check_period(plan, spec)
         self._build_search_query(plan, spec)
         recent = [
-            window
+            tuple(window)
             for window in (inherited.get("recent_windows") or []) + [plan.window]
             if window
         ]
@@ -331,5 +331,4 @@ class Planner:
             elif key == "hours" and E.has_any(plan.standalone, ("营业到", "几点", "营业时间", "开门", "关门")):
                 parts.extend(words)
         plan.search_query = " ".join(parts)
-
 
