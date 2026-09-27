@@ -1,0 +1,85 @@
+{
+  "repository": "FHMinyi/moneki-ai-takehome",
+  "baseline_commit": "01ef3c0fc7f5d4d7dc510932395d1b35469de25e",
+  "published_at": "2026-09-27T04:29:35.516144+00:00",
+  "status": "published",
+  "issues": [
+    {
+      "task": "G3-01",
+      "title": "G3-01：运营在看板中查数并展开真实数据证据",
+      "number": 24,
+      "id": 5599709836,
+      "url": "https://github.com/FHMinyi/moneki-ai-takehome/issues/24",
+      "source": "01-grounded-data-chat.md",
+      "body_sha256": "2374d8f0681b3668297dc782bde6e4331de457bbc61a7d20e96e546e0ed24fb1",
+      "blocked_by": []
+    },
+    {
+      "task": "G3-02",
+      "title": "G3-02：运营查阅制度与历史规定并核对支持答案的原文",
+      "number": 25,
+      "id": 5599710036,
+      "url": "https://github.com/FHMinyi/moneki-ai-takehome/issues/25",
+      "source": "02-grounded-document-chat.md",
+      "body_sha256": "c2ad4053830c1ec2c48c5f59970e0e42a862176053ab5bfc51ad4d34f2aff542",
+      "blocked_by": [
+        24
+      ]
+    },
+    {
+      "task": "G3-03",
+      "title": "G3-03：运营把实际经营结果与目标或事件资料放在同一回答中核对",
+      "number": 26,
+      "id": 5599710334,
+      "url": "https://github.com/FHMinyi/moneki-ai-takehome/issues/26",
+      "source": "03-hybrid-answers.md",
+      "body_sha256": "1194a65992527a1a7be22290e21cdc8a9cf2fb3241dea149aac56fce686140e5",
+      "blocked_by": [
+        25
+      ]
+    },
+    {
+      "task": "G3-04",
+      "title": "G3-04：运营连续追问并在切换主题或会话时保持上下文正确",
+      "number": 27,
+      "id": 5599710655,
+      "url": "https://github.com/FHMinyi/moneki-ai-takehome/issues/27",
+      "source": "04-followups-and-isolation.md",
+      "body_sha256": "d27fb000bea89a6f26e0f5eadcb29efc635c5e2a442a2a30af0bae513c4d88e4",
+      "blocked_by": [
+        25
+      ]
+    },
+    {
+      "task": "G3-06",
+      "title": "G3-06：运营引用每日趋势的范围向经营助手提问",
+      "number": 28,
+      "id": 5599710938,
+      "url": "https://github.com/FHMinyi/moneki-ai-takehome/issues/28",
+      "source": "06-trend-context.md",
+      "body_sha256": "d6251ef56b52a2ff244c46ab5313150947564ce8e31dd1ac6d179e3567d3c2f6",
+      "blocked_by": [
+        24
+      ]
+    },
+    {
+      "task": "G3-05",
+      "title": "G3-05：评审在干净环境中复现第三关问答、证据与真实模型结果",
+      "number": 29,
+      "id": 5599711228,
+      "url": "https://github.com/FHMinyi/moneki-ai-takehome/issues/29",
+      "source": "05-integrated-delivery.md",
+      "body_sha256": "8e4ce7bb7ecd6bf0d7732765615419e6964e064c876e5e84a7344988b0bd3c80",
+      "blocked_by": [
+        26,
+        27,
+        28
+      ]
+    }
+  ],
+  "verified_at": "2026-09-27T04:30:55.370797+00:00",
+  "acceptance_criteria": 50,
+  "artifact_kind": "publication_snapshot",
+  "source_of_truth": "GitHub Issues #24–#29: current execution specifications, dependencies, acceptance progress, discussions and issue state.",
+  "hash_scope": "body_sha256 records the issue body at publication verification; it is not a local Markdown file hash and is not refreshed for later issue edits."
+}
