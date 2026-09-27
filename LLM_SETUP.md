@@ -3,12 +3,12 @@
 ## 1. 用了什么
 
 OpenAI 兼容 Chat Completions，Python `httpx`（安装版本见 requirements），没有厂商 SDK。
-开发配置为 DeepSeek 官方 `deepseek-flash`；保留厂商默认思考模式，`max_tokens=4096` 包含思考输出，避免短输出额度截断工具规划。思考原文只保留在后端 trace，不展示在回答或聊天证据中。
+开发配置为 DeepSeek 官方 `deepseek-flash`；保留厂商默认思考模式。首个第三关集成固定点 `4591fab` 使用 `max_tokens=4096`（含思考输出），完整真实评测发现 3 轮 `finish_reason=length`。后续 G3-02 修复把输出上限调整为 **8192**，新集成提交复验结果须另列，不能回写旧轮。思考原文只保留在后端 trace，不展示在回答或聊天证据中。
 
 ## 2. 配置从哪里读
 
 `starter/kbqa/config.py` 从环境变量读取 `LLM_BASE_URL`、`LLM_API_KEY`、`LLM_MODEL`，默认均为空。
-`LLM_TIMEOUT` 默认 120 秒且上限 120；`CHAT_BUDGET` 默认 150 秒、最大 175 秒。重试最多一次，使用实际已耗时扣减后的预算；至多四轮工具调用、每轮最多六个工具，然后最后一轮回答。每轮模型请求都受整个响应体的总截止时间保护。
+`LLM_TIMEOUT` 默认 120 秒且上限 120；`CHAT_BUDGET` 默认 150 秒、最大 175 秒。暂时性上游故障最多重试一次，使用实际已耗时扣减后的预算；至多**六轮**工具调用、每轮最多六个工具，然后还有一次只作最终回答的模型机会。每轮模型请求都受整个响应体的总截止时间保护。
 不自动读取 dotenv、不在启动时校验 Key 格式、不查余额、不列模型。HTTP 客户端直接连接指定 BASE_URL，不继承系统 HTTP/SOCKS 代理；需要代理时把 BASE_URL 指向明确的兼容网关。
 
 ## 3. 怎么换成你们的
@@ -77,3 +77,13 @@ PR31 R1选择协议进一步明确：每个facts元素必须同时有evidence_id
 
 
 PR31第二轮审查进一步限制非事实状态：clarify使用`{"answer_type":"clarify","missing_fields":["date_range","store"]}`，允许date_range/store/product/metric/question，代码生成中性问题，不接受额外政策正文；旧自由answer仅兼容状态及已知字段标签，正文不展示。doc属性必须锚定业务动作/属性，不能只把多久对应24小时；value另记录量型。时长焦点之后明确业务谓词不能省略，主体不能由功能成分冒充。没有新增模型阶段或付费；合并趋势main后的交叉验证另列。
+
+## 9. G3-05 集成验收记录与切换边界
+
+固定业务提交 `4591fab` 从无环境缓存的源码导出并实际安装、重建、启动。无 Key 的 health 为 `mock`；使用已配置 DeepSeek 的服务 health 为 `live`，两者快照、完整未改官方 55 题与每个上游模型请求、工具消息、原始响应都在 [G3-05 验收目录](docs/verification/g3-05/README.md)。当前真实固定运行 **67.5/100、40/55**，不是原 starter live 25.5/100，也不是完成第三关的证明。原目录中的 `model-traffic.jsonl` 记录每次实际出站 API（含重试），`chat-trace.jsonl` 记录每轮请求、回答与 trace，Authorization 真 Key 不进入文件；旧 4591fab 每次请求的 `max_tokens` 为 4096。后续新固定点使用 8192 时，须另建目录和费用账本。
+
+在 `4591fab` fresh 服务上原样重跑官方 `eval/llm_gateway.py` 免费预检：**P1–P13 PASS，P14 SKIP**。P14 因正常场景的自由文本没有通过当前 typed 业务输出协议，无法比较 slow 场景；原始 [报告](docs/verification/g3-05/preflight/preflight_report.json)未更动。独立 [受控传输补证](docs/verification/g3-05/controlled-transport/results.json)让同一 typed `data` 输出分别走普通 HTTP 和正文前四次空白/延迟，二者均 HTTP 200 `data`；2 秒模型超时返回 HTTP 200 `refusal`。当前产品为非流式，不把这个补证称为 SSE 行为或官方 P14 PASS。
+
+G3-05 真实评测的执行守卫在每次实际发往上游的 API（含重试）**发送前**保留 2.20 元，收到完整 `prompt_tokens`/`completion_tokens` 才按高峰全未命中价格结算；usage 缺失则保留全部预留。第三关总授权 50 元，`4591fab` 全题实际 87 API 全有 usage，估算本轮 2.018338 元，加此前 1.440556 元为 3.458894 元，剩余 46.541106 元。这是保守估算，不是供应商实际账单，没有用 UTF-8 字节数当 token 上界，也不探测余额/模型列表。8192 上限与 1,048,576 输入上下文的峰值估算上界为 2.162688 元，仍低于每次 2.20 元预留；这个算术和输出配置的纯离线边界见 `docs/verification/g3-05/test_live_guard.py`，不能当作一次真实接口兼容性证明。
+
+用户随后明确把文档片段的自然语义选择交给**同一次模型**，保留程序对真实检索 ID、原文偏移、确定性适用范围、白名单只读工具和数值计算的校验。旧严格主体/属性逐字绑定导致 `4591fab` 的 C01 等正例拒答；后续修复须用新的固定代码及真实输出评估选择质量。若模型选择了内容真实却不支持问题的条款，单凭引用合法仍不足以认定事实正确。无 Key/受控模型、真实模型和用户可见浏览器证据在验收目录分别标注。

@@ -8,6 +8,7 @@ The evaluator-facing relay retains each chat and trace without editing eval.
 import json
 import os
 import subprocess
+import sys
 import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -16,18 +17,24 @@ from pathlib import Path
 import httpx
 
 ROOT = Path(__file__).resolve().parents[3]
-FRESH = Path("/tmp/moneki-g305-fresh-4591fab")
-OUT = ROOT / "docs/verification/g3-05/eval-live"
+FRESH = Path(os.environ.get("G305_FRESH", "/tmp/moneki-g305-fresh-4591fab"))
+OUT = Path(os.environ.get("G305_OUT", str(ROOT / "docs/verification/g3-05/eval-live")))
+BASELINE = os.environ.get("G305_BASELINE", "4591fab9a80ef63c440b9a117dbbc4fcbf03c430")
+ORIGINAL_BASELINE = "4591fab9a80ef63c440b9a117dbbc4fcbf03c430"
+if BASELINE != ORIGINAL_BASELINE and "G305_PRIOR_CNY" not in os.environ:
+    raise RuntimeError("Integrated recheck requires the latest prior CNY ledger amount")
 OUT.mkdir(exist_ok=True)
 LEDGER = OUT / "ledger.json"
 TRAFFIC = OUT / "model-traffic.jsonl"
 CHATS = OUT / "chat-trace.jsonl"
-PRIOR = 1.440556
+PRIOR = float(os.environ.get("G305_PRIOR_CNY", "1.440556"))
 LIMIT = 50.0
 RESERVE = 2.20
+if not 0 <= PRIOR < LIMIT:
+    raise RuntimeError("Invalid prior conservative CNY amount")
 lock = threading.RLock()
 state = json.loads(LEDGER.read_text()) if LEDGER.exists() else {
-    "baseline_commit": "4591fab9a80ef63c440b9a117dbbc4fcbf03c430",
+    "baseline_commit": BASELINE,
     "prior_conservative_cny": PRIOR,
     "total_authorized_cny": LIMIT,
     "reserve_per_attempt_cny": RESERVE,
@@ -61,7 +68,16 @@ def redact(value):
 
 def output_limit_allowed(value):
     """The 2.20 CNY reserve covers at most 8192 output tokens."""
-    return type(value) is int and 1 <= value <= 8192
+    if not (type(value) is int and 1 <= value <= 8192):
+        return False
+    sys.path.insert(0, str(FRESH / "starter"))
+    try:
+        from kbqa.llm import valid_output_limit
+    except ImportError:
+        # Original 4591fab did not export this validator. Preserve its 4096
+        # checkpoint; the integrated rerun must use the product validator.
+        return BASELINE == ORIGINAL_BASELINE
+    return valid_output_limit(value)
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -214,6 +230,12 @@ def start_server(kind, port):
 
 def main():
     global key
+    if state["baseline_commit"] != BASELINE:
+        raise RuntimeError("Ledger fixed point differs from requested baseline")
+    if state["prior_conservative_cny"] != PRIOR:
+        raise RuntimeError("Ledger prior amount differs from requested amount")
+    if BASELINE != ORIGINAL_BASELINE and not output_limit_allowed(8192):
+        raise RuntimeError("Integrated product output limit validator unavailable")
     if state["chat_count"] or state["attempts"] or TRAFFIC.exists() or CHATS.exists():
         raise RuntimeError("Existing live evidence; never overwrite or rerun this runner")
     key = load_key()
