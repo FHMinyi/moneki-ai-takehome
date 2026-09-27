@@ -1,0 +1,178 @@
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+_ test_early_exit_invalid_explicit_condition_never_falls_back[\u9884\u6d4b\u6a21\u578b\u8bad\u7ec3\u524d\uff0c\u8bf7\u67e5\u8be2S99\u516d\u6708\u51c0\u8425\u4e1a\u989d\u3002-unknown_store] _
+
+live_api = (<starlette.testclient.TestClient object at 0x108436960>, <kbqa.service.Service object at 0x1080df140>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1080def90>
+question = '预测模型训练前，请查询S99六月净营业额。', rejection = 'unknown_store'
+
+    @pytest.mark.parametrize('question,rejection', [
+        ('预测模型训练前，请查询S99六月净营业额。', 'unknown_store'),
+        ('预测模型训练前，请查询S02 P99六月净营业额。', 'unknown_product'),
+        ('预测模型训练前，请查询S02现在净营业额。', 'out_of_period'),
+    ])
+    def test_early_exit_invalid_explicit_condition_never_falls_back(live_api, monkeypatch, question, rejection):
+        client, service = live_api
+        assert service.planner.plan(question).kind == 'out_of_scope'
+        calls = []
+        monkeypatch.setattr(LLMClient, 'chat_with_retry', lambda *args, **kwargs: calls.append(True))
+        body, trace = ask(client, question)
+        assert body['answer_type'] == 'refusal' and body['data_evidence'] == []
+>       assert calls == [] and trace['errors'] == []
+E       assert ([True] == []
+E
+E         Left contains one more item: True
+E         Use -v to get more diff)
+
+docs/verification/g3-06/test_early_plan_context.py:67: AssertionError
+------------------------------ Captured log call -------------------------------
+ERROR    kbqa.service:service.py:225 chat failed trace_id=t-20260901-0001
+Traceback (most recent call last):
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/kbqa/service.py", line 205, in _answer
+    answer = (self._run_engine(plan, trace, history, effective)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/kbqa/service.py", line 256, in _run_engine
+    answer = engine.answer(plan, trace, history)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/kbqa/live.py", line 72, in answer
+    if not reply.tool_calls:
+           ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'tool_calls'
+_ test_early_exit_invalid_explicit_condition_never_falls_back[\u9884\u6d4b\u6a21\u578b\u8bad\u7ec3\u524d\uff0c\u8bf7\u67e5\u8be2S02 P99\u516d\u6708\u51c0\u8425\u4e1a\u989d\u3002-unknown_product] _
+
+live_api = (<starlette.testclient.TestClient object at 0x10859f5c0>, <kbqa.service.Service object at 0x108437200>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x108437320>
+question = '预测模型训练前，请查询S02 P99六月净营业额。', rejection = 'unknown_product'
+
+    @pytest.mark.parametrize('question,rejection', [
+        ('预测模型训练前，请查询S99六月净营业额。', 'unknown_store'),
+        ('预测模型训练前，请查询S02 P99六月净营业额。', 'unknown_product'),
+        ('预测模型训练前，请查询S02现在净营业额。', 'out_of_period'),
+    ])
+    def test_early_exit_invalid_explicit_condition_never_falls_back(live_api, monkeypatch, question, rejection):
+        client, service = live_api
+        assert service.planner.plan(question).kind == 'out_of_scope'
+        calls = []
+        monkeypatch.setattr(LLMClient, 'chat_with_retry', lambda *args, **kwargs: calls.append(True))
+        body, trace = ask(client, question)
+        assert body['answer_type'] == 'refusal' and body['data_evidence'] == []
+>       assert calls == [] and trace['errors'] == []
+E       assert ([True] == []
+E
+E         Left contains one more item: True
+E         Use -v to get more diff)
+
+docs/verification/g3-06/test_early_plan_context.py:67: AssertionError
+------------------------------ Captured log call -------------------------------
+ERROR    kbqa.service:service.py:225 chat failed trace_id=t-20260901-0001
+Traceback (most recent call last):
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/kbqa/service.py", line 205, in _answer
+    answer = (self._run_engine(plan, trace, history, effective)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/kbqa/service.py", line 256, in _run_engine
+    answer = engine.answer(plan, trace, history)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/kbqa/live.py", line 72, in answer
+    if not reply.tool_calls:
+           ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'tool_calls'
+_ test_early_exit_invalid_explicit_condition_never_falls_back[\u9884\u6d4b\u6a21\u578b\u8bad\u7ec3\u524d\uff0c\u8bf7\u67e5\u8be2S02\u73b0\u5728\u51c0\u8425\u4e1a\u989d\u3002-out_of_period] _
+
+live_api = (<starlette.testclient.TestClient object at 0x108ac9790>, <kbqa.service.Service object at 0x1085b2360>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1085b2600>
+question = '预测模型训练前，请查询S02现在净营业额。', rejection = 'out_of_period'
+
+    @pytest.mark.parametrize('question,rejection', [
+        ('预测模型训练前，请查询S99六月净营业额。', 'unknown_store'),
+        ('预测模型训练前，请查询S02 P99六月净营业额。', 'unknown_product'),
+        ('预测模型训练前，请查询S02现在净营业额。', 'out_of_period'),
+    ])
+    def test_early_exit_invalid_explicit_condition_never_falls_back(live_api, monkeypatch, question, rejection):
+        client, service = live_api
+        assert service.planner.plan(question).kind == 'out_of_scope'
+        calls = []
+        monkeypatch.setattr(LLMClient, 'chat_with_retry', lambda *args, **kwargs: calls.append(True))
+        body, trace = ask(client, question)
+        assert body['answer_type'] == 'refusal' and body['data_evidence'] == []
+>       assert calls == [] and trace['errors'] == []
+E       assert ([] == []
+E
+E         Use -v to get more diff and [{'where': 'a...criptable\n'}] == []
+E
+E         Left contains one more item: {'where': 'answer', 'type': 'TypeError', 'message': "'NoneType' object is not subscriptable", 'traceback': 'Traceback ...etric": plan.metric}\n                          ~~~~~~~~~~~^^^\nTypeError: \'NoneType\' object is not subscriptable\n'}
+E         Use -v to get more diff)
+
+docs/verification/g3-06/test_early_plan_context.py:67: AssertionError
+------------------------------ Captured log call -------------------------------
+ERROR    kbqa.service:service.py:225 chat failed trace_id=t-20260901-0001
+Traceback (most recent call last):
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/kbqa/service.py", line 197, in _answer
+    resolution = resolve_trend_context(plan, question, reference, self.catalog, self.settings.today)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/kbqa/trend_context.py", line 75, in resolve
+    effective = {"start": plan.window[0], "end": plan.window[1], "store_id": plan.store_id, "metric": plan.metric}
+                          ~~~~~~~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
+____________ test_early_exit_explicit_whole_period_uses_data_period ____________
+
+live_api = (<starlette.testclient.TestClient object at 0x108a0d760>, <kbqa.service.Service object at 0x108b5f980>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x108b5fb30>
+
+    def test_early_exit_explicit_whole_period_uses_data_period(live_api, monkeypatch):
+        client, service = live_api
+        question = '预测模型训练前，请查询S02全部时间净营业额。'
+        assert service.planner.plan(question).kind == 'out_of_scope'
+        params = {'start': service.data_period['start'], 'end': service.data_period['end'],
+                  'store_id': 'S02'}
+        calls = controlled(monkeypatch, 'query_metrics', params)
+        body, trace = ask(client, question)
+>       assert body['answer_type'] == 'data' and len(calls) == 2
+E       AssertionError: assert ('refusal' == 'data'
+E
+E         - data
+E         + refusal)
+
+docs/verification/g3-06/test_early_plan_context.py:80: AssertionError
+------------------------------ Captured log call -------------------------------
+ERROR    kbqa.service:service.py:225 chat failed trace_id=t-20260901-0001
+Traceback (most recent call last):
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/kbqa/service.py", line 197, in _answer
+    resolution = resolve_trend_context(plan, question, reference, self.catalog, self.settings.today)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/kbqa/trend_context.py", line 75, in resolve
+    effective = {"start": plan.window[0], "end": plan.window[1], "store_id": plan.store_id, "metric": plan.metric}
+                          ~~~~~~~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
+____________ test_early_exit_two_windows_compare_uses_both_windows _____________
+
+live_api = (<starlette.testclient.TestClient object at 0x108638350>, <kbqa.service.Service object at 0x108a0e4e0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x108a0e870>
+
+    def test_early_exit_two_windows_compare_uses_both_windows(live_api, monkeypatch):
+        client, service = live_api
+        question = '预测模型训练前，请比较S02六月和七月净营业额。'
+        assert service.planner.plan(question).kind == 'out_of_scope'
+        params = {'start_a': '2026-06-01', 'end_a': '2026-06-30',
+                  'start_b': '2026-07-01', 'end_b': '2026-07-31', 'store_id': 'S02'}
+        calls = controlled(monkeypatch, 'compare_periods', params)
+        body, trace = ask(client, question)
+>       assert body['answer_type'] == 'data' and len(calls) == 2
+E       AssertionError: assert ('refusal' == 'data'
+E
+E         - data
+E         + refusal)
+
+docs/verification/g3-06/test_early_plan_context.py:97: AssertionError
+=============================== warnings summary ===============================
+starter/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED docs/verification/g3-06/test_early_plan_context.py::test_early_exit_invalid_explicit_condition_never_falls_back[\u9884\u6d4b\u6a21\u578b\u8bad\u7ec3\u524d\uff0c\u8bf7\u67e5\u8be2S99\u516d\u6708\u51c0\u8425\u4e1a\u989d\u3002-unknown_store]
+FAILED docs/verification/g3-06/test_early_plan_context.py::test_early_exit_invalid_explicit_condition_never_falls_back[\u9884\u6d4b\u6a21\u578b\u8bad\u7ec3\u524d\uff0c\u8bf7\u67e5\u8be2S02 P99\u516d\u6708\u51c0\u8425\u4e1a\u989d\u3002-unknown_product]
+FAILED docs/verification/g3-06/test_early_plan_context.py::test_early_exit_invalid_explicit_condition_never_falls_back[\u9884\u6d4b\u6a21\u578b\u8bad\u7ec3\u524d\uff0c\u8bf7\u67e5\u8be2S02\u73b0\u5728\u51c0\u8425\u4e1a\u989d\u3002-out_of_period]
+FAILED docs/verification/g3-06/test_early_plan_context.py::test_early_exit_explicit_whole_period_uses_data_period
+FAILED docs/verification/g3-06/test_early_plan_context.py::test_early_exit_two_windows_compare_uses_both_windows
+5 failed, 1 warning in 0.87s

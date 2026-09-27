@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Alert, Button, Card, Skeleton } from 'antd';
 import { metricsUrl, useDashboardRequest, validDate } from './dashboardApi';
 import type { DashboardFilters } from './dashboardApi';
+import type { TrendAttachment } from './trendReference';
 import './DailyTrend.css';
 
 type DailyPoint = { date: string; net_revenue: number; orders: number; aov: number | null };
@@ -66,17 +67,19 @@ function TrendChart({ days, selectedDate, onSelect }: { days: DailyPoint[]; sele
   </div>;
 }
 
-export function DailyTrend({ filters }: { filters: DashboardFilters }) {
+export function DailyTrend({ filters, storeLabel, onAttach }: { filters: DashboardFilters; storeLabel: string; onAttach: (attachment: TrendAttachment) => void }) {
   const [revision, setRevision] = useState(0);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const state = useDashboardRequest(metricsUrl('/api/metrics/daily', filters), parseDaily, revision);
   const days = state.kind === 'ready' ? state.data.days : null;
+  const current = days && days[0].date === filters.start && days[days.length - 1].date === filters.end;
   const selected = days?.find(day => day.date === selectedDate) || days?.[days.length - 1];
   return <section className="daily-trend" aria-label="每日净营业额趋势" aria-busy={state.kind === 'loading'}>
     <div className="daily-heading"><h2>每日净营业额趋势</h2><span>单位：元 · 日期按退款发生日归属</span></div>
     {state.kind === 'loading' && <Card><p role="status">正在读取每日趋势…</p><Skeleton active /></Card>}
     {state.kind === 'error' && <Alert type="error" showIcon message="每日趋势加载失败" description={state.message} action={<Button onClick={() => setRevision(x => x + 1)}>重试趋势</Button>} />}
-    {days && selected && <Card className="daily-card">
+    {days && selected && current && <Card className="daily-card">
+      <div className="daily-actions"><Button onClick={() => onAttach({ id: crypto.randomUUID(), context: { type: 'daily_trend', start: filters.start, end: filters.end, store_id: filters.store_id, metric: 'net_revenue' }, storeLabel })}>加入提问</Button><span>引用整个趋势范围，提问时重新查询数据</span></div>
       <div className="daily-selected" aria-live="polite" data-testid="daily-selected"><span>{selected.date}</span><strong className={selected.net_revenue < 0 ? 'daily-negative-value' : ''}>{currency(selected.net_revenue)}</strong><span>有效订单 {selected.orders.toLocaleString('en-US')} 单</span></div>
       <p className="daily-help">选择图上的日期读取精确金额；横向滚动可查看完整区间。</p>
       <TrendChart days={days} selectedDate={selected.date} onSelect={setSelectedDate} />

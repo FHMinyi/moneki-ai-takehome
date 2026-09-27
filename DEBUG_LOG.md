@@ -362,3 +362,10 @@ R2回放测试曾在开发重跑时覆盖本票新提交的chat7-free-replay.jso
 clarify现在是missing_fields的受约束状态，字段为date_range/store/product/metric/question，代码生成中性问题。旧answer只识别已知字段标签，整段自由正文不显示；可以保留普通“请补充日期范围和门店”的可用性，不能夹带政策事实。不撤数字保护、不把数据/工具错误改成语义成功。
 
 183后端通过（含全部169前轮与新增14），57实际HTTP通过（含旧49与新增8）；新增真实HTTP证明无检索clarify也不泄漏政策，星砂订单签收/复核、云帆工单归档/分派同量纲不同动作有正反对照，业务属性省略与量型伪属性分别拒绝。开发中四个旧正例漏“提出”属性和一处新测试过早被已有冲突检查挡住的断言失败均保留；后者换成实际天数范围以单独覆盖时长修饰角色。
+
+
+## G3-02 后合并 G3-06 main118172e
+
+在保存并推送e1e07d5角色/澄清修复后，正常merge origin/main118172e，未rebase。ChatSidebar类型冲突保留来源元信息Citation与TrendAttachment，live最终化冲突保留中性状态处理及趋势有效metric校验（数据回答渲染前检查，状态不输出事实）。Service自动合并并不兼容：带引用的二参数lambda接收到search_kb的plan=关键字后抛TypeError，4个真实HTTP交叉样本全红，见integration-g306/scoped-red.txt及red-http。
+
+修复只让scoped_tool接受并透传受信任Plan，search_kb沿原计划核对版本/门店，业务数据仍经过趋势scope守卫；不把plan放进模型可写参数schema。四项转绿，包含当前制度、明确历史日期/门店、refusal与clarify安全状态。213项交叉后端（含G306原路由/显式条件与完整凭证）和61实际HTTP通过，TypeScript/Vite构建通过。合并后浏览器/网络趋势矩阵另以固定提交补验，不以自动merge或已有G306回执替代本票验证。

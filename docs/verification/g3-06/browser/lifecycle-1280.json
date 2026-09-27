@@ -1,0 +1,187 @@
+{
+  "payload": {
+    "session_id": "f46d0eb2-b5ca-4885-9fac-04df9da9bed5",
+    "question": "这段时间净营业额是多少？",
+    "context": {
+      "type": "daily_trend",
+      "start": "2026-07-01",
+      "end": "2026-07-31",
+      "store_id": "S01",
+      "metric": "net_revenue"
+    }
+  },
+  "answer": {
+    "answer": "2026 年 7 月（S01 Super Souper）：净营业额 30986.00 元，有效订单数 904 单，客单价 34.28 元，销量 1360 件，退款金额 66.00 元。",
+    "answer_type": "data",
+    "citations": [],
+    "data_evidence": [
+      {
+        "tool": "query_metrics",
+        "params": {
+          "start": "2026-07-01",
+          "end": "2026-07-31",
+          "store_id": "S01",
+          "product_id": null
+        },
+        "result": {
+          "start": "2026-07-01",
+          "end": "2026-07-31",
+          "store_id": "S01",
+          "product_id": null,
+          "net_revenue": 30986,
+          "refund_amount": 66,
+          "orders": 904,
+          "aov": 34.28,
+          "qty": 1360
+        }
+      }
+    ],
+    "trace_id": "t-20260901-0013"
+  },
+  "trace": {
+    "trace_id": "t-20260901-0013",
+    "session_id": "f46d0eb2-b5ca-4885-9fac-04df9da9bed5",
+    "question": "这段时间净营业额是多少？",
+    "started_at": "2026-09-27T14:38:36.106",
+    "total_ms": 11,
+    "steps": [
+      {
+        "step": "request",
+        "at_ms": 0,
+        "took_ms": null,
+        "detail": {
+          "session_id": "f46d0eb2-b5ca-4885-9fac-04df9da9bed5",
+          "question": "这段时间净营业额是多少？",
+          "context": {
+            "type": "daily_trend",
+            "start": "2026-07-01",
+            "end": "2026-07-31",
+            "store_id": "S01",
+            "metric": "net_revenue"
+          }
+        }
+      },
+      {
+        "step": "context_validation",
+        "at_ms": 0,
+        "took_ms": null,
+        "detail": {
+          "valid": true,
+          "reason": null,
+          "reference": {
+            "type": "daily_trend",
+            "start": "2026-07-01",
+            "end": "2026-07-31",
+            "store_id": "S01",
+            "metric": "net_revenue"
+          }
+        }
+      },
+      {
+        "step": "context_resolution",
+        "at_ms": 10.2,
+        "took_ms": null,
+        "detail": {
+          "effective": {
+            "start": "2026-07-01",
+            "end": "2026-07-31",
+            "store_id": "S01",
+            "metric": "net_revenue"
+          },
+          "source": {
+            "window": "reference",
+            "store_id": "reference",
+            "metric": "question"
+          },
+          "overrides": [
+            "metric"
+          ]
+        }
+      },
+      {
+        "step": "plan",
+        "at_ms": 10.2,
+        "took_ms": 10.2,
+        "detail": {
+          "question": "这段时间净营业额是多少？",
+          "standalone_question": "这段时间净营业额是多少？",
+          "search_query": "这段时间净营业额是多少？",
+          "intent": "data",
+          "kind": "summary",
+          "window": [
+            "2026-07-01",
+            "2026-07-31"
+          ],
+          "compare_window": null,
+          "as_of": "2026-09-01",
+          "year": 2026,
+          "store_id": "S01",
+          "product_id": null,
+          "metric": "net_revenue",
+          "needs_data": true,
+          "needs_docs": false,
+          "refusal": null,
+          "notes": [
+            "识别：指标=net_revenue 门店=全部 商品=全部 时间=未指定",
+            "趋势引用条件来源：{'window': 'reference', 'store_id': 'reference', 'metric': 'question'}；有效条件：{'start': '2026-07-01', 'end': '2026-07-31', 'store_id': 'S01', 'metric': 'net_revenue'}"
+          ]
+        }
+      },
+      {
+        "step": "answer_mock",
+        "at_ms": 11,
+        "took_ms": 0.8,
+        "detail": {
+          "answer_type": "data"
+        }
+      },
+      {
+        "step": "tool",
+        "at_ms": 11,
+        "took_ms": null,
+        "detail": {
+          "tool": "query_metrics",
+          "params": {
+            "start": "2026-07-01",
+            "end": "2026-07-31",
+            "store_id": "S01",
+            "product_id": null
+          },
+          "result": {
+            "start": "2026-07-01",
+            "end": "2026-07-31",
+            "store_id": "S01",
+            "product_id": null,
+            "net_revenue": 30986,
+            "refund_amount": 66,
+            "orders": 904,
+            "aov": 34.28,
+            "qty": 1360
+          }
+        }
+      },
+      {
+        "step": "response",
+        "at_ms": 11,
+        "took_ms": null,
+        "detail": {
+          "answer_type": "data",
+          "notes": []
+        }
+      }
+    ],
+    "llm_calls": [],
+    "errors": []
+  },
+  "expected": {
+    "start": "2026-07-01",
+    "end": "2026-07-31",
+    "store_id": "S01",
+    "product_id": null,
+    "net_revenue": 30986,
+    "refund_amount": 66,
+    "orders": 904,
+    "aov": 34.28,
+    "qty": 1360
+  }
+}

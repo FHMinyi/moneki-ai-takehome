@@ -1,0 +1,24 @@
+[
+  {
+    "session_id": "f5e76aef-1872-4a7a-ba3b-9dba913d9a3f",
+    "question": "这段时间净营业额是多少？",
+    "context": {
+      "type": "daily_trend",
+      "start": "2026-05-01",
+      "end": "2026-08-31",
+      "store_id": null,
+      "metric": "net_revenue"
+    }
+  },
+  {
+    "session_id": "f5e76aef-1872-4a7a-ba3b-9dba913d9a3f",
+    "question": "这段时间净营业额是多少？",
+    "context": {
+      "type": "daily_trend",
+      "start": "2026-05-01",
+      "end": "2026-08-31",
+      "store_id": null,
+      "metric": "net_revenue"
+    }
+  }
+]

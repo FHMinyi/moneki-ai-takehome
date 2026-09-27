@@ -24,6 +24,7 @@ from .toolspec import TOOL_NAMES, TOOLS
 from .tools import DataTools
 from .trace import Trace, TraceStore
 from .redaction import redact
+from .trend_context import validate as validate_trend_context, resolve as resolve_trend_context
 
 _ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 _INT_PARAMS = {"top_k", "limit"}
@@ -163,14 +164,15 @@ class Service:
 
     # -- 问答 -------------------------------------------------------------------
 
-    def chat(self, session_id: Optional[str], question: str) -> dict:
+    def chat(self, session_id: Optional[str], question: str, context: Any = None) -> dict:
         trace = Trace(
             trace_id=self.traces.new_id(self.settings.today.isoformat()),
             question=question or "",
             session_id=session_id,
             secrets=(self.settings.llm_api_key,),
         )
-        answer = self._answer(trace, session_id, question or "")
+        trace.step("request", {"session_id": session_id, "question": question, "context": context})
+        answer = self._answer(trace, session_id, question or "", context)
         payload = {
             "answer": answer.answer,
             "answer_type": answer.answer_type,
@@ -182,15 +184,37 @@ class Service:
         self.traces.save(trace)
         return redact(payload, (self.settings.llm_api_key,))
 
-    def _answer(self, trace: Trace, session_id: Optional[str], question: str) -> Answer:
+    def _answer(self, trace: Trace, session_id: Optional[str], question: str, context: Any = None) -> Answer:
         try:
+            reference, problem = validate_trend_context(context, self.catalog, self.data_period)
+            trace.step("context_validation", {"valid": problem is None, "reason": problem, "reference": reference})
+            if problem:
+                return Answer(answer=problem, answer_type="refusal")
             if not question.strip():
                 return Answer(answer="没有收到问题内容，请再说一次。", answer_type="clarify")
             history = self.sessions.history(session_id)
             started = time.perf_counter()
             plan = self.planner.plan(question)
+            effective = None
+            # Keep G3-01's live semantic route for heuristic out_of_scope:
+            # a business request can have an unrelated preamble. Only hard
+            # safety/identity failures and required clarifications stop here.
+            hard_stop = {"prohibited_request", "need_context", "need_month", "unknown_entity", "out_of_period"}
+            if reference and plan.kind not in hard_stop:
+                resolution = resolve_trend_context(plan, question, reference, self.catalog,
+                                                   self.settings.today, self.data_period)
+                trace.step("context_resolution", resolution)
+                effective = resolution["effective"]
+            elif reference and plan.kind in {"unknown_entity", "out_of_period"}:
+                plan.slots["trend_reference_rejection"] = True
             trace.step("plan", plan.as_trace(), started=started)
-            answer = self._run_engine(plan, trace, history)
+            # Preserve the original three-argument execution seam for ordinary
+            # chat and diagnostic writers. Only a resolved trend adds scope.
+            answer = (self._run_engine(plan, trace, history, effective)
+                      if effective else self._run_engine(plan, trace, history))
+            if not self.settings.live:
+                for item in answer.data_evidence:
+                    trace.step("tool", item)
             self.sessions.append(
                 session_id,
                 redact({
@@ -213,8 +237,11 @@ class Service:
                 answer_type="refusal",
             )
 
-    def _run_engine(self, plan, trace: Trace, history: list[dict]) -> Answer:
-        if not self.settings.live or plan.kind in {"prohibited_request", "need_context", "need_month"}:
+    def _run_engine(self, plan, trace: Trace, history: list[dict], effective: dict | None = None) -> Answer:
+        if (not self.settings.live or
+                plan.kind in {"prohibited_request", "need_context", "need_month",
+                              "trend_ambiguous_time", "trend_invalid_condition"} or
+                plan.slots.get("trend_reference_rejection")):
             started = time.perf_counter()
             answer = self.answerer.answer(plan, trace)
             trace.step("answer_mock", {"answer_type": answer.answer_type}, started=started)
@@ -225,10 +252,15 @@ class Service:
             self.settings.llm_model,
             timeout=self.settings.llm_timeout,
         )
+        def scoped_tool(name, params, *, plan=plan):
+            # The document executor supplies its original Plan as a private
+            # keyword. Preserve it through the trend scope wrapper as well.
+            return self._run_scoped_tool(name, params, effective, plan)
+
         engine = LiveEngine(
             client,
             self.answerer,
-            self.run_tool,
+            scoped_tool if effective else self.run_tool,
             self.settings.today.isoformat(),
             self.data_period,
             budget=self.settings.chat_budget,
@@ -247,6 +279,39 @@ class Service:
                 answer_type="refusal",
                 notes=["live 模式失败：%s" % exc.detail],
             )
+
+    def _run_scoped_tool(self, name: str, params: dict, effective: dict, plan) -> dict:
+        """A model cannot silently exchange the resolved reference scope for another one."""
+        if name not in TOOL_NAMES or not isinstance(params, dict):
+            return self.run_tool(name, params)
+        if name != "search_kb":
+            if name == "compare_periods":
+                required = {
+                    "start_a": plan.window[0], "end_a": plan.window[1],
+                    "store_id": effective["store_id"],
+                    "product_id": effective.get("product_id"),
+                }
+                if plan.compare_window:
+                    required.update(start_b=plan.compare_window[0], end_b=plan.compare_window[1])
+                if not plan.compare_window or any(params.get(key) != value for key, value in required.items()):
+                    return {"error": "比较查询与文字明确指定的有效条件不一致"}
+                return self.run_tool(name, params)
+            if plan.compare_window:
+                return {"error": "明确比较两个区间时必须查询两个区间"}
+            if params.get("start") != effective["start"] or params.get("end") != effective["end"]:
+                return {"error": "查询日期与已验证的有效条件不一致"}
+            properties = next(tool["function"]["parameters"]["properties"] for tool in TOOLS if tool["function"]["name"] == name)
+            if "store_id" not in properties:
+                if effective["store_id"] is not None:
+                    return {"error": "此工具不能按引用门店查询"}
+            elif params.get("store_id") != effective["store_id"]:
+                return {"error": "查询门店与已验证的有效条件不一致"}
+            if "product_id" not in properties:
+                if effective.get("product_id") is not None:
+                    return {"error": "此工具不能按问题中的商品查询"}
+            elif params.get("product_id") != effective.get("product_id"):
+                return {"error": "查询商品与本轮有效条件不一致"}
+        return self.run_tool(name, params, plan=plan) if name == "search_kb" else self.run_tool(name, params)
 
     # -- trace ------------------------------------------------------------------
 

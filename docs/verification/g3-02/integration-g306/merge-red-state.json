@@ -1,0 +1,7 @@
+{
+  "ours": "e1e07d5cda6b0eb04322b2d09e6aa09eeab08d90",
+  "theirs": "118172e904728968136e6920701d0e8fb6dbb37c",
+  "phase": "text conflicts resolved, automatically merged scoped callback still two-argument",
+  "failures": "4/4 real HTTP; unexpected keyword argument plan",
+  "service_sha256": "619d15a26d60e117942b2f761e670f831b4564b30996c3fbf187c28d75308ee7"
+}

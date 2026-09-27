@@ -1,0 +1,48 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_live_tool_scope_gate_uses_resolved_conditions ______________
+
+api = (<starlette.testclient.TestClient object at 0x10823b500>, <kbqa.service.Service object at 0x10829fe30>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10829fdd0>
+
+    def test_live_tool_scope_gate_uses_resolved_conditions(api, monkeypatch):
+        _, service = api
+        plan = service.planner.plan('这段时间净营业额是多少？')
+        from kbqa.trend_context import resolve
+        effective = resolve(plan, plan.question, REFERENCE, service.catalog, service.settings.today,
+                            service.data_period)['effective']
+        def must_not_query(*args, **kwargs):
+            raise AssertionError('wrong scope reached database')
+        monkeypatch.setattr(service.tools, 'query_metrics', must_not_query)
+        assert 'error' in service._run_scoped_tool('query_metrics', {'start': '2026-05-01', 'end': '2026-08-31', 'store_id': 'S02'}, effective, plan)
+        assert 'error' in service._run_scoped_tool('query_metrics', {'start': '2026-06-01', 'end': '2026-06-30', 'store_id': 'S01'}, effective, plan)
+>       assert 'error' in service._run_scoped_tool('query_metrics', {'start': '2026-06-01', 'end': '2026-06-30', 'store_id': 'S02', 'product_id': 'P06'}, effective, plan)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-06/test_trend_context.py:88:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+starter/kbqa/service.py:301: in _run_scoped_tool
+    return self.run_tool(name, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/service.py:154: in run_tool
+    return getattr(self.tools, name)(**cleaned)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'start': '2026-06-01', 'end': '2026-06-30', 'store_id': 'S02', 'product_id': 'P06'}
+
+    def must_not_query(*args, **kwargs):
+>       raise AssertionError('wrong scope reached database')
+E       AssertionError: wrong scope reached database
+
+docs/verification/g3-06/test_trend_context.py:84: AssertionError
+=============================== warnings summary ===============================
+starter/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED docs/verification/g3-06/test_trend_context.py::test_live_tool_scope_gate_uses_resolved_conditions
+1 failed, 1 warning in 0.29s

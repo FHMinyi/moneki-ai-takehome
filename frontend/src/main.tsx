@@ -5,6 +5,7 @@ import 'antd/dist/reset.css';
 import './style.css';
 import { Dashboard } from './Dashboard';
 import { ChatSidebar } from './ChatSidebar';
+import type { TrendAttachment } from './trendReference';
 
 type Report = { raw_rows: number; kept_rows: number; removed_rows: number; removed: Record<string, number> };
 type Quality = { cleaning_report: Report; data_period: { start: string | null; end: string | null } };
@@ -30,6 +31,7 @@ function validQuality(value: unknown): value is Quality {
     r.raw_rows === r.kept_rows + r.removed_rows && day(q.data_period.start) && day(q.data_period.end);
 }
 function Workspace() {
+  const [attachment, setAttachment] = useState<TrendAttachment | null>(null);
   const [state, setState] = useState<State>({ kind: 'loading' });
   const [revision, setRevision] = useState(0);
   const [period, setPeriod] = useState<Quality['data_period'] | null>(null);
@@ -56,7 +58,7 @@ function Workspace() {
     <header className="brandbar"><a href="/" className="brand"><span className="brandmark">m</span>moneki<span className="brand-sub">运营工作台</span></a><span className="workspace-label">总部运营 / 经营看板</span></header>
     <main>
       <div className="page-heading"><div><div className="eyebrow">经营看板</div><h1>看清每一天的经营</h1><p>按日期和门店查看真实经营数据，核对清洗结果与指标口径。</p></div><Button onClick={() => setRevision(x => x + 1)} loading={state.kind === 'loading'}>刷新数据</Button></div>
-      {period && <Dashboard period={period} />}
+      {period && <Dashboard period={period} onAttachTrend={setAttachment} />}
       <section className="quality-section" aria-label="数据质量台账">
         <div className="section-heading"><h2>数据质量</h2><Tag color="green">KB-001 · 现行口径</Tag></div>
         <p className="scope-note">全量重建结果 · 不随看板筛选变化</p>
@@ -87,7 +89,7 @@ function Workspace() {
       </section>
     </main>
     <footer>MONEKI / 数据口径以《指标口径手册 v3》为准</footer>
-    <ChatSidebar />
+    <ChatSidebar incoming={attachment} />
   </div>;
 }
 createRoot(document.getElementById('root')!).render(<React.StrictMode><ConfigProvider theme={{ token: { colorPrimary: '#246b52', borderRadius: 10, fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', colorText: '#20382e', colorBorderSecondary: '#e5eae6' } }}><Workspace /></ConfigProvider></React.StrictMode>);
