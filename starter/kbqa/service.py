@@ -100,7 +100,7 @@ class Service:
 
     # -- 工具执行（live 模式下由模型驱动） ---------------------------------------
 
-    def run_tool(self, name: str, params: dict) -> dict:
+    def run_tool(self, name: str, params: dict, *, plan=None) -> dict:
         if name not in TOOL_NAMES:
             return {"error": "没有这个工具：%s，可用工具：%s" % (name, "、".join(TOOL_NAMES))}
         schema = next(
@@ -147,9 +147,16 @@ class Service:
                 return {"error": "查询区间超出已有数据范围"}
         try:
             if name == "search_kb":
-                response = self.retrieve(cleaned["query"], cleaned.get("top_k", 5))
-                # Tool consumers receive evidence only, never count-contract fillers.
-                return {"results": [h for h in response["results"] if h["evidence_eligible"]]}
+                search = self.retriever.search(cleaned["query"], top_k=cleaned.get("top_k", 5),
+                    as_of=(plan.as_of or self.settings.today) if plan else None,
+                    store_id=plan.store_id if plan else None, year=plan.year if plan else None,
+                    historical=bool(plan.slots.get("historical")) if plan else None)
+                from .document_evidence import DocumentEvidence
+                pool = DocumentEvidence(self.facts, search,
+                    self.answerer.answerable_hits(plan, search, limit=10) if plan else None)
+                return {"results": [h.as_result() for h in search.ranked],
+                        "evidence": pool.public(), "scope": search.scope,
+                        "diagnostics": search.as_trace(), "rejected": pool.rejected}
             return getattr(self.tools, name)(**cleaned)
         except (TypeError, ValueError) as exc:
             return {"error": "工具 %s 执行失败：%s" % (name, exc)}

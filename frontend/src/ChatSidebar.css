@@ -23,3 +23,5 @@
 .chat-composer > div:last-child { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 12px; }
 .chat-waiting { color: #246b52; font-size: 13px; }
 @media (max-width: 600px) { .chat-history { padding: 18px; } .chat-composer { padding: 14px 18px; } .chat-launcher { right: 16px; bottom: 16px; } }
+.citation-meta { color: #627468; font-size: 11px; line-height: 1.7; margin-top: 6px; overflow-wrap: anywhere; }
+.chat-answer blockquote strong { overflow-wrap: anywhere; }

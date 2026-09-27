@@ -49,8 +49,8 @@ def select(result, doc, needle):
 @pytest.mark.parametrize('question,doc,needle',[
  ('外卖订单多久内可以退款？','KB-013','24'),
  ('2026年6月14日当时外卖订单多久内可以退款？','KB-012','7 天'),
- ('2025年12月1日当时会员充值500元赠送多少？','KB-010','50'),
- ('Beef Poke里面有哪些过敏原？','KB-040','Beef Poke'),
+ ('2026年2月1日当时会员充值500元赠送多少？','KB-010','50'),
+ ('Beef Poke里面有哪些过敏原？','KB-040','牛肉poke'),
 ])
 def test_explicit_evidence_selection(service,question,doc,needle):
     answer,trace=run(service,question,lambda r:select(r,doc,needle),query='外卖退款政策' if doc=='KB-012' else None)
@@ -58,3 +58,55 @@ def test_explicit_evidence_selection(service,question,doc,needle):
     assert needle in ''.join(c['quote'] for c in answer.citations)
     assert all(c['doc_id']==doc for c in answer.citations)
     assert any(s['step']=='document_binding' for s in trace.steps)
+
+@pytest.mark.parametrize('question,doc,needle',[
+ ('Beef Poke含花生吗？','KB-040','牛肉poke'),
+ ('员工迟到申诉需要几天办结？','KB-016','15'),
+ ('牛肉poke的花生含量是多少克？','KB-040','牛肉poke'),
+ ('退款需要身份证吗？','KB-013','负金额'),
+ ('外卖退款需要缴纳多少元手续费？','KB-013','200'),
+ ('请核实员工餐能否享受免费配送？','KB-014','折'),
+])
+def test_real_nearby_span_not_sufficient(service,question,doc,needle):
+    with pytest.raises(LLMError):run(service,question,lambda r:select(r,doc,needle))
+
+@pytest.mark.parametrize('mutate',[
+ lambda r: {'answer_type':'doc','facts':[{'evidence_id':'KB-013'}]},
+ lambda r: {'answer_type':'doc','facts':[{'evidence_id':'doc-forged'}]},
+ lambda r: {'answer_type':'doc','facts':[{'evidence_id':r['evidence'][0]['evidence_id'],'answer':'七天内退款'}]},
+ lambda r: {'answer_type':'doc','facts':[{'evidence_id':r['evidence'][0]['evidence_id']}],'answer':'七天内退款'},
+])
+def test_no_forged_id_or_borrowed_claim(service,mutate):
+    with pytest.raises(LLMError):run(service,'外卖退款时限是多少？',lambda r:json.dumps(mutate(r)))
+
+PUBLIC_SELECTIONS={'C01':('KB-013','24'),'C02':('KB-040','牛肉poke'),'C03':('KB-062','23:00'),
+ 'C04':('KB-022','8,600'),'C05':('KB-061','发票在小程序'),'C06':('KB-001','净营业额**'),
+ 'C07':('KB-029','35%'),'C08':('KB-016','15'),'V01':('KB-023','29'),'V02':('KB-011','60'),
+ 'S01':('KB-060','12')}
+QUESTIONS={q['id']:q['turns'][0]['question'] for q in map(json.loads,(ROOT/'eval/public_questions.jsonl').read_text().splitlines()) if q['id'] in PUBLIC_SELECTIONS}
+@pytest.mark.parametrize('qid',PUBLIC_SELECTIONS)
+def test_original_policy_cases_controlled(service,qid):
+    doc,needle=PUBLIC_SELECTIONS[qid]
+    answer,trace=run(service,QUESTIONS[qid],lambda r:select(r,doc,needle))
+    assert answer.answer_type=='doc'
+    assert any(c['doc_id']==doc and needle in c['quote'] for c in answer.citations)
+
+def test_only_genuine_retrieval_can_create_evidence(service):
+    from kbqa.document_evidence import DocumentEvidence
+    from dataclasses import replace
+    result=service.retriever.search('外卖退款',top_k=10)
+    valid=result.ranked[0]
+    for invalid in [replace(valid,padded=True),replace(valid,score=0),replace(valid,exclusion_reason='wrong version')]:
+        modified=replace(result,hits=[invalid])
+        assert not DocumentEvidence(service.facts,modified).public()
+    pool=DocumentEvidence(service.facts,result)
+    for item in pool.public():
+        assert item['quote']==service.index.texts[item['doc_id']][item['source_start']:item['source_end']]
+        assert item['chunk_id'] in {h.chunk_id for h in result.ranked}
+
+
+def test_no_search_no_citation(service):
+    from kbqa.document_evidence import DocumentEvidence
+    pool=DocumentEvidence(service.facts)
+    with pytest.raises(LLMError):
+        pool.render(json.dumps({'answer_type':'doc','facts':[{'evidence_id':'KB-013'}]}),'外卖退款',Trace('empty','外卖退款'))
