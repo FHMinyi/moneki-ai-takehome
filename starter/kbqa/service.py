@@ -335,5 +335,6 @@ def _reason_cn(exc: LLMError) -> str:
         "tool_loop": "工具调用没有收敛",
         "tool_failure": "工具执行失败",
         "clarification_binding": "澄清结构无效",
+        "mixed_binding": "混合证据或计算关系无法核验",
     }
     return mapping.get(exc.kind, exc.kind)

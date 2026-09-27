@@ -5,7 +5,7 @@ import type { TrendAttachment } from './trendReference';
 
 type Citation = { doc_id: string; quote: string; chunk_id?: unknown; metadata?: { title?: unknown; effective_from?: unknown; stores?: unknown }; scope?: { as_of?: unknown } };
 const field = (v: unknown) => typeof v === 'string' ? v : '';
-type Response = { answer: string; answer_type: 'data' | 'doc' | 'hybrid' | 'refusal' | 'clarify'; citations: Citation[]; data_evidence: { tool?: string; params?: unknown; sql?: string; result: unknown }[]; trace_id: string };
+type Response = { answer: string; answer_type: 'data' | 'doc' | 'hybrid' | 'refusal' | 'clarify'; citations: Citation[]; data_evidence: { tool?: string; params?: unknown; sql?: string; result: unknown; calculations?: unknown }[]; trace_id: string };
 type Turn = { id: string; question: string; attachment: TrendAttachment | null; response?: Response; error?: string };
 const labels = { data: '数据回答', doc: '文档回答', hybrid: '综合回答', refusal: '暂时无法回答', clarify: '需要补充信息' };
 function parse(value: unknown): Response {
@@ -79,7 +79,7 @@ export function ChatSidebar({ incoming }: { incoming: TrendAttachment | null }) 
             <div className="chat-question"><span>你</span><p>{turn.question}</p>{turn.attachment && <ReferenceCard attachment={turn.attachment} />}</div>
             {(turn.response || turn.error) && <div className="chat-answer">
               {turn.response && <><Tag color={turn.response.answer_type === 'refusal' ? 'orange' : 'green'}>{labels[turn.response.answer_type]}</Tag><p>{turn.response.answer}</p>
-                {turn.response.data_evidence.length > 0 && <details><summary>展开数据证据（{turn.response.data_evidence.length}）</summary>{turn.response.data_evidence.map((e, i) => <section className="chat-evidence" key={i}><strong>{e.tool || '只读查询'}</strong><h4>查询条件</h4><pre>{JSON.stringify(e.params ?? e.sql, null, 2)}</pre><h4>实际结果</h4><pre>{JSON.stringify(e.result, null, 2)}</pre></section>)}</details>}
+                {turn.response.data_evidence.length > 0 && <details><summary>展开数据证据（{turn.response.data_evidence.length}）</summary>{turn.response.data_evidence.map((e, i) => <section className="chat-evidence" key={i}><strong>{e.tool || '只读查询'}</strong><h4>查询条件</h4><pre>{JSON.stringify(e.params ?? e.sql, null, 2)}</pre><h4>实际结果</h4><pre>{JSON.stringify(e.result, null, 2)}</pre>{Array.isArray(e.calculations) && e.calculations.length > 0 && <><h4>计算关系与操作数来源</h4><pre>{JSON.stringify(e.calculations, null, 2)}</pre></>}</section>)}</details>}
                 {turn.response.citations.length > 0 && <details><summary>展开文档引用（{turn.response.citations.length}）</summary>{turn.response.citations.map((c, i) => <blockquote key={i}><strong>{c.doc_id}{field(c.metadata?.title) && ` · ${field(c.metadata?.title)}`}</strong>
                   {(field(c.metadata?.effective_from) || field(c.scope?.as_of)) && <div className="citation-meta">{field(c.metadata?.effective_from) && `生效日期：${field(c.metadata?.effective_from)}`}{field(c.scope?.as_of) && ` · 核对时点：${field(c.scope?.as_of)}`}</div>}
                   <p>{c.quote}</p>{field(c.chunk_id) && <small>来源片段：{field(c.chunk_id)}</small>}</blockquote>)}</details>}
