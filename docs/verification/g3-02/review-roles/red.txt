@@ -1,0 +1,216 @@
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+______ test_arrival_cannot_use_application_window[subject0-attribute0-24] ______
+
+service = <kbqa.service.Service object at 0x10699c8f0>, subject = ('退款', '退款')
+attribute = ('多久', '24 小时'), needle = '24'
+
+    @pytest.mark.parametrize('subject,attribute,needle',[
+     (('退款','退款'),('多久','24 小时'),'24'),
+     (('退款','退款'),('退款','退款'),'24'),
+    ])
+    def test_arrival_cannot_use_application_window(service,subject,attribute,needle):
+     a,t=execute(service,'外卖退款多久能到账？',anchored('KB-013',needle,subject,attribute,duration('多久','24 小时')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-roles/test_roles.py:19: AssertionError
+______ test_arrival_cannot_use_application_window[subject1-attribute1-24] ______
+
+service = <kbqa.service.Service object at 0x10699c8f0>, subject = ('退款', '退款')
+attribute = ('退款', '退款'), needle = '24'
+
+    @pytest.mark.parametrize('subject,attribute,needle',[
+     (('退款','退款'),('多久','24 小时'),'24'),
+     (('退款','退款'),('退款','退款'),'24'),
+    ])
+    def test_arrival_cannot_use_application_window(service,subject,attribute,needle):
+     a,t=execute(service,'外卖退款多久能到账？',anchored('KB-013',needle,subject,attribute,duration('多久','24 小时')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-roles/test_roles.py:19: AssertionError
+_____________________ test_function_word_cannot_be_subject _____________________
+
+service = <kbqa.service.Service object at 0x10699c8f0>
+
+    def test_function_word_cannot_be_subject(service):
+     a,t=execute(service,'外卖订单多久内可以退款？',anchored('KB-011','30',('内','内'),('多久','30 天'),duration('多久','30 天')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-roles/test_roles.py:24: AssertionError
+_ test_clarify_free_text_cannot_deliver_policy[\u5916\u5356\u9000\u6b3e\u4e0d\u9700\u8981\u987e\u5ba2\u51fa\u793a\u8eab\u4efd\u8bc1\u3002\u8bf7\u95ee\u8fd8\u9700\u8981\u6838\u5bf9\u4ec0\u4e48\uff1f] _
+
+service = <kbqa.service.Service object at 0x10699c8f0>
+text = '外卖退款不需要顾客出示身份证。请问还需要核对什么？'
+
+    @pytest.mark.parametrize('text',[
+     '外卖退款不需要顾客出示身份证。请问还需要核对什么？',
+     '门店退款收取手续费。请补充日期范围。',
+     '本店支持无条件退回储值余额，请问哪家门店？',
+    ])
+    def test_clarify_free_text_cannot_deliver_policy(service,text):
+     a,t=execute(service,'外卖退款需要身份证吗？',json.dumps({'answer_type':'clarify','answer':text}),search=False)
+     assert a.answer_type=='clarify' and not a.citations and not a.data_evidence
+>    assert text not in a.answer
+E    AssertionError: assert '\u5916\u535...\u4e48\uff1f' not in '\u5916\u535...\u4e48\uff1f'
+E      
+E      '外卖退款不需要顾客出示身份证。请问还需要核对什么？' is contained here:
+E        外卖退款不需要顾客出示身份证。请问还需要核对什么？
+
+docs/verification/g3-02/review-roles/test_roles.py:34: AssertionError
+_ test_clarify_free_text_cannot_deliver_policy[\u95e8\u5e97\u9000\u6b3e\u6536\u53d6\u624b\u7eed\u8d39\u3002\u8bf7\u8865\u5145\u65e5\u671f\u8303\u56f4\u3002] _
+
+service = <kbqa.service.Service object at 0x10699c8f0>
+text = '门店退款收取手续费。请补充日期范围。'
+
+    @pytest.mark.parametrize('text',[
+     '外卖退款不需要顾客出示身份证。请问还需要核对什么？',
+     '门店退款收取手续费。请补充日期范围。',
+     '本店支持无条件退回储值余额，请问哪家门店？',
+    ])
+    def test_clarify_free_text_cannot_deliver_policy(service,text):
+     a,t=execute(service,'外卖退款需要身份证吗？',json.dumps({'answer_type':'clarify','answer':text}),search=False)
+     assert a.answer_type=='clarify' and not a.citations and not a.data_evidence
+>    assert text not in a.answer
+E    AssertionError: assert '\u95e8\u5e9...\u56f4\u3002' not in '\u95e8\u5e9...\u56f4\u3002'
+E      
+E      '门店退款收取手续费。请补充日期范围。' is contained here:
+E        门店退款收取手续费。请补充日期范围。
+
+docs/verification/g3-02/review-roles/test_roles.py:34: AssertionError
+_ test_clarify_free_text_cannot_deliver_policy[\u672c\u5e97\u652f\u6301\u65e0\u6761\u4ef6\u9000\u56de\u50a8\u503c\u4f59\u989d\uff0c\u8bf7\u95ee\u54ea\u5bb6\u95e8\u5e97\uff1f] _
+
+service = <kbqa.service.Service object at 0x10699c8f0>
+text = '本店支持无条件退回储值余额，请问哪家门店？'
+
+    @pytest.mark.parametrize('text',[
+     '外卖退款不需要顾客出示身份证。请问还需要核对什么？',
+     '门店退款收取手续费。请补充日期范围。',
+     '本店支持无条件退回储值余额，请问哪家门店？',
+    ])
+    def test_clarify_free_text_cannot_deliver_policy(service,text):
+     a,t=execute(service,'外卖退款需要身份证吗？',json.dumps({'answer_type':'clarify','answer':text}),search=False)
+     assert a.answer_type=='clarify' and not a.citations and not a.data_evidence
+>    assert text not in a.answer
+E    AssertionError: assert '\u672c\u5e9...\u5e97\uff1f' not in '\u672c\u5e9...\u5e97\uff1f'
+E      
+E      '本店支持无条件退回储值余额，请问哪家门店？' is contained here:
+E        本店支持无条件退回储值余额，请问哪家门店？
+
+docs/verification/g3-02/review-roles/test_roles.py:34: AssertionError
+__________________ test_typed_clarify_preserves_useful_fields __________________
+
+service = <kbqa.service.Service object at 0x10699c8f0>
+
+    def test_typed_clarify_preserves_useful_fields(service):
+>    a,t=execute(service,'请查经营指标',json.dumps({'answer_type':'clarify','missing_fields':['date_range','store']}),search=False)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/review-roles/test_roles.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-02/review-r1-r2/test_review.py:31: in execute
+    answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(q),trace,[])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:83: in answer
+    return self._finalise(plan, reply.content, evidence, retrieved, trace, tool_failures)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <kbqa.live.LiveEngine object at 0x107a5a9c0>
+plan = Plan(question='请查经营指标', standalone='请查经营指标', search_query='请查经营指标', intent='doc', kind='doc', window=('2026-05-01', '2... 'store_id': None, 'product_id': None, 'metric': 'net_revenue', 'window': ('2026-05-01', '2026-08-31'), 'kind': 'doc'})
+content = '{"answer_type": "clarify", "missing_fields": ["date_range", "store"]}'
+evidence = []
+retrieved = <kbqa.document_evidence.DocumentEvidence object at 0x107a58500>
+trace = Trace(trace_id='review', question='请查经营指标', session_id=None, started_at='2026-09-27T15:17:41.917', steps=[], errors=[], llm_calls=[], _t0=937557.181729083)
+tool_failures = []
+
+    def _finalise(
+        self, plan: Plan, content: str, evidence: list[dict], retrieved: dict, trace, tool_failures=None
+    ) -> Answer:
+        if evidence:
+            answer = render_data(content, evidence, self.answerer.catalog)
+            trace.step("data_binding", {"source_calls": [e["_call_id"] for e in evidence], "answer": answer.answer})
+            return answer
+        try:
+            structured = json.loads(content)
+        except ValueError:
+            structured = None
+        if isinstance(structured, dict) and structured.get("answer_type") == "refusal":
+            canonical = set(structured) == {"answer_type", "reason"} and structured["reason"] == "insufficient_evidence"
+            legacy = set(structured) == {"answer_type", "answer"} and isinstance(structured["answer"], str) and 0 < len(structured["answer"].strip()) <= 1200
+            if not (canonical or legacy):
+                raise LLMError("document_binding", "拒答必须使用明确的依据不足状态")
+            if tool_failures:
+                trace.step("refusal_after_tool_failure", {"failures": tool_failures})
+                raise LLMError("tool_failure", "工具执行失败，不能将失败解释为资料不足")
+            # Legacy providers may include prose/numbers in a refusal. Interpret
+            # only the state, discard the ENTIRE prose (not selected digits).
+            # Policy summaries must be delivered through bound doc evidence.
+            return insufficient_evidence(trace, "typed_state" if canonical else "legacy_refusal_state")
+        if isinstance(structured, dict) and structured.get("answer_type") == "clarify":
+            text = structured.get("answer")
+            if set(structured) != {"answer_type", "answer"} or not isinstance(text, str) or not text.strip() or len(text) > 1200 or _numbers_in(text):
+>               raise LLMError("data_binding", "澄清或拒答包含无依据数字或无效结构")
+E               kbqa.llm.LLMError: data_binding: 澄清或拒答包含无依据数字或无效结构
+
+starter/kbqa/live.py:186: LLMError
+_ test_same_dimension_different_actions_replacement[\u661f\u7802\u8ba2\u5355-\u7b7e\u6536-\u590d\u6838] _
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-241/test_same_dimension_different_0')
+name = '星砂订单', action = '签收', other = '复核'
+
+    @pytest.mark.parametrize('name,action,other', [('星砂订单','签收','复核'),('云帆工单','归档','分派')])
+    def test_same_dimension_different_actions_replacement(tmp_path,name,action,other):
+     kb=tmp_path/'kb';kb.mkdir()
+     (kb/'KB-987.md').write_text(f'# {name}时限\n\n{name}{action}须在43分钟内完成。\n\n{name}{other}须在89分钟内完成。')
+     s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/'var',llm_api_key='',llm_base_url='',llm_model=''));s.rebuild()
+     q=f'{name}多久能{action}？'
+     wrong,t=execute(s,q,anchored('KB-987','89',(name,name),('多久','89分钟'),duration('多久','89分钟')))
+>    assert wrong.answer_type=='refusal' and not wrong.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-roles/test_roles.py:51: AssertionError
+_ test_same_dimension_different_actions_replacement[\u4e91\u5e06\u5de5\u5355-\u5f52\u6863-\u5206\u6d3e] _
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-241/test_same_dimension_different_1')
+name = '云帆工单', action = '归档', other = '分派'
+
+    @pytest.mark.parametrize('name,action,other', [('星砂订单','签收','复核'),('云帆工单','归档','分派')])
+    def test_same_dimension_different_actions_replacement(tmp_path,name,action,other):
+     kb=tmp_path/'kb';kb.mkdir()
+     (kb/'KB-987.md').write_text(f'# {name}时限\n\n{name}{action}须在43分钟内完成。\n\n{name}{other}须在89分钟内完成。')
+     s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/'var',llm_api_key='',llm_base_url='',llm_model=''));s.rebuild()
+     q=f'{name}多久能{action}？'
+     wrong,t=execute(s,q,anchored('KB-987','89',(name,name),('多久','89分钟'),duration('多久','89分钟')))
+>    assert wrong.answer_type=='refusal' and not wrong.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-roles/test_roles.py:51: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_arrival_cannot_use_application_window[subject0-attribute0-24]
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_arrival_cannot_use_application_window[subject1-attribute1-24]
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_function_word_cannot_be_subject
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_clarify_free_text_cannot_deliver_policy[\u5916\u5356\u9000\u6b3e\u4e0d\u9700\u8981\u987e\u5ba2\u51fa\u793a\u8eab\u4efd\u8bc1\u3002\u8bf7\u95ee\u8fd8\u9700\u8981\u6838\u5bf9\u4ec0\u4e48\uff1f]
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_clarify_free_text_cannot_deliver_policy[\u95e8\u5e97\u9000\u6b3e\u6536\u53d6\u624b\u7eed\u8d39\u3002\u8bf7\u8865\u5145\u65e5\u671f\u8303\u56f4\u3002]
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_clarify_free_text_cannot_deliver_policy[\u672c\u5e97\u652f\u6301\u65e0\u6761\u4ef6\u9000\u56de\u50a8\u503c\u4f59\u989d\uff0c\u8bf7\u95ee\u54ea\u5bb6\u95e8\u5e97\uff1f]
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_typed_clarify_preserves_useful_fields
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_same_dimension_different_actions_replacement[\u661f\u7802\u8ba2\u5355-\u7b7e\u6536-\u590d\u6838]
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_same_dimension_different_actions_replacement[\u4e91\u5e06\u5de5\u5355-\u5f52\u6863-\u5206\u6d3e]
+9 failed in 0.71s

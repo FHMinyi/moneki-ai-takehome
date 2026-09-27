@@ -1,0 +1,145 @@
+{
+  "question": "外卖订单多久内可以退款？",
+  "evidence": {
+    "evidence_id": "doc-a588469bc345b5001038",
+    "doc_id": "KB-011",
+    "chunk_id": "KB-011#5",
+    "quote": "1. 未消费的储值本金余额，自最后一次充值之日起 30 天内可无理由申请退回，原路退到原支付渠道。",
+    "source_start": 450,
+    "source_end": 499,
+    "kind": "text",
+    "context": [
+      {
+        "quote": "# 会员储值政策 v2\n",
+        "source_start": 0,
+        "source_end": 12
+      },
+      {
+        "quote": "## 四、余额退回\n",
+        "source_start": 439,
+        "source_end": 449
+      }
+    ],
+    "score": 12.86154740219558,
+    "scope": {
+      "as_of": "2026-09-01",
+      "store_id": null,
+      "year": 2026,
+      "historical": false,
+      "window": null
+    },
+    "metadata": {
+      "title": "会员储值政策 v2",
+      "effective_from": "2026-07-01",
+      "status": "现行",
+      "stores": [],
+      "stores_explicit": false,
+      "superseded_by": null
+    }
+  },
+  "binding": {
+    "subject": [
+      {
+        "question": "内",
+        "source": "quote",
+        "text": "内"
+      }
+    ],
+    "attribute": [
+      {
+        "question": "多久",
+        "source": "quote",
+        "text": "30 天"
+      }
+    ],
+    "value": {
+      "kind": "duration",
+      "question": "多久",
+      "text": "30 天"
+    }
+  },
+  "answer": "KB-011《会员储值政策 v2》：1. 未消费的储值本金余额，自最后一次充值之日起 30 天内可无理由申请退回，原路退到原支付渠道。",
+  "answer_type": "doc",
+  "trace": {
+    "trace_id": "test",
+    "session_id": null,
+    "question": "外卖订单多久内可以退款？",
+    "started_at": "2026-09-27T15:12:21.412",
+    "total_ms": 2.2,
+    "steps": [
+      {
+        "step": "document_binding",
+        "at_ms": 2.2,
+        "took_ms": null,
+        "detail": {
+          "selected": [
+            {
+              "evidence_id": "doc-a588469bc345b5001038",
+              "doc_id": "KB-011",
+              "chunk_id": "KB-011#5",
+              "quote": "1. 未消费的储值本金余额，自最后一次充值之日起 30 天内可无理由申请退回，原路退到原支付渠道。",
+              "source_start": 450,
+              "source_end": 499,
+              "kind": "text",
+              "context": [
+                {
+                  "quote": "# 会员储值政策 v2\n",
+                  "source_start": 0,
+                  "source_end": 12
+                },
+                {
+                  "quote": "## 四、余额退回\n",
+                  "source_start": 439,
+                  "source_end": 449
+                }
+              ],
+              "score": 12.86154740219558,
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "metadata": {
+                "title": "会员储值政策 v2",
+                "effective_from": "2026-07-01",
+                "status": "现行",
+                "stores": [],
+                "stores_explicit": false,
+                "superseded_by": null
+              },
+              "_checked_anchors": [
+                {
+                  "role": "subject",
+                  "question": "内",
+                  "quote": "内",
+                  "source_start": 479,
+                  "source_end": 480,
+                  "source_field": "visible_text",
+                  "context": "quote",
+                  "interpretation": "literal"
+                },
+                {
+                  "role": "attribute",
+                  "question": "多久",
+                  "quote": "30 天",
+                  "source_start": 475,
+                  "source_end": 479,
+                  "source_field": "visible_text",
+                  "context": "quote",
+                  "interpretation": "value_shape"
+                }
+              ],
+              "_value_kind": "duration"
+            }
+          ],
+          "required_claim": null,
+          "mode": "extractive"
+        }
+      }
+    ],
+    "llm_calls": [],
+    "errors": []
+  }
+}
