@@ -45,5 +45,13 @@
   "pending_reserves": 0,
   "other_g3_estimate_reported_by_coordinator": 1.217374,
   "total_g3_estimate_cny": 1.440556,
-  "directed_pool_used_after_this_ticket": 13
+  "directed_pool_used_after_this_ticket": 16,
+  "directed_pool_breakdown": {
+    "G302": 7,
+    "G306": 2,
+    "G304": 3,
+    "G303": 4
+  },
+  "initial_G301_chats_outside_directed_pool": 3,
+  "directed_pool_correction": "Coordinator correction: previous 13 omitted 3 concurrent G3-04 chats; provider attempts, usage and cost unchanged."
 }

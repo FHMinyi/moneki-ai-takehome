@@ -36,7 +36,7 @@ def main():
  assert key
  leaks=[str(p.relative_to(ROOT)) for p in OUT.rglob('*') if p.is_file() and key.encode() in p.read_bytes()]
  assert not leaks
- report=dict(business_sha=json.loads((OUT/'fixed-source-delivery.json').read_text())['business_sha'],protected_count=len(before),protected_changes=changed,credential_leaks=leaks,chats=chats,actual_api_count=11,prompt_tokens=tokens[0],completion_tokens=tokens[1],peak_cache_miss_estimate_cny=round(total,6),billing_confirmed=False,pending_reserves=0,other_g3_estimate_reported_by_coordinator=1.217374,total_g3_estimate_cny=round(total+1.217374,6),directed_pool_used_after_this_ticket=13)
+ report=dict(business_sha=json.loads((OUT/'fixed-source-delivery.json').read_text())['business_sha'],protected_count=len(before),protected_changes=changed,credential_leaks=leaks,chats=chats,actual_api_count=11,prompt_tokens=tokens[0],completion_tokens=tokens[1],peak_cache_miss_estimate_cny=round(total,6),billing_confirmed=False,pending_reserves=0,other_g3_estimate_reported_by_coordinator=1.217374,total_g3_estimate_cny=round(total+1.217374,6),directed_pool_used_after_this_ticket=16,directed_pool_breakdown=dict(G302=7,G306=2,G304=3,G303=4),initial_G301_chats_outside_directed_pool=3)
  Path(os.environ.get('G303_AUDIT_OUT',str(Path(tempfile.mkdtemp(prefix='g303-audit-'))/'audit.json'))).write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
  print(json.dumps({k:v for k,v in report.items() if k!='chats'},ensure_ascii=False))
 if __name__=='__main__':main()
