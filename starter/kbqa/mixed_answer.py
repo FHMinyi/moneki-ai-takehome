@@ -298,7 +298,7 @@ def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_p
                     sentence+='；'.join(store+' 实收单价 '+ '、'.join(f'{Decimal(p):.2f}' for p in sorted(bucket,key=Decimal))+' 元' for store,bucket in sorted(groups.items()))+'。'
                 else:
                     sentence+='已观测实收单价为 '+ '、'.join(f'{Decimal(p):.2f}' for p in sorted(result['observed_unit_prices'],key=Decimal))+' 元；当前结果未提供各门店分组，不能逐店确认与通知一致。'
-                bindings.append(dict(role='price',evidence_id=doc['evidence_id'],notice_stores=notice_stores,query_stores='all',observed_price_source='by_store' if groups else 'observed_unit_prices',call_id=item['_call_id']))
+                bindings.append(dict(role='price',evidence_id=doc['evidence_id'],notice_stores=notice_stores,query_stores=params.get('store_id') or 'all',observed_price_source='by_store' if groups else 'observed_unit_prices',call_id=item['_call_id']))
             else:sentence+=f"数据库最近成交日 {result['latest_date']} 的一笔实收单价为 {latest:.2f} 元，与通知"+('一致。' if Decimal(str(latest))==current else '不一致；实绩仍以数据库为准，原因需进一步核对。')
             if table is not None:
                 delta=current-Decimal(str(table));sentence+=f'维表建档价为 {table:.2f} 元，通知价减建档价为 {delta:.2f} 元；建档价不能代替实际成交查询。'
