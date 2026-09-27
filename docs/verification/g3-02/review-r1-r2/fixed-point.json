@@ -1,0 +1,7 @@
+{
+  "fixed_point": "94e21e36137bc74d64bce5aeaf2e54bb0e3988eb",
+  "red_command": "starter/.venv/bin/python -m pytest docs/verification/g3-02/review-r1-r2/test_review.py -q",
+  "red_results": "9 failed; original test source preserved as red-test-source.py",
+  "recorded_at": "2026-09-27T06:32:51.005241+00:00",
+  "scope": "R1 four actually retrieved unsupported facts; R2 two false policy prose, metadata-number refusal, typed state, saved chat7 final replay"
+}
