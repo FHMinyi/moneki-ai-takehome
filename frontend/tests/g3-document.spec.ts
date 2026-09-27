@@ -15,11 +15,11 @@ for (const width of [1280, 1440, 390]) {
     expect(answer.answer_type).toBe('doc');
     await expect(page.locator('.chat-answer')).toContainText(answer.answer);
     await page.getByText(`展开文档引用（${answer.citations.length}）`, { exact: true }).click();
-    for (const c of answer.citations) {
-      await expect(page.locator('.chat-answer blockquote')).toContainText(c.doc_id);
-      await expect(page.locator('.chat-answer blockquote')).toContainText(c.quote);
-      await expect(page.locator('.chat-answer blockquote')).toContainText(c.metadata.title);
-      await expect(page.locator('.chat-answer blockquote')).toContainText(c.metadata.effective_from);
+    for (const [i, c] of answer.citations.entries()) {
+      await expect(page.locator('.chat-answer blockquote').nth(i)).toContainText(c.doc_id);
+      await expect(page.locator('.chat-answer blockquote').nth(i)).toContainText(c.quote);
+      await expect(page.locator('.chat-answer blockquote').nth(i)).toContainText(c.metadata.title);
+      await expect(page.locator('.chat-answer blockquote').nth(i)).toContainText(c.metadata.effective_from);
     }
     expect(await page.locator('.chat-history').evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
     const trace = await (await request.get(`/api/trace/${answer.trace_id}`)).json();

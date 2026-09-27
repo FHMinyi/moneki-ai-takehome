@@ -1,5 +1,5 @@
 """Reviewer regressions with actual retrieval; no paid calls."""
-import json,sys
+import json,sys,os,tempfile
 from pathlib import Path
 from unittest.mock import Mock
 from dataclasses import replace
@@ -110,4 +110,8 @@ def test_r2_chat7_complete_free_http_replay(tmp_path,monkeypatch):
  assert any(s['step']=='insufficient_evidence' for s in t['steps'])
  assert t['llm_calls'][-1]['response']==responses[-1]
  assert any(s['step']=='search' for s in t['steps'])
- (Path(__file__).parent/'chat7-free-replay.json').write_text(json.dumps({'execution':'FREE saved-real-response replay, not a new real-model call','original_commit':saved['commit'],'response':a,'trace':t},ensure_ascii=False,indent=2))
+ out=Path(os.environ['G302_REVIEW_OUT']) if os.environ.get('G302_REVIEW_OUT') else Path(tempfile.mkdtemp(prefix='g302-free-replay-'))
+ out.mkdir(parents=True,exist_ok=True)
+ target=out/'chat7-free-replay.json'
+ assert not target.exists(), 'Use a fresh replay output directory; never overwrite evidence'
+ target.write_text(json.dumps({'execution':'FREE saved-real-response replay, not a new real-model call','original_commit':saved['commit'],'response':a,'trace':t},ensure_ascii=False,indent=2))

@@ -12,6 +12,7 @@ import re
 from .llm import LLMError
 from .schemas import Answer
 from .sanitize import is_instruction_like
+from .document_binding import check_binding
 
 
 def insufficient_evidence(trace, source="model_state"):
@@ -106,30 +107,42 @@ class DocumentEvidence:
             raise LLMError('document_binding','必须选择一至四条文档事实')
         selected=[]
         for ref in refs:
-            if not isinstance(ref,dict) or set(ref)!={'evidence_id'} or not isinstance(ref['evidence_id'],str):
-                raise LLMError('document_binding','文档事实只接受证据ID，不接受改写的事实或数字')
+            if not isinstance(ref,dict) or set(ref)!={'evidence_id','binding'} or not isinstance(ref['evidence_id'],str):
+                raise LLMError('document_binding','文档事实必须含证据ID与原文锚定的主体属性对应，不接受自由陈述')
             item=self.items.get(ref['evidence_id'])
             if item is None:
                 raise LLMError('document_binding','证据不属于本次实际检索集合')
-            if item in selected:
+            if any(p['evidence_id'] == item['evidence_id'] for p in selected):
                 raise LLMError('document_binding','文档事实重复')
-            selected.append(item)
+            anchors, failure = check_binding(ref['binding'], question, item, self.facts)
+            if failure:
+                trace.step('document_binding_rejected', {'evidence_id':item['evidence_id'], 'reason':failure})
+                return insufficient_evidence(trace, 'unverified_subject_attribute_binding')
+            selected.append({**item, '_checked_anchors': anchors, '_value_kind':ref['binding']['value']['kind']})
         claim=self.facts.requested_claim(question)
         citations=[]; lines=[]
         for item in selected:
             unit=self.units[item['evidence_id']]
+            claim = self.facts.requested_claim(question) if item['_value_kind'] == 'text' else None
             # Check closed subject/predicate questions against this exact span,
             # and open questions against entity and requested value shape. This
             # reuses bounded evidence checks, never invokes the mock answerer.
             ranked=self.facts.rank(question,item['doc_id'],limit=1,require_value=False,units=[unit])
             entities=set(self.facts.index.aliases.strict_mentions(question))
-            source_entities=set(self.facts.index.aliases.strict_mentions(unit.text+' '+ ' '.join(c['quote'] for c in item['context'])))
+            source_entities=set(self.facts.index.aliases.strict_mentions(unit.text+' '+ ' '.join(c['quote'] for c in item['context'])+' '+item['metadata'].get('title','')))
             requested = re.search(r"(?:多少|几)\s*(工作日|小时|分钟|天|克|公斤|毫升|升|元|条|次|人|杯|份)", question)
             missing_measure = requested and not re.search(r"\d[\d,.]*\s*" + requested.group(1), unit.text)
             if missing_measure or not ranked or not self.facts.supports_claim(claim,unit) or not entities<=source_entities:
                 trace.step('document_binding_rejected',{'evidence_id':item['evidence_id'],'required_claim':claim,'reason':'subject_or_attribute_not_supported'})
                 raise LLMError('document_binding','所选证据不支持问题的主体或属性')
             citations.append(self.citation(item))
+            for anchor in item['_checked_anchors']:
+                if type(anchor['context']) is int:
+                    context = item['context'][anchor['context']]
+                    cite = {'doc_id':item['doc_id'], **context, 'chunk_id':item['chunk_id'],
+                            'metadata':item['metadata'], 'scope':item['scope']}
+                    if cite not in citations:
+                        citations.append(cite)
             if unit.kind=='table':
                 for span in item['context']:
                     if span['quote'].strip().startswith('|') and all(h in span['quote'] for h in unit.header):

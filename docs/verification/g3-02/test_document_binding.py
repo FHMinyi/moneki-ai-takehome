@@ -24,6 +24,7 @@ def run(service, question, final, query=None):
             calls=[{'id':'search-actual-1','type':'function','function':{'name':'search_kb','arguments':json.dumps({'query':query or question,'top_k':5})}}]
             return LLMReply({'role':'assistant','content':'','tool_calls':calls},'tool_calls','',calls,0)
         result=json.loads(messages[-1]['content'])['result']
+        result['_question']=question
         content=final(result) if callable(final) else final
         return LLMReply({'role':'assistant','content':content},'stop',content,[],0)
     client.chat_with_retry.side_effect=respond
@@ -44,7 +45,9 @@ def test_unbound_claims_rejected(service,question,content):
 def select(result, doc, needle):
     candidates=[e for e in result.get('evidence',[]) if e['doc_id']==doc and needle in e['quote']]
     assert candidates, result
-    return json.dumps({'answer_type':'doc','facts':[{'evidence_id':candidates[0]['evidence_id']}]})
+    from controlled_annotations import binding_for
+    e=candidates[0]
+    return json.dumps({'answer_type':'doc','facts':[{'evidence_id':e['evidence_id'],'binding':binding_for(result.get('_question',''),e)}]})
 
 @pytest.mark.parametrize('question,doc,needle',[
  ('外卖订单多久内可以退款？','KB-013','24'),
@@ -68,7 +71,9 @@ def test_explicit_evidence_selection(service,question,doc,needle):
  ('请核实员工餐能否享受免费配送？','KB-014','折'),
 ])
 def test_real_nearby_span_not_sufficient(service,question,doc,needle):
-    with pytest.raises(LLMError):run(service,question,lambda r:select(r,doc,needle))
+    try: answer,_=run(service,question,lambda r:select(r,doc,needle))
+    except LLMError: return
+    assert answer.answer_type=='refusal' and not answer.citations
 
 @pytest.mark.parametrize('mutate',[
  lambda r: {'answer_type':'doc','facts':[{'evidence_id':'KB-013'}]},
@@ -120,6 +125,7 @@ def test_model_receives_evidence_not_duplicate_diagnostics(service):
             return LLMReply({'role':'assistant','content':'','tool_calls':calls},'tool_calls','',calls,0)
         result=json.loads(messages[-1]['content'])['result']
         assert set(result)=={'evidence','scope'}
+        result['_question']=trace.question
         content=select(result,'KB-013','24')
         return LLMReply({'role':'assistant','content':content},'stop',content,[],0)
     client.chat_with_retry.side_effect=respond
@@ -151,6 +157,7 @@ def test_six_tool_round_boundary(service,rounds):
             tc=[{'id':f'search-{n}','type':'function','function':{'name':'search_kb','arguments':json.dumps({'query':'外卖订单多久内可以退款？'})}}]
             return LLMReply({'role':'assistant','content':'','tool_calls':tc},'tool_calls','',tc,0)
         first=next(json.loads(m['content'])['result'] for m in messages if m['role']=='tool')
+        first['_question']=trace.question
         content=select(first,'KB-013','24')
         return LLMReply({'role':'assistant','content':content},'stop',content,[],0)
     client.chat_with_retry.side_effect=respond;trace=Trace('rounds','外卖订单多久内可以退款？')

@@ -71,3 +71,6 @@ G3-02最终阶段修正：此前第7次请求仍为tool_choice=auto，这让模�
 
 
 PR31 R2协议修正：拒答输出使用`{"answer_type":"refusal","reason":"insufficient_evidence"}`，代码渲染固定的当前依据不足说明。不能在refusal里附政策断言/概括/编号；政策事实必须选择doc证据。为旧模型输出兼容`answer_type:refusal,answer:...`时，只解释refusal状态，整段answer均不展示，原文保留trace；这不是放宽数字校验或删数字。真实工具失败、网络错误等仍是技术错误，不转换为“资料不存在”。chat7免费完整回放可用该状态安全收尾，未新增真实调用。R1开放问句支持性缺口仍待设计/修正，当前不能视作整票通过。
+
+
+PR31 R1选择协议进一步明确：每个facts元素必须同时有evidence_id和binding，binding含subject/attribute两个锚点数组及value。锚点记录question逐字片段、source（quote、context数组下标；主体也可title）与text真实来源文字；value记录kind/question/text，复用既有时长/金额/时间等形状。禁止只给subject_supported布尔值。系统核实ID、原文位置、范围和可定位主体/属性冲突；元信息标题标metadata.title、不当正文offset。未新增模型核对阶段，普通文档仍在原工具/最终选择回合完成；同义/英汉语义解释仍由本次模型负责，代码不提供通用蕴含证明。控制器正反与替换已免费验证，新选择协议尚未新付费测试；旧真实结果和chat7免费回放分开记录。

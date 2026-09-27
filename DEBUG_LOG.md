@@ -340,3 +340,14 @@ DeepSeek官方Create Chat Completion文档确认none语义（tool-choice-source.
 同次发现refusal通道双向错误：无检索的无数字政策断言可以直接透出；chat7真实依据不足文字包含版本/文档编号却被data_binding误拒。九项红灯保存red.txt/原测试red-test-source.py，红灯提交d44b4e0。R2修复引入严格{answer_type:refusal,reason:insufficient_evidence}，由代码固定渲染“本次依据不足，无法确定”，没有自由政策陈述字段。旧refusal格式只兼容其状态，整段自由说明均不渲染，绝非只删数字；模型原文留trace，若要展示政策概括必须走doc证据绑定。tool error单列tool_failure，HTTP/模型异常仍保留技术失败，不能改写成资料不存在。
 
 10项R2回归通过，含chat7保存的全部4轮真实响应经本地HTTP回放并重跑真实检索及Service/chat；回放后安全依据不足且没有技术错误，原模型政策说明未传给用户。这是免费回放，不是新的真实模型调用，不证明未来模型选择。83原查数/凭证/后端保持。小修verify_no_key.py传播子进程失败退出码。R1仍有四项红灯，等待设计决定，不能用R2通过推进整票验收。
+
+
+### PR31 R1：同次选择明确锚点，撤回全句词面覆盖
+
+用户确认不新增第二模型阶段、不改6轮工具+1最终机会/时间/费用。初始锚定尝试又加了全句残余字面覆盖，虽挡住四负例，却误拒C01“申请”（来源写“提出”）；conservative-limits.json及r1-first/second保留，主会话指出门槛过强后撤回，不降低正例验收、不新增申请/提出词表。
+
+最终同次fact附binding.subject/attribute/value：问题锚点必须来自原问题，来源锚点必须来自本次所选quote/真实context；主体可明确引用实际metadata.title，标source_field且不伪造正文offset。复用已有知识库别名、FOCUS_WORDS/carries和封闭问句检查。代码核对字面/别名主体，已声明的属性/值型，锚点不跨无关条款，主体邻接限定语不得被丢弃；明确同一词头前的不同限定词（独立样本外送/自取订单）拒绝。删除全句覆盖门槛，功能表达、转述与普通问法不再要求全文逐字对应。跨语言属性及疑问型解释仍由同次模型完成，trace标记literal/kb_alias/value_shape/translation，仅说明解释来源，不当作确定性蕴含证明。
+
+免费对照同时覆盖：原C01-C08/V01V02全部doc，退款三普通改写；四审查负例带真实ID、完整binding而拒绝；省略申诉的多种表达、跨句拼接、自报布尔支持、相同数值形状但偷换渠道；独立KB/别名和四格式事实37→83（HTTP43→89）更新。旧控制器显式注入测试用绑定注释，生产无题目映射；断言仍核对真实回答/引用/状态，负例不只以旧schema失败变绿。169合并后端通过；30旧HTTP新协议控制器回归通过，19额外真实HTTP正反/替换通过。最终固定点/补验见后续记录。
+
+R2回放测试曾在开发重跑时覆盖本票新提交的chat7-free-replay.json；已先另存为chat7-free-replay-r1-working.json，再从b6299b5逐字恢复原输出。回放测试现默认新临时目录，指定输出若存在会拒绝覆盖。旧失败及原真实chat4-7始终未改；未新增付费。

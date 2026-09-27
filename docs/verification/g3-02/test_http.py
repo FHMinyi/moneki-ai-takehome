@@ -25,13 +25,17 @@ class Controlled(BaseHTTPRequestHandler):
             finish='tool_calls'
         else:
             result=json.loads(tools[-1]['content'])['result']
+            original_question=next(x['content'] for x in reversed(messages) if x['role']=='user')
             if case.get('search_rounds',1)>1:
                 result={'evidence':[e for t in tools for e in json.loads(t['content'])['result'].get('evidence',[])]}
-            if 'content' in case:content=case['content']
+            result['_question']=original_question
+            if callable(case.get('selector')):content=case['selector'](result)
+            elif 'content' in case:content=case['content']
             elif 'error' in result:content=json.dumps({'answer_type':'refusal','answer':'无法执行该工具。'})
             else:
                 entries=[e for e in result.get('evidence',[]) if e['doc_id']==case['doc'] and case['needle'] in e['quote']]
-                content=json.dumps({'answer_type':'doc','facts':[{'evidence_id':entries[0]['evidence_id']}]} if entries else {'answer_type':'refusal','answer':'本次没有相应的证据。'})
+                from controlled_annotations import binding_for
+                content=json.dumps({'answer_type':'doc','facts':[{'evidence_id':entries[0]['evidence_id'],'binding':binding_for(original_question,entries[0])}]} if entries else {'answer_type':'refusal','answer':'本次没有相应的证据。'})
             msg={'role':'assistant','content':content,'reasoning_content':'CONTROLLED_ONLY'};finish='stop'
         if body.get('tool_choice')=='none' and case.get('final_fault'):finish=case['final_fault']
         response=json.dumps({'choices':[{'finish_reason':finish,'message':msg}],'usage':{'prompt_tokens':1,'completion_tokens':1}}).encode()
