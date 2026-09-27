@@ -13,6 +13,8 @@
 | 完成后 | `starter/.venv/bin/python docs/verification/g3-06/replay_controlled.py` | 2/2 受控模型 HTTP 样本；本地受控模型仅给工具调用，结果来自实际清洗数据库。输出 `controlled-http.json` 保存原请求、回答、完整 trace、独立 metrics API 期望。 |
 | 完成后 | `G306_MODEL_URL=http://127.0.0.1:9036 G306_EVIDENCE_DIR=../docs/verification/g3-06/browser-controlled BROWSER_BASE_URL=http://127.0.0.1:8037 npm run test:browser -- tests/g3-trend-context.spec.ts --workers=1`（在 `frontend/`） | 7 passed。受控模型只产生工具调用与最终选择；真实工具/数据库结果通过浏览器侧独立 metrics API 核对。 |
 | 真实调用前离线守卫 | `starter/.venv/bin/python -m pytest docs/verification/g3-06/test_live_budget.py -q` | 7 passed；覆盖出站前预留、完整 usage 释放、无/不完整 usage 保留、余额不足禁止出站和每 chat 尝试数上限。 |
+| 已授权真实样本，`64c3291` | `starter/.venv/bin/python docs/verification/g3-06/run_live_samples.py` | 2 次 chat，各 2 次模型出站，共 4 次；均为 `data`，没有 trace 错误。样本、完整 trace 与独立账本见 `live/`。 |
+| 独立 SQL 复核 | `starter/.venv/bin/python docs/verification/g3-06/audit_live.py` | 2/2；只读 SQLite 分别计算净额、退款、去重订单、销量与客单价，逐项等于实际业务工具结果，并核对原问题、引用、有效条件及来源、工具参数、回答数字。 |
 
 浏览器服务使用独立 `VAR_DIR=/tmp/moneki-g306-browser-var`、端口 8036、无 Key；受控服务使用独立 `/tmp/moneki-g306-live-var`、端口 8037 与本地模型端口 9036。截图与逐宽度 HTTP/trace 在 `browser/`、`browser-controlled/`，第一关趋势回归截图在 `regression-daily/`。测试输出不覆盖历史证据。
 
@@ -25,7 +27,7 @@
 5. 受控 HTTP 的 `data_evidence` 等于独立 metrics API 同条件结果；测试复制原始 SQLite、修改一条有效销售金额、重建到另一个独立 `VAR_DIR`，同一引用的净营业额随之增加 1000 元。
 6. `request`、`context_validation`、`context_resolution`、`plan`、`tool` 与模型请求/输出保存在 trace。`replay_controlled.py` 保存可重放原请求，且同条件结果与实际工具一致。
 7. 1280、1440、390 的真实 Chromium/后端/数据库证据见 `browser/lifecycle-*.json` 与截图；同一路径还在 `browser-controlled/` 使用受控模型重跑。错误重试、会话隔离、旧请求形状、G1 图表选日/筛选回归也经浏览器验证。
-8. `browser/lifecycle-*.json` 与 `controlled-http.json` 保存“选定趋势→附加→提问→查询→答案→trace”的完整链。受控模型结果仅证明工具/约束/证据路径；真实模型结果另行记录，不以其代替固定样本验收。
+8. `browser/lifecycle-*.json` 与 `controlled-http.json` 保存“选定趋势→附加→提问→查询→答案→trace”的完整链。真实模型两题、完整 trace、独立 SQL 复核另存于 `live/`；两题不能代表整套真实模型语义能力，也不替代固定样本验收。
 
 ## 边界
 
@@ -34,3 +36,5 @@
 ## 真实样本预算依据
 
 2026-09-27 06:42:23 UTC 核对 [DeepSeek 官方中文价格页](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/)：`deepseek-flash` 上下文长度 1M；高峰时段缓存未命中输入 2 元/百万 tokens，输出 8 元/百万 tokens。按 1,048,576 输入与本地 `max_tokens=4096` 上限，峰时全未命中估算 `2.12992` 元/次出站，故先预留 `2.20` 元。30,000 字节仅为请求体大小限制，不能换算成 token 硬上界。完整 usage 才按峰时全未命中价格释放差额；无 usage、超时或不确定状态保留预留。当前仅授权本票总 6 元、最多两次 chat；每 chat 最多六次出站是本票更紧的测试执行限制，并非产品最大调用链承诺。`run_live_samples.py` 使用独立账本、VAR_DIR 和本地代理，真实 Key 只从共享 `.env.live` 只读加载且不写入证据。
+
+两次真实样本均在固定 `64c3291` 发起。第一题“这段时间净营业额是多少？”使用引用的 2026-06-01 至 2026-06-30 / S02，工具 `query_metrics` 查得净营业额 43655.00 元；第二题“7月 S01 的净营业额是多少？”由文字覆盖为 2026-07-01 至 2026-07-31 / S01，查得 30986.00 元。`live/independent-sql-audit.json` 证明两个实际结果与只读 SQL 一致，非仅核对 `answer_type`。账本记录 4 次出站均 HTTP 200、合计输入 12993 / 输出 603 tokens；以官方峰时全部输入未命中价格保守估算本票 0.03081 元，余下本票 5.96919 元。按主会话此前保守累计 1.136358 元相加，第三关累计估算 1.167168 元、总预算剩余 48.832832 元。**这些是 usage 估算，实际提供方账单尚未核实。**所有 `live/` 文本均检查过不含真实 Key；没有额外真实样本或余额/模型列表探测。
