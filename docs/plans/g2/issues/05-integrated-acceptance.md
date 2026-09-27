@@ -1,6 +1,8 @@
 # G2-05：评审能复现第二关交付并验证知识库替换后的行为
 
-**状态：** 已发布 [#17](https://github.com/FHMinyi/moneki-ai-takehome/issues/17)，未启动实现。
+> **发布时快照（2026-09-27）**：本文件保留发布时的任务规格，不同步后续执行状态。当前规格、依赖、验收进度与修正以 [GitHub Issue #17](https://github.com/FHMinyi/moneki-ai-takehome/issues/17) 为准。下文“未启动实现”等状态及授权描述均为发布当时记录。
+
+**发布时状态：** 已发布 [#17](https://github.com/FHMinyi/moneki-ai-takehome/issues/17)，未启动实现。
 
 ## What to build
 

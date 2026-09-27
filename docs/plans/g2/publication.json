@@ -61,5 +61,9 @@
     }
   ],
   "complete": true,
-  "verification": "Read back bodies, labels, open state, no assignees and native blocking edges"
+  "verification": "Read back bodies, labels, open state, no assignees and native blocking edges",
+  "artifact_kind": "publication_snapshot",
+  "source_of_truth": "GitHub Issues #13–#17: current execution specifications, dependencies, acceptance progress, discussions and issue state.",
+  "hash_scope": "body_sha256 records the issue body at publication verification; it is not a local Markdown file hash and is not refreshed for later issue edits.",
+  "completion_scope": "complete and verification refer only to publication and its checks at that time, not implementation or acceptance completion."
 }

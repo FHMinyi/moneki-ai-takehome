@@ -1,6 +1,8 @@
 # G2-03：运营用自然问法检索到相关且适用的资料
 
-**状态：** 已发布 [#15](https://github.com/FHMinyi/moneki-ai-takehome/issues/15)，未启动实现。
+> **发布时快照（2026-09-27）**：本文件保留发布时的任务规格，不同步后续执行状态。当前规格、依赖、验收进度与修正以 [GitHub Issue #15](https://github.com/FHMinyi/moneki-ai-takehome/issues/15) 为准。下文“未启动实现”等状态及授权描述均为发布当时记录。
+
+**发布时状态：** 已发布 [#15](https://github.com/FHMinyi/moneki-ai-takehome/issues/15)，未启动实现。
 
 ## What to build
 
