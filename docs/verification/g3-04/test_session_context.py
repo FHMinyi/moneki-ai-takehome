@@ -20,6 +20,7 @@ from kbqa.service import Service
 from kbqa.sessions import SessionStore
 from kbqa.llm import LLMClient, LLMReply
 import json
+import os
 
 
 @pytest.fixture
@@ -134,7 +135,7 @@ def test_clarification_followed_by_independent_topic_does_not_inherit(service, t
         return original(plan, trace, history, *args)
 
     monkeypatch.setattr(service, "_run_engine", observed)
-    switched, context, plan, _ = ask(service, "switch", new_question)
+    switched, context, plan, trace = ask(service, "switch", new_question)
     fresh = Service(replace(load_settings(), var_dir=tmp_path / "fresh",
                             llm_base_url="", llm_api_key="", llm_model=""))
     independent, _, independent_plan, _ = ask(fresh, "fresh", new_question)
@@ -143,6 +144,8 @@ def test_clarification_followed_by_independent_topic_does_not_inherit(service, t
     assert switched["answer_type"] == independent["answer_type"]
     assert switched["answer"] == independent["answer"]
     assert seen == [[]]
+    assert next(s["detail"] for s in trace["steps"] if s["step"] == "model_context") == {
+        "prompt_history_size": 0, "clarification_reset": True}
 
 
 def test_same_session_concurrent_request_has_bounded_busy_response(service, monkeypatch):
@@ -344,3 +347,67 @@ def test_controlled_live_multiturn_requeries_and_compares_actual_rows(tmp_path, 
             result = tools[0]["result"]
             assert result["period_a"]["aov"] == 36.36
             assert result["period_b"]["aov"] == 36.53
+
+
+def test_live_natural_followup_keeps_successful_question_and_requeries(tmp_path, monkeypatch):
+    service = Service(replace(load_settings(), var_dir=tmp_path, llm_base_url="http://controlled",
+                              llm_api_key="test-only", llm_model="controlled"))
+    previous = "S02 6月牛肉poke销量是多少？"
+    questions = [previous, "能按天展开看看吗？"]
+    tool_specs = [
+        ("query_metrics", {"start": "2026-06-01", "end": "2026-06-30",
+                           "store_id": "S02", "product_id": "P06"}),
+        ("daily_metrics", {"start": "2026-06-01", "end": "2026-06-30",
+                           "store_id": "S02", "product_id": "P06"}),
+    ]
+    current = [0]
+    observed_context = []
+
+    def controlled(self, messages, tools=None, **kwargs):
+        index = current[0]
+        name, args = tool_specs[index]
+        call_id = f"natural-{index}"
+        if messages[-1]["role"] == "user":
+            if index == 1:
+                system_context = "\n".join(m["content"] for m in messages if m["role"] == "system")
+                assert previous in system_context
+                assert "旧回答和旧证据不代表本轮事实" in system_context
+                observed_context.append(system_context)
+            call = {"id": call_id, "type": "function", "function": {
+                "name": name, "arguments": json.dumps(args)}}
+            return LLMReply({"role": "assistant", "content": "", "tool_calls": [call]},
+                            "tool_calls", "", [call], 0)
+        assert json.loads(messages[-1]["content"])["call_id"] == call_id
+        content = (json.dumps({"answer_type": "data", "results": [
+            {"call_id": call_id, "metric": "qty"}]}) if index == 0 else
+                   json.dumps({"answer_type": "clarify", "missing_fields": ["date_range"]}))
+        return LLMReply({"role": "assistant", "content": content}, "stop", content, [], 0)
+
+    monkeypatch.setattr(LLMClient, "chat_with_retry", controlled)
+    first = service.chat("natural", previous)
+    assert first["answer_type"] == "data"
+    current[0] = 1
+    second = service.chat("natural", questions[1])
+    assert second["answer_type"] == "clarify"
+    trace = service.get_trace(second["trace_id"])
+    assert trace["errors"] == []
+    context = next(s["detail"] for s in trace["steps"] if s["step"] == "session_context")
+    assert context["standalone_question"] == questions[1]
+    assert next(s["detail"] for s in trace["steps"] if s["step"] == "model_context") == {
+        "prompt_history_size": 1, "clarification_reset": False}
+    tool = next(s["detail"] for s in trace["steps"] if s["step"] == "tool")
+    assert tool["tool"] == "daily_metrics" and tool["params"] == tool_specs[1][1]
+    assert tool["result"] == service.tools.daily_metrics(**tool_specs[1][1])
+    if evidence_dir := os.environ.get("G304_NATURAL_EVIDENCE_DIR"):
+        output = Path(evidence_dir)
+        output.mkdir(parents=True, exist_ok=True)
+        (output / "controlled-live-natural.json").write_text(json.dumps({
+            "turns": [
+                {"request": {"session_id": "natural", "question": previous},
+                 "response": first, "trace": service.get_trace(first["trace_id"])},
+                {"request": {"session_id": "natural", "question": questions[1]},
+                 "response": second, "trace": trace},
+            ],
+            "controlled_model_history": observed_context[0],
+            "actual_tool_result": tool["result"],
+        }, ensure_ascii=False, indent=2) + "\n")

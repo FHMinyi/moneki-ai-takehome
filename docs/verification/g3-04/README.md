@@ -24,6 +24,8 @@
 
 会话历史上限 500 个 ID、每 ID 6 轮；已执行请求的拒答及异常清空该 ID 上下文，防止后续省略主语时回退到更旧且可能不相关的主题。澄清只保留中性缺项状态。同 ID 并发采用互斥加 250 ms 有界等待，忙时返回可重试的中性状态，不修改正在执行的历史；获取锁顺序不保证 FIFO。PR #33 独立审查后的修正与复验见 [review-r1-r2/README.md](review-r1-r2/README.md)。
 
+自然追问在规划器未改写时仍可由受控 live 模型读取前轮成功问题，并重新调用真实业务工具；澄清后的独立新题继续隔离。该增量修正的红绿证据和容量边界见 [review-r3/README.md](review-r3/README.md)。
+
 ## 固定业务提交后的付费抽样
 
 业务提交 `4b687cc7222854deabf43de0aaa49dd6e93b0cc7`，原 T01 在同一 `session_id` 逐轮调用真实 DeepSeek `deepseek-flash`：`live/chat-1.json` 至 `chat-3.json` 含每轮 HTTP 请求/响应/trace，trace 的 `llm_calls` 含 6 次实际 API 的完整脱敏 request、response 和 usage。逐次预留与结算在 `live/ledger.json`；凭据只从共享主树 `.env.live` 只读载入，从未写入本工作树。执行器 `run_live_samples.py` 限本票 3 chat / 10 元，并在每次对外 API 前预留 2.20 元，未知 usage 保留全额。价格依据 [DeepSeek 官方价格表](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/) 的 `deepseek-flash` 高峰全未缓存输入 2 元/百万 token、输出 8 元/百万 token；按最大上下文 1,048,576 和输出 4096 计算单次上界约 2.12992 元，2.20 元预留含余量。账本仅为保守估算，`billing_confirmed=false`，不等同实际账单。

@@ -225,7 +225,15 @@ class Service:
             elif reference and plan.kind in {"unknown_entity", "out_of_period"}:
                 plan.slots["trend_reference_rejection"] = True
             trace.step("plan", plan.as_trace(), started=started)
-            context_history = history if plan.standalone != question else []
+            # Planner may leave a natural follow-up untouched; the model still
+            # needs accepted prior questions to interpret omitted conditions.
+            # An unrelated request after clarification must not inherit that
+            # unresolved question merely because it shares a session ID.
+            clarification_reset = bool(history and history[-1].get("answer_type") == "clarify"
+                                       and plan.standalone == question)
+            context_history = [] if clarification_reset else history
+            trace.step("model_context", {"prompt_history_size": min(3, len(context_history)),
+                                         "clarification_reset": clarification_reset})
             # Preserve the original three-argument execution seam for ordinary
             # chat and diagnostic writers. Only a resolved trend adds scope.
             answer = (self._run_engine(plan, trace, context_history, effective)

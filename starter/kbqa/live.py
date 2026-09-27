@@ -152,7 +152,8 @@ class LiveEngine:
         if history:
             messages.append({"role": "system", "content":
                 "以下同一会话历史仅供理解指代；旧回答和旧证据不代表本轮事实。"
-                "必须按本轮问题重新调用业务工具或检索，不能复述旧答案："
+                "本轮若明确给出新的主题、门店、商品、时间或指标，优先遵从本轮条件，不沿用冲突的旧条件。"
+                "若本轮省略条件，可从这些旧问题理解指代，但必须按本轮问题重新调用业务工具或检索，不能复述旧答案："
                 + json.dumps([{"question": turn.get("question", ""),
                                "standalone": turn.get("standalone", ""),
                                "answer_type": turn.get("answer_type", "")}

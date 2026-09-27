@@ -1,0 +1,69 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______ test_live_natural_followup_keeps_successful_question_and_requeries ______
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-318/test_live_natural_followup_kee0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x107b6ec00>
+
+    def test_live_natural_followup_keeps_successful_question_and_requeries(tmp_path, monkeypatch):
+        service = Service(replace(load_settings(), var_dir=tmp_path, llm_base_url="http://controlled",
+                                  llm_api_key="test-only", llm_model="controlled"))
+        previous = "S02 6月牛肉poke销量是多少？"
+        questions = [previous, "能按天展开看看吗？"]
+        tool_specs = [
+            ("query_metrics", {"start": "2026-06-01", "end": "2026-06-30",
+                               "store_id": "S02", "product_id": "P06"}),
+            ("daily_metrics", {"start": "2026-06-01", "end": "2026-06-30",
+                               "store_id": "S02", "product_id": "P06"}),
+        ]
+        current = [0]
+
+        def controlled(self, messages, tools=None, **kwargs):
+            index = current[0]
+            name, args = tool_specs[index]
+            call_id = f"natural-{index}"
+            if messages[-1]["role"] == "user":
+                if index == 1:
+                    system_context = "\n".join(m["content"] for m in messages if m["role"] == "system")
+                    assert previous in system_context
+                    assert "旧回答和旧证据不代表本轮事实" in system_context
+                call = {"id": call_id, "type": "function", "function": {
+                    "name": name, "arguments": json.dumps(args)}}
+                return LLMReply({"role": "assistant", "content": "", "tool_calls": [call]},
+                                "tool_calls", "", [call], 0)
+            assert json.loads(messages[-1]["content"])["call_id"] == call_id
+            content = (json.dumps({"answer_type": "data", "results": [
+                {"call_id": call_id, "metric": "qty"}]}) if index == 0 else
+                       json.dumps({"answer_type": "clarify", "missing_fields": ["date_range"]}))
+            return LLMReply({"role": "assistant", "content": content}, "stop", content, [], 0)
+
+        monkeypatch.setattr(LLMClient, "chat_with_retry", controlled)
+        first = service.chat("natural", previous)
+        assert first["answer_type"] == "data"
+        current[0] = 1
+        second = service.chat("natural", questions[1])
+>       assert second["answer_type"] == "clarify"
+E       AssertionError: assert 'refusal' == 'clarify'
+E
+E         - clarify
+E         + refusal
+
+docs/verification/g3-04/test_session_context.py:386: AssertionError
+------------------------------ Captured log call -------------------------------
+ERROR    kbqa.service:service.py:265 chat failed trace_id=t-20260901-0002
+Traceback (most recent call last):
+  File "/Users/minyi/.codex/worktrees/g3-session-context/moneki-ai-takehome/starter/kbqa/service.py", line 232, in _answer
+    if effective else self._run_engine(plan, trace, context_history))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minyi/.codex/worktrees/g3-session-context/moneki-ai-takehome/starter/kbqa/service.py", line 302, in _run_engine
+    answer = engine.answer(plan, trace, history)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minyi/.codex/worktrees/g3-session-context/moneki-ai-takehome/starter/kbqa/live.py", line 79, in answer
+    reply = self.client.chat_with_retry(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minyi/.codex/worktrees/g3-session-context/moneki-ai-takehome/docs/verification/g3-04/test_session_context.py", line 369, in controlled
+    assert previous in system_context
+AssertionError: assert 'S02 6月牛肉poke销量是多少？' in '你是一家连锁餐饮公司的经营分析助手，服务对象是运营同事。\n今天固定是 2026-09-01，所有“现在/最近/目前”都以这一天为准。\n数据区间只有 2026-05-01 至 2026-08-31，区间之外没有销售数据；制度资料可能...料", "unit_price": 22.0}, {"product_id": "P21", "product_name": "冷萃乌龙茶", "product_category": "饮料", "unit_price": 16.0}]'
+=========================== short test summary info ============================
+FAILED docs/verification/g3-04/test_session_context.py::test_live_natural_followup_keeps_successful_question_and_requeries
+1 failed, 17 deselected in 0.22s
