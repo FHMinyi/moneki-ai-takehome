@@ -30,6 +30,9 @@ CHATS = OUT / "chat-trace.jsonl"
 PRIOR = float(os.environ.get("G305_PRIOR_CNY", "1.440556"))
 LIMIT = 50.0
 RESERVE = 2.20
+CHAT_LIMIT = int(os.environ.get("G305_CHAT_LIMIT", "0"))
+if CHAT_LIMIT < 0:
+    raise RuntimeError("Invalid targeted chat limit")
 if not 0 <= PRIOR < LIMIT:
     raise RuntimeError("Invalid prior conservative CNY amount")
 lock = threading.RLock()
@@ -182,6 +185,9 @@ class Handler(BaseHTTPRequestHandler):
     def forward(self, raw):
         if self.path == "/api/chat" and self.command == "POST":
             with lock:
+                if CHAT_LIMIT and state["chat_count"] >= CHAT_LIMIT:
+                    self.reply(429, b'{"error":"G305 targeted chat limit reached"}')
+                    return
                 state["chat_count"] += 1
                 state["active_chat"] = state["chat_count"]
                 save()
