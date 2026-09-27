@@ -1,0 +1,338 @@
+{
+  "unchanged_historical_tests": true,
+  "counts": {
+    "passed": 30,
+    "failed": 17
+  },
+  "cases": [
+    {
+      "test": "test_arrival_cannot_use_application_window[subject0-attribute0-24]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_arrival_cannot_use_application_window[subject1-attribute1-24]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_function_word_cannot_be_subject",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_clarify_free_text_cannot_deliver_policy[\\u5916\\u5356\\u9000\\u6b3e\\u4e0d\\u9700\\u8981\\u987e\\u5ba2\\u51fa\\u793a\\u8eab\\u4efd\\u8bc1\\u3002\\u8bf7\\u95ee\\u8fd8\\u9700\\u8981\\u6838\\u5bf9\\u4ec0\\u4e48\\uff1f]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "deterministic_clarification",
+      "interpretation": "自由政策文本不渲染；字段结构和允许字段校验仍由代码负责。"
+    },
+    {
+      "test": "test_clarify_free_text_cannot_deliver_policy[\\u95e8\\u5e97\\u9000\\u6b3e\\u6536\\u53d6\\u624b\\u7eed\\u8d39\\u3002\\u8bf7\\u8865\\u5145\\u65e5\\u671f\\u8303\\u56f4\\u3002]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "deterministic_clarification",
+      "interpretation": "自由政策文本不渲染；字段结构和允许字段校验仍由代码负责。"
+    },
+    {
+      "test": "test_clarify_free_text_cannot_deliver_policy[\\u672c\\u5e97\\u652f\\u6301\\u65e0\\u6761\\u4ef6\\u9000\\u56de\\u50a8\\u503c\\u4f59\\u989d\\uff0c\\u8bf7\\u95ee\\u54ea\\u5bb6\\u95e8\\u5e97\\uff1f]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "deterministic_clarification",
+      "interpretation": "自由政策文本不渲染；字段结构和允许字段校验仍由代码负责。"
+    },
+    {
+      "test": "test_typed_clarify_preserves_useful_fields",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "deterministic_clarification",
+      "interpretation": "自由政策文本不渲染；字段结构和允许字段校验仍由代码负责。"
+    },
+    {
+      "test": "test_same_dimension_different_actions_replacement[\\u661f\\u7802\\u8ba2\\u5355-\\u7b7e\\u6536-\\u590d\\u6838]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_same_dimension_different_actions_replacement[\\u4e91\\u5e06\\u5de5\\u5355-\\u5f52\\u6863-\\u5206\\u6d3e]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_temporal_modifier_is_not_subject_in_new_material",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_clarify_rejects_free_claims_and_unknown_fields[payload0]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "deterministic_clarification",
+      "interpretation": "自由政策文本不渲染；字段结构和允许字段校验仍由代码负责。"
+    },
+    {
+      "test": "test_clarify_rejects_free_claims_and_unknown_fields[payload1]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "deterministic_clarification",
+      "interpretation": "自由政策文本不渲染；字段结构和允许字段校验仍由代码负责。"
+    },
+    {
+      "test": "test_clarify_rejects_free_claims_and_unknown_fields[payload2]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "deterministic_clarification",
+      "interpretation": "自由政策文本不渲染；字段结构和允许字段校验仍由代码负责。"
+    },
+    {
+      "test": "test_clarify_rejects_free_claims_and_unknown_fields[payload3]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "deterministic_clarification",
+      "interpretation": "自由政策文本不渲染；字段结构和允许字段校验仍由代码负责。"
+    },
+    {
+      "test": "test_conflicting_anchored_subject_or_attribute[\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u9000\\u6b3e\\uff1f-KB-013-\\u5802\\u98df\\u8ba2\\u5355\\u987b\\u5f53\\u573a-subject0-attribute0-value0]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_conflicting_anchored_subject_or_attribute[\\u529e\\u7406\\u5916\\u5356\\u9000\\u6b3e\\u5e94\\u5f53\\u51fa\\u793a\\u4ec0\\u4e48\\u8eab\\u4efd\\u8bc1\\u4ef6\\uff1f-KB-014-\\u5de5\\u724c-subject1-attribute1-value1]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_conflicting_anchored_subject_or_attribute[\\u5458\\u5de5\\u8fdf\\u5230\\u7533\\u8bc9\\u591a\\u4e45\\u80fd\\u5904\\u7406\\u5b8c\\uff1f-KB-016-15-subject2-attribute2-value2]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_conflicting_anchored_subject_or_attribute[\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u9000\\u6b3e\\uff1f-KB-011-30-subject3-attribute3-value3]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_supported_same_response_anchors[\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u9000\\u6b3e\\uff1f-KB-013-24-subject0-attribute0-value0]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_supported_same_response_anchors[\\u5916\\u5356\\u8ba2\\u5355\\u9000\\u6b3e\\u65f6\\u9650\\uff1f-KB-013-24-subject1-attribute1-value1]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_supported_same_response_anchors[\\u5916\\u5356\\u8ba2\\u5355\\u51e0\\u5c0f\\u65f6\\u5185\\u9000\\u6b3e\\uff1f-KB-013-24-subject2-attribute2-value2]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_supported_same_response_anchors[2026-06-14\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u9000\\u6b3e\\uff1f-KB-012-7 \\u5929-subject3-attribute3-value3]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_supported_same_response_anchors[Beef Poke\\u8fc7\\u654f\\u539f\\uff1f-KB-040-\\u725b\\u8089poke-subject4-attribute4-value4]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_omitting_appeal_qualifier_cannot_relabel_attendance",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_replaced_material_supports_new_fact_and_alias[md]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_replaced_material_supports_new_fact_and_alias[txt]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_replaced_material_supports_new_fact_and_alias[gbk]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_replaced_material_supports_new_fact_and_alias[html]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_cross_clause_subject_attribute_binding_rejected",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_original_public_questions_with_anchored_response[C01]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_original_public_questions_with_anchored_response[C02]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_original_public_questions_with_anchored_response[C03]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_original_public_questions_with_anchored_response[C04]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_original_public_questions_with_anchored_response[C05]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_original_public_questions_with_anchored_response[C06]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_original_public_questions_with_anchored_response[C07]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_original_public_questions_with_anchored_response[C08]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_original_public_questions_with_anchored_response[V01]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_original_public_questions_with_anchored_response[V02]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_ordinary_functional_rephrasing_not_rejected[\\u5916\\u5356\\u8ba2\\u5355\\u591a\\u4e45\\u5185\\u53ef\\u4ee5\\u7533\\u8bf7\\u9000\\u6b3e\\uff1f]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_ordinary_functional_rephrasing_not_rejected[\\u8bf7\\u95ee\\u5916\\u5356\\u8ba2\\u5355\\u51e0\\u5c0f\\u65f6\\u5185\\u80fd\\u7533\\u8bf7\\u9000\\u6b3e\\uff1f]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_ordinary_functional_rephrasing_not_rejected[\\u9ebb\\u70e6\\u8bf4\\u660e\\u5916\\u5356\\u8ba2\\u5355\\u9000\\u6b3e\\u65f6\\u9650\\u3002]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "passed",
+      "category": "supported_source_rendering",
+      "interpretation": "合规正例、别名及材料替换继续可用；通过不证明模型自行选择正确。"
+    },
+    {
+      "test": "test_omitted_channel_with_same_numeric_shape_rejected",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_omission_variants_keep_critical_qualifier[\\u8fdf\\u5230\\u7533\\u8bc9\\u591a\\u4e45\\uff1f]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_omission_variants_keep_critical_qualifier[\\u8fdf\\u5230\\u7684\\u7533\\u8bc9\\u591a\\u4e45\\uff1f]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_omission_variants_keep_critical_qualifier[\\u8fdf\\u5230\\u7533\\u8bc9\\u9700\\u8981\\u591a\\u4e45\\uff1f]",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "model_semantic_selection",
+      "interpretation": "新版返回合法来源doc，旧的语义拒绝断言失败。该反例保留用于真实模型选材评估，不宣称确定性保护仍存在。"
+    },
+    {
+      "test": "test_self_reported_support_boolean_not_a_binding",
+      "old_baseline": "passed in safe-compat-first.txt (47/47)",
+      "new_status": "failed",
+      "category": "legacy_binding_schema_only",
+      "interpretation": "旧binding已忽略；布尔自报不参与证明、渲染或数值。实际ID的原文仍可被选择。"
+    }
+  ]
+}

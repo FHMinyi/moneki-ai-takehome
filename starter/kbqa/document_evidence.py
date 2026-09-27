@@ -2,7 +2,7 @@
 
 Retrieval owns applicability; this boundary owns source identity and continuous
 spans. Models may select facts, never attach new prose/numbers to those facts.
-The bounded claim check is not a general semantic entailment classifier.
+Semantic selection belongs to the same model response, not lexical heuristics.
 """
 from __future__ import annotations
 
@@ -12,7 +12,6 @@ import re
 from .llm import LLMError
 from .schemas import Answer
 from .sanitize import is_instruction_like
-from .document_binding import check_binding
 
 
 def insufficient_evidence(trace, source="model_state"):
@@ -95,7 +94,37 @@ class DocumentEvidence:
     def citation(self, item):
         return {k:item[k] for k in ('doc_id','quote','evidence_id','chunk_id','source_start','source_end','scope','metadata')}
 
-    def render(self, content, question, trace):
+    def _verify_source(self, item, plan=None):
+        """Verify executor evidence integrity; do not infer semantic entailment."""
+        source = self.facts.index.texts.get(item['doc_id'])
+        if source is None:
+            raise LLMError('document_binding', '证据来源不存在')
+        for span in [item, *item['context']]:
+            start, end = span['source_start'], span['source_end']
+            if (type(start) is not int or type(end) is not int or
+                    not 0 <= start < end <= len(source) or source[start:end] != span['quote']):
+                raise LLMError('document_binding', '证据原文与来源位置不一致')
+        chunk = next((c for c in self.facts.index.chunks if c.chunk_id == item['chunk_id']
+                      and c.doc_id == item['doc_id']), None)
+        if chunk is None or not chunk.source_start <= item['source_start'] < item['source_end'] <= chunk.source_end:
+            raise LLMError('document_binding', '证据不属于所检索原文块')
+        context_offsets = {(c['start'], c['end']) for c in chunk.context_spans}
+        if any((c['source_start'], c['source_end']) not in context_offsets for c in item['context']):
+            raise LLMError('document_binding', '证据上下文不属于所检索原文块')
+        actual = self.facts.index.docs_meta[item['doc_id']]
+        if any(actual.get(k) != v for k,v in item['metadata'].items()):
+            raise LLMError('document_binding', '证据元数据与来源不一致')
+        if plan is not None:
+            meta = item['metadata']
+            if (plan.store_id and meta.get('stores_explicit') and
+                    plan.store_id not in meta.get('stores', [])):
+                raise LLMError('document_binding', '证据明确适用门店与问题不一致')
+            if plan.as_of and meta.get('effective_from') and meta['effective_from'] > plan.as_of.isoformat():
+                raise LLMError('document_binding', '证据尚未生效')
+        if len(re.sub(r'\s+', '', item['quote'])) > 400:
+            raise LLMError('document_binding', '引用原文超过容量限制')
+
+    def render(self, content, question, trace, *, plan=None):
         try:
             payload=json.loads(content)
         except (ValueError,TypeError):
@@ -105,56 +134,45 @@ class DocumentEvidence:
         refs=payload['facts']
         if not isinstance(refs,list) or not 1<=len(refs)<=4:
             raise LLMError('document_binding','必须选择一至四条文档事实')
-        selected=[]
+        selected=[]; legacy=0
         for ref in refs:
-            if not isinstance(ref,dict) or set(ref)!={'evidence_id','binding'} or not isinstance(ref['evidence_id'],str):
-                raise LLMError('document_binding','文档事实必须含证据ID与原文锚定的主体属性对应，不接受自由陈述')
+            # Compatibility with saved/older responses: legacy binding is never
+            # interpreted, rendered, or treated as proof of semantic support.
+            if (not isinstance(ref,dict) or set(ref) not in ({'evidence_id'}, {'evidence_id','binding'})
+                    or not isinstance(ref['evidence_id'],str)
+                    or ('binding' in ref and not isinstance(ref['binding'],dict))):
+                raise LLMError('document_binding','文档事实只能选择实际证据ID，不接受自由陈述')
             item=self.items.get(ref['evidence_id'])
             if item is None:
                 raise LLMError('document_binding','证据不属于本次实际检索集合')
             if any(p['evidence_id'] == item['evidence_id'] for p in selected):
                 raise LLMError('document_binding','文档事实重复')
-            anchors, failure = check_binding(ref['binding'], question, item, self.facts)
-            if failure:
-                trace.step('document_binding_rejected', {'evidence_id':item['evidence_id'], 'reason':failure})
-                return insufficient_evidence(trace, 'unverified_subject_attribute_binding')
-            selected.append({**item, '_checked_anchors': anchors, '_value_kind':ref['binding']['value']['kind']})
-        claim=self.facts.requested_claim(question)
+            self._verify_source(item, plan)
+            legacy += int('binding' in ref)
+            selected.append(item)
         citations=[]; lines=[]
         for item in selected:
             unit=self.units[item['evidence_id']]
-            claim = self.facts.requested_claim(question) if item['_value_kind'] == 'text' else None
-            # Check closed subject/predicate questions against this exact span,
-            # and open questions against entity and requested value shape. This
-            # reuses bounded evidence checks, never invokes the mock answerer.
-            ranked=self.facts.rank(question,item['doc_id'],limit=1,require_value=False,units=[unit])
-            entities=set(self.facts.index.aliases.strict_mentions(question))
-            source_entities=set(self.facts.index.aliases.strict_mentions(unit.text+' '+ ' '.join(c['quote'] for c in item['context'])+' '+item['metadata'].get('title','')))
-            requested = re.search(r"(?:多少|几)\s*(工作日|小时|分钟|天|克|公斤|毫升|升|元|条|次|人|杯|份)", question)
-            missing_measure = requested and not re.search(r"\d[\d,.]*\s*" + requested.group(1), unit.text)
-            if missing_measure or not ranked or not self.facts.supports_claim(claim,unit) or not entities<=source_entities:
-                trace.step('document_binding_rejected',{'evidence_id':item['evidence_id'],'required_claim':claim,'reason':'subject_or_attribute_not_supported'})
-                raise LLMError('document_binding','所选证据不支持问题的主体或属性')
             citations.append(self.citation(item))
-            for anchor in item['_checked_anchors']:
-                if type(anchor['context']) is int:
-                    context = item['context'][anchor['context']]
-                    cite = {'doc_id':item['doc_id'], **context, 'chunk_id':item['chunk_id'],
-                            'metadata':item['metadata'], 'scope':item['scope']}
-                    if cite not in citations:
-                        citations.append(cite)
-            if unit.kind=='table':
-                for span in item['context']:
-                    if span['quote'].strip().startswith('|') and all(h in span['quote'] for h in unit.header):
-                        citations.append({'doc_id':item['doc_id'],**span,'chunk_id':item['chunk_id'],'metadata':item['metadata'],'scope':item['scope']})
+            # Include the actual context that the selecting model saw, notably
+            # table headers. All offsets above were checked against the source.
+            for span in item['context']:
+                cite={'doc_id':item['doc_id'],**span,'chunk_id':item['chunk_id'],
+                      'metadata':item['metadata'],'scope':item['scope']}
+                if cite not in citations:
+                    citations.append(cite)
+            if unit.kind=='table' and not any(
+                    c['quote'].strip().startswith('|') and all(h in c['quote'] for h in unit.header)
+                    for c in item['context']):
+                raise LLMError('document_binding','表格证据缺少实际检索表头')
             title=item['metadata'].get('title')
             label=item['doc_id']+(f'《{title}》' if title else '')
-            # Table labels come from actual header cells. Every displayed fact
-            # otherwise is an extract, so model prose cannot change its meaning.
             lines.append(label+'：'+self.facts.render(item['doc_id'],item['quote']))
         text='\n'.join(lines)
         from .live import _numbers_in
         if len(text)>1200 or len(set(_numbers_in(text)))>20 or len({c['doc_id'] for c in citations})>4:
             raise LLMError('document_binding','所选证据超过回答长度或数量限制')
-        trace.step('document_binding',{'selected':selected,'required_claim':claim,'mode':'extractive'})
+        trace.step('document_binding',{'selected':selected,'mode':'extractive',
+                    'semantic_selection':'same_model','legacy_bindings_ignored':legacy,
+                    'verified':['retrieved_identity','source_offsets','metadata','explicit_scope','capacity']})
         return Answer(text,'doc',citations=citations)

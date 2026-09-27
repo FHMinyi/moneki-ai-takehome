@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-27T09:34:36.285979+00:00",
+  "fixed_point": "4591fab9a80ef63c440b9a117dbbc4fcbf03c430",
+  "mode": "read only, complete JSONL prefix, no lock/no source modification",
+  "files": {
+    "chat-trace.jsonl": {
+      "source": "/Users/minyi/.codex/worktrees/g3-session-context/moneki-ai-takehome/docs/verification/g3-05/eval-live/chat-trace.jsonl",
+      "captured_bytes": 10037610,
+      "complete_records": 78,
+      "sha256": "b53010c413d59fda6d8c845677843dc4b6e73533f6d9f831c3532dda1d7372bf",
+      "ignored_partial_bytes": 0
+    },
+    "model-traffic.jsonl": {
+      "source": "/Users/minyi/.codex/worktrees/g3-session-context/moneki-ai-takehome/docs/verification/g3-05/eval-live/model-traffic.jsonl",
+      "captured_bytes": 3099159,
+      "complete_records": 87,
+      "sha256": "4356451d67311e6593a2855d365d9953824a859aa0a52d5b43fba1a0326712c9",
+      "ignored_partial_bytes": 0
+    }
+  },
+  "real_key_matches": 0
+}

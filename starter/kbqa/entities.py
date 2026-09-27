@@ -152,6 +152,11 @@ class Catalog:
     def find_store(self, text: str) -> tuple[Optional[str], Optional[str]]:
         """返回 (store_id, 未知门店编号)。问到不存在的门店时第二项非空。"""
         lowered = normalise(text)
+        # A longer contiguous identifier is unknown, not S02 followed by an
+        # invented month. The user must write a boundary before the date.
+        longer = re.search(r"(?<![a-z0-9])s\d{3,}(?![a-z0-9])", lowered)
+        if longer:
+            return None, longer.group(0).upper()
         for code in re.findall(r"(?<![a-z0-9])s\d{1,2}(?![a-z0-9])", lowered):
             upper = code.upper()
             if upper in self.store_ids():
