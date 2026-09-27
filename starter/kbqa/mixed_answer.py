@@ -221,10 +221,11 @@ def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_p
             lines=[]
             field='orders' if metric=='share_orders' else 'net_revenue';denom='total_orders' if field=='orders' else 'total_net_revenue'
             unit='单' if field=='orders' else '元';label='订单数' if field=='orders' else '净营业额'
+            formatter=R.count if field=='orders' else R.money
             for payment in focus:
                 numerator=available.get(payment,{}).get(field,0);total=result[denom]
                 pct=round2(Decimal(str(numerator))*100/Decimal(str(total))) if total else None
-                lines.append(f'{payment}按{label}占比 '+(f'{pct:.2f}%' if pct is not None else '无法计算（分母为零）')+f'（{R.count(numerator)} / {R.count(total)} {unit}）')
+                lines.append(f'{payment}按{label}占比 '+(f'{pct:.2f}%' if pct is not None else '无法计算（分母为零）')+f'（{formatter(numerator)} / {formatter(total)} {unit}）')
                 calculations.append(dict(operation='share_percent',call_id=item['_call_id'],numerator_field=f'payments.{payment}.{field}',denominator_field=denom,numerator=numerator,denominator=total,result=pct))
             sentence=f"{params['start']} 至 {params['end']} {catalog.store_name(params.get('store_id')) if params.get('store_id') else '全部门店'}："+'；'.join(lines)+'。'
         else:
