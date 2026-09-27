@@ -1,0 +1,834 @@
+{
+  "tool": "llm_gateway.py",
+  "version": "2.0.0",
+  "generated_at": "2026-09-27T12:55:36.629+08:00",
+  "service_url": "http://127.0.0.1:8033",
+  "env": {
+    "LLM_BASE_URL": "http://127.0.0.1:9033/ds-gw",
+    "LLM_API_KEY": "preflight-key-3b9c1f",
+    "LLM_MODEL": "preflight-model-7f3a"
+  },
+  "reasoning_marker": "RSN-12c9ae4c1b31",
+  "passed": false,
+  "failed_checks": [
+    "P1"
+  ],
+  "skipped_checks": [
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P6",
+    "P7",
+    "P10",
+    "P13",
+    "P14"
+  ],
+  "checks": [
+    {
+      "id": "P1",
+      "title": "服务确实把请求发到了注入的 LLM_BASE_URL（含路径前缀）",
+      "status": "FAIL",
+      "reason": "假模型一次请求都没收到：服务没有按注入的 LLM_BASE_URL 发请求，或者还停在 mock 模式，或者没有用新环境变量重启。",
+      "evidence": {
+        "expected_base_url": "http://127.0.0.1:9033/ds-gw",
+        "expected_path": "/ds-gw/chat/completions",
+        "chat_completions_requests": 0,
+        "per_scenario": {
+          "normal": 0,
+          "thinking_starved": 0,
+          "empty_content": 0,
+          "json_empty": 0,
+          "bad_tool_args": 0,
+          "content_filter": 0,
+          "insufficient_resource": 0,
+          "aborted": 0,
+          "http_401": 0,
+          "http_402": 0,
+          "http_422": 0,
+          "http_429": 0,
+          "http_500": 0,
+          "http_503": 0,
+          "slow": 0,
+          "hang": 0
+        }
+      }
+    },
+    {
+      "id": "P2",
+      "title": "请求里的 model 等于注入的 LLM_MODEL",
+      "status": "SKIP",
+      "reason": "假模型一次请求都没收到，本项没有素材可查，先看 P1。",
+      "evidence": null
+    },
+    {
+      "id": "P3",
+      "title": "注入的 Key 以 Authorization: Bearer 发送",
+      "status": "SKIP",
+      "reason": "假模型一次请求都没收到，本项没有素材可查，先看 P1。",
+      "evidence": null
+    },
+    {
+      "id": "P4",
+      "title": "只用了 DeepSeek 文档列出的顶层参数",
+      "status": "SKIP",
+      "reason": "假模型一次请求都没收到，本项没有素材可查，先看 P1。",
+      "evidence": null
+    },
+    {
+      "id": "P5",
+      "title": "max_tokens 不设，或不小于 2048",
+      "status": "SKIP",
+      "reason": "假模型一次请求都没收到，本项没有素材可查，先看 P1。",
+      "evidence": null
+    },
+    {
+      "id": "P6",
+      "title": "没有访问 {prefix}/chat/completions 之外的任何路径",
+      "status": "SKIP",
+      "reason": "假模型一次请求都没收到，本项没有素材可查，先看 P1。",
+      "evidence": null
+    },
+    {
+      "id": "P7",
+      "title": "工具定义规范，且每一个工具调用都以 role=tool + tool_call_id 回传",
+      "status": "SKIP",
+      "reason": "假模型一次请求都没收到，本项没有素材可查，先看 P1。",
+      "evidence": null
+    },
+    {
+      "id": "P8",
+      "title": "每个场景下 /api/chat 都返回 HTTP 200 与字段完整的合法 JSON",
+      "status": "PASS",
+      "reason": "32 次问答全部返回 200 和字段完整的 JSON。",
+      "evidence": {
+        "attempts": 32,
+        "failures": []
+      }
+    },
+    {
+      "id": "P9",
+      "title": "模型不可用时给出结构化 refusal，answer 从不是空串",
+      "status": "PASS",
+      "reason": "模型不可用的场景下都给了结构化 refusal 或有据可查的回答，answer 从不是空串。",
+      "evidence": {
+        "failing_scenarios": [
+          "aborted",
+          "bad_tool_args",
+          "content_filter",
+          "empty_content",
+          "hang",
+          "http_401",
+          "http_402",
+          "http_422",
+          "http_429",
+          "http_500",
+          "http_503",
+          "insufficient_resource"
+        ],
+        "checked": 24,
+        "skipped_invalid_responses": 0,
+        "failure_marker": "FAILOUT-91a150c04b91",
+        "declared_tools": [],
+        "problems": []
+      }
+    },
+    {
+      "id": "P10",
+      "title": "思考内容没有漏进 answer / citations / data_evidence",
+      "status": "SKIP",
+      "reason": "假模型一次都没能把带标记的思考内容发出去（请求没到、或者都被挡下了），本项无从检查，先看 P1 和 P8。",
+      "evidence": {
+        "marker": "RSN-12c9ae4c1b31",
+        "inspected_answers": 32,
+        "responses_carrying_the_marker": 0,
+        "requests_with_thinking_disabled": 0,
+        "leaks": []
+      }
+    },
+    {
+      "id": "P11",
+      "title": "/api/chat 在时限内返回（含长时间无响应的场景）",
+      "status": "PASS",
+      "reason": "最慢的一次是 0.06 秒，都在 180 秒以内。",
+      "evidence": {
+        "limit_seconds": 180.0,
+        "timed_attempts": 32,
+        "slowest": [
+          {
+            "scenario": "normal",
+            "seconds": 0.06
+          },
+          {
+            "scenario": "normal",
+            "seconds": 0.02
+          },
+          {
+            "scenario": "thinking_starved",
+            "seconds": 0.02
+          },
+          {
+            "scenario": "thinking_starved",
+            "seconds": 0.02
+          },
+          {
+            "scenario": "empty_content",
+            "seconds": 0.02
+          }
+        ],
+        "offenders": [],
+        "unreachable_attempts": []
+      }
+    },
+    {
+      "id": "P12",
+      "title": "注入环境变量后 /api/health 报告 llm_mode = live",
+      "status": "PASS",
+      "reason": "llm_mode = live。",
+      "evidence": {
+        "status": 200,
+        "error": null,
+        "body": {
+          "status": "ok",
+          "llm_mode": "live",
+          "kb_docs": 35,
+          "kb_chunks": 215,
+          "valid_sales_rows": 18290,
+          "today": "2026-09-01",
+          "data_period": {
+            "start": "2026-05-01",
+            "end": "2026-08-31"
+          },
+          "cleaning_report": {
+            "raw_rows": 18628,
+            "removed": {
+              "1_unparseable_date": 8,
+              "2_empty_amount": 150,
+              "3_qty_le_zero": 30,
+              "4_store_not_in_stores": 10,
+              "5_product_not_in_products": 40,
+              "6_duplicate_row": 100
+            },
+            "removed_rows": 338,
+            "kept_rows": 18290,
+            "kept_sales_rows": 18196,
+            "kept_refund_rows": 94
+          },
+          "index_key": "c2fac231ae26",
+          "kb_warnings": [
+            "跳过没有 KB 编号的文件：README.md",
+            "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+          ]
+        }
+      }
+    },
+    {
+      "id": "P13",
+      "title": "多轮工具调用之间 reasoning_content 原样回传（没有触发 400）",
+      "status": "SKIP",
+      "reason": "假模型一次请求都没收到，本项没有素材可查，先看 P1。",
+      "evidence": null
+    },
+    {
+      "id": "P14",
+      "title": "保持连接的空行与 SSE 注释没有把服务弄坏",
+      "status": "SKIP",
+      "reason": "normal 场景本身就没有拿到回答，无法判断保持连接是不是额外的问题，先修前面的检查。",
+      "evidence": {
+        "normal_answered": false,
+        "slow_answered": false,
+        "slow_statuses": [
+          200,
+          200
+        ],
+        "slow_answer_types": [
+          "refusal",
+          "refusal"
+        ]
+      }
+    }
+  ],
+  "health": {
+    "status": 200,
+    "error": null,
+    "body": {
+      "status": "ok",
+      "llm_mode": "live",
+      "kb_docs": 35,
+      "kb_chunks": 215,
+      "valid_sales_rows": 18290,
+      "today": "2026-09-01",
+      "data_period": {
+        "start": "2026-05-01",
+        "end": "2026-08-31"
+      },
+      "cleaning_report": {
+        "raw_rows": 18628,
+        "removed": {
+          "1_unparseable_date": 8,
+          "2_empty_amount": 150,
+          "3_qty_le_zero": 30,
+          "4_store_not_in_stores": 10,
+          "5_product_not_in_products": 40,
+          "6_duplicate_row": 100
+        },
+        "removed_rows": 338,
+        "kept_rows": 18290,
+        "kept_sales_rows": 18196,
+        "kept_refund_rows": 94
+      },
+      "index_key": "c2fac231ae26",
+      "kb_warnings": [
+        "跳过没有 KB 编号的文件：README.md",
+        "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+      ]
+    }
+  },
+  "scenarios": [
+    {
+      "scenario": "normal",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-normal-0-741e9b53",
+          "status": 200,
+          "elapsed_seconds": 0.064,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-normal-1-dfaedaf8",
+          "status": 200,
+          "elapsed_seconds": 0.023,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0002"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "thinking_starved",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-thinking_starved-0-c8698736",
+          "status": 200,
+          "elapsed_seconds": 0.016,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0003"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-thinking_starved-1-757c8625",
+          "status": 200,
+          "elapsed_seconds": 0.023,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0004"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "empty_content",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-empty_content-0-a540c607",
+          "status": 200,
+          "elapsed_seconds": 0.015,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0005"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-empty_content-1-cfc7f509",
+          "status": 200,
+          "elapsed_seconds": 0.023,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0006"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "json_empty",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-json_empty-0-88eaf3d3",
+          "status": 200,
+          "elapsed_seconds": 0.016,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0007"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-json_empty-1-5cca98a7",
+          "status": 200,
+          "elapsed_seconds": 0.022,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0008"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "bad_tool_args",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-bad_tool_args-0-48b1598c",
+          "status": 200,
+          "elapsed_seconds": 0.016,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0009"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-bad_tool_args-1-3123235c",
+          "status": 200,
+          "elapsed_seconds": 0.023,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0010"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "content_filter",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-content_filter-0-6d1f114b",
+          "status": 200,
+          "elapsed_seconds": 0.016,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0011"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-content_filter-1-473ff288",
+          "status": 200,
+          "elapsed_seconds": 0.022,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0012"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "insufficient_resource",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-insufficient_resource-0-1301e22a",
+          "status": 200,
+          "elapsed_seconds": 0.018,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0013"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-insufficient_resource-1-89c0fd0b",
+          "status": 200,
+          "elapsed_seconds": 0.023,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0014"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "aborted",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-aborted-0-1a4a0766",
+          "status": 200,
+          "elapsed_seconds": 0.016,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0015"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-aborted-1-0e6134a8",
+          "status": 200,
+          "elapsed_seconds": 0.024,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0016"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "http_401",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-http_401-0-9a71f19a",
+          "status": 200,
+          "elapsed_seconds": 0.016,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0017"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-http_401-1-d359fa4a",
+          "status": 200,
+          "elapsed_seconds": 0.023,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0018"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "http_402",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-http_402-0-66d4f984",
+          "status": 200,
+          "elapsed_seconds": 0.016,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0019"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-http_402-1-0fd842de",
+          "status": 200,
+          "elapsed_seconds": 0.022,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0020"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "http_422",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-http_422-0-1108b38b",
+          "status": 200,
+          "elapsed_seconds": 0.016,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0021"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-http_422-1-cf64cf7a",
+          "status": 200,
+          "elapsed_seconds": 0.023,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0022"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "http_429",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-http_429-0-28d461af",
+          "status": 200,
+          "elapsed_seconds": 0.015,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0023"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-http_429-1-5b88aee1",
+          "status": 200,
+          "elapsed_seconds": 0.023,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0024"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "http_500",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-http_500-0-e5544c21",
+          "status": 200,
+          "elapsed_seconds": 0.017,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0025"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-http_500-1-29affeaa",
+          "status": 200,
+          "elapsed_seconds": 0.022,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0026"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "http_503",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-http_503-0-07da9ac6",
+          "status": 200,
+          "elapsed_seconds": 0.016,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0027"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-http_503-1-cc70a9ea",
+          "status": 200,
+          "elapsed_seconds": 0.023,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0028"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "slow",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-slow-0-7cdcab8d",
+          "status": 200,
+          "elapsed_seconds": 0.015,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0029"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-slow-1-6e63b003",
+          "status": 200,
+          "elapsed_seconds": 0.022,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0030"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "hang",
+      "llm_requests": 0,
+      "attempts": [
+        {
+          "question": "你们的退款规则是怎么规定的？",
+          "session_id": "preflight-hang-0-800a06e9",
+          "status": 200,
+          "elapsed_seconds": 0.016,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0031"
+          }
+        },
+        {
+          "question": "最近一段时间的整体经营情况怎么样？",
+          "session_id": "preflight-hang-1-1fc7eb7c",
+          "status": 200,
+          "elapsed_seconds": 0.022,
+          "error": null,
+          "body": {
+            "answer": "抱歉，我暂时无法回答。",
+            "answer_type": "refusal",
+            "citations": [],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0032"
+          }
+        }
+      ]
+    }
+  ],
+  "startup_requests": 0
+}

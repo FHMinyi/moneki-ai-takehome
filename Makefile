@@ -4,7 +4,7 @@ PORT ?= 8000
 export DATA_DIR KB_DIR VAR_DIR
 MOCK_ENV = env -u LLM_API_KEY -u LLM_BASE_URL -u LLM_MODEL
 
-.PHONY: setup rebuild run
+.PHONY: setup rebuild run run-live
 setup:
 	$(PYTHON) -m venv starter/.venv
 	starter/.venv/bin/python -m pip install -r starter/requirements.txt
@@ -17,3 +17,8 @@ rebuild:
 run:
 	@test -f frontend/dist/index.html || (echo 'Run make rebuild first (frontend missing).' >&2; exit 1)
 	$(MOCK_ENV) $(MAKE) -C starter run PORT=$(PORT)
+
+# Explicit opt-in: configuration is read from the calling environment, never dotenv.
+run-live:
+	@test -f frontend/dist/index.html || (echo 'Run make rebuild first (frontend missing).' >&2; exit 1)
+	$(MAKE) -C starter run PORT=$(PORT)

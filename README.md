@@ -20,7 +20,7 @@ make run         # 3. 前台启动，浏览器访问 http://127.0.0.1:8000/
 
 按 Ctrl+C 停止。端口占用时用 `make run PORT=8015`，访问相应端口。
 `PYTHON=/path/to/python3.12 make setup` 可指定 Python。无须激活虚拟环境。
-根入口强制清除 `LLM_API_KEY` / `LLM_BASE_URL` / `LLM_MODEL`，不加载 `.env` 或 `.env.live`；
+默认 `make run` 强制清除 `LLM_API_KEY` / `LLM_BASE_URL` / `LLM_MODEL`，不加载 `.env` 或 `.env.live`；
 `/api/health` 应显示 `llm_mode: "mock"`。页面只调用只读指标/质量/门店接口。
 依赖下载缓存可加速安装，但不是运行前提。Python 依赖的本次实装版本保存在验收证据中，尚未锁定未来包源版本。
 
@@ -108,3 +108,9 @@ curl -s http://127.0.0.1:8000/api/chat -H 'Content-Type: application/json' \
 公开剩余未全绿为 V03、H01、H06、T01、T02、T03。历史完整问句通过不代表追问通过；
 不承诺会话隔离、任意同义表达/长标题问法、隐藏题或完整安全对抗已验收。
 根三步入口始终清除模型配置；真实模型切换与修复后评测属于后续工作，不由本次无 Key 结果推导。
+
+### 经营助手（G3-01）
+
+点击看板右下角“经营助手”，输入含日期、门店/商品与指标的完整问题；可展开真实查询条件和结果。聊天不自动继承看板筛选。新建对话使用新 session，等待中不可重复提交，旧请求不会写入新对话。
+
+需要真实模型时，安全地设置 `LLM_BASE_URL` / `LLM_API_KEY` / `LLM_MODEL` 后运行 `make run-live`；详见 [LLM_SETUP.md](LLM_SETUP.md)。保留默认思考模式与4096输出额度，以便模型规划工具；回答数字由代码生成，不依赖温度。根默认入口继续使用无 Key 模式。文档与混合重构、多轮语义和趋势引用分别属于后续票。

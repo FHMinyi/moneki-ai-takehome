@@ -1,0 +1,12 @@
+npm notice run moneki-workspace@0.1.0 test:browser
+npm notice run playwright test g3-temporary-delivery.spec.ts --workers=1
+
+Running 3 tests using 1 worker
+
+(node:201) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/g3-temporary-delivery.spec.ts:6:3 › delivery original at 1280 (932ms)
+  ✓  2 tests/g3-temporary-delivery.spec.ts:6:3 › delivery original at 1440 (948ms)
+  ✓  3 tests/g3-temporary-delivery.spec.ts:6:3 › delivery original at 390 (919ms)
+
+  3 passed (3.1s)

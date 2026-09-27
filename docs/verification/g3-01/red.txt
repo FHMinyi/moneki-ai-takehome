@@ -1,0 +1,263 @@
+FFFFFF.FFF                                                               [100%]
+=================================== FAILURES ===================================
+____________ test_sessions_are_isolated_and_snapshots_are_detached _____________
+
+    def test_sessions_are_isolated_and_snapshots_are_detached():
+        sessions = SessionStore(max_sessions=2, max_turns=2)
+        sessions.append('a', {'question': 'A', 'slots': {'x': 1}})
+>       assert sessions.history('b') == []
+E       AssertionError: assert [{'question':...s': {'x': 1}}] == []
+E         
+E         Left contains one more item: {'question': 'A', 'slots': {'x': 1}}
+E         Use -v to get more diff
+
+docs/verification/g3-01/test_data_chat.py:31: AssertionError
+_________________ test_free_sql_is_not_declared_or_executable __________________
+
+service = <kbqa.service.Service object at 0x10923fb90>
+
+    def test_free_sql_is_not_declared_or_executable(service):
+>       assert 'run_sql' not in [t['function']['name'] for t in TOOLS]
+E       AssertionError: assert 'run_sql' not in ['query_metrics', 'daily_metrics', 'payment_mix', 'top_products', 'by_store', 'by_store_category', ...]
+
+docs/verification/g3-01/test_data_chat.py:43: AssertionError
+______________ test_illegal_parameters_fail_before_query[params0] ______________
+
+service = <kbqa.service.Service object at 0x10923fb90>
+params = {'start': '2026-06-01', 'end': '2026-06-30', 'sql': 'DELETE FROM sales'}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10928de80>
+
+    @pytest.mark.parametrize('params', [
+        {'start':'2026-06-01','end':'2026-06-30','sql':'DELETE FROM sales'},
+        {'start':'2026-02-30','end':'2026-06-30'},
+        {'start':'2026-06-30','end':'2026-06-01'},
+        {'start':'2026-06-01','end':'2026-06-30','store_id':'S99'},
+        {'start':['2026-06-01'],'end':'2026-06-30'},
+    ])
+    def test_illegal_parameters_fail_before_query(service, params, monkeypatch):
+        spy = Mock(side_effect=AssertionError('must not execute'))
+        monkeypatch.setattr(service.tools, 'query_metrics', spy)
+>       assert 'error' in service.run_tool('query_metrics', params)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-01/test_data_chat.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+starter/kbqa/service.py:132: in run_tool
+    return getattr(self.tools, name)(**cleaned)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock id='4448633680'>, args = ()
+kwargs = {'start': '2026-06-01', 'end': '2026-06-30'}
+
+    def _execute_mock_call(self, /, *args, **kwargs):
+        # separate from _increment_mock_call so that awaited functions are
+        # executed separately from their call, also AsyncMock overrides this method
+    
+        effect = self.side_effect
+        if effect is not None:
+            if _is_exception(effect):
+>               raise effect
+E               AssertionError: must not execute
+
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1198: AssertionError
+______________ test_illegal_parameters_fail_before_query[params1] ______________
+
+service = <kbqa.service.Service object at 0x10923fb90>
+params = {'start': '2026-02-30', 'end': '2026-06-30'}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10928dee0>
+
+    @pytest.mark.parametrize('params', [
+        {'start':'2026-06-01','end':'2026-06-30','sql':'DELETE FROM sales'},
+        {'start':'2026-02-30','end':'2026-06-30'},
+        {'start':'2026-06-30','end':'2026-06-01'},
+        {'start':'2026-06-01','end':'2026-06-30','store_id':'S99'},
+        {'start':['2026-06-01'],'end':'2026-06-30'},
+    ])
+    def test_illegal_parameters_fail_before_query(service, params, monkeypatch):
+        spy = Mock(side_effect=AssertionError('must not execute'))
+        monkeypatch.setattr(service.tools, 'query_metrics', spy)
+>       assert 'error' in service.run_tool('query_metrics', params)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-01/test_data_chat.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+starter/kbqa/service.py:132: in run_tool
+    return getattr(self.tools, name)(**cleaned)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock id='4448646928'>, args = ()
+kwargs = {'start': '2026-02-30', 'end': '2026-06-30'}
+
+    def _execute_mock_call(self, /, *args, **kwargs):
+        # separate from _increment_mock_call so that awaited functions are
+        # executed separately from their call, also AsyncMock overrides this method
+    
+        effect = self.side_effect
+        if effect is not None:
+            if _is_exception(effect):
+>               raise effect
+E               AssertionError: must not execute
+
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1198: AssertionError
+______________ test_illegal_parameters_fail_before_query[params2] ______________
+
+service = <kbqa.service.Service object at 0x10923fb90>
+params = {'start': '2026-06-30', 'end': '2026-06-01'}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1099fe570>
+
+    @pytest.mark.parametrize('params', [
+        {'start':'2026-06-01','end':'2026-06-30','sql':'DELETE FROM sales'},
+        {'start':'2026-02-30','end':'2026-06-30'},
+        {'start':'2026-06-30','end':'2026-06-01'},
+        {'start':'2026-06-01','end':'2026-06-30','store_id':'S99'},
+        {'start':['2026-06-01'],'end':'2026-06-30'},
+    ])
+    def test_illegal_parameters_fail_before_query(service, params, monkeypatch):
+        spy = Mock(side_effect=AssertionError('must not execute'))
+        monkeypatch.setattr(service.tools, 'query_metrics', spy)
+>       assert 'error' in service.run_tool('query_metrics', params)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-01/test_data_chat.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+starter/kbqa/service.py:132: in run_tool
+    return getattr(self.tools, name)(**cleaned)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock id='4456445088'>, args = ()
+kwargs = {'start': '2026-06-30', 'end': '2026-06-01'}
+
+    def _execute_mock_call(self, /, *args, **kwargs):
+        # separate from _increment_mock_call so that awaited functions are
+        # executed separately from their call, also AsyncMock overrides this method
+    
+        effect = self.side_effect
+        if effect is not None:
+            if _is_exception(effect):
+>               raise effect
+E               AssertionError: must not execute
+
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1198: AssertionError
+______________ test_illegal_parameters_fail_before_query[params3] ______________
+
+service = <kbqa.service.Service object at 0x10923fb90>
+params = {'start': '2026-06-01', 'end': '2026-06-30', 'store_id': 'S99'}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1099fef90>
+
+    @pytest.mark.parametrize('params', [
+        {'start':'2026-06-01','end':'2026-06-30','sql':'DELETE FROM sales'},
+        {'start':'2026-02-30','end':'2026-06-30'},
+        {'start':'2026-06-30','end':'2026-06-01'},
+        {'start':'2026-06-01','end':'2026-06-30','store_id':'S99'},
+        {'start':['2026-06-01'],'end':'2026-06-30'},
+    ])
+    def test_illegal_parameters_fail_before_query(service, params, monkeypatch):
+        spy = Mock(side_effect=AssertionError('must not execute'))
+        monkeypatch.setattr(service.tools, 'query_metrics', spy)
+>       assert 'error' in service.run_tool('query_metrics', params)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-01/test_data_chat.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+starter/kbqa/service.py:132: in run_tool
+    return getattr(self.tools, name)(**cleaned)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock id='4456444752'>, args = ()
+kwargs = {'start': '2026-06-01', 'end': '2026-06-30', 'store_id': 'S99'}
+
+    def _execute_mock_call(self, /, *args, **kwargs):
+        # separate from _increment_mock_call so that awaited functions are
+        # executed separately from their call, also AsyncMock overrides this method
+    
+        effect = self.side_effect
+        if effect is not None:
+            if _is_exception(effect):
+>               raise effect
+E               AssertionError: must not execute
+
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1198: AssertionError
+_______________ test_data_answer_binds_metric_to_real_tool_call ________________
+
+service = <kbqa.service.Service object at 0x10923fb90>
+
+    def test_data_answer_binds_metric_to_real_tool_call(service):
+        content = json.dumps({'answer_type':'data','results':[{'call_id':'metrics-1','metric':'qty'}]})
+        answer, trace, actual = run_live(service, content)
+        assert answer.answer_type == 'data'
+        assert f"销量 {actual['qty']} 件" in answer.answer
+        assert answer.data_evidence[0]['result'] == actual
+        step = next(s for s in trace.steps if s['step'] == 'tool')
+>       assert step['detail']['result'] == actual
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'result'
+
+docs/verification/g3-01/test_data_chat.py:81: KeyError
+________________ test_arbitrary_prose_cannot_swap_metric_values ________________
+
+service = <kbqa.service.Service object at 0x10923fb90>
+
+    def test_arbitrary_prose_cannot_swap_metric_values(service):
+        actual = service.tools.query_metrics('2026-06-01','2026-06-30','S02','P06')
+        # This number really occurs in a result, but belongs to orders, not revenue.
+        from kbqa.llm import LLMError
+>       with pytest.raises(LLMError):
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+docs/verification/g3-01/test_data_chat.py:88: Failed
+_________ test_trace_keeps_complete_requests_responses_and_redacts_key _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1099fecc0>
+
+    def test_trace_keeps_complete_requests_responses_and_redacts_key(monkeypatch):
+        text = '完整内容' * 1500
+        payload = {'choices':[{'finish_reason':'stop','message':{'role':'assistant','content':text}}]}
+        monkeypatch.setattr(httpx, 'post', lambda *a, **kw: httpx.Response(200,json=payload))
+        records=[]
+        LLMClient('http://local/prefix','secret-test-key','model').chat(
+            [{'role':'user','content':text}], TOOLS, on_call=records.append)
+>       assert records[0]['request']['messages'][0]['content'] == text
+               ^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'request'
+
+docs/verification/g3-01/test_data_chat.py:99: KeyError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-01/test_data_chat.py::test_sessions_are_isolated_and_snapshots_are_detached
+FAILED docs/verification/g3-01/test_data_chat.py::test_free_sql_is_not_declared_or_executable
+FAILED docs/verification/g3-01/test_data_chat.py::test_illegal_parameters_fail_before_query[params0]
+FAILED docs/verification/g3-01/test_data_chat.py::test_illegal_parameters_fail_before_query[params1]
+FAILED docs/verification/g3-01/test_data_chat.py::test_illegal_parameters_fail_before_query[params2]
+FAILED docs/verification/g3-01/test_data_chat.py::test_illegal_parameters_fail_before_query[params3]
+FAILED docs/verification/g3-01/test_data_chat.py::test_data_answer_binds_metric_to_real_tool_call
+FAILED docs/verification/g3-01/test_data_chat.py::test_arbitrary_prose_cannot_swap_metric_values
+FAILED docs/verification/g3-01/test_data_chat.py::test_trace_keeps_complete_requests_responses_and_redacts_key
+9 failed, 1 passed in 0.34s

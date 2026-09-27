@@ -1,0 +1,47 @@
+npm notice run moneki-workspace@0.1.0 test:browser
+npm notice run playwright test g3-chat.spec.ts --workers=1
+
+Running 4 tests using 1 worker
+
+(node:96213) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/g3-chat.spec.ts:13:3 › 真实查数、证据和长输入 1280 (30.0s)
+  -  2 tests/g3-chat.spec.ts:13:3 › 真实查数、证据和长输入 1440
+  -  3 tests/g3-chat.spec.ts:13:3 › 真实查数、证据和长输入 390
+  -  4 tests/g3-chat.spec.ts:46:1 › 等待防重复、新会话丢弃旧响应、失败重试
+
+
+  1) tests/g3-chat.spec.ts:13:3 › 真实查数、证据和长输入 1280 ─────────────────────────────────────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForRequest: Test timeout of 30000ms exceeded.
+
+      18 |     await page.getByRole('button', { name: '经营助手', exact: true }).click();
+      19 |     await page.getByLabel('经营问题').fill('S02 六月牛肉poke卖了多少份？');
+    > 20 |     const sent = page.waitForRequest(r => r.url().endsWith('/api/chat'));
+         |                       ^
+      21 |     const received = page.waitForResponse(r => r.url().endsWith('/api/chat'));
+      22 |     await page.getByRole('button', { name: '发送', exact: true }).click();
+      23 |     const payload = (await sent).postDataJSON();
+        at /Volumes/MACPSSD/project/moneki-ai-takehome/frontend/tests/g3-chat.spec.ts:20:23
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '发送', exact: true })
+
+
+      20 |     const sent = page.waitForRequest(r => r.url().endsWith('/api/chat'));
+      21 |     const received = page.waitForResponse(r => r.url().endsWith('/api/chat'));
+    > 22 |     await page.getByRole('button', { name: '发送', exact: true }).click();
+         |                                                                 ^
+      23 |     const payload = (await sent).postDataJSON();
+      24 |     expect(Object.keys(payload).sort()).toEqual(['question', 'session_id']);
+      25 |     const answer = await (await received).json();
+        at /Volumes/MACPSSD/project/moneki-ai-takehome/frontend/tests/g3-chat.spec.ts:22:65
+
+    Error Context: test-results/g3-chat-真实查数、证据和长输入-1280/error-context.md
+
+  1 failed
+    tests/g3-chat.spec.ts:13:3 › 真实查数、证据和长输入 1280 ──────────────────────────────────────────────────
+  3 did not run

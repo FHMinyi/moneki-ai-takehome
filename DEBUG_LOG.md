@@ -259,3 +259,34 @@ G2-05在新环境替换KB时发现：KB970表格别名翡翠饭/Ivory Bowl，KB9
 旧诊断301/600/601直接拼接断言仍因overlap重复而失败，原输出保留。G2-02的原文偏移覆盖、十种长度、真实语料尾段和同源上下文另行证明不丢字，未采用xfail/跳过/删断言变绿。只读历史模块夹具仅替代测试中的git show获取方式，应用运行不依赖原repo/.git；旧模块和覆盖字节哈希都保存。
 
 本关约定之外的无Key保守refusal是已知限制，不能把任意新中文问法或长标题回答率升级为继续扩张规则引擎的理由。若真实返回无关事实、丢正文、错引或换库失效，仍是共享证据缺陷。已验证失败、仅代码风险、尚未验证能力分别移交，见final/README.md。
+
+## G3-01：单轮查数来源、工具边界与会话隔离
+
+前置时间边界：2026-09-27 12:50:42，在业务字节仍为2839c67时仅运行本票新增探针，9失败/1通过；红灯提交3686878。修改前未重跑完整55题、53原后端、199 RAG或preflight；此前引用的是第二关历史证据。后续绿灯均为本票修改后结果，不是前置完整基线。
+
+| 现象 | 假设与验证 | 根因 | 修复 | 回归证据 |
+|---|---|---|---|---|
+| B会话读到A历史；返回对象还能改动已存slots | 直接交错两个session并修改读取快照，排除模型理解问题 | sessions.py仅有一个共享列表，忽略session_id，浅复制 | 有界OrderedDict按session存储、深复制、无ID不存 | test_sessions_are_isolated_and_snapshots_are_detached，red.txt失败→green.txt通过；HTTP interleaved |
+| run_sql在模型工具列表；额外参数被丢弃后仍查询 | 真实Service工具入口+查询spy；日期倒置、非法日、未知实体 | toolspec声明run_sql；Service仅做字符串正则并忽略未知键 | 声明与执行白名单同时关闭SQL，严格类型/日历/实体/范围检查 | free_sql和illegal_parameters，red.txt失败→green.txt通过；forged-* HTTP |
+| 模型把真实订单数写成营业额仍获通过 | 错误数字本身确实来自真实工具结果，说明“数字集合出现”不是语义校验 | live._allowed_numbers同时接受问题数字、参数、其他指标 | 数据最终输出仅选择实际call_id与指标，data_answer按字段生成文本；拒绝任意数值散文与伪造引用 | arbitrary_prose、data_answer_binds_metric、forged_fields；替换库手算80元/120元/150% |
+| trace只有截断消息、没有完整工具结果 | 超4000字请求/响应探针直接核对末尾；检查实际tool trace | llm._preview与live工具trace缺result | 完整独立请求快照、原始响应/usage与工具结果，凭证脱敏 | trace_keeps_complete、model_error_echo与HTTP trace |
+| 重试预算从配置超时扣减而非实际耗时；持续空行可延长连接 | 短暂503后可用时间检查，真实HTTP空行滴流对照 | retry使用budget-per_call，HTTP单次read超时不等于总期限 | 单调时钟扣实际耗时，asyncio总deadline包围整段HTTP响应 | retry_uses_actual_elapsed_budget、keepalive单元和/ api/chat端到端normal/slow/budget补证 |
+| 首次免费预检无出站请求 | health已live；trace显示socksio缺失，排除Key和模型配置 | httpx继承了本机SOCKS环境，安装依赖不包含socksio | 显式BASE_URL直连，不继承隐式代理；说明写入LLM_SETUP | preflight-first原报告保留；后续13PASS/1SKIP，P14另做合法协议端到端补证 |
+
+修复属于G3-01实现提交（位于3686878之后）。纯数据字段绑定不声称验证G3-02/03文档事实或混合推导；没有修改公开评分器或以新mock规则抬分。
+
+### G3-01 真实样本发现的协议缺口
+
+首条真实模型测试固定f991720，正确查询出S02/P06六月417份，却把最终JSON的call_id写成query_metrics，触发严格拒答。不是工具结果错，也不是数值计算错；原tool消息content只有结果，服务商分配的id仅在协议字段中。真实失败见live/chat-1.json，2次API均有usage；红灯探针test_tool_result_exposes_actual_call_reference在b555bdb前失败（KeyError call_id），修复后17项通过。修复将call_id显式放入tool content并在提示中要求逐字复制，仍拒绝工具名、未知ID和自行提供的数值。费用记录保留失败调用，不删除失败样本挑结果。
+
+### G3-01 自审：模型澄清类型
+
+自审发现无工具时模型发出的澄清JSON会被当作自由文字refusal展示。新增test_model_can_return_structured_clarification_without_data先失败（clarify-red.txt），再支持严格的clarify/refusal终结结构；不携带未经查询的数字，也不新增追问继承。最终20项通过。真实两样本的调用ID修复与业务数值在354f6d4已验证；这次增加缺项澄清格式，不声称重新验证真实模型的澄清语义。
+
+## G3-01 PR30 P1：上游回显凭证经异常链泄漏
+
+主会话固定fb214b6独立发现：HTTP200非JSON响应在LLMClient._note中脱敏，但bad_json异常详情仍使用原始response.text；Service把异常、traceback和notes写入trace。另查出timeout/transport、未知finish_reason和兜底logger.exception也可能保存原始异常链。最初只验证llm_calls及401正文，未覆盖最终chat/trace/log，是此前“无泄漏”结论的验证缺口。
+
+红灯提交def4475：test_credentials.py用假Key和真实本地HTTP回显非JSON响应，完整经过/api/chat与/api/trace；8项为6失败2通过。修复统一redaction函数；LLMClient在异常边界创建安全LLMError，并在except块外抛出以移除原始cause/context；先脱敏再截断预览。Trace在各记录入口及最终序列化脱敏，Service的session/API输出也脱敏；兜底日志记录安全traceback，不再把raw exc_info交给日志格式化器。保留错误类型、HTTP状态码、非敏感响应内容、完整正常请求/响应及耗时。
+
+最终另补直接诊断写入者绕过本地清洗时的序列化防线、200字预览截断中途切开Key的检查。10项凭证检查+20项本票+53原后端共83通过（credential-regressions.txt）；正常超4000字思考与完整请求/响应/工具字段仍逐字匹配。均为假Key/受控本地调用，未追加付费，累计仍3chat/6API/0.047028元高峰保守估算。

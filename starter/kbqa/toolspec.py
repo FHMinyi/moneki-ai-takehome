@@ -13,7 +13,7 @@ def _fn(name: str, description: str, properties: dict, required: list[str]) -> d
         "function": {
             "name": name,
             "description": description,
-            "parameters": {"type": "object", "properties": properties, "required": required},
+            "parameters": {"type": "object", "properties": properties, "required": required, "additionalProperties": False},
         },
     }
 
@@ -78,12 +78,6 @@ TOOLS = [
         "某商品的实收单价分布与维表建档价，用来判断现行售价与维表是否一致。",
         {"product_id": _PRODUCT, "start": _DATE, "end": _DATE},
         ["product_id"],
-    ),
-    _fn(
-        "run_sql",
-        "在清洗表上执行一条 SQL，工具覆盖不到的查法用这个。",
-        {"sql": {"type": "string", "description": "要执行的 SQL 语句"}},
-        ["sql"],
     ),
     _fn(
         "search_kb",

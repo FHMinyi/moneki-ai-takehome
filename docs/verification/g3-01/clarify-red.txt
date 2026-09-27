@@ -1,0 +1,22 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________ test_model_can_return_structured_clarification_without_data __________
+
+service = <kbqa.service.Service object at 0x106f43890>
+
+    def test_model_can_return_structured_clarification_without_data(service):
+        final=json.dumps({'answer_type':'clarify','answer':'请补充日期范围和门店。'},ensure_ascii=False)
+        client=Mock()
+        client.chat_with_retry.return_value=LLMReply({'role':'assistant','content':final},'stop',final,[],0)
+        trace=Trace('clarify','请帮我查一下那家店的业绩。')
+        answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(trace.question),trace,[])
+>       assert answer.answer_type=='clarify'
+E       AssertionError: assert 'refusal' == 'clarify'
+E         
+E         - clarify
+E         + refusal
+
+docs/verification/g3-01/test_data_chat.py:157: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-01/test_data_chat.py::test_model_can_return_structured_clarification_without_data
+1 failed, 19 deselected in 0.19s

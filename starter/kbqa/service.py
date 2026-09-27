@@ -6,6 +6,7 @@ import logging
 import re
 import time
 from typing import Any, Optional
+from datetime import date
 
 from .answerer import Answerer
 from .schemas import Answer
@@ -22,6 +23,7 @@ from .sessions import SessionStore
 from .toolspec import TOOL_NAMES, TOOLS
 from .tools import DataTools
 from .trace import Trace, TraceStore
+from .redaction import redact
 
 _ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 _INT_PARAMS = {"top_k", "limit"}
@@ -104,26 +106,45 @@ class Service:
         schema = next(
             tool["function"]["parameters"] for tool in TOOLS if tool["function"]["name"] == name
         )
+        if not isinstance(params, dict):
+            return {"error": "工具参数必须是 JSON 对象"}
         cleaned: dict[str, Any] = {}
-        for key, value in (params or {}).items():
+        for key, value in params.items():
             if key not in schema["properties"]:
-                continue
+                return {"error": "未声明的参数：%s" % key}
             if key in _INT_PARAMS:
-                try:
-                    cleaned[key] = int(value)
-                except (TypeError, ValueError):
-                    return {"error": "参数 %s 应该是整数，收到 %r" % (key, value)}
+                maximum = 10
+                if type(value) is not int or not 1 <= value <= maximum:
+                    return {"error": "参数 %s 必须是 1 至 %s 的整数" % (key, maximum)}
+                cleaned[key] = value
                 continue
-            if value is None:
+            if value is None and key not in schema.get("required", []):
                 continue
-            text = str(value).strip()
+            if not isinstance(value, str) or not value.strip():
+                return {"error": "参数 %s 必须是非空字符串" % key}
+            text = value.strip()
             if key.startswith(("start", "end")) or key == "date":
-                if not _ISO_DATE.match(text):
-                    return {"error": "参数 %s 必须是 YYYY-MM-DD，收到 %r" % (key, value)}
+                try:
+                    if not _ISO_DATE.fullmatch(text):
+                        raise ValueError()
+                    date.fromisoformat(text)
+                except ValueError:
+                    return {"error": "参数 %s 必须是有效 YYYY-MM-DD 日期" % key}
+            if key in ("store_id", "product_id"):
+                text = text.upper()
+                valid = self.catalog.store_ids() if key == "store_id" else [p["product_id"] for p in self.catalog.products]
+                if text not in valid:
+                    return {"error": "未知%s：%s" % (key, text)}
             cleaned[key] = text
         for key in schema.get("required", []):
             if key not in cleaned:
                 return {"error": "缺少必填参数 %s" % key}
+        for suffix in ("", "_a", "_b"):
+            start, end = cleaned.get("start" + suffix), cleaned.get("end" + suffix)
+            if start and end and (start > end or (date.fromisoformat(end) - date.fromisoformat(start)).days > 366):
+                return {"error": "日期区间必须顺序正确且不超过 367 天"}
+            if start and self.data_period["start"] and start < self.data_period["start"] or end and self.data_period["end"] and end > self.data_period["end"]:
+                return {"error": "查询区间超出已有数据范围"}
         try:
             if name == "search_kb":
                 response = self.retrieve(cleaned["query"], cleaned.get("top_k", 5))
@@ -140,6 +161,7 @@ class Service:
             trace_id=self.traces.new_id(self.settings.today.isoformat()),
             question=question or "",
             session_id=session_id,
+            secrets=(self.settings.llm_api_key,),
         )
         answer = self._answer(trace, session_id, question or "")
         payload = {
@@ -151,7 +173,7 @@ class Service:
         }
         trace.step("response", {"answer_type": answer.answer_type, "notes": answer.notes})
         self.traces.save(trace)
-        return payload
+        return redact(payload, (self.settings.llm_api_key,))
 
     def _answer(self, trace: Trace, session_id: Optional[str], question: str) -> Answer:
         try:
@@ -164,25 +186,28 @@ class Service:
             answer = self._run_engine(plan, trace, history)
             self.sessions.append(
                 session_id,
-                {
+                redact({
                     "question": question,
                     "standalone": plan.standalone,
                     "slots": plan.slots,
                     "answer": answer.answer,
                     "answer_type": answer.answer_type,
-                },
+                }, (self.settings.llm_api_key,)),
             )
             return answer
         except Exception as exc:  # noqa: BLE001 - preserve the chat response contract
             trace.error("answer", exc)
-            logging.getLogger(__name__).exception("chat failed trace_id=%s", trace.trace_id)
+            # Never attach raw exc_info: logging formatters would recreate the
+            # unsanitized cause/context chain after our diagnostic scrub.
+            logging.getLogger(__name__).error("chat failed trace_id=%s\n%s",
+                redact(trace.trace_id, trace.secrets), trace.errors[-1]["traceback"])
             return Answer(
                 answer="抱歉，我暂时无法回答。",
                 answer_type="refusal",
             )
 
     def _run_engine(self, plan, trace: Trace, history: list[dict]) -> Answer:
-        if not self.settings.live or plan.intent == "refusal":
+        if not self.settings.live or plan.kind in {"prohibited_request", "need_context", "need_month"}:
             started = time.perf_counter()
             answer = self.answerer.answer(plan, trace)
             trace.step("answer_mock", {"answer_type": answer.answer_type}, started=started)

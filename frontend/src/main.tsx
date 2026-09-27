@@ -4,6 +4,7 @@ import { Alert, Button, Card, ConfigProvider, Empty, Skeleton, Table, Tag } from
 import 'antd/dist/reset.css';
 import './style.css';
 import { Dashboard } from './Dashboard';
+import { ChatSidebar } from './ChatSidebar';
 
 type Report = { raw_rows: number; kept_rows: number; removed_rows: number; removed: Record<string, number> };
 type Quality = { cleaning_report: Report; data_period: { start: string | null; end: string | null } };
@@ -86,6 +87,7 @@ function Workspace() {
       </section>
     </main>
     <footer>MONEKI / 数据口径以《指标口径手册 v3》为准</footer>
+    <ChatSidebar />
   </div>;
 }
 createRoot(document.getElementById('root')!).render(<React.StrictMode><ConfigProvider theme={{ token: { colorPrimary: '#246b52', borderRadius: 10, fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', colorText: '#20382e', colorBorderSecondary: '#e5eae6' } }}><Workspace /></ConfigProvider></React.StrictMode>);
