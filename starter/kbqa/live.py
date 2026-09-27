@@ -149,9 +149,15 @@ class LiveEngine:
         system += "\n数据库门店目录：" + json.dumps(self.answerer.catalog.stores, ensure_ascii=False)
         system += "\n数据库商品目录（unit_price 为建档价，不能推算实收）：" + json.dumps(self.answerer.catalog.products, ensure_ascii=False)
         messages = [{"role": "system", "content": system}]
-        for turn in history[-3:]:
-            messages.append({"role": "user", "content": turn.get("question", "")})
-            messages.append({"role": "assistant", "content": turn.get("answer", ""), "reasoning_content": ""})
+        if history:
+            messages.append({"role": "system", "content":
+                "以下同一会话历史仅供理解指代；旧回答和旧证据不代表本轮事实。"
+                "本轮若明确给出新的主题、门店、商品、时间或指标，优先遵从本轮条件，不沿用冲突的旧条件。"
+                "若本轮省略条件，可从这些旧问题理解指代，但必须按本轮问题重新调用业务工具或检索，不能复述旧答案："
+                + json.dumps([{"question": turn.get("question", ""),
+                               "standalone": turn.get("standalone", ""),
+                               "answer_type": turn.get("answer_type", "")}
+                              for turn in history[-3:]], ensure_ascii=False)})
         question = plan.question
         if plan.slots.get("context_effective"):
             question += "\n（用户显式附加每日趋势引用；以下是服务端验证并合并文字覆盖后的本轮有效条件，不是前端数值：%s。必须按此条件重新调用业务工具取数，最终数据指标为 %s。）" % (json.dumps(plan.slots["context_effective"], ensure_ascii=False), plan.metric)

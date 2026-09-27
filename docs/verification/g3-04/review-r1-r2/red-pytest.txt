@@ -1,0 +1,123 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_clarification_followed_by_independent_topic_does_not_inherit[\u5916\u5356\u9000\u6b3e\u65f6\u9650\uff1f] _
+
+service = <kbqa.service.Service object at 0x108d13770>
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-298/test_clarification_followed_by0')
+new_question = '外卖退款时限？'
+
+    @pytest.mark.parametrize("new_question", ["外卖退款时限？", "牛肉poke有哪些过敏原？"])
+    def test_clarification_followed_by_independent_topic_does_not_inherit(service, tmp_path, new_question):
+        ask(service, "switch", "8号的净营业额是多少？")
+        switched, context, plan, _ = ask(service, "switch", new_question)
+        fresh = Service(replace(load_settings(), var_dir=tmp_path / "fresh",
+                                llm_base_url="", llm_api_key="", llm_model=""))
+        independent, _, independent_plan, _ = ask(fresh, "fresh", new_question)
+        assert context["raw_question"] == new_question
+>       assert plan["standalone_question"] == independent_plan["standalone_question"] == new_question
+E       AssertionError: assert '8号的净营业额是多少？ 外卖退款时限？' == '外卖退款时限？'
+E
+E         - 外卖退款时限？
+E         + 8号的净营业额是多少？ 外卖退款时限？
+
+docs/verification/g3-04/test_session_context.py:131: AssertionError
+_ test_clarification_followed_by_independent_topic_does_not_inherit[\u725b\u8089poke\u6709\u54ea\u4e9b\u8fc7\u654f\u539f\uff1f] _
+
+service = <kbqa.service.Service object at 0x109965010>
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-298/test_clarification_followed_by1')
+new_question = '牛肉poke有哪些过敏原？'
+
+    @pytest.mark.parametrize("new_question", ["外卖退款时限？", "牛肉poke有哪些过敏原？"])
+    def test_clarification_followed_by_independent_topic_does_not_inherit(service, tmp_path, new_question):
+        ask(service, "switch", "8号的净营业额是多少？")
+        switched, context, plan, _ = ask(service, "switch", new_question)
+        fresh = Service(replace(load_settings(), var_dir=tmp_path / "fresh",
+                                llm_base_url="", llm_api_key="", llm_model=""))
+        independent, _, independent_plan, _ = ask(fresh, "fresh", new_question)
+        assert context["raw_question"] == new_question
+>       assert plan["standalone_question"] == independent_plan["standalone_question"] == new_question
+E       AssertionError: assert '8号的净营业额是多少？ 牛肉poke有哪些过敏原？' == '牛肉poke有哪些过敏原？'
+E
+E         - 牛肉poke有哪些过敏原？
+E         + 8号的净营业额是多少？ 牛肉poke有哪些过敏原？
+
+docs/verification/g3-04/test_session_context.py:131: AssertionError
+________ test_same_session_concurrent_request_has_bounded_busy_response ________
+
+service = <kbqa.service.Service object at 0x109b37ec0>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10965a720>
+
+    def test_same_session_concurrent_request_has_bounded_busy_response(service, monkeypatch):
+        entered = threading.Event()
+        release = threading.Event()
+        original = service._run_engine
+
+        def held(plan, *args, **kwargs):
+            if plan.question == "6 月的净营业额是多少？":
+                entered.set()
+                assert release.wait(5)
+            return original(plan, *args, **kwargs)
+
+        monkeypatch.setattr(service, "_run_engine", held)
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            first = pool.submit(ask, service, "same", "6 月的净营业额是多少？")
+            assert entered.wait(5)
+            second = pool.submit(service.chat, "same", "那 7 月呢？")
+>           result = second.result(timeout=1)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-04/test_session_context.py:152:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = None, timeout = 1
+
+    def result(self, timeout=None):
+        """Return the result of the call that the future represents.
+
+        Args:
+            timeout: The number of seconds to wait for the result if the future
+                isn't done. If None, then there is no limit on the wait time.
+
+        Returns:
+            The result of the call that the future represents.
+
+        Raises:
+            CancelledError: If the future was cancelled.
+            TimeoutError: If the future didn't finish executing before the given
+                timeout.
+            Exception: If the call raised then that exception will be raised.
+        """
+        try:
+            with self._condition:
+                if self._state in [CANCELLED, CANCELLED_AND_NOTIFIED]:
+                    raise CancelledError()
+                elif self._state == FINISHED:
+                    return self.__get_result()
+
+                self._condition.wait(timeout)
+
+                if self._state in [CANCELLED, CANCELLED_AND_NOTIFIED]:
+                    raise CancelledError()
+                elif self._state == FINISHED:
+                    return self.__get_result()
+                else:
+>                   raise TimeoutError()
+E                   TimeoutError
+
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/_base.py:458: TimeoutError
+------------------------------ Captured log call -------------------------------
+ERROR    kbqa.service:service.py:257 chat failed trace_id=t-20260901-0001
+Traceback (most recent call last):
+  File "/Users/minyi/.codex/worktrees/g3-session-context/moneki-ai-takehome/starter/kbqa/service.py", line 224, in _answer
+    if effective else self._run_engine(plan, trace, history))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minyi/.codex/worktrees/g3-session-context/moneki-ai-takehome/docs/verification/g3-04/test_session_context.py", line 144, in held
+    assert release.wait(5)
+AssertionError: assert False
+ +  where False = wait(5)
+ +    where wait = <threading.Event at 0x108e031a0: unset>.wait
+=========================== short test summary info ============================
+FAILED docs/verification/g3-04/test_session_context.py::test_clarification_followed_by_independent_topic_does_not_inherit[\u5916\u5356\u9000\u6b3e\u65f6\u9650\uff1f]
+FAILED docs/verification/g3-04/test_session_context.py::test_clarification_followed_by_independent_topic_does_not_inherit[\u725b\u8089poke\u6709\u54ea\u4e9b\u8fc7\u654f\u539f\uff1f]
+FAILED docs/verification/g3-04/test_session_context.py::test_same_session_concurrent_request_has_bounded_busy_response
+3 failed, 9 deselected in 5.86s

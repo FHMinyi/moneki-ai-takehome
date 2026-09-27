@@ -1,0 +1,2126 @@
+[
+  {
+    "request": {
+      "session_id": "r1-http-refund",
+      "question": "8号的净营业额是多少？"
+    },
+    "response": {
+      "answer": "只说了“8 号”，没说是哪个月。数据区间是 2026-05-01 至 2026-08-31，请把月份补上。",
+      "answer_type": "clarify",
+      "citations": [],
+      "data_evidence": [],
+      "trace_id": "t-20260901-0013"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0013",
+      "session_id": "r1-http-refund",
+      "question": "8号的净营业额是多少？",
+      "started_at": "2026-09-27T16:29:54.384",
+      "total_ms": 11.0,
+      "steps": [
+        {
+          "step": "request",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "session_id": "r1-http-refund",
+            "question": "8号的净营业额是多少？",
+            "context": null
+          }
+        },
+        {
+          "step": "context_validation",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "valid": true,
+            "reason": null,
+            "reference": null
+          }
+        },
+        {
+          "step": "session_context",
+          "at_ms": 10.9,
+          "took_ms": null,
+          "detail": {
+            "history_size": 0,
+            "source_questions": [],
+            "source_conditions": [],
+            "raw_question": "8号的净营业额是多少？",
+            "standalone_question": "8号的净营业额是多少？",
+            "inherited": false,
+            "effective_conditions": {
+              "question": "8号的净营业额是多少？",
+              "standalone_question": "8号的净营业额是多少？",
+              "search_query": "8号的净营业额是多少？",
+              "intent": "clarify",
+              "kind": "need_month",
+              "window": null,
+              "compare_window": null,
+              "as_of": "2026-09-01",
+              "year": 2026,
+              "store_id": null,
+              "product_id": null,
+              "metric": "net_revenue",
+              "needs_data": false,
+              "needs_docs": false,
+              "refusal": "只说了“8 号”，没说是哪个月。数据区间是 2026-05-01 至 2026-08-31，请把月份补上。",
+              "notes": [
+                "识别：指标=net_revenue 门店=全部 商品=全部 时间=未指定"
+              ]
+            }
+          }
+        },
+        {
+          "step": "plan",
+          "at_ms": 10.9,
+          "took_ms": 10.9,
+          "detail": {
+            "question": "8号的净营业额是多少？",
+            "standalone_question": "8号的净营业额是多少？",
+            "search_query": "8号的净营业额是多少？",
+            "intent": "clarify",
+            "kind": "need_month",
+            "window": null,
+            "compare_window": null,
+            "as_of": "2026-09-01",
+            "year": 2026,
+            "store_id": null,
+            "product_id": null,
+            "metric": "net_revenue",
+            "needs_data": false,
+            "needs_docs": false,
+            "refusal": "只说了“8 号”，没说是哪个月。数据区间是 2026-05-01 至 2026-08-31，请把月份补上。",
+            "notes": [
+              "识别：指标=net_revenue 门店=全部 商品=全部 时间=未指定"
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 11.0,
+          "took_ms": 0.0,
+          "detail": {
+            "answer_type": "clarify"
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 11.0,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "clarify",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  },
+  {
+    "request": {
+      "session_id": "r1-http-refund",
+      "question": "外卖退款时限？"
+    },
+    "response": {
+      "answer": "KB-013《退款政策 v2》：2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。",
+      "answer_type": "doc",
+      "citations": [
+        {
+          "doc_id": "KB-013",
+          "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。"
+        }
+      ],
+      "data_evidence": [],
+      "trace_id": "t-20260901-0014"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0014",
+      "session_id": "r1-http-refund",
+      "question": "外卖退款时限？",
+      "started_at": "2026-09-27T16:29:54.397",
+      "total_ms": 21.8,
+      "steps": [
+        {
+          "step": "request",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "session_id": "r1-http-refund",
+            "question": "外卖退款时限？",
+            "context": null
+          }
+        },
+        {
+          "step": "context_validation",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "valid": true,
+            "reason": null,
+            "reference": null
+          }
+        },
+        {
+          "step": "session_context",
+          "at_ms": 6.8,
+          "took_ms": null,
+          "detail": {
+            "history_size": 1,
+            "source_questions": [
+              "8号的净营业额是多少？"
+            ],
+            "source_conditions": [
+              {
+                "needs_month": true,
+                "loose_day": 8,
+                "metric_explicit": true,
+                "time_explicit": false,
+                "time_scoped": false,
+                "historical": false,
+                "as_of_dated": false
+              }
+            ],
+            "raw_question": "外卖退款时限？",
+            "standalone_question": "外卖退款时限？",
+            "inherited": false,
+            "effective_conditions": {
+              "question": "外卖退款时限？",
+              "standalone_question": "外卖退款时限？",
+              "search_query": "外卖退款时限？",
+              "intent": "doc",
+              "kind": "doc",
+              "window": [
+                "2026-05-01",
+                "2026-08-31"
+              ],
+              "compare_window": null,
+              "as_of": "2026-09-01",
+              "year": 2026,
+              "store_id": null,
+              "product_id": null,
+              "metric": "net_revenue",
+              "needs_data": false,
+              "needs_docs": true,
+              "refusal": null,
+              "notes": [
+                "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+              ]
+            }
+          }
+        },
+        {
+          "step": "plan",
+          "at_ms": 6.8,
+          "took_ms": 6.8,
+          "detail": {
+            "question": "外卖退款时限？",
+            "standalone_question": "外卖退款时限？",
+            "search_query": "外卖退款时限？",
+            "intent": "doc",
+            "kind": "doc",
+            "window": [
+              "2026-05-01",
+              "2026-08-31"
+            ],
+            "compare_window": null,
+            "as_of": "2026-09-01",
+            "year": 2026,
+            "store_id": null,
+            "product_id": null,
+            "metric": "net_revenue",
+            "needs_data": false,
+            "needs_docs": true,
+            "refusal": null,
+            "notes": [
+              "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+              "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+            ]
+          }
+        },
+        {
+          "step": "search",
+          "at_ms": 13.5,
+          "took_ms": 6.7,
+          "detail": {
+            "query": "外卖退款时限?",
+            "terms": [
+              "外卖",
+              "卖退",
+              "退款",
+              "款时",
+              "时限"
+            ],
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "candidates": [
+              {
+                "chunk_id": "KB-013#2",
+                "doc_id": "KB-013",
+                "score": 11.4899,
+                "lexical_score": 5.393,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "外卖",
+                  "退款"
+                ]
+              },
+              {
+                "chunk_id": "KB-013#5",
+                "doc_id": "KB-013",
+                "score": 8.7439,
+                "lexical_score": 6.477,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖",
+                  "退款"
+                ]
+              },
+              {
+                "chunk_id": "KB-013#4",
+                "doc_id": "KB-013",
+                "score": 7.1719,
+                "lexical_score": 4.905,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "退款"
+                ]
+              },
+              {
+                "chunk_id": "KB-013#6",
+                "doc_id": "KB-013",
+                "score": 6.98,
+                "lexical_score": 4.7131,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "退款"
+                ]
+              },
+              {
+                "chunk_id": "KB-020#2",
+                "doc_id": "KB-020",
+                "score": 6.9745,
+                "lexical_score": 3.4442,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "外卖",
+                  "退款"
+                ]
+              },
+              {
+                "chunk_id": "KB-013#3",
+                "doc_id": "KB-013",
+                "score": 6.686,
+                "lexical_score": 4.4191,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "退款"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#9",
+                "doc_id": "KB-001",
+                "score": 6.2207,
+                "lexical_score": 4.6079,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "退款"
+                ]
+              },
+              {
+                "chunk_id": "KB-013#1",
+                "doc_id": "KB-013",
+                "score": 5.928,
+                "lexical_score": 3.661,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "退款"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#10",
+                "doc_id": "KB-001",
+                "score": 5.7993,
+                "lexical_score": 4.1865,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "退款"
+                ]
+              },
+              {
+                "chunk_id": "KB-061#3",
+                "doc_id": "KB-061",
+                "score": 5.1579,
+                "lexical_score": 2.5363,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#18",
+                "doc_id": "KB-001",
+                "score": 4.716,
+                "lexical_score": 3.1032,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "退款"
+                ]
+              },
+              {
+                "chunk_id": "KB-011#5",
+                "doc_id": "KB-011",
+                "score": 4.6467,
+                "lexical_score": 2.0712,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "退款"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#15",
+                "doc_id": "KB-001",
+                "score": 4.5741,
+                "lexical_score": 2.9614,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "退款"
+                ]
+              },
+              {
+                "chunk_id": "KB-062#3",
+                "doc_id": "KB-062",
+                "score": 4.4935,
+                "lexical_score": 2.219,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-025#2",
+                "doc_id": "KB-025",
+                "score": 4.3171,
+                "lexical_score": 2.1319,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-026#2",
+                "doc_id": "KB-026",
+                "score": 4.198,
+                "lexical_score": 2.0731,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-042#4",
+                "doc_id": "KB-042",
+                "score": 4.0672,
+                "lexical_score": 1.8964,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-011#2",
+                "doc_id": "KB-011",
+                "score": 3.9599,
+                "lexical_score": 2.9333,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-028#2",
+                "doc_id": "KB-028",
+                "score": 3.7469,
+                "lexical_score": 1.8503,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-060#1",
+                "doc_id": "KB-060",
+                "score": 3.689,
+                "lexical_score": 1.7397,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-061#2",
+                "doc_id": "KB-061",
+                "score": 3.4803,
+                "lexical_score": 2.578,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-042#1",
+                "doc_id": "KB-042",
+                "score": 3.1439,
+                "lexical_score": 2.3288,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-029#9",
+                "doc_id": "KB-029",
+                "score": 2.9411,
+                "lexical_score": 1.4524,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-060#8",
+                "doc_id": "KB-060",
+                "score": 2.7758,
+                "lexical_score": 2.0562,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#3",
+                "doc_id": "KB-023",
+                "score": 2.6537,
+                "lexical_score": 1.9657,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-030#4",
+                "doc_id": "KB-030",
+                "score": 2.45,
+                "lexical_score": 1.8148,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-028#5",
+                "doc_id": "KB-028",
+                "score": 2.4366,
+                "lexical_score": 1.789,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-053#4",
+                "doc_id": "KB-053",
+                "score": 2.2453,
+                "lexical_score": 1.6632,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-060#9",
+                "doc_id": "KB-060",
+                "score": 2.1132,
+                "lexical_score": 1.3935,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-025#3",
+                "doc_id": "KB-025",
+                "score": 2.0854,
+                "lexical_score": 1.3392,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#3",
+                "doc_id": "KB-031",
+                "score": 1.9991,
+                "lexical_score": 1.4808,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-033#3",
+                "doc_id": "KB-033",
+                "score": 1.8607,
+                "lexical_score": 1.3783,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-021#2",
+                "doc_id": "KB-021",
+                "score": 1.8539,
+                "lexical_score": 1.3733,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-053#2",
+                "doc_id": "KB-053",
+                "score": 1.8246,
+                "lexical_score": 1.2425,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-029#14",
+                "doc_id": "KB-029",
+                "score": 1.7113,
+                "lexical_score": 1.2029,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-040#7",
+                "doc_id": "KB-040",
+                "score": 1.6086,
+                "lexical_score": 1.1916,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-029#3",
+                "doc_id": "KB-029",
+                "score": 1.5725,
+                "lexical_score": 1.0642,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#1",
+                "doc_id": "KB-003",
+                "score": 1.1376,
+                "lexical_score": 1.6854,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#3",
+                "doc_id": "KB-003",
+                "score": 1.0655,
+                "lexical_score": 1.5412,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              },
+              {
+                "chunk_id": "KB-024#3",
+                "doc_id": "KB-024",
+                "score": 0.9786,
+                "lexical_score": 2.8995,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "外卖"
+                ]
+              }
+            ],
+            "expansions": [],
+            "coverage": 0.199,
+            "hits": [
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#2",
+                "score": 11.4899,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-020",
+                "chunk_id": "KB-020#2",
+                "score": 6.9745,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#9",
+                "score": 6.2207,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-061",
+                "chunk_id": "KB-061#3",
+                "score": 5.1579,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-011",
+                "chunk_id": "KB-011#5",
+                "score": 4.6467,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": [
+              {
+                "doc_id": "KB-002",
+                "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+              },
+              {
+                "doc_id": "KB-010",
+                "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+              },
+              {
+                "doc_id": "KB-012",
+                "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+              }
+            ]
+          }
+        },
+        {
+          "step": "evidence",
+          "at_ms": 21.7,
+          "took_ms": null,
+          "detail": {
+            "required_claim": null,
+            "candidates": [
+              {
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#2",
+                "score": 0.4972353131882172,
+                "text": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。"
+              },
+              {
+                "doc_id": "KB-020",
+                "chunk_id": "KB-020#2",
+                "score": 0.2053744941154218,
+                "text": "1. **S03 自 2026-06-08 起停业 4 天，即 6 月 8 日至 6 月 11 日不营业**，堂食、外卖、预订全部暂停。"
+              }
+            ],
+            "rejected": [],
+            "selected": [
+              {
+                "evidence_id": "doc-58a1ba9c9eff7eac5a6d",
+                "scope": {
+                  "as_of": "2026-09-01",
+                  "store_id": null,
+                  "year": 2026,
+                  "historical": false,
+                  "window": null
+                },
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#2",
+                "score": 0.4972353131882172,
+                "source_start": 109,
+                "source_end": 237,
+                "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。"
+              }
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 21.7,
+          "took_ms": 14.9,
+          "detail": {
+            "answer_type": "doc"
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 21.8,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "doc",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  },
+  {
+    "request": {
+      "session_id": "r1-http-allergen",
+      "question": "8号的净营业额是多少？"
+    },
+    "response": {
+      "answer": "只说了“8 号”，没说是哪个月。数据区间是 2026-05-01 至 2026-08-31，请把月份补上。",
+      "answer_type": "clarify",
+      "citations": [],
+      "data_evidence": [],
+      "trace_id": "t-20260901-0015"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0015",
+      "session_id": "r1-http-allergen",
+      "question": "8号的净营业额是多少？",
+      "started_at": "2026-09-27T16:29:54.421",
+      "total_ms": 10.1,
+      "steps": [
+        {
+          "step": "request",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "session_id": "r1-http-allergen",
+            "question": "8号的净营业额是多少？",
+            "context": null
+          }
+        },
+        {
+          "step": "context_validation",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "valid": true,
+            "reason": null,
+            "reference": null
+          }
+        },
+        {
+          "step": "session_context",
+          "at_ms": 10.0,
+          "took_ms": null,
+          "detail": {
+            "history_size": 0,
+            "source_questions": [],
+            "source_conditions": [],
+            "raw_question": "8号的净营业额是多少？",
+            "standalone_question": "8号的净营业额是多少？",
+            "inherited": false,
+            "effective_conditions": {
+              "question": "8号的净营业额是多少？",
+              "standalone_question": "8号的净营业额是多少？",
+              "search_query": "8号的净营业额是多少？",
+              "intent": "clarify",
+              "kind": "need_month",
+              "window": null,
+              "compare_window": null,
+              "as_of": "2026-09-01",
+              "year": 2026,
+              "store_id": null,
+              "product_id": null,
+              "metric": "net_revenue",
+              "needs_data": false,
+              "needs_docs": false,
+              "refusal": "只说了“8 号”，没说是哪个月。数据区间是 2026-05-01 至 2026-08-31，请把月份补上。",
+              "notes": [
+                "识别：指标=net_revenue 门店=全部 商品=全部 时间=未指定"
+              ]
+            }
+          }
+        },
+        {
+          "step": "plan",
+          "at_ms": 10.0,
+          "took_ms": 10.0,
+          "detail": {
+            "question": "8号的净营业额是多少？",
+            "standalone_question": "8号的净营业额是多少？",
+            "search_query": "8号的净营业额是多少？",
+            "intent": "clarify",
+            "kind": "need_month",
+            "window": null,
+            "compare_window": null,
+            "as_of": "2026-09-01",
+            "year": 2026,
+            "store_id": null,
+            "product_id": null,
+            "metric": "net_revenue",
+            "needs_data": false,
+            "needs_docs": false,
+            "refusal": "只说了“8 号”，没说是哪个月。数据区间是 2026-05-01 至 2026-08-31，请把月份补上。",
+            "notes": [
+              "识别：指标=net_revenue 门店=全部 商品=全部 时间=未指定"
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 10.0,
+          "took_ms": 0.0,
+          "detail": {
+            "answer_type": "clarify"
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 10.1,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "clarify",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  },
+  {
+    "request": {
+      "session_id": "r1-http-allergen",
+      "question": "牛肉poke有哪些过敏原？"
+    },
+    "response": {
+      "answer": "KB-040《过敏原对照表》：P06 牛肉poke：含有 麸质、大豆、芝麻。",
+      "answer_type": "doc",
+      "citations": [
+        {
+          "doc_id": "KB-040",
+          "quote": "| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |"
+        },
+        {
+          "doc_id": "KB-040",
+          "quote": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|"
+        }
+      ],
+      "data_evidence": [],
+      "trace_id": "t-20260901-0016"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0016",
+      "session_id": "r1-http-allergen",
+      "question": "牛肉poke有哪些过敏原？",
+      "started_at": "2026-09-27T16:29:54.433",
+      "total_ms": 23.9,
+      "steps": [
+        {
+          "step": "request",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "session_id": "r1-http-allergen",
+            "question": "牛肉poke有哪些过敏原？",
+            "context": null
+          }
+        },
+        {
+          "step": "context_validation",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "valid": true,
+            "reason": null,
+            "reference": null
+          }
+        },
+        {
+          "step": "session_context",
+          "at_ms": 8.3,
+          "took_ms": null,
+          "detail": {
+            "history_size": 1,
+            "source_questions": [
+              "8号的净营业额是多少？"
+            ],
+            "source_conditions": [
+              {
+                "needs_month": true,
+                "loose_day": 8,
+                "metric_explicit": true,
+                "time_explicit": false,
+                "time_scoped": false,
+                "historical": false,
+                "as_of_dated": false
+              }
+            ],
+            "raw_question": "牛肉poke有哪些过敏原？",
+            "standalone_question": "牛肉poke有哪些过敏原？",
+            "inherited": false,
+            "effective_conditions": {
+              "question": "牛肉poke有哪些过敏原？",
+              "standalone_question": "牛肉poke有哪些过敏原？",
+              "search_query": "牛肉poke有哪些过敏原？ 牛肉poke",
+              "intent": "doc",
+              "kind": "doc",
+              "window": [
+                "2026-05-01",
+                "2026-08-31"
+              ],
+              "compare_window": null,
+              "as_of": "2026-09-01",
+              "year": 2026,
+              "store_id": null,
+              "product_id": "P06",
+              "metric": "net_revenue",
+              "needs_data": false,
+              "needs_docs": true,
+              "refusal": null,
+              "notes": [
+                "识别：指标=未指定 门店=全部 商品=P06 时间=未指定"
+              ]
+            }
+          }
+        },
+        {
+          "step": "plan",
+          "at_ms": 8.3,
+          "took_ms": 8.3,
+          "detail": {
+            "question": "牛肉poke有哪些过敏原？",
+            "standalone_question": "牛肉poke有哪些过敏原？",
+            "search_query": "牛肉poke有哪些过敏原？ 牛肉poke",
+            "intent": "doc",
+            "kind": "doc",
+            "window": [
+              "2026-05-01",
+              "2026-08-31"
+            ],
+            "compare_window": null,
+            "as_of": "2026-09-01",
+            "year": 2026,
+            "store_id": null,
+            "product_id": "P06",
+            "metric": "net_revenue",
+            "needs_data": false,
+            "needs_docs": true,
+            "refusal": null,
+            "notes": [
+              "识别：指标=未指定 门店=全部 商品=P06 时间=未指定"
+            ]
+          }
+        },
+        {
+          "step": "search",
+          "at_ms": 17.5,
+          "took_ms": 9.2,
+          "detail": {
+            "query": "牛肉poke有哪些过敏原? 牛肉poke",
+            "terms": [
+              "牛肉",
+              "poke",
+              "过敏",
+              "敏原",
+              "牛肉",
+              "poke"
+            ],
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "candidates": [
+              {
+                "chunk_id": "KB-040#3",
+                "doc_id": "KB-040",
+                "score": 42.5835,
+                "lexical_score": 31.5433,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "敏原",
+                  "牛肉",
+                  "过敏"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#3",
+                "doc_id": "KB-031",
+                "score": 25.1308,
+                "lexical_score": 18.6154,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-041#4",
+                "doc_id": "KB-041",
+                "score": 23.8576,
+                "lexical_score": 17.6723,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-040#1",
+                "doc_id": "KB-040",
+                "score": 23.3129,
+                "lexical_score": 12.2728,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "敏原",
+                  "过敏"
+                ]
+              },
+              {
+                "chunk_id": "KB-025#1",
+                "doc_id": "KB-025",
+                "score": 23.2665,
+                "lexical_score": 17.2344,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-040#6",
+                "doc_id": "KB-040",
+                "score": 22.6473,
+                "lexical_score": 11.6071,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "敏原",
+                  "过敏"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#4",
+                "doc_id": "KB-023",
+                "score": 22.6218,
+                "lexical_score": 16.7569,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-040#2",
+                "doc_id": "KB-040",
+                "score": 22.4488,
+                "lexical_score": 11.4086,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "敏原",
+                  "过敏"
+                ]
+              },
+              {
+                "chunk_id": "KB-040#5",
+                "doc_id": "KB-040",
+                "score": 22.3043,
+                "lexical_score": 11.2641,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "敏原",
+                  "过敏"
+                ]
+              },
+              {
+                "chunk_id": "KB-040#4",
+                "doc_id": "KB-040",
+                "score": 22.1172,
+                "lexical_score": 11.0771,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "敏原",
+                  "过敏"
+                ]
+              },
+              {
+                "chunk_id": "KB-025#2",
+                "doc_id": "KB-025",
+                "score": 21.4665,
+                "lexical_score": 15.4345,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#3",
+                "doc_id": "KB-023",
+                "score": 20.0961,
+                "lexical_score": 14.2312,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#5",
+                "doc_id": "KB-023",
+                "score": 19.3989,
+                "lexical_score": 13.534,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#4",
+                "doc_id": "KB-031",
+                "score": 18.7813,
+                "lexical_score": 12.2659,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#3",
+                "doc_id": "KB-003",
+                "score": 18.6981,
+                "lexical_score": 27.701,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-040#7",
+                "doc_id": "KB-040",
+                "score": 18.5252,
+                "lexical_score": 7.485,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "敏原",
+                  "过敏"
+                ]
+              },
+              {
+                "chunk_id": "KB-050#2",
+                "doc_id": "KB-050",
+                "score": 16.399,
+                "lexical_score": 12.1474,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-050#3",
+                "doc_id": "KB-050",
+                "score": 15.7852,
+                "lexical_score": 11.5336,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#1",
+                "doc_id": "KB-031",
+                "score": 15.4048,
+                "lexical_score": 8.8894,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#2",
+                "doc_id": "KB-031",
+                "score": 14.4724,
+                "lexical_score": 7.957,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#2",
+                "doc_id": "KB-023",
+                "score": 11.3842,
+                "lexical_score": 5.5193,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#4",
+                "doc_id": "KB-003",
+                "score": 10.8496,
+                "lexical_score": 12.0038,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-041#2",
+                "doc_id": "KB-041",
+                "score": 10.7957,
+                "lexical_score": 4.6104,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-050#1",
+                "doc_id": "KB-050",
+                "score": 10.5626,
+                "lexical_score": 6.311,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-021#2",
+                "doc_id": "KB-021",
+                "score": 10.3033,
+                "lexical_score": 7.6321,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-021#1",
+                "doc_id": "KB-021",
+                "score": 9.9499,
+                "lexical_score": 7.2787,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-041#3",
+                "doc_id": "KB-041",
+                "score": 9.7198,
+                "lexical_score": 3.5345,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-050#5",
+                "doc_id": "KB-050",
+                "score": 9.3449,
+                "lexical_score": 5.0933,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-021#3",
+                "doc_id": "KB-021",
+                "score": 9.009,
+                "lexical_score": 6.3378,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#9",
+                "doc_id": "KB-022",
+                "score": 8.9477,
+                "lexical_score": 6.6279,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#8",
+                "doc_id": "KB-003",
+                "score": 8.8797,
+                "lexical_score": 8.064,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "敏原",
+                  "过敏"
+                ]
+              },
+              {
+                "chunk_id": "KB-050#4",
+                "doc_id": "KB-050",
+                "score": 8.3506,
+                "lexical_score": 4.0991,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#2",
+                "doc_id": "KB-022",
+                "score": 8.2272,
+                "lexical_score": 5.9075,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#7",
+                "doc_id": "KB-022",
+                "score": 8.0799,
+                "lexical_score": 5.7602,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#15",
+                "doc_id": "KB-022",
+                "score": 7.8722,
+                "lexical_score": 5.5525,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#11",
+                "doc_id": "KB-022",
+                "score": 7.7739,
+                "lexical_score": 5.4541,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#12",
+                "doc_id": "KB-022",
+                "score": 7.6481,
+                "lexical_score": 5.3283,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#1",
+                "doc_id": "KB-022",
+                "score": 7.6175,
+                "lexical_score": 5.2978,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#7",
+                "doc_id": "KB-003",
+                "score": 7.5587,
+                "lexical_score": 5.4221,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#6",
+                "doc_id": "KB-022",
+                "score": 7.5575,
+                "lexical_score": 5.2377,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#13",
+                "doc_id": "KB-022",
+                "score": 7.5575,
+                "lexical_score": 5.2377,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#3",
+                "doc_id": "KB-022",
+                "score": 7.5279,
+                "lexical_score": 5.2082,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#10",
+                "doc_id": "KB-022",
+                "score": 7.4699,
+                "lexical_score": 5.1501,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#4",
+                "doc_id": "KB-022",
+                "score": 7.4413,
+                "lexical_score": 5.1216,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#14",
+                "doc_id": "KB-022",
+                "score": 7.2765,
+                "lexical_score": 4.9567,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#5",
+                "doc_id": "KB-022",
+                "score": 7.25,
+                "lexical_score": 4.9302,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-060#3",
+                "doc_id": "KB-060",
+                "score": 7.171,
+                "lexical_score": 5.3119,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#8",
+                "doc_id": "KB-022",
+                "score": 7.147,
+                "lexical_score": 4.8272,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-042#2",
+                "doc_id": "KB-042",
+                "score": 6.8383,
+                "lexical_score": 5.0654,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-060#6",
+                "doc_id": "KB-060",
+                "score": 5.9044,
+                "lexical_score": 4.0452,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-028#5",
+                "doc_id": "KB-028",
+                "score": 5.9002,
+                "lexical_score": 4.3705,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-060#8",
+                "doc_id": "KB-060",
+                "score": 5.0965,
+                "lexical_score": 3.2373,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-061#1",
+                "doc_id": "KB-061",
+                "score": 4.6646,
+                "lexical_score": 3.4552,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-061#2",
+                "doc_id": "KB-061",
+                "score": 4.2284,
+                "lexical_score": 3.0191,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-029#3",
+                "doc_id": "KB-029",
+                "score": 3.5096,
+                "lexical_score": 2.5997,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-024#3",
+                "doc_id": "KB-024",
+                "score": 1.7479,
+                "lexical_score": 5.179,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              }
+            ],
+            "expansions": [
+              "牛肉poke",
+              "牛肉波奇饭",
+              "Beef Poke"
+            ],
+            "coverage": 1.0,
+            "hits": [
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#3",
+                "score": 42.5835,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-031",
+                "chunk_id": "KB-031#3",
+                "score": 25.1308,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-041",
+                "chunk_id": "KB-041#4",
+                "score": 23.8576,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-025",
+                "chunk_id": "KB-025#1",
+                "score": 23.2665,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-023",
+                "chunk_id": "KB-023#4",
+                "score": 22.6218,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": [
+              {
+                "doc_id": "KB-002",
+                "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+              },
+              {
+                "doc_id": "KB-010",
+                "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+              },
+              {
+                "doc_id": "KB-012",
+                "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+              }
+            ]
+          }
+        },
+        {
+          "step": "evidence",
+          "at_ms": 23.8,
+          "took_ms": null,
+          "detail": {
+            "required_claim": null,
+            "candidates": [
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#3",
+                "score": 0.5749357947953154,
+                "text": "| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |"
+              },
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#3",
+                "score": 0.32887806010996506,
+                "text": "| P05 | 鸡肉poke | — | ✓ | — | — | — | — | ✓ | — | — |"
+              },
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#3",
+                "score": 0.32763934361763136,
+                "text": "| P04 | 三文鱼poke | — | ✓ | ✓ | — | — | — | ✓ | — | — |"
+              },
+              {
+                "doc_id": "KB-023",
+                "chunk_id": "KB-023#4",
+                "score": 0.3049462089172659,
+                "text": "**当天牛肉poke 目标销量 120 份。"
+              },
+              {
+                "doc_id": "KB-031",
+                "chunk_id": "KB-031#3",
+                "score": 0.28859238625300493,
+                "text": "以波奇饭为主力的轻食店，三文鱼poke、鸡肉poke、牛肉poke 是三个主推，配菜可以自选两样。"
+              },
+              {
+                "doc_id": "KB-025",
+                "chunk_id": "KB-025#1",
+                "score": 0.27245138847811173,
+                "text": "受上游行情影响，本季度**牛肉采购成本较上一季度上涨 11%**，牛肉poke 的毛利率已经压到品类线以下。"
+              },
+              {
+                "doc_id": "KB-041",
+                "chunk_id": "KB-041#4",
+                "score": 0.23544001792813185,
+                "text": "| 恒远畜牧食品 | 牛肉、猪肉、鸡肉 | 牛肉poke、鸡肉poke、照烧鸡饭、炸鸡块 | 4 天 | 每周二、六各一次 | 蒋允 | 021-5555-0205 | 冷冻分割件，到货核对批次与检疫证明 |"
+              },
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#3",
+                "score": 0.20591655875649947,
+                "text": "| P07 | 小笼包 | ✓ | ✓ | — | — | — | — | — | — | — |"
+              },
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#3",
+                "score": 0.20591655875649947,
+                "text": "| P08 | 灌汤包 | ✓ | ✓ | — | ✓ | — | — | — | — | — |"
+              },
+              {
+                "doc_id": "KB-031",
+                "chunk_id": "KB-031#3",
+                "score": 0.051346822333232275,
+                "text": "出餐台和打包台是分开的，外带单从侧口取，堂食顾客不用和外卖骑手挤在一起。"
+              },
+              {
+                "doc_id": "KB-031",
+                "chunk_id": "KB-031#3",
+                "score": 0.051126920584708066,
+                "text": "客群以周边办公楼的白领为主，午市外带比例高，晚市偏安静，周末客流明显下降。"
+              },
+              {
+                "doc_id": "KB-031",
+                "chunk_id": "KB-031#3",
+                "score": 0.0470763760404134,
+                "text": "店面在地下一层，紧邻地铁通道口，动线短、翻台快，但后厨面积小，冷柜容量有限，备货只能做到当天量，隔天的鲜货一律不留。"
+              }
+            ],
+            "rejected": [],
+            "selected": [
+              {
+                "evidence_id": "doc-93305324f0ad200f6ee7",
+                "scope": {
+                  "as_of": "2026-09-01",
+                  "store_id": null,
+                  "year": 2026,
+                  "historical": false,
+                  "window": null
+                },
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#3",
+                "score": 0.5749357947953154,
+                "source_start": 386,
+                "source_end": 646,
+                "quote": "| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |"
+              }
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 23.9,
+          "took_ms": 15.6,
+          "detail": {
+            "answer_type": "doc"
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 23.9,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "doc",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  },
+  {
+    "request": {
+      "session_id": "r1-http-month",
+      "question": "8号的净营业额是多少？"
+    },
+    "response": {
+      "answer": "只说了“8 号”，没说是哪个月。数据区间是 2026-05-01 至 2026-08-31，请把月份补上。",
+      "answer_type": "clarify",
+      "citations": [],
+      "data_evidence": [],
+      "trace_id": "t-20260901-0017"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0017",
+      "session_id": "r1-http-month",
+      "question": "8号的净营业额是多少？",
+      "started_at": "2026-09-27T16:29:54.460",
+      "total_ms": 10.4,
+      "steps": [
+        {
+          "step": "request",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "session_id": "r1-http-month",
+            "question": "8号的净营业额是多少？",
+            "context": null
+          }
+        },
+        {
+          "step": "context_validation",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "valid": true,
+            "reason": null,
+            "reference": null
+          }
+        },
+        {
+          "step": "session_context",
+          "at_ms": 10.4,
+          "took_ms": null,
+          "detail": {
+            "history_size": 0,
+            "source_questions": [],
+            "source_conditions": [],
+            "raw_question": "8号的净营业额是多少？",
+            "standalone_question": "8号的净营业额是多少？",
+            "inherited": false,
+            "effective_conditions": {
+              "question": "8号的净营业额是多少？",
+              "standalone_question": "8号的净营业额是多少？",
+              "search_query": "8号的净营业额是多少？",
+              "intent": "clarify",
+              "kind": "need_month",
+              "window": null,
+              "compare_window": null,
+              "as_of": "2026-09-01",
+              "year": 2026,
+              "store_id": null,
+              "product_id": null,
+              "metric": "net_revenue",
+              "needs_data": false,
+              "needs_docs": false,
+              "refusal": "只说了“8 号”，没说是哪个月。数据区间是 2026-05-01 至 2026-08-31，请把月份补上。",
+              "notes": [
+                "识别：指标=net_revenue 门店=全部 商品=全部 时间=未指定"
+              ]
+            }
+          }
+        },
+        {
+          "step": "plan",
+          "at_ms": 10.4,
+          "took_ms": 10.3,
+          "detail": {
+            "question": "8号的净营业额是多少？",
+            "standalone_question": "8号的净营业额是多少？",
+            "search_query": "8号的净营业额是多少？",
+            "intent": "clarify",
+            "kind": "need_month",
+            "window": null,
+            "compare_window": null,
+            "as_of": "2026-09-01",
+            "year": 2026,
+            "store_id": null,
+            "product_id": null,
+            "metric": "net_revenue",
+            "needs_data": false,
+            "needs_docs": false,
+            "refusal": "只说了“8 号”，没说是哪个月。数据区间是 2026-05-01 至 2026-08-31，请把月份补上。",
+            "notes": [
+              "识别：指标=net_revenue 门店=全部 商品=全部 时间=未指定"
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 10.4,
+          "took_ms": 0.0,
+          "detail": {
+            "answer_type": "clarify"
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 10.4,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "clarify",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  },
+  {
+    "request": {
+      "session_id": "r1-http-month",
+      "question": "那7月份呢？"
+    },
+    "response": {
+      "answer": "2026-07-08（全部门店）：净营业额 4531.00 元，有效订单数 124 单，客单价 36.54 元，销量 192 件，退款金额 18.00 元。",
+      "answer_type": "data",
+      "citations": [],
+      "data_evidence": [
+        {
+          "tool": "query_metrics",
+          "params": {
+            "start": "2026-07-08",
+            "end": "2026-07-08",
+            "store_id": null,
+            "product_id": null
+          },
+          "result": {
+            "start": "2026-07-08",
+            "end": "2026-07-08",
+            "store_id": null,
+            "product_id": null,
+            "net_revenue": 4531.0,
+            "refund_amount": 18.0,
+            "orders": 124,
+            "aov": 36.54,
+            "qty": 192
+          }
+        }
+      ],
+      "trace_id": "t-20260901-0018"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0018",
+      "session_id": "r1-http-month",
+      "question": "那7月份呢？",
+      "started_at": "2026-09-27T16:29:54.472",
+      "total_ms": 11.9,
+      "steps": [
+        {
+          "step": "request",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "session_id": "r1-http-month",
+            "question": "那7月份呢？",
+            "context": null
+          }
+        },
+        {
+          "step": "context_validation",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "valid": true,
+            "reason": null,
+            "reference": null
+          }
+        },
+        {
+          "step": "session_context",
+          "at_ms": 11.7,
+          "took_ms": null,
+          "detail": {
+            "history_size": 1,
+            "source_questions": [
+              "8号的净营业额是多少？"
+            ],
+            "source_conditions": [
+              {
+                "needs_month": true,
+                "loose_day": 8,
+                "metric_explicit": true,
+                "time_explicit": false,
+                "time_scoped": false,
+                "historical": false,
+                "as_of_dated": false
+              }
+            ],
+            "raw_question": "那7月份呢？",
+            "standalone_question": "2026年7月8日的净营业额是多少？",
+            "inherited": true,
+            "effective_conditions": {
+              "question": "那7月份呢？",
+              "standalone_question": "2026年7月8日的净营业额是多少？",
+              "search_query": "2026年7月8日的净营业额是多少？",
+              "intent": "data",
+              "kind": "summary",
+              "window": [
+                "2026-07-08",
+                "2026-07-08"
+              ],
+              "compare_window": null,
+              "as_of": "2026-07-08",
+              "year": 2026,
+              "store_id": null,
+              "product_id": null,
+              "metric": "net_revenue",
+              "needs_data": true,
+              "needs_docs": false,
+              "refusal": null,
+              "notes": [
+                "这是一句追问，已按上一轮补全为：2026年7月8日的净营业额是多少？",
+                "识别：指标=net_revenue 门店=全部 商品=全部 时间=['2026年7月8日']"
+              ]
+            }
+          }
+        },
+        {
+          "step": "plan",
+          "at_ms": 11.7,
+          "took_ms": 11.7,
+          "detail": {
+            "question": "那7月份呢？",
+            "standalone_question": "2026年7月8日的净营业额是多少？",
+            "search_query": "2026年7月8日的净营业额是多少？",
+            "intent": "data",
+            "kind": "summary",
+            "window": [
+              "2026-07-08",
+              "2026-07-08"
+            ],
+            "compare_window": null,
+            "as_of": "2026-07-08",
+            "year": 2026,
+            "store_id": null,
+            "product_id": null,
+            "metric": "net_revenue",
+            "needs_data": true,
+            "needs_docs": false,
+            "refusal": null,
+            "notes": [
+              "这是一句追问，已按上一轮补全为：2026年7月8日的净营业额是多少？",
+              "识别：指标=net_revenue 门店=全部 商品=全部 时间=['2026年7月8日']"
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 11.9,
+          "took_ms": 0.1,
+          "detail": {
+            "answer_type": "data"
+          }
+        },
+        {
+          "step": "tool",
+          "at_ms": 11.9,
+          "took_ms": null,
+          "detail": {
+            "tool": "query_metrics",
+            "params": {
+              "start": "2026-07-08",
+              "end": "2026-07-08",
+              "store_id": null,
+              "product_id": null
+            },
+            "result": {
+              "start": "2026-07-08",
+              "end": "2026-07-08",
+              "store_id": null,
+              "product_id": null,
+              "net_revenue": 4531.0,
+              "refund_amount": 18.0,
+              "orders": 124,
+              "aov": 36.54,
+              "qty": 192
+            }
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 11.9,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "data",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  }
+]

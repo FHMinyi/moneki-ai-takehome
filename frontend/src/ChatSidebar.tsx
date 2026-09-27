@@ -74,7 +74,7 @@ export function ChatSidebar({ incoming }: { incoming: TrendAttachment | null }) 
       extra={<Button onClick={newSession}>新建对话</Button>}>
       <div className="chat-layout">
         <div className="chat-history" ref={history} role="log" aria-label="聊天记录" aria-live="polite">
-          {turns.length === 0 && <div className="chat-welcome"><h2>从一个经营问题开始</h2><p>写明日期、门店和想了解的指标或制度，回答后可展开数据证据与原文核对。</p><Button onClick={() => setDraft('S02 六月的净营业额是多少？')}>S02 六月的净营业额是多少？</Button><p className="chat-hint">请在问题中说明查询范围；看板筛选不会自动带入。新建对话可重新开始。</p></div>}
+          {turns.length === 0 && <div className="chat-welcome"><h2>从一个经营问题开始</h2><p>写明日期、门店和想了解的指标或制度，回答后可展开数据证据与原文核对。</p><Button onClick={() => setDraft('S02 六月的净营业额是多少？')}>S02 六月的净营业额是多少？</Button><p className="chat-hint">请在问题中说明查询范围；看板筛选不会自动带入。新建对话会清空上文；刷新页面或服务重启后，请补全追问的条件。</p></div>}
           {turns.map(turn => <article className="chat-turn" key={turn.id}>
             <div className="chat-question"><span>你</span><p>{turn.question}</p>{turn.attachment && <ReferenceCard attachment={turn.attachment} />}</div>
             {(turn.response || turn.error) && <div className="chat-answer">

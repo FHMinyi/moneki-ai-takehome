@@ -1,0 +1,29 @@
+{
+  "raw": "能按天展开看看吗？",
+  "standalone": "能按天展开看看吗？",
+  "history_received": [],
+  "plan": {
+    "question": "能按天展开看看吗？",
+    "standalone_question": "能按天展开看看吗？",
+    "search_query": "能按天展开看看吗？",
+    "intent": "doc",
+    "kind": "doc",
+    "window": [
+      "2026-05-01",
+      "2026-08-31"
+    ],
+    "compare_window": null,
+    "as_of": "2026-09-01",
+    "year": 2026,
+    "store_id": null,
+    "product_id": null,
+    "metric": "net_revenue",
+    "needs_data": false,
+    "needs_docs": true,
+    "refusal": null,
+    "notes": [
+      "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+      "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "chat_count": 3,
+  "calls": [
+    {
+      "chat": 1,
+      "attempt": 1,
+      "request_bytes": 12560,
+      "accounted_cny": 0.007898,
+      "status": 200,
+      "started_at": 1790497011.053684,
+      "elapsed_seconds": 1.123354196548462,
+      "usage": {
+        "prompt_tokens": 3389,
+        "completion_tokens": 140,
+        "total_tokens": 3529,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 75
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 3261
+      },
+      "peak_cache_miss_estimate_cny": 0.007898
+    },
+    {
+      "chat": 1,
+      "attempt": 2,
+      "request_bytes": 13457,
+      "accounted_cny": 0.007638,
+      "status": 200,
+      "started_at": 1790497012.185676,
+      "elapsed_seconds": 1.1925208568572998,
+      "usage": {
+        "prompt_tokens": 3655,
+        "completion_tokens": 41,
+        "total_tokens": 3696,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 199
+      },
+      "peak_cache_miss_estimate_cny": 0.007638
+    },
+    {
+      "chat": 2,
+      "attempt": 3,
+      "request_bytes": 12960,
+      "accounted_cny": 0.007896,
+      "status": 200,
+      "started_at": 1790497013.412991,
+      "elapsed_seconds": 1.1164829730987549,
+      "usage": {
+        "prompt_tokens": 3476,
+        "completion_tokens": 118,
+        "total_tokens": 3594,
+        "prompt_tokens_details": {
+          "cached_tokens": 3328
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 53
+        },
+        "prompt_cache_hit_tokens": 3328,
+        "prompt_cache_miss_tokens": 148
+      },
+      "peak_cache_miss_estimate_cny": 0.007896
+    },
+    {
+      "chat": 2,
+      "attempt": 4,
+      "request_bytes": 13760,
+      "accounted_cny": 0.007778,
+      "status": 200,
+      "started_at": 1790497014.5378299,
+      "elapsed_seconds": 0.7686991691589355,
+      "usage": {
+        "prompt_tokens": 3721,
+        "completion_tokens": 42,
+        "total_tokens": 3763,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 137
+      },
+      "peak_cache_miss_estimate_cny": 0.007778
+    },
+    {
+      "chat": 3,
+      "attempt": 5,
+      "request_bytes": 13127,
+      "accounted_cny": 0.009908,
+      "status": 200,
+      "started_at": 1790497015.340904,
+      "elapsed_seconds": 1.9716429710388184,
+      "usage": {
+        "prompt_tokens": 3514,
+        "completion_tokens": 360,
+        "total_tokens": 3874,
+        "prompt_tokens_details": {
+          "cached_tokens": 3328
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 248
+        },
+        "prompt_cache_hit_tokens": 3328,
+        "prompt_cache_miss_tokens": 186
+      },
+      "peak_cache_miss_estimate_cny": 0.009908
+    },
+    {
+      "chat": 3,
+      "attempt": 6,
+      "request_bytes": 15359,
+      "accounted_cny": 0.009088,
+      "status": 200,
+      "started_at": 1790497017.321841,
+      "elapsed_seconds": 0.7436699867248535,
+      "usage": {
+        "prompt_tokens": 4224,
+        "completion_tokens": 80,
+        "total_tokens": 4304,
+        "prompt_tokens_details": {
+          "cached_tokens": 3840
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 42
+        },
+        "prompt_cache_hit_tokens": 3840,
+        "prompt_cache_miss_tokens": 384
+      },
+      "peak_cache_miss_estimate_cny": 0.009088
+    }
+  ],
+  "limit_cny": 10,
+  "chat_limit": 3,
+  "billing_confirmed": false,
+  "price_source": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+  "price_checked_at_utc": "2026-09-27 06:42:23 UTC",
+  "price_excerpt": "deepseek-flash: 1M context; peak cache-miss input 2 CNY / 1M tokens; peak output 8 CNY / 1M tokens",
+  "reserve_basis": "1,048,576 input tokens * 2/M + 4,096 output tokens * 8/M = 2.12992 CNY; reserve 2.20 CNY per outbound attempt",
+  "conservative_committed_cny": 0.050206,
+  "remaining_cny": 9.949794
+}

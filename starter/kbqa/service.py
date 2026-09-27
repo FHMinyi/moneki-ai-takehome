@@ -172,7 +172,17 @@ class Service:
             secrets=(self.settings.llm_api_key,),
         )
         trace.step("request", {"session_id": session_id, "question": question, "context": context})
-        answer = self._answer(trace, session_id, question or "", context)
+        with self.sessions.ordered(session_id) as acquired:
+            if acquired:
+                answer = self._answer(trace, session_id, question or "", context)
+            else:
+                trace.step("session_busy", {"wait_limit_ms": 250, "history_changed": False})
+                answer = Answer(
+                    answer="当前对话正在处理上一条问题，请稍后重试。",
+                    answer_type="refusal",
+                )
+            trace.step("response", {"answer_type": answer.answer_type, "notes": answer.notes})
+            self.traces.save(trace)
         payload = {
             "answer": answer.answer,
             "answer_type": answer.answer_type,
@@ -180,8 +190,6 @@ class Service:
             "data_evidence": answer.data_evidence,
             "trace_id": trace.trace_id,
         }
-        trace.step("response", {"answer_type": answer.answer_type, "notes": answer.notes})
-        self.traces.save(trace)
         return redact(payload, (self.settings.llm_api_key,))
 
     def _answer(self, trace: Trace, session_id: Optional[str], question: str, context: Any = None) -> Answer:
@@ -194,7 +202,16 @@ class Service:
                 return Answer(answer="没有收到问题内容，请再说一次。", answer_type="clarify")
             history = self.sessions.history(session_id)
             started = time.perf_counter()
-            plan = self.planner.plan(question)
+            plan = self.planner.plan(question, history)
+            trace.step("session_context", {
+                "history_size": len(history),
+                "source_questions": [turn["question"] for turn in history],
+                "source_conditions": [turn.get("slots", {}) for turn in history],
+                "raw_question": question,
+                "standalone_question": plan.standalone,
+                "inherited": plan.standalone != question,
+                "effective_conditions": plan.as_trace(),
+            })
             effective = None
             # Keep G3-01's live semantic route for heuristic out_of_scope:
             # a business request can have an unrelated preamble. Only hard
@@ -208,26 +225,49 @@ class Service:
             elif reference and plan.kind in {"unknown_entity", "out_of_period"}:
                 plan.slots["trend_reference_rejection"] = True
             trace.step("plan", plan.as_trace(), started=started)
+            # Planner may leave a natural follow-up untouched; the model still
+            # needs accepted prior questions to interpret omitted conditions.
+            # An unrelated request after clarification must not inherit that
+            # unresolved question merely because it shares a session ID.
+            clarification_reset = bool(history and history[-1].get("answer_type") == "clarify"
+                                       and plan.standalone == question)
+            context_history = [] if clarification_reset else history
+            trace.step("model_context", {"prompt_history_size": min(3, len(context_history)),
+                                         "clarification_reset": clarification_reset})
             # Preserve the original three-argument execution seam for ordinary
             # chat and diagnostic writers. Only a resolved trend adds scope.
-            answer = (self._run_engine(plan, trace, history, effective)
-                      if effective else self._run_engine(plan, trace, history))
+            answer = (self._run_engine(plan, trace, context_history, effective)
+                      if effective else self._run_engine(plan, trace, context_history))
             if not self.settings.live:
                 for item in answer.data_evidence:
                     trace.step("tool", item)
-            self.sessions.append(
-                session_id,
-                redact({
-                    "question": question,
-                    "standalone": plan.standalone,
-                    "slots": plan.slots,
-                    "answer": answer.answer,
-                    "answer_type": answer.answer_type,
-                }, (self.settings.llm_api_key,)),
-            )
+            # Failed/refused answers are not factual context for another turn.
+            # A neutral clarification remains available so its answer can be
+            # completed, but its prose is never treated as evidence.
+            if answer.answer_type in {"data", "doc", "hybrid", "clarify"}:
+                self.sessions.append(
+                    session_id,
+                    redact({
+                        "question": question,
+                        "standalone": plan.standalone,
+                        "slots": plan.slots,
+                        "source_titles": [self.index.docs_meta.get(c.get("doc_id"), {}).get("title")
+                                          for c in answer.citations
+                                          if self.index.docs_meta.get(c.get("doc_id"), {}).get("title")],
+                        "answer": answer.answer if answer.answer_type != "clarify" else "",
+                        "answer_type": answer.answer_type,
+                    }, (self.settings.llm_api_key,)),
+                )
+            elif answer.answer_type == "refusal":
+                # A refusal may be a new topic or a failed tool. Keep neither
+                # its unsupported facts nor an older unrelated topic alive.
+                self.sessions.forget(session_id)
+                trace.step("session_context_cleared", {"reason": "refusal"})
             return answer
         except Exception as exc:  # noqa: BLE001 - preserve the chat response contract
             trace.error("answer", exc)
+            self.sessions.forget(session_id)
+            trace.step("session_context_cleared", {"reason": "answer_error"})
             # Never attach raw exc_info: logging formatters would recreate the
             # unsanitized cause/context chain after our diagnostic scrub.
             logging.getLogger(__name__).error("chat failed trace_id=%s\n%s",

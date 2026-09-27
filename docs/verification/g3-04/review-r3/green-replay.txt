@@ -1,0 +1,4 @@
+T01 3 ['data', 'data', 'data']
+T02 3 ['doc', 'doc', 'doc']
+T03 2 ['hybrid', 'hybrid']
+V03 2 ['doc', 'doc']
