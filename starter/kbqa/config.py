@@ -74,5 +74,5 @@ def load_settings() -> Settings:
         # 契约 §7.3：单次模型调用超时不小于 120 秒。
         llm_timeout=float(os.environ.get("LLM_TIMEOUT", "120")),
         # 契约 §7.3：/api/chat 整体在 180 秒内返回，这里留出余量。
-        chat_budget=float(os.environ.get("CHAT_BUDGET", "150")),
+        chat_budget=min(175.0, max(1.0, float(os.environ.get("CHAT_BUDGET", "150")))),
     )

@@ -259,3 +259,18 @@ G2-05在新环境替换KB时发现：KB970表格别名翡翠饭/Ivory Bowl，KB9
 旧诊断301/600/601直接拼接断言仍因overlap重复而失败，原输出保留。G2-02的原文偏移覆盖、十种长度、真实语料尾段和同源上下文另行证明不丢字，未采用xfail/跳过/删断言变绿。只读历史模块夹具仅替代测试中的git show获取方式，应用运行不依赖原repo/.git；旧模块和覆盖字节哈希都保存。
 
 本关约定之外的无Key保守refusal是已知限制，不能把任意新中文问法或长标题回答率升级为继续扩张规则引擎的理由。若真实返回无关事实、丢正文、错引或换库失效，仍是共享证据缺陷。已验证失败、仅代码风险、尚未验证能力分别移交，见final/README.md。
+
+## G3-01：单轮查数来源、工具边界与会话隔离
+
+前置时间边界：2026-09-27 12:50:42，在业务字节仍为2839c67时仅运行本票新增探针，9失败/1通过；红灯提交3686878。修改前未重跑完整55题、53原后端、199 RAG或preflight；此前引用的是第二关历史证据。后续绿灯均为本票修改后结果，不是前置完整基线。
+
+| 现象 | 假设与验证 | 根因 | 修复 | 回归证据 |
+|---|---|---|---|---|
+| B会话读到A历史；返回对象还能改动已存slots | 直接交错两个session并修改读取快照，排除模型理解问题 | sessions.py仅有一个共享列表，忽略session_id，浅复制 | 有界OrderedDict按session存储、深复制、无ID不存 | test_sessions_are_isolated_and_snapshots_are_detached，red.txt失败→green.txt通过；HTTP interleaved |
+| run_sql在模型工具列表；额外参数被丢弃后仍查询 | 真实Service工具入口+查询spy；日期倒置、非法日、未知实体 | toolspec声明run_sql；Service仅做字符串正则并忽略未知键 | 声明与执行白名单同时关闭SQL，严格类型/日历/实体/范围检查 | free_sql和illegal_parameters，red.txt失败→green.txt通过；forged-* HTTP |
+| 模型把真实订单数写成营业额仍获通过 | 错误数字本身确实来自真实工具结果，说明“数字集合出现”不是语义校验 | live._allowed_numbers同时接受问题数字、参数、其他指标 | 数据最终输出仅选择实际call_id与指标，data_answer按字段生成文本；拒绝任意数值散文与伪造引用 | arbitrary_prose、data_answer_binds_metric、forged_fields；替换库手算80元/120元/150% |
+| trace只有截断消息、没有完整工具结果 | 超4000字请求/响应探针直接核对末尾；检查实际tool trace | llm._preview与live工具trace缺result | 完整独立请求快照、原始响应/usage与工具结果，凭证脱敏 | trace_keeps_complete、model_error_echo与HTTP trace |
+| 重试预算从配置超时扣减而非实际耗时；持续空行可延长连接 | 短暂503后可用时间检查，真实HTTP空行滴流对照 | retry使用budget-per_call，HTTP单次read超时不等于总期限 | 单调时钟扣实际耗时，asyncio总deadline包围整段HTTP响应 | retry_uses_actual_elapsed_budget、keepalive单元和/ api/chat端到端normal/slow/budget补证 |
+| 首次免费预检无出站请求 | health已live；trace显示socksio缺失，排除Key和模型配置 | httpx继承了本机SOCKS环境，安装依赖不包含socksio | 显式BASE_URL直连，不继承隐式代理；说明写入LLM_SETUP | preflight-first原报告保留；后续13PASS/1SKIP，P14另做合法协议端到端补证 |
+
+修复属于G3-01实现提交（位于3686878之后）。纯数据字段绑定不声称验证G3-02/03文档事实或混合推导；没有修改公开评分器或以新mock规则抬分。

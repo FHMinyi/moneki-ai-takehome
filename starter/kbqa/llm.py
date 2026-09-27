@@ -8,6 +8,7 @@
 from __future__ import annotations
 
 import json
+import asyncio
 import time
 from dataclasses import dataclass
 from typing import Any, Optional
@@ -52,7 +53,7 @@ class LLMClient:
         self.base_url = base_url.rstrip("/")
         self.api_key = api_key
         self.model = model
-        self.timeout = timeout
+        self.timeout = min(120.0, max(0.01, timeout))
 
     @property
     def endpoint(self) -> str:
@@ -84,19 +85,12 @@ class LLMClient:
             "messages": len(messages),
             "tools": len(tools or []),
             # 契约 §6：trace 里要看得到发给模型的最终提示词。
-            "prompt": _preview(json.dumps(messages, ensure_ascii=False)),
+            "prompt": json.dumps(messages, ensure_ascii=False),
+            "request": json.loads(json.dumps(body, ensure_ascii=False)),
         }
         try:
-            response = httpx.post(
-                self.endpoint,
-                json=body,
-                headers={
-                    "Authorization": "Bearer %s" % self.api_key,
-                    "Content-Type": "application/json",
-                },
-                timeout=httpx.Timeout(timeout or self.timeout, connect=15.0),
-            )
-        except httpx.TimeoutException as exc:
+            response = self._post(body, min(self.timeout, timeout) if timeout is not None else self.timeout)
+        except (httpx.TimeoutException, TimeoutError) as exc:
             record.update(error="timeout", detail=str(exc))
             self._note(on_call, record, started)
             raise LLMError("timeout", "等待模型响应超时：%s" % exc) from exc
@@ -106,9 +100,14 @@ class LLMClient:
             raise LLMError("transport", "调用模型失败：%s" % exc) from exc
 
         record["status"] = response.status_code
+        record["raw_response"] = response.text
+        try:
+            record["response"] = response.json()
+        except ValueError:
+            record["response"] = None
         if response.status_code != 200:
             # D13：400/401/402/422/429/500/503 都在这里变成结构化错误。
-            detail = _error_detail(response)
+            detail = _error_detail(response).replace(self.api_key, "[REDACTED]") if self.api_key else _error_detail(response)
             record.update(error="http_%d" % response.status_code, detail=detail)
             self._note(on_call, record, started)
             raise LLMError("http_error", detail, status=response.status_code)
@@ -121,16 +120,32 @@ class LLMClient:
             self._note(on_call, record, started)
             raise LLMError("bad_json", "模型返回的不是合法 JSON：%s" % response.text[:200]) from exc
 
+        if not isinstance(payload, dict) or not isinstance(payload.get("choices"), list):
+            record.update(error="bad_response", detail="响应必须含 choices 数组")
+            self._note(on_call, record, started)
+            raise LLMError("bad_response", "响应必须含 choices 数组")
         choices = payload.get("choices") or []
         if not choices:
             record.update(error="no_choice")
             self._note(on_call, record, started)
             raise LLMError("no_choice", "模型响应里没有 choices")
         choice = choices[0]
-        message = choice.get("message") or {}
+        if not isinstance(choice, dict) or not isinstance(choice.get("message"), dict):
+            record.update(error="bad_response", detail="缺少有效 message")
+            self._note(on_call, record, started)
+            raise LLMError("bad_response", "缺少有效 message")
+        message = choice["message"]
         finish = choice.get("finish_reason") or ""
         content = message.get("content") or ""
         tool_calls = message.get("tool_calls") or []
+        if not isinstance(content, str) or not isinstance(tool_calls, list) or any(
+            not isinstance(c, dict) or not isinstance(c.get("function"), dict) or
+            not isinstance(c.get("id"), str) or not isinstance(c["function"].get("arguments"), str)
+            for c in tool_calls
+        ):
+            record.update(error="bad_response", detail="模型消息或工具调用结构无效")
+            self._note(on_call, record, started)
+            raise LLMError("bad_response", "模型消息或工具调用结构无效")
         record.update(
             finish_reason=finish,
             content_chars=len(content),
@@ -138,8 +153,8 @@ class LLMClient:
             has_reasoning=bool(message.get("reasoning_content")),
             usage=payload.get("usage"),
             # 契约 §6：模型原始输出也要留痕。思考过程只留在 trace 里，不进任何对外字段。
-            raw_content=_preview(content),
-            raw_reasoning=_preview(message.get("reasoning_content") or ""),
+            raw_content=content,
+            raw_reasoning=message.get("reasoning_content") or "",
         )
         self._note(on_call, record, started)
 
@@ -164,21 +179,38 @@ class LLMClient:
         on_call: Optional[Any] = None,
     ) -> LLMReply:
         """暂时性故障重试一次，且只在时间预算够的时候重试。"""
-        per_call = min(self.timeout, budget) if budget else self.timeout
-        try:
-            return self.chat(messages, tools, timeout=per_call, on_call=on_call)
-        except LLMError as first:
-            remaining = (budget - per_call) if budget else self.timeout
-            if not first.retryable or remaining < 5:
-                raise
-            time.sleep(min(1.0, max(0.0, remaining / 60)))
-            return self.chat(messages, tools, timeout=min(self.timeout, remaining), on_call=on_call)
+        deadline = time.perf_counter() + (budget if budget is not None else self.timeout)
+        for attempt in range(2):
+            remaining = deadline - time.perf_counter()
+            if remaining <= 0:
+                raise LLMError("budget", "模型请求剩余时间预算已耗尽")
+            try:
+                return self.chat(messages, tools, timeout=min(self.timeout, remaining), on_call=on_call)
+            except LLMError as exc:
+                remaining = deadline - time.perf_counter()
+                if attempt or not exc.retryable or remaining <= 1:
+                    raise
+                time.sleep(min(0.5, remaining / 10))
 
-    @staticmethod
-    def _note(on_call, record: dict, started: float) -> None:
+    def _post(self, body: dict, timeout: float) -> httpx.Response:
+        # A total deadline also bounds a peer that keeps dripping keep-alive bytes.
+        async def request():
+            async with asyncio.timeout(timeout):
+                async with httpx.AsyncClient(trust_env=False, timeout=httpx.Timeout(timeout, connect=min(15.0, timeout))) as client:
+                    return await client.post(self.endpoint, json=body, headers={
+                        "Authorization": "Bearer %s" % self.api_key,
+                        "Content-Type": "application/json",
+                    })
+        return asyncio.run(request())
+
+    def _note(self, on_call, record: dict, started: float) -> None:
         if on_call is not None:
             record["took_ms"] = round((time.perf_counter() - started) * 1000, 1)
-            on_call(record)
+            # Providers can echo credentials in error bodies; never retain those.
+            encoded = json.dumps(record, ensure_ascii=False)
+            if self.api_key:
+                encoded = encoded.replace(self.api_key, "[REDACTED]")
+            on_call(json.loads(encoded))
 
 
 def _preview(text: str, limit: int = 4000) -> str:

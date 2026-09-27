@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "official_P14": "SKIP",
+  "normal_seconds": 0.01747150009032339,
+  "slow_seconds": 36.284472874947824,
+  "budget_seconds": 12.017521583009511,
+  "slow_keepalive_seconds_per_model_response": 18,
+  "command": "starter/.venv/bin/python docs/verification/g3-01/verify_keepalive.py"
+}

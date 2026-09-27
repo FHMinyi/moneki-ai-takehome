@@ -92,7 +92,7 @@ def test_arbitrary_prose_cannot_swap_metric_values(service):
 def test_trace_keeps_complete_requests_responses_and_redacts_key(monkeypatch):
     text = '完整内容' * 1500
     payload = {'choices':[{'finish_reason':'stop','message':{'role':'assistant','content':text}}]}
-    monkeypatch.setattr(httpx, 'post', lambda *a, **kw: httpx.Response(200,json=payload))
+    monkeypatch.setattr(LLMClient, '_post', lambda *a, **kw: httpx.Response(200,json=payload))
     records=[]
     LLMClient('http://local/prefix','secret-test-key','model').chat(
         [{'role':'user','content':text}], TOOLS, on_call=records.append)
@@ -100,3 +100,63 @@ def test_trace_keeps_complete_requests_responses_and_redacts_key(monkeypatch):
     assert records[0]['request']['tools'] == TOOLS
     assert records[0]['response']['choices'][0]['message']['content'] == text
     assert 'secret-test-key' not in json.dumps(records)
+
+
+@pytest.mark.parametrize('content', [
+    {'answer_type':'data','results':[{'call_id':'forged','metric':'qty'}]},
+    {'answer_type':'data','results':[{'call_id':'metrics-1','metric':'qty','value':6}]},
+    {'answer_type':'data','results':[{'call_id':'metrics-1','metric':'store_id'}]},
+])
+def test_data_selection_rejects_forged_fields(service, content):
+    from kbqa.llm import LLMError
+    with pytest.raises(LLMError): run_live(service,json.dumps(content))
+
+
+def test_model_error_echo_cannot_retain_credential(monkeypatch):
+    from kbqa.llm import LLMError
+    monkeypatch.setattr(LLMClient, '_post', lambda *a: httpx.Response(401,json={'error':{'message':'invalid secret-test-key'}}))
+    records=[]
+    with pytest.raises(LLMError) as exc:
+        LLMClient('http://local','secret-test-key','model').chat([{'role':'user','content':'hello'}],on_call=records.append)
+    assert 'secret-test-key' not in str(exc.value) + json.dumps(records)
+
+
+def test_retry_uses_actual_elapsed_budget(monkeypatch):
+    import time
+    from kbqa.llm import LLMError
+    client=LLMClient('http://local','key','model',timeout=120)
+    calls=[]
+    def chat(*args, **kwargs):
+        calls.append(kwargs['timeout'])
+        if len(calls)==1: raise LLMError('http_error','temporary',503)
+        return 'ok'
+    monkeypatch.setattr(client,'chat',chat)
+    assert client.chat_with_retry([],budget=3)=='ok'
+    assert len(calls)==2 and 2 < calls[1] < 3
+
+
+def test_keepalive_and_total_deadline_use_real_http():
+    import threading
+    import time
+    from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+    from kbqa.llm import LLMError
+    class Handler(BaseHTTPRequestHandler):
+        def log_message(self,*args): pass
+        def do_POST(self):
+            self.rfile.read(int(self.headers['Content-Length']))
+            self.send_response(200); self.send_header('Content-Type','application/json'); self.end_headers()
+            try:
+                for _ in range(8): self.wfile.write(b'\n'); self.wfile.flush(); time.sleep(.04)
+                self.wfile.write(json.dumps({'choices':[{'finish_reason':'stop','message':{'role':'assistant','content':'有效回答'}}]}).encode())
+            except (BrokenPipeError,ConnectionResetError): pass
+    server=ThreadingHTTPServer(('127.0.0.1',0),Handler)
+    thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+    try:
+        client=LLMClient(f'http://127.0.0.1:{server.server_port}','dummy','model')
+        assert client.chat([],timeout=2).content=='有效回答'
+        records=[]; started=time.perf_counter()
+        with pytest.raises(LLMError,match='timeout'):
+            client.chat([],timeout=.12,on_call=records.append)
+        assert time.perf_counter()-started < .5
+        assert records[0]['error']=='timeout'
+    finally: server.shutdown();server.server_close()
