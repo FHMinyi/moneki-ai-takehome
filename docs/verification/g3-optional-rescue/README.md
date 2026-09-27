@@ -39,3 +39,13 @@ RESCUE_OUT=docs/verification/g3-optional-rescue .venv/bin/python -m pytest docs/
 - `answers.json`：免费重放的实际可见答案与数据/文档依据；`source-manifest.json` 只记录本次依赖的原始文件校验值。
 
 未调用任何付费 provider；未重跑大评测矩阵；未修改 V03、趋势前周、G4 或架构图。复现服务使用隔离临时目录；没有常驻新服务。
+
+## 展开已保存的 API trace
+
+在仓库根目录执行（输入是 `/api/trace/{trace_id}` 的 JSON 对象）：
+
+```sh
+PYTHONPATH=starter .venv/bin/python -c 'import json,sys; from kbqa.trace import expand_trace; json.dump(expand_trace(json.load(sys.stdin)),sys.stdout,ensure_ascii=False)' < trace-compact.json > trace-expanded.json
+```
+
+旧消费者不会自动展开引用；超限 trace 的上述派生字段会出现 null，需用 helper 恢复。已知 top_k 错误使用当前准确错误文本识别，未来验证文案变化可能使恢复规则失效（保守地再次阻断，不会静默忽略未知错误）；本次不扩展工具错误码协议。
