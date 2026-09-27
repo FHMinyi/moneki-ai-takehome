@@ -1,0 +1,13 @@
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' test tests/g3-document.spec.ts --workers=1 --output=../docs/verification/g3-02/review-r1-r2/browser-runtime-results
+
+Running 4 tests using 1 worker
+
+(node:43846) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/g3-document.spec.ts:7:3 › 真实文档回答与来源 1280 (814ms)
+  ✓  2 tests/g3-document.spec.ts:7:3 › 真实文档回答与来源 1440 (742ms)
+  ✓  3 tests/g3-document.spec.ts:7:3 › 真实文档回答与来源 390 (727ms)
+  ✓  4 tests/g3-document.spec.ts:30:1 › 旧引用与未知元信息兼容 (650ms)
+
+  4 passed (3.3s)

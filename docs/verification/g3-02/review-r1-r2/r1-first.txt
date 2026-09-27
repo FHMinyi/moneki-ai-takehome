@@ -1,0 +1,102 @@
+...F..........F                                                          [100%]
+=================================== FAILURES ===================================
+_ test_conflicting_anchored_subject_or_attribute[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-011-30-subject3-attribute3-value3] _
+
+service = <kbqa.service.Service object at 0x106ded130>, q = '外卖订单多久内可以退款？'
+doc = 'KB-011', needle = '30', subject = ('外卖订单', '赠送金')
+attribute = ('退款', '退款')
+value = {'kind': 'duration', 'question': '多久', 'text': '30 天'}
+
+    @pytest.mark.parametrize('q,doc,needle,subject,attribute,value',[
+     ('外卖订单多久内可以退款？','KB-013','堂食订单须当场',('外卖订单','堂食订单'),('退款','退款'),TEXT),
+     ('办理外卖退款应当出示什么身份证件？','KB-014','工牌',('外卖','员工'),('身份证件','工牌'),TEXT),
+     ('员工迟到申诉多久能处理完？','KB-016','15',('迟到申诉','迟到'),('处理','记'),duration('多久','15 分钟')),
+     ('外卖订单多久内可以退款？','KB-011','30',('外卖订单','赠送金'),('退款','退款'),duration('多久','30 天')),
+    ])
+    def test_conflicting_anchored_subject_or_attribute(service,q,doc,needle,subject,attribute,value):
+>    a,t=execute(service,q,anchored(doc,needle,subject,attribute,value))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-02/review-r1-r2/test_review.py:31: in execute
+    answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(q),trace,[])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:78: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-02/review-r1-r2/test_review.py:27: in reply
+    text=final(result) if callable(final) else final
+         ^^^^^^^^^^^^^
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:22: in selection
+    binding={'subject':[anchor(subject)],'attribute':[anchor(attribute)],'value':value}
+                        ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+pair = ('外卖订单', '赠送金')
+
+    def anchor(pair):
+     question,text=pair
+     if text in e['quote']:source='quote'
+>    else:source=next(i for i,c in enumerate(e['context']) if text in c['quote'])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E    StopIteration
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:20: StopIteration
+_____________ test_cross_clause_subject_attribute_binding_rejected _____________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-210/test_cross_clause_subject_attr0')
+
+    def test_cross_clause_subject_attribute_binding_rejected(tmp_path):
+     kb=tmp_path/'kb';kb.mkdir();(kb/'KB-983.md').write_text('星云订单可以开发票。木星订单退款时限为37分钟。')
+     s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/'var',llm_api_key='',llm_base_url='',llm_model=''))
+     s.rebuild()
+>    a,t=execute(s,'星云订单退款时限？',anchored('KB-983','星云订单可以',('星云订单','星云订单'),('退款','退款'),duration('时限','37分钟')))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-02/review-r1-r2/test_review.py:31: in execute
+    answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(q),trace,[])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:78: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-02/review-r1-r2/test_review.py:27: in reply
+    text=final(result) if callable(final) else final
+         ^^^^^^^^^^^^^
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:22: in selection
+    binding={'subject':[anchor(subject)],'attribute':[anchor(attribute)],'value':value}
+                                                      ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+pair = ('退款', '退款')
+
+    def anchor(pair):
+     question,text=pair
+     if text in e['quote']:source='quote'
+>    else:source=next(i for i,c in enumerate(e['context']) if text in c['quote'])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E    StopIteration
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:20: StopIteration
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_conflicting_anchored_subject_or_attribute[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-011-30-subject3-attribute3-value3]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_cross_clause_subject_attribute_binding_rejected
+2 failed, 13 passed in 2.24s

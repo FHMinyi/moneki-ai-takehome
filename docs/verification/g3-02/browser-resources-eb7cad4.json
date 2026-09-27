@@ -1,0 +1,8 @@
+{
+  "work": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g302-browser-5wung1_p",
+  "pid": 43065,
+  "port": 51914,
+  "base": "http://127.0.0.1:51914",
+  "model": "controlled-only",
+  "commit": "eb7cad45a2a5c1792111eb24763a0bf2e84e6dc0"
+}

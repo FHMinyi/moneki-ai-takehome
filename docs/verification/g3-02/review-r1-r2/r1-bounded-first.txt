@@ -1,0 +1,155 @@
+.................FF.F...F.F.                                             [100%]
+=================================== FAILURES ===================================
+__________ test_original_public_questions_with_anchored_response[C03] __________
+
+service = <kbqa.service.Service object at 0x10ac8fe90>, qid = 'C03'
+
+    @pytest.mark.parametrize('qid',PUBLIC_BINDINGS)
+    def test_original_public_questions_with_anchored_response(service,qid):
+     sys.path.insert(0,str(ROOT/'docs/verification/g3-02'))
+     from test_document_binding import PUBLIC_SELECTIONS,QUESTIONS
+     doc,needle=PUBLIC_SELECTIONS[qid]
+     a,t=execute(service,QUESTIONS[qid],anchored(doc,needle,*PUBLIC_BINDINGS[qid]))
+>    assert a.answer_type=='doc',(a,t.steps)
+E    AssertionError: (Answer(answer='本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。', answer_type='refusal', citations=[], data_evidence=[], no...20.7, 'took_ms': None, 'detail': {'source': 'unverified_subject_attribute_binding', 'policy_claims_rendered': False}}])
+E    assert 'refusal' == 'doc'
+E      
+E      - doc
+E      + refusal
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:105: AssertionError
+__________ test_original_public_questions_with_anchored_response[C04] __________
+
+service = <kbqa.service.Service object at 0x10ac8fe90>, qid = 'C04'
+
+    @pytest.mark.parametrize('qid',PUBLIC_BINDINGS)
+    def test_original_public_questions_with_anchored_response(service,qid):
+     sys.path.insert(0,str(ROOT/'docs/verification/g3-02'))
+     from test_document_binding import PUBLIC_SELECTIONS,QUESTIONS
+     doc,needle=PUBLIC_SELECTIONS[qid]
+     a,t=execute(service,QUESTIONS[qid],anchored(doc,needle,*PUBLIC_BINDINGS[qid]))
+>    assert a.answer_type=='doc',(a,t.steps)
+E    AssertionError: (Answer(answer='本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。', answer_type='refusal', citations=[], data_evidence=[], no...25.2, 'took_ms': None, 'detail': {'source': 'unverified_subject_attribute_binding', 'policy_claims_rendered': False}}])
+E    assert 'refusal' == 'doc'
+E      
+E      - doc
+E      + refusal
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:105: AssertionError
+__________ test_original_public_questions_with_anchored_response[C06] __________
+
+service = <kbqa.service.Service object at 0x10ac8fe90>, qid = 'C06'
+
+    @pytest.mark.parametrize('qid',PUBLIC_BINDINGS)
+    def test_original_public_questions_with_anchored_response(service,qid):
+     sys.path.insert(0,str(ROOT/'docs/verification/g3-02'))
+     from test_document_binding import PUBLIC_SELECTIONS,QUESTIONS
+     doc,needle=PUBLIC_SELECTIONS[qid]
+     a,t=execute(service,QUESTIONS[qid],anchored(doc,needle,*PUBLIC_BINDINGS[qid]))
+>    assert a.answer_type=='doc',(a,t.steps)
+E    AssertionError: (Answer(answer='本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。', answer_type='refusal', citations=[], data_evidence=[], no...25.0, 'took_ms': None, 'detail': {'source': 'unverified_subject_attribute_binding', 'policy_claims_rendered': False}}])
+E    assert 'refusal' == 'doc'
+E      
+E      - doc
+E      + refusal
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:105: AssertionError
+__________ test_original_public_questions_with_anchored_response[V02] __________
+
+service = <kbqa.service.Service object at 0x10ac8fe90>, qid = 'V02'
+
+    @pytest.mark.parametrize('qid',PUBLIC_BINDINGS)
+    def test_original_public_questions_with_anchored_response(service,qid):
+     sys.path.insert(0,str(ROOT/'docs/verification/g3-02'))
+     from test_document_binding import PUBLIC_SELECTIONS,QUESTIONS
+     doc,needle=PUBLIC_SELECTIONS[qid]
+     a,t=execute(service,QUESTIONS[qid],anchored(doc,needle,*PUBLIC_BINDINGS[qid]))
+>    assert a.answer_type=='doc',(a,t.steps)
+E    AssertionError: (Answer(answer='本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。', answer_type='refusal', citations=[], data_evidence=[], no...17.6, 'took_ms': None, 'detail': {'source': 'unverified_subject_attribute_binding', 'policy_claims_rendered': False}}])
+E    assert 'refusal' == 'doc'
+E      
+E      - doc
+E      + refusal
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:105: AssertionError
+_ test_ordinary_functional_rephrasing_not_rejected[\u8bf7\u95ee\u5916\u5356\u8ba2\u5355\u51e0\u5c0f\u65f6\u5185\u80fd\u7533\u8bf7\u9000\u6b3e\uff1f] _
+
+service = <kbqa.service.Service object at 0x10ac8fe90>, q = '请问外卖订单几小时内能申请退款？'
+
+    @pytest.mark.parametrize('q',[
+     '外卖订单多久内可以申请退款？',
+     '请问外卖订单几小时内能申请退款？',
+     '麻烦说明外卖订单退款时限。',
+    ])
+    def test_ordinary_functional_rephrasing_not_rejected(service,q):
+     focus='几小时' if '几小时' in q else '时限' if '时限' in q else '多久'
+>    a,t=execute(service,q,anchored('KB-013','24',('外卖订单','外卖订单'),('退款','退款'),duration(focus,'24 小时')))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-02/review-r1-r2/test_review.py:31: in execute
+    answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(q),trace,[])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:83: in answer
+    return self._finalise(plan, reply.content, evidence, retrieved, trace, tool_failures)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:188: in _finalise
+    return retrieved.render(content, plan.standalone, trace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <kbqa.document_evidence.DocumentEvidence object at 0x10b53df70>
+content = '{"answer_type": "doc", "facts": [{"evidence_id": "doc-8ca0729cb858dc66abd6", "binding": {"subject": [{"question": "\\...\\u9000\\u6b3e"}], "value": {"kind": "duration", "question": "\\u51e0\\u5c0f\\u65f6", "text": "24 \\u5c0f\\u65f6"}}}]}'
+question = '请问外卖订单几小时内能申请退款？'
+trace = Trace(trace_id='review', question='请问外卖订单几小时内能申请退款？', session_id=None, started_at='2026-09-27T14:48:12.143', steps=[{'...bject_entities': []}, 'reason': 'subject_or_attribute_not_supported'}}], errors=[], llm_calls=[], _t0=935787.359235833)
+
+    def render(self, content, question, trace):
+        try:
+            payload=json.loads(content)
+        except (ValueError,TypeError):
+            raise LLMError('document_binding','文档回答必须显式选择检索证据，不能提交自由陈述')
+        if not isinstance(payload,dict) or set(payload)!={'answer_type','facts'} or payload['answer_type']!='doc':
+            raise LLMError('document_binding','文档回答结构无效')
+        refs=payload['facts']
+        if not isinstance(refs,list) or not 1<=len(refs)<=4:
+            raise LLMError('document_binding','必须选择一至四条文档事实')
+        selected=[]
+        for ref in refs:
+            if not isinstance(ref,dict) or set(ref)!={'evidence_id','binding'} or not isinstance(ref['evidence_id'],str):
+                raise LLMError('document_binding','文档事实必须含证据ID与原文锚定的主体属性对应，不接受自由陈述')
+            item=self.items.get(ref['evidence_id'])
+            if item is None:
+                raise LLMError('document_binding','证据不属于本次实际检索集合')
+            if any(p['evidence_id'] == item['evidence_id'] for p in selected):
+                raise LLMError('document_binding','文档事实重复')
+            anchors, failure = check_binding(ref['binding'], question, item, self.facts)
+            if failure:
+                trace.step('document_binding_rejected', {'evidence_id':item['evidence_id'], 'reason':failure})
+                return insufficient_evidence(trace, 'unverified_subject_attribute_binding')
+            selected.append({**item, '_checked_anchors': anchors})
+        claim=self.facts.requested_claim(question)
+        citations=[]; lines=[]
+        for item in selected:
+            unit=self.units[item['evidence_id']]
+            # Check closed subject/predicate questions against this exact span,
+            # and open questions against entity and requested value shape. This
+            # reuses bounded evidence checks, never invokes the mock answerer.
+            ranked=self.facts.rank(question,item['doc_id'],limit=1,require_value=False,units=[unit])
+            entities=set(self.facts.index.aliases.strict_mentions(question))
+            source_entities=set(self.facts.index.aliases.strict_mentions(unit.text+' '+ ' '.join(c['quote'] for c in item['context'])))
+            requested = re.search(r"(?:多少|几)\s*(工作日|小时|分钟|天|克|公斤|毫升|升|元|条|次|人|杯|份)", question)
+            missing_measure = requested and not re.search(r"\d[\d,.]*\s*" + requested.group(1), unit.text)
+            if missing_measure or not ranked or not self.facts.supports_claim(claim,unit) or not entities<=source_entities:
+                trace.step('document_binding_rejected',{'evidence_id':item['evidence_id'],'required_claim':claim,'reason':'subject_or_attribute_not_supported'})
+>               raise LLMError('document_binding','所选证据不支持问题的主体或属性')
+E               kbqa.llm.LLMError: document_binding: 所选证据不支持问题的主体或属性
+
+starter/kbqa/document_evidence.py:136: LLMError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_original_public_questions_with_anchored_response[C03]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_original_public_questions_with_anchored_response[C04]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_original_public_questions_with_anchored_response[C06]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_original_public_questions_with_anchored_response[V02]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_ordinary_functional_rephrasing_not_rejected[\u8bf7\u95ee\u5916\u5356\u8ba2\u5355\u51e0\u5c0f\u65f6\u5185\u80fd\u7533\u8bf7\u9000\u6b3e\uff1f]
+5 failed, 23 passed in 2.37s

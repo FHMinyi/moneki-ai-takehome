@@ -1,5 +1,7 @@
 # G3-02 验证记录
 
+> **PR31最新审查修正：** 红灯d44b4e0、R2修复b6299b5、R1同次锚点修复eb7cad4已追加。固定回归169后端、49真实HTTP、4浏览器通过；chat7免费完整回放安全呈现依据不足。未新增模型阶段/付费；新协议仍待主会话独立核验，不声称新真实调用或通用蕴含证明。详见[审查增量证据](review-r1-r2/README.md)。下文先前未通过记录和原真实失败保留。
+
 起点：`587ae820185cd10839e189efa9fb2ed8863d1ca5`。这是本票修改前定向检查，不是第三关整体前置 baseline。
 
 修改前命令：`starter/.venv/bin/python -m pytest docs/verification/g3-02/test_document_binding.py -q`。结果：8 failed / 1 passed，原始输出 `before.txt`；其中4项复现旧版本/近主题错误陈述可被交付，4项新证据协议尚未实现；48小时无依据数字原本即被拒绝。
