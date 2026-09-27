@@ -12,6 +12,7 @@
 | 完成后 | `DAILY_EVIDENCE_DIR=../docs/verification/g3-06/regression-daily BROWSER_BASE_URL=http://127.0.0.1:8036 npm run test:browser -- tests/daily-trend.spec.ts tests/g3-trend-context.spec.ts`（在 `frontend/`） | 11 passed，含 G1 趋势 4 项和 G3-06 7 项。首次浏览器脚本在 Drawer 关闭动画时点选门店失败；补显式隐藏等待后通过，记录为脚本时序修正。 |
 | 完成后 | `starter/.venv/bin/python docs/verification/g3-06/replay_controlled.py` | 2/2 受控模型 HTTP 样本；本地受控模型仅给工具调用，结果来自实际清洗数据库。输出 `controlled-http.json` 保存原请求、回答、完整 trace、独立 metrics API 期望。 |
 | 完成后 | `G306_MODEL_URL=http://127.0.0.1:9036 G306_EVIDENCE_DIR=../docs/verification/g3-06/browser-controlled BROWSER_BASE_URL=http://127.0.0.1:8037 npm run test:browser -- tests/g3-trend-context.spec.ts --workers=1`（在 `frontend/`） | 7 passed。受控模型只产生工具调用与最终选择；真实工具/数据库结果通过浏览器侧独立 metrics API 核对。 |
+| 真实调用前离线守卫 | `starter/.venv/bin/python -m pytest docs/verification/g3-06/test_live_budget.py -q` | 7 passed；覆盖出站前预留、完整 usage 释放、无/不完整 usage 保留、余额不足禁止出站和每 chat 尝试数上限。 |
 
 浏览器服务使用独立 `VAR_DIR=/tmp/moneki-g306-browser-var`、端口 8036、无 Key；受控服务使用独立 `/tmp/moneki-g306-live-var`、端口 8037 与本地模型端口 9036。截图与逐宽度 HTTP/trace 在 `browser/`、`browser-controlled/`，第一关趋势回归截图在 `regression-daily/`。测试输出不覆盖历史证据。
 
@@ -29,3 +30,7 @@
 ## 边界
 
 只处理单轮每日趋势范围，不处理多附件、单点选日、截图、旧看板金额快照、跨票文档混合或多轮消歧。引用条件加入时固定；数据变更并重建后，答案依据本次查询。受控模型的逐字回答不代表真实模型语义表现。浏览器分别使用无 Key 引擎和受控模型核对生命周期。主会话负责与 G3-02 合并后的独立集成验收。
+
+## 真实样本预算依据
+
+2026-09-27 06:42:23 UTC 核对 [DeepSeek 官方中文价格页](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/)：`deepseek-flash` 上下文长度 1M；高峰时段缓存未命中输入 2 元/百万 tokens，输出 8 元/百万 tokens。按 1,048,576 输入与本地 `max_tokens=4096` 上限，峰时全未命中估算 `2.12992` 元/次出站，故先预留 `2.20` 元。30,000 字节仅为请求体大小限制，不能换算成 token 硬上界。完整 usage 才按峰时全未命中价格释放差额；无 usage、超时或不确定状态保留预留。当前仅授权本票总 6 元、最多两次 chat；每 chat 最多六次出站是本票更紧的测试执行限制，并非产品最大调用链承诺。`run_live_samples.py` 使用独立账本、VAR_DIR 和本地代理，真实 Key 只从共享 `.env.live` 只读加载且不写入证据。

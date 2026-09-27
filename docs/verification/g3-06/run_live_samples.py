@@ -1,8 +1,8 @@
 """G3-06 only: at most two DeepSeek chats under a separate 6 CNY guard.
 
-Every outbound attempt reserves 0.50 CNY before sending. Complete usage
-releases the difference at peak cache-miss prices, conservatively converting
-USD to CNY at 8.00. Missing usage or transport uncertainty retains reserve.
+Every outbound attempt reserves 2.20 CNY before sending. Complete usage
+releases the difference at official peak cache-miss RMB prices. Missing
+usage or transport uncertainty retains the whole reserve.
 No balance or model-list probes. The ledger is reused, never reset here.
 """
 import json
@@ -15,6 +15,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 import httpx
+from live_budget import RESERVE_CNY, can_reserve, committed, reserve, settle
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT = Path(__file__).parent / 'live'
@@ -22,15 +23,17 @@ OUT.mkdir(exist_ok=True)
 LEDGER_PATH = OUT / 'ledger.json'
 ledger = json.loads(LEDGER_PATH.read_text()) if LEDGER_PATH.exists() else {
     'chat_count': 0, 'calls': [], 'limit_cny': 6, 'chat_limit': 2,
-    'billing_confirmed': False, 'usd_cny_reserve_rate': 8.0,
-    'official_peak_usd_per_m_input_cache_miss': 0.3,
-    'official_peak_usd_per_m_output': 1.2,
+    'billing_confirmed': False,
+    'price_source': 'https://api-docs.deepseek.com/zh-cn/quick_start/pricing/',
+    'price_checked_at_utc': '2026-09-27 06:42:23 UTC',
+    'price_excerpt': 'deepseek-flash: 1M context; peak cache-miss input 2 CNY / 1M tokens; peak output 8 CNY / 1M tokens',
+    'reserve_basis': '1,048,576 input tokens * 2/M + 4,096 output tokens * 8/M = 2.12992 CNY; reserve 2.20 CNY per outbound attempt',
 }
 lock = threading.Lock()
 
 
 def save():
-    ledger['conservative_committed_cny'] = sum(call['accounted_cny'] for call in ledger['calls'])
+    ledger['conservative_committed_cny'] = committed(ledger)
     ledger['remaining_cny'] = ledger['limit_cny'] - ledger['conservative_committed_cny']
     LEDGER_PATH.write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + '\n')
 
@@ -74,15 +77,10 @@ class Guard(BaseHTTPRequestHandler):
             self.respond(400, b'{"error":{"message":"guard configuration or size"}}')
             return
         with lock:
-            if (ledger['chat_count'] > 2 or
-                    sum(call['chat'] == ledger['chat_count'] for call in ledger['calls']) >= 6 or
-                    sum(call['accounted_cny'] for call in ledger['calls']) + 0.50 > 6):
+            if not can_reserve(ledger):
                 self.respond(402, b'{"error":{"message":"G3-06 budget exhausted"}}')
                 return
-            entry = {'chat': ledger['chat_count'], 'attempt': len(ledger['calls']) + 1,
-                     'request_bytes': len(raw), 'accounted_cny': 0.50,
-                     'status': 'reserved', 'started_at': time.time()}
-            ledger['calls'].append(entry)
+            entry = reserve(ledger, len(raw), time.time())
             save()
         try:
             with httpx.Client(trust_env=False, timeout=125) as client:
@@ -94,19 +92,12 @@ class Guard(BaseHTTPRequestHandler):
             except (ValueError, AttributeError):
                 pass
             with lock:
-                entry.update(status=response.status_code, elapsed_seconds=time.time()-entry['started_at'], usage=usage)
-                if (isinstance(usage, dict) and type(usage.get('prompt_tokens')) is int and
-                        type(usage.get('completion_tokens')) is int and usage['prompt_tokens'] >= 0 and
-                        usage['completion_tokens'] >= 0):
-                    cost = (usage['prompt_tokens'] * 2.4 + usage['completion_tokens'] * 9.6) / 1_000_000
-                    entry.update(accounted_cny=cost, peak_cache_miss_estimate_cny=cost)
-                else:
-                    entry['note'] = 'Complete usage unavailable; 0.50 CNY reserve retained.'
+                settle(entry, response.status_code, usage, time.time()-entry['started_at'])
                 save()
             self.respond(response.status_code, response.text.replace(key, '[REDACTED]').encode())
         except Exception:
             with lock:
-                entry.update(status='transport_error', note='Usage unknown; reserve retained.')
+                entry.update(status='transport_error', note='Usage unknown; 2.20 CNY reserve retained.')
                 save()
             self.respond(503, b'{"error":{"message":"guard transport failed"}}')
 
@@ -114,6 +105,8 @@ class Guard(BaseHTTPRequestHandler):
 def main():
     if ledger['chat_count'] >= 2 or any(call['status'] == 'reserved' for call in ledger['calls']):
         raise RuntimeError('G3-06 chat limit reached or unresolved reservation')
+    with lock:
+        save()
     guard = ThreadingHTTPServer(('127.0.0.1', 0), Guard)
     threading.Thread(target=guard.serve_forever, daemon=True).start()
     with socket.socket() as port_probe:
@@ -143,7 +136,7 @@ def main():
                 assert health['llm_mode'] == 'live'
                 for question in questions:
                     with lock:
-                        if ledger['chat_count'] >= 2 or ledger['remaining_cny'] < 0.50:
+                        if ledger['chat_count'] >= 2 or ledger['remaining_cny'] < RESERVE_CNY:
                             break
                         ledger['chat_count'] += 1
                         number = ledger['chat_count']
