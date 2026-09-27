@@ -52,3 +52,5 @@ OpenAI 兼容 Chat Completions，Python `httpx`（安装版本见 requirements�
 ## 9. 历史协议记录
 
 G3-01 的单轮接入、G3-02/PR31 曾尝试的逐字主体/属性 `binding`、封闭属性与单位硬门槛、以及当时“R1 待设计”的文字，均为**历史过程，已由 PR #36 的当前最小 `evidence_id` 选择协议替代**，不再是本版接口要求。旧轮的 4096 输出和 67.5/100、40/55 真实成绩保留用于前后对照，不把新代码的通过追认到旧版本。设计取舍、红绿证据和保留的反例见 [G3-02 修复证据](docs/verification/g3-02-live-repair/README.md)、[调试记录](DEBUG_LOG.md)与 [首轮 G3-05 原始结果](docs/verification/g3-05/README.md)。现场定位错答可按 [trace 调试流程](docs/DEBUG_WORKFLOW.md)把本地脱敏 JSON 与源码交给 Codex；不要复制 `.env.live`、Key 或整份知识库。
+
+用户追加授权后，在 trace 补丁 `5b6a4ca` 又独立执行**一次**完整真实 55 题：同为 `deepseek-flash`、默认思考、`max_tokens=8192`，结果 **94/100、53/55**；H05 内容覆盖不足、S01 最终类型无效，见 [追加复验](docs/verification/g3-05/optional-5b6a4ca/README.md)。本轮 91 次 API usage 完整，新增保守估算 2.252672 元，第三关累计 8.790046 元、余 41.209954 元，非账单。此结果不覆盖 `c7084d6` 旧轮 C07/V03/H06 失败，也不证明输出稳定性。

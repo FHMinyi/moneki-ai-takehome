@@ -1,0 +1,109 @@
+{
+  "baseline": "5b6a4cabafd39d034046affc5620a4fc5a8b88e3",
+  "failed_turns": [
+    {
+      "id": "H05",
+      "turn": 1,
+      "question": "8 月 3 日 S05 的现金支付占比是多少？为什么会这样？",
+      "answer_type": "hybrid",
+      "answer": "2026-08-03 至 2026-08-03 Super Tetsudo：现金按订单数占比 100.00%（27 / 27 单）。\n同期材料记载 KB-027：1. **2026-08-03 当天 S05 的订单全部以现金结算**，POS 里的 `payment` 一律记为“现金”。\n以上是材料记载；未据此估算事件对经营数字的因果影响。",
+      "trace_id": "t-20260901-0023",
+      "failed_checks": [
+        {
+          "name": "fact_any",
+          "passed": false,
+          "expected": {
+            "docs": [
+              "KB-027",
+              "KB-052"
+            ],
+            "any_of": [
+              "故障",
+              "只收现金",
+              "刷卡",
+              "扫码",
+              "网络"
+            ]
+          },
+          "actual": {
+            "answer": "2026-08-03 至 2026-08-03 Super Tetsudo：现金按订单数占比 100.00%（27 / 27 单）。 同期材料记载 KB-027：1. **2026-08-03 当天 S05 的订单全部以现金结算**，POS 里的 `payment` 一律记为“现金”。 以上是材料记载；未据此估算事件对…",
+            "quoted": [
+              "KB-027"
+            ]
+          },
+          "reason": "回答里没提到，KB-027/KB-052 的 quote 里也没有：故障、只收现金、刷卡、扫码、网络"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "S01",
+      "turn": 1,
+      "question": "7 月顾客投诉最集中的是什么问题？有多少条？",
+      "answer_type": "refusal",
+      "answer": "模型服务这次没有正常返回（answer_binding），为了不给出没有依据的数字，这个问题先不回答。可以稍后重试；失败的真实原因记在 trace 里。",
+      "trace_id": "t-20260901-0037",
+      "failed_checks": [
+        {
+          "name": "answer_type_in",
+          "passed": false,
+          "expected": [
+            "doc",
+            "hybrid"
+          ],
+          "actual": "refusal",
+          "reason": "answer_type 应是 doc/hybrid 之一"
+        },
+        {
+          "name": "fact_all",
+          "passed": false,
+          "expected": {
+            "docs": [
+              "KB-060"
+            ],
+            "all_of": [
+              "12"
+            ]
+          },
+          "actual": {
+            "answer": "模型服务这次没有正常返回（answer_binding），为了不给出没有依据的数字，这个问题先不回答。可以稍后重试；失败的真实原因记在 trace 里。",
+            "quoted": []
+          },
+          "reason": "回答里没提到，KB-060 的 quote 里也没有：12"
+        },
+        {
+          "name": "fact_any",
+          "passed": false,
+          "expected": {
+            "docs": [
+              "KB-060"
+            ],
+            "any_of": [
+              "出餐慢"
+            ]
+          },
+          "actual": {
+            "answer": "模型服务这次没有正常返回（answer_binding），为了不给出没有依据的数字，这个问题先不回答。可以稍后重试；失败的真实原因记在 trace 里。",
+            "quoted": []
+          },
+          "reason": "回答里没提到，KB-060 的 quote 里也没有：出餐慢"
+        },
+        {
+          "name": "cite_all",
+          "passed": false,
+          "expected": [
+            "KB-060"
+          ],
+          "actual": [],
+          "reason": "没有引用 KB-060"
+        }
+      ],
+      "errors": [
+        {
+          "type": "LLMError",
+          "message": "answer_binding: 最终答复必须显式选择 doc/data/hybrid/refusal/clarify 类型"
+        }
+      ]
+    }
+  ]
+}

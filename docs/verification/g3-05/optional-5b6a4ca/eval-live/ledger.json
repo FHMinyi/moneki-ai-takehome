@@ -1,0 +1,2017 @@
+{
+  "baseline_commit": "5b6a4cabafd39d034046affc5620a4fc5a8b88e3",
+  "prior_conservative_cny": 6.537374,
+  "total_authorized_cny": 50.0,
+  "reserve_per_attempt_cny": 2.2,
+  "price_peak_cache_miss_input_cny_per_m": 2.0,
+  "price_peak_output_cny_per_m": 8.0,
+  "billing_confirmed": false,
+  "attempts": [
+    {
+      "attempt": 1,
+      "chat": 1,
+      "started_at_unix": 1790508945.2630122,
+      "request_bytes": 13458,
+      "status": 200,
+      "accounted_cny": 0.008056,
+      "elapsed_seconds": 1.011,
+      "usage": {
+        "prompt_tokens": 3604,
+        "completion_tokens": 106,
+        "total_tokens": 3710,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 41
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 148
+      }
+    },
+    {
+      "attempt": 2,
+      "chat": 1,
+      "started_at_unix": 1790508946.2881138,
+      "request_bytes": 14200,
+      "status": 200,
+      "accounted_cny": 0.00799,
+      "elapsed_seconds": 1.032,
+      "usage": {
+        "prompt_tokens": 3835,
+        "completion_tokens": 40,
+        "total_tokens": 3875,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 251
+      }
+    },
+    {
+      "attempt": 3,
+      "chat": 2,
+      "started_at_unix": 1790508947.3445609,
+      "request_bytes": 13504,
+      "status": 200,
+      "accounted_cny": 0.009346,
+      "elapsed_seconds": 1.775,
+      "usage": {
+        "prompt_tokens": 3613,
+        "completion_tokens": 265,
+        "total_tokens": 3878,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 200
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 157
+      }
+    },
+    {
+      "attempt": 4,
+      "chat": 2,
+      "started_at_unix": 1790508949.133722,
+      "request_bytes": 15619,
+      "status": 200,
+      "accounted_cny": 0.009314,
+      "elapsed_seconds": 0.821,
+      "usage": {
+        "prompt_tokens": 4245,
+        "completion_tokens": 103,
+        "total_tokens": 4348,
+        "prompt_tokens_details": {
+          "cached_tokens": 3840
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 63
+        },
+        "prompt_cache_hit_tokens": 3840,
+        "prompt_cache_miss_tokens": 405
+      }
+    },
+    {
+      "attempt": 5,
+      "chat": 3,
+      "started_at_unix": 1790508949.981938,
+      "request_bytes": 13461,
+      "status": 200,
+      "accounted_cny": 0.00868,
+      "elapsed_seconds": 1.434,
+      "usage": {
+        "prompt_tokens": 3604,
+        "completion_tokens": 184,
+        "total_tokens": 3788,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 101
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 148
+      }
+    },
+    {
+      "attempt": 6,
+      "chat": 3,
+      "started_at_unix": 1790508951.431487,
+      "request_bytes": 14460,
+      "status": 200,
+      "accounted_cny": 0.008186,
+      "elapsed_seconds": 0.91,
+      "usage": {
+        "prompt_tokens": 3917,
+        "completion_tokens": 44,
+        "total_tokens": 3961,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 205
+      }
+    },
+    {
+      "attempt": 7,
+      "chat": 4,
+      "started_at_unix": 1790508952.3833542,
+      "request_bytes": 13476,
+      "status": 200,
+      "accounted_cny": 0.008878,
+      "elapsed_seconds": 1.173,
+      "usage": {
+        "prompt_tokens": 3615,
+        "completion_tokens": 206,
+        "total_tokens": 3821,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 94
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 159
+      }
+    },
+    {
+      "attempt": 8,
+      "chat": 4,
+      "started_at_unix": 1790508953.568304,
+      "request_bytes": 15059,
+      "status": 200,
+      "accounted_cny": 0.008938,
+      "elapsed_seconds": 1.114,
+      "usage": {
+        "prompt_tokens": 4173,
+        "completion_tokens": 74,
+        "total_tokens": 4247,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 34
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 461
+      }
+    },
+    {
+      "attempt": 9,
+      "chat": 5,
+      "started_at_unix": 1790508954.717315,
+      "request_bytes": 13449,
+      "status": 200,
+      "accounted_cny": 0.008318,
+      "elapsed_seconds": 1.261,
+      "usage": {
+        "prompt_tokens": 3603,
+        "completion_tokens": 139,
+        "total_tokens": 3742,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 74
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 147
+      }
+    },
+    {
+      "attempt": 10,
+      "chat": 5,
+      "started_at_unix": 1790508955.9881,
+      "request_bytes": 14319,
+      "status": 200,
+      "accounted_cny": 0.008124,
+      "elapsed_seconds": 0.615,
+      "usage": {
+        "prompt_tokens": 3866,
+        "completion_tokens": 49,
+        "total_tokens": 3915,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 10
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 154
+      }
+    },
+    {
+      "attempt": 11,
+      "chat": 6,
+      "started_at_unix": 1790508956.62624,
+      "request_bytes": 13456,
+      "status": 200,
+      "accounted_cny": 0.008498,
+      "elapsed_seconds": 1.055,
+      "usage": {
+        "prompt_tokens": 3609,
+        "completion_tokens": 160,
+        "total_tokens": 3769,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 77
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 153
+      }
+    },
+    {
+      "attempt": 12,
+      "chat": 6,
+      "started_at_unix": 1790508957.698068,
+      "request_bytes": 14344,
+      "status": 200,
+      "accounted_cny": 0.00812,
+      "elapsed_seconds": 1.359,
+      "usage": {
+        "prompt_tokens": 3896,
+        "completion_tokens": 41,
+        "total_tokens": 3937,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 184
+      }
+    },
+    {
+      "attempt": 13,
+      "chat": 7,
+      "started_at_unix": 1790508959.093715,
+      "request_bytes": 13462,
+      "status": 200,
+      "accounted_cny": 0.007752,
+      "elapsed_seconds": 1.232,
+      "usage": {
+        "prompt_tokens": 3604,
+        "completion_tokens": 68,
+        "total_tokens": 3672,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 25
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 148
+      }
+    },
+    {
+      "attempt": 14,
+      "chat": 7,
+      "started_at_unix": 1790508960.352913,
+      "request_bytes": 41055,
+      "status": 200,
+      "accounted_cny": 0.025116,
+      "elapsed_seconds": 1.062,
+      "usage": {
+        "prompt_tokens": 12238,
+        "completion_tokens": 80,
+        "total_tokens": 12318,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 51
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 8654
+      }
+    },
+    {
+      "attempt": 15,
+      "chat": 8,
+      "started_at_unix": 1790508961.461879,
+      "request_bytes": 13479,
+      "status": 200,
+      "accounted_cny": 0.008068,
+      "elapsed_seconds": 1.464,
+      "usage": {
+        "prompt_tokens": 3610,
+        "completion_tokens": 106,
+        "total_tokens": 3716,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 29
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 154
+      }
+    },
+    {
+      "attempt": 16,
+      "chat": 8,
+      "started_at_unix": 1790508962.970877,
+      "request_bytes": 35952,
+      "status": 200,
+      "accounted_cny": 0.024654,
+      "elapsed_seconds": 2.474,
+      "usage": {
+        "prompt_tokens": 10675,
+        "completion_tokens": 413,
+        "total_tokens": 11088,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 348
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 6963
+      }
+    },
+    {
+      "attempt": 17,
+      "chat": 9,
+      "started_at_unix": 1790508965.4970398,
+      "request_bytes": 13469,
+      "status": 200,
+      "accounted_cny": 0.008254,
+      "elapsed_seconds": 1.097,
+      "usage": {
+        "prompt_tokens": 3607,
+        "completion_tokens": 130,
+        "total_tokens": 3737,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 78
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 151
+      }
+    },
+    {
+      "attempt": 18,
+      "chat": 9,
+      "started_at_unix": 1790508966.6269429,
+      "request_bytes": 35506,
+      "status": 200,
+      "accounted_cny": 0.023504,
+      "elapsed_seconds": 1.89,
+      "usage": {
+        "prompt_tokens": 10720,
+        "completion_tokens": 258,
+        "total_tokens": 10978,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 229
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 7008
+      }
+    },
+    {
+      "attempt": 19,
+      "chat": 10,
+      "started_at_unix": 1790508968.567751,
+      "request_bytes": 13483,
+      "status": 200,
+      "accounted_cny": 0.00837,
+      "elapsed_seconds": 1.564,
+      "usage": {
+        "prompt_tokens": 3609,
+        "completion_tokens": 144,
+        "total_tokens": 3753,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 27
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 153
+      }
+    },
+    {
+      "attempt": 20,
+      "chat": 10,
+      "started_at_unix": 1790508970.1911922,
+      "request_bytes": 48109,
+      "status": 200,
+      "accounted_cny": 0.034086,
+      "elapsed_seconds": 3.531,
+      "usage": {
+        "prompt_tokens": 14383,
+        "completion_tokens": 665,
+        "total_tokens": 15048,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 640
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 10671
+      }
+    },
+    {
+      "attempt": 21,
+      "chat": 11,
+      "started_at_unix": 1790508973.772214,
+      "request_bytes": 13459,
+      "status": 200,
+      "accounted_cny": 0.007818,
+      "elapsed_seconds": 1.086,
+      "usage": {
+        "prompt_tokens": 3605,
+        "completion_tokens": 76,
+        "total_tokens": 3681,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 11
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 149
+      }
+    },
+    {
+      "attempt": 22,
+      "chat": 11,
+      "started_at_unix": 1790508974.8862898,
+      "request_bytes": 32259,
+      "status": 200,
+      "accounted_cny": 0.02091,
+      "elapsed_seconds": 1.824,
+      "usage": {
+        "prompt_tokens": 9495,
+        "completion_tokens": 240,
+        "total_tokens": 9735,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 192
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 5911
+      }
+    },
+    {
+      "attempt": 23,
+      "chat": 12,
+      "started_at_unix": 1790508976.757951,
+      "request_bytes": 13462,
+      "status": 200,
+      "accounted_cny": 0.008194,
+      "elapsed_seconds": 1.048,
+      "usage": {
+        "prompt_tokens": 3605,
+        "completion_tokens": 123,
+        "total_tokens": 3728,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 41
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 149
+      }
+    },
+    {
+      "attempt": 24,
+      "chat": 12,
+      "started_at_unix": 1790508977.857207,
+      "request_bytes": 48005,
+      "status": 200,
+      "accounted_cny": 0.031208,
+      "elapsed_seconds": 2.024,
+      "usage": {
+        "prompt_tokens": 14524,
+        "completion_tokens": 270,
+        "total_tokens": 14794,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 221
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 10812
+      }
+    },
+    {
+      "attempt": 25,
+      "chat": 13,
+      "started_at_unix": 1790508979.935832,
+      "request_bytes": 13463,
+      "status": 200,
+      "accounted_cny": 0.011936,
+      "elapsed_seconds": 2.714,
+      "usage": {
+        "prompt_tokens": 3608,
+        "completion_tokens": 590,
+        "total_tokens": 4198,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 352
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 152
+      }
+    },
+    {
+      "attempt": 26,
+      "chat": 13,
+      "started_at_unix": 1790508982.6826549,
+      "request_bytes": 33507,
+      "status": 200,
+      "accounted_cny": 0.024614,
+      "elapsed_seconds": 2.749,
+      "usage": {
+        "prompt_tokens": 10039,
+        "completion_tokens": 567,
+        "total_tokens": 10606,
+        "prompt_tokens_details": {
+          "cached_tokens": 4096
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 382
+        },
+        "prompt_cache_hit_tokens": 4096,
+        "prompt_cache_miss_tokens": 5943
+      }
+    },
+    {
+      "attempt": 27,
+      "chat": 13,
+      "started_at_unix": 1790508985.466463,
+      "request_bytes": 49498,
+      "status": 200,
+      "accounted_cny": 0.034504,
+      "elapsed_seconds": 3.13,
+      "usage": {
+        "prompt_tokens": 15300,
+        "completion_tokens": 488,
+        "total_tokens": 15788,
+        "prompt_tokens_details": {
+          "cached_tokens": 10496
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 386
+        },
+        "prompt_cache_hit_tokens": 10496,
+        "prompt_cache_miss_tokens": 4804
+      }
+    },
+    {
+      "attempt": 28,
+      "chat": 13,
+      "started_at_unix": 1790508988.632769,
+      "request_bytes": 58081,
+      "status": 200,
+      "accounted_cny": 0.038612,
+      "elapsed_seconds": 2.339,
+      "usage": {
+        "prompt_tokens": 17822,
+        "completion_tokens": 371,
+        "total_tokens": 18193,
+        "prompt_tokens_details": {
+          "cached_tokens": 15744
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 304
+        },
+        "prompt_cache_hit_tokens": 15744,
+        "prompt_cache_miss_tokens": 2078
+      }
+    },
+    {
+      "attempt": 29,
+      "chat": 14,
+      "started_at_unix": 1790508991.036244,
+      "request_bytes": 13450,
+      "status": 200,
+      "accounted_cny": 0.007804,
+      "elapsed_seconds": 0.88,
+      "usage": {
+        "prompt_tokens": 3602,
+        "completion_tokens": 75,
+        "total_tokens": 3677,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 28
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 146
+      }
+    },
+    {
+      "attempt": 30,
+      "chat": 14,
+      "started_at_unix": 1790508991.944129,
+      "request_bytes": 30470,
+      "status": 200,
+      "accounted_cny": 0.019324,
+      "elapsed_seconds": 1.439,
+      "usage": {
+        "prompt_tokens": 8954,
+        "completion_tokens": 177,
+        "total_tokens": 9131,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 149
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 5370
+      }
+    },
+    {
+      "attempt": 31,
+      "chat": 15,
+      "started_at_unix": 1790508993.413648,
+      "request_bytes": 13479,
+      "status": 200,
+      "accounted_cny": 0.0087,
+      "elapsed_seconds": 1.159,
+      "usage": {
+        "prompt_tokens": 3610,
+        "completion_tokens": 185,
+        "total_tokens": 3795,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 56
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 154
+      }
+    },
+    {
+      "attempt": 32,
+      "chat": 15,
+      "started_at_unix": 1790508994.6145978,
+      "request_bytes": 56190,
+      "status": 200,
+      "accounted_cny": 0.039028,
+      "elapsed_seconds": 2.983,
+      "usage": {
+        "prompt_tokens": 17182,
+        "completion_tokens": 583,
+        "total_tokens": 17765,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 555
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 13470
+      }
+    },
+    {
+      "attempt": 33,
+      "chat": 16,
+      "started_at_unix": 1790508997.650256,
+      "request_bytes": 13464,
+      "status": 200,
+      "accounted_cny": 0.007984,
+      "elapsed_seconds": 0.979,
+      "usage": {
+        "prompt_tokens": 3608,
+        "completion_tokens": 96,
+        "total_tokens": 3704,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 32
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 152
+      }
+    },
+    {
+      "attempt": 34,
+      "chat": 16,
+      "started_at_unix": 1790508998.6579032,
+      "request_bytes": 32294,
+      "status": 200,
+      "accounted_cny": 0.020346,
+      "elapsed_seconds": 1.193,
+      "usage": {
+        "prompt_tokens": 9573,
+        "completion_tokens": 150,
+        "total_tokens": 9723,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 122
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 5989
+      }
+    },
+    {
+      "attempt": 35,
+      "chat": 17,
+      "started_at_unix": 1790508999.8820648,
+      "request_bytes": 13465,
+      "status": 200,
+      "accounted_cny": 0.007936,
+      "elapsed_seconds": 0.795,
+      "usage": {
+        "prompt_tokens": 3604,
+        "completion_tokens": 91,
+        "total_tokens": 3695,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 31
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 148
+      }
+    },
+    {
+      "attempt": 36,
+      "chat": 17,
+      "started_at_unix": 1790509000.694742,
+      "request_bytes": 38382,
+      "status": 200,
+      "accounted_cny": 0.02496,
+      "elapsed_seconds": 1.881,
+      "usage": {
+        "prompt_tokens": 11396,
+        "completion_tokens": 271,
+        "total_tokens": 11667,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 187
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 7812
+      }
+    },
+    {
+      "attempt": 37,
+      "chat": 18,
+      "started_at_unix": 1790509002.6171992,
+      "request_bytes": 14090,
+      "status": 200,
+      "accounted_cny": 0.008802,
+      "elapsed_seconds": 0.92,
+      "usage": {
+        "prompt_tokens": 3737,
+        "completion_tokens": 166,
+        "total_tokens": 3903,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 47
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 153
+      }
+    },
+    {
+      "attempt": 38,
+      "chat": 18,
+      "started_at_unix": 1790509003.5670762,
+      "request_bytes": 45263,
+      "status": 200,
+      "accounted_cny": 0.029566,
+      "elapsed_seconds": 2.257,
+      "usage": {
+        "prompt_tokens": 13483,
+        "completion_tokens": 325,
+        "total_tokens": 13808,
+        "prompt_tokens_details": {
+          "cached_tokens": 3840
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 204
+        },
+        "prompt_cache_hit_tokens": 3840,
+        "prompt_cache_miss_tokens": 9643
+      }
+    },
+    {
+      "attempt": 39,
+      "chat": 18,
+      "started_at_unix": 1790509005.848732,
+      "request_bytes": 66595,
+      "status": 200,
+      "accounted_cny": 0.041534,
+      "elapsed_seconds": 1.2,
+      "usage": {
+        "prompt_tokens": 20119,
+        "completion_tokens": 162,
+        "total_tokens": 20281,
+        "prompt_tokens_details": {
+          "cached_tokens": 13696
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 36
+        },
+        "prompt_cache_hit_tokens": 13696,
+        "prompt_cache_miss_tokens": 6423
+      }
+    },
+    {
+      "attempt": 40,
+      "chat": 18,
+      "started_at_unix": 1790509007.08273,
+      "request_bytes": 92080,
+      "status": 200,
+      "accounted_cny": 0.05809,
+      "elapsed_seconds": 1.266,
+      "usage": {
+        "prompt_tokens": 28309,
+        "completion_tokens": 184,
+        "total_tokens": 28493,
+        "prompt_tokens_details": {
+          "cached_tokens": 20224
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 55
+        },
+        "prompt_cache_hit_tokens": 20224,
+        "prompt_cache_miss_tokens": 8085
+      }
+    },
+    {
+      "attempt": 41,
+      "chat": 18,
+      "started_at_unix": 1790509008.378152,
+      "request_bytes": 102767,
+      "status": 200,
+      "accounted_cny": 0.065832,
+      "elapsed_seconds": 2.122,
+      "usage": {
+        "prompt_tokens": 31660,
+        "completion_tokens": 314,
+        "total_tokens": 31974,
+        "prompt_tokens_details": {
+          "cached_tokens": 28416
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 195
+        },
+        "prompt_cache_hit_tokens": 28416,
+        "prompt_cache_miss_tokens": 3244
+      }
+    },
+    {
+      "attempt": 42,
+      "chat": 18,
+      "started_at_unix": 1790509010.5322628,
+      "request_bytes": 129386,
+      "status": 200,
+      "accounted_cny": 0.082138,
+      "elapsed_seconds": 1.565,
+      "usage": {
+        "prompt_tokens": 40101,
+        "completion_tokens": 242,
+        "total_tokens": 40343,
+        "prompt_tokens_details": {
+          "cached_tokens": 31872
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 119
+        },
+        "prompt_cache_hit_tokens": 31872,
+        "prompt_cache_miss_tokens": 8229
+      }
+    },
+    {
+      "attempt": 43,
+      "chat": 18,
+      "started_at_unix": 1790509012.128596,
+      "request_bytes": 142442,
+      "status": 200,
+      "accounted_cny": 0.110114,
+      "elapsed_seconds": 14.553,
+      "usage": {
+        "prompt_tokens": 41949,
+        "completion_tokens": 3277,
+        "total_tokens": 45226,
+        "prompt_tokens_details": {
+          "cached_tokens": 2048
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3224
+        },
+        "prompt_cache_hit_tokens": 2048,
+        "prompt_cache_miss_tokens": 39901
+      }
+    },
+    {
+      "attempt": 44,
+      "chat": 19,
+      "started_at_unix": 1790509026.8356538,
+      "request_bytes": 13520,
+      "status": 200,
+      "accounted_cny": 0.011114,
+      "elapsed_seconds": 2.386,
+      "usage": {
+        "prompt_tokens": 3629,
+        "completion_tokens": 482,
+        "total_tokens": 4111,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 292
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 173
+      }
+    },
+    {
+      "attempt": 45,
+      "chat": 19,
+      "started_at_unix": 1790509029.2541592,
+      "request_bytes": 30684,
+      "status": 200,
+      "accounted_cny": 0.019698,
+      "elapsed_seconds": 1.215,
+      "usage": {
+        "prompt_tokens": 9273,
+        "completion_tokens": 144,
+        "total_tokens": 9417,
+        "prompt_tokens_details": {
+          "cached_tokens": 4096
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 70
+        },
+        "prompt_cache_hit_tokens": 4096,
+        "prompt_cache_miss_tokens": 5177
+      }
+    },
+    {
+      "attempt": 46,
+      "chat": 19,
+      "started_at_unix": 1790509030.497207,
+      "request_bytes": 49694,
+      "status": 200,
+      "accounted_cny": 0.032596,
+      "elapsed_seconds": 1.481,
+      "usage": {
+        "prompt_tokens": 15306,
+        "completion_tokens": 248,
+        "total_tokens": 15554,
+        "prompt_tokens_details": {
+          "cached_tokens": 9344
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 90
+        },
+        "prompt_cache_hit_tokens": 9344,
+        "prompt_cache_miss_tokens": 5962
+      }
+    },
+    {
+      "attempt": 47,
+      "chat": 19,
+      "started_at_unix": 1790509032.054755,
+      "request_bytes": 96709,
+      "status": 200,
+      "accounted_cny": 0.06514,
+      "elapsed_seconds": 2.613,
+      "usage": {
+        "prompt_tokens": 30350,
+        "completion_tokens": 555,
+        "total_tokens": 30905,
+        "prompt_tokens_details": {
+          "cached_tokens": 15488
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 430
+        },
+        "prompt_cache_hit_tokens": 15488,
+        "prompt_cache_miss_tokens": 14862
+      }
+    },
+    {
+      "attempt": 48,
+      "chat": 20,
+      "started_at_unix": 1790509034.758334,
+      "request_bytes": 13488,
+      "status": 200,
+      "accounted_cny": 0.009644,
+      "elapsed_seconds": 1.964,
+      "usage": {
+        "prompt_tokens": 3614,
+        "completion_tokens": 302,
+        "total_tokens": 3916,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 164
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 158
+      }
+    },
+    {
+      "attempt": 49,
+      "chat": 20,
+      "started_at_unix": 1790509036.744627,
+      "request_bytes": 26668,
+      "status": 200,
+      "accounted_cny": 0.016976,
+      "elapsed_seconds": 1.6,
+      "usage": {
+        "prompt_tokens": 7772,
+        "completion_tokens": 179,
+        "total_tokens": 7951,
+        "prompt_tokens_details": {
+          "cached_tokens": 3840
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 110
+        },
+        "prompt_cache_hit_tokens": 3840,
+        "prompt_cache_miss_tokens": 3932
+      }
+    },
+    {
+      "attempt": 50,
+      "chat": 21,
+      "started_at_unix": 1790509038.3919191,
+      "request_bytes": 13477,
+      "status": 200,
+      "accounted_cny": 0.00851,
+      "elapsed_seconds": 0.834,
+      "usage": {
+        "prompt_tokens": 3607,
+        "completion_tokens": 162,
+        "total_tokens": 3769,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 77
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 151
+      }
+    },
+    {
+      "attempt": 51,
+      "chat": 21,
+      "started_at_unix": 1790509039.266437,
+      "request_bytes": 29661,
+      "status": 200,
+      "accounted_cny": 0.018392,
+      "elapsed_seconds": 1.075,
+      "usage": {
+        "prompt_tokens": 8668,
+        "completion_tokens": 132,
+        "total_tokens": 8800,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 49
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 4956
+      }
+    },
+    {
+      "attempt": 52,
+      "chat": 21,
+      "started_at_unix": 1790509040.3532858,
+      "request_bytes": 30429,
+      "status": 200,
+      "accounted_cny": 0.019162,
+      "elapsed_seconds": 1.278,
+      "usage": {
+        "prompt_tokens": 8925,
+        "completion_tokens": 164,
+        "total_tokens": 9089,
+        "prompt_tokens_details": {
+          "cached_tokens": 8704
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 91
+        },
+        "prompt_cache_hit_tokens": 8704,
+        "prompt_cache_miss_tokens": 221
+      }
+    },
+    {
+      "attempt": 53,
+      "chat": 22,
+      "started_at_unix": 1790509041.6717062,
+      "request_bytes": 13503,
+      "status": 200,
+      "accounted_cny": 0.008846,
+      "elapsed_seconds": 1.351,
+      "usage": {
+        "prompt_tokens": 3615,
+        "completion_tokens": 202,
+        "total_tokens": 3817,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 83
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 159
+      }
+    },
+    {
+      "attempt": 54,
+      "chat": 22,
+      "started_at_unix": 1790509043.054023,
+      "request_bytes": 29969,
+      "status": 200,
+      "accounted_cny": 0.019082,
+      "elapsed_seconds": 1.248,
+      "usage": {
+        "prompt_tokens": 8841,
+        "completion_tokens": 175,
+        "total_tokens": 9016,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 119
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 5129
+      }
+    },
+    {
+      "attempt": 55,
+      "chat": 22,
+      "started_at_unix": 1790509044.322261,
+      "request_bytes": 45884,
+      "status": 200,
+      "accounted_cny": 0.03014,
+      "elapsed_seconds": 2.08,
+      "usage": {
+        "prompt_tokens": 13770,
+        "completion_tokens": 325,
+        "total_tokens": 14095,
+        "prompt_tokens_details": {
+          "cached_tokens": 8960
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 230
+        },
+        "prompt_cache_hit_tokens": 8960,
+        "prompt_cache_miss_tokens": 4810
+      }
+    },
+    {
+      "attempt": 56,
+      "chat": 23,
+      "started_at_unix": 1790509046.4659042,
+      "request_bytes": 13490,
+      "status": 200,
+      "accounted_cny": 0.008822,
+      "elapsed_seconds": 1.104,
+      "usage": {
+        "prompt_tokens": 3615,
+        "completion_tokens": 199,
+        "total_tokens": 3814,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 70
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 159
+      }
+    },
+    {
+      "attempt": 57,
+      "chat": 23,
+      "started_at_unix": 1790509047.598649,
+      "request_bytes": 30191,
+      "status": 200,
+      "accounted_cny": 0.020006,
+      "elapsed_seconds": 1.701,
+      "usage": {
+        "prompt_tokens": 8903,
+        "completion_tokens": 275,
+        "total_tokens": 9178,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 204
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 5191
+      }
+    },
+    {
+      "attempt": 58,
+      "chat": 24,
+      "started_at_unix": 1790509049.3608708,
+      "request_bytes": 13489,
+      "status": 200,
+      "accounted_cny": 0.01035,
+      "elapsed_seconds": 1.495,
+      "usage": {
+        "prompt_tokens": 3619,
+        "completion_tokens": 389,
+        "total_tokens": 4008,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 78
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 163
+      }
+    },
+    {
+      "attempt": 59,
+      "chat": 24,
+      "started_at_unix": 1790509050.922773,
+      "request_bytes": 49371,
+      "status": 200,
+      "accounted_cny": 0.03265,
+      "elapsed_seconds": 2.53,
+      "usage": {
+        "prompt_tokens": 15093,
+        "completion_tokens": 308,
+        "total_tokens": 15401,
+        "prompt_tokens_details": {
+          "cached_tokens": 3968
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 152
+        },
+        "prompt_cache_hit_tokens": 3968,
+        "prompt_cache_miss_tokens": 11125
+      }
+    },
+    {
+      "attempt": 60,
+      "chat": 24,
+      "started_at_unix": 1790509053.537014,
+      "request_bytes": 102644,
+      "status": 200,
+      "accounted_cny": 0.067556,
+      "elapsed_seconds": 2.153,
+      "usage": {
+        "prompt_tokens": 32234,
+        "completion_tokens": 386,
+        "total_tokens": 32620,
+        "prompt_tokens_details": {
+          "cached_tokens": 15360
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 162
+        },
+        "prompt_cache_hit_tokens": 15360,
+        "prompt_cache_miss_tokens": 16874
+      }
+    },
+    {
+      "attempt": 61,
+      "chat": 24,
+      "started_at_unix": 1790509055.777604,
+      "request_bytes": 113598,
+      "status": 200,
+      "accounted_cny": 0.074584,
+      "elapsed_seconds": 2.035,
+      "usage": {
+        "prompt_tokens": 35828,
+        "completion_tokens": 366,
+        "total_tokens": 36194,
+        "prompt_tokens_details": {
+          "cached_tokens": 32512
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 170
+        },
+        "prompt_cache_hit_tokens": 32512,
+        "prompt_cache_miss_tokens": 3316
+      }
+    },
+    {
+      "attempt": 62,
+      "chat": 24,
+      "started_at_unix": 1790509057.909725,
+      "request_bytes": 135974,
+      "status": 200,
+      "accounted_cny": 0.088892,
+      "elapsed_seconds": 2.461,
+      "usage": {
+        "prompt_tokens": 42818,
+        "completion_tokens": 407,
+        "total_tokens": 43225,
+        "prompt_tokens_details": {
+          "cached_tokens": 36096
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 232
+        },
+        "prompt_cache_hit_tokens": 36096,
+        "prompt_cache_miss_tokens": 6722
+      }
+    },
+    {
+      "attempt": 63,
+      "chat": 24,
+      "started_at_unix": 1790509060.47316,
+      "request_bytes": 183625,
+      "status": 200,
+      "accounted_cny": 0.119056,
+      "elapsed_seconds": 2.913,
+      "usage": {
+        "prompt_tokens": 57756,
+        "completion_tokens": 443,
+        "total_tokens": 58199,
+        "prompt_tokens_details": {
+          "cached_tokens": 43136
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 265
+        },
+        "prompt_cache_hit_tokens": 43136,
+        "prompt_cache_miss_tokens": 14620
+      }
+    },
+    {
+      "attempt": 64,
+      "chat": 24,
+      "started_at_unix": 1790509063.486028,
+      "request_bytes": 195757,
+      "status": 200,
+      "accounted_cny": 0.12211,
+      "elapsed_seconds": 3.633,
+      "usage": {
+        "prompt_tokens": 58835,
+        "completion_tokens": 555,
+        "total_tokens": 59390,
+        "prompt_tokens_details": {
+          "cached_tokens": 1920
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 503
+        },
+        "prompt_cache_hit_tokens": 1920,
+        "prompt_cache_miss_tokens": 56915
+      }
+    },
+    {
+      "attempt": 65,
+      "chat": 25,
+      "started_at_unix": 1790509067.342056,
+      "request_bytes": 13452,
+      "status": 200,
+      "accounted_cny": 0.008462,
+      "elapsed_seconds": 1.016,
+      "usage": {
+        "prompt_tokens": 3603,
+        "completion_tokens": 157,
+        "total_tokens": 3760,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 92
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 147
+      }
+    },
+    {
+      "attempt": 66,
+      "chat": 25,
+      "started_at_unix": 1790509068.365868,
+      "request_bytes": 14385,
+      "status": 200,
+      "accounted_cny": 0.00809,
+      "elapsed_seconds": 0.57,
+      "usage": {
+        "prompt_tokens": 3885,
+        "completion_tokens": 40,
+        "total_tokens": 3925,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 173
+      }
+    },
+    {
+      "attempt": 67,
+      "chat": 26,
+      "started_at_unix": 1790509068.974581,
+      "request_bytes": 14044,
+      "status": 200,
+      "accounted_cny": 0.00835,
+      "elapsed_seconds": 0.919,
+      "usage": {
+        "prompt_tokens": 3731,
+        "completion_tokens": 111,
+        "total_tokens": 3842,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 46
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 147
+      }
+    },
+    {
+      "attempt": 68,
+      "chat": 26,
+      "started_at_unix": 1790509069.906393,
+      "request_bytes": 14777,
+      "status": 200,
+      "accounted_cny": 0.008254,
+      "elapsed_seconds": 0.79,
+      "usage": {
+        "prompt_tokens": 3967,
+        "completion_tokens": 40,
+        "total_tokens": 4007,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 255
+      }
+    },
+    {
+      "attempt": 69,
+      "chat": 27,
+      "started_at_unix": 1790509070.738878,
+      "request_bytes": 14211,
+      "status": 200,
+      "accounted_cny": 0.010154,
+      "elapsed_seconds": 1.716,
+      "usage": {
+        "prompt_tokens": 3769,
+        "completion_tokens": 327,
+        "total_tokens": 4096,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 215
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 185
+      }
+    },
+    {
+      "attempt": 70,
+      "chat": 27,
+      "started_at_unix": 1790509072.4703228,
+      "request_bytes": 16326,
+      "status": 200,
+      "accounted_cny": 0.009206,
+      "elapsed_seconds": 0.628,
+      "usage": {
+        "prompt_tokens": 4447,
+        "completion_tokens": 39,
+        "total_tokens": 4486,
+        "prompt_tokens_details": {
+          "cached_tokens": 4096
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 4096,
+        "prompt_cache_miss_tokens": 351
+      }
+    },
+    {
+      "attempt": 71,
+      "chat": 28,
+      "started_at_unix": 1790509073.144208,
+      "request_bytes": 13464,
+      "status": 200,
+      "accounted_cny": 0.0096,
+      "elapsed_seconds": 1.672,
+      "usage": {
+        "prompt_tokens": 3608,
+        "completion_tokens": 298,
+        "total_tokens": 3906,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 175
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 152
+      }
+    },
+    {
+      "attempt": 72,
+      "chat": 28,
+      "started_at_unix": 1790509074.855912,
+      "request_bytes": 35694,
+      "status": 200,
+      "accounted_cny": 0.036816,
+      "elapsed_seconds": 9.067,
+      "usage": {
+        "prompt_tokens": 10588,
+        "completion_tokens": 1955,
+        "total_tokens": 12543,
+        "prompt_tokens_details": {
+          "cached_tokens": 3840
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1907
+        },
+        "prompt_cache_hit_tokens": 3840,
+        "prompt_cache_miss_tokens": 6748
+      }
+    },
+    {
+      "attempt": 73,
+      "chat": 29,
+      "started_at_unix": 1790509083.9838772,
+      "request_bytes": 14152,
+      "status": 200,
+      "accounted_cny": 0.008288,
+      "elapsed_seconds": 1.372,
+      "usage": {
+        "prompt_tokens": 3760,
+        "completion_tokens": 96,
+        "total_tokens": 3856,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 28
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 176
+      }
+    },
+    {
+      "attempt": 74,
+      "chat": 29,
+      "started_at_unix": 1790509085.3916008,
+      "request_bytes": 29194,
+      "status": 200,
+      "accounted_cny": 0.018378,
+      "elapsed_seconds": 1.607,
+      "usage": {
+        "prompt_tokens": 8537,
+        "completion_tokens": 163,
+        "total_tokens": 8700,
+        "prompt_tokens_details": {
+          "cached_tokens": 3840
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 119
+        },
+        "prompt_cache_hit_tokens": 3840,
+        "prompt_cache_miss_tokens": 4697
+      }
+    },
+    {
+      "attempt": 75,
+      "chat": 30,
+      "started_at_unix": 1790509087.053674,
+      "request_bytes": 14293,
+      "status": 200,
+      "accounted_cny": 0.00896,
+      "elapsed_seconds": 1.357,
+      "usage": {
+        "prompt_tokens": 3792,
+        "completion_tokens": 172,
+        "total_tokens": 3964,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 47
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 208
+      }
+    },
+    {
+      "attempt": 76,
+      "chat": 30,
+      "started_at_unix": 1790509088.466233,
+      "request_bytes": 34442,
+      "status": 200,
+      "accounted_cny": 0.021554,
+      "elapsed_seconds": 1.59,
+      "usage": {
+        "prompt_tokens": 10069,
+        "completion_tokens": 177,
+        "total_tokens": 10246,
+        "prompt_tokens_details": {
+          "cached_tokens": 3840
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 152
+        },
+        "prompt_cache_hit_tokens": 3840,
+        "prompt_cache_miss_tokens": 6229
+      }
+    },
+    {
+      "attempt": 77,
+      "chat": 31,
+      "started_at_unix": 1790509090.120075,
+      "request_bytes": 13455,
+      "status": 200,
+      "accounted_cny": 0.009014,
+      "elapsed_seconds": 1.688,
+      "usage": {
+        "prompt_tokens": 3603,
+        "completion_tokens": 226,
+        "total_tokens": 3829,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 109
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 147
+      }
+    },
+    {
+      "attempt": 78,
+      "chat": 31,
+      "started_at_unix": 1790509091.842623,
+      "request_bytes": 30017,
+      "status": 200,
+      "accounted_cny": 0.019128,
+      "elapsed_seconds": 1.575,
+      "usage": {
+        "prompt_tokens": 8852,
+        "completion_tokens": 178,
+        "total_tokens": 9030,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 125
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 5140
+      }
+    },
+    {
+      "attempt": 79,
+      "chat": 31,
+      "started_at_unix": 1790509093.456782,
+      "request_bytes": 36273,
+      "status": 200,
+      "accounted_cny": 0.023424,
+      "elapsed_seconds": 1.497,
+      "usage": {
+        "prompt_tokens": 10732,
+        "completion_tokens": 245,
+        "total_tokens": 10977,
+        "prompt_tokens_details": {
+          "cached_tokens": 8960
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 151
+        },
+        "prompt_cache_hit_tokens": 8960,
+        "prompt_cache_miss_tokens": 1772
+      }
+    },
+    {
+      "attempt": 80,
+      "chat": 32,
+      "started_at_unix": 1790509095.010628,
+      "request_bytes": 14079,
+      "status": 200,
+      "accounted_cny": 0.010812,
+      "elapsed_seconds": 2.242,
+      "usage": {
+        "prompt_tokens": 3742,
+        "completion_tokens": 416,
+        "total_tokens": 4158,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 295
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 158
+      }
+    },
+    {
+      "attempt": 81,
+      "chat": 32,
+      "started_at_unix": 1790509097.277296,
+      "request_bytes": 30319,
+      "status": 200,
+      "accounted_cny": 0.020872,
+      "elapsed_seconds": 2.16,
+      "usage": {
+        "prompt_tokens": 8720,
+        "completion_tokens": 429,
+        "total_tokens": 9149,
+        "prompt_tokens_details": {
+          "cached_tokens": 4096
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 340
+        },
+        "prompt_cache_hit_tokens": 4096,
+        "prompt_cache_miss_tokens": 4624
+      }
+    },
+    {
+      "attempt": 82,
+      "chat": 33,
+      "started_at_unix": 1790509099.479445,
+      "request_bytes": 13449,
+      "status": 200,
+      "accounted_cny": 0.009516,
+      "elapsed_seconds": 2.363,
+      "usage": {
+        "prompt_tokens": 3602,
+        "completion_tokens": 289,
+        "total_tokens": 3891,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 274
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 146
+      }
+    },
+    {
+      "attempt": 83,
+      "chat": 34,
+      "started_at_unix": 1790509101.8819258,
+      "request_bytes": 13454,
+      "status": 200,
+      "accounted_cny": 0.008452,
+      "elapsed_seconds": 1.232,
+      "usage": {
+        "prompt_tokens": 3606,
+        "completion_tokens": 155,
+        "total_tokens": 3761,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 78
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 150
+      }
+    },
+    {
+      "attempt": 84,
+      "chat": 34,
+      "started_at_unix": 1790509103.1619709,
+      "request_bytes": 62571,
+      "status": 200,
+      "accounted_cny": 0.041578,
+      "elapsed_seconds": 2.753,
+      "usage": {
+        "prompt_tokens": 19465,
+        "completion_tokens": 331,
+        "total_tokens": 19796,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 316
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 15753
+      }
+    },
+    {
+      "attempt": 85,
+      "chat": 35,
+      "started_at_unix": 1790509105.9565399,
+      "request_bytes": 13459,
+      "status": 200,
+      "accounted_cny": 0.008436,
+      "elapsed_seconds": 1.607,
+      "usage": {
+        "prompt_tokens": 3602,
+        "completion_tokens": 154,
+        "total_tokens": 3756,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 45
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 146
+      }
+    },
+    {
+      "attempt": 86,
+      "chat": 35,
+      "started_at_unix": 1790509107.595198,
+      "request_bytes": 35787,
+      "status": 200,
+      "accounted_cny": 0.022178,
+      "elapsed_seconds": 1.026,
+      "usage": {
+        "prompt_tokens": 10689,
+        "completion_tokens": 100,
+        "total_tokens": 10789,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 85
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 6977
+      }
+    },
+    {
+      "attempt": 87,
+      "chat": 36,
+      "started_at_unix": 1790509108.654279,
+      "request_bytes": 13444,
+      "status": 200,
+      "accounted_cny": 0.0088,
+      "elapsed_seconds": 1.406,
+      "usage": {
+        "prompt_tokens": 3600,
+        "completion_tokens": 200,
+        "total_tokens": 3800,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 185
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 144
+      }
+    },
+    {
+      "attempt": 88,
+      "chat": 37,
+      "started_at_unix": 1790509110.0894551,
+      "request_bytes": 13482,
+      "status": 200,
+      "accounted_cny": 0.008458,
+      "elapsed_seconds": 1.096,
+      "usage": {
+        "prompt_tokens": 3609,
+        "completion_tokens": 155,
+        "total_tokens": 3764,
+        "prompt_tokens_details": {
+          "cached_tokens": 3456
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 35
+        },
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 153
+      }
+    },
+    {
+      "attempt": 89,
+      "chat": 37,
+      "started_at_unix": 1790509111.236361,
+      "request_bytes": 51422,
+      "status": 200,
+      "accounted_cny": 0.032976,
+      "elapsed_seconds": 1.238,
+      "usage": {
+        "prompt_tokens": 15712,
+        "completion_tokens": 194,
+        "total_tokens": 15906,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 66
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 12000
+      }
+    },
+    {
+      "attempt": 90,
+      "chat": 37,
+      "started_at_unix": 1790509112.525624,
+      "request_bytes": 74004,
+      "status": 200,
+      "accounted_cny": 0.04714,
+      "elapsed_seconds": 1.448,
+      "usage": {
+        "prompt_tokens": 22834,
+        "completion_tokens": 184,
+        "total_tokens": 23018,
+        "prompt_tokens_details": {
+          "cached_tokens": 15872
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 52
+        },
+        "prompt_cache_hit_tokens": 15872,
+        "prompt_cache_miss_tokens": 6962
+      }
+    },
+    {
+      "attempt": 91,
+      "chat": 37,
+      "started_at_unix": 1790509114.037228,
+      "request_bytes": 107026,
+      "status": 200,
+      "accounted_cny": 0.070244,
+      "elapsed_seconds": 2.845,
+      "usage": {
+        "prompt_tokens": 33362,
+        "completion_tokens": 440,
+        "total_tokens": 33802,
+        "prompt_tokens_details": {
+          "cached_tokens": 22912
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 408
+        },
+        "prompt_cache_hit_tokens": 22912,
+        "prompt_cache_miss_tokens": 10450
+      }
+    }
+  ],
+  "chat_count": 39,
+  "active_chat": 39,
+  "conservative_committed_cny": 8.790046,
+  "remaining_cny": 41.209954
+}
