@@ -1,0 +1,470 @@
+FF..F                                                                    [100%]
+=================================== FAILURES ===================================
+___________________________________ test_c07 ___________________________________
+
+content = '{"answer_type":"doc","facts":[{"evidence_id":"doc-df08a01a36e813430e71"},{"evidence_id":"doc-296c228cd1eb2705ea46"},{"evidence_id":"doc-c89f01fdfcdd69acebdc"}]}'
+evidence = [{'_call_id': 'call_02_w7jLj0YEQK9dFM2oK0ay8960', 'tool': 'query_metrics', 'params': {'start': '2026-05-01', 'end': '2...product_id': 'P11', ...}, {'start': '2026-05-01', 'end': '2026-08-31', 'store_id': 'S03', 'product_id': 'P11', ...}]}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+>               raise ValueError('数据回答必须使用 data 结果引用')
+E               ValueError: 数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:14: ValueError
+
+The above exception was the direct cause of the following exception:
+
+service = <kbqa.service.Service object at 0x109394bf0>
+
+    def test_c07(service):
+>       answer, _ = replay(service, 13)
+                    ^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-optional-rescue/test_rescue.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-optional-rescue/test_rescue.py:58: in replay
+    answer = engine.answer(plan, trace, [])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:95: in answer
+    return self._finalise(plan, reply.content, evidence, retrieved, trace, tool_failures)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:215: in _finalise
+    answer = render_data(content, evidence, self.answerer.catalog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+content = '{"answer_type":"doc","facts":[{"evidence_id":"doc-df08a01a36e813430e71"},{"evidence_id":"doc-296c228cd1eb2705ea46"},{"evidence_id":"doc-c89f01fdfcdd69acebdc"}]}'
+evidence = [{'_call_id': 'call_02_w7jLj0YEQK9dFM2oK0ay8960', 'tool': 'query_metrics', 'params': {'start': '2026-05-01', 'end': '2...product_id': 'P11', ...}, {'start': '2026-05-01', 'end': '2026-08-31', 'store_id': 'S03', 'product_id': 'P11', ...}]}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+                raise ValueError('数据回答必须使用 data 结果引用')
+            selected = payload['results']
+            if not isinstance(selected, list) or not 1 <= len(selected) <= 3:
+                raise ValueError('一次选取 1 至 3 个结果')
+            calls = {e['_call_id']: e for e in evidence}
+            sentences, used = [], []
+            for selection in selected:
+                if not isinstance(selection, dict) or set(selection) != {'call_id', 'metric'}:
+                    raise ValueError('只允许 call_id 与 metric，数值由代码生成')
+                metric = selection['metric']
+                if metric not in R.METRIC_LABELS:
+                    raise ValueError('未知指标')
+                item = calls.get(selection['call_id'])
+                if item is None:
+                    raise ValueError('引用的调用不存在或未成功')
+                params, result, tool = item['params'], item['result'], item['tool']
+                def scope(value):
+                    store = catalog.store_name(value['store_id']) + ' ' + value['store_id'] if value.get('store_id') else '全部门店'
+                    product = catalog.product_name(value['product_id']) + ' ' + value['product_id'] if value.get('product_id') else ''
+                    return R.scope_label((value['start'], value['end']), store, product)
+                if tool == 'query_metrics':
+                    sentence = '%s：%s %s。' % (scope(result), R.METRIC_LABELS[metric], R.metric_value(metric, result))
+                    if metric == 'aov' and result['aov'] is None:
+                        sentence = '%s：没有有效订单，客单价无法计算。' % scope(result)
+                elif tool == 'compare_periods':
+                    sentence = R.describe_compare(result, metric, scope(result['period_a']), scope(result['period_b']))
+                elif tool == 'payment_mix':
+                    sentence = R.describe_payment(result, scope(params))
+                elif tool == 'top_products':
+                    sentence = R.describe_top(result, scope(params), limit=params.get('limit', 3))
+                elif tool == 'by_store':
+                    sentence = R.describe_by_store(result, scope(params))
+                elif tool == 'by_store_category':
+                    sentence = R.describe_category(result, scope(params))
+                elif tool == 'daily_metrics' and metric == 'net_revenue':
+                    sentence = R.describe_daily(result, scope(params))
+                else:
+                    raise ValueError('这个工具结果暂不支持该数据回答，请改用区间指标查询')
+                sentences.append(sentence)
+                public = {k: item[k] for k in ('tool', 'params', 'result')}
+                if public not in used:
+                    used.append(public)
+            text = '\n'.join(sentences)
+            if len(text) > 1200 or len(set(re.findall(r'\d+(?:\.\d+)?', text))) > 20:
+                raise ValueError('回答超过契约容量，请缩小查询范围')
+            if any(len(json.dumps(e['result'], ensure_ascii=False).encode()) > 4096 for e in used):
+                raise ValueError('证据超过契约容量，请缩小查询范围')
+            def count_numbers(value):
+                if isinstance(value, dict):
+                    return sum(count_numbers(v) for v in value.values())
+                if isinstance(value, list):
+                    return sum(count_numbers(v) for v in value)
+                return int(type(value) in (int, float))
+            if sum(count_numbers(e['result']) for e in used) > 60:
+                raise ValueError('证据数字过多，请缩小查询范围')
+            return Answer(text, 'data', data_evidence=used)
+        except (ValueError, TypeError, KeyError, AttributeError) as exc:
+>           raise LLMError('data_binding', '数据回答未通过字段与查询绑定：%s' % exc) from exc
+E           kbqa.llm.LLMError: data_binding: 数据回答未通过字段与查询绑定：数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:71: LLMError
+___________________________________ test_h06 ___________________________________
+
+payload = {'answer_type': 'hybrid', 'mode': 'anomaly', 'results': [{'call_id': 'call_01_CHiay6hqqHngrqCRfz1F0319', 'metric': 'net_revenue'}], 'facts': []}
+evidence = [{'_call_id': 'call_00_vseXJ6I2BxlONmKNXoVV0229', 'tool': 'query_metrics', 'params': {'start': '2026-08-17', 'end': '2...ers': {'delta': -107, 'pct': -100.0, 'direction': '跌'}, 'aov': {'delta': None, 'pct': None, 'direction': '未知'}, ...}}}]
+retrieved = <kbqa.document_evidence.DocumentEvidence object at 0x10a0997c0>
+plan = Plan(question='S02 在 8 月 17 日到 19 日为什么一分钱营业额都没有？', standalone='S02 在 8 月 17 日到 19 日为什么一分钱营业额都没有？', search_query='S02 在...'store_id': 'S02', 'product_id': None, 'metric': 'net_revenue', 'window': ('2026-08-17', '2026-08-19'), 'kind': 'doc'})
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+trace = Trace(trace_id='replay-24', question='S02 在 8 月 17 日到 19 日为什么一分钱营业额都没有？', session_id=None, started_at='2026-09-27T19:2...etric":"net_revenue"}],"facts":[]}\n\n注意，用户问的是"为什么"，没有找到原因，facts为空。这样符合协议。', 'took_ms': 3583.3}], _t0=952251.347025083)
+search_performed = True
+tool_failures = [{'call_id': 'call_00_qkDGdc55tem7q74uMPg48436', 'tool': 'search_kb'}, {'call_id': 'call_01_DaHxTBaz7USUl3dI81VD5474',..._r4htPrhb2do7e5qCQzDQ3938', 'tool': 'search_kb'}, {'call_id': 'call_03_ACZDUZGwlr9oIg6XL2dA0738', 'tool': 'search_kb'}]
+
+    def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_performed=False, tool_failures=None):
+        try:
+            if set(payload) != {'answer_type','mode','results','facts'} or payload['answer_type']!='hybrid':
+                raise ValueError('混合回答只允许mode/results/facts引用，不接受自由答案或数字')
+            mode = payload['mode']
+            if mode not in {'target','anomaly','payment','price'}:
+                raise ValueError('未知混合操作')
+            refs = payload['results']
+            if not isinstance(refs,list) or len(refs)!=1 or set(refs[0])!={'call_id','metric'}:
+                raise ValueError('混合操作须选一个明确的查询调用及指标')
+            item = next((e for e in evidence if e['_call_id']==refs[0]['call_id']),None)
+            if item is None:raise ValueError('查询调用不存在或失败')
+            supplementary=_validate_query(item,plan,mode)
+            metric, tool, result = refs[0]['metric'], item['tool'], item['result']
+            params = dict(item['params'])
+            expected_tools = {'target':{'query_metrics'},'anomaly':{'query_metrics','compare_periods'},'payment':{'payment_mix'},'price':{'unit_price_check'}}
+            if tool not in expected_tools[mode]:raise ValueError('工具不能用于所选混合操作')
+            if mode=='anomaly' and metric!=plan.metric and not supplementary or mode=='price' and metric!='unit_price' or mode=='payment' and metric not in {'share_orders','share_revenue'}:
+                raise ValueError('指标与混合操作或问题不一致')
+            if mode=='target' and plan.slots.get('metric_explicit') and metric!=plan.metric:
+                raise ValueError('目标指标不能替换用户明确询问的实绩指标')
+            if mode=='payment' and ('金额' in plan.standalone or '营业额' in plan.standalone) and metric!='share_revenue':
+                raise ValueError('金额占比不能替换为订单占比')
+            if mode=='payment' and '订单' in plan.standalone and '金额' not in plan.standalone and metric!='share_orders':
+                raise ValueError('订单占比不能替换为金额占比')
+            if tool=='compare_periods':params.update(start=params['start_b'],end=params['end_b'])
+            facts = payload['facts']
+            if not isinstance(facts,list) or len(facts)>3:raise ValueError('最多选三条相关事实')
+            chosen=[];citations=[];bindings=[];filtered=[];subject_context={}
+            allowed_roles={'target':{'target'},'anomaly':{'reason'},'payment':{'reason'},'price':{'price','price_policy'}}[mode]
+            for ref in facts:
+                if not isinstance(ref,dict) or set(ref)!={'evidence_id','role'} or ref['role'] not in allowed_roles:
+                    raise ValueError('文档角色不符合混合操作')
+                doc=retrieved.items.get(ref['evidence_id'])
+                if not doc or any(d['evidence_id']==doc['evidence_id'] for _,d in chosen):raise ValueError('文档身份无效或重复')
+                if ref['role']=='reason':
+                    try:
+                        _fact_scope(doc,params,catalog)
+                        source_store, _ = catalog.find_store(_source(doc))
+                        if params.get('store_id') and source_store != params['store_id'] and params['store_id'] not in (doc['metadata'].get('stores') or []):
+                            raise ValueError('事件没有支持所问门店的主体依据')
+                        event_window=_event_scope(doc,params)
+                    except ValueError as exc:
+                        filtered.append(dict(evidence_id=doc['evidence_id'],reason=str(exc)))
+                        continue
+                    bindings.append(dict(role='reason',evidence_id=doc['evidence_id'],event_windows=event_window,scope=params))
+                else:
+                    _fact_scope(doc,params,catalog,product=ref['role']!='price_policy',price_subset=ref['role']=='price')
+                if ref['role']=='price_policy':
+                    if retrieved.facts.index.docs_meta[doc['doc_id']].get('estimates_only'):
+                        raise ValueError('估算材料不能代替价格口径')
+                    if doc['scope'].get('as_of')!=(plan.as_of.isoformat() if plan.as_of else None):
+                        raise ValueError('价格口径的核对时点与问题不同')
+                chosen.append((ref['role'],doc));citations.append(retrieved.citation(doc))
+                # When the selected clause uses "this product", its actual local
+                # heading is part of the support chain, not an implicit label.
+                pid=params.get('product_id')
+                if pid and catalog.find_product(doc['quote']+' '+doc['metadata'].get('title',''))[0]!=pid:
+                    context=next((c for c in reversed(doc['context']) if catalog.find_product(c['quote'])[0]==pid),None)
+                    if context:
+                        cite=dict(doc_id=doc['doc_id'],chunk_id=doc['chunk_id'],scope=doc['scope'],metadata=doc['metadata'],**context)
+                        if cite not in citations:citations.append(cite)
+                        subject_context[doc['evidence_id']]=context['quote'].strip('# \n')
+            if filtered:
+                trace.step('mixed_evidence_filtered',{'rejected':filtered})
+            if supplementary and not chosen:
+                raise ValueError('补充经营数字不能代替没有依据的文档原因')
+            public={k:item[k] for k in ('tool','params','result')}
+            public['call_id']=item['_call_id']
+            calculations=[]
+            if mode=='target':
+                if len(chosen)!=1:raise ValueError('达标需要一个确定目标')
+                doc=chosen[0][1]
+                if retrieved.facts.index.docs_meta[doc['doc_id']].get('estimates_only'):raise ValueError('估算材料不能作为正式目标')
+                targets=list(_TARGET.finditer(compact(doc['quote'])))
+                if len(targets)!=1:raise ValueError('目标数值或单位不明确')
+                target=targets[0];unit=target['unit'];attr=target['attribute']
+                if params.get('store_id') and re.search(r'全门店|全部门店|五家门店', doc['quote']):
+                    raise ValueError('全门店目标不能和单店实绩比较')
+                bound_metric='qty' if unit in {'份','杯','件'} else 'orders' if unit=='单' else 'net_revenue'
+                if metric!=bound_metric or (attr=='销量' and bound_metric!='qty') or (attr=='订单数' and bound_metric!='orders') or (attr in {'营业额','净营业额','销售额'} and bound_metric!='net_revenue'):
+                    raise ValueError('目标属性、单位与实际指标不能互换')
+                window=_target_window(doc)
+                if parse_time(plan.standalone,plan.as_of).first_month:
+                    if '首月' not in doc['quote'] or window[0][:7] != doc['metadata']['effective_from'][:7]:
+                        raise ValueError('首月目标必须明确且与上市通知生效月份一致')
+                if window!=(params['start'],params['end']):raise ValueError('目标与实绩统计区间不同')
+                actual=Decimal(str(result[metric]));goal=Decimal(target['value'].replace(',',''));gap=actual-goal
+                sentence=R.describe_metrics(result,R.scope_label(window,catalog.store_name(params.get('store_id')) if params.get('store_id') else '全部门店',catalog.product_name(params.get('product_id')) if params.get('product_id') else ''),metric)
+                formatter=R.money if unit=='元' else R.count
+                sentence+=f'目标为 {formatter(goal)} {unit}；'+('已达标，超出' if gap>=0 else '未达标，差')+f' {formatter(abs(gap))} {unit}。'
+                calculations.append(dict(operation='actual_minus_target',actual=dict(call_id=item['_call_id'],field=metric,value=float(actual)),target=dict(evidence_id=doc['evidence_id'],quote=doc['quote'],value=float(goal),unit=unit),result=float(gap),met=gap>=0))
+                bindings.append(dict(role='target',evidence_id=doc['evidence_id'],metric=bound_metric,window=window,scope=params))
+            elif mode=='anomaly':
+                pure=render_data(json.dumps(dict(answer_type='data',results=refs)),evidence,catalog)
+                sentence=pure.answer
+                if tool=='compare_periods':
+                    calculations.append(dict(operation='period_b_minus_period_a',metric=metric,call_id=item['_call_id'],a=result['period_a'][metric],b=result['period_b'][metric],result=result['delta'][metric]))
+            elif mode=='payment':
+                available=result['payments']; focus=[p for p in available if p in plan.standalone]
+                if not focus and any(p in plan.standalone for p in ('现金','微信','支付宝','银行卡','会员储值')):
+                    # Missing requested category is a real zero, not every other category.
+                    focus=[p for p in ('现金','微信','支付宝','银行卡','会员储值') if p in plan.standalone]
+                if not focus:focus=list(available)
+                lines=[]
+                field='orders' if metric=='share_orders' else 'net_revenue';denom='total_orders' if field=='orders' else 'total_net_revenue'
+                unit='单' if field=='orders' else '元';label='订单数' if field=='orders' else '净营业额'
+                formatter=R.count if field=='orders' else R.money
+                for payment in focus:
+                    numerator=available.get(payment,{}).get(field,0);total=result[denom]
+                    pct=round2(Decimal(str(numerator))*100/Decimal(str(total))) if total else None
+                    lines.append(f'{payment}按{label}占比 '+(f'{pct:.2f}%' if pct is not None else '无法计算（分母为零）')+f'（{formatter(numerator)} / {formatter(total)} {unit}）')
+                    calculations.append(dict(operation='share_percent',call_id=item['_call_id'],numerator_field=f'payments.{payment}.{field}',denominator_field=denom,numerator=numerator,denominator=total,result=pct))
+                sentence=f"{params['start']} 至 {params['end']} {catalog.store_name(params.get('store_id')) if params.get('store_id') else '全部门店'}："+'；'.join(lines)+'。'
+            else:
+                prices=[d for role,d in chosen if role=='price']
+                if len(prices)!=1:raise ValueError('现行价格须选择一个适用价格原文')
+                doc=prices[0];matches=list(_PRICE.finditer(compact(doc['quote'])))
+                if len(matches)!=1 or retrieved.facts.index.docs_meta[doc['doc_id']].get('estimates_only'):raise ValueError('售价不明确或只是估算')
+                notice_stores=_notice_stores(doc,params,catalog)
+                current=Decimal(matches[0]['value']);latest=result['latest_price'];table=result['table_unit_price']
+                scope='（适用门店：'+'、'.join(notice_stores)+'）' if notice_stores else ''
+                sentence=f"{catalog.product_name(params['product_id'])}{scope} 适用通知售价为 {current:.2f} 元。"
+                if latest is None:sentence+='查询区间没有成交记录，无法核对实收单价。'
+                elif (not params.get('store_id') and notice_stores) or (params['start']==params['end'] and len(result['observed_unit_prices'])>1):
+                    # Do not let an arbitrary last transaction stand for all stores.
+                    # Every displayed store/price comes from the executed grouping.
+                    groups=result.get('by_store') or {}
+                    sentence+=f"查询区间 {params['start']} 至 {params['end']}："
+                    if groups:
+                        sentence+='；'.join(store+' 实收单价 '+ '、'.join(f'{Decimal(p):.2f}' for p in sorted(bucket,key=Decimal))+' 元' for store,bucket in sorted(groups.items()))+'。'
+                    else:
+                        sentence+='已观测实收单价为 '+ '、'.join(f'{Decimal(p):.2f}' for p in sorted(result['observed_unit_prices'],key=Decimal))+' 元；当前结果未提供各门店分组，不能逐店确认与通知一致。'
+                    bindings.append(dict(role='price',evidence_id=doc['evidence_id'],notice_stores=notice_stores,query_stores=params.get('store_id') or 'all',observed_price_source='by_store' if groups else 'observed_unit_prices',call_id=item['_call_id']))
+                else:sentence+=f"数据库最近成交日 {result['latest_date']} 的一笔实收单价为 {latest:.2f} 元，与通知"+('一致。' if Decimal(str(latest))==current else '不一致；实绩仍以数据库为准，原因需进一步核对。')
+                if table is not None:
+                    delta=current-Decimal(str(table));sentence+=f'维表建档价为 {table:.2f} 元，通知价减建档价为 {delta:.2f} 元；建档价不能代替实际成交查询。'
+                    calculations.append(dict(operation='notice_minus_table_price',notice=dict(evidence_id=doc['evidence_id'],value=float(current),stores=notice_stores),table=dict(call_id=item['_call_id'],field='table_unit_price',value=table),result=float(delta)))
+            if chosen:
+                sources='\n'.join(('材料记载' if supplementary else '同期材料记载' if role=='reason' else '原文依据')+f" {d['doc_id']}"+('（'+subject_context[d['evidence_id']]+'）' if d['evidence_id'] in subject_context else '')+'：'+retrieved.facts.render(d['doc_id'],d['quote']) for role,d in chosen)
+                sentence=(sources+'\n补充数据对照（仅描述查询结果）：'+sentence) if supplementary else sentence+'\n'+sources
+                if mode in {'anomaly','payment'}:sentence+='\n以上是材料记载；未据此估算事件对经营数字的因果影响。'
+            elif mode in {'anomaly','payment'}:
+>               if not search_performed or any(f['tool']=='search_kb' for f in tool_failures or []):raise ValueError('未成功检索，不能将工具失败当作原因未知')
+                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               ValueError: 未成功检索，不能将工具失败当作原因未知
+
+starter/kbqa/mixed_answer.py:311: ValueError
+
+The above exception was the direct cause of the following exception:
+
+service = <kbqa.service.Service object at 0x109394bf0>
+
+    def test_h06(service):
+>       answer, trace = replay(service, 24)
+                        ^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-optional-rescue/test_rescue.py:67: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-optional-rescue/test_rescue.py:58: in replay
+    answer = engine.answer(plan, trace, [])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:95: in answer
+    return self._finalise(plan, reply.content, evidence, retrieved, trace, tool_failures)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:206: in _finalise
+    return render_mixed(structured, evidence, retrieved, plan, self.answerer.catalog, trace,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+payload = {'answer_type': 'hybrid', 'mode': 'anomaly', 'results': [{'call_id': 'call_01_CHiay6hqqHngrqCRfz1F0319', 'metric': 'net_revenue'}], 'facts': []}
+evidence = [{'_call_id': 'call_00_vseXJ6I2BxlONmKNXoVV0229', 'tool': 'query_metrics', 'params': {'start': '2026-08-17', 'end': '2...ers': {'delta': -107, 'pct': -100.0, 'direction': '跌'}, 'aov': {'delta': None, 'pct': None, 'direction': '未知'}, ...}}}]
+retrieved = <kbqa.document_evidence.DocumentEvidence object at 0x10a0997c0>
+plan = Plan(question='S02 在 8 月 17 日到 19 日为什么一分钱营业额都没有？', standalone='S02 在 8 月 17 日到 19 日为什么一分钱营业额都没有？', search_query='S02 在...'store_id': 'S02', 'product_id': None, 'metric': 'net_revenue', 'window': ('2026-08-17', '2026-08-19'), 'kind': 'doc'})
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+trace = Trace(trace_id='replay-24', question='S02 在 8 月 17 日到 19 日为什么一分钱营业额都没有？', session_id=None, started_at='2026-09-27T19:2...etric":"net_revenue"}],"facts":[]}\n\n注意，用户问的是"为什么"，没有找到原因，facts为空。这样符合协议。', 'took_ms': 3583.3}], _t0=952251.347025083)
+search_performed = True
+tool_failures = [{'call_id': 'call_00_qkDGdc55tem7q74uMPg48436', 'tool': 'search_kb'}, {'call_id': 'call_01_DaHxTBaz7USUl3dI81VD5474',..._r4htPrhb2do7e5qCQzDQ3938', 'tool': 'search_kb'}, {'call_id': 'call_03_ACZDUZGwlr9oIg6XL2dA0738', 'tool': 'search_kb'}]
+
+    def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_performed=False, tool_failures=None):
+        try:
+            if set(payload) != {'answer_type','mode','results','facts'} or payload['answer_type']!='hybrid':
+                raise ValueError('混合回答只允许mode/results/facts引用，不接受自由答案或数字')
+            mode = payload['mode']
+            if mode not in {'target','anomaly','payment','price'}:
+                raise ValueError('未知混合操作')
+            refs = payload['results']
+            if not isinstance(refs,list) or len(refs)!=1 or set(refs[0])!={'call_id','metric'}:
+                raise ValueError('混合操作须选一个明确的查询调用及指标')
+            item = next((e for e in evidence if e['_call_id']==refs[0]['call_id']),None)
+            if item is None:raise ValueError('查询调用不存在或失败')
+            supplementary=_validate_query(item,plan,mode)
+            metric, tool, result = refs[0]['metric'], item['tool'], item['result']
+            params = dict(item['params'])
+            expected_tools = {'target':{'query_metrics'},'anomaly':{'query_metrics','compare_periods'},'payment':{'payment_mix'},'price':{'unit_price_check'}}
+            if tool not in expected_tools[mode]:raise ValueError('工具不能用于所选混合操作')
+            if mode=='anomaly' and metric!=plan.metric and not supplementary or mode=='price' and metric!='unit_price' or mode=='payment' and metric not in {'share_orders','share_revenue'}:
+                raise ValueError('指标与混合操作或问题不一致')
+            if mode=='target' and plan.slots.get('metric_explicit') and metric!=plan.metric:
+                raise ValueError('目标指标不能替换用户明确询问的实绩指标')
+            if mode=='payment' and ('金额' in plan.standalone or '营业额' in plan.standalone) and metric!='share_revenue':
+                raise ValueError('金额占比不能替换为订单占比')
+            if mode=='payment' and '订单' in plan.standalone and '金额' not in plan.standalone and metric!='share_orders':
+                raise ValueError('订单占比不能替换为金额占比')
+            if tool=='compare_periods':params.update(start=params['start_b'],end=params['end_b'])
+            facts = payload['facts']
+            if not isinstance(facts,list) or len(facts)>3:raise ValueError('最多选三条相关事实')
+            chosen=[];citations=[];bindings=[];filtered=[];subject_context={}
+            allowed_roles={'target':{'target'},'anomaly':{'reason'},'payment':{'reason'},'price':{'price','price_policy'}}[mode]
+            for ref in facts:
+                if not isinstance(ref,dict) or set(ref)!={'evidence_id','role'} or ref['role'] not in allowed_roles:
+                    raise ValueError('文档角色不符合混合操作')
+                doc=retrieved.items.get(ref['evidence_id'])
+                if not doc or any(d['evidence_id']==doc['evidence_id'] for _,d in chosen):raise ValueError('文档身份无效或重复')
+                if ref['role']=='reason':
+                    try:
+                        _fact_scope(doc,params,catalog)
+                        source_store, _ = catalog.find_store(_source(doc))
+                        if params.get('store_id') and source_store != params['store_id'] and params['store_id'] not in (doc['metadata'].get('stores') or []):
+                            raise ValueError('事件没有支持所问门店的主体依据')
+                        event_window=_event_scope(doc,params)
+                    except ValueError as exc:
+                        filtered.append(dict(evidence_id=doc['evidence_id'],reason=str(exc)))
+                        continue
+                    bindings.append(dict(role='reason',evidence_id=doc['evidence_id'],event_windows=event_window,scope=params))
+                else:
+                    _fact_scope(doc,params,catalog,product=ref['role']!='price_policy',price_subset=ref['role']=='price')
+                if ref['role']=='price_policy':
+                    if retrieved.facts.index.docs_meta[doc['doc_id']].get('estimates_only'):
+                        raise ValueError('估算材料不能代替价格口径')
+                    if doc['scope'].get('as_of')!=(plan.as_of.isoformat() if plan.as_of else None):
+                        raise ValueError('价格口径的核对时点与问题不同')
+                chosen.append((ref['role'],doc));citations.append(retrieved.citation(doc))
+                # When the selected clause uses "this product", its actual local
+                # heading is part of the support chain, not an implicit label.
+                pid=params.get('product_id')
+                if pid and catalog.find_product(doc['quote']+' '+doc['metadata'].get('title',''))[0]!=pid:
+                    context=next((c for c in reversed(doc['context']) if catalog.find_product(c['quote'])[0]==pid),None)
+                    if context:
+                        cite=dict(doc_id=doc['doc_id'],chunk_id=doc['chunk_id'],scope=doc['scope'],metadata=doc['metadata'],**context)
+                        if cite not in citations:citations.append(cite)
+                        subject_context[doc['evidence_id']]=context['quote'].strip('# \n')
+            if filtered:
+                trace.step('mixed_evidence_filtered',{'rejected':filtered})
+            if supplementary and not chosen:
+                raise ValueError('补充经营数字不能代替没有依据的文档原因')
+            public={k:item[k] for k in ('tool','params','result')}
+            public['call_id']=item['_call_id']
+            calculations=[]
+            if mode=='target':
+                if len(chosen)!=1:raise ValueError('达标需要一个确定目标')
+                doc=chosen[0][1]
+                if retrieved.facts.index.docs_meta[doc['doc_id']].get('estimates_only'):raise ValueError('估算材料不能作为正式目标')
+                targets=list(_TARGET.finditer(compact(doc['quote'])))
+                if len(targets)!=1:raise ValueError('目标数值或单位不明确')
+                target=targets[0];unit=target['unit'];attr=target['attribute']
+                if params.get('store_id') and re.search(r'全门店|全部门店|五家门店', doc['quote']):
+                    raise ValueError('全门店目标不能和单店实绩比较')
+                bound_metric='qty' if unit in {'份','杯','件'} else 'orders' if unit=='单' else 'net_revenue'
+                if metric!=bound_metric or (attr=='销量' and bound_metric!='qty') or (attr=='订单数' and bound_metric!='orders') or (attr in {'营业额','净营业额','销售额'} and bound_metric!='net_revenue'):
+                    raise ValueError('目标属性、单位与实际指标不能互换')
+                window=_target_window(doc)
+                if parse_time(plan.standalone,plan.as_of).first_month:
+                    if '首月' not in doc['quote'] or window[0][:7] != doc['metadata']['effective_from'][:7]:
+                        raise ValueError('首月目标必须明确且与上市通知生效月份一致')
+                if window!=(params['start'],params['end']):raise ValueError('目标与实绩统计区间不同')
+                actual=Decimal(str(result[metric]));goal=Decimal(target['value'].replace(',',''));gap=actual-goal
+                sentence=R.describe_metrics(result,R.scope_label(window,catalog.store_name(params.get('store_id')) if params.get('store_id') else '全部门店',catalog.product_name(params.get('product_id')) if params.get('product_id') else ''),metric)
+                formatter=R.money if unit=='元' else R.count
+                sentence+=f'目标为 {formatter(goal)} {unit}；'+('已达标，超出' if gap>=0 else '未达标，差')+f' {formatter(abs(gap))} {unit}。'
+                calculations.append(dict(operation='actual_minus_target',actual=dict(call_id=item['_call_id'],field=metric,value=float(actual)),target=dict(evidence_id=doc['evidence_id'],quote=doc['quote'],value=float(goal),unit=unit),result=float(gap),met=gap>=0))
+                bindings.append(dict(role='target',evidence_id=doc['evidence_id'],metric=bound_metric,window=window,scope=params))
+            elif mode=='anomaly':
+                pure=render_data(json.dumps(dict(answer_type='data',results=refs)),evidence,catalog)
+                sentence=pure.answer
+                if tool=='compare_periods':
+                    calculations.append(dict(operation='period_b_minus_period_a',metric=metric,call_id=item['_call_id'],a=result['period_a'][metric],b=result['period_b'][metric],result=result['delta'][metric]))
+            elif mode=='payment':
+                available=result['payments']; focus=[p for p in available if p in plan.standalone]
+                if not focus and any(p in plan.standalone for p in ('现金','微信','支付宝','银行卡','会员储值')):
+                    # Missing requested category is a real zero, not every other category.
+                    focus=[p for p in ('现金','微信','支付宝','银行卡','会员储值') if p in plan.standalone]
+                if not focus:focus=list(available)
+                lines=[]
+                field='orders' if metric=='share_orders' else 'net_revenue';denom='total_orders' if field=='orders' else 'total_net_revenue'
+                unit='单' if field=='orders' else '元';label='订单数' if field=='orders' else '净营业额'
+                formatter=R.count if field=='orders' else R.money
+                for payment in focus:
+                    numerator=available.get(payment,{}).get(field,0);total=result[denom]
+                    pct=round2(Decimal(str(numerator))*100/Decimal(str(total))) if total else None
+                    lines.append(f'{payment}按{label}占比 '+(f'{pct:.2f}%' if pct is not None else '无法计算（分母为零）')+f'（{formatter(numerator)} / {formatter(total)} {unit}）')
+                    calculations.append(dict(operation='share_percent',call_id=item['_call_id'],numerator_field=f'payments.{payment}.{field}',denominator_field=denom,numerator=numerator,denominator=total,result=pct))
+                sentence=f"{params['start']} 至 {params['end']} {catalog.store_name(params.get('store_id')) if params.get('store_id') else '全部门店'}："+'；'.join(lines)+'。'
+            else:
+                prices=[d for role,d in chosen if role=='price']
+                if len(prices)!=1:raise ValueError('现行价格须选择一个适用价格原文')
+                doc=prices[0];matches=list(_PRICE.finditer(compact(doc['quote'])))
+                if len(matches)!=1 or retrieved.facts.index.docs_meta[doc['doc_id']].get('estimates_only'):raise ValueError('售价不明确或只是估算')
+                notice_stores=_notice_stores(doc,params,catalog)
+                current=Decimal(matches[0]['value']);latest=result['latest_price'];table=result['table_unit_price']
+                scope='（适用门店：'+'、'.join(notice_stores)+'）' if notice_stores else ''
+                sentence=f"{catalog.product_name(params['product_id'])}{scope} 适用通知售价为 {current:.2f} 元。"
+                if latest is None:sentence+='查询区间没有成交记录，无法核对实收单价。'
+                elif (not params.get('store_id') and notice_stores) or (params['start']==params['end'] and len(result['observed_unit_prices'])>1):
+                    # Do not let an arbitrary last transaction stand for all stores.
+                    # Every displayed store/price comes from the executed grouping.
+                    groups=result.get('by_store') or {}
+                    sentence+=f"查询区间 {params['start']} 至 {params['end']}："
+                    if groups:
+                        sentence+='；'.join(store+' 实收单价 '+ '、'.join(f'{Decimal(p):.2f}' for p in sorted(bucket,key=Decimal))+' 元' for store,bucket in sorted(groups.items()))+'。'
+                    else:
+                        sentence+='已观测实收单价为 '+ '、'.join(f'{Decimal(p):.2f}' for p in sorted(result['observed_unit_prices'],key=Decimal))+' 元；当前结果未提供各门店分组，不能逐店确认与通知一致。'
+                    bindings.append(dict(role='price',evidence_id=doc['evidence_id'],notice_stores=notice_stores,query_stores=params.get('store_id') or 'all',observed_price_source='by_store' if groups else 'observed_unit_prices',call_id=item['_call_id']))
+                else:sentence+=f"数据库最近成交日 {result['latest_date']} 的一笔实收单价为 {latest:.2f} 元，与通知"+('一致。' if Decimal(str(latest))==current else '不一致；实绩仍以数据库为准，原因需进一步核对。')
+                if table is not None:
+                    delta=current-Decimal(str(table));sentence+=f'维表建档价为 {table:.2f} 元，通知价减建档价为 {delta:.2f} 元；建档价不能代替实际成交查询。'
+                    calculations.append(dict(operation='notice_minus_table_price',notice=dict(evidence_id=doc['evidence_id'],value=float(current),stores=notice_stores),table=dict(call_id=item['_call_id'],field='table_unit_price',value=table),result=float(delta)))
+            if chosen:
+                sources='\n'.join(('材料记载' if supplementary else '同期材料记载' if role=='reason' else '原文依据')+f" {d['doc_id']}"+('（'+subject_context[d['evidence_id']]+'）' if d['evidence_id'] in subject_context else '')+'：'+retrieved.facts.render(d['doc_id'],d['quote']) for role,d in chosen)
+                sentence=(sources+'\n补充数据对照（仅描述查询结果）：'+sentence) if supplementary else sentence+'\n'+sources
+                if mode in {'anomaly','payment'}:sentence+='\n以上是材料记载；未据此估算事件对经营数字的因果影响。'
+            elif mode in {'anomaly','payment'}:
+                if not search_performed or any(f['tool']=='search_kb' for f in tool_failures or []):raise ValueError('未成功检索，不能将工具失败当作原因未知')
+                sentence+=('已查得经营数字，但所选材料未能同时核验对象、属性与事件日期，原因无法确定。' if filtered else '知识库中本次未找到可核对的对应原因材料，原因无法确定。')
+            public['calculations']=calculations
+            answer=_limits(Answer(sentence,'hybrid' if citations else 'data',citations=citations,data_evidence=[public]))
+            trace.step('mixed_binding',dict(mode=mode,supplementary=supplementary,source_call=item['_call_id'],bindings=bindings,calculations=calculations,selected=[d['evidence_id'] for _,d in chosen]))
+            return answer
+        except (ValueError,TypeError,KeyError,AttributeError,ArithmeticError) as exc:
+>           raise LLMError('mixed_binding','混合回答未通过来源、指标与关系核验：%s'%exc) from exc
+E           kbqa.llm.LLMError: mixed_binding: 混合回答未通过来源、指标与关系核验：未成功检索，不能将工具失败当作原因未知
+
+starter/kbqa/mixed_answer.py:318: LLMError
+_________________________ test_original_h06_trace_size _________________________
+
+    def test_original_h06_trace_size():
+        from kbqa import trace as module
+        saved = original(24)
+        compact = module.compact_trace(saved) if hasattr(module, 'compact_trace') else saved
+>       assert len(json.dumps(compact, ensure_ascii=False, separators=(',', ':')).encode()) <= 2 * 1024 * 1024
+E       assert 3468308 <= ((2 * 1024) * 1024)
+E        +  where 3468308 = len(b'{"trace_id":"t-20260901-0024","session_id":"d7ce34d5be994c02b7a66f80ea9ba54e","question":"S02 \xe5\x9c\xa8 8 \xe6\x9...xa5\xe5\x85\xb7\xe5\xa4\xb1\xe8\xb4\xa5\xe5\xbd\x93\xe4\xbd\x9c\xe5\x8e\x9f\xe5\x9b\xa0\xe6\x9c\xaa\xe7\x9f\xa5\\n"}]}')
+E        +    where b'{"trace_id":"t-20260901-0024","session_id":"d7ce34d5be994c02b7a66f80ea9ba54e","question":"S02 \xe5\x9c\xa8 8 \xe6\x9...xa5\xe5\x85\xb7\xe5\xa4\xb1\xe8\xb4\xa5\xe5\xbd\x93\xe4\xbd\x9c\xe5\x8e\x9f\xe5\x9b\xa0\xe6\x9c\xaa\xe7\x9f\xa5\\n"}]}' = <built-in method encode of str object at 0x531800000>()
+E        +      where <built-in method encode of str object at 0x531800000> = '{"trace_id":"t-20260901-0024","session_id":"d7ce34d5be994c02b7a66f80ea9ba54e","question":"S02 在 8 月 17 日到 19 日为什么一分钱营...'混合回答未通过来源、指标与关系核验：%s\'%exc) from exc\\nkbqa.llm.LLMError: mixed_binding: 混合回答未通过来源、指标与关系核验：未成功检索，不能将工具失败当作原因未知\\n"}]}'.encode
+E        +        where '{"trace_id":"t-20260901-0024","session_id":"d7ce34d5be994c02b7a66f80ea9ba54e","question":"S02 在 8 月 17 日到 19 日为什么一分钱营...'混合回答未通过来源、指标与关系核验：%s\'%exc) from exc\\nkbqa.llm.LLMError: mixed_binding: 混合回答未通过来源、指标与关系核验：未成功检索，不能将工具失败当作原因未知\\n"}]}' = <function dumps at 0x10829c720>({'trace_id': 't-20260901-0024', 'session_id': 'd7ce34d5be994c02b7a66f80ea9ba54e', 'question': 'S02 在 8 月 17 日到 19 日为什么一分钱营业额都没有？', 'started_at': '2026-09-27T18:50:54.396', ...}, ensure_ascii=False, separators=(',', ':'))
+E        +          where <function dumps at 0x10829c720> = json.dumps
+
+docs/verification/g3-optional-rescue/test_rescue.py:87: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-optional-rescue/test_rescue.py::test_c07 - kbqa.l...
+FAILED docs/verification/g3-optional-rescue/test_rescue.py::test_h06 - kbqa.l...
+FAILED docs/verification/g3-optional-rescue/test_rescue.py::test_original_h06_trace_size
+3 failed, 2 passed in 1.26s

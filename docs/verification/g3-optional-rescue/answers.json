@@ -1,0 +1,336 @@
+{
+  "boundary": "saved original provider responses; fresh local tool validation; zero provider calls",
+  "var_dir": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g3-optional-rescue-vr95u4zs",
+  "answers": [
+    {
+      "case": "C07",
+      "answer": {
+        "answer": "KB-029《2026 年 8 月运营例会纪要》：这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。\nKB-029《2026 年 8 月运营例会纪要》：何静补充，从成本结构看，短期内原料价格没有下行的空间，靠调整分量来拉毛利会影响口感，不建议这么做。\nKB-029《2026 年 8 月运营例会纪要》：会议决定，S04 自 2026 年 8 月 10 日起下架吞拿鱼三明治，不再销售。",
+        "answer_type": "doc",
+        "citations": [
+          {
+            "doc_id": "KB-029",
+            "quote": "这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。",
+            "evidence_id": "doc-df08a01a36e813430e71",
+            "chunk_id": "KB-029#8",
+            "source_start": 1165,
+            "source_end": 1261,
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": "S04",
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "metadata": {
+              "title": "2026 年 8 月运营例会纪要",
+              "effective_from": "2026-08-05",
+              "status": "现行",
+              "stores": [
+                "S01",
+                "S02",
+                "S03",
+                "S04",
+                "S05"
+              ],
+              "stores_explicit": false,
+              "superseded_by": null
+            }
+          },
+          {
+            "doc_id": "KB-029",
+            "quote": "# 2026 年 8 月运营例会纪要\n",
+            "source_start": 0,
+            "source_end": 19,
+            "chunk_id": "KB-029#8",
+            "metadata": {
+              "title": "2026 年 8 月运营例会纪要",
+              "effective_from": "2026-08-05",
+              "status": "现行",
+              "stores": [
+                "S01",
+                "S02",
+                "S03",
+                "S04",
+                "S05"
+              ],
+              "stores_explicit": false,
+              "superseded_by": null
+            },
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": "S04",
+              "year": 2026,
+              "historical": false,
+              "window": null
+            }
+          },
+          {
+            "doc_id": "KB-029",
+            "quote": "## 议题四：S04 吞拿鱼三明治的去留\n",
+            "source_start": 1127,
+            "source_end": 1148,
+            "chunk_id": "KB-029#8",
+            "metadata": {
+              "title": "2026 年 8 月运营例会纪要",
+              "effective_from": "2026-08-05",
+              "status": "现行",
+              "stores": [
+                "S01",
+                "S02",
+                "S03",
+                "S04",
+                "S05"
+              ],
+              "stores_explicit": false,
+              "superseded_by": null
+            },
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": "S04",
+              "year": 2026,
+              "historical": false,
+              "window": null
+            }
+          },
+          {
+            "doc_id": "KB-029",
+            "quote": "何静补充，从成本结构看，短期内原料价格没有下行的空间，靠调整分量来拉毛利会影响口感，不建议这么做。",
+            "evidence_id": "doc-296c228cd1eb2705ea46",
+            "chunk_id": "KB-029#8",
+            "source_start": 1262,
+            "source_end": 1311,
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": "S04",
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "metadata": {
+              "title": "2026 年 8 月运营例会纪要",
+              "effective_from": "2026-08-05",
+              "status": "现行",
+              "stores": [
+                "S01",
+                "S02",
+                "S03",
+                "S04",
+                "S05"
+              ],
+              "stores_explicit": false,
+              "superseded_by": null
+            }
+          },
+          {
+            "doc_id": "KB-029",
+            "quote": "会议决定，S04 自 2026 年 8 月 10 日起下架吞拿鱼三明治，不再销售。",
+            "evidence_id": "doc-c89f01fdfcdd69acebdc",
+            "chunk_id": "KB-029#9",
+            "source_start": 1336,
+            "source_end": 1377,
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": "S04",
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "metadata": {
+              "title": "2026 年 8 月运营例会纪要",
+              "effective_from": "2026-08-05",
+              "status": "现行",
+              "stores": [
+                "S01",
+                "S02",
+                "S03",
+                "S04",
+                "S05"
+              ],
+              "stores_explicit": false,
+              "superseded_by": null
+            }
+          },
+          {
+            "doc_id": "KB-029",
+            "quote": "# 2026 年 8 月运营例会纪要\n",
+            "source_start": 0,
+            "source_end": 19,
+            "chunk_id": "KB-029#9",
+            "metadata": {
+              "title": "2026 年 8 月运营例会纪要",
+              "effective_from": "2026-08-05",
+              "status": "现行",
+              "stores": [
+                "S01",
+                "S02",
+                "S03",
+                "S04",
+                "S05"
+              ],
+              "stores_explicit": false,
+              "superseded_by": null
+            },
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": "S04",
+              "year": 2026,
+              "historical": false,
+              "window": null
+            }
+          },
+          {
+            "doc_id": "KB-029",
+            "quote": "## 议题四：S04 吞拿鱼三明治的去留\n",
+            "source_start": 1127,
+            "source_end": 1148,
+            "chunk_id": "KB-029#9",
+            "metadata": {
+              "title": "2026 年 8 月运营例会纪要",
+              "effective_from": "2026-08-05",
+              "status": "现行",
+              "stores": [
+                "S01",
+                "S02",
+                "S03",
+                "S04",
+                "S05"
+              ],
+              "stores_explicit": false,
+              "superseded_by": null
+            },
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": "S04",
+              "year": 2026,
+              "historical": false,
+              "window": null
+            }
+          }
+        ],
+        "data_evidence": [],
+        "notes": []
+      },
+      "recovery_steps": []
+    },
+    {
+      "case": "H06",
+      "answer": {
+        "answer": "2026-08-17 至 2026-08-19（Makai Poke S02）的净营业额为 0.00 元，2026-08-14 至 2026-08-16（Makai Poke S02）为 4955.00 元，跌了 4955.00 元（-100.00%）。知识库中本次未找到可核对的对应原因材料，原因无法确定。",
+        "answer_type": "data",
+        "citations": [],
+        "data_evidence": [
+          {
+            "tool": "compare_periods",
+            "params": {
+              "start_a": "2026-08-14",
+              "end_a": "2026-08-16",
+              "start_b": "2026-08-17",
+              "end_b": "2026-08-19",
+              "store_id": "S02"
+            },
+            "result": {
+              "period_a": {
+                "start": "2026-08-14",
+                "end": "2026-08-16",
+                "store_id": "S02",
+                "product_id": null,
+                "net_revenue": 4955.0,
+                "refund_amount": 45.0,
+                "orders": 107,
+                "aov": 46.31,
+                "qty": 159
+              },
+              "period_b": {
+                "start": "2026-08-17",
+                "end": "2026-08-19",
+                "store_id": "S02",
+                "product_id": null,
+                "net_revenue": 0.0,
+                "refund_amount": 0.0,
+                "orders": 0,
+                "aov": null,
+                "qty": 0
+              },
+              "delta": {
+                "net_revenue": {
+                  "delta": -4955.0,
+                  "pct": -100.0,
+                  "direction": "跌"
+                },
+                "refund_amount": {
+                  "delta": -45.0,
+                  "pct": -100.0,
+                  "direction": "跌"
+                },
+                "orders": {
+                  "delta": -107,
+                  "pct": -100.0,
+                  "direction": "跌"
+                },
+                "aov": {
+                  "delta": null,
+                  "pct": null,
+                  "direction": "未知"
+                },
+                "qty": {
+                  "delta": -159,
+                  "pct": -100.0,
+                  "direction": "跌"
+                }
+              }
+            },
+            "call_id": "call_01_CHiay6hqqHngrqCRfz1F0319",
+            "calculations": [
+              {
+                "operation": "period_b_minus_period_a",
+                "metric": "net_revenue",
+                "call_id": "call_01_CHiay6hqqHngrqCRfz1F0319",
+                "a": 4955.0,
+                "b": 0.0,
+                "result": {
+                  "delta": -4955.0,
+                  "pct": -100.0,
+                  "direction": "跌"
+                }
+              }
+            ]
+          }
+        ],
+        "notes": []
+      },
+      "recovery_steps": [
+        {
+          "step": "tool_failure_recovered",
+          "at_ms": 288.1,
+          "took_ms": null,
+          "detail": {
+            "failures": [
+              {
+                "call_id": "call_00_qkDGdc55tem7q74uMPg48436",
+                "tool": "search_kb",
+                "recoverable_validation": "top_k"
+              },
+              {
+                "call_id": "call_01_DaHxTBaz7USUl3dI81VD5474",
+                "tool": "search_kb",
+                "recoverable_validation": "top_k"
+              },
+              {
+                "call_id": "call_02_r4htPrhb2do7e5qCQzDQ3938",
+                "tool": "search_kb",
+                "recoverable_validation": "top_k"
+              },
+              {
+                "call_id": "call_03_ACZDUZGwlr9oIg6XL2dA0738",
+                "tool": "search_kb",
+                "recoverable_validation": "top_k"
+              }
+            ],
+            "by_call_id": "call_00_GoZp9UEP9UfJAvjdXyhu1055"
+          }
+        }
+      ]
+    }
+  ]
+}

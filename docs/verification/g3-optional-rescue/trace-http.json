@@ -1,0 +1,9 @@
+{
+  "original_bytes": 3468308,
+  "http_bytes": 1794510,
+  "roundtrip_equal": true,
+  "reference_count": 58,
+  "official_reader_ok": true,
+  "port": 49866,
+  "closed_after_test": true
+}

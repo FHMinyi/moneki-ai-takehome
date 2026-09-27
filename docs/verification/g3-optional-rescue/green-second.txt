@@ -1,0 +1,17 @@
+.F...                                                                    [100%]
+=================================== FAILURES ===================================
+___________________________________ test_h06 ___________________________________
+
+service = <kbqa.service.Service object at 0x10a3d8c50>
+
+    def test_h06(service):
+        answer, trace = replay(service, 24)
+        assert answer.answer_type == 'data'
+>       assert answer.data_evidence[0]['result']['net_revenue'] == 0
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'net_revenue'
+
+docs/verification/g3-optional-rescue/test_rescue.py:71: KeyError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-optional-rescue/test_rescue.py::test_h06 - KeyErr...
+1 failed, 4 passed in 1.25s
