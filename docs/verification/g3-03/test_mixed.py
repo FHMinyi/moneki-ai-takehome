@@ -147,7 +147,7 @@ def test_payment_independent_ratio(tmp_path,denominator):
 def test_zero_with_old_unrelated_event_is_rejected(tmp_path):
  s=independent_service(tmp_path,extra='S02 在2026-06-18因网络故障停业。')
  c={**CASES['H06'],'doc':'KB-981','needle':'网络故障','role':'reason','query':'S02网络故障停业'}
- with pytest.raises(LLMError,match='事件日期'):run(s,QUESTIONS['H06'],c)
+ with pytest.raises(LLMError,match='查询区间外'):run(s,QUESTIONS['H06'],c)
 
 def test_cannot_exchange_order_and_revenue_share(service):
  q='8月3日S05现金支付金额占比是多少，为什么？'

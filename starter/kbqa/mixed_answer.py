@@ -148,7 +148,7 @@ def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_p
         if tool=='compare_periods':params.update(start=params['start_b'],end=params['end_b'])
         facts = payload['facts']
         if not isinstance(facts,list) or len(facts)>3:raise ValueError('最多选三条相关事实')
-        chosen=[];citations=[];bindings=[]
+        chosen=[];citations=[];bindings=[];filtered=[]
         allowed_roles={'target':{'target'},'anomaly':{'reason'},'payment':{'reason'},'price':{'price','price_policy'}}[mode]
         for ref in facts:
             if not isinstance(ref,dict) or set(ref)!={'evidence_id','role'} or ref['role'] not in allowed_roles:
@@ -160,11 +160,21 @@ def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_p
                 source_store, _ = catalog.find_store(_source(doc))
                 if params.get('store_id') and source_store != params['store_id'] and params['store_id'] not in (doc['metadata'].get('stores') or []):
                     raise ValueError('事件没有支持所问门店的主体依据')
-                event_window=_event_scope(doc,params)
+                try:
+                    event_window=_event_scope(doc,params)
+                except ValueError as exc:
+                    if str(exc) != '事件日期与经营查询区间不相交':
+                        raise
+                    filtered.append(dict(evidence_id=doc['evidence_id'],reason=str(exc)))
+                    continue
                 if mode=='payment' and not re.search(r'现金|刷卡|扫码|支付|收款',doc['quote']):raise ValueError('事件不是支付事件')
                 bindings.append(dict(role='reason',evidence_id=doc['evidence_id'],event_windows=event_window,scope=params))
             if ref['role']=='price_policy' and not _PRICE_POLICY.search(doc['quote']):raise ValueError('所选原文不说明建档价口径')
             chosen.append((ref['role'],doc));citations.append(retrieved.citation(doc))
+        if filtered:
+            trace.step('mixed_evidence_filtered',{'rejected':filtered})
+            if not chosen:
+                raise ValueError('所选事件均在查询区间外，不能作为原因')
         public={k:item[k] for k in ('tool','params','result')}
         public['call_id']=item['_call_id']
         calculations=[]
