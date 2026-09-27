@@ -51,3 +51,21 @@ def test_same_dimension_different_actions_replacement(tmp_path,name,action,other
  assert wrong.answer_type=='refusal' and not wrong.citations
  right,u=execute(s,q,anchored('KB-987','43',(name,name),(action,action),duration('多久','43分钟')))
  assert right.answer_type=='doc' and '43' in right.answer
+
+
+def test_temporal_modifier_is_not_subject_in_new_material(tmp_path):
+ kb=tmp_path/'kb';kb.mkdir();(kb/'KB-988.md').write_text('# 退款规则\n\n订阅余额退款须在89天之内提出。')
+ s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/'var',llm_api_key='',llm_base_url='',llm_model=''));s.rebuild()
+ a,t=execute(s,'外送订单多久之内可以退款？',anchored('KB-988','89',('之内','之内'),('退款','退款'),duration('多久','89天')))
+ assert a.answer_type=='refusal' and not a.citations
+ assert any('duration_modifier_cannot_be_subject' in str(x) for x in t.steps)
+
+@pytest.mark.parametrize('payload',[
+ {'answer_type':'clarify','missing_fields':['store'],'answer':'本店不需要身份证。'},
+ {'answer_type':'clarify','missing_fields':['unsupported_policy']},
+ {'answer_type':'clarify','missing_fields':['store','store']},
+ {'answer_type':'clarify','missing_fields':[]},
+])
+def test_clarify_rejects_free_claims_and_unknown_fields(service,payload):
+ from kbqa.llm import LLMError
+ with pytest.raises(LLMError):execute(service,'门店规定',json.dumps(payload),search=False)

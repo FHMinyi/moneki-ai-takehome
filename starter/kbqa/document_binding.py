@@ -8,7 +8,7 @@ a deterministic entailment guarantee. Uncertainty never proves policy absence.
 import re
 from .tokenizer import normalise, STOP_CHARS
 from .entities import FOCUS_WORDS, focus_kinds
-from .docfacts import carries
+from .docfacts import carries, quantity_units, quantity_spans
 
 
 def _canonical(text, aliases):
@@ -49,6 +49,17 @@ def check_binding(binding, question, item, facts):
             if position < 0:
                 return None, 'source_anchor_not_literal'
             same = canonical(q) == canonical(text)
+            if role == 'subject':
+                subject = re.sub(r'[\s\W_]', '', normalise(q))
+                named = bool(facts.index.aliases.strict_mentions(q))
+                if (not named and (len(subject) < 2 or subject.isdigit()
+                        or all(c in STOP_CHARS for c in subject)
+                        or any(q == word for _, words in FOCUS_WORDS for word in words))):
+                    return None, 'subject_is_not_a_business_subject'
+            if role == 'attribute' and any(q == word and carries(k, text)
+                    for k, words in FOCUS_WORDS if k in {'duration','clock','money','count','value'}
+                    for word in words):
+                return None, 'value_shape_cannot_replace_business_attribute'
             q_entities = set(facts.index.aliases.mentions(q))
             s_entities = set(facts.index.aliases.strict_mentions(text))
             same_entity = bool(q_entities) and q_entities == s_entities
@@ -56,7 +67,7 @@ def check_binding(binding, question, item, facts):
             # demanding that interrogative words occur in declarative evidence.
             focus_match = role == 'attribute' and any(
                 q == word and carries(k, text)
-                for k, words in FOCUS_WORDS for word in words)
+                for k, words in FOCUS_WORDS if k in {'reason','rule'} for word in words)
             # Translation remains interpretation by this same model response;
             # exact spans and value shape remain checked, never a support bool.
             translation = role == 'attribute' and bool(re.search(r'[a-zA-Z]{3}', text)) and not re.search(r'[\u3400-\u9fff]', text) and bool(re.search(r'[\u3400-\u9fff]', q))
@@ -100,6 +111,18 @@ def check_binding(binding, question, item, facts):
             return None, 'unknown_question_value_shape'
         if not text or text not in item['quote'] or not carries(kind, text):
             return None, 'value_not_supported_by_selected_clause'
+    if kind == 'duration':
+        focus_end = normalise(question).find(normalise(q)) + len(q)
+        for anchor in checked:
+            if anchor['role'] != 'subject' or anchor['context'] != 'quote':
+                continue
+            q_start = normalise(question).find(normalise(anchor['question']))
+            s_start = anchor['source_start'] - item['source_start']
+            follows_focus = q_start >= focus_end and not normalise(question)[focus_end:q_start].strip()
+            follows_quantity = any(not item['quote'][end:s_start].strip()
+                                   for _, end in quantity_spans('duration', item['quote']) if end <= s_start)
+            if follows_focus and follows_quantity:
+                return None, 'duration_modifier_cannot_be_subject'
     quote_anchors = [a for a in checked if a['context'] == 'quote']
     if text:
         offset = item['quote'].find(text) + item['source_start']
@@ -136,4 +159,22 @@ def check_binding(binding, question, item, facts):
         same_script = any(re.search(r'[\u3400-\u9fff]', x) for x in source_subjects)
         if len(qualifier) >= 2 and same_script and re.sub(r'[\W_]', '', canonical(qualifier)) not in re.sub(r'[\W_]', '', canonical(item['quote'])):
             return None, 'omitted_subject_qualifier'
+    # A quantitative question may specify its business action AFTER the
+    # focus ("how long until ..."). Require its terminal content head to have
+    # an attribute anchor. Reuse existing focus/claim parsing, not an action list.
+    scalar_focuses = [(lowered.find(normalise(w)), len(w))
+        for k, words in FOCUS_WORDS if k in {'duration','clock','money','count','value'}
+        for w in words if normalise(w) in lowered]
+    attribute_questions = ' '.join(a['question'] for a in checked if a['role']=='attribute')
+    for pos, length in scalar_focuses:
+        if any(other <= pos and other + size > pos + length for other, size in scalar_focuses):
+            continue
+        tail = re.split(r'[。！？!?；;]', lowered[pos+length:], maxsplit=1)[0]
+        for _, words in FOCUS_WORDS:
+            for word in sorted(words, key=len, reverse=True):
+                tail = tail.replace(normalise(word), ' ')
+        unit_only = tail.strip(''.join(STOP_CHARS) + ' ，、:：')
+        terms = [] if unit_only in quantity_units(kind, text) else facts._claim_terms(tail)
+        if terms and terms[-1] not in normalise(attribute_questions):
+            return None, 'post_focus_business_predicate_omitted'
     return checked, None

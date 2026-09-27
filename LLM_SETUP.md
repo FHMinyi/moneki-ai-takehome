@@ -74,3 +74,6 @@ PR31 R2协议修正：拒答输出使用`{"answer_type":"refusal","reason":"insu
 
 
 PR31 R1选择协议进一步明确：每个facts元素必须同时有evidence_id和binding，binding含subject/attribute两个锚点数组及value。锚点记录question逐字片段、source（quote、context数组下标；主体也可title）与text真实来源文字；value记录kind/question/text，复用既有时长/金额/时间等形状。禁止只给subject_supported布尔值。系统核实ID、原文位置、范围和可定位主体/属性冲突；元信息标题标metadata.title、不当正文offset。未新增模型核对阶段，普通文档仍在原工具/最终选择回合完成；同义/英汉语义解释仍由本次模型负责，代码不提供通用蕴含证明。控制器正反与替换已免费验证，新选择协议尚未新付费测试；旧真实结果和chat7免费回放分开记录。
+
+
+PR31第二轮审查进一步限制非事实状态：clarify使用`{"answer_type":"clarify","missing_fields":["date_range","store"]}`，允许date_range/store/product/metric/question，代码生成中性问题，不接受额外政策正文；旧自由answer仅兼容状态及已知字段标签，正文不展示。doc属性必须锚定业务动作/属性，不能只把多久对应24小时；value另记录量型。时长焦点之后明确业务谓词不能省略，主体不能由功能成分冒充。没有新增模型阶段或付费；合并趋势main后的交叉验证另列。

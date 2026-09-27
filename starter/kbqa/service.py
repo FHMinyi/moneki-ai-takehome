@@ -269,5 +269,6 @@ def _reason_cn(exc: LLMError) -> str:
         "transport": "网络异常",
         "tool_loop": "工具调用没有收敛",
         "tool_failure": "工具执行失败",
+        "clarification_binding": "澄清结构无效",
     }
     return mapping.get(exc.kind, exc.kind)

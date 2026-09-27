@@ -21,7 +21,7 @@ def anchored(doc,needle,subject,attribute,value):
    elif text in e['metadata'].get('title',''):source='title'
    else:raise AssertionError(('anchor missing',text,e))
    return {'question':question,'source':source,'text':text}
-  binding={'subject':[anchor(subject)],'attribute':[anchor(attribute)],'value':value}
+  binding={'subject':[anchor(subject)],'attribute':[anchor(pair) for pair in attribute] if isinstance(attribute,list) else [anchor(attribute)],'value':value}
   return json.dumps({'answer_type':'doc','facts':[{'evidence_id':e['evidence_id'],'binding':binding}]})
  return selection
 
@@ -72,7 +72,7 @@ def test_replaced_material_supports_new_fact_and_alias(tmp_path,fmt):
   s.rebuild()
   for q in ('星云订单退款多久内提出？','Nebula Order退款时限？'):
    subj='Nebula Order' if 'Nebula' in q else '星云订单'
-   a,t=execute(s,q,anchored('KB-982',str(n),(subj,'星云订单'),('退款','退款'),duration('时限' if '时限' in q else '多久',f'{n}分钟')))
+   a,t=execute(s,q,anchored('KB-982',str(n),(subj,'星云订单'),[('退款','退款'),('提出','提出')] if '提出' in q else ('退款','退款'),duration('时限' if '时限' in q else '多久',f'{n}分钟')))
    assert a.answer_type=='doc' and str(n) in a.answer,a
 
 
@@ -92,7 +92,7 @@ PUBLIC_BINDINGS={
  'C05':(('发票','发票'),('开','开'),TEXT),
  'C06':(('净营业额','净营业额'),('退款','退款'),{'kind':'rule','question':'怎么算','text':'之和'}),
  'C07':(('吞拿鱼三明治','吞拿鱼三明治'),('为什么','毛利率低于 35%'),{'kind':'reason','question':'为什么','text':'毛利率低于 35%'}),
- 'C08':(('迟到','迟到'),('多久','15 分钟'),duration('多久','15 分钟')),
+ 'C08':(('迟到','迟到'),('迟到','迟到'),duration('多久','15 分钟')),
  'V01':(('活动','活动'),('活动价','活动价'),{'kind':'money','question':'活动价','text':'¥29'}),
  'V02':(('会员','会员'),('充值','充值'),{'kind':'value','question':'多少','text':'60 元'}),
 }
@@ -129,7 +129,7 @@ def test_omitted_channel_with_same_numeric_shape_rejected(tmp_path):
 
 @pytest.mark.parametrize('question',['迟到申诉多久？','迟到的申诉多久？','迟到申诉需要多久？'])
 def test_omission_variants_keep_critical_qualifier(service,question):
- a,t=execute(service,question,anchored('KB-016','15',('迟到','迟到'),('多久','15 分钟'),duration('多久','15 分钟')))
+ a,t=execute(service,question,anchored('KB-016','15',('迟到','迟到'),('迟到','迟到'),duration('多久','15 分钟')))
  assert a.answer_type=='refusal' and not a.citations
 
 

@@ -42,12 +42,12 @@ def test_new_kb_rebuild_bound_http(tmp_path,fmt):
   text=f'霓虹订单退款须在{n}分钟内提出。'
   if fmt=='html':text='<h2>退款受理</h2><p>'+text+'</p>'
   return text.encode('gbk' if fmt=='gbk' else 'utf-8')
- case={'selector':anchored('KB-985','43',('霓虹订单','霓虹订单'),('退款','退款'),duration('多久','43分钟'))}
+ case={'selector':anchored('KB-985','43',('霓虹订单','霓虹订单'),[('退款','退款'),('提出','提出')],duration('多久','43分钟'))}
  with runtime(tmp_path,case,{name:material(43)}) as (r,serve,payload):
   with serve() as request:a,t=chat(request,'霓虹订单退款多久内提出？')
   assert a['answer_type']=='doc' and '43' in a['answer']
   (r.kb/name).write_bytes(material(89));r.build()
-  case['selector']=anchored('KB-985','89',('霓虹订单','霓虹订单'),('退款','退款'),duration('多久','89分钟'))
+  case['selector']=anchored('KB-985','89',('霓虹订单','霓虹订单'),[('退款','退款'),('提出','提出')],duration('多久','89分钟'))
   with serve() as request:b,u=chat(request,'霓虹订单退款多久内提出？')
   assert b['answer_type']=='doc' and '89' in b['answer'] and '43' not in b['answer']
   assert a['citations'][0]['evidence_id']!=b['citations'][0]['evidence_id']
