@@ -214,9 +214,9 @@ def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_p
                 calculations.append(dict(operation='period_b_minus_period_a',metric=metric,call_id=item['_call_id'],a=result['period_a'][metric],b=result['period_b'][metric],result=result['delta'][metric]))
         elif mode=='payment':
             available=result['payments']; focus=[p for p in available if p in plan.standalone]
-            if not focus and any(p in plan.standalone for p in ('现金','微信','支付宝','刷卡','会员储值')):
+            if not focus and any(p in plan.standalone for p in ('现金','微信','支付宝','银行卡','会员储值')):
                 # Missing requested category is a real zero, not every other category.
-                focus=[p for p in ('现金','微信','支付宝','刷卡','会员储值') if p in plan.standalone]
+                focus=[p for p in ('现金','微信','支付宝','银行卡','会员储值') if p in plan.standalone]
             if not focus:focus=list(available)
             lines=[]
             field='orders' if metric=='share_orders' else 'net_revenue';denom='total_orders' if field=='orders' else 'total_net_revenue'

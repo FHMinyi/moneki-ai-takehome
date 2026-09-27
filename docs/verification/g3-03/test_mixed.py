@@ -214,3 +214,12 @@ def test_target_cannot_substitute_another_valid_metric(tmp_path):
 def test_order_share_cannot_use_valid_revenue_operand(service):
  c={**CASES['H05'],'metric':'share_revenue'}
  with pytest.raises(LLMError,match='订单占比'):run(service,'8月3日S05现金支付订单占比是多少，为什么？',c)
+
+def test_unknown_payment_alias_does_not_invent_zero(tmp_path):
+ import sqlite3
+ s=independent_service(tmp_path)
+ con=sqlite3.connect(s.settings.source_db);con.execute("UPDATE sales SET payment='银行卡' WHERE amount='210.00'");con.commit();con.close();s.tools.close();s.rebuild()
+ c=dict(mode='payment',tool='payment_mix',params=dict(start='2026-06-18',end='2026-06-18',store_id='S02'),metric='share_orders',doc=None)
+ a,t=run(s,'6月18日S02刷卡支付占比为什么异常？',c)
+ assert '刷卡按订单数占比 0' not in a.answer
+ assert '银行卡按订单数占比 100.00%' in a.answer
