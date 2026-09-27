@@ -1,0 +1,8 @@
+{
+  "work": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g302-browser-4r7pp7hn",
+  "pid": 21894,
+  "port": 58291,
+  "base": "http://127.0.0.1:58291",
+  "model": "controlled-only",
+  "commit": "b37af3d7831d4c469d60275050ca26a3881c221f"
+}

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
-const out = path.resolve('../docs/verification/g3-02/browser');
+const out = path.resolve(process.env.G302_BROWSER_OUT || '../docs/verification/g3-02/browser');
 test.beforeAll(() => fs.mkdirSync(out, { recursive: true }));
 for (const width of [1280, 1440, 390]) {
   test(`真实文档回答与来源 ${width}`, async ({ page, request }) => {

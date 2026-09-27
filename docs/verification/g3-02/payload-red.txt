@@ -1,0 +1,60 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____________ test_model_receives_evidence_not_duplicate_diagnostics ____________
+
+service = <kbqa.service.Service object at 0x108c77230>
+
+    def test_model_receives_evidence_not_duplicate_diagnostics(service):
+        client=Mock();seen=[]
+        def respond(messages,*args,**kwargs):
+            if not seen:
+                seen.append(True)
+                calls=[{'id':'search','type':'function','function':{'name':'search_kb','arguments':json.dumps({'query':'外卖退款','top_k':5})}}]
+                return LLMReply({'role':'assistant','content':'','tool_calls':calls},'tool_calls','',calls,0)
+            result=json.loads(messages[-1]['content'])['result']
+            assert set(result)=={'evidence','scope'}
+            content=select(result,'KB-013','24')
+            return LLMReply({'role':'assistant','content':content},'stop',content,[],0)
+        client.chat_with_retry.side_effect=respond
+        trace=Trace('compact','外卖退款时限是多少？')
+>       answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(trace.question),trace,[])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/test_document_binding.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+starter/kbqa/live.py:69: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+messages = [{'role': 'system', 'content': '你是一家连锁餐饮公司的经营分析助手，服务对象是运营同事。\n今天固定是 2026-09-01，所有“现在/最近/目前”都以这一天为准。\n数据区间只有 2026-05-01...该版本自 2026-07-01 起已被 KB-011 取代"}, {"doc_id": "KB-012", "reason": "该版本自 2026-06-15 起已被 KB-013 取代"}]}, "rejected": []}}'}]
+args = ([{'type': 'function', 'function': {'name': 'query_metrics', 'description': '按 KB-001 口径查一个区间的净营业额、退款金额、有效订单数、客单价、销量。'...', 'properties': {'start': {...}, 'end': {...}}, 'required': ['start', 'end'], 'additionalProperties': False}}}, ...],)
+kwargs = {'budget': 149.9851114579942, 'on_call': <bound method Trace.llm of Trace(trace_id='compact', question='外卖退款时限是多少？', s...12', 'reason': '该版本自 2026-06-15 起已被 KB-013 取代'}]}, 'rejected': []}}}], errors=[], llm_calls=[], _t0=932941.056535041)>}
+
+    def respond(messages,*args,**kwargs):
+        if not seen:
+            seen.append(True)
+            calls=[{'id':'search','type':'function','function':{'name':'search_kb','arguments':json.dumps({'query':'外卖退款','top_k':5})}}]
+            return LLMReply({'role':'assistant','content':'','tool_calls':calls},'tool_calls','',calls,0)
+        result=json.loads(messages[-1]['content'])['result']
+>       assert set(result)=={'evidence','scope'}
+E       AssertionError: assert {'diagnostics...lts', 'scope'} == {'evidence', 'scope'}
+E         
+E         Extra items in the left set:
+E         'results'
+E         'rejected'
+E         'diagnostics'
+E         Use -v to get more diff
+
+docs/verification/g3-02/test_document_binding.py:122: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/test_document_binding.py::test_model_receives_evidence_not_duplicate_diagnostics
+1 failed in 0.32s

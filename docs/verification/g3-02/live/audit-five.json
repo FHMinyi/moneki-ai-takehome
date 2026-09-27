@@ -1,0 +1,54 @@
+{
+  "records": [
+    {
+      "chat": 1,
+      "outcome": "supported doc",
+      "commit": "b62e6dcfa6dc91044c82b0738da8a34cea00dc2b"
+    },
+    {
+      "chat": 2,
+      "outcome": "supported doc",
+      "commit": "b62e6dcfa6dc91044c82b0738da8a34cea00dc2b"
+    },
+    {
+      "chat": 3,
+      "outcome": "supported doc",
+      "commit": "b62e6dcfa6dc91044c82b0738da8a34cea00dc2b"
+    },
+    {
+      "chat": 4,
+      "outcome": "engineering fallback; missing-attribute semantics NOT passed",
+      "error": "http_error",
+      "commit": "b62e6dcfa6dc91044c82b0738da8a34cea00dc2b",
+      "request_bytes": [
+        11266,
+        103994,
+        223173,
+        299868
+      ]
+    },
+    {
+      "chat": 5,
+      "outcome": "engineering fallback; missing-attribute semantics NOT passed",
+      "error": "tool_loop",
+      "commit": "b37af3d7831d4c469d60275050ca26a3881c221f",
+      "request_bytes": [
+        11406,
+        46418,
+        68992,
+        94204,
+        118762
+      ]
+    }
+  ],
+  "actual_outbound_calls": 14,
+  "local_rejected_calls": 1,
+  "input_tokens": 271397,
+  "output_tokens": 2939,
+  "peak_cache_miss_estimate_cny": 0.566306,
+  "billing_confirmed": false,
+  "remaining_ticket_cny": 7.433694,
+  "g3_total_estimate_cny": 0.613334,
+  "g3_remaining_cny": 49.386666,
+  "pending_reservations": 0
+}

@@ -1,0 +1,845 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-182/test_variants__uff22_uff45_uff0/starter",
+  "records": [
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-182/test_variants__uff22_uff45_uff0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Volumes/MACPSSD/project/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-182/test_variants__uff22_uff45_uff0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 e1eb58c461c5\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-182/test_variants__uff22_uff45_uff0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-182/test_variants__uff22_uff45_uff0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "54474"
+      ],
+      "pid": 12770,
+      "port": 54474,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "e1eb58c461c5",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "Ｂｅｅｆ　Ｐｏｋｅ：过敏原？",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#3",
+                "score": 28.1832,
+                "text": "| P04 | 三文鱼poke | — | ✓ | ✓ | — | — | — | ✓ | — | — |\n| P05 | 鸡肉poke | — | ✓ | — | — | — | — | ✓ | — | — |\n| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |\n| P07 | 小笼包 | ✓ | ✓ | — | — | — | — | — | — | — |\n| P08 | 灌汤包 | ✓ | ✓ | — | ✓ | — | — | — | — | — |\n",
+                "retrieval_text": "过敏原对照表\n# 过敏原对照表\n| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| P04 | 三文鱼poke | — | ✓ | ✓ | — | — | — | ✓ | — | — |\n| P05 | 鸡肉poke | — | ✓ | — | — | — | — | ✓ | — | — |\n| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |\n| P07 | 小笼包 | ✓ | ✓ | — | — | — | — | — | — | — |\n| P08 | 灌汤包 | ✓ | ✓ | — | ✓ | — | — | — | — | — |\n",
+                "source_start": 386,
+                "source_end": 646,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 9,
+                    "text": "# 过敏原对照表\n"
+                  },
+                  {
+                    "start": 127,
+                    "end": 233,
+                    "text": "| 商品编号 | 商品名称 | 麸质 | 大豆 | 鱼类 | 甲壳类 | 蛋 | 奶 | 芝麻 | 坚果 | 酒精 |\n|---|---|---|---|---|---|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-031",
+                "chunk_id": "KB-031#3",
+                "score": 15.1862,
+                "text": "## 特色\n\n以波奇饭为主力的轻食店，三文鱼poke、鸡肉poke、牛肉poke 是三个主推，配菜可以自选两样。\n客群以周边办公楼的白领为主，午市外带比例高，晚市偏安静，周末客流明显下降。\n店面在地下一层，紧邻地铁通道口，动线短、翻台快，但后厨面积小，冷柜容量有限，备货只能做到当天量，隔天的鲜货一律不留。\n出餐台和打包台是分开的，外带单从侧口取，堂食顾客不用和外卖骑手挤在一起。\n\n",
+                "retrieval_text": "门店档案 S02 Makai Poke\n# 门店档案：S02 Makai Poke\n## 特色\n\n以波奇饭为主力的轻食店，三文鱼poke、鸡肉poke、牛肉poke 是三个主推，配菜可以自选两样。\n客群以周边办公楼的白领为主，午市外带比例高，晚市偏安静，周末客流明显下降。\n店面在地下一层，紧邻地铁通道口，动线短、翻台快，但后厨面积小，冷柜容量有限，备货只能做到当天量，隔天的鲜货一律不留。\n出餐台和打包台是分开的，外带单从侧口取，堂食顾客不用和外卖骑手挤在一起。\n\n",
+                "source_start": 244,
+                "source_end": 436,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 22,
+                    "text": "# 门店档案：S02 Makai Poke\n"
+                  },
+                  {
+                    "start": 244,
+                    "end": 250,
+                    "text": "## 特色\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-003",
+                "chunk_id": "KB-003#3",
+                "score": 14.2802,
+                "text": "| 数据库写法 | 常见别名 | 说明 |\n|---|---|---|\n| 味增拉面 | 味噌拉面、Miso Ramen | 数据库里的写法是“味增拉面”，这是早年录入时留下的写法。菜单、物料、外卖平台上印的都是“味噌拉面”，两者是同一个商品，从来没有改过名，查数时两种写法都要命中 |\n| 豚骨拉面 | Tonkotsu Ramen、白汤拉面 | |\n| 牛肉poke | 牛肉波奇饭、Beef Poke | 顾客口头也常说“牛肉饭”，但这和照烧鸡饭不是一回事，接待时要问清楚 |\n",
+                "retrieval_text": "商品与门店别名词典\n# 商品与门店别名词典\n## 一、商品\n| 数据库写法 | 常见别名 | 说明 |\n|---|---|---|\n| 味增拉面 | 味噌拉面、Miso Ramen | 数据库里的写法是“味增拉面”，这是早年录入时留下的写法。菜单、物料、外卖平台上印的都是“味噌拉面”，两者是同一个商品，从来没有改过名，查数时两种写法都要命中 |\n| 豚骨拉面 | Tonkotsu Ramen、白汤拉面 | |\n| 牛肉poke | 牛肉波奇饭、Beef Poke | 顾客口头也常说“牛肉饭”，但这和照烧鸡饭不是一回事，接待时要问清楚 |\n",
+                "source_start": 146,
+                "source_end": 388,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 商品与门店别名词典\n"
+                  },
+                  {
+                    "start": 137,
+                    "end": 145,
+                    "text": "## 一、商品\n"
+                  },
+                  {
+                    "start": 146,
+                    "end": 182,
+                    "text": "| 数据库写法 | 常见别名 | 说明 |\n|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-041",
+                "chunk_id": "KB-041#4",
+                "score": 10.636,
+                "text": "| 恒远畜牧食品 | 牛肉、猪肉、鸡肉 | 牛肉poke、鸡肉poke、照烧鸡饭、炸鸡块 | 4 天 | 每周二、六各一次 | 蒋允 | 021-5555-0205 | 冷冻分割件，到货核对批次与检疫证明 |\n| 叁井饮料贸易 | 茶叶、茶基底、酒水 | 绿茶、柚子茶、冷萃乌龙茶、啤酒、梅子酒 | 3 天 | 每周一次 | 卫澜 | 021-5555-0206 | 酒水单独签收，需核对酒类流通备案 |\n\n",
+                "retrieval_text": "供应商名录\n# 供应商名录\n| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n| 恒远畜牧食品 | 牛肉、猪肉、鸡肉 | 牛肉poke、鸡肉poke、照烧鸡饭、炸鸡块 | 4 天 | 每周二、六各一次 | 蒋允 | 021-5555-0205 | 冷冻分割件，到货核对批次与检疫证明 |\n| 叁井饮料贸易 | 茶叶、茶基底、酒水 | 绿茶、柚子茶、冷萃乌龙茶、啤酒、梅子酒 | 3 天 | 每周一次 | 卫澜 | 021-5555-0206 | 酒水单独签收，需核对酒类流通备案 |\n\n",
+                "source_start": 645,
+                "source_end": 849,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 8,
+                    "text": "# 供应商名录\n"
+                  },
+                  {
+                    "start": 124,
+                    "end": 215,
+                    "text": "| 供应商 | 主要供应品类 | 对应商品 | 订货提前期 | 配送频次 | 联系人 | 联系电话 | 备注 |\n|---|---|---|---|---|---|---|---|\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-023",
+                "chunk_id": "KB-023#4",
+                "score": 10.0851,
+                "text": "## 三、目标\n\n**当天牛肉poke 目标销量 120 份。**\n同时希望带动饮料和小食的连带，连带率目标是每 2 单里至少有 1 杯饮料。\n\n",
+                "retrieval_text": "2026 年 618 活动方案\n# 2026 年 618 活动方案\n## 三、目标\n\n**当天牛肉poke 目标销量 120 份。**\n同时希望带动饮料和小食的连带，连带率目标是每 2 单里至少有 1 杯饮料。\n\n",
+                "source_start": 316,
+                "source_end": 389,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 18,
+                    "text": "# 2026 年 618 活动方案\n"
+                  },
+                  {
+                    "start": 316,
+                    "end": 324,
+                    "text": "## 三、目标\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "beef poke:过敏原?",
+              "terms": [
+                "beef",
+                "poke",
+                "过敏",
+                "敏原"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-040#3",
+                  "doc_id": "KB-040",
+                  "score": 28.1832,
+                  "lexical_score": 20.8765,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke",
+                    "敏原",
+                    "过敏"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#1",
+                  "doc_id": "KB-040",
+                  "score": 19.5795,
+                  "lexical_score": 12.2728,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "敏原",
+                    "过敏"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#6",
+                  "doc_id": "KB-040",
+                  "score": 18.9139,
+                  "lexical_score": 11.6071,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "敏原",
+                    "过敏"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#2",
+                  "doc_id": "KB-040",
+                  "score": 18.7154,
+                  "lexical_score": 11.4086,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "敏原",
+                    "过敏"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#5",
+                  "doc_id": "KB-040",
+                  "score": 18.5709,
+                  "lexical_score": 11.2641,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "敏原",
+                    "过敏"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#4",
+                  "doc_id": "KB-040",
+                  "score": 18.3838,
+                  "lexical_score": 11.0771,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "敏原",
+                    "过敏"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-031#3",
+                  "doc_id": "KB-031",
+                  "score": 15.1862,
+                  "lexical_score": 11.249,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-040#7",
+                  "doc_id": "KB-040",
+                  "score": 14.7918,
+                  "lexical_score": 7.485,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "敏原",
+                    "过敏"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#3",
+                  "doc_id": "KB-003",
+                  "score": 14.2802,
+                  "lexical_score": 21.1558,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "beef",
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-031#4",
+                  "doc_id": "KB-031",
+                  "score": 14.0332,
+                  "lexical_score": 10.096,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#4",
+                  "doc_id": "KB-041",
+                  "score": 10.636,
+                  "lexical_score": 7.8785,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-023#4",
+                  "doc_id": "KB-023",
+                  "score": 10.0851,
+                  "lexical_score": 7.4704,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-031#1",
+                  "doc_id": "KB-031",
+                  "score": 9.8634,
+                  "lexical_score": 5.9263,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-025#1",
+                  "doc_id": "KB-025",
+                  "score": 9.7996,
+                  "lexical_score": 7.2589,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-025#2",
+                  "doc_id": "KB-025",
+                  "score": 9.4215,
+                  "lexical_score": 6.8809,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-031#2",
+                  "doc_id": "KB-031",
+                  "score": 9.2418,
+                  "lexical_score": 5.3047,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-023#3",
+                  "doc_id": "KB-023",
+                  "score": 8.9591,
+                  "lexical_score": 6.3444,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#4",
+                  "doc_id": "KB-003",
+                  "score": 8.4205,
+                  "lexical_score": 9.4364,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-023#5",
+                  "doc_id": "KB-023",
+                  "score": 8.2483,
+                  "lexical_score": 5.6337,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-050#2",
+                  "doc_id": "KB-050",
+                  "score": 7.8567,
+                  "lexical_score": 5.8198,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#8",
+                  "doc_id": "KB-003",
+                  "score": 7.7343,
+                  "lexical_score": 8.064,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "敏原",
+                    "过敏"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-050#3",
+                  "doc_id": "KB-050",
+                  "score": 7.1787,
+                  "lexical_score": 5.1418,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-021#2",
+                  "doc_id": "KB-021",
+                  "score": 6.8689,
+                  "lexical_score": 5.0881,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-021#1",
+                  "doc_id": "KB-021",
+                  "score": 6.6333,
+                  "lexical_score": 4.8525,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-023#2",
+                  "doc_id": "KB-023",
+                  "score": 6.2942,
+                  "lexical_score": 3.6795,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-050#1",
+                  "doc_id": "KB-050",
+                  "score": 6.2442,
+                  "lexical_score": 4.2073,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-021#3",
+                  "doc_id": "KB-021",
+                  "score": 6.006,
+                  "lexical_score": 4.2252,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#9",
+                  "doc_id": "KB-022",
+                  "score": 5.9651,
+                  "lexical_score": 4.4186,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#2",
+                  "doc_id": "KB-041",
+                  "score": 5.8311,
+                  "lexical_score": 3.0736,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-003#7",
+                  "doc_id": "KB-003",
+                  "score": 5.5096,
+                  "lexical_score": 3.6147,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#2",
+                  "doc_id": "KB-022",
+                  "score": 5.4848,
+                  "lexical_score": 3.9383,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-050#5",
+                  "doc_id": "KB-050",
+                  "score": 5.4325,
+                  "lexical_score": 3.3955,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#7",
+                  "doc_id": "KB-022",
+                  "score": 5.3866,
+                  "lexical_score": 3.8401,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#15",
+                  "doc_id": "KB-022",
+                  "score": 5.2481,
+                  "lexical_score": 3.7016,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#11",
+                  "doc_id": "KB-022",
+                  "score": 5.1826,
+                  "lexical_score": 3.6361,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-041#3",
+                  "doc_id": "KB-041",
+                  "score": 5.1138,
+                  "lexical_score": 2.3564,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#12",
+                  "doc_id": "KB-022",
+                  "score": 5.0987,
+                  "lexical_score": 3.5522,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#1",
+                  "doc_id": "KB-022",
+                  "score": 5.0783,
+                  "lexical_score": 3.5318,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#6",
+                  "doc_id": "KB-022",
+                  "score": 5.0383,
+                  "lexical_score": 3.4918,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#13",
+                  "doc_id": "KB-022",
+                  "score": 5.0383,
+                  "lexical_score": 3.4918,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#3",
+                  "doc_id": "KB-022",
+                  "score": 5.0186,
+                  "lexical_score": 3.4721,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#10",
+                  "doc_id": "KB-022",
+                  "score": 4.9799,
+                  "lexical_score": 3.4334,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#4",
+                  "doc_id": "KB-022",
+                  "score": 4.9609,
+                  "lexical_score": 3.4144,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#14",
+                  "doc_id": "KB-022",
+                  "score": 4.851,
+                  "lexical_score": 3.3045,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#5",
+                  "doc_id": "KB-022",
+                  "score": 4.8333,
+                  "lexical_score": 3.2868,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#3",
+                  "doc_id": "KB-060",
+                  "score": 4.7807,
+                  "lexical_score": 3.5413,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-050#4",
+                  "doc_id": "KB-050",
+                  "score": 4.7696,
+                  "lexical_score": 2.7327,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-022#8",
+                  "doc_id": "KB-022",
+                  "score": 4.7647,
+                  "lexical_score": 3.2181,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-042#2",
+                  "doc_id": "KB-042",
+                  "score": 4.5589,
+                  "lexical_score": 3.3769,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#6",
+                  "doc_id": "KB-060",
+                  "score": 3.9363,
+                  "lexical_score": 2.6968,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-028#5",
+                  "doc_id": "KB-028",
+                  "score": 3.9335,
+                  "lexical_score": 2.9137,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-060#8",
+                  "doc_id": "KB-060",
+                  "score": 3.3976,
+                  "lexical_score": 2.1582,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-061#1",
+                  "doc_id": "KB-061",
+                  "score": 3.1097,
+                  "lexical_score": 2.3035,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-029#3",
+                  "doc_id": "KB-029",
+                  "score": 2.3397,
+                  "lexical_score": 1.7331,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-024#3",
+                  "doc_id": "KB-024",
+                  "score": 1.1653,
+                  "lexical_score": 3.4526,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "poke"
+                  ]
+                }
+              ],
+              "expansions": [
+                "牛肉poke",
+                "牛肉波奇饭",
+                "Beef Poke"
+              ],
+              "coverage": 0.616,
+              "hits": [
+                {
+                  "doc_id": "KB-040",
+                  "chunk_id": "KB-040#3",
+                  "score": 28.1832,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-031",
+                  "chunk_id": "KB-031#3",
+                  "score": 15.1862,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-003",
+                  "chunk_id": "KB-003#3",
+                  "score": 14.2802,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-041",
+                  "chunk_id": "KB-041#4",
+                  "score": 10.636,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-023",
+                  "chunk_id": "KB-023#4",
+                  "score": 10.0851,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-002",
+                  "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                },
+                {
+                  "doc_id": "KB-010",
+                  "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                },
+                {
+                  "doc_id": "KB-012",
+                  "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

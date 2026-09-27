@@ -1,0 +1,60 @@
+................................F....................................... [ 61%]
+.............................................                            [100%]
+=================================== FAILURES ===================================
+____________ test_model_receives_evidence_not_duplicate_diagnostics ____________
+
+service = <kbqa.service.Service object at 0x1088042f0>
+
+    def test_model_receives_evidence_not_duplicate_diagnostics(service):
+        client=Mock();seen=[]
+        def respond(messages,*args,**kwargs):
+            if not seen:
+                seen.append(True)
+                calls=[{'id':'search','type':'function','function':{'name':'search_kb','arguments':json.dumps({'query':'外卖退款','top_k':5})}}]
+                return LLMReply({'role':'assistant','content':'','tool_calls':calls},'tool_calls','',calls,0)
+            result=json.loads(messages[-1]['content'])['result']
+            assert set(result)=={'evidence','scope'}
+            content=select(result,'KB-013','24')
+            return LLMReply({'role':'assistant','content':content},'stop',content,[],0)
+        client.chat_with_retry.side_effect=respond
+        trace=Trace('compact','外卖退款时限是多少？')
+>       answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(trace.question),trace,[])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-02/test_document_binding.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+starter/kbqa/live.py:69: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-02/test_document_binding.py:123: in respond
+    content=select(result,'KB-013','24')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = {'evidence': [{'evidence_id': 'doc-2fcbf60318c217519f8c', 'doc_id': 'KB-013', 'chunk_id': 'KB-013#5', 'quote': '原路返回：微...负数，所以实际效果是相减。', ...}, ...], 'scope': {'as_of': '2026-09-01', 'store_id': None, 'year': 2026, 'historical': False, ...}}
+doc = 'KB-013', needle = '24'
+
+    def select(result, doc, needle):
+        candidates=[e for e in result.get('evidence',[]) if e['doc_id']==doc and needle in e['quote']]
+>       assert candidates, result
+E       AssertionError: {'evidence': [{'evidence_id': 'doc-2fcbf60318c217519f8c', 'doc_id': 'KB-013', 'chunk_id': 'KB-013#5', 'quote': '原路返回：微...负数，所以实际效果是相减。', ...}, ...], 'scope': {'as_of': '2026-09-01', 'store_id': None, 'year': 2026, 'historical': False, ...}}
+E       assert []
+
+docs/verification/g3-02/test_document_binding.py:46: AssertionError
+=============================== warnings summary ===============================
+starter/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/test_document_binding.py::test_model_receives_evidence_not_duplicate_diagnostics
+1 failed, 116 passed, 1 warning in 5.25s

@@ -1,0 +1,605 @@
+{
+  "chat_count": 7,
+  "calls": [
+    {
+      "chat": 1,
+      "attempt": 1,
+      "request_bytes": 10970,
+      "accounted_cny": 0.006738,
+      "status": 200,
+      "started_at": 1790488723.932987,
+      "elapsed_seconds": 0.8327469825744629,
+      "usage": {
+        "prompt_tokens": 3053,
+        "completion_tokens": 79,
+        "total_tokens": 3132,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 14
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 3053
+      },
+      "peak_price_estimate_cny": 0.006738
+    },
+    {
+      "chat": 1,
+      "attempt": 2,
+      "request_bytes": 55639,
+      "accounted_cny": 0.036082,
+      "status": 200,
+      "started_at": 1790488724.793663,
+      "elapsed_seconds": 1.8804490566253662,
+      "usage": {
+        "prompt_tokens": 17409,
+        "completion_tokens": 158,
+        "total_tokens": 17567,
+        "prompt_tokens_details": {
+          "cached_tokens": 3072
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 130
+        },
+        "prompt_cache_hit_tokens": 3072,
+        "prompt_cache_miss_tokens": 14337
+      },
+      "peak_price_estimate_cny": 0.036082
+    },
+    {
+      "chat": 2,
+      "attempt": 3,
+      "request_bytes": 10973,
+      "accounted_cny": 0.006792,
+      "status": 200,
+      "started_at": 1790488726.730987,
+      "elapsed_seconds": 0.857562780380249,
+      "usage": {
+        "prompt_tokens": 3060,
+        "completion_tokens": 84,
+        "total_tokens": 3144,
+        "prompt_tokens_details": {
+          "cached_tokens": 2816
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 18
+        },
+        "prompt_cache_hit_tokens": 2816,
+        "prompt_cache_miss_tokens": 244
+      },
+      "peak_price_estimate_cny": 0.006792
+    },
+    {
+      "chat": 2,
+      "attempt": 4,
+      "request_bytes": 41423,
+      "accounted_cny": 0.027478,
+      "status": 200,
+      "started_at": 1790488727.609737,
+      "elapsed_seconds": 2.0654430389404297,
+      "usage": {
+        "prompt_tokens": 12699,
+        "completion_tokens": 260,
+        "total_tokens": 12959,
+        "prompt_tokens_details": {
+          "cached_tokens": 3072
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 233
+        },
+        "prompt_cache_hit_tokens": 3072,
+        "prompt_cache_miss_tokens": 9627
+      },
+      "peak_price_estimate_cny": 0.027478
+    },
+    {
+      "chat": 3,
+      "attempt": 5,
+      "request_bytes": 10979,
+      "accounted_cny": 0.007592,
+      "status": 200,
+      "started_at": 1790488729.720457,
+      "elapsed_seconds": 1.25227689743042,
+      "usage": {
+        "prompt_tokens": 3060,
+        "completion_tokens": 184,
+        "total_tokens": 3244,
+        "prompt_tokens_details": {
+          "cached_tokens": 2816
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 55
+        },
+        "prompt_cache_hit_tokens": 2816,
+        "prompt_cache_miss_tokens": 244
+      },
+      "peak_price_estimate_cny": 0.007592
+    },
+    {
+      "chat": 3,
+      "attempt": 6,
+      "request_bytes": 64012,
+      "accounted_cny": 0.04298,
+      "status": 200,
+      "started_at": 1790488731.004797,
+      "elapsed_seconds": 2.1859819889068604,
+      "usage": {
+        "prompt_tokens": 20582,
+        "completion_tokens": 227,
+        "total_tokens": 20809,
+        "prompt_tokens_details": {
+          "cached_tokens": 3200
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 198
+        },
+        "prompt_cache_hit_tokens": 3200,
+        "prompt_cache_miss_tokens": 17382
+      },
+      "peak_price_estimate_cny": 0.04298
+    },
+    {
+      "chat": 4,
+      "attempt": 7,
+      "request_bytes": 10952,
+      "accounted_cny": 0.006938,
+      "status": 200,
+      "started_at": 1790488733.241247,
+      "elapsed_seconds": 1.270064115524292,
+      "usage": {
+        "prompt_tokens": 3049,
+        "completion_tokens": 105,
+        "total_tokens": 3154,
+        "prompt_tokens_details": {
+          "cached_tokens": 2816
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 23
+        },
+        "prompt_cache_hit_tokens": 2816,
+        "prompt_cache_miss_tokens": 233
+      },
+      "peak_price_estimate_cny": 0.006938
+    },
+    {
+      "chat": 4,
+      "attempt": 8,
+      "request_bytes": 103639,
+      "accounted_cny": 0.068674,
+      "status": 200,
+      "started_at": 1790488734.560267,
+      "elapsed_seconds": 1.7802340984344482,
+      "usage": {
+        "prompt_tokens": 33385,
+        "completion_tokens": 238,
+        "total_tokens": 33623,
+        "prompt_tokens_details": {
+          "cached_tokens": 3072
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 111
+        },
+        "prompt_cache_hit_tokens": 3072,
+        "prompt_cache_miss_tokens": 30313
+      },
+      "peak_price_estimate_cny": 0.068674
+    },
+    {
+      "chat": 4,
+      "attempt": 9,
+      "request_bytes": 222777,
+      "accounted_cny": 0.145628,
+      "status": 200,
+      "started_at": 1790488736.408175,
+      "elapsed_seconds": 2.4449281692504883,
+      "usage": {
+        "prompt_tokens": 71874,
+        "completion_tokens": 235,
+        "total_tokens": 72109,
+        "prompt_tokens_details": {
+          "cached_tokens": 33536
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 115
+        },
+        "prompt_cache_hit_tokens": 33536,
+        "prompt_cache_miss_tokens": 38338
+      },
+      "peak_price_estimate_cny": 0.145628
+    },
+    {
+      "chat": 5,
+      "attempt": 10,
+      "request_bytes": 11092,
+      "accounted_cny": 0.006984,
+      "status": 200,
+      "started_at": 1790489113.919016,
+      "elapsed_seconds": 0.8758211135864258,
+      "usage": {
+        "prompt_tokens": 3076,
+        "completion_tokens": 104,
+        "total_tokens": 3180,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 23
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 2948
+      },
+      "peak_price_estimate_cny": 0.006984
+    },
+    {
+      "chat": 5,
+      "attempt": 11,
+      "request_bytes": 46063,
+      "accounted_cny": 0.029292,
+      "status": 200,
+      "started_at": 1790489114.848851,
+      "elapsed_seconds": 1.4444799423217773,
+      "usage": {
+        "prompt_tokens": 14066,
+        "completion_tokens": 145,
+        "total_tokens": 14211,
+        "prompt_tokens_details": {
+          "cached_tokens": 3072
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 64
+        },
+        "prompt_cache_hit_tokens": 3072,
+        "prompt_cache_miss_tokens": 10994
+      },
+      "peak_price_estimate_cny": 0.029292
+    },
+    {
+      "chat": 5,
+      "attempt": 12,
+      "request_bytes": 68596,
+      "accounted_cny": 0.044064,
+      "status": 200,
+      "started_at": 1790489116.3453739,
+      "elapsed_seconds": 1.9608352184295654,
+      "usage": {
+        "prompt_tokens": 21000,
+        "completion_tokens": 258,
+        "total_tokens": 21258,
+        "prompt_tokens_details": {
+          "cached_tokens": 14208
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 157
+        },
+        "prompt_cache_hit_tokens": 14208,
+        "prompt_cache_miss_tokens": 6792
+      },
+      "peak_price_estimate_cny": 0.044064
+    },
+    {
+      "chat": 5,
+      "attempt": 13,
+      "request_bytes": 93767,
+      "accounted_cny": 0.060314,
+      "status": 200,
+      "started_at": 1790489118.3433442,
+      "elapsed_seconds": 2.4227845668792725,
+      "usage": {
+        "prompt_tokens": 28741,
+        "completion_tokens": 354,
+        "total_tokens": 29095,
+        "prompt_tokens_details": {
+          "cached_tokens": 21248
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 231
+        },
+        "prompt_cache_hit_tokens": 21248,
+        "prompt_cache_miss_tokens": 7493
+      },
+      "peak_price_estimate_cny": 0.060314
+    },
+    {
+      "chat": 5,
+      "attempt": 14,
+      "request_bytes": 118284,
+      "accounted_cny": 0.07675,
+      "status": 200,
+      "started_at": 1790489120.8231459,
+      "elapsed_seconds": 3.385190963745117,
+      "usage": {
+        "prompt_tokens": 36343,
+        "completion_tokens": 508,
+        "total_tokens": 36851,
+        "prompt_tokens_details": {
+          "cached_tokens": 29056
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 387
+        },
+        "prompt_cache_hit_tokens": 29056,
+        "prompt_cache_miss_tokens": 7287
+      },
+      "peak_price_estimate_cny": 0.07675
+    },
+    {
+      "chat": 6,
+      "attempt": 15,
+      "request_bytes": 11092,
+      "accounted_cny": 0.006832,
+      "status": 200,
+      "started_at": 1790489499.35237,
+      "elapsed_seconds": 0.7950990200042725,
+      "usage": {
+        "prompt_tokens": 3076,
+        "completion_tokens": 85,
+        "total_tokens": 3161,
+        "prompt_tokens_details": {
+          "cached_tokens": 2942
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 23
+        },
+        "prompt_cache_hit_tokens": 2942,
+        "prompt_cache_miss_tokens": 134
+      },
+      "peak_price_estimate_cny": 0.006832
+    },
+    {
+      "chat": 6,
+      "attempt": 16,
+      "request_bytes": 43139,
+      "accounted_cny": 0.027328,
+      "status": 200,
+      "started_at": 1790489500.183397,
+      "elapsed_seconds": 0.9100067615509033,
+      "usage": {
+        "prompt_tokens": 13244,
+        "completion_tokens": 105,
+        "total_tokens": 13349,
+        "prompt_tokens_details": {
+          "cached_tokens": 3072
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 38
+        },
+        "prompt_cache_hit_tokens": 3072,
+        "prompt_cache_miss_tokens": 10172
+      },
+      "peak_price_estimate_cny": 0.027328
+    },
+    {
+      "chat": 6,
+      "attempt": 17,
+      "request_bytes": 55784,
+      "accounted_cny": 0.035178,
+      "status": 200,
+      "started_at": 1790489501.133854,
+      "elapsed_seconds": 0.9124391078948975,
+      "usage": {
+        "prompt_tokens": 17157,
+        "completion_tokens": 108,
+        "total_tokens": 17265,
+        "prompt_tokens_details": {
+          "cached_tokens": 13312
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 37
+        },
+        "prompt_cache_hit_tokens": 13312,
+        "prompt_cache_miss_tokens": 3845
+      },
+      "peak_price_estimate_cny": 0.035178
+    },
+    {
+      "chat": 6,
+      "attempt": 18,
+      "request_bytes": 81935,
+      "accounted_cny": 0.051976,
+      "status": 200,
+      "started_at": 1790489502.0892951,
+      "elapsed_seconds": 1.7186009883880615,
+      "usage": {
+        "prompt_tokens": 25312,
+        "completion_tokens": 169,
+        "total_tokens": 25481,
+        "prompt_tokens_details": {
+          "cached_tokens": 17152
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 98
+        },
+        "prompt_cache_hit_tokens": 17152,
+        "prompt_cache_miss_tokens": 8160
+      },
+      "peak_price_estimate_cny": 0.051976
+    },
+    {
+      "chat": 6,
+      "attempt": 19,
+      "request_bytes": 107263,
+      "accounted_cny": 0.067836,
+      "status": 200,
+      "started_at": 1790489503.85713,
+      "elapsed_seconds": 1.4448597431182861,
+      "usage": {
+        "prompt_tokens": 33234,
+        "completion_tokens": 171,
+        "total_tokens": 33405,
+        "prompt_tokens_details": {
+          "cached_tokens": 25472
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 98
+        },
+        "prompt_cache_hit_tokens": 25472,
+        "prompt_cache_miss_tokens": 7762
+      },
+      "peak_price_estimate_cny": 0.067836
+    },
+    {
+      "chat": 6,
+      "attempt": 20,
+      "request_bytes": 118000,
+      "accounted_cny": 0.073726,
+      "status": 200,
+      "started_at": 1790489505.338502,
+      "elapsed_seconds": 0.876533031463623,
+      "usage": {
+        "prompt_tokens": 36567,
+        "completion_tokens": 74,
+        "total_tokens": 36641,
+        "prompt_tokens_details": {
+          "cached_tokens": 33280
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 18
+        },
+        "prompt_cache_hit_tokens": 33280,
+        "prompt_cache_miss_tokens": 3287
+      },
+      "peak_price_estimate_cny": 0.073726
+    },
+    {
+      "chat": 6,
+      "attempt": 21,
+      "request_bytes": 118609,
+      "accounted_cny": 0.074394,
+      "status": 200,
+      "started_at": 1790489506.232219,
+      "elapsed_seconds": 1.1328229904174805,
+      "usage": {
+        "prompt_tokens": 36733,
+        "completion_tokens": 116,
+        "total_tokens": 36849,
+        "prompt_tokens_details": {
+          "cached_tokens": 36480
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 50
+        },
+        "prompt_cache_hit_tokens": 36480,
+        "prompt_cache_miss_tokens": 253
+      },
+      "peak_price_estimate_cny": 0.074394
+    },
+    {
+      "chat": 7,
+      "attempt": 22,
+      "request_bytes": 11092,
+      "accounted_cny": 0.007328,
+      "status": 200,
+      "started_at": 1790489955.152864,
+      "elapsed_seconds": 1.222769021987915,
+      "usage": {
+        "prompt_tokens": 3076,
+        "completion_tokens": 147,
+        "total_tokens": 3223,
+        "prompt_tokens_details": {
+          "cached_tokens": 2942
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 32
+        },
+        "prompt_cache_hit_tokens": 2942,
+        "prompt_cache_miss_tokens": 134
+      },
+      "peak_price_estimate_cny": 0.007328
+    },
+    {
+      "chat": 7,
+      "attempt": 23,
+      "request_bytes": 51073,
+      "accounted_cny": 0.033898,
+      "status": 200,
+      "started_at": 1790489956.435589,
+      "elapsed_seconds": 2.1247079372406006,
+      "usage": {
+        "prompt_tokens": 15741,
+        "completion_tokens": 302,
+        "total_tokens": 16043,
+        "prompt_tokens_details": {
+          "cached_tokens": 3200
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 180
+        },
+        "prompt_cache_hit_tokens": 3200,
+        "prompt_cache_miss_tokens": 12541
+      },
+      "peak_price_estimate_cny": 0.033898
+    },
+    {
+      "chat": 7,
+      "attempt": 24,
+      "request_bytes": 105569,
+      "accounted_cny": 0.068784,
+      "status": 200,
+      "started_at": 1790489958.629627,
+      "elapsed_seconds": 3.0991439819335938,
+      "usage": {
+        "prompt_tokens": 32812,
+        "completion_tokens": 395,
+        "total_tokens": 33207,
+        "prompt_tokens_details": {
+          "cached_tokens": 16000
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 284
+        },
+        "prompt_cache_hit_tokens": 16000,
+        "prompt_cache_miss_tokens": 16812
+      },
+      "peak_price_estimate_cny": 0.068784
+    },
+    {
+      "chat": 7,
+      "attempt": 25,
+      "request_bytes": 117863,
+      "accounted_cny": 0.075744,
+      "status": 200,
+      "started_at": 1790489961.770081,
+      "elapsed_seconds": 2.9496240615844727,
+      "usage": {
+        "prompt_tokens": 36456,
+        "completion_tokens": 354,
+        "total_tokens": 36810,
+        "prompt_tokens_details": {
+          "cached_tokens": 33152
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 273
+        },
+        "prompt_cache_hit_tokens": 33152,
+        "prompt_cache_miss_tokens": 3304
+      },
+      "peak_price_estimate_cny": 0.075744
+    }
+  ],
+  "limit_cny": 8,
+  "chat_limit": 7,
+  "billing_confirmed": false,
+  "conservative_committed_cny": 1.08933,
+  "remaining_cny": 6.91067,
+  "authorization_update": {
+    "from_chat_limit": 4,
+    "to_chat_limit": 5,
+    "amount_limit_unchanged": 8,
+    "source": "2026-09-27 coordinator 01a0dc94-4947-7a93-84b9-46b5c7249dfa authorized one retry of original identity-document question from shared 18-chat pool; no second retry."
+  },
+  "authorization_updates": [
+    {
+      "from_chat_limit": 5,
+      "to_chat_limit": 6,
+      "amount_limit_unchanged": 8,
+      "source": "2026-09-27 user explicitly requested MAX_TOOL_ROUNDS 4 to 6 via coordinator 01a0dc94-4947-7a93-84b9-46b5c7249dfa; exactly one original identity-document question retry from shared 18-chat pool; no further retry."
+    },
+    {
+      "from_chat_limit": 6,
+      "to_chat_limit": 7,
+      "amount_limit_unchanged": 8,
+      "source": "2026-09-27 coordinator 01a0dc94-4947-7a93-84b9-46b5c7249dfa approved exactly one original identity-document question retry after reviewing 2dbd863 finalization tool_choice:none; from original shared 18-chat pool; stop afterward regardless of result."
+    }
+  ]
+}

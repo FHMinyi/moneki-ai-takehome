@@ -1,0 +1,12 @@
+
+Running 3 tests using 1 worker
+
+  ✓  1 tests/workspace.spec.ts:4:3 › real API ledger at 1280px (668ms)
+  ✓  2 tests/workspace.spec.ts:4:3 › real API ledger at 1440px (691ms)
+  ✓  3 tests/workspace.spec.ts:4:3 › real API ledger at 390px (584ms)
+
+  3 passed (2.2s)
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' test tests/workspace.spec.ts --grep real API ledger --workers=1 --output=/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g3-02/frontend-mock-runtime
+(node:23351) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

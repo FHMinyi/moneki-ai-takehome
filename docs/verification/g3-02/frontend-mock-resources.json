@@ -1,0 +1,17 @@
+{
+  "work": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g302-front-mock-xnv7dl0r",
+  "pid": 23317,
+  "port": 59830,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/workspace.spec.ts",
+    "--grep",
+    "real API ledger",
+    "--workers=1",
+    "--output=/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g3-02/frontend-mock-runtime"
+  ],
+  "exit_code": 0,
+  "commit": "b37af3d7831d4c469d60275050ca26a3881c221f"
+}

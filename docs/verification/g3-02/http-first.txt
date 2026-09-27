@@ -1,0 +1,29 @@
+..........F........                                                      [100%]
+=================================== FAILURES ===================================
+_______________________ test_public_controlled_http[S01] _______________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-184/test_public_controlled_http_S00')
+qid = 'S01'
+
+    @pytest.mark.parametrize('qid',PUBLIC_SELECTIONS)
+    def test_public_controlled_http(tmp_path,qid):
+        doc,needle=PUBLIC_SELECTIONS[qid]
+        with runtime(tmp_path,{'doc':doc,'needle':needle}) as (r,serve,payload):
+            with serve() as request:
+                request('/api/retrieve',{'query':QUESTIONS[qid],'top_k':5})
+                a,t=chat(request,QUESTIONS[qid])
+            assert a['answer_type']=='doc',a
+            assert needle in ''.join(c['quote'] for c in a['citations'])
+            assert len(t['llm_calls'])==2
+            assert all(x['request'] and x['response'] for x in t['llm_calls'])
+            for c in a['citations']:
+                assert c['quote']==payload['texts'][c['doc_id']][c['source_start']:c['source_end']]
+            if qid=='S01':
+>               assert any('9999999' in str(s['detail']) for s in t['steps'] if s['step']=='tool')
+E               assert False
+E                +  where False = any(<generator object test_public_controlled_http.<locals>.<genexpr> at 0x106c058c0>)
+
+docs/verification/g3-02/test_http.py:92: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/test_http.py::test_public_controlled_http[S01]
+1 failed, 18 passed in 23.02s

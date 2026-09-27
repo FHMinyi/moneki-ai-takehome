@@ -1,0 +1,4 @@
+ERROR: file or directory not found: docs/verification/g2-02/test_index.py
+
+
+no tests ran in 0.00s

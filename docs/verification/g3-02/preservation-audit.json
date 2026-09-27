@@ -1,0 +1,18 @@
+{
+  "initial_manifest_count": 2434,
+  "predecessor_manifest_count": 3066,
+  "predecessor_missing_now": [
+    "docs/baseline/2026-09-26-followup-draft.md"
+  ],
+  "predecessor_changed_now": [],
+  "initial_omitted_predecessor_count": 772,
+  "cause": "Initial git ls-files lacked -z: quoted non-ASCII/backslash filenames skipped by prefix filtering. Initial scope incomplete. Original manifest preserved. Rechecked predecessor SHA256 and fixed-point all tracked protected Git blobs.",
+  "fixed_point": "587ae820185cd10839e189efa9fb2ed8863d1ca5",
+  "fixed_point_protected_tracked_count": 3186,
+  "fixed_point_differences": [],
+  "preexisting_untracked": {
+    "docs/baseline/2026-09-26-followup-draft.md": "missing",
+    "docs/research/2026-09-26-public-solutions.md": true,
+    "docs/research/2026-09-27-public-solutions-refresh.md": true
+  }
+}
