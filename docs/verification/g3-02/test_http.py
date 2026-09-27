@@ -18,13 +18,15 @@ class Controlled(BaseHTTPRequestHandler):
         body=json.loads(self.rfile.read(int(self.headers['Content-Length'])))
         messages=body['messages'];case=type(self).case
         tools=[x for x in messages if x['role']=='tool']
-        if not tools:
+        if len(tools)<case.get('search_rounds',1):
             question=next(x['content'] for x in reversed(messages) if x['role']=='user')
             name=case.get('tool','search_kb');params=case.get('params',{'query':case.get('query',question),'top_k':5})
             msg={'role':'assistant','content':'','reasoning_content':'CONTROLLED_ONLY','tool_calls':[{'id':'controlled-search-1','type':'function','function':{'name':name,'arguments':json.dumps(params)}}]}
             finish='tool_calls'
         else:
             result=json.loads(tools[-1]['content'])['result']
+            if case.get('search_rounds',1)>1:
+                result={'evidence':[e for t in tools for e in json.loads(t['content'])['result'].get('evidence',[])]}
             if 'content' in case:content=case['content']
             elif 'error' in result:content=json.dumps({'answer_type':'refusal','answer':'无法执行该工具。'})
             else:
@@ -152,3 +154,22 @@ def test_retrieved_injection_retains_business_fact(tmp_path):
         assert before==after and a['answer_type']=='doc' and '31' in a['answer'] and '9999999' not in a['answer']
         assert any('9999999' in str(s['detail']) for s in t['steps'] if s['step']=='tool')
         assert all('run_sql' not in [tool['function']['name'] for tool in call['request']['tools']] for call in t['llm_calls'])
+
+@pytest.mark.parametrize('qid',['C01','C02','V02'])
+def test_repeated_search_http_transmits_each_identity_once(tmp_path,qid):
+    doc,needle=PUBLIC_SELECTIONS[qid]
+    with runtime(tmp_path,{'doc':doc,'needle':needle,'search_rounds':3}) as (r,serve,payload):
+        with serve() as request:a,t=chat(request,QUESTIONS[qid])
+        assert a['answer_type']=='doc'
+        assert len(t['llm_calls'])==4
+        messages=t['llm_calls'][-1]['request']['messages']
+        results=[json.loads(x['content'])['result'] for x in messages if x['role']=='tool']
+        ids=[e['evidence_id'] for result in results for e in result['evidence']]
+        assert len(ids)==len(set(ids))
+        assert results[0]['evidence'] and not results[1]['evidence'] and not results[2]['evidence']
+        assert all(set(result)=={'evidence','scope'} for result in results)
+        # Repeated requests add protocol overhead, not copies of the source/trace.
+        sizes=[len(json.dumps(call['request'],ensure_ascii=False).encode()) for call in t['llm_calls']]
+        assert sizes[-1]-sizes[1]<3000,sizes
+        assert len([s for s in t['steps'] if s['step']=='search'])==3
+        assert a['citations'][0]['evidence_id'] in ids

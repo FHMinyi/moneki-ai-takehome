@@ -43,7 +43,7 @@ class DocumentEvidence:
                         continue
                     _, offsets = facts.stripped(hit.doc_id)
                     start, end = offsets[candidate.start], offsets[candidate.end-1]+1
-                    identity = f'{facts.index.key}:{hit.chunk_id}:{start}:{end}'
+                    identity = f'{facts.index.key}:{hit.chunk_id}:{start}:{end}:' + json.dumps(result.scope, sort_keys=True)
                     eid = 'doc-' + hashlib.sha256(identity.encode()).hexdigest()[:20]
                     context = []
                     for span in hit.context_spans:
@@ -61,7 +61,11 @@ class DocumentEvidence:
     def add(self, items):
         # Only called with executor-created evidence; model input cannot add IDs.
         from .units import Unit
+        added = []
         for item in items:
+            if item['evidence_id'] in self.items:
+                continue
+            added.append(item)
             self.items[item['evidence_id']] = item
             source = self.facts.index.texts[item['doc_id']]
             lo = len(re.sub(r'\s+', '', source[:item['source_start']]))
@@ -71,6 +75,7 @@ class DocumentEvidence:
             header = self.facts.table_header_for(item['doc_id'],item['quote'])
             self.units[item['evidence_id']] = Unit(item['quote'], context, item['kind'], header,
                                                  item['doc_id'], -1, lo, hi)
+        return added
 
     def public(self):
         return list(self.items.values())

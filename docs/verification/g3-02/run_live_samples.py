@@ -1,4 +1,4 @@
-"""Authorized G3-02 execution only: fixed official provider, 8 CNY / 4 chats.
+"""Authorized G3-02 execution only: fixed official provider, 8 CNY / 5 chats (initially 4; one same-question retry authorized).
 
 Every outbound attempt reserves 2.20 CNY BEFORE sending. Complete usage releases
 the difference at peak cache-miss prices; missing usage keeps the entire reserve.
@@ -81,7 +81,11 @@ def main():
     with socket.socket() as s:s.bind(('127.0.0.1',0));port=s.getsockname()[1]
     env={**os.environ,'LLM_BASE_URL':f'http://127.0.0.1:{proxy.server_port}/guard','LLM_API_KEY':'local-execution-dummy','LLM_MODEL':'deepseek-flash','VAR_DIR':'/tmp/moneki-g3-02-paid-var'}
     for name in ('DATA_DIR','KB_DIR'):env.pop(name,None)
-    questions=['外卖订单送到以后，最迟什么时候还能申请退款？','2026年2月1日当时会员单笔充500元，赠送金额是多少？','有顾客对大豆和芝麻过敏，Beef Poke的过敏原表怎么标的？','外卖退款是否要求顾客出示身份证？']
+    assert ledger['chat_count']==4, 'Only the one authorized same-question retry remains'
+    ledger['authorization_update']={'from_chat_limit':4,'to_chat_limit':5,'amount_limit_unchanged':8,
+      'source':'2026-09-27 coordinator 01a0dc94-4947-7a93-84b9-46b5c7249dfa authorized one retry of original identity-document question from shared 18-chat pool; no second retry.'}
+    ledger['chat_limit']=5
+    questions=['外卖退款是否要求顾客出示身份证？']
     with (OUT/'service.txt').open('a') as log:
         p=subprocess.Popen([str(ROOT/'starter/.venv/bin/python'),'-m','uvicorn','kbqa.server:app','--port',str(port)],cwd=ROOT/'starter',env=env,stdout=log,stderr=log)
         try:
@@ -93,7 +97,7 @@ def main():
             assert not any(c.get('status')=='reserved' for c in ledger['calls']), 'Unresolved prior reservation'
             for question in questions:
                 with lock:
-                    assert ledger['chat_count']<4 and sum(c['accounted_cny'] for c in ledger['calls'])+2.20<=8
+                    assert ledger['chat_count']<5 and sum(c['accounted_cny'] for c in ledger['calls'])+2.20<=8
                     ledger['chat_count']+=1; n=ledger['chat_count'];save()
                 response=request(base+'/api/chat',{'session_id':f'paid-{n}','question':question})
                 trace=request(base+'/api/trace/'+response['trace_id'])

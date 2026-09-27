@@ -110,3 +110,32 @@ def test_no_search_no_citation(service):
     pool=DocumentEvidence(service.facts)
     with pytest.raises(LLMError):
         pool.render(json.dumps({'answer_type':'doc','facts':[{'evidence_id':'KB-013'}]}),'外卖退款',Trace('empty','外卖退款'))
+
+def test_model_receives_evidence_not_duplicate_diagnostics(service):
+    client=Mock();seen=[]
+    def respond(messages,*args,**kwargs):
+        if not seen:
+            seen.append(True)
+            calls=[{'id':'search','type':'function','function':{'name':'search_kb','arguments':json.dumps({'query':'外卖退款时限是多少？','top_k':5})}}]
+            return LLMReply({'role':'assistant','content':'','tool_calls':calls},'tool_calls','',calls,0)
+        result=json.loads(messages[-1]['content'])['result']
+        assert set(result)=={'evidence','scope'}
+        content=select(result,'KB-013','24')
+        return LLMReply({'role':'assistant','content':content},'stop',content,[],0)
+    client.chat_with_retry.side_effect=respond
+    trace=Trace('compact','外卖退款时限是多少？')
+    answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(trace.question),trace,[])
+    assert answer.answer_type=='doc'
+    assert any('diagnostics' in s['detail'].get('result',{}) for s in trace.steps if s['step']=='tool')
+
+def test_scope_is_part_of_evidence_identity(service):
+    from kbqa.document_evidence import DocumentEvidence
+    from dataclasses import replace
+    result=service.retriever.search('外卖退款')
+    first=DocumentEvidence(service.facts,result)
+    other=DocumentEvidence(service.facts,replace(result,scope={**result.scope,'store_id':'S03'}))
+    assert set(first.items).isdisjoint(other.items)
+    joint=DocumentEvidence(service.facts)
+    assert len(joint.add(first.public()))==len(first.items)
+    assert not joint.add(first.public())
+    assert len(joint.add(other.public()))==len(other.items)
