@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "tested_commit": "354f6d4728374d89d92591d84e65687bc7cd3358",
+  "independent_sql": "SUM(amount_cents), COUNT(DISTINCT sale order_id), signed qty from sales_clean; dates/store/product bound separately",
+  "june": {
+    "net_revenue": 15889.0,
+    "orders": 246,
+    "qty": 417
+  },
+  "july": {
+    "net_revenue": 13635.0,
+    "orders": 190,
+    "qty": 303
+  },
+  "delta": -2254.0,
+  "pct": -14.19,
+  "actual_model_attempts": 6,
+  "prompt_tokens": 18834,
+  "completion_tokens": 1170,
+  "peak_price_estimate_cny": 0.047028,
+  "outstanding_reservations_cny": 0,
+  "billing_confirmed": false
+}

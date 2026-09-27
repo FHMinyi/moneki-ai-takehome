@@ -35,11 +35,13 @@ class Handler(BaseHTTPRequestHandler):
         has_result=any(m['role']=='tool' for m in messages[start:])
         if not has_result and active.get('delay'): time.sleep(active['delay'])
         msg={'role':'assistant','content':'','reasoning_content':'CONTROLLED_PRIVATE_REASONING'}
-        if not has_result:
+        if active.get('no_tools'):
+            msg['content']=active['content']
+        elif not has_result:
             msg['tool_calls']=[{'id':'controlled-call','type':'function','function':{'name':active['tool'],'arguments':json.dumps(active['params'])}}]
         else:
             msg['content']=active.get('content',json.dumps({'answer_type':'data','results':[{'call_id':'controlled-call','metric':active['metric']}]}))
-        self.send({'choices':[{'finish_reason':'stop' if has_result else 'tool_calls','message':msg}], 'usage':{'prompt_tokens':1,'completion_tokens':1,'total_tokens':2}})
+        self.send({'choices':[{'finish_reason':'stop' if has_result or active.get('no_tools') else 'tool_calls','message':msg}], 'usage':{'prompt_tokens':1,'completion_tokens':1,'total_tokens':2}})
 
 if __name__ == '__main__':
     parser=argparse.ArgumentParser(); parser.add_argument('--port',type=int,default=9032); args=parser.parse_args()

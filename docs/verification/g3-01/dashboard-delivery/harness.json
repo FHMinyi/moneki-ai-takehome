@@ -1,0 +1,17 @@
+{
+  "source": "docs/verification/g1-05/delivery.spec.ts",
+  "sha256": "f496161a8d44909a51fc1f7ba8e34b328d34d1883f3098209c0a62621dde857d",
+  "command": [
+    "npm",
+    "--prefix",
+    "frontend",
+    "run",
+    "test:browser",
+    "--",
+    "g3-temporary-delivery.spec.ts",
+    "--workers=1"
+  ],
+  "exit_code": 0,
+  "case": "original",
+  "output": "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g3-01/dashboard-delivery"
+}

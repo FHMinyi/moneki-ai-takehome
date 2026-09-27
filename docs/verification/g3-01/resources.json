@@ -1,0 +1,35 @@
+{
+  "checkout": "/Volumes/MACPSSD/project/moneki-ai-takehome",
+  "branch": "codex/g3-01-data-chat",
+  "worktree": "shared main checkout; no new worktree created",
+  "active_services": [
+    {
+      "port": 8031,
+      "pid": 2076,
+      "purpose": "final mock app 1608043"
+    },
+    {
+      "port": 8032,
+      "pid": 1319,
+      "purpose": "final controlled live app 1608043"
+    },
+    {
+      "port": 8033,
+      "pid": 95056,
+      "purpose": "official preflight app; earlier checkpoint; unused fake upstream9033 is stopped"
+    },
+    {
+      "port": 9032,
+      "pid": 1297,
+      "purpose": "controlled model final"
+    }
+  ],
+  "retained_var_dirs": [
+    "/tmp/moneki-g3-01-mock-var",
+    "/tmp/moneki-g3-01-controlled-var",
+    "/tmp/moneki-g3-01-preflight",
+    "/tmp/moneki-g3-01-paid-var"
+  ],
+  "temporary_verification_processes": "replacement/empty/budget/live runner subprocesses terminated by harness; fixture directories retained and named in records",
+  "cleanup": "waiting for coordinator explicit cleanup instruction; never clean shared checkout or unrelated worktrees"
+}

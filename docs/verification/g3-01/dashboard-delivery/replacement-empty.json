@@ -1,0 +1,49 @@
+[
+  {
+    "case": "replacement",
+    "command": [
+      "npm",
+      "--prefix",
+      "frontend",
+      "run",
+      "test:browser",
+      "--",
+      "g3-temporary-delivery.spec.ts",
+      "--workers=1"
+    ],
+    "fixture_command": [
+      "python3",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g1-05/fixture.py",
+      "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g3-dashboard-3wv0syw5/replacement",
+      "--source",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/data/pos.db"
+    ],
+    "fixture_sha256": "ee3de8da8049ec513574132859d299dc3648c97a224bc274cf068ccee1a68055",
+    "fixture": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g3-dashboard-3wv0syw5/replacement",
+    "status": "passed"
+  },
+  {
+    "case": "empty",
+    "command": [
+      "npm",
+      "--prefix",
+      "frontend",
+      "run",
+      "test:browser",
+      "--",
+      "g3-temporary-delivery.spec.ts",
+      "--workers=1"
+    ],
+    "fixture_command": [
+      "python3",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/docs/verification/g1-05/fixture.py",
+      "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g3-dashboard-3wv0syw5/empty",
+      "--source",
+      "/Volumes/MACPSSD/project/moneki-ai-takehome/data/pos.db",
+      "--empty"
+    ],
+    "fixture_sha256": "e95801b11c56caf1d9585308126f9ce5186a51c433f24e26a9a81cf21d79515f",
+    "fixture": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g3-dashboard-3wv0syw5/empty",
+    "status": "passed"
+  }
+]

@@ -1,0 +1,36 @@
+INFO:     Started server process [736]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:65070 (Press CTRL+C to quit)
+INFO:     127.0.0.1:65073 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65074 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65075 - "GET /api/data_quality HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65076 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65077 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65078 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65079 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65080 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65081 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65082 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65083 - "GET /api/metrics/summary?start=2027-01-02&end=2027-01-05&store_id=X22 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65084 - "GET /api/metrics/daily?start=2027-01-02&end=2027-01-05&store_id=X22 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65085 - "GET /api/metrics/top-products?start=2027-01-02&end=2027-01-05&store_id=X22 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65086 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65086 - "GET /assets/index-DCa6a9AZ.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65087 - "GET /assets/index-ChSYSjII.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65086 - "GET /api/data_quality HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65086 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65088 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65089 - "GET /assets/index-ChSYSjII.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65088 - "GET /assets/index-DCa6a9AZ.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65088 - "GET /api/data_quality HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65088 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65090 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65090 - "GET /assets/index-DCa6a9AZ.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65091 - "GET /assets/index-ChSYSjII.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65090 - "GET /api/data_quality HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65090 - "GET /api/stores HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [736]

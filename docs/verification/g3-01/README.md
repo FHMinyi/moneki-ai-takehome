@@ -25,10 +25,56 @@ G3-02 文档来源重构、G3-03 混合推导、G3-04 多轮语义、G3-06 趋�
 
 ## 已执行检查点
 
-- 单元/边界探针16通过；真实HTTP原库+独立手算替换库12项通过。
+- 单元/边界探针16通过；真实HTTP原库+独立手算替换库12项通过（最终另补2项路由）。
 - 原后端53、真实RAG199通过；无Key完整公开评测88.5/100，49/55，与历史已验收行为保持。
 - 官方免费预检13PASS/1SKIP（P14），原报告保留。独立 /api/chat normal/slow合法结果协议完成同样真实查数；slow两轮共36秒空行，12秒总预算场景refusal，详见keepalive/result.json。
 - 受控浏览器4项通过，覆盖1280/1440/390及会话/重试生命周期。首轮选择器未匹配Ant两字按钮的空格，补显式发送aria-label；失败记录保留。
 - 保护清单3066文件当前全部保持。
 
 原始命令记录位于各脚本与输出；后续固定被测提交、真实调用、资源和最终验收状态在交付时补记。
+
+## 最终自验回执（等待主会话独立验收）
+
+最终业务提交 `1608043`；完整文件SHA见 `tested-tree.json`。真实失败样本固定 `f991720`，调用ID修复后的真实成功样本固定 `354f6d4`；其后 `1608043` 仅增加无数据的clarify/refusal结构，真实澄清语义未新增付费验证。文档/验证产物后续提交不改变业务字节。
+
+| # | 自验结果 | 证据 |
+|---|---|---|
+| 1 | PASS | 默认make run无Key；显式run-live使用环境；preflight P1—P6/P12；真实provider/model及usage见live/；LLM_SETUP八节 |
+| 2 | PASS | toolspec不声明SQL且入口拒绝SQL/未知/写工具；严格参数；19→20探针、forged-*、preservation；原只读保证保持 |
+| 3 | PASS（本票范围） | http/original/compare与手算replacement-*；live/chat-2、chat-3、audit；字段/ID伪造与同工具两调用隔离探针 |
+| 4 | PASS（受控） | http/rule-bypass：旧planner=refusal/out_of_scope，完整经营问题仍进入真实工具；safety/short/model-clarify；真实泛化能力仅有两条样本 |
+| 5 | PASS，官方P14保留SKIP | 官方13PASS/1SKIP；keepalive/的完整normal/slow/budget对照（实际数值/证据/trace）补证；400与原预检错误码/畸形参数/空内容/超时；有界重试 |
+| 6 | PASS | 每次HTTP证据中的完整request/response/raw_response/usage/took_ms，tool参数与结果；超4000字探针；Key回显脱敏；浏览器未显示思考 |
+| 7 | PASS | browser-final.txt四项；1280/1440/390视口截图，实际请求/响应、展开证据、长输入、等待禁重复、503重试、新会话丢弃旧响应 |
+| 8 | PASS（隔离，不含多轮语义） | session深复制/500会话/6轮上限探针；http/interleaved/short；browser生命周期请求session不同 |
+| 9 | PASS（已验收行为保持） | 53后端、199真实RAG、完整原55题88.5/100、49/55；原前端23+附加3=26，replacement3、empty3；新增聊天4；红灯证据及各提交 |
+
+相关命令：
+
+```bash
+starter/.venv/bin/python -m pytest docs/verification/g3-01/test_data_chat.py -q
+starter/.venv/bin/python docs/verification/g3-01/verify_http.py
+python3 docs/verification/g3-01/verify_routes.py
+starter/.venv/bin/python docs/verification/g3-01/verify_keepalive.py
+python3 docs/verification/g3-01/verify_dashboard.py
+BROWSER_BASE_URL=http://127.0.0.1:8032 npm --prefix frontend run test:browser -- g3-chat.spec.ts --workers=1
+starter/.venv/bin/python -m pytest starter/tests -q
+starter/.venv/bin/python -m pytest docs/verification/g2-01/test_ingestion.py docs/verification/g2-02/test_evidence.py docs/verification/g2-03/test_retrieval.py docs/verification/g2-04/test_doc_qa.py docs/verification/g2-04-heading-fix/test_heading.py -q
+python3 eval/run_eval.py --base-url http://127.0.0.1:8031 --questions eval/public_questions.jsonl --out docs/verification/g3-01/no-key-eval
+```
+
+verify_http/keepalive需要先按controlled_model.py启动9032并用该地址启动8032（dummy Key/model，真实本地库）。原前端23项脚本默认会写历史截图路径，今后必须通过G1 run_browser.sh提供所有输出环境变量或在隔离源码导出中执行。本轮不再重复覆写：首次34张覆盖已另存original-browser-screenshots并从2839c67恢复；preservation.json同时证明固定提交与原SHA相同，最终3066保护文件0差异。这一过程错误保留，未以恢复后的0差异掩盖。
+
+### 真实样本与费用
+
+官方定价原文URL/时间/摘录见pricing-source.json。高峰全部输入按未命中2元/百万、输出8元/百万计保守估算。执行代理每次出站（含重试）先预留2.20元，覆盖官方1M上下文按1,048,576计算加4096输出的最坏额度；完整usage才结算释放，无usage不释放。UTF8大小仅作请求长度限制，不宣称token硬上界。
+
+累计3chat、6API、输入18,834token、输出1,170token；0.047028元为保守估算，非账单确认；无悬挂预留，本票10元额度剩余9.952972元。失败chat-1不删除，复验chat-2/3通过独立SQL：六月qty417，六月净额15889，七月13635，差额-2254、-14.19%。真实样本已停止，未用额度交主会话回收；没有全量真实55题评分，也没有部署。
+
+### 自审与限制
+
+自审发现并修复call_id可见性、澄清类型；保留严格引用，不接受工具名或自行数值。业务diff范围为11个入口/模块和聊天组件，未改原输入/评分器。前两关无Key能力保持；live文档事实语义、混合输出、多轮继承及趋势引用仍待后续票，不能据两条真实data样本宣告第三关完成。容量超出契约的查询结果当前拒答并提示缩小范围；没有流式或完整trace面板。
+
+没有在修改前运行完整第三关起点：只记录2839c67业务字节上的新增9F/1P，其他完整检查是修改后运行。G2历史分数只作参照，不能作为本票前置重跑证据。
+
+最终1608043上重新运行53后端、199真实RAG、55题无Key，见backend-final.txt/rag-final.txt/no-key-final；此前输出继续保留。新调用ID修复不改变mock路径，仍以实际重跑建立最终固定提交对应。

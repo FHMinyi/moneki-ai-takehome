@@ -1,0 +1,13 @@
+npm notice run moneki-workspace@0.1.0 test:browser
+npm notice run playwright test g3-chat.spec.ts --workers=1
+
+Running 4 tests using 1 worker
+
+(node:297) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/g3-chat.spec.ts:13:3 › 真实查数、证据和长输入 1280 (788ms)
+  ✓  2 tests/g3-chat.spec.ts:13:3 › 真实查数、证据和长输入 1440 (791ms)
+  ✓  3 tests/g3-chat.spec.ts:13:3 › 真实查数、证据和长输入 390 (729ms)
+  ✓  4 tests/g3-chat.spec.ts:46:1 › 等待防重复、新会话丢弃旧响应、失败重试 (3.9s)
+
+  4 passed (6.5s)

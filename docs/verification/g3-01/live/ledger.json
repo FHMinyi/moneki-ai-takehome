@@ -1,5 +1,5 @@
 {
-  "chat_count": 1,
+  "chat_count": 3,
   "calls": [
     {
       "chat": 1,
@@ -46,11 +46,103 @@
         "prompt_cache_miss_tokens": 140
       },
       "peak_price_estimate_cny": 0.00916
+    },
+    {
+      "chat": 2,
+      "attempt": 3,
+      "request_bytes": 10329,
+      "accounted_cny": 0.007612,
+      "status": 200,
+      "started_at": 1790485843.773618,
+      "elapsed_seconds": 1.8213958740234375,
+      "usage": {
+        "prompt_tokens": 2926,
+        "completion_tokens": 220,
+        "total_tokens": 3146,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 119
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 2798
+      },
+      "peak_price_estimate_cny": 0.007612
+    },
+    {
+      "chat": 2,
+      "attempt": 4,
+      "request_bytes": 11380,
+      "accounted_cny": 0.006924,
+      "status": 200,
+      "started_at": 1790485845.602598,
+      "elapsed_seconds": 0.6844661235809326,
+      "usage": {
+        "prompt_tokens": 3274,
+        "completion_tokens": 47,
+        "total_tokens": 3321,
+        "prompt_tokens_details": {
+          "cached_tokens": 3072
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 7
+        },
+        "prompt_cache_hit_tokens": 3072,
+        "prompt_cache_miss_tokens": 202
+      },
+      "peak_price_estimate_cny": 0.006924
+    },
+    {
+      "chat": 3,
+      "attempt": 5,
+      "request_bytes": 10362,
+      "accounted_cny": 0.008264,
+      "status": 200,
+      "started_at": 1790485846.3217878,
+      "elapsed_seconds": 1.6789782047271729,
+      "usage": {
+        "prompt_tokens": 2932,
+        "completion_tokens": 300,
+        "total_tokens": 3232,
+        "prompt_tokens_details": {
+          "cached_tokens": 2688
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 152
+        },
+        "prompt_cache_hit_tokens": 2688,
+        "prompt_cache_miss_tokens": 244
+      },
+      "peak_price_estimate_cny": 0.008264
+    },
+    {
+      "chat": 3,
+      "attempt": 6,
+      "request_bytes": 12230,
+      "accounted_cny": 0.007514,
+      "status": 200,
+      "started_at": 1790485848.007884,
+      "elapsed_seconds": 0.7202749252319336,
+      "usage": {
+        "prompt_tokens": 3589,
+        "completion_tokens": 42,
+        "total_tokens": 3631,
+        "prompt_tokens_details": {
+          "cached_tokens": 3200
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 3200,
+        "prompt_cache_miss_tokens": 389
+      },
+      "peak_price_estimate_cny": 0.007514
     }
   ],
   "limit_cny": 10,
   "chat_limit": 6,
   "billing_confirmed": false,
-  "conservative_committed_cny": 0.016714,
-  "remaining_cny": 9.983286
+  "conservative_committed_cny": 0.047028,
+  "remaining_cny": 9.952972
 }

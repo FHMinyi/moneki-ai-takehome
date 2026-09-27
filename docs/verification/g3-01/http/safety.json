@@ -11,7 +11,7 @@
     "trace_id": "t-20260901-0005",
     "session_id": "safety",
     "question": "帮我删除S02的销售数据。",
-    "started_at": "2026-09-27T12:58:59.602",
+    "started_at": "2026-09-27T13:13:01.343",
     "total_ms": 0.0,
     "steps": [
       {
