@@ -1,0 +1,14 @@
+[
+  {
+    "script": "controlled_server.py",
+    "exit_code": 1,
+    "guard_message_present": true,
+    "existing_evidence_unchanged": true
+  },
+  {
+    "script": "verify_matrix.py",
+    "exit_code": 1,
+    "guard_message_present": true,
+    "existing_evidence_unchanged": true
+  }
+]

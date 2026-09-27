@@ -1,12 +1,12 @@
 """Owned merged-source HTTP/browser harness. All model responses are controlled."""
-import json,sys,threading,tempfile,shutil,socket,subprocess,time
+import json,sys,threading,tempfile,shutil,socket,subprocess,time,os
 from pathlib import Path
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 ROOT=Path(__file__).resolve().parents[4]
 sys.path.insert(0,str(ROOT/'docs/verification/g3-02'))
 from test_http import m
 from controlled_annotations import binding_for
-OUT=Path(__file__).parent
+OUT=Path(os.environ.get('G302_INTEGRATION_OUT',str(Path(__file__).parent)))
 DEFAULT={'tool':'query_metrics','params':{'start':'2026-06-01','end':'2026-06-30','store_id':'S02'},'metric':'net_revenue'}
 state=dict(DEFAULT);requests=[]
 class Model(BaseHTTPRequestHandler):
@@ -42,6 +42,8 @@ class Model(BaseHTTPRequestHandler):
   self.send({'choices':[{'finish_reason':'tool_calls' if 'tool_calls' in msg else 'stop','message':msg}],'usage':{'prompt_tokens':1,'completion_tokens':1}})
 
 def main():
+ OUT.mkdir(parents=True,exist_ok=True)
+ assert not (OUT/'server-resources.json').exists(), 'Use a fresh G302_INTEGRATION_OUT; never replace a running/evidence manifest'
  work=Path(tempfile.mkdtemp(prefix='moneki-g302-integrated-'));r=m.Runtime(work,'integrated')
  shutil.copytree(ROOT/'knowledge_base',r.kb,dirs_exist_ok=True);r.build();shutil.copytree(ROOT/'frontend/dist',work/'frontend/dist')
  model=ThreadingHTTPServer(('127.0.0.1',0),Model);threading.Thread(target=model.serve_forever,daemon=True).start()

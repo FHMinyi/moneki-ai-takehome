@@ -1,0 +1,19 @@
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' test tests/g3-trend-context.spec.ts tests/g3-integrated-document.spec.ts --workers=1 --output=../docs/verification/g3-02/integration-g306/browser-runtime-results
+
+Running 10 tests using 1 worker
+
+(node:58891) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/g3-integrated-document.spec.ts:8:2 › 趋势卡与真实文档引用共存 1280 (869ms)
+  ✓   2 tests/g3-integrated-document.spec.ts:8:2 › 趋势卡与真实文档引用共存 1440 (826ms)
+  ✓   3 tests/g3-integrated-document.spec.ts:8:2 › 趋势卡与真实文档引用共存 390 (815ms)
+  ✓   4 tests/g3-trend-context.spec.ts:23:3 › 每日趋势引用生命周期 1280 (5.8s)
+  ✓   5 tests/g3-trend-context.spec.ts:23:3 › 每日趋势引用生命周期 1440 (5.8s)
+  ✓   6 tests/g3-trend-context.spec.ts:23:3 › 每日趋势引用生命周期 390 (5.8s)
+  ✓   7 tests/g3-trend-context.spec.ts:83:1 › 引用提问失败重试保留原问题和范围 (861ms)
+  ✓   8 tests/g3-trend-context.spec.ts:106:1 › 新对话丢弃旧引用请求的迟到响应 (698ms)
+  ✓   9 tests/g3-trend-context.spec.ts:128:1 › 加载与错误状态不提供引用，重复加入替换待发卡片 (2.0s)
+  ✓  10 tests/g3-trend-context.spec.ts:153:1 › 普通无引用提问仍使用旧请求形状 (625ms)
+
+  10 passed (24.5s)

@@ -1,0 +1,10 @@
+{
+  "work": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/moneki-g302-integrated-kx92x7oa",
+  "api_pid": 58732,
+  "api_port": 59458,
+  "model_port": 59457,
+  "base": "http://127.0.0.1:59458",
+  "model": "http://127.0.0.1:59457",
+  "commit": "a868f10465cc8e6f1c48c41165612ef36a90a691",
+  "controlled_only": true
+}
