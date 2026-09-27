@@ -1,0 +1,3 @@
+Source: git archive 5b6a4cabafd39d034046affc5620a4fc5a8b88e3
+Reused verified Python venv: /tmp/moneki-g305-fresh-4591fab/starter/.venv
+No dependency reinstall or frontend build in this optional API-only run.
