@@ -25,6 +25,7 @@ from .tools import DataTools
 from .trace import Trace, TraceStore
 from .redaction import redact
 from .trend_context import validate as validate_trend_context, resolve as resolve_trend_context
+from .timeparse import parse_time
 
 _ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 _INT_PARAMS = {"top_k", "limit"}
@@ -294,15 +295,29 @@ class Service:
             self.settings.llm_model,
             timeout=self.settings.llm_timeout,
         )
+        scoped = effective
+        raw_time = parse_time(plan.question, self.settings.today)
+        if (scoped is None and plan.intent == "data" and plan.window and
+                not plan.compare_window and len(raw_time.windows) == 1 and
+                raw_time.windows[0][0] == raw_time.windows[0][1] and
+                tuple(plan.window) == raw_time.windows[0]):
+            # Only an independently parsed, user-written exact calendar day
+            # is a hard boundary. Periods, implicit scope and comparisons may
+            # require model-directed supplemental queries.
+            scoped = {"start": plan.window[0], "end": plan.window[1],
+                      "store_id": plan.store_id, "product_id": plan.product_id,
+                      "metric": plan.metric}
+            trace.step("explicit_data_scope", scoped)
+
         def scoped_tool(name, params, *, plan=plan):
             # The document executor supplies its original Plan as a private
             # keyword. Preserve it through the trend scope wrapper as well.
-            return self._run_scoped_tool(name, params, effective, plan)
+            return self._run_scoped_tool(name, params, scoped, plan)
 
         engine = LiveEngine(
             client,
             self.answerer,
-            scoped_tool if effective else self.run_tool,
+            scoped_tool if scoped else self.run_tool,
             self.settings.today.isoformat(),
             self.data_period,
             budget=self.settings.chat_budget,
