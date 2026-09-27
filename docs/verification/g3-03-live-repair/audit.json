@@ -1,0 +1,42 @@
+{
+  "business_sha": "3d84556d1b1e522b4eadd817df2c451cb2361093",
+  "protected_file_count": 5146,
+  "authorized_test_expectation_changes": [
+    "docs/verification/g3-03/test_live_replay.py",
+    "docs/verification/g3-03/test_mixed.py"
+  ],
+  "raw_evidence_changes": [],
+  "original_test_snapshots_match": true,
+  "external_g305_sources_unchanged": true,
+  "credential_leaks": [],
+  "new_provider_calls": 0,
+  "replays": {
+    "C07": {
+      "type": "hybrid",
+      "new_provider_calls": 0,
+      "local_replayed_model_rounds": 4,
+      "errors": []
+    },
+    "T02-1": {
+      "type": "hybrid",
+      "new_provider_calls": 0,
+      "local_replayed_model_rounds": 3,
+      "errors": []
+    },
+    "H04": {
+      "type": "hybrid",
+      "new_provider_calls": 0,
+      "local_replayed_model_rounds": 2,
+      "errors": []
+    },
+    "T03-2": {
+      "type": "hybrid",
+      "new_provider_calls": 0,
+      "local_replayed_model_rounds": 2,
+      "errors": []
+    }
+  },
+  "source_sha256": {
+    "starter/kbqa/mixed_answer.py": "79c49651f884bc0847601f94f485b106251846548517d7248bf98c0e1310e8ff"
+  }
+}

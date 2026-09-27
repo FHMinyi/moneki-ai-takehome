@@ -1,0 +1,9 @@
+# Exact compressed copies are versioned; preserve local originals for inspection.
+/chat-trace.jsonl
+/model-traffic.jsonl
+/replay-red.json
+# Provider documentation HTML remains local; URL/time/fact excerpts are versioned.
+/*-official.html
+/official-docs-excerpts.json
+# Full controlled HTTP traces are archived without altering local originals.
+/http-*/

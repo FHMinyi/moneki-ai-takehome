@@ -1,0 +1,25 @@
+{
+  "business_sha": "8fd8070d6118f5aa25d596ae9e37285ee63cc48c",
+  "merge_sha": "d9612c8d32aae9a8805065b953ceb03578d4fbe9",
+  "incoming_main": "03a94edb7f67fb7ce9fd5ba1771b9f0126e27c22",
+  "initial_count": 5146,
+  "authorized_initial_test_changes": [
+    "docs/verification/g3-03/test_live_replay.py",
+    "docs/verification/g3-03/test_mixed.py"
+  ],
+  "original_test_snapshots_match": true,
+  "incoming_preserved_count": 114,
+  "prior_repair_raw_preserved_count": 143,
+  "external_g305_hashes_unchanged": true,
+  "credential_leaks": [],
+  "new_provider_calls": 0,
+  "sha256": {
+    "starter/kbqa/mixed_answer.py": "dc59c5d795da9caf91941c717025efba0622f0eefc080fc130d6e84d7157bf1e",
+    "starter/kbqa/service.py": "ce79ff177456f054e0ff774428ab66bffd1f2a3790f78bea58069bdffa9047d6",
+    "starter/kbqa/live.py": "a3aedb77e38fb722c183978c7e7fc086f2d26eee091711df1c18e82cc37dd5ec",
+    "starter/kbqa/document_evidence.py": "7debbbf910c243d3d734df49c6c35b3a9735694db8d214dc746319b60a578000",
+    "starter/kbqa/timeparse.py": "a06f152c72c41ed9807a81ea03ef24cfb681de90e8433559962d6b8d8ec99792",
+    "starter/kbqa/entities.py": "16ad76052c7831c8219e91894ba8a57e9e4d812c0c9ed7936895945a46f69a8c",
+    "starter/kbqa/llm.py": "9538dfccb370ae417beaff42615ea43c41a92c9b8d83c4232f832cc661b71535"
+  }
+}

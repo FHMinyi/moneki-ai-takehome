@@ -17,7 +17,12 @@ import httpx
 from .redaction import redact
 
 #: 契约 §7.3：思考也占输出额度，`max_tokens` 不设或不小于 2048。
-MAX_TOKENS = 4096
+MAX_TOKENS = 8192
+
+def valid_output_limit(value: Any) -> bool:
+    """Shared request/paid-runner cap; bool and omitted limits are invalid."""
+    return type(value) is int and 1 <= value <= 8192
+
 #: D11：正常结束只有这两种。
 GOOD_FINISH = ("stop", "tool_calls")
 #: 这几类是暂时性的，值得重试一次。
@@ -61,6 +66,8 @@ class LLMClient:
         return self.base_url + "/chat/completions"
 
     def _body(self, messages: list[dict], tools: Optional[list[dict]], tool_choice: str = "auto") -> dict:
+        if not valid_output_limit(MAX_TOKENS):
+            raise LLMError("configuration", "输出上限必须是1至8192的整数")
         body: dict[str, Any] = {
             "model": self.model,
             "messages": messages,

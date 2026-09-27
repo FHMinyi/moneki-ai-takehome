@@ -1,0 +1,51 @@
+........................................F......F                         [100%]
+=================================== FAILURES ===================================
+_ test_event_scope_and_explicit_continuing_interval[S02\u57282026-06-18\u5f00\u5c55\u5458\u5de5\u57f9\u8bad\u3002-data] _
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-365/test_event_scope_and_explicit_2')
+quote = 'S02在2026-06-18开展员工培训。', expected = 'data'
+
+    @pytest.mark.parametrize('quote,expected',[
+     ('S02在2026-06-15至2026-06-20停业整改。','hybrid'),
+     ('S01在2026-06-18停业整改。','data'),
+     ('S02在2026-06-18开展员工培训。','data'),
+     ('S02在2026-05-15至2026-05-20停业整改。','data'),
+    ])
+    def test_event_scope_and_explicit_continuing_interval(tmp_path,quote,expected):
+     s=independent_service(tmp_path)
+     (s.settings.kb_dir/'KB-983.md').write_text('---\ntitle: S02经营事件\neffective_from: 2026-06-15\nstores: [S02]\n---\n'+quote)
+     s.rebuild();q='6月18日S02营业额为什么异常？'
+     c=dict(mode='anomaly',tool='query_metrics',params=dict(start='2026-06-18',end='2026-06-18',store_id='S02'),metric='net_revenue',doc='KB-983',needle=quote,role='reason',query='S02经营事件停业整改员工培训')
+     a,t=run(s,q,c)
+>    assert a.answer_type==expected and a.data_evidence[0]['result']['net_revenue']==150
+E    AssertionError: assert ('hybrid' == 'data'
+E      
+E      - data
+E      + hybrid)
+
+docs/verification/g3-03/test_mixed.py:197: AssertionError
+___________ test_real_payment_selection_excludes_unbound_background ____________
+
+service = <kbqa.service.Service object at 0x10ba84da0>
+
+    def test_real_payment_selection_excludes_unbound_background(service):
+     p=json.loads((Path(__file__).parent/'live/chat-3.json').read_text())
+     pool=DocumentEvidence(service.facts);ev=[]
+     for s in p['trace']['steps']:
+      if s['step']=='document_evidence':pool.add(s['detail']['evidence'])
+      if s['step']=='tool' and s['detail']['tool']!='search_kb':
+       d=s['detail'];ev.append(dict(_call_id=d['call_id'],tool=d['tool'],params=d['params'],result=d['result']))
+     payload=json.loads(p['trace']['llm_calls'][-1]['response']['choices'][0]['message']['content'])
+     trace=Trace('g303-free-replay-payment',QUESTIONS['H05'])
+     a=render_mixed(payload,ev,pool,service.planner.plan(QUESTIONS['H05']),service.catalog,trace,search_performed=True)
+     assert a.answer_type=='hybrid' and '100.00%' in a.answer
+>    assert len(a.citations)==2 and '交换机升级' not in a.answer
+E    AssertionError: assert (3 == 2)
+E     +  where 3 = len([{'doc_id': 'KB-027', 'quote': '**2026-08-03 10:40 起**，Super Tetsudo（S05，上海·黄浦）的刷卡与扫码支付终端全部无法连到支付网关，刷卡、微信、支付宝、会员储值都提示网...**，收银台和门口各贴一张告知，排队的顾客提前口头告知，附近有取现网点的位置也一并告知。', 'evidence_id': 'doc-98685a844c2d52a62fce', 'chunk_id': 'KB-027#3', ...}])
+E     +    where [{'doc_id': 'KB-027', 'quote': '**2026-08-03 10:40 起**，Super Tetsudo（S05，上海·黄浦）的刷卡与扫码支付终端全部无法连到支付网关，刷卡、微信、支付宝、会员储值都提示网...**，收银台和门口各贴一张告知，排队的顾客提前口头告知，附近有取现网点的位置也一并告知。', 'evidence_id': 'doc-98685a844c2d52a62fce', 'chunk_id': 'KB-027#3', ...}] = Answer(answer='2026-08-03 至 2026-08-03 Super Tetsudo：现金按订单数占比 100.00%（27 / 27 单）。\n同期材料记载 KB-027：**2026-08-03 10:40 起*...nts.现金.orders', 'denominator_field': 'total_orders', 'numerator': 27, 'denominator': 27, 'result': 100.0}]}], notes=[]).citations
+
+docs/verification/g3-03/test_live_replay.py:35: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-03/test_mixed.py::test_event_scope_and_explicit_continuing_interval[S02\u57282026-06-18\u5f00\u5c55\u5458\u5de5\u57f9\u8bad\u3002-data]
+FAILED docs/verification/g3-03/test_live_replay.py::test_real_payment_selection_excludes_unbound_background
+2 failed, 46 passed in 4.23s

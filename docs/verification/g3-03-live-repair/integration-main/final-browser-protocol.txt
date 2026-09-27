@@ -1,0 +1,13 @@
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' test tests/g3-mixed-doc-date.spec.ts --workers=1 --output=../docs/verification/g3-03-live-repair/integration-main/final-browser-protocol-runtime
+
+Running 4 tests using 1 worker
+
+(node:22264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/g3-mixed-doc-date.spec.ts:6:31 › mixed minimal doc and exact day 1280 (1.4s)
+  ✓  2 tests/g3-mixed-doc-date.spec.ts:6:31 › mixed minimal doc and exact day 390 (1.6s)
+  ✓  3 tests/g3-mixed-doc-date.spec.ts:34:31 › mixed to exact day natural followup 1280 (783ms)
+  ✓  4 tests/g3-mixed-doc-date.spec.ts:34:31 › mixed to exact day natural followup 390 (744ms)
+
+  4 passed (4.9s)

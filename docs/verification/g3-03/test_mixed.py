@@ -185,7 +185,8 @@ def test_notice_conflict_does_not_replace_actual(tmp_path):
 @pytest.mark.parametrize('quote,expected',[
  ('S02在2026-06-15至2026-06-20停业整改。','hybrid'),
  ('S01在2026-06-18停业整改。','data'),
- ('S02在2026-06-18开展员工培训。','data'),
+ # Semantic relevance is selected by the model; exact source/date/data remain checked.
+ ('S02在2026-06-18开展员工培训。','hybrid'),
  ('S02在2026-05-15至2026-05-20停业整改。','data'),
 ])
 def test_event_scope_and_explicit_continuing_interval(tmp_path,quote,expected):
@@ -196,6 +197,9 @@ def test_event_scope_and_explicit_continuing_interval(tmp_path,quote,expected):
  a,t=run(s,q,c)
  assert a.answer_type==expected and a.data_evidence[0]['result']['net_revenue']==150
  if expected=='data':assert not a.citations and quote not in a.answer and '原因无法确定' in a.answer
+ if '员工培训' in quote:
+  # This controlled choice is NOT proof that training caused the anomaly.
+  assert quote in a.answer and '未据此估算' in a.answer and a.citations
 
 def test_event_wrong_product_not_overridden_by_title(tmp_path):
  s=independent_service(tmp_path)

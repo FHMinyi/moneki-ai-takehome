@@ -1,0 +1,613 @@
+{
+  "boundary": "saved final model output + saved executor evidence; all source/context offsets validated against current KB; no retrieval or provider call",
+  "results": [
+    {
+      "case": "C01",
+      "chat": 7,
+      "attempt": 14,
+      "question": "外卖订单多久内可以申请退款？",
+      "original_reasons": [
+        "attribute_conflict"
+      ],
+      "reasons": [],
+      "validated_spans": 37,
+      "content": "{\"answer_type\":\"doc\",\"facts\":[{\"evidence_id\":\"doc-359361887695a3d45ef9\",\"binding\":{\"subject\":[{\"question\":\"外卖订单\",\"source\":\"quote\",\"text\":\"外卖订单\"}],\"attribute\":[{\"question\":\"申请退款\",\"source\":\"quote\",\"text\":\"提出\"}],\"value\":{\"kind\":\"duration\",\"question\":\"多久\",\"text\":\"24 小时\"}}}]}",
+      "result": {
+        "answer_type": "doc",
+        "answer": "KB-013《退款政策 v2》：2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。",
+        "citations": [
+          {
+            "doc_id": "KB-013",
+            "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。",
+            "evidence_id": "doc-359361887695a3d45ef9",
+            "chunk_id": "KB-013#2",
+            "source_start": 144,
+            "source_end": 178,
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "metadata": {
+              "title": "退款政策 v2",
+              "effective_from": "2026-06-15",
+              "status": "现行",
+              "stores": [],
+              "stores_explicit": false,
+              "superseded_by": null
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "step": "document_binding",
+          "at_ms": 2.2,
+          "took_ms": null,
+          "detail": {
+            "selected": [
+              {
+                "evidence_id": "doc-359361887695a3d45ef9",
+                "doc_id": "KB-013",
+                "chunk_id": "KB-013#2",
+                "quote": "2. 外卖订单在送达后 24 小时内提出，超过 24 小时不再受理。",
+                "source_start": 144,
+                "source_end": 178,
+                "kind": "text",
+                "context": [
+                  {
+                    "quote": "# 退款政策 v2\n",
+                    "source_start": 0,
+                    "source_end": 10
+                  },
+                  {
+                    "quote": "## 一、受理窗口\n",
+                    "source_start": 109,
+                    "source_end": 119
+                  }
+                ],
+                "score": 27.782440383480015,
+                "scope": {
+                  "as_of": "2026-09-01",
+                  "store_id": null,
+                  "year": 2026,
+                  "historical": false,
+                  "window": null
+                },
+                "metadata": {
+                  "title": "退款政策 v2",
+                  "effective_from": "2026-06-15",
+                  "status": "现行",
+                  "stores": [],
+                  "stores_explicit": false,
+                  "superseded_by": null
+                },
+                "_checked_anchors": [
+                  {
+                    "role": "subject",
+                    "question": "外卖订单",
+                    "quote": "外卖订单",
+                    "source_start": 147,
+                    "source_end": 151,
+                    "source_field": "visible_text",
+                    "context": "quote",
+                    "interpretation": "literal"
+                  },
+                  {
+                    "role": "attribute",
+                    "question": "申请退款",
+                    "quote": "提出",
+                    "source_start": 162,
+                    "source_end": 164,
+                    "source_field": "visible_text",
+                    "context": "quote",
+                    "interpretation": "literal"
+                  }
+                ],
+                "_value_kind": "duration"
+              }
+            ],
+            "required_claim": null,
+            "mode": "extractive"
+          }
+        }
+      ]
+    },
+    {
+      "case": "C02",
+      "chat": 8,
+      "attempt": 16,
+      "question": "有顾客问牛肉poke 里有哪些过敏原，怎么答？",
+      "original_reasons": [
+        "attribute_conflict"
+      ],
+      "reasons": [
+        "unknown_question_value_shape"
+      ],
+      "validated_spans": 38,
+      "content": "{\"answer_type\":\"doc\",\"facts\":[{\"evidence_id\":\"doc-7f8a890d5b4e84a3fd0e\",\"binding\":{\"subject\":[{\"question\":\"牛肉poke\",\"source\":\"quote\",\"text\":\"牛肉poke\"}],\"attribute\":[{\"question\":\"过敏原\",\"source\":\"quote\",\"text\":\"| P06 | 牛肉poke | ✓ | ✓ | — | — | — | — | ✓ | — | — |\"}],\"value\":{\"kind\":\"rule\",\"question\":\"\",\"text\":\"✓ | ✓ | — | — | — | — | ✓ | — | —\"}}}]}",
+      "result": {
+        "answer_type": "refusal",
+        "answer": "本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。",
+        "citations": []
+      },
+      "steps": [
+        {
+          "step": "document_binding_rejected",
+          "at_ms": 0.3,
+          "took_ms": null,
+          "detail": {
+            "evidence_id": "doc-7f8a890d5b4e84a3fd0e",
+            "reason": "unknown_question_value_shape"
+          }
+        },
+        {
+          "step": "insufficient_evidence",
+          "at_ms": 0.4,
+          "took_ms": null,
+          "detail": {
+            "source": "unverified_subject_attribute_binding",
+            "policy_claims_rendered": false
+          }
+        }
+      ]
+    },
+    {
+      "case": "C03",
+      "chat": 9,
+      "attempt": 18,
+      "question": "Super Souper 现在周五晚上营业到几点？",
+      "original_reasons": [
+        "attribute_conflict"
+      ],
+      "reasons": [],
+      "validated_spans": 26,
+      "content": "{\"answer_type\":\"doc\",\"facts\":[{\"evidence_id\":\"doc-6d850d52e69d623f1b84\",\"binding\":{\"subject\":[{\"question\":\"Super Souper\",\"source\":\"quote\",\"text\":\"Super Souper\"}],\"attribute\":[{\"question\":\"周五晚上营业到几点\",\"source\":\"quote\",\"text\":\"每周五、周六延长营业至 23:00\"}],\"value\":{\"kind\":\"clock\",\"question\":\"几点\",\"text\":\"23:00\"}}}]}",
+      "result": {
+        "answer_type": "doc",
+        "answer": "KB-062《合味餐饮管理（上海）有限公司   OA 公文系统   导出文件》：经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇）\n调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至\n周四的营业时间不变，仍为 10:30-21:30。",
+        "citations": [
+          {
+            "doc_id": "KB-062",
+            "quote": "经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇）\n调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至\n周四的营业时间不变，仍为 10:30-21:30。",
+            "evidence_id": "doc-6d850d52e69d623f1b84",
+            "chunk_id": "KB-062#2",
+            "source_start": 309,
+            "source_end": 430,
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": "S01",
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "metadata": {
+              "title": "合味餐饮管理（上海）有限公司   OA 公文系统   导出文件",
+              "effective_from": "2026-08-15",
+              "status": "现行",
+              "stores": [
+                "S01"
+              ],
+              "stores_explicit": false,
+              "superseded_by": null
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "step": "document_binding",
+          "at_ms": 0.7,
+          "took_ms": null,
+          "detail": {
+            "selected": [
+              {
+                "evidence_id": "doc-6d850d52e69d623f1b84",
+                "doc_id": "KB-062",
+                "chunk_id": "KB-062#2",
+                "quote": "经管理层研究决定，自 2026 年 8 月 15 日起，Super Souper（S01，上海·徐汇）\n调整周末营业时间：每周五、周六延长营业至 23:00，原闭店时间为 21:30；周日至\n周四的营业时间不变，仍为 10:30-21:30。",
+                "source_start": 309,
+                "source_end": 430,
+                "kind": "text",
+                "context": [],
+                "score": 61.51498046179441,
+                "scope": {
+                  "as_of": "2026-09-01",
+                  "store_id": "S01",
+                  "year": 2026,
+                  "historical": false,
+                  "window": null
+                },
+                "metadata": {
+                  "title": "合味餐饮管理（上海）有限公司   OA 公文系统   导出文件",
+                  "effective_from": "2026-08-15",
+                  "status": "现行",
+                  "stores": [
+                    "S01"
+                  ],
+                  "stores_explicit": false,
+                  "superseded_by": null
+                },
+                "_checked_anchors": [
+                  {
+                    "role": "subject",
+                    "question": "Super Souper",
+                    "quote": "Super Souper",
+                    "source_start": 337,
+                    "source_end": 349,
+                    "source_field": "visible_text",
+                    "context": "quote",
+                    "interpretation": "literal"
+                  },
+                  {
+                    "role": "attribute",
+                    "question": "周五晚上营业到几点",
+                    "quote": "每周五、周六延长营业至 23:00",
+                    "source_start": 370,
+                    "source_end": 387,
+                    "source_field": "visible_text",
+                    "context": "quote",
+                    "interpretation": "literal"
+                  }
+                ],
+                "_value_kind": "clock"
+              }
+            ],
+            "required_claim": null,
+            "mode": "extractive"
+          }
+        }
+      ]
+    },
+    {
+      "case": "C04",
+      "chat": 10,
+      "attempt": 21,
+      "question": "三文鱼那次断供，供应商最后赔了我们多少钱？",
+      "original_reasons": [
+        "subject_conflict"
+      ],
+      "reasons": [
+        "source_anchor_not_literal"
+      ],
+      "validated_spans": 63,
+      "content": "{\"answer_type\":\"doc\",\"facts\":[{\"evidence_id\":\"doc-bd9cb3e5e74f4580d4a5\",\"binding\":{\"subject\":[{\"question\":\"供应商\",\"source\":\"title\",\"text\":\"Tasman Cold Chain Seafood\"}],\"attribute\":[{\"question\":\"赔了我们多少钱\",\"source\":\"quote\",\"text\":\"We will issue a credit note of CNY 8,600 against your July account. This covers the full value of the rejected consignment.\"}],\"value\":{\"kind\":\"money\",\"question\":\"多少钱\",\"text\":\"CNY 8,600\"}}}]}",
+      "result": {
+        "answer_type": "refusal",
+        "answer": "本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。",
+        "citations": []
+      },
+      "steps": [
+        {
+          "step": "document_binding_rejected",
+          "at_ms": 0.2,
+          "took_ms": null,
+          "detail": {
+            "evidence_id": "doc-bd9cb3e5e74f4580d4a5",
+            "reason": "source_anchor_not_literal"
+          }
+        },
+        {
+          "step": "insufficient_evidence",
+          "at_ms": 0.3,
+          "took_ms": null,
+          "detail": {
+            "source": "unverified_subject_attribute_binding",
+            "policy_claims_rendered": false
+          }
+        }
+      ]
+    },
+    {
+      "case": "C06",
+      "chat": 12,
+      "attempt": 25,
+      "question": "退款在净营业额里是怎么算的？",
+      "original_reasons": [
+        "subject_conflict"
+      ],
+      "reasons": [
+        "source_anchor_not_literal"
+      ],
+      "validated_spans": 30,
+      "content": "{\"answer_type\":\"doc\",\"facts\":[{\"evidence_id\":\"doc-3e67c83be73e938042a8\",\"binding\":{\"subject\":[{\"question\":\"退款\",\"source\":\"quote\",\"text\":\"退款行\"}],\"attribute\":[{\"question\":\"在净营业额里是怎么算的\",\"source\":\"quote\",\"text\":\"净营业额 = 销售行金额之和 + 退款行金额之和\"}],\"value\":{\"kind\":\"rule\",\"question\":\"\",\"text\":\"退款行的金额本身是负数，所以实际效果是相减。\"}}},{\"evidence_id\":\"doc-44155d618e2e70fd7a22\",\"binding\":{\"subject\":[{\"question\":\"退款\",\"source\":\"quote\",\"text\":\"退款行\"}],\"attribute\":[{\"question\":\"在净营业额里是怎么算的\",\"source\":\"quote\",\"text\":\"amount < 0\"}],\"value\":{\"kind\":\"rule\",\"question\":\"\",\"text\":\"amount < 0\"}}},{\"evidence_id\":\"doc-59cdb5712e9f33ed3936\",\"binding\":{\"subject\":[{\"question\":\"退款\",\"source\":\"quote\",\"text\":\"退款行\"}],\"attribute\":[{\"question\":\"在净营业额里是怎么算的\",\"source\":\"quote\",\"text\":\"amount\"}],\"value\":{\"kind\":\"rule\",\"question\":\"\",\"text\":\"原金额的相反数\"}}}]}",
+      "result": {
+        "answer_type": "refusal",
+        "answer": "本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。",
+        "citations": []
+      },
+      "steps": [
+        {
+          "step": "document_binding_rejected",
+          "at_ms": 0.2,
+          "took_ms": null,
+          "detail": {
+            "evidence_id": "doc-3e67c83be73e938042a8",
+            "reason": "source_anchor_not_literal"
+          }
+        },
+        {
+          "step": "insufficient_evidence",
+          "at_ms": 0.2,
+          "took_ms": null,
+          "detail": {
+            "source": "unverified_subject_attribute_binding",
+            "policy_claims_rendered": false
+          }
+        }
+      ]
+    },
+    {
+      "case": "C08",
+      "chat": 14,
+      "attempt": 31,
+      "question": "员工迟到多久算一次？",
+      "original_reasons": [
+        "subject_conflict"
+      ],
+      "reasons": [],
+      "validated_spans": 20,
+      "content": "{\"answer_type\":\"doc\",\"facts\":[{\"evidence_id\":\"doc-e4a7582e76dbcae46276\",\"binding\":{\"subject\":[{\"question\":\"员工迟到\",\"source\":\"quote\",\"text\":\"迟到\"}],\"attribute\":[{\"question\":\"多久算一次\",\"source\":\"quote\",\"text\":\"记 1 次\"}],\"value\":{\"kind\":\"duration\",\"question\":\"多久\",\"text\":\"15 分钟以上\"}}}]}",
+      "result": {
+        "answer_type": "doc",
+        "answer": "KB-016《排班与考勤制度》：2. **迟到 15 分钟以上记 1 次**，15 分钟以内为轻微迟到，当月累计 3 次轻微迟到折算为 1 次。",
+        "citations": [
+          {
+            "doc_id": "KB-016",
+            "quote": "2. **迟到 15 分钟以上记 1 次**，15 分钟以内为轻微迟到，当月累计 3 次轻微迟到折算为 1 次。",
+            "evidence_id": "doc-e4a7582e76dbcae46276",
+            "chunk_id": "KB-016#3",
+            "source_start": 320,
+            "source_end": 376,
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "metadata": {
+              "title": "排班与考勤制度",
+              "effective_from": "2025-11-01",
+              "status": "现行",
+              "stores": [],
+              "stores_explicit": false,
+              "superseded_by": null
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "step": "document_binding",
+          "at_ms": 0.5,
+          "took_ms": null,
+          "detail": {
+            "selected": [
+              {
+                "evidence_id": "doc-e4a7582e76dbcae46276",
+                "doc_id": "KB-016",
+                "chunk_id": "KB-016#3",
+                "quote": "2. **迟到 15 分钟以上记 1 次**，15 分钟以内为轻微迟到，当月累计 3 次轻微迟到折算为 1 次。",
+                "source_start": 320,
+                "source_end": 376,
+                "kind": "text",
+                "context": [
+                  {
+                    "quote": "# 排班与考勤制度\n",
+                    "source_start": 0,
+                    "source_end": 10
+                  },
+                  {
+                    "quote": "## 二、考勤\n",
+                    "source_start": 269,
+                    "source_end": 277
+                  }
+                ],
+                "score": 49.97408257336005,
+                "scope": {
+                  "as_of": "2026-09-01",
+                  "store_id": null,
+                  "year": 2026,
+                  "historical": false,
+                  "window": null
+                },
+                "metadata": {
+                  "title": "排班与考勤制度",
+                  "effective_from": "2025-11-01",
+                  "status": "现行",
+                  "stores": [],
+                  "stores_explicit": false,
+                  "superseded_by": null
+                },
+                "_checked_anchors": [
+                  {
+                    "role": "subject",
+                    "question": "员工迟到",
+                    "quote": "迟到",
+                    "source_start": 325,
+                    "source_end": 327,
+                    "source_field": "visible_text",
+                    "context": "quote",
+                    "interpretation": "literal"
+                  },
+                  {
+                    "role": "attribute",
+                    "question": "多久算一次",
+                    "quote": "记 1 次",
+                    "source_start": 335,
+                    "source_end": 340,
+                    "source_field": "visible_text",
+                    "context": "quote",
+                    "interpretation": "literal"
+                  }
+                ],
+                "_value_kind": "duration"
+              }
+            ],
+            "required_claim": null,
+            "mode": "extractive"
+          }
+        }
+      ]
+    },
+    {
+      "case": "V02",
+      "chat": 16,
+      "attempt": 35,
+      "question": "会员现在单笔充值满 500 送多少？",
+      "original_reasons": [
+        "subject_conflict"
+      ],
+      "reasons": [
+        "unknown_question_value_shape"
+      ],
+      "validated_spans": 23,
+      "content": "{\"answer_type\":\"doc\",\"facts\":[{\"evidence_id\":\"doc-a00664330cc07a70b738\",\"binding\":{\"subject\":[{\"question\":\"会员\",\"source\":\"title\",\"text\":\"会员储值政策 v2\"}],\"attribute\":[{\"question\":\"单笔充值满 500\",\"source\":\"quote\",\"text\":\"单笔充值满 500 元，赠送 60 元。\"}],\"value\":{\"kind\":\"money\",\"question\":\"多少\",\"text\":\"赠送 60 元\"}}}]}",
+      "result": {
+        "answer_type": "refusal",
+        "answer": "本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。",
+        "citations": []
+      },
+      "steps": [
+        {
+          "step": "document_binding_rejected",
+          "at_ms": 0.3,
+          "took_ms": null,
+          "detail": {
+            "evidence_id": "doc-a00664330cc07a70b738",
+            "reason": "unknown_question_value_shape"
+          }
+        },
+        {
+          "step": "insufficient_evidence",
+          "at_ms": 0.3,
+          "took_ms": null,
+          "detail": {
+            "source": "unverified_subject_attribute_binding",
+            "policy_claims_rendered": false
+          }
+        }
+      ]
+    },
+    {
+      "case": "V03-1",
+      "chat": 17,
+      "attempt": 37,
+      "question": "储值充值现在的赠送规则是什么？",
+      "original_reasons": [
+        "subject_conflict"
+      ],
+      "reasons": [
+        "unknown_question_value_shape"
+      ],
+      "validated_spans": 33,
+      "content": "{\"answer_type\":\"doc\",\"facts\":[{\"evidence_id\":\"doc-a00664330cc07a70b738\",\"binding\":{\"subject\":[{\"question\":\"储值充值\",\"source\":1,\"text\":\"储值\"}],\"attribute\":[{\"question\":\"赠送规则\",\"source\":\"quote\",\"text\":\"赠送\"}],\"value\":{\"kind\":\"rule\",\"question\":\"\",\"text\":\"单笔充值满 500 元，赠送 60 元\"}}},{\"evidence_id\":\"doc-c14d1db0636933a1a7a1\",\"binding\":{\"subject\":[{\"question\":\"储值充值\",\"source\":1,\"text\":\"储值\"}],\"attribute\":[{\"question\":\"赠送规则\",\"source\":\"quote\",\"text\":\"赠送\"}],\"value\":{\"kind\":\"rule\",\"question\":\"\",\"text\":\"单笔充值满 1000 元，赠送 150 元\"}}},{\"evidence_id\":\"doc-deaafaaad4234e61f033\",\"binding\":{\"subject\":[{\"question\":\"储值充值\",\"source\":1,\"text\":\"储值\"}],\"attribute\":[{\"question\":\"赠送规则\",\"source\":\"quote\",\"text\":\"赠送\"}],\"value\":{\"kind\":\"rule\",\"question\":\"\",\"text\":\"赠送档位不叠加，按单笔充值金额就高不就低；500 元以下的充值不赠送\"}}},{\"evidence_id\":\"doc-71e06d0271408c491c78\",\"binding\":{\"subject\":[{\"question\":\"储值充值\",\"source\":1,\"text\":\"储值\"}],\"attribute\":[{\"question\":\"赠送规则\",\"source\":\"quote\",\"text\":\"赠送\"}],\"value\":{\"kind\":\"rule\",\"question\":\"\",\"text\":\"赠送金额即时到账，与本金放在同一个余额里，只能用于消费，不可提现、不可开票\"}}}]}",
+      "result": {
+        "answer_type": "refusal",
+        "answer": "本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。",
+        "citations": []
+      },
+      "steps": [
+        {
+          "step": "document_binding_rejected",
+          "at_ms": 0.3,
+          "took_ms": null,
+          "detail": {
+            "evidence_id": "doc-a00664330cc07a70b738",
+            "reason": "unknown_question_value_shape"
+          }
+        },
+        {
+          "step": "insufficient_evidence",
+          "at_ms": 0.3,
+          "took_ms": null,
+          "detail": {
+            "source": "unverified_subject_attribute_binding",
+            "policy_claims_rendered": false
+          }
+        }
+      ]
+    },
+    {
+      "case": "T02-2",
+      "chat": 29,
+      "attempt": 69,
+      "question": "那停售期间让顾客换成什么？",
+      "original_reasons": [
+        "attribute_conflict"
+      ],
+      "reasons": [
+        "text_value_must_be_empty"
+      ],
+      "validated_spans": 52,
+      "content": "{\"answer_type\":\"doc\",\"facts\":[{\"evidence_id\":\"doc-cc1316fee0ede5f6f57f\",\"binding\":{\"subject\":[{\"question\":\"顾客\",\"source\":\"quote\",\"text\":\"顾客\"}],\"attribute\":[{\"question\":\"换成什么\",\"source\":\"quote\",\"text\":\"推荐替代品鸡肉poke\"}],\"value\":{\"kind\":\"text\",\"question\":\"\",\"text\":\"向顾客推荐替代品鸡肉poke\"}}}]}",
+      "result": {
+        "answer_type": "refusal",
+        "answer": "本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。",
+        "citations": []
+      },
+      "steps": [
+        {
+          "step": "document_binding_rejected",
+          "at_ms": 0.3,
+          "took_ms": null,
+          "detail": {
+            "evidence_id": "doc-cc1316fee0ede5f6f57f",
+            "reason": "text_value_must_be_empty"
+          }
+        },
+        {
+          "step": "insufficient_evidence",
+          "at_ms": 0.3,
+          "took_ms": null,
+          "detail": {
+            "source": "unverified_subject_attribute_binding",
+            "policy_claims_rendered": false
+          }
+        }
+      ]
+    },
+    {
+      "case": "S01",
+      "chat": 37,
+      "attempt": 87,
+      "question": "7 月顾客投诉最集中的是什么问题？有多少条？",
+      "original_reasons": [
+        "subject_conflict"
+      ],
+      "reasons": [
+        "question_anchor_not_literal"
+      ],
+      "validated_spans": 81,
+      "content": "{\"answer_type\":\"doc\",\"facts\":[{\"evidence_id\":\"doc-55dcc70bf21ec640835f\",\"binding\":{\"subject\":[{\"question\":\"7 月顾客投诉\",\"source\":\"title\",\"text\":\"顾客反馈汇总 2026 年 7 月\"},{\"question\":\"顾客投诉最集中的问题\",\"source\":\"quote\",\"text\":\"S04 Arigato Sando 出餐慢\"}],\"attribute\":[{\"question\":\"最集中\",\"source\":\"quote\",\"text\":\"是本月最集中的一类问题\"}],\"value\":{\"kind\":\"count\",\"question\":\"多少条\",\"text\":\"12 条\"}}}]}",
+      "result": {
+        "answer_type": "refusal",
+        "answer": "本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。",
+        "citations": []
+      },
+      "steps": [
+        {
+          "step": "document_binding_rejected",
+          "at_ms": 0.2,
+          "took_ms": null,
+          "detail": {
+            "evidence_id": "doc-55dcc70bf21ec640835f",
+            "reason": "question_anchor_not_literal"
+          }
+        },
+        {
+          "step": "insufficient_evidence",
+          "at_ms": 0.2,
+          "took_ms": null,
+          "detail": {
+            "source": "unverified_subject_attribute_binding",
+            "policy_claims_rendered": false
+          }
+        }
+      ]
+    }
+  ]
+}
