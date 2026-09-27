@@ -127,8 +127,11 @@ def resolve(plan, question: str, context: dict, catalog, today: date, period: di
         # rewritten question, where a later turn could resurrect it.
         plan.standalone = question
         plan.search_query = question
+    if explicit_product:
+        source["product_id"] = "question"
+    elif plan.product_id:
+        source["product_id"] = "reference"
     plan.product_id = explicit_product
-    source["product_id"] = "question" if explicit_product else "reference"
 
     plan.slots.update({"window": plan.window, "compare_window": plan.compare_window,
                        "store_id": plan.store_id, "product_id": plan.product_id,
