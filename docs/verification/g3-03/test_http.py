@@ -45,3 +45,31 @@ def test_replacement_payment_classification_http(tmp_path,label,expected):
   assert e['result']['payments']['银行卡']['orders']==1 and e['result']['payments']['现金']['orders']==0
   assert all(x['denominator']==1 for x in e['calculations'])
  finally:Controlled.extra_cases.pop(q,None)
+
+@pytest.mark.parametrize('cash,card,expected',[('9.99','0.50','9.99 / 10.49 元'),('9.99','-9.99','9.99 / 0.00 元'),('-9.99','20.48','-9.99 / 10.49 元')])
+def test_fractional_money_operands_actual_http(tmp_path,cash,card,expected):
+ import sqlite3
+ from http_harness import Controlled
+ from test_mixed import independent_service
+ s=independent_service(tmp_path)
+ con=sqlite3.connect(s.settings.source_db);con.execute("DELETE FROM sales WHERE store_id='S02'")
+ con.executemany('INSERT INTO sales VALUES (?,?,?,?,?,?,?)',[
+ ('CENTS-CASH','2026-06-18','S02','P06','1',cash,'现金'),('CENTS-CARD','2026-06-18','S02','P06','1',card,'银行卡')]);con.commit();con.close();s.tools.close()
+ q='6月18日S02现金支付金额占比是多少，为什么？'
+ Controlled.extra_cases[q]=dict(mode='payment',tool='payment_mix',params=dict(start='2026-06-18',end='2026-06-18',store_id='S02'),metric='share_revenue',doc=None)
+ try:
+  with runtime(tmp_path/'http',data_dir=s.settings.data_dir,kb_dir=s.settings.kb_dir) as (base,resources):
+   with httpx.Client(trust_env=False,timeout=180) as c:
+    r=c.post(base+'/api/chat',json=dict(question=q,session_id='cents'));assert r.status_code==200
+    a=r.json();t=c.get(base+'/api/trace/'+a['trace_id']).json()
+  (OUT/(f'fractional-payment-{cash}-{card}.json')).write_text(json.dumps(dict(question=q,response=a,trace=t),ensure_ascii=False,indent=2))
+  assert a['answer_type']=='data' and expected in a['answer'],a
+  from decimal import Decimal,ROUND_HALF_UP
+  numerator=Decimal(cash);denom=Decimal(cash)+Decimal(card)
+  calculated=a['data_evidence'][0]['calculations'][0]
+  assert calculated['numerator']==float(numerator) and calculated['denominator']==float(denom)
+  if denom:
+   pct=(numerator*100/denom).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)
+   assert calculated['result']==float(pct) and f'{pct:.2f}%' in a['answer']
+  else:assert calculated['result'] is None and '分母为零' in a['answer']
+ finally:Controlled.extra_cases.pop(q,None)

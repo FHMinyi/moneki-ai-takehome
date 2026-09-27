@@ -1,0 +1,94 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+__ test_fractional_money_operands_actual_http[9.99-0.50-9.99 / 10.49 \u5143] ___
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-332/test_fractional_money_operands0')
+cash = '9.99', card = '0.50', expected = '9.99 / 10.49 元'
+
+    @pytest.mark.parametrize('cash,card,expected',[('9.99','0.50','9.99 / 10.49 元'),('9.99','-9.99','9.99 / 0.00 元'),('-9.99','20.48','-9.99 / 10.49 元')])
+    def test_fractional_money_operands_actual_http(tmp_path,cash,card,expected):
+     import sqlite3
+     from http_harness import Controlled
+     from test_mixed import independent_service
+     s=independent_service(tmp_path)
+     con=sqlite3.connect(s.settings.source_db);con.execute("DELETE FROM sales WHERE store_id='S02'")
+     con.executemany('INSERT INTO sales VALUES (?,?,?,?,?,?,?)',[
+     ('CENTS-CASH','2026-06-18','S02','P06','1',cash,'现金'),('CENTS-CARD','2026-06-18','S02','P06','1',card,'银行卡')]);con.commit();con.close();s.tools.close()
+     q='6月18日S02现金支付金额占比是多少，为什么？'
+     Controlled.extra_cases[q]=dict(mode='payment',tool='payment_mix',params=dict(start='2026-06-18',end='2026-06-18',store_id='S02'),metric='share_revenue',doc=None)
+     try:
+      with runtime(tmp_path/'http',data_dir=s.settings.data_dir,kb_dir=s.settings.kb_dir) as (base,resources):
+       with httpx.Client(trust_env=False,timeout=180) as c:
+        r=c.post(base+'/api/chat',json=dict(question=q,session_id='cents'));assert r.status_code==200
+        a=r.json();t=c.get(base+'/api/trace/'+a['trace_id']).json()
+      (OUT/(f'fractional-payment-{cash}-{card}.json')).write_text(json.dumps(dict(question=q,response=a,trace=t),ensure_ascii=False,indent=2))
+>     assert a['answer_type']=='data' and expected in a['answer'],a
+E     AssertionError: {'answer': '2026-06-18 至 2026-06-18 Makai Poke：现金按净营业额占比 95.23%（10 / 10 元）。知识库中本次未找到可核对的对应原因材料，原因无法确定。', 'answer_type'...: {'start': '2026-06-18', 'end': '2026-06-18', 'store_id': 'S02', 'total_orders': 2, ...}, 'call_id': 'db', ...}], ...}
+E     assert ('data' == 'data'
+E       
+E         data and '9.99 / 10.49 元' in '2026-06-18 至 2026-06-18 Makai Poke：现金按净营业额占比 95.23%（10 / 10 元）。知识库中本次未找到可核对的对应原因材料，原因无法确定。')
+
+docs/verification/g3-03/test_http.py:66: AssertionError
+__ test_fractional_money_operands_actual_http[9.99--9.99-9.99 / 0.00 \u5143] ___
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-332/test_fractional_money_operands1')
+cash = '9.99', card = '-9.99', expected = '9.99 / 0.00 元'
+
+    @pytest.mark.parametrize('cash,card,expected',[('9.99','0.50','9.99 / 10.49 元'),('9.99','-9.99','9.99 / 0.00 元'),('-9.99','20.48','-9.99 / 10.49 元')])
+    def test_fractional_money_operands_actual_http(tmp_path,cash,card,expected):
+     import sqlite3
+     from http_harness import Controlled
+     from test_mixed import independent_service
+     s=independent_service(tmp_path)
+     con=sqlite3.connect(s.settings.source_db);con.execute("DELETE FROM sales WHERE store_id='S02'")
+     con.executemany('INSERT INTO sales VALUES (?,?,?,?,?,?,?)',[
+     ('CENTS-CASH','2026-06-18','S02','P06','1',cash,'现金'),('CENTS-CARD','2026-06-18','S02','P06','1',card,'银行卡')]);con.commit();con.close();s.tools.close()
+     q='6月18日S02现金支付金额占比是多少，为什么？'
+     Controlled.extra_cases[q]=dict(mode='payment',tool='payment_mix',params=dict(start='2026-06-18',end='2026-06-18',store_id='S02'),metric='share_revenue',doc=None)
+     try:
+      with runtime(tmp_path/'http',data_dir=s.settings.data_dir,kb_dir=s.settings.kb_dir) as (base,resources):
+       with httpx.Client(trust_env=False,timeout=180) as c:
+        r=c.post(base+'/api/chat',json=dict(question=q,session_id='cents'));assert r.status_code==200
+        a=r.json();t=c.get(base+'/api/trace/'+a['trace_id']).json()
+      (OUT/(f'fractional-payment-{cash}-{card}.json')).write_text(json.dumps(dict(question=q,response=a,trace=t),ensure_ascii=False,indent=2))
+>     assert a['answer_type']=='data' and expected in a['answer'],a
+E     AssertionError: {'answer': '2026-06-18 至 2026-06-18 Makai Poke：现金按净营业额占比 无法计算（分母为零）（10 / 0 元）。知识库中本次未找到可核对的对应原因材料，原因无法确定。', 'answer_ty...: {'start': '2026-06-18', 'end': '2026-06-18', 'store_id': 'S02', 'total_orders': 1, ...}, 'call_id': 'db', ...}], ...}
+E     assert ('data' == 'data'
+E       
+E         data and '9.99 / 0.00 元' in '2026-06-18 至 2026-06-18 Makai Poke：现金按净营业额占比 无法计算（分母为零）（10 / 0 元）。知识库中本次未找到可核对的对应原因材料，原因无法确定。')
+
+docs/verification/g3-03/test_http.py:66: AssertionError
+_ test_fractional_money_operands_actual_http[-9.99-20.48--9.99 / 10.49 \u5143] _
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-332/test_fractional_money_operands2')
+cash = '-9.99', card = '20.48', expected = '-9.99 / 10.49 元'
+
+    @pytest.mark.parametrize('cash,card,expected',[('9.99','0.50','9.99 / 10.49 元'),('9.99','-9.99','9.99 / 0.00 元'),('-9.99','20.48','-9.99 / 10.49 元')])
+    def test_fractional_money_operands_actual_http(tmp_path,cash,card,expected):
+     import sqlite3
+     from http_harness import Controlled
+     from test_mixed import independent_service
+     s=independent_service(tmp_path)
+     con=sqlite3.connect(s.settings.source_db);con.execute("DELETE FROM sales WHERE store_id='S02'")
+     con.executemany('INSERT INTO sales VALUES (?,?,?,?,?,?,?)',[
+     ('CENTS-CASH','2026-06-18','S02','P06','1',cash,'现金'),('CENTS-CARD','2026-06-18','S02','P06','1',card,'银行卡')]);con.commit();con.close();s.tools.close()
+     q='6月18日S02现金支付金额占比是多少，为什么？'
+     Controlled.extra_cases[q]=dict(mode='payment',tool='payment_mix',params=dict(start='2026-06-18',end='2026-06-18',store_id='S02'),metric='share_revenue',doc=None)
+     try:
+      with runtime(tmp_path/'http',data_dir=s.settings.data_dir,kb_dir=s.settings.kb_dir) as (base,resources):
+       with httpx.Client(trust_env=False,timeout=180) as c:
+        r=c.post(base+'/api/chat',json=dict(question=q,session_id='cents'));assert r.status_code==200
+        a=r.json();t=c.get(base+'/api/trace/'+a['trace_id']).json()
+      (OUT/(f'fractional-payment-{cash}-{card}.json')).write_text(json.dumps(dict(question=q,response=a,trace=t),ensure_ascii=False,indent=2))
+>     assert a['answer_type']=='data' and expected in a['answer'],a
+E     AssertionError: {'answer': '2026-06-18 至 2026-06-18 Makai Poke：现金按净营业额占比 -95.23%（-10 / 10 元）。知识库中本次未找到可核对的对应原因材料，原因无法确定。', 'answer_typ...: {'start': '2026-06-18', 'end': '2026-06-18', 'store_id': 'S02', 'total_orders': 1, ...}, 'call_id': 'db', ...}], ...}
+E     assert ('data' == 'data'
+E       
+E         data and '-9.99 / 10.49 元' in '2026-06-18 至 2026-06-18 Makai Poke：现金按净营业额占比 -95.23%（-10 / 10 元）。知识库中本次未找到可核对的对应原因材料，原因无法确定。')
+
+docs/verification/g3-03/test_http.py:66: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-03/test_http.py::test_fractional_money_operands_actual_http[9.99-0.50-9.99 / 10.49 \u5143]
+FAILED docs/verification/g3-03/test_http.py::test_fractional_money_operands_actual_http[9.99--9.99-9.99 / 0.00 \u5143]
+FAILED docs/verification/g3-03/test_http.py::test_fractional_money_operands_actual_http[-9.99-20.48--9.99 / 10.49 \u5143]
+3 failed, 9 deselected in 2.79s
