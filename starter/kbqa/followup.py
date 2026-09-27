@@ -49,14 +49,21 @@ class FollowUps:
         if previous and previous.get("answer_type") == "clarify":
             old = previous.get("standalone") or previous.get("question") or ""
             missing_month = (previous.get("slots") or {}).get("needs_month")
-            month = re.search(r"(?<!\d)(1[0-2]|[1-9])\s*月", question)
-            if missing_month and month and re.fullmatch(r"\s*(?:20\d{2}\s*年\s*)?\d{1,2}\s*月\s*[。！!？?]?\s*", question):
+            month_only = re.fullmatch(
+                r"\s*(?:那|是)?\s*(?:今年|20\d{2}\s*年)?\s*"
+                r"(?:1[0-2]|[1-9]|[一二三四五六七八九十]{1,3})\s*月(?:份)?\s*"
+                r"(?:呢)?[。！!？?]?\s*", question,
+            )
+            month_spec = parse_time(question, self.today) if month_only else None
+            if missing_month and month_spec and month_spec.windows:
+                selected = date.fromisoformat(month_spec.windows[0][0])
                 resolved = re.sub(r"(?<!\d)(\d{1,2})\s*[号日]",
-                                  lambda match: month.group(1) + "月" + match.group(1) + "日",
+                                  lambda match: f"{selected.year}年{selected.month}月{match.group(1)}日",
                                   old, count=1)
                 return resolved, {}
-            if len(question.strip()) <= 20 and not E.find_metric(question):
-                return old + " " + question, {}
+            # A clarification does not authorize inheriting the old question
+            # into an unrelated, independently meaningful new request.
+            return question, {}
         if not previous or not self._is_follow_up(question, previous):
             return question, {}
         base = previous.get("standalone") or previous.get("question") or ""

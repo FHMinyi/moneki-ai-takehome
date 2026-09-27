@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 import tempfile
 from dataclasses import replace
@@ -21,7 +22,7 @@ CASES = {
 
 
 def main():
-    out = ROOT / "docs/verification/g3-04/no-key"
+    out = Path(os.environ.get("G304_EVIDENCE_DIR", ROOT / "docs/verification/g3-04/no-key"))
     out.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="g304-replay-") as work:
         settings = replace(load_settings(), var_dir=Path(work), llm_base_url="",

@@ -92,6 +92,8 @@ def test_interleaved_sessions_switch_subject_and_missing_history(service):
     anonymous, _, _, _ = ask(service, None, "那 7 月呢？")
     assert anonymous["answer_type"] == "clarify"
     assert service.sessions.history(None) == []
+    again, _, _, _ = ask(service, "fresh", "那 8 月呢？")
+    assert again["answer_type"] == "clarify" and not again["data_evidence"]
 
 
 def test_topic_switch_refusal_and_replacement_values(service):
@@ -110,17 +112,40 @@ def test_topic_switch_refusal_and_replacement_values(service):
     assert after["answer_type"] == "clarify" and plan["store_id"] is None
 
 
-def test_clarification_accepts_missing_month_without_inventing_scope(service):
+@pytest.mark.parametrize("month_reply", ["7月", "那7月份呢？", "2026年7月", "七月"])
+def test_clarification_accepts_missing_month_without_inventing_scope(service, month_reply):
     first, _, _, _ = ask(service, "clarify", "8号的净营业额是多少？")
     assert first["answer_type"] == "clarify"
-    completed, context, plan, _ = ask(service, "clarify", "7月")
+    completed, context, plan, _ = ask(service, "clarify", month_reply)
     assert context["source_questions"] == ["8号的净营业额是多少？"]
     assert completed["answer_type"] == "data"
     assert plan["window"] == ["2026-07-08", "2026-07-08"]
     assert completed["data_evidence"][0]["params"]["start"] == "2026-07-08"
 
 
-def test_same_session_concurrent_request_waits_for_prior_answer(service, monkeypatch):
+@pytest.mark.parametrize("new_question", ["外卖退款时限？", "牛肉poke有哪些过敏原？"])
+def test_clarification_followed_by_independent_topic_does_not_inherit(service, tmp_path, monkeypatch, new_question):
+    ask(service, "switch", "8号的净营业额是多少？")
+    seen = []
+    original = service._run_engine
+
+    def observed(plan, trace, history, *args):
+        seen.append(history)
+        return original(plan, trace, history, *args)
+
+    monkeypatch.setattr(service, "_run_engine", observed)
+    switched, context, plan, _ = ask(service, "switch", new_question)
+    fresh = Service(replace(load_settings(), var_dir=tmp_path / "fresh",
+                            llm_base_url="", llm_api_key="", llm_model=""))
+    independent, _, independent_plan, _ = ask(fresh, "fresh", new_question)
+    assert context["raw_question"] == new_question
+    assert plan["standalone_question"] == independent_plan["standalone_question"] == new_question
+    assert switched["answer_type"] == independent["answer_type"]
+    assert switched["answer"] == independent["answer"]
+    assert seen == [[]]
+
+
+def test_same_session_concurrent_request_has_bounded_busy_response(service, monkeypatch):
     entered = threading.Event()
     release = threading.Event()
     original = service._run_engine
@@ -135,12 +160,16 @@ def test_same_session_concurrent_request_waits_for_prior_answer(service, monkeyp
     with ThreadPoolExecutor(max_workers=2) as pool:
         first = pool.submit(ask, service, "same", "6 月的净营业额是多少？")
         assert entered.wait(5)
-        second = pool.submit(ask, service, "same", "那 7 月呢？")
-        time.sleep(.05)
-        assert not second.done()
+        second = pool.submit(service.chat, "same", "那 7 月呢？")
+        result = second.result(timeout=1)
+        trace = service.get_trace(result["trace_id"])
+        assert result["answer_type"] == "refusal"
+        assert "正在处理" in result["answer"]
+        assert any(step["step"] == "session_busy" for step in trace["steps"])
+        assert service.sessions.history("same") == []
         release.set()
         assert first.result()[0]["answer_type"] == "data"
-        result, context, plan, _ = second.result()
+    result, context, plan, _ = ask(service, "same", "那 7 月呢？")
     assert result["answer_type"] == "data" and "162414.00" in result["answer"]
     assert context["source_questions"] == ["6 月的净营业额是多少？"]
     assert plan["window"] == ["2026-07-01", "2026-07-31"]
@@ -172,6 +201,57 @@ def test_api_concurrency_keeps_two_sessions_separate(service, monkeypatch):
     bp = next(x["detail"] for x in br[2]["steps"] if x["step"] == "plan")
     assert (ap["store_id"], ap["metric"]) == ("S02", "net_revenue")
     assert (bp["store_id"], bp["metric"]) == ("S01", "orders")
+
+
+@pytest.mark.parametrize("fail_first", [False, True])
+def test_api_busy_is_bounded_and_does_not_block_another_session(tmp_path, monkeypatch, fail_first):
+    from fastapi.testclient import TestClient
+    from kbqa import server
+
+    service = Service(replace(load_settings(), var_dir=tmp_path, chat_budget=1,
+                              llm_base_url="", llm_api_key="", llm_model=""))
+    monkeypatch.setattr(server, "_service", service)
+    entered, release = threading.Event(), threading.Event()
+    original = service._run_engine
+
+    def held(plan, *args, **kwargs):
+        if plan.question == "6 月的净营业额是多少？":
+            entered.set()
+            assert release.wait(5)
+            if fail_first:
+                raise RuntimeError("controlled first-request failure")
+        return original(plan, *args, **kwargs)
+
+    monkeypatch.setattr(service, "_run_engine", held)
+
+    def post(sid, question):
+        with TestClient(server.app) as client:
+            response = client.post("/api/chat", json={"session_id": sid, "question": question})
+            assert response.status_code == 200
+            return response.json()
+
+    with ThreadPoolExecutor(max_workers=3) as pool:
+        first = pool.submit(post, "same-http", "6 月的净营业额是多少？")
+        assert entered.wait(5)
+        try:
+            start = time.perf_counter()
+            busy = pool.submit(post, "same-http", "那 7 月呢？").result(timeout=1)
+            elapsed = time.perf_counter() - start
+            assert elapsed < .9 and busy["answer_type"] == "refusal"
+            assert "正在处理" in busy["answer"]
+            busy_trace = service.get_trace(busy["trace_id"])
+            assert any(s["step"] == "session_busy" for s in busy_trace["steps"])
+            other = pool.submit(post, "other-http", "S01 7 月订单数是多少？").result(timeout=1)
+            assert other["answer_type"] == "data"
+            assert service.sessions.history("same-http") == []
+        finally:
+            release.set()
+        assert first.result(timeout=5)["answer_type"] == ("refusal" if fail_first else "data")
+    retry = post("same-http", "那 7 月呢？")
+    if fail_first:
+        assert retry["answer_type"] == "clarify" and service.sessions.history("same-http")[-1]["answer_type"] == "clarify"
+    else:
+        assert retry["answer_type"] == "data" and "162414.00" in retry["answer"]
 
 
 def test_store_limits_and_eviction_do_not_borrow_other_session():

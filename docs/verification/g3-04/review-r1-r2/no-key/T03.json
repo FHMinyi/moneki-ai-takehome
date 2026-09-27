@@ -1,0 +1,1777 @@
+[
+  {
+    "request": {
+      "session_id": "T03",
+      "question": "牛肉poke 现在多少钱一份？"
+    },
+    "response": {
+      "answer": "牛肉poke 现在的售价是 45.00 元（KB-025《2026 年 7 月调价通知》（2026-07-01 起生效））。数据库里最近一次成交的实收单价是 45.00 元，与通知一致。注意 products 维表里的建档价仍是 42.00 元，由财务月底统一更新，属于维表滞后，不能当成交价。",
+      "answer_type": "hybrid",
+      "citations": [
+        {
+          "doc_id": "KB-025",
+          "quote": "**牛肉poke 售价由 ¥42 调整为 ¥45，自 2026 年 7 月 1 日起执行**，五家门店同步，堂食、自提、外卖自营渠道一致。"
+        }
+      ],
+      "data_evidence": [
+        {
+          "tool": "unit_price_check",
+          "params": {
+            "product_id": "P06",
+            "start": "2026-05-01",
+            "end": "2026-08-31"
+          },
+          "result": {
+            "product_id": "P06",
+            "start": "2026-05-01",
+            "end": "2026-08-31",
+            "store_id": null,
+            "observed_unit_prices": {
+              "42.00": 606,
+              "29.00": 53,
+              "45.00": 589
+            },
+            "by_store": {
+              "S02": {
+                "42.00": 393,
+                "29.00": 53,
+                "45.00": 371
+              },
+              "S05": {
+                "42.00": 110,
+                "45.00": 94
+              },
+              "S04": {
+                "42.00": 31,
+                "45.00": 52
+              },
+              "S01": {
+                "42.00": 30,
+                "45.00": 34
+              },
+              "S03": {
+                "42.00": 42,
+                "45.00": 38
+              }
+            },
+            "rows": 1248,
+            "latest_price": 45.0,
+            "latest_date": "2026-08-31",
+            "table_unit_price": 42.0
+          }
+        }
+      ],
+      "trace_id": "t-20260901-0007"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0007",
+      "session_id": "T03",
+      "question": "牛肉poke 现在多少钱一份？",
+      "started_at": "2026-09-27T16:28:55.002",
+      "total_ms": 20.0,
+      "steps": [
+        {
+          "step": "request",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "session_id": "T03",
+            "question": "牛肉poke 现在多少钱一份？",
+            "context": null
+          }
+        },
+        {
+          "step": "context_validation",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "valid": true,
+            "reason": null,
+            "reference": null
+          }
+        },
+        {
+          "step": "session_context",
+          "at_ms": 8.0,
+          "took_ms": null,
+          "detail": {
+            "history_size": 0,
+            "source_questions": [],
+            "source_conditions": [],
+            "raw_question": "牛肉poke 现在多少钱一份？",
+            "standalone_question": "牛肉poke 现在多少钱一份？",
+            "inherited": false,
+            "effective_conditions": {
+              "question": "牛肉poke 现在多少钱一份？",
+              "standalone_question": "牛肉poke 现在多少钱一份？",
+              "search_query": "牛肉poke 多少钱一份？ 牛肉poke 售价 价格 调价 单价",
+              "intent": "hybrid",
+              "kind": "price",
+              "window": [
+                "2026-05-01",
+                "2026-08-31"
+              ],
+              "compare_window": null,
+              "as_of": "2026-09-01",
+              "year": 2026,
+              "store_id": null,
+              "product_id": "P06",
+              "metric": "net_revenue",
+              "needs_data": true,
+              "needs_docs": true,
+              "refusal": null,
+              "notes": [
+                "识别：指标=未指定 门店=全部 商品=P06 时间=未指定"
+              ]
+            }
+          }
+        },
+        {
+          "step": "plan",
+          "at_ms": 8.0,
+          "took_ms": 8.0,
+          "detail": {
+            "question": "牛肉poke 现在多少钱一份？",
+            "standalone_question": "牛肉poke 现在多少钱一份？",
+            "search_query": "牛肉poke 多少钱一份？ 牛肉poke 售价 价格 调价 单价",
+            "intent": "hybrid",
+            "kind": "price",
+            "window": [
+              "2026-05-01",
+              "2026-08-31"
+            ],
+            "compare_window": null,
+            "as_of": "2026-09-01",
+            "year": 2026,
+            "store_id": null,
+            "product_id": "P06",
+            "metric": "net_revenue",
+            "needs_data": true,
+            "needs_docs": true,
+            "refusal": null,
+            "notes": [
+              "识别：指标=未指定 门店=全部 商品=P06 时间=未指定"
+            ]
+          }
+        },
+        {
+          "step": "search",
+          "at_ms": 18.1,
+          "took_ms": 10.0,
+          "detail": {
+            "query": "牛肉poke 多少钱一份? 牛肉poke 售价 价格 调价 单价",
+            "terms": [
+              "牛肉",
+              "poke",
+              "少钱",
+              "钱一",
+              "一份",
+              "牛肉",
+              "poke",
+              "售价",
+              "价格",
+              "调价",
+              "单价"
+            ],
+            "scope": {
+              "as_of": "2026-09-01",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "candidates": [
+              {
+                "chunk_id": "KB-025#2",
+                "doc_id": "KB-025",
+                "score": 60.2748,
+                "lexical_score": 29.7653,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "poke",
+                  "价格",
+                  "售价",
+                  "牛肉",
+                  "调价"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#3",
+                "doc_id": "KB-023",
+                "score": 35.8387,
+                "lexical_score": 17.6981,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "poke",
+                  "售价",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-025#1",
+                "doc_id": "KB-025",
+                "score": 33.2952,
+                "lexical_score": 22.8773,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉",
+                  "调价"
+                ]
+              },
+              {
+                "chunk_id": "KB-040#3",
+                "doc_id": "KB-040",
+                "score": 27.4409,
+                "lexical_score": 20.3266,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#3",
+                "doc_id": "KB-031",
+                "score": 25.1308,
+                "lexical_score": 18.6154,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-041#4",
+                "doc_id": "KB-041",
+                "score": 23.8576,
+                "lexical_score": 17.6723,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#4",
+                "doc_id": "KB-023",
+                "score": 22.9512,
+                "lexical_score": 16.7569,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-025#3",
+                "doc_id": "KB-025",
+                "score": 22.247,
+                "lexical_score": 11.8291,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "价格",
+                  "售价",
+                  "调价"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#5",
+                "doc_id": "KB-023",
+                "score": 22.1592,
+                "lexical_score": 15.9649,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "售价",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-050#2",
+                "doc_id": "KB-050",
+                "score": 20.459,
+                "lexical_score": 15.1548,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#4",
+                "doc_id": "KB-031",
+                "score": 18.7813,
+                "lexical_score": 12.2659,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#3",
+                "doc_id": "KB-003",
+                "score": 18.6981,
+                "lexical_score": 27.701,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-025#4",
+                "doc_id": "KB-025",
+                "score": 18.3509,
+                "lexical_score": 7.9331,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "售价",
+                  "调价"
+                ]
+              },
+              {
+                "chunk_id": "KB-050#3",
+                "doc_id": "KB-050",
+                "score": 16.8378,
+                "lexical_score": 11.5336,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#1",
+                "doc_id": "KB-031",
+                "score": 15.4048,
+                "lexical_score": 8.8894,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#2",
+                "doc_id": "KB-031",
+                "score": 14.4724,
+                "lexical_score": 7.957,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#12",
+                "doc_id": "KB-001",
+                "score": 12.5688,
+                "lexical_score": 9.3102,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "单价",
+                  "售价",
+                  "调价"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#2",
+                "doc_id": "KB-023",
+                "score": 11.7136,
+                "lexical_score": 5.5193,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-050#1",
+                "doc_id": "KB-050",
+                "score": 11.6152,
+                "lexical_score": 6.311,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#4",
+                "doc_id": "KB-003",
+                "score": 10.8496,
+                "lexical_score": 12.0038,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-041#2",
+                "doc_id": "KB-041",
+                "score": 10.7957,
+                "lexical_score": 4.6104,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#8",
+                "doc_id": "KB-022",
+                "score": 10.7205,
+                "lexical_score": 4.8272,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-050#5",
+                "doc_id": "KB-050",
+                "score": 10.3975,
+                "lexical_score": 5.0933,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-021#2",
+                "doc_id": "KB-021",
+                "score": 10.3033,
+                "lexical_score": 7.6321,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-021#1",
+                "doc_id": "KB-021",
+                "score": 9.9499,
+                "lexical_score": 7.2787,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-041#3",
+                "doc_id": "KB-041",
+                "score": 9.7198,
+                "lexical_score": 3.5345,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-050#4",
+                "doc_id": "KB-050",
+                "score": 9.4032,
+                "lexical_score": 4.0991,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-021#3",
+                "doc_id": "KB-021",
+                "score": 9.009,
+                "lexical_score": 6.3378,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#9",
+                "doc_id": "KB-022",
+                "score": 8.9477,
+                "lexical_score": 6.6279,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-060#8",
+                "doc_id": "KB-060",
+                "score": 8.391,
+                "lexical_score": 6.2155,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "一份"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#2",
+                "doc_id": "KB-022",
+                "score": 8.2272,
+                "lexical_score": 5.9075,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#7",
+                "doc_id": "KB-022",
+                "score": 8.0799,
+                "lexical_score": 5.7602,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#15",
+                "doc_id": "KB-022",
+                "score": 7.8722,
+                "lexical_score": 5.5525,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#8",
+                "doc_id": "KB-003",
+                "score": 7.8489,
+                "lexical_score": 6.0025,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "价格",
+                  "调价"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#15",
+                "doc_id": "KB-001",
+                "score": 7.7785,
+                "lexical_score": 4.5199,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "单价"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#11",
+                "doc_id": "KB-022",
+                "score": 7.7739,
+                "lexical_score": 5.4541,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#12",
+                "doc_id": "KB-022",
+                "score": 7.6481,
+                "lexical_score": 5.3283,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#1",
+                "doc_id": "KB-022",
+                "score": 7.6175,
+                "lexical_score": 5.2978,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#7",
+                "doc_id": "KB-003",
+                "score": 7.5587,
+                "lexical_score": 5.4221,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#6",
+                "doc_id": "KB-022",
+                "score": 7.5575,
+                "lexical_score": 5.2377,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#13",
+                "doc_id": "KB-022",
+                "score": 7.5575,
+                "lexical_score": 5.2377,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#3",
+                "doc_id": "KB-022",
+                "score": 7.5279,
+                "lexical_score": 5.2082,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-060#3",
+                "doc_id": "KB-060",
+                "score": 7.4873,
+                "lexical_score": 5.3119,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#10",
+                "doc_id": "KB-022",
+                "score": 7.4699,
+                "lexical_score": 5.1501,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#4",
+                "doc_id": "KB-022",
+                "score": 7.4413,
+                "lexical_score": 5.1216,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#14",
+                "doc_id": "KB-022",
+                "score": 7.2765,
+                "lexical_score": 4.9567,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-022#5",
+                "doc_id": "KB-022",
+                "score": 7.25,
+                "lexical_score": 4.9302,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-028#2",
+                "doc_id": "KB-028",
+                "score": 7.1896,
+                "lexical_score": 3.2634,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "售价"
+                ]
+              },
+              {
+                "chunk_id": "KB-042#2",
+                "doc_id": "KB-042",
+                "score": 6.8383,
+                "lexical_score": 5.0654,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#19",
+                "doc_id": "KB-001",
+                "score": 6.805,
+                "lexical_score": 3.5464,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "单价"
+                ]
+              },
+              {
+                "chunk_id": "KB-060#6",
+                "doc_id": "KB-060",
+                "score": 6.2207,
+                "lexical_score": 4.0452,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#9",
+                "doc_id": "KB-001",
+                "score": 6.1874,
+                "lexical_score": 2.9288,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "单价"
+                ]
+              },
+              {
+                "chunk_id": "KB-028#5",
+                "doc_id": "KB-028",
+                "score": 5.9002,
+                "lexical_score": 4.3705,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-014#4",
+                "doc_id": "KB-014",
+                "score": 5.1595,
+                "lexical_score": 3.8219,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "一份"
+                ]
+              },
+              {
+                "chunk_id": "KB-027#5",
+                "doc_id": "KB-027",
+                "score": 4.889,
+                "lexical_score": 3.6215,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-061#1",
+                "doc_id": "KB-061",
+                "score": 4.6646,
+                "lexical_score": 3.4552,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-051#3",
+                "doc_id": "KB-051",
+                "score": 4.138,
+                "lexical_score": 3.0652,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-029#8",
+                "doc_id": "KB-029",
+                "score": 3.7492,
+                "lexical_score": 2.7772,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "价格"
+                ]
+              },
+              {
+                "chunk_id": "KB-029#14",
+                "doc_id": "KB-029",
+                "score": 3.6755,
+                "lexical_score": 2.7035,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "一份"
+                ]
+              },
+              {
+                "chunk_id": "KB-029#3",
+                "doc_id": "KB-029",
+                "score": 3.5717,
+                "lexical_score": 2.5997,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-061#2",
+                "doc_id": "KB-061",
+                "score": 3.561,
+                "lexical_score": 2.3517,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-024#3",
+                "doc_id": "KB-024",
+                "score": 2.6219,
+                "lexical_score": 5.179,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "poke"
+                ]
+              }
+            ],
+            "expansions": [
+              "牛肉poke",
+              "牛肉波奇饭",
+              "Beef Poke"
+            ],
+            "coverage": 0.428,
+            "hits": [
+              {
+                "doc_id": "KB-025",
+                "chunk_id": "KB-025#2",
+                "score": 60.2748,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-023",
+                "chunk_id": "KB-023#3",
+                "score": 35.8387,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-040",
+                "chunk_id": "KB-040#3",
+                "score": 27.4409,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-031",
+                "chunk_id": "KB-031#3",
+                "score": 25.1308,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-041",
+                "chunk_id": "KB-041#4",
+                "score": 23.8576,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": [
+              {
+                "doc_id": "KB-002",
+                "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+              },
+              {
+                "doc_id": "KB-010",
+                "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+              },
+              {
+                "doc_id": "KB-012",
+                "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+              }
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 20.0,
+          "took_ms": 12.0,
+          "detail": {
+            "answer_type": "hybrid"
+          }
+        },
+        {
+          "step": "tool",
+          "at_ms": 20.0,
+          "took_ms": null,
+          "detail": {
+            "tool": "unit_price_check",
+            "params": {
+              "product_id": "P06",
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "result": {
+              "product_id": "P06",
+              "start": "2026-05-01",
+              "end": "2026-08-31",
+              "store_id": null,
+              "observed_unit_prices": {
+                "42.00": 606,
+                "29.00": 53,
+                "45.00": 589
+              },
+              "by_store": {
+                "S02": {
+                  "42.00": 393,
+                  "29.00": 53,
+                  "45.00": 371
+                },
+                "S05": {
+                  "42.00": 110,
+                  "45.00": 94
+                },
+                "S04": {
+                  "42.00": 31,
+                  "45.00": 52
+                },
+                "S01": {
+                  "42.00": 30,
+                  "45.00": 34
+                },
+                "S03": {
+                  "42.00": 42,
+                  "45.00": 38
+                }
+              },
+              "rows": 1248,
+              "latest_price": 45.0,
+              "latest_date": "2026-08-31",
+              "table_unit_price": 42.0
+            }
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 20.0,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "hybrid",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  },
+  {
+    "request": {
+      "session_id": "T03",
+      "question": "那 6 月 18 号那天呢？"
+    },
+    "response": {
+      "answer": "2026-06-18 牛肉poke 各门店的实收单价并不一样：S02 29.00 元（53 行）；S03 42.00 元（1 行）；S05 42.00 元（5 行）。当时生效的说明见 KB-023《2026 年 618 活动方案》（2026-06-18 起生效）：1. **牛肉poke 活动价 ¥29**，仅限当天。",
+      "answer_type": "hybrid",
+      "citations": [
+        {
+          "doc_id": "KB-023",
+          "quote": "1. **牛肉poke 活动价 ¥29**，仅限当天。"
+        }
+      ],
+      "data_evidence": [
+        {
+          "tool": "unit_price_check",
+          "params": {
+            "product_id": "P06",
+            "start": "2026-06-18",
+            "end": "2026-06-18",
+            "store_id": null
+          },
+          "result": {
+            "product_id": "P06",
+            "start": "2026-06-18",
+            "end": "2026-06-18",
+            "store_id": null,
+            "observed_unit_prices": {
+              "29.00": 53,
+              "42.00": 6
+            },
+            "by_store": {
+              "S02": {
+                "29.00": 53
+              },
+              "S05": {
+                "42.00": 5
+              },
+              "S03": {
+                "42.00": 1
+              }
+            },
+            "rows": 59,
+            "latest_price": 29.0,
+            "latest_date": "2026-06-18",
+            "table_unit_price": 42.0
+          }
+        }
+      ],
+      "trace_id": "t-20260901-0008"
+    },
+    "trace": {
+      "trace_id": "t-20260901-0008",
+      "session_id": "T03",
+      "question": "那 6 月 18 号那天呢？",
+      "started_at": "2026-09-27T16:28:55.022",
+      "total_ms": 13.6,
+      "steps": [
+        {
+          "step": "request",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "session_id": "T03",
+            "question": "那 6 月 18 号那天呢？",
+            "context": null
+          }
+        },
+        {
+          "step": "context_validation",
+          "at_ms": 0.0,
+          "took_ms": null,
+          "detail": {
+            "valid": true,
+            "reason": null,
+            "reference": null
+          }
+        },
+        {
+          "step": "session_context",
+          "at_ms": 5.7,
+          "took_ms": null,
+          "detail": {
+            "history_size": 1,
+            "source_questions": [
+              "牛肉poke 现在多少钱一份？"
+            ],
+            "source_conditions": [
+              {
+                "metric_explicit": false,
+                "time_explicit": false,
+                "time_scoped": true,
+                "historical": false,
+                "as_of_dated": false,
+                "asks_why": false,
+                "about_names": false,
+                "two_part": false,
+                "underspecified": false,
+                "clean_question": "牛肉poke 多少钱一份？",
+                "recent_windows": [
+                  [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ]
+                ],
+                "store_id": null,
+                "product_id": "P06",
+                "metric": "net_revenue",
+                "window": [
+                  "2026-05-01",
+                  "2026-08-31"
+                ],
+                "kind": "price"
+              }
+            ],
+            "raw_question": "那 6 月 18 号那天呢？",
+            "standalone_question": "6 月 18 号那天 牛肉poke多少钱一份？",
+            "inherited": true,
+            "effective_conditions": {
+              "question": "那 6 月 18 号那天呢？",
+              "standalone_question": "6 月 18 号那天 牛肉poke多少钱一份？",
+              "search_query": "6 月 18 号那天 牛肉poke多少钱一份？ 牛肉poke 售价 价格 调价 单价",
+              "intent": "hybrid",
+              "kind": "price",
+              "window": [
+                "2026-06-18",
+                "2026-06-18"
+              ],
+              "compare_window": null,
+              "as_of": "2026-06-18",
+              "year": 2026,
+              "store_id": null,
+              "product_id": "P06",
+              "metric": "net_revenue",
+              "needs_data": true,
+              "needs_docs": true,
+              "refusal": null,
+              "notes": [
+                "这是一句追问，已按上一轮补全为：6 月 18 号那天 牛肉poke多少钱一份？",
+                "识别：指标=未指定 门店=全部 商品=P06 时间=['6月18日']"
+              ]
+            }
+          }
+        },
+        {
+          "step": "plan",
+          "at_ms": 5.7,
+          "took_ms": 5.7,
+          "detail": {
+            "question": "那 6 月 18 号那天呢？",
+            "standalone_question": "6 月 18 号那天 牛肉poke多少钱一份？",
+            "search_query": "6 月 18 号那天 牛肉poke多少钱一份？ 牛肉poke 售价 价格 调价 单价",
+            "intent": "hybrid",
+            "kind": "price",
+            "window": [
+              "2026-06-18",
+              "2026-06-18"
+            ],
+            "compare_window": null,
+            "as_of": "2026-06-18",
+            "year": 2026,
+            "store_id": null,
+            "product_id": "P06",
+            "metric": "net_revenue",
+            "needs_data": true,
+            "needs_docs": true,
+            "refusal": null,
+            "notes": [
+              "这是一句追问，已按上一轮补全为：6 月 18 号那天 牛肉poke多少钱一份？",
+              "识别：指标=未指定 门店=全部 商品=P06 时间=['6月18日']"
+            ]
+          }
+        },
+        {
+          "step": "search",
+          "at_ms": 13.1,
+          "took_ms": 7.1,
+          "detail": {
+            "query": "6 月 18 号那天 牛肉poke多少钱一份? 牛肉poke 售价 价格 调价 单价",
+            "terms": [
+              "6",
+              "月",
+              "18",
+              "号那",
+              "那天",
+              "牛肉",
+              "poke",
+              "少钱",
+              "钱一",
+              "一份",
+              "牛肉",
+              "poke",
+              "售价",
+              "价格",
+              "调价",
+              "单价"
+            ],
+            "scope": {
+              "as_of": "2026-06-18",
+              "store_id": null,
+              "year": 2026,
+              "historical": false,
+              "window": null
+            },
+            "candidates": [
+              {
+                "chunk_id": "KB-023#3",
+                "doc_id": "KB-023",
+                "score": 37.667,
+                "lexical_score": 17.6981,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "poke",
+                  "售价",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#5",
+                "doc_id": "KB-023",
+                "score": 28.5938,
+                "lexical_score": 21.1806,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "18",
+                  "6",
+                  "poke",
+                  "售价",
+                  "月",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#3",
+                "doc_id": "KB-031",
+                "score": 25.1308,
+                "lexical_score": 18.6154,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#4",
+                "doc_id": "KB-023",
+                "score": 24.1701,
+                "lexical_score": 16.7569,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-041#4",
+                "doc_id": "KB-041",
+                "score": 23.8576,
+                "lexical_score": 17.6723,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#4",
+                "doc_id": "KB-031",
+                "score": 18.7813,
+                "lexical_score": 12.2659,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#3",
+                "doc_id": "KB-003",
+                "score": 18.6981,
+                "lexical_score": 27.701,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke",
+                  "牛肉"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#2",
+                "doc_id": "KB-023",
+                "score": 18.1852,
+                "lexical_score": 10.772,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "18",
+                  "6",
+                  "poke",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#1",
+                "doc_id": "KB-031",
+                "score": 15.4048,
+                "lexical_score": 8.8894,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-031#2",
+                "doc_id": "KB-031",
+                "score": 14.4724,
+                "lexical_score": 7.957,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#12",
+                "doc_id": "KB-001",
+                "score": 12.5688,
+                "lexical_score": 9.3102,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "单价",
+                  "售价",
+                  "调价"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#4",
+                "doc_id": "KB-003",
+                "score": 10.8496,
+                "lexical_score": 12.0038,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-041#2",
+                "doc_id": "KB-041",
+                "score": 10.7957,
+                "lexical_score": 4.6104,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-041#3",
+                "doc_id": "KB-041",
+                "score": 9.7198,
+                "lexical_score": 3.5345,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-023#6",
+                "doc_id": "KB-023",
+                "score": 8.7098,
+                "lexical_score": 1.2965,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#15",
+                "doc_id": "KB-001",
+                "score": 8.3119,
+                "lexical_score": 5.0533,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "单价"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#8",
+                "doc_id": "KB-003",
+                "score": 7.8489,
+                "lexical_score": 6.0025,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "价格",
+                  "调价"
+                ]
+              },
+              {
+                "chunk_id": "KB-003#7",
+                "doc_id": "KB-003",
+                "score": 7.5587,
+                "lexical_score": 5.4221,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#19",
+                "doc_id": "KB-001",
+                "score": 7.4358,
+                "lexical_score": 4.1773,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "单价"
+                ]
+              },
+              {
+                "chunk_id": "KB-042#2",
+                "doc_id": "KB-042",
+                "score": 6.8383,
+                "lexical_score": 5.0654,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#9",
+                "doc_id": "KB-001",
+                "score": 6.1874,
+                "lexical_score": 2.9288,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "单价"
+                ]
+              },
+              {
+                "chunk_id": "KB-014#4",
+                "doc_id": "KB-014",
+                "score": 5.1595,
+                "lexical_score": 3.8219,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "一份"
+                ]
+              },
+              {
+                "chunk_id": "KB-033#2",
+                "doc_id": "KB-033",
+                "score": 4.7413,
+                "lexical_score": 3.512,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "18"
+                ]
+              },
+              {
+                "chunk_id": "KB-030#2",
+                "doc_id": "KB-030",
+                "score": 4.6901,
+                "lexical_score": 3.4742,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "18"
+                ]
+              },
+              {
+                "chunk_id": "KB-061#1",
+                "doc_id": "KB-061",
+                "score": 4.6646,
+                "lexical_score": 3.4552,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#4",
+                "doc_id": "KB-001",
+                "score": 4.4247,
+                "lexical_score": 1.1662,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#13",
+                "doc_id": "KB-001",
+                "score": 4.299,
+                "lexical_score": 1.0404,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#14",
+                "doc_id": "KB-001",
+                "score": 4.1782,
+                "lexical_score": 0.9196,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6"
+                ]
+              },
+              {
+                "chunk_id": "KB-051#3",
+                "doc_id": "KB-051",
+                "score": 4.138,
+                "lexical_score": 3.0652,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-001#6",
+                "doc_id": "KB-001",
+                "score": 3.9476,
+                "lexical_score": 0.689,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#16",
+                "doc_id": "KB-001",
+                "score": 3.9046,
+                "lexical_score": 0.646,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6"
+                ]
+              },
+              {
+                "chunk_id": "KB-001#7",
+                "doc_id": "KB-001",
+                "score": 3.7899,
+                "lexical_score": 0.5313,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6"
+                ]
+              },
+              {
+                "chunk_id": "KB-033#3",
+                "doc_id": "KB-033",
+                "score": 3.5765,
+                "lexical_score": 2.3473,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "18"
+                ]
+              },
+              {
+                "chunk_id": "KB-061#2",
+                "doc_id": "KB-061",
+                "score": 3.561,
+                "lexical_score": 2.3517,
+                "source_focus_boost": 1.0,
+                "matched_terms": []
+              },
+              {
+                "chunk_id": "KB-024#3",
+                "doc_id": "KB-024",
+                "score": 2.6848,
+                "lexical_score": 5.179,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "poke"
+                ]
+              },
+              {
+                "chunk_id": "KB-020#2",
+                "doc_id": "KB-020",
+                "score": 2.1275,
+                "lexical_score": 1.5759,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-024#2",
+                "doc_id": "KB-024",
+                "score": 1.9097,
+                "lexical_score": 5.6583,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "18",
+                  "6",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-024#5",
+                "doc_id": "KB-024",
+                "score": 1.8046,
+                "lexical_score": 5.2379,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "18",
+                  "6",
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-016#4",
+                "doc_id": "KB-016",
+                "score": 1.1397,
+                "lexical_score": 0.8442,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-010#4",
+                "doc_id": "KB-010",
+                "score": 1.0752,
+                "lexical_score": 0.5309,
+                "source_focus_boost": 1.5,
+                "matched_terms": [
+                  "月"
+                ]
+              },
+              {
+                "chunk_id": "KB-024#6",
+                "doc_id": "KB-024",
+                "score": 0.9583,
+                "lexical_score": 1.8529,
+                "source_focus_boost": 1.0,
+                "matched_terms": [
+                  "6",
+                  "月"
+                ]
+              }
+            ],
+            "expansions": [
+              "牛肉poke",
+              "牛肉波奇饭",
+              "Beef Poke"
+            ],
+            "coverage": 0.285,
+            "hits": [
+              {
+                "doc_id": "KB-023",
+                "chunk_id": "KB-023#3",
+                "score": 37.667,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-031",
+                "chunk_id": "KB-031#3",
+                "score": 25.1308,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-041",
+                "chunk_id": "KB-041#4",
+                "score": 23.8576,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-003",
+                "chunk_id": "KB-003#3",
+                "score": 18.6981,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#12",
+                "score": 12.5688,
+                "padded": false,
+                "exclusion_reason": null,
+                "dropped_instructions": []
+              }
+            ],
+            "filtered": [
+              {
+                "doc_id": "KB-002",
+                "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+              },
+              {
+                "doc_id": "KB-062",
+                "reason": "该版本自 2026-08-15 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-021",
+                "reason": "该版本自 2026-07-06 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-022",
+                "reason": "该版本自 2026-07-04 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-025",
+                "reason": "该版本自 2026-07-01 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-026",
+                "reason": "该版本自 2026-07-24 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-027",
+                "reason": "该版本自 2026-08-03 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-028",
+                "reason": "该版本自 2026-08-01 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-029",
+                "reason": "该版本自 2026-08-05 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-011",
+                "reason": "该版本自 2026-07-01 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-012",
+                "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+              },
+              {
+                "doc_id": "KB-040",
+                "reason": "该版本自 2026-08-01 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-060",
+                "reason": "该版本自 2026-08-03 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-050",
+                "reason": "该版本自 2026-06-22 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-052",
+                "reason": "该版本自 2026-08-10 起才生效，晚于问题所指的 2026-06-18"
+              },
+              {
+                "doc_id": "KB-053",
+                "reason": "该版本自 2026-07-27 起才生效，晚于问题所指的 2026-06-18"
+              }
+            ]
+          }
+        },
+        {
+          "step": "answer_mock",
+          "at_ms": 13.6,
+          "took_ms": 7.9,
+          "detail": {
+            "answer_type": "hybrid"
+          }
+        },
+        {
+          "step": "tool",
+          "at_ms": 13.6,
+          "took_ms": null,
+          "detail": {
+            "tool": "unit_price_check",
+            "params": {
+              "product_id": "P06",
+              "start": "2026-06-18",
+              "end": "2026-06-18",
+              "store_id": null
+            },
+            "result": {
+              "product_id": "P06",
+              "start": "2026-06-18",
+              "end": "2026-06-18",
+              "store_id": null,
+              "observed_unit_prices": {
+                "29.00": 53,
+                "42.00": 6
+              },
+              "by_store": {
+                "S02": {
+                  "29.00": 53
+                },
+                "S05": {
+                  "42.00": 5
+                },
+                "S03": {
+                  "42.00": 1
+                }
+              },
+              "rows": 59,
+              "latest_price": 29.0,
+              "latest_date": "2026-06-18",
+              "table_unit_price": 42.0
+            }
+          }
+        },
+        {
+          "step": "response",
+          "at_ms": 13.6,
+          "took_ms": null,
+          "detail": {
+            "answer_type": "hybrid",
+            "notes": []
+          }
+        }
+      ],
+      "llm_calls": [],
+      "errors": []
+    }
+  }
+]

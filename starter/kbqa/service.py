@@ -172,8 +172,15 @@ class Service:
             secrets=(self.settings.llm_api_key,),
         )
         trace.step("request", {"session_id": session_id, "question": question, "context": context})
-        with self.sessions.ordered(session_id):
-            answer = self._answer(trace, session_id, question or "", context)
+        with self.sessions.ordered(session_id) as acquired:
+            if acquired:
+                answer = self._answer(trace, session_id, question or "", context)
+            else:
+                trace.step("session_busy", {"wait_limit_ms": 250, "history_changed": False})
+                answer = Answer(
+                    answer="当前对话正在处理上一条问题，请稍后重试。",
+                    answer_type="refusal",
+                )
             trace.step("response", {"answer_type": answer.answer_type, "notes": answer.notes})
             self.traces.save(trace)
         payload = {
@@ -218,10 +225,11 @@ class Service:
             elif reference and plan.kind in {"unknown_entity", "out_of_period"}:
                 plan.slots["trend_reference_rejection"] = True
             trace.step("plan", plan.as_trace(), started=started)
+            context_history = history if plan.standalone != question else []
             # Preserve the original three-argument execution seam for ordinary
             # chat and diagnostic writers. Only a resolved trend adds scope.
-            answer = (self._run_engine(plan, trace, history, effective)
-                      if effective else self._run_engine(plan, trace, history))
+            answer = (self._run_engine(plan, trace, context_history, effective)
+                      if effective else self._run_engine(plan, trace, context_history))
             if not self.settings.live:
                 for item in answer.data_evidence:
                     trace.step("tool", item)

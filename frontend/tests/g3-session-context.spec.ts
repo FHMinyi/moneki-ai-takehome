@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const out = path.resolve('../docs/verification/g3-04/browser');
+const out = path.resolve(process.env.G304_EVIDENCE_DIR || '../docs/verification/g3-04/browser');
 test.describe.configure({ mode: 'serial' });
 test.beforeAll(() => fs.mkdirSync(out, { recursive: true }));
 

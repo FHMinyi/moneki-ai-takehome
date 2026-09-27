@@ -28,23 +28,29 @@ class SessionStore:
             return deepcopy(self._turns.get(session_id, [])) if session_id else []
 
     @contextmanager
-    def ordered(self, session_id: Optional[str]):
-        """Keep a session's history read, answer and append in request order.
+    def ordered(self, session_id: Optional[str], wait_seconds: float = 0.25):
+        """Serialize one session's lifecycle, rejecting busy requests promptly.
 
         Active callers retain the lock; inactive locks can be collected so an
         unbounded number of abandoned session IDs cannot accumulate here.
-        Requests without an ID have no shared history or shared lock.
+        Acquisition is not FIFO. Requests without an ID have no shared state.
         """
         if not session_id:
-            yield
+            yield True
             return
         with self._lock:
             lock = self._session_locks.get(session_id)
             if lock is None:
                 lock = threading.RLock()
                 self._session_locks[session_id] = lock
-        with lock:
-            yield
+        acquired = lock.acquire(timeout=max(0.0, wait_seconds))
+        if not acquired:
+            yield False
+            return
+        try:
+            yield True
+        finally:
+            lock.release()
 
     def append(self, session_id: Optional[str], turn: dict) -> None:
         if not session_id:
