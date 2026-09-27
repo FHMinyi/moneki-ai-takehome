@@ -1,0 +1,30 @@
+C01 doc [] original ['attribute_conflict']
+C02 refusal ['unknown_question_value_shape'] original ['attribute_conflict']
+C03 doc [] original ['attribute_conflict']
+C04 refusal ['source_anchor_not_literal'] original ['subject_conflict']
+C06 refusal ['source_anchor_not_literal'] original ['subject_conflict']
+C08 doc [] original ['subject_conflict']
+V02 refusal ['unknown_question_value_shape'] original ['subject_conflict']
+V03-1 refusal ['unknown_question_value_shape'] original ['subject_conflict']
+T02-2 refusal ['text_value_must_be_empty'] original ['attribute_conflict']
+S01 refusal ['question_anchor_not_literal'] original ['subject_conflict']
+...............F.F.............................                          [100%]
+=================================== FAILURES ===================================
+_ test_conflicting_anchored_subject_or_attribute[\u529e\u7406\u5916\u5356\u9000\u6b3e\u5e94\u5f53\u51fa\u793a\u4ec0\u4e48\u8eab\u4efd\u8bc1\u4ef6\uff1f-KB-014-\u5de5\u724c-subject1-attribute1-value1] _
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:39: in test_conflicting_anchored_subject_or_attribute
+    assert a.answer_type=='refusal' and not a.citations
+E   AssertionError: assert ('doc' == 'refusal'
+E     
+E     - refusal
+E     + doc)
+_ test_conflicting_anchored_subject_or_attribute[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-011-30-subject3-attribute3-value3] _
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:39: in test_conflicting_anchored_subject_or_attribute
+    assert a.answer_type=='refusal' and not a.citations
+E   AssertionError: assert ('doc' == 'refusal'
+E     
+E     - refusal
+E     + doc)
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_conflicting_anchored_subject_or_attribute[\u529e\u7406\u5916\u5356\u9000\u6b3e\u5e94\u5f53\u51fa\u793a\u4ec0\u4e48\u8eab\u4efd\u8bc1\u4ef6\uff1f-KB-014-\u5de5\u724c-subject1-attribute1-value1]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_conflicting_anchored_subject_or_attribute[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-011-30-subject3-attribute3-value3]
+2 failed, 45 passed in 3.56s

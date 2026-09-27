@@ -1,0 +1,695 @@
+{
+  "owned_http_service_records": [
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection-green/test_minimal_protocol_real_htt5.json",
+      "pid": 5335,
+      "port": 52390,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52390"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection-green/test_minimal_protocol_real_htt9.json",
+      "pid": 5365,
+      "port": 52439,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52439"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection-green/test_minimal_protocol_real_htt8.json",
+      "pid": 5358,
+      "port": 52426,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52426"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection-green/test_minimal_protocol_real_htt4.json",
+      "pid": 5329,
+      "port": 52377,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52377"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection-green/test_minimal_protocol_real_htt3.json",
+      "pid": 5311,
+      "port": 52365,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52365"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection-green/test_minimal_protocol_real_htt2.json",
+      "pid": 5305,
+      "port": 52352,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52352"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection-green/test_minimal_protocol_real_htt1.json",
+      "pid": 5263,
+      "port": 52340,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52340"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection-green/test_minimal_protocol_real_htt0.json",
+      "pid": 5252,
+      "port": 52328,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52328"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection-green/test_minimal_protocol_real_htt7.json",
+      "pid": 5351,
+      "port": 52414,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52414"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection-green/test_minimal_protocol_real_htt6.json",
+      "pid": 5339,
+      "port": 52402,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52402"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection/test_minimal_protocol_real_htt5.json",
+      "pid": 4784,
+      "port": 51954,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "51954"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection/test_minimal_protocol_real_htt9.json",
+      "pid": 4813,
+      "port": 52004,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52004"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection/test_minimal_protocol_real_htt8.json",
+      "pid": 4804,
+      "port": 51989,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "51989"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection/test_minimal_protocol_real_htt4.json",
+      "pid": 4780,
+      "port": 51943,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "51943"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection/test_minimal_protocol_real_htt3.json",
+      "pid": 4769,
+      "port": 51931,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "51931"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection/test_minimal_protocol_real_htt2.json",
+      "pid": 4764,
+      "port": 51919,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "51919"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection/test_minimal_protocol_real_htt1.json",
+      "pid": 4759,
+      "port": 51907,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "51907"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection/test_minimal_protocol_real_htt0.json",
+      "pid": 4736,
+      "port": 51894,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "51894"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection/test_minimal_protocol_real_htt7.json",
+      "pid": 4800,
+      "port": 51977,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "51977"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-selection/test_minimal_protocol_real_htt6.json",
+      "pid": 4788,
+      "port": 51966,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "51966"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-scope-tools/test_scope_not_overridden_by_m0.json",
+      "pid": 5653,
+      "port": 52634,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52634"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-scope-tools/test_retrieved_injection_retai0.json",
+      "pid": 5697,
+      "port": 52720,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52720"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-scope-tools/test_scope_not_overridden_by_m1.json",
+      "pid": 5663,
+      "port": 52658,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52658"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-scope-tools/test_injection_cannot_expand_t0.json",
+      "pid": 5680,
+      "port": 52687,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52687"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-scope-tools/test_injection_cannot_expand_t1.json",
+      "pid": 5691,
+      "port": 52706,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52706"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-final/test_minimal_protocol_real_htt5.json",
+      "pid": 5635,
+      "port": 52598,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52598"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-final/test_minimal_protocol_real_htt9.json",
+      "pid": 5678,
+      "port": 52680,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52680"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-final/test_minimal_protocol_real_htt8.json",
+      "pid": 5657,
+      "port": 52650,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52650"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-final/test_minimal_protocol_real_htt4.json",
+      "pid": 5631,
+      "port": 52586,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52586"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-final/test_minimal_protocol_real_htt3.json",
+      "pid": 5618,
+      "port": 52573,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52573"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-final/test_minimal_protocol_real_htt2.json",
+      "pid": 5606,
+      "port": 52560,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52560"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-final/test_minimal_protocol_real_htt1.json",
+      "pid": 5587,
+      "port": 52545,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52545"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-final/test_minimal_protocol_real_htt0.json",
+      "pid": 5575,
+      "port": 52532,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52532"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-final/test_minimal_protocol_real_htt7.json",
+      "pid": 5650,
+      "port": 52621,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52621"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-final/test_minimal_protocol_real_htt6.json",
+      "pid": 5639,
+      "port": 52609,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52609"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-verified/test_minimal_protocol_real_htt5.json",
+      "pid": 5910,
+      "port": 52871,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52871"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-verified/test_minimal_protocol_real_htt9.json",
+      "pid": 5940,
+      "port": 52920,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52920"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-verified/test_minimal_protocol_real_htt8.json",
+      "pid": 5931,
+      "port": 52906,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52906"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-verified/test_minimal_protocol_real_htt4.json",
+      "pid": 5906,
+      "port": 52859,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52859"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-verified/test_minimal_protocol_real_htt3.json",
+      "pid": 5902,
+      "port": 52845,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52845"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-verified/test_minimal_protocol_real_htt2.json",
+      "pid": 5891,
+      "port": 52832,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52832"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-verified/test_minimal_protocol_real_htt1.json",
+      "pid": 5883,
+      "port": 52820,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52820"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-verified/test_minimal_protocol_real_htt0.json",
+      "pid": 5879,
+      "port": 52804,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52804"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-verified/test_minimal_protocol_real_htt7.json",
+      "pid": 5925,
+      "port": 52894,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52894"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    },
+    {
+      "evidence": "docs/verification/g3-02-live-repair/http-boundary-verified/test_minimal_protocol_real_htt6.json",
+      "pid": 5921,
+      "port": 52882,
+      "command": [
+        "/Volumes/MACPSSD/project/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--port",
+        "52882"
+      ],
+      "stopped_by_harness": true,
+      "pid_currently_exists": false
+    }
+  ],
+  "still_existing_pids": [],
+  "retained_paths": [
+    "/tmp/g302-fixed-http-92844bd",
+    "/tmp/g302-g303-http-92844bd",
+    "/tmp/g302-live-replay-*",
+    "/tmp/g302-finalise-*"
+  ],
+  "shared_resources_preserved": [
+    "starter/.venv",
+    "node_modules",
+    ".cache",
+    "var",
+    ".env.live",
+    "G305 independent worktree and services"
+  ],
+  "no_service_started_for_paid_calls": true
+}
