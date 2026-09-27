@@ -1,0 +1,13 @@
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' test tests/g3-mixed-live-repair.spec.ts --grep 390 --workers=1 --output=../docs/verification/g3-03-live-repair/integration-main/final-browser-replay-runtime
+
+Running 4 tests using 1 worker
+
+(node:22105) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair C07 390 (818ms)
+  ✓  2 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair T02-1 390 (762ms)
+  ✓  3 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair H04 390 (778ms)
+  ✓  4 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair T03-2 390 (864ms)
+
+  4 passed (3.5s)

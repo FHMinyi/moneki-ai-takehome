@@ -1,5 +1,7 @@
 # G305真实失败后的 mixed 修复（Issue26）
 
+> 最终集成：正常merge d9612c8纳入main03a94ed，产品8fd8070；40本票检查、143受影响回归、14HTTP交叉、53原后端、10最小doc HTTP、8代表浏览器通过，noKey94/53-55，0新增付费。详见[最终集成回执](integration-main/README.md)。下文保留集成前固定点和原始结果。
+
 执行起点 **4591fab9a80ef63c440b9a117dbbc4fcbf03c430**，新树 `g3-mixed-repair`，分支 `codex/g3-03-live-mixed-repair`。旧执行树已归档，本轮未恢复/使用。产品固定点 **3d84556d1b1e522b4eadd817df2c451cb2361093**：只修改 `starter/kbqa/mixed_answer.py`，没有改G302文档协议、live.py、timeparse/planner或公共评分器。G302/G304并行修复后按主会话顺序集成。
 
 **本轮0新增提供方请求。** 原G305在4591fab的完整真实55结果67.5/100、40/55保持原样。本票免费重放不能替代唯一授权的完整真实复验，也没有使用剩余定向名额。

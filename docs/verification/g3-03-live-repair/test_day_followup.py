@@ -40,6 +40,8 @@ def test_current_explicit_entities_override_old_context(server,wrong_entities):
  scope=step(t,'explicit_data_scope');assert scope['store_id']=='S01' and scope['product_id']=='P05'
  assert set(scope['bound_entities'])=={'store_id','product_id'}
  assert a['answer_type']==('refusal' if wrong_entities else 'data')
+ if not wrong_entities:assert a['data_evidence'][0]['params']==p
+ else:assert not a['data_evidence'] and not a['citations']
 
 @pytest.mark.parametrize('wrong_entities',[False,True])
 def test_explicit_all_is_bound_not_unknown(server,wrong_entities):
@@ -50,6 +52,10 @@ def test_explicit_all_is_bound_not_unknown(server,wrong_entities):
  scope=step(t,'explicit_data_scope');assert set(scope['bound_entities'])=={'store_id','product_id'}
  assert scope['store_id'] is None and scope['product_id'] is None
  assert a['answer_type']==('refusal' if wrong_entities else 'data')
+ if not wrong_entities:
+  assert a['data_evidence'][0]['params']==p
+  assert a['data_evidence'][0]['result']['store_id'] is None and a['data_evidence'][0]['result']['product_id'] is None
+ else:assert not a['data_evidence'] and not a['citations']
 
 @pytest.mark.parametrize('extra_product',[False,True])
 def test_trend_none_remains_explicit_all_product(server,extra_product):
@@ -61,3 +67,5 @@ def test_trend_none_remains_explicit_all_product(server,extra_product):
  assert not any(s['step']=='explicit_data_scope' for s in t['steps'])
  effective=step(t,'context_resolution')['effective'];assert effective['store_id']=='S03' and effective.get('product_id') is None
  assert a['answer_type']==('refusal' if extra_product else 'data')
+ if not extra_product:assert a['data_evidence'][0]['params']==p
+ else:assert not a['data_evidence'] and not a['citations']
