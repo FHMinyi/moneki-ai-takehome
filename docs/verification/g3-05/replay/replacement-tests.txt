@@ -1,0 +1,14 @@
+ERROR: found no collectors for /private/tmp/moneki-g305-fresh-4591fab/docs/verification/g3-03/test_http.py::test_replacement_payment_classification_http
+
+
+==================================== ERRORS ====================================
+____________ ERROR collecting docs/verification/g3-03/test_http.py _____________
+import file mismatch:
+imported module 'test_http' has this __file__ attribute:
+  /private/tmp/moneki-g305-fresh-4591fab/docs/verification/g3-02/test_http.py
+which is not the same as the test file we want to collect:
+  /private/tmp/moneki-g305-fresh-4591fab/docs/verification/g3-03/test_http.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+=========================== short test summary info ============================
+ERROR docs/verification/g3-03/test_http.py
+1 error in 0.09s

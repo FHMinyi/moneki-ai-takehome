@@ -59,6 +59,11 @@ def redact(value):
     return value.replace(key, "[REDACTED]") if key else value
 
 
+def output_limit_allowed(value):
+    """The 2.20 CNY reserve covers at most 8192 output tokens."""
+    return type(value) is int and 1 <= value <= 8192
+
+
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, *args):
         pass
@@ -95,7 +100,7 @@ class Handler(BaseHTTPRequestHandler):
             body = json.loads(raw)
             assert self.path == "/guard/chat/completions"
             assert body.get("model") == "deepseek-flash"
-            assert body.get("max_tokens") == 4096
+            assert output_limit_allowed(body.get("max_tokens"))
             assert len(raw) <= 2_000_000
         except (ValueError, AssertionError):
             self.reply(400, b'{"error":{"message":"G305 guard rejected request"}}')

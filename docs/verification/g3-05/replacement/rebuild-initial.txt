@@ -1,0 +1,7 @@
+数据目录：/private/tmp/moneki-g305-replaced-4591fab/data
+知识库目录：/private/tmp/moneki-g305-replaced-4591fab/knowledge_base
+清洗完成：{"raw_rows": 3, "removed": {"1_unparseable_date": 0, "2_empty_amount": 0, "3_qty_le_zero": 0, "4_store_not_in_stores": 0, "5_product_not_in_products": 0, "6_duplicate_row": 0}, "removed_rows": 0, "kept_rows": 3, "kept_sales_rows": 2, "kept_refund_rows": 1}
+索引完成：36 篇文档，216 个片段，缓存键 f9a444cbcfa6
+告警：跳过没有 KB 编号的文件：README.md
+告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt
+产物：/private/tmp/moneki-g305-replaced-4591fab/var/clean.db、/private/tmp/moneki-g305-fresh-4591fab/starter/.cache/index.json（0.0 秒）
