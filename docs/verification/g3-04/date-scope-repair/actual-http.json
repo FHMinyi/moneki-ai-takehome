@@ -1,0 +1,799 @@
+{
+  "source_rows": [
+    [
+      "2026-06-18",
+      "2",
+      "-60.00"
+    ],
+    [
+      "2026-06-18",
+      "9",
+      "210.00"
+    ],
+    [
+      "2026-07-01",
+      "5",
+      "100.00"
+    ]
+  ],
+  "hand_expected_exact_qty": 7,
+  "metrics_exact_day": {
+    "start": "2026-06-18",
+    "end": "2026-06-18",
+    "store_id": "S02",
+    "product_id": "P06",
+    "net_revenue": 150.0,
+    "refund_amount": 60.0,
+    "orders": 1,
+    "aov": 150.0,
+    "qty": 7
+  },
+  "turns": [
+    {
+      "request": {
+        "session_id": "exact",
+        "question": "S02 6月18日红岩饭销量是多少？"
+      },
+      "response": {
+        "answer": "2026-06-18（S02 Makai Poke）（牛肉poke）：销量 7 件，净营业额 150.00 元，有效订单数 1 单，客单价 150.00 元，退款金额 60.00 元。",
+        "answer_type": "data",
+        "citations": [],
+        "data_evidence": [
+          {
+            "tool": "query_metrics",
+            "params": {
+              "start": "2026-06-18",
+              "end": "2026-06-18",
+              "store_id": "S02",
+              "product_id": "P06"
+            },
+            "result": {
+              "start": "2026-06-18",
+              "end": "2026-06-18",
+              "store_id": "S02",
+              "product_id": "P06",
+              "net_revenue": 150.0,
+              "refund_amount": 60.0,
+              "orders": 1,
+              "aov": 150.0,
+              "qty": 7
+            }
+          }
+        ],
+        "trace_id": "t-20260901-0001"
+      },
+      "trace": {
+        "trace_id": "t-20260901-0001",
+        "session_id": "exact",
+        "question": "S02 6月18日红岩饭销量是多少？",
+        "started_at": "2026-09-27T18:01:40.379",
+        "total_ms": 6.0,
+        "steps": [
+          {
+            "step": "request",
+            "at_ms": 0.0,
+            "took_ms": null,
+            "detail": {
+              "session_id": "exact",
+              "question": "S02 6月18日红岩饭销量是多少？",
+              "context": null
+            }
+          },
+          {
+            "step": "context_validation",
+            "at_ms": 0.0,
+            "took_ms": null,
+            "detail": {
+              "valid": true,
+              "reason": null,
+              "reference": null
+            }
+          },
+          {
+            "step": "session_context",
+            "at_ms": 5.9,
+            "took_ms": null,
+            "detail": {
+              "history_size": 0,
+              "source_questions": [],
+              "source_conditions": [],
+              "raw_question": "S02 6月18日红岩饭销量是多少？",
+              "standalone_question": "S02 6月18日红岩饭销量是多少？",
+              "inherited": false,
+              "effective_conditions": {
+                "question": "S02 6月18日红岩饭销量是多少？",
+                "standalone_question": "S02 6月18日红岩饭销量是多少？",
+                "search_query": "S02 6月18日红岩饭销量是多少？ S02 Makai Poke 牛肉poke",
+                "intent": "data",
+                "kind": "summary",
+                "window": [
+                  "2026-06-18",
+                  "2026-06-18"
+                ],
+                "compare_window": null,
+                "as_of": "2026-06-18",
+                "year": 2026,
+                "store_id": "S02",
+                "product_id": "P06",
+                "metric": "qty",
+                "needs_data": true,
+                "needs_docs": false,
+                "refusal": null,
+                "notes": [
+                  "识别：指标=qty 门店=S02 商品=P06 时间=['6月18日']"
+                ]
+              }
+            }
+          },
+          {
+            "step": "plan",
+            "at_ms": 5.9,
+            "took_ms": 5.9,
+            "detail": {
+              "question": "S02 6月18日红岩饭销量是多少？",
+              "standalone_question": "S02 6月18日红岩饭销量是多少？",
+              "search_query": "S02 6月18日红岩饭销量是多少？ S02 Makai Poke 牛肉poke",
+              "intent": "data",
+              "kind": "summary",
+              "window": [
+                "2026-06-18",
+                "2026-06-18"
+              ],
+              "compare_window": null,
+              "as_of": "2026-06-18",
+              "year": 2026,
+              "store_id": "S02",
+              "product_id": "P06",
+              "metric": "qty",
+              "needs_data": true,
+              "needs_docs": false,
+              "refusal": null,
+              "notes": [
+                "识别：指标=qty 门店=S02 商品=P06 时间=['6月18日']"
+              ]
+            }
+          },
+          {
+            "step": "model_context",
+            "at_ms": 5.9,
+            "took_ms": null,
+            "detail": {
+              "prompt_history_size": 0,
+              "clarification_reset": false
+            }
+          },
+          {
+            "step": "answer_mock",
+            "at_ms": 6.0,
+            "took_ms": 0.1,
+            "detail": {
+              "answer_type": "data"
+            }
+          },
+          {
+            "step": "tool",
+            "at_ms": 6.0,
+            "took_ms": null,
+            "detail": {
+              "tool": "query_metrics",
+              "params": {
+                "start": "2026-06-18",
+                "end": "2026-06-18",
+                "store_id": "S02",
+                "product_id": "P06"
+              },
+              "result": {
+                "start": "2026-06-18",
+                "end": "2026-06-18",
+                "store_id": "S02",
+                "product_id": "P06",
+                "net_revenue": 150.0,
+                "refund_amount": 60.0,
+                "orders": 1,
+                "aov": 150.0,
+                "qty": 7
+              }
+            }
+          },
+          {
+            "step": "response",
+            "at_ms": 6.0,
+            "took_ms": null,
+            "detail": {
+              "answer_type": "data",
+              "notes": []
+            }
+          }
+        ],
+        "llm_calls": [],
+        "errors": []
+      }
+    },
+    {
+      "request": {
+        "session_id": "other-day",
+        "question": "S02 7月1日红岩饭销量是多少？"
+      },
+      "response": {
+        "answer": "2026-07-01（S02 Makai Poke）（牛肉poke）：销量 5 件，净营业额 100.00 元，有效订单数 1 单，客单价 100.00 元，退款金额 0.00 元。",
+        "answer_type": "data",
+        "citations": [],
+        "data_evidence": [
+          {
+            "tool": "query_metrics",
+            "params": {
+              "start": "2026-07-01",
+              "end": "2026-07-01",
+              "store_id": "S02",
+              "product_id": "P06"
+            },
+            "result": {
+              "start": "2026-07-01",
+              "end": "2026-07-01",
+              "store_id": "S02",
+              "product_id": "P06",
+              "net_revenue": 100.0,
+              "refund_amount": 0.0,
+              "orders": 1,
+              "aov": 100.0,
+              "qty": 5
+            }
+          }
+        ],
+        "trace_id": "t-20260901-0002"
+      },
+      "trace": {
+        "trace_id": "t-20260901-0002",
+        "session_id": "other-day",
+        "question": "S02 7月1日红岩饭销量是多少？",
+        "started_at": "2026-09-27T18:01:40.387",
+        "total_ms": 9.9,
+        "steps": [
+          {
+            "step": "request",
+            "at_ms": 0.0,
+            "took_ms": null,
+            "detail": {
+              "session_id": "other-day",
+              "question": "S02 7月1日红岩饭销量是多少？",
+              "context": null
+            }
+          },
+          {
+            "step": "context_validation",
+            "at_ms": 0.0,
+            "took_ms": null,
+            "detail": {
+              "valid": true,
+              "reason": null,
+              "reference": null
+            }
+          },
+          {
+            "step": "session_context",
+            "at_ms": 9.8,
+            "took_ms": null,
+            "detail": {
+              "history_size": 0,
+              "source_questions": [],
+              "source_conditions": [],
+              "raw_question": "S02 7月1日红岩饭销量是多少？",
+              "standalone_question": "S02 7月1日红岩饭销量是多少？",
+              "inherited": false,
+              "effective_conditions": {
+                "question": "S02 7月1日红岩饭销量是多少？",
+                "standalone_question": "S02 7月1日红岩饭销量是多少？",
+                "search_query": "S02 7月1日红岩饭销量是多少？ S02 Makai Poke 牛肉poke",
+                "intent": "data",
+                "kind": "summary",
+                "window": [
+                  "2026-07-01",
+                  "2026-07-01"
+                ],
+                "compare_window": null,
+                "as_of": "2026-07-01",
+                "year": 2026,
+                "store_id": "S02",
+                "product_id": "P06",
+                "metric": "qty",
+                "needs_data": true,
+                "needs_docs": false,
+                "refusal": null,
+                "notes": [
+                  "识别：指标=qty 门店=S02 商品=P06 时间=['7月1日']"
+                ]
+              }
+            }
+          },
+          {
+            "step": "plan",
+            "at_ms": 9.8,
+            "took_ms": 9.7,
+            "detail": {
+              "question": "S02 7月1日红岩饭销量是多少？",
+              "standalone_question": "S02 7月1日红岩饭销量是多少？",
+              "search_query": "S02 7月1日红岩饭销量是多少？ S02 Makai Poke 牛肉poke",
+              "intent": "data",
+              "kind": "summary",
+              "window": [
+                "2026-07-01",
+                "2026-07-01"
+              ],
+              "compare_window": null,
+              "as_of": "2026-07-01",
+              "year": 2026,
+              "store_id": "S02",
+              "product_id": "P06",
+              "metric": "qty",
+              "needs_data": true,
+              "needs_docs": false,
+              "refusal": null,
+              "notes": [
+                "识别：指标=qty 门店=S02 商品=P06 时间=['7月1日']"
+              ]
+            }
+          },
+          {
+            "step": "model_context",
+            "at_ms": 9.8,
+            "took_ms": null,
+            "detail": {
+              "prompt_history_size": 0,
+              "clarification_reset": false
+            }
+          },
+          {
+            "step": "answer_mock",
+            "at_ms": 9.8,
+            "took_ms": 0.1,
+            "detail": {
+              "answer_type": "data"
+            }
+          },
+          {
+            "step": "tool",
+            "at_ms": 9.8,
+            "took_ms": null,
+            "detail": {
+              "tool": "query_metrics",
+              "params": {
+                "start": "2026-07-01",
+                "end": "2026-07-01",
+                "store_id": "S02",
+                "product_id": "P06"
+              },
+              "result": {
+                "start": "2026-07-01",
+                "end": "2026-07-01",
+                "store_id": "S02",
+                "product_id": "P06",
+                "net_revenue": 100.0,
+                "refund_amount": 0.0,
+                "orders": 1,
+                "aov": 100.0,
+                "qty": 5
+              }
+            }
+          },
+          {
+            "step": "response",
+            "at_ms": 9.9,
+            "took_ms": null,
+            "detail": {
+              "answer_type": "data",
+              "notes": []
+            }
+          }
+        ],
+        "llm_calls": [],
+        "errors": []
+      }
+    },
+    {
+      "request": {
+        "session_id": "no-day",
+        "question": "S02 红岩饭销量是多少？"
+      },
+      "response": {
+        "answer": "2026-06-18 至 2026-07-01（S02 Makai Poke）（牛肉poke）：销量 12 件，净营业额 250.00 元，有效订单数 2 单，客单价 125.00 元，退款金额 60.00 元。",
+        "answer_type": "data",
+        "citations": [],
+        "data_evidence": [
+          {
+            "tool": "query_metrics",
+            "params": {
+              "start": "2026-06-18",
+              "end": "2026-07-01",
+              "store_id": "S02",
+              "product_id": "P06"
+            },
+            "result": {
+              "start": "2026-06-18",
+              "end": "2026-07-01",
+              "store_id": "S02",
+              "product_id": "P06",
+              "net_revenue": 250.0,
+              "refund_amount": 60.0,
+              "orders": 2,
+              "aov": 125.0,
+              "qty": 12
+            }
+          }
+        ],
+        "trace_id": "t-20260901-0003"
+      },
+      "trace": {
+        "trace_id": "t-20260901-0003",
+        "session_id": "no-day",
+        "question": "S02 红岩饭销量是多少？",
+        "started_at": "2026-09-27T18:01:40.398",
+        "total_ms": 8.8,
+        "steps": [
+          {
+            "step": "request",
+            "at_ms": 0.0,
+            "took_ms": null,
+            "detail": {
+              "session_id": "no-day",
+              "question": "S02 红岩饭销量是多少？",
+              "context": null
+            }
+          },
+          {
+            "step": "context_validation",
+            "at_ms": 0.0,
+            "took_ms": null,
+            "detail": {
+              "valid": true,
+              "reason": null,
+              "reference": null
+            }
+          },
+          {
+            "step": "session_context",
+            "at_ms": 8.7,
+            "took_ms": null,
+            "detail": {
+              "history_size": 0,
+              "source_questions": [],
+              "source_conditions": [],
+              "raw_question": "S02 红岩饭销量是多少？",
+              "standalone_question": "S02 红岩饭销量是多少？",
+              "inherited": false,
+              "effective_conditions": {
+                "question": "S02 红岩饭销量是多少？",
+                "standalone_question": "S02 红岩饭销量是多少？",
+                "search_query": "S02 红岩饭销量是多少？ S02 Makai Poke 牛肉poke",
+                "intent": "data",
+                "kind": "summary",
+                "window": [
+                  "2026-06-18",
+                  "2026-07-01"
+                ],
+                "compare_window": null,
+                "as_of": "2026-09-01",
+                "year": 2026,
+                "store_id": "S02",
+                "product_id": "P06",
+                "metric": "qty",
+                "needs_data": true,
+                "needs_docs": false,
+                "refusal": null,
+                "notes": [
+                  "识别：指标=qty 门店=S02 商品=P06 时间=未指定"
+                ]
+              }
+            }
+          },
+          {
+            "step": "plan",
+            "at_ms": 8.7,
+            "took_ms": 8.7,
+            "detail": {
+              "question": "S02 红岩饭销量是多少？",
+              "standalone_question": "S02 红岩饭销量是多少？",
+              "search_query": "S02 红岩饭销量是多少？ S02 Makai Poke 牛肉poke",
+              "intent": "data",
+              "kind": "summary",
+              "window": [
+                "2026-06-18",
+                "2026-07-01"
+              ],
+              "compare_window": null,
+              "as_of": "2026-09-01",
+              "year": 2026,
+              "store_id": "S02",
+              "product_id": "P06",
+              "metric": "qty",
+              "needs_data": true,
+              "needs_docs": false,
+              "refusal": null,
+              "notes": [
+                "识别：指标=qty 门店=S02 商品=P06 时间=未指定"
+              ]
+            }
+          },
+          {
+            "step": "model_context",
+            "at_ms": 8.7,
+            "took_ms": null,
+            "detail": {
+              "prompt_history_size": 0,
+              "clarification_reset": false
+            }
+          },
+          {
+            "step": "answer_mock",
+            "at_ms": 8.8,
+            "took_ms": 0.1,
+            "detail": {
+              "answer_type": "data"
+            }
+          },
+          {
+            "step": "tool",
+            "at_ms": 8.8,
+            "took_ms": null,
+            "detail": {
+              "tool": "query_metrics",
+              "params": {
+                "start": "2026-06-18",
+                "end": "2026-07-01",
+                "store_id": "S02",
+                "product_id": "P06"
+              },
+              "result": {
+                "start": "2026-06-18",
+                "end": "2026-07-01",
+                "store_id": "S02",
+                "product_id": "P06",
+                "net_revenue": 250.0,
+                "refund_amount": 60.0,
+                "orders": 2,
+                "aov": 125.0,
+                "qty": 12
+              }
+            }
+          },
+          {
+            "step": "response",
+            "at_ms": 8.8,
+            "took_ms": null,
+            "detail": {
+              "answer_type": "data",
+              "notes": []
+            }
+          }
+        ],
+        "llm_calls": [],
+        "errors": []
+      }
+    },
+    {
+      "request": {
+        "session_id": "trend-override",
+        "question": "S02 6月18日红岩饭销量是多少？",
+        "context": {
+          "type": "daily_trend",
+          "start": "2026-07-01",
+          "end": "2026-07-01",
+          "store_id": "S02",
+          "metric": "net_revenue"
+        }
+      },
+      "response": {
+        "answer": "2026-06-18（S02 Makai Poke）（牛肉poke）：销量 7 件，净营业额 150.00 元，有效订单数 1 单，客单价 150.00 元，退款金额 60.00 元。",
+        "answer_type": "data",
+        "citations": [],
+        "data_evidence": [
+          {
+            "tool": "query_metrics",
+            "params": {
+              "start": "2026-06-18",
+              "end": "2026-06-18",
+              "store_id": "S02",
+              "product_id": "P06"
+            },
+            "result": {
+              "start": "2026-06-18",
+              "end": "2026-06-18",
+              "store_id": "S02",
+              "product_id": "P06",
+              "net_revenue": 150.0,
+              "refund_amount": 60.0,
+              "orders": 1,
+              "aov": 150.0,
+              "qty": 7
+            }
+          }
+        ],
+        "trace_id": "t-20260901-0004"
+      },
+      "trace": {
+        "trace_id": "t-20260901-0004",
+        "session_id": "trend-override",
+        "question": "S02 6月18日红岩饭销量是多少？",
+        "started_at": "2026-09-27T18:01:40.409",
+        "total_ms": 5.7,
+        "steps": [
+          {
+            "step": "request",
+            "at_ms": 0.0,
+            "took_ms": null,
+            "detail": {
+              "session_id": "trend-override",
+              "question": "S02 6月18日红岩饭销量是多少？",
+              "context": {
+                "type": "daily_trend",
+                "start": "2026-07-01",
+                "end": "2026-07-01",
+                "store_id": "S02",
+                "metric": "net_revenue"
+              }
+            }
+          },
+          {
+            "step": "context_validation",
+            "at_ms": 0.0,
+            "took_ms": null,
+            "detail": {
+              "valid": true,
+              "reason": null,
+              "reference": {
+                "type": "daily_trend",
+                "start": "2026-07-01",
+                "end": "2026-07-01",
+                "store_id": "S02",
+                "metric": "net_revenue"
+              }
+            }
+          },
+          {
+            "step": "session_context",
+            "at_ms": 5.5,
+            "took_ms": null,
+            "detail": {
+              "history_size": 0,
+              "source_questions": [],
+              "source_conditions": [],
+              "raw_question": "S02 6月18日红岩饭销量是多少？",
+              "standalone_question": "S02 6月18日红岩饭销量是多少？",
+              "inherited": false,
+              "effective_conditions": {
+                "question": "S02 6月18日红岩饭销量是多少？",
+                "standalone_question": "S02 6月18日红岩饭销量是多少？",
+                "search_query": "S02 6月18日红岩饭销量是多少？ S02 Makai Poke 牛肉poke",
+                "intent": "data",
+                "kind": "summary",
+                "window": [
+                  "2026-06-18",
+                  "2026-06-18"
+                ],
+                "compare_window": null,
+                "as_of": "2026-06-18",
+                "year": 2026,
+                "store_id": "S02",
+                "product_id": "P06",
+                "metric": "qty",
+                "needs_data": true,
+                "needs_docs": false,
+                "refusal": null,
+                "notes": [
+                  "识别：指标=qty 门店=S02 商品=P06 时间=['6月18日']"
+                ]
+              }
+            }
+          },
+          {
+            "step": "context_resolution",
+            "at_ms": 5.6,
+            "took_ms": null,
+            "detail": {
+              "effective": {
+                "start": "2026-06-18",
+                "end": "2026-06-18",
+                "store_id": "S02",
+                "metric": "qty",
+                "product_id": "P06"
+              },
+              "source": {
+                "window": "question",
+                "store_id": "question",
+                "metric": "question",
+                "product_id": "question"
+              },
+              "overrides": [
+                "window",
+                "store_id",
+                "metric",
+                "product_id"
+              ]
+            }
+          },
+          {
+            "step": "plan",
+            "at_ms": 5.6,
+            "took_ms": 5.5,
+            "detail": {
+              "question": "S02 6月18日红岩饭销量是多少？",
+              "standalone_question": "S02 6月18日红岩饭销量是多少？",
+              "search_query": "S02 6月18日红岩饭销量是多少？ S02 Makai Poke 牛肉poke",
+              "intent": "data",
+              "kind": "summary",
+              "window": [
+                "2026-06-18",
+                "2026-06-18"
+              ],
+              "compare_window": null,
+              "as_of": "2026-06-18",
+              "year": 2026,
+              "store_id": "S02",
+              "product_id": "P06",
+              "metric": "qty",
+              "needs_data": true,
+              "needs_docs": false,
+              "refusal": null,
+              "notes": [
+                "识别：指标=qty 门店=S02 商品=P06 时间=['6月18日']",
+                "趋势引用条件来源：{'window': 'question', 'store_id': 'question', 'metric': 'question', 'product_id': 'question'}；有效条件：{'start': '2026-06-18', 'end': '2026-06-18', 'store_id': 'S02', 'metric': 'qty', 'product_id': 'P06'}"
+              ]
+            }
+          },
+          {
+            "step": "model_context",
+            "at_ms": 5.6,
+            "took_ms": null,
+            "detail": {
+              "prompt_history_size": 0,
+              "clarification_reset": false
+            }
+          },
+          {
+            "step": "answer_mock",
+            "at_ms": 5.6,
+            "took_ms": 0.1,
+            "detail": {
+              "answer_type": "data"
+            }
+          },
+          {
+            "step": "tool",
+            "at_ms": 5.6,
+            "took_ms": null,
+            "detail": {
+              "tool": "query_metrics",
+              "params": {
+                "start": "2026-06-18",
+                "end": "2026-06-18",
+                "store_id": "S02",
+                "product_id": "P06"
+              },
+              "result": {
+                "start": "2026-06-18",
+                "end": "2026-06-18",
+                "store_id": "S02",
+                "product_id": "P06",
+                "net_revenue": 150.0,
+                "refund_amount": 60.0,
+                "orders": 1,
+                "aov": 150.0,
+                "qty": 7
+              }
+            }
+          },
+          {
+            "step": "response",
+            "at_ms": 5.7,
+            "took_ms": null,
+            "detail": {
+              "answer_type": "data",
+              "notes": []
+            }
+          }
+        ],
+        "llm_calls": [],
+        "errors": []
+      }
+    }
+  ]
+}

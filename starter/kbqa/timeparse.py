@@ -30,6 +30,9 @@ _MONTH_RANGE = re.compile(
     r"(?:(20\d{2})\s*年)?\s*(%s)\s*月(?:份)?\s*%s\s*(?:(?:20\d{2})\s*年)?\s*(%s)\s*月(?:份)?" % (_NUM, _RANGE, _NUM)
 )
 _DAY_RANGE = re.compile(r"(%s)\s*[日号]\s*%s\s*(%s)\s*[日号]" % (_NUM, _RANGE, _NUM))
+_SEPARATED_DATE_BOUNDARY = re.compile(
+    r"(?<=[a-z0-9])\s+(?=(?:%s)\s*(?:月|[日号]))" % _NUM
+)
 
 RELATIVE_WHOLE = ("最近", "近期", "这段时间", "整体", "总体", "目前为止", "至今", "累计", "全部时间")
 #: 指向未来的说法：数据区间之外，只能如实说没有数据。
@@ -90,10 +93,20 @@ def _clamp_day(year: int, month: int, day: int) -> date:
     return date(year, month, min(max(day, 1), last))
 
 
+def _compact_time_text(text: str) -> str:
+    """Compact date-internal spacing while keeping a written ID/date boundary.
+
+    ``S02 6月`` must not become ``s026月``. An unseparated ``S026月`` remains
+    ambiguous: never invent a split inside the user's identifier.
+    """
+    parts = _SEPARATED_DATE_BOUNDARY.split(normalise(text))
+    return " ".join(re.sub(r"\s+", "", part) for part in parts)
+
+
 def parse_time(text: str, today: date) -> TimeSpec:
     """把问句里的时间说法解析成闭区间。找不到时间就返回空的 TimeSpec。"""
     spec = TimeSpec()
-    cleaned = normalise(text).replace(" ", "")
+    cleaned = _compact_time_text(text)
     year_match = _YEAR.search(cleaned)
     year = int(year_match.group(1)) if year_match else None
     if "去年" in cleaned:
@@ -279,7 +292,7 @@ def _month_and_day_windows(
 
 def loose_days(text: str) -> list[int]:
     """只说了“8 号”没说月份时，把日号拿出来，交给追问用上一轮的月份补全。"""
-    cleaned = normalise(text).replace(" ", "")
+    cleaned = _compact_time_text(text)
     if _MONTH.search(cleaned):
         return []
     days = [cn_number(match.group(1)) for match in _DAY.finditer(cleaned)]
