@@ -1,7 +1,7 @@
 [
   {
     "payload": {
-      "session_id": "6d5540f3-40eb-4d8c-99a0-84add8c07dc3",
+      "session_id": "43022efd-1b18-465a-b472-f4091520ca8c",
       "question": "6 月的净营业额是多少？"
     },
     "answer": {
@@ -30,21 +30,21 @@
           }
         }
       ],
-      "trace_id": "t-20260901-0005"
+      "trace_id": "t-20260901-0017"
     },
     "trace": {
-      "trace_id": "t-20260901-0005",
-      "session_id": "6d5540f3-40eb-4d8c-99a0-84add8c07dc3",
+      "trace_id": "t-20260901-0017",
+      "session_id": "43022efd-1b18-465a-b472-f4091520ca8c",
       "question": "6 月的净营业额是多少？",
-      "started_at": "2026-09-27T16:15:15.094",
-      "total_ms": 11,
+      "started_at": "2026-09-27T16:20:28.563",
+      "total_ms": 10.6,
       "steps": [
         {
           "step": "request",
           "at_ms": 0,
           "took_ms": null,
           "detail": {
-            "session_id": "6d5540f3-40eb-4d8c-99a0-84add8c07dc3",
+            "session_id": "43022efd-1b18-465a-b472-f4091520ca8c",
             "question": "6 月的净营业额是多少？",
             "context": null
           }
@@ -61,7 +61,7 @@
         },
         {
           "step": "session_context",
-          "at_ms": 8.7,
+          "at_ms": 8.3,
           "took_ms": null,
           "detail": {
             "history_size": 0,
@@ -97,8 +97,8 @@
         },
         {
           "step": "plan",
-          "at_ms": 8.7,
-          "took_ms": 8.7,
+          "at_ms": 8.3,
+          "took_ms": 8.3,
           "detail": {
             "question": "6 月的净营业额是多少？",
             "standalone_question": "6 月的净营业额是多少？",
@@ -125,15 +125,15 @@
         },
         {
           "step": "answer_mock",
-          "at_ms": 11,
-          "took_ms": 2.3,
+          "at_ms": 10.5,
+          "took_ms": 2.2,
           "detail": {
             "answer_type": "data"
           }
         },
         {
           "step": "tool",
-          "at_ms": 11,
+          "at_ms": 10.5,
           "took_ms": null,
           "detail": {
             "tool": "query_metrics",
@@ -158,7 +158,7 @@
         },
         {
           "step": "response",
-          "at_ms": 11,
+          "at_ms": 10.6,
           "took_ms": null,
           "detail": {
             "answer_type": "data",
@@ -172,7 +172,7 @@
   },
   {
     "payload": {
-      "session_id": "6d5540f3-40eb-4d8c-99a0-84add8c07dc3",
+      "session_id": "43022efd-1b18-465a-b472-f4091520ca8c",
       "question": "那 7 月呢？"
     },
     "answer": {
@@ -201,21 +201,21 @@
           }
         }
       ],
-      "trace_id": "t-20260901-0006"
+      "trace_id": "t-20260901-0018"
     },
     "trace": {
-      "trace_id": "t-20260901-0006",
-      "session_id": "6d5540f3-40eb-4d8c-99a0-84add8c07dc3",
+      "trace_id": "t-20260901-0018",
+      "session_id": "43022efd-1b18-465a-b472-f4091520ca8c",
       "question": "那 7 月呢？",
-      "started_at": "2026-09-27T16:15:15.178",
-      "total_ms": 13,
+      "started_at": "2026-09-27T16:20:29.412",
+      "total_ms": 13.1,
       "steps": [
         {
           "step": "request",
           "at_ms": 0,
           "took_ms": null,
           "detail": {
-            "session_id": "6d5540f3-40eb-4d8c-99a0-84add8c07dc3",
+            "session_id": "43022efd-1b18-465a-b472-f4091520ca8c",
             "question": "那 7 月呢？",
             "context": null
           }
@@ -232,7 +232,7 @@
         },
         {
           "step": "session_context",
-          "at_ms": 10.7,
+          "at_ms": 10.9,
           "took_ms": null,
           "detail": {
             "history_size": 1,
@@ -298,8 +298,8 @@
         },
         {
           "step": "plan",
-          "at_ms": 10.7,
-          "took_ms": 10.7,
+          "at_ms": 10.9,
+          "took_ms": 10.9,
           "detail": {
             "question": "那 7 月呢？",
             "standalone_question": "7 月 的净营业额是多少？",
@@ -327,15 +327,15 @@
         },
         {
           "step": "answer_mock",
-          "at_ms": 13,
-          "took_ms": 2.3,
+          "at_ms": 13.1,
+          "took_ms": 2.1,
           "detail": {
             "answer_type": "data"
           }
         },
         {
           "step": "tool",
-          "at_ms": 13,
+          "at_ms": 13.1,
           "took_ms": null,
           "detail": {
             "tool": "query_metrics",
@@ -360,7 +360,7 @@
         },
         {
           "step": "response",
-          "at_ms": 13,
+          "at_ms": 13.1,
           "took_ms": null,
           "detail": {
             "answer_type": "data",
@@ -374,7 +374,7 @@
   },
   {
     "payload": {
-      "session_id": "6d5540f3-40eb-4d8c-99a0-84add8c07dc3",
+      "session_id": "43022efd-1b18-465a-b472-f4091520ca8c",
       "question": "这两个月的客单价差了多少？"
     },
     "answer": {
@@ -445,21 +445,21 @@
           }
         }
       ],
-      "trace_id": "t-20260901-0007"
+      "trace_id": "t-20260901-0019"
     },
     "trace": {
-      "trace_id": "t-20260901-0007",
-      "session_id": "6d5540f3-40eb-4d8c-99a0-84add8c07dc3",
+      "trace_id": "t-20260901-0019",
+      "session_id": "43022efd-1b18-465a-b472-f4091520ca8c",
       "question": "这两个月的客单价差了多少？",
-      "started_at": "2026-09-27T16:15:15.260",
-      "total_ms": 15.5,
+      "started_at": "2026-09-27T16:20:29.545",
+      "total_ms": 18,
       "steps": [
         {
           "step": "request",
           "at_ms": 0,
           "took_ms": null,
           "detail": {
-            "session_id": "6d5540f3-40eb-4d8c-99a0-84add8c07dc3",
+            "session_id": "43022efd-1b18-465a-b472-f4091520ca8c",
             "question": "这两个月的客单价差了多少？",
             "context": null
           }
@@ -476,7 +476,7 @@
         },
         {
           "step": "session_context",
-          "at_ms": 11.3,
+          "at_ms": 13.5,
           "took_ms": null,
           "detail": {
             "history_size": 2,
@@ -577,8 +577,8 @@
         },
         {
           "step": "plan",
-          "at_ms": 11.3,
-          "took_ms": 11.2,
+          "at_ms": 13.5,
+          "took_ms": 13.5,
           "detail": {
             "question": "这两个月的客单价差了多少？",
             "standalone_question": "这两个月的客单价差了多少 7月 净营业额是",
@@ -610,15 +610,15 @@
         },
         {
           "step": "answer_mock",
-          "at_ms": 15.4,
-          "took_ms": 4.1,
+          "at_ms": 18,
+          "took_ms": 4.5,
           "detail": {
             "answer_type": "data"
           }
         },
         {
           "step": "tool",
-          "at_ms": 15.4,
+          "at_ms": 18,
           "took_ms": null,
           "detail": {
             "tool": "compare_periods",
@@ -685,7 +685,7 @@
         },
         {
           "step": "response",
-          "at_ms": 15.4,
+          "at_ms": 18,
           "took_ms": null,
           "detail": {
             "answer_type": "data",

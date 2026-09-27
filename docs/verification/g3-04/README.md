@@ -20,7 +20,7 @@
 
 独立运行 `.venv/bin/python -m pytest docs/verification/g3-04/test_session_context.py -q`，覆盖四组原顺序、替换门店/商品/月份、主题切换、澄清补充、拒答与异常断开旧语义、不同会话交错/API 并发、同会话等待、淘汰/重启/匿名、受控 live 工具调用。`starter/tests/conftest.py` 全局替换检索器，故原 53 项与本测试必须分进程运行。
 
-`browser/multiturn-{1280,1440,390}.json` 保存实际浏览器逐轮请求、响应与后端 trace；同名 PNG 保存聊天视图。`frontend/tests/g3-session-context.spec.ts` 同时核验新对话 ID、无上文澄清、旧请求迟到不进入新会话。看板筛选仍只由用户显式附加趋势引用进入聊天。刷新/服务重启后内存上下文不保证存在，欢迎页提示用户补全条件。
+`browser/multiturn-{1280,1440,390}.json` 保存实际浏览器逐轮请求、响应与后端 trace；同名 PNG 保存聊天视图。`frontend/tests/g3-session-context.spec.ts` 在首轮与追问之间把看板筛选改为 8 月，验证追问仍是同一会话的 7 月且请求无隐式 `context`；同时核验新对话 ID、无上文澄清、旧请求迟到不进入新会话。趋势引用仅在用户显式附加时进入聊天。刷新/服务重启后内存上下文不保证存在，欢迎页提示用户补全条件。
 
 会话历史上限 500 个 ID、每 ID 6 轮；拒答及执行异常清空该 ID 上下文，防止后续省略主语时回退到更旧且可能不相关的主题。澄清只保留中性缺项状态。
 

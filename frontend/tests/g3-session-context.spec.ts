@@ -12,12 +12,21 @@ for (const width of [1280, 1440, 390]) {
     await page.goto('/');
     await page.getByRole('button', { name: '经营助手', exact: true }).click();
     const turns = [];
-    for (const question of ['6 月的净营业额是多少？', '那 7 月呢？', '这两个月的客单价差了多少？']) {
+    for (const [index, question] of ['6 月的净营业额是多少？', '那 7 月呢？', '这两个月的客单价差了多少？'].entries()) {
+      if (index === 1) {
+        await page.getByRole('button', { name: 'Close' }).click();
+        await page.getByRole('textbox', { name: '开始日期' }).fill('2026-08-01');
+        await page.getByRole('textbox', { name: '结束日期' }).fill('2026-08-31');
+        await page.getByRole('button', { name: '查询汇总' }).click();
+        await expect(page.getByTestId('applied-filters')).toContainText('2026-08-01');
+        await page.getByRole('button', { name: '经营助手', exact: true }).click();
+      }
       await page.getByLabel('经营问题').fill(question);
       const sent = page.waitForRequest(r => r.url().endsWith('/api/chat'));
       const received = page.waitForResponse(r => r.url().endsWith('/api/chat'));
       await page.getByRole('button', { name: '发送', exact: true }).click();
       const payload = (await sent).postDataJSON();
+      expect(Object.keys(payload).sort()).toEqual(['question', 'session_id']);
       const answer = await (await received).json();
       const trace = await (await request.get(`/api/trace/${answer.trace_id}`)).json();
       turns.push({ payload, answer, trace });
