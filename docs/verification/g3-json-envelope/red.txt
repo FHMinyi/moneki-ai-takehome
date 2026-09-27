@@ -1,0 +1,64 @@
+FFF..........FFF                                                         [100%]
+=================================== FAILURES ===================================
+________________________________ test_saved_s01 ________________________________
+docs/verification/g3-json-envelope/test_envelope.py:37: in test_saved_s01
+    a=finish(prepared,prepared[3]);assert a.answer_type=='doc'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-json-envelope/test_envelope.py:34: in finish
+    return e._finalise(s.planner.plan(t['question']),content,evidence or [],p,Trace('offline-s01',t['question']))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:233: in _finalise
+    raise LLMError("answer_binding", "最终答复必须显式选择 doc/data/hybrid/refusal/clarify 类型")
+E   kbqa.llm.LLMError: answer_binding: 最终答复必须显式选择 doc/data/hybrid/refusal/clarify 类型
+__________________________ test_doc_wrappers[```json] __________________________
+docs/verification/g3-json-envelope/test_envelope.py:42: in test_doc_wrappers
+    a=finish(prepared,opening+'\n'+json.dumps({'answer_type':'doc','facts':[{'evidence_id':'doc-938f12744447cf0f3706'}]})+'\n```')
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-json-envelope/test_envelope.py:34: in finish
+    return e._finalise(s.planner.plan(t['question']),content,evidence or [],p,Trace('offline-s01',t['question']))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:233: in _finalise
+    raise LLMError("answer_binding", "最终答复必须显式选择 doc/data/hybrid/refusal/clarify 类型")
+E   kbqa.llm.LLMError: answer_binding: 最终答复必须显式选择 doc/data/hybrid/refusal/clarify 类型
+____________________________ test_doc_wrappers[```] ____________________________
+docs/verification/g3-json-envelope/test_envelope.py:42: in test_doc_wrappers
+    a=finish(prepared,opening+'\n'+json.dumps({'answer_type':'doc','facts':[{'evidence_id':'doc-938f12744447cf0f3706'}]})+'\n```')
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-json-envelope/test_envelope.py:34: in finish
+    return e._finalise(s.planner.plan(t['question']),content,evidence or [],p,Trace('offline-s01',t['question']))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:233: in _finalise
+    raise LLMError("answer_binding", "最终答复必须显式选择 doc/data/hybrid/refusal/clarify 类型")
+E   kbqa.llm.LLMError: answer_binding: 最终答复必须显式选择 doc/data/hybrid/refusal/clarify 类型
+______________________ test_fenced_data_reaches_renderer _______________________
+docs/verification/g3-json-envelope/test_envelope.py:56: in test_fenced_data_reaches_renderer
+    a=finish(prepared,'```json\n{"answer_type":"data","results":[{"call_id":"real","metric":"net_revenue"}]}\n```',[{'_call_id':'real','tool':'query_metrics','params':params,'result':result}])
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-json-envelope/test_envelope.py:34: in finish
+    return e._finalise(s.planner.plan(t['question']),content,evidence or [],p,Trace('offline-s01',t['question']))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:233: in _finalise
+    raise LLMError("answer_binding", "最终答复必须显式选择 doc/data/hybrid/refusal/clarify 类型")
+E   kbqa.llm.LLMError: answer_binding: 最终答复必须显式选择 doc/data/hybrid/refusal/clarify 类型
+____________________ test_accurate_format_errors[{broken}] _____________________
+docs/verification/g3-json-envelope/test_envelope.py:61: in test_accurate_format_errors
+    with pytest.raises(LLMError,match='answer_json'):finish(prepared,content)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: Regex pattern did not match.
+E     Expected regex: 'answer_json'
+E     Actual message: 'answer_binding: 最终答复必须显式选择 doc/data/hybrid/refusal/clarify 类型'
+_______________________ test_accurate_format_errors[[]] ________________________
+docs/verification/g3-json-envelope/test_envelope.py:61: in test_accurate_format_errors
+    with pytest.raises(LLMError,match='answer_json'):finish(prepared,content)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: Regex pattern did not match.
+E     Expected regex: 'answer_json'
+E     Actual message: 'answer_binding: 最终答复必须显式选择 doc/data/hybrid/refusal/clarify 类型'
+=========================== short test summary info ============================
+FAILED docs/verification/g3-json-envelope/test_envelope.py::test_saved_s01 - ...
+FAILED docs/verification/g3-json-envelope/test_envelope.py::test_doc_wrappers[```json]
+FAILED docs/verification/g3-json-envelope/test_envelope.py::test_doc_wrappers[```]
+FAILED docs/verification/g3-json-envelope/test_envelope.py::test_fenced_data_reaches_renderer
+FAILED docs/verification/g3-json-envelope/test_envelope.py::test_accurate_format_errors[{broken}]
+FAILED docs/verification/g3-json-envelope/test_envelope.py::test_accurate_format_errors[[]]
+6 failed, 10 passed in 0.39s

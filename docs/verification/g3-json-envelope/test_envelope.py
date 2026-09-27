@@ -35,6 +35,7 @@ def finish(prepared,content,evidence=None):
 
 def test_saved_s01(prepared):
  a=finish(prepared,prepared[3]);assert a.answer_type=='doc'
+ assert '出餐慢' in a.answer and '12' in a.answer
  assert any(c['doc_id']=='KB-060' and '12' in c['quote'] for c in a.citations)
 
 @pytest.mark.parametrize('opening',['```json','```'])

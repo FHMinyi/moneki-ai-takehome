@@ -1,0 +1,98 @@
+{
+  "original_content": "```json\n{\"answer_type\":\"doc\",\"facts\":[{\"evidence_id\":\"doc-938f12744447cf0f3706\"}]}\n```",
+  "answer": {
+    "answer": "KB-060《顾客反馈汇总 2026 年 7 月》：1. **S04 Arigato Sando 出餐慢，12 条**，是本月最集中的一类问题，集中在工作日 12:00 至 13:00，投诉里出现最多的说法是“排队比吃饭时间长”。",
+    "answer_type": "doc",
+    "citations": [
+      {
+        "doc_id": "KB-060",
+        "quote": "1. **S04 Arigato Sando 出餐慢，12 条**，是本月最集中的一类问题，集中在工作日 12:00 至 13:00，投诉里出现最多的说法是“排队比吃饭时间长”。",
+        "evidence_id": "doc-938f12744447cf0f3706",
+        "chunk_id": "KB-060#3",
+        "source_start": 166,
+        "source_end": 255,
+        "scope": {
+          "as_of": "2026-09-01",
+          "store_id": null,
+          "year": 2026,
+          "historical": false,
+          "window": null
+        },
+        "metadata": {
+          "title": "顾客反馈汇总 2026 年 7 月",
+          "effective_from": "2026-08-03",
+          "status": "现行",
+          "stores": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05"
+          ],
+          "stores_explicit": false,
+          "superseded_by": null
+        }
+      },
+      {
+        "doc_id": "KB-060",
+        "quote": "# 顾客反馈汇总（2026 年 7 月）\n",
+        "source_start": 0,
+        "source_end": 21,
+        "chunk_id": "KB-060#3",
+        "metadata": {
+          "title": "顾客反馈汇总 2026 年 7 月",
+          "effective_from": "2026-08-03",
+          "status": "现行",
+          "stores": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05"
+          ],
+          "stores_explicit": false,
+          "superseded_by": null
+        },
+        "scope": {
+          "as_of": "2026-09-01",
+          "store_id": null,
+          "year": 2026,
+          "historical": false,
+          "window": null
+        }
+      },
+      {
+        "doc_id": "KB-060",
+        "quote": "## 一、本月要点\n",
+        "source_start": 155,
+        "source_end": 165,
+        "chunk_id": "KB-060#3",
+        "metadata": {
+          "title": "顾客反馈汇总 2026 年 7 月",
+          "effective_from": "2026-08-03",
+          "status": "现行",
+          "stores": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05"
+          ],
+          "stores_explicit": false,
+          "superseded_by": null
+        },
+        "scope": {
+          "as_of": "2026-09-01",
+          "store_id": null,
+          "year": 2026,
+          "historical": false,
+          "window": null
+        }
+      }
+    ],
+    "data_evidence": [],
+    "notes": []
+  },
+  "source": "saved original S01 response; KB spans validated; no provider call",
+  "var_dir": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/envelopeo7xjca6b"
+}
