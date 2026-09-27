@@ -1,0 +1,82 @@
+{
+  "observed": [
+    {
+      "chat": 11,
+      "attempt": 23,
+      "max_tokens": 4096,
+      "finish_reason": "length",
+      "content_characters": 0,
+      "usage": {
+        "prompt_tokens": 9427,
+        "completion_tokens": 4096,
+        "total_tokens": 13523,
+        "prompt_tokens_details": {
+          "cached_tokens": 3712
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4096
+        },
+        "prompt_cache_hit_tokens": 3712,
+        "prompt_cache_miss_tokens": 5715
+      }
+    },
+    {
+      "chat": 15,
+      "attempt": 33,
+      "max_tokens": 4096,
+      "finish_reason": "length",
+      "content_characters": 0,
+      "usage": {
+        "prompt_tokens": 12047,
+        "completion_tokens": 4096,
+        "total_tokens": 16143,
+        "prompt_tokens_details": {
+          "cached_tokens": 4096
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4096
+        },
+        "prompt_cache_hit_tokens": 4096,
+        "prompt_cache_miss_tokens": 7951
+      }
+    },
+    {
+      "chat": 30,
+      "attempt": 74,
+      "max_tokens": 4096,
+      "finish_reason": "length",
+      "content_characters": 0,
+      "usage": {
+        "prompt_tokens": 36810,
+        "completion_tokens": 4096,
+        "total_tokens": 40906,
+        "prompt_tokens_details": {
+          "cached_tokens": 28544
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4096
+        },
+        "prompt_cache_hit_tokens": 28544,
+        "prompt_cache_miss_tokens": 8266
+      }
+    }
+  ],
+  "checked_at": "2026-09-27T17:48:16.583936+08:00",
+  "official_sources": [
+    {
+      "url": "https://api-docs.deepseek.com/zh-cn/api/create-chat-completion/",
+      "facts": "max_tokens限制completion总量，允许1至393216；thinking默认启用，默认强度high；length仍可能截断。"
+    },
+    {
+      "url": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing",
+      "facts": "deepseek-flash上下文1M；高峰未缓存输入2元/百万tokens、输出8元/百万tokens。"
+    },
+    {
+      "url": "https://api-docs.deepseek.com/zh-cn/guides/thinking_mode/",
+      "facts": "工具场景保留历史reasoning_content；本修复不改变thinking设置。"
+    }
+  ],
+  "request_change": "4096 -> 8192; no new retries or model stage",
+  "worst_case_reserve_cny": "(1048576*2+8192*8)/1000000 = 2.162688 < 2.20",
+  "limitation": "Capacity mitigation only; saved truncated responses cannot be repaired and no new paid calls were made. G305 owner must integrate valid_output_limit and retain per-attempt reservation."
+}

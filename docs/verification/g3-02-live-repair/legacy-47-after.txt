@@ -1,0 +1,314 @@
+FFF....FFF....FFFF.....F....F.............FFFFF                          [100%]
+=================================== FAILURES ===================================
+______ test_arrival_cannot_use_application_window[subject0-attribute0-24] ______
+
+service = <kbqa.service.Service object at 0x108624e90>, subject = ('退款', '退款')
+attribute = ('多久', '24 小时'), needle = '24'
+
+    @pytest.mark.parametrize('subject,attribute,needle',[
+     (('退款','退款'),('多久','24 小时'),'24'),
+     (('退款','退款'),('退款','退款'),'24'),
+    ])
+    def test_arrival_cannot_use_application_window(service,subject,attribute,needle):
+     a,t=execute(service,'外卖退款多久能到账？',anchored('KB-013',needle,subject,attribute,duration('多久','24 小时')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-roles/test_roles.py:19: AssertionError
+______ test_arrival_cannot_use_application_window[subject1-attribute1-24] ______
+
+service = <kbqa.service.Service object at 0x108624e90>, subject = ('退款', '退款')
+attribute = ('退款', '退款'), needle = '24'
+
+    @pytest.mark.parametrize('subject,attribute,needle',[
+     (('退款','退款'),('多久','24 小时'),'24'),
+     (('退款','退款'),('退款','退款'),'24'),
+    ])
+    def test_arrival_cannot_use_application_window(service,subject,attribute,needle):
+     a,t=execute(service,'外卖退款多久能到账？',anchored('KB-013',needle,subject,attribute,duration('多久','24 小时')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-roles/test_roles.py:19: AssertionError
+_____________________ test_function_word_cannot_be_subject _____________________
+
+service = <kbqa.service.Service object at 0x108624e90>
+
+    def test_function_word_cannot_be_subject(service):
+     a,t=execute(service,'外卖订单多久内可以退款？',anchored('KB-011','30',('内','内'),('多久','30 天'),duration('多久','30 天')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-roles/test_roles.py:24: AssertionError
+_ test_same_dimension_different_actions_replacement[\u661f\u7802\u8ba2\u5355-\u7b7e\u6536-\u590d\u6838] _
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-362/test_same_dimension_different_0')
+name = '星砂订单', action = '签收', other = '复核'
+
+    @pytest.mark.parametrize('name,action,other', [('星砂订单','签收','复核'),('云帆工单','归档','分派')])
+    def test_same_dimension_different_actions_replacement(tmp_path,name,action,other):
+     kb=tmp_path/'kb';kb.mkdir()
+     (kb/'KB-987.md').write_text(f'# {name}时限\n\n{name}{action}须在43分钟内完成。\n\n{name}{other}须在89分钟内完成。')
+     s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/'var',llm_api_key='',llm_base_url='',llm_model=''));s.rebuild()
+     q=f'{name}多久能{action}？'
+     wrong,t=execute(s,q,anchored('KB-987','89',(name,name),('多久','89分钟'),duration('多久','89分钟')))
+>    assert wrong.answer_type=='refusal' and not wrong.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-roles/test_roles.py:51: AssertionError
+_ test_same_dimension_different_actions_replacement[\u4e91\u5e06\u5de5\u5355-\u5f52\u6863-\u5206\u6d3e] _
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-362/test_same_dimension_different_1')
+name = '云帆工单', action = '归档', other = '分派'
+
+    @pytest.mark.parametrize('name,action,other', [('星砂订单','签收','复核'),('云帆工单','归档','分派')])
+    def test_same_dimension_different_actions_replacement(tmp_path,name,action,other):
+     kb=tmp_path/'kb';kb.mkdir()
+     (kb/'KB-987.md').write_text(f'# {name}时限\n\n{name}{action}须在43分钟内完成。\n\n{name}{other}须在89分钟内完成。')
+     s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/'var',llm_api_key='',llm_base_url='',llm_model=''));s.rebuild()
+     q=f'{name}多久能{action}？'
+     wrong,t=execute(s,q,anchored('KB-987','89',(name,name),('多久','89分钟'),duration('多久','89分钟')))
+>    assert wrong.answer_type=='refusal' and not wrong.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-roles/test_roles.py:51: AssertionError
+____________ test_temporal_modifier_is_not_subject_in_new_material _____________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-362/test_temporal_modifier_is_not_0')
+
+    def test_temporal_modifier_is_not_subject_in_new_material(tmp_path):
+     kb=tmp_path/'kb';kb.mkdir();(kb/'KB-988.md').write_text('# 退款规则\n\n订阅余额退款须在89天之内提出。')
+     s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/'var',llm_api_key='',llm_base_url='',llm_model=''));s.rebuild()
+     a,t=execute(s,'外送订单多久之内可以退款？',anchored('KB-988','89',('之内','之内'),('退款','退款'),duration('多久','89天')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-roles/test_roles.py:60: AssertionError
+_ test_conflicting_anchored_subject_or_attribute[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-013-\u5802\u98df\u8ba2\u5355\u987b\u5f53\u573a-subject0-attribute0-value0] _
+
+service = <kbqa.service.Service object at 0x108f7c9b0>, q = '外卖订单多久内可以退款？'
+doc = 'KB-013', needle = '堂食订单须当场', subject = ('外卖订单', '堂食订单')
+attribute = ('退款', '退款'), value = {'kind': 'text', 'question': '', 'text': ''}
+
+    @pytest.mark.parametrize('q,doc,needle,subject,attribute,value',[
+     ('外卖订单多久内可以退款？','KB-013','堂食订单须当场',('外卖订单','堂食订单'),('退款','退款'),TEXT),
+     ('办理外卖退款应当出示什么身份证件？','KB-014','工牌',('外卖','员工'),('身份证件','工牌'),TEXT),
+     ('员工迟到申诉多久能处理完？','KB-016','15',('迟到申诉','迟到'),('处理','记'),duration('多久','15 分钟')),
+     ('外卖订单多久内可以退款？','KB-011','30',('外卖订单','储值本金'),('退款','退回'),duration('多久','30 天')),
+    ])
+    def test_conflicting_anchored_subject_or_attribute(service,q,doc,needle,subject,attribute,value):
+     a,t=execute(service,q,anchored(doc,needle,subject,attribute,value))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:39: AssertionError
+_ test_conflicting_anchored_subject_or_attribute[\u529e\u7406\u5916\u5356\u9000\u6b3e\u5e94\u5f53\u51fa\u793a\u4ec0\u4e48\u8eab\u4efd\u8bc1\u4ef6\uff1f-KB-014-\u5de5\u724c-subject1-attribute1-value1] _
+
+service = <kbqa.service.Service object at 0x108f7c9b0>, q = '办理外卖退款应当出示什么身份证件？'
+doc = 'KB-014', needle = '工牌', subject = ('外卖', '员工')
+attribute = ('身份证件', '工牌'), value = {'kind': 'text', 'question': '', 'text': ''}
+
+    @pytest.mark.parametrize('q,doc,needle,subject,attribute,value',[
+     ('外卖订单多久内可以退款？','KB-013','堂食订单须当场',('外卖订单','堂食订单'),('退款','退款'),TEXT),
+     ('办理外卖退款应当出示什么身份证件？','KB-014','工牌',('外卖','员工'),('身份证件','工牌'),TEXT),
+     ('员工迟到申诉多久能处理完？','KB-016','15',('迟到申诉','迟到'),('处理','记'),duration('多久','15 分钟')),
+     ('外卖订单多久内可以退款？','KB-011','30',('外卖订单','储值本金'),('退款','退回'),duration('多久','30 天')),
+    ])
+    def test_conflicting_anchored_subject_or_attribute(service,q,doc,needle,subject,attribute,value):
+     a,t=execute(service,q,anchored(doc,needle,subject,attribute,value))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:39: AssertionError
+_ test_conflicting_anchored_subject_or_attribute[\u5458\u5de5\u8fdf\u5230\u7533\u8bc9\u591a\u4e45\u80fd\u5904\u7406\u5b8c\uff1f-KB-016-15-subject2-attribute2-value2] _
+
+service = <kbqa.service.Service object at 0x108f7c9b0>, q = '员工迟到申诉多久能处理完？'
+doc = 'KB-016', needle = '15', subject = ('迟到申诉', '迟到'), attribute = ('处理', '记')
+value = {'kind': 'duration', 'question': '多久', 'text': '15 分钟'}
+
+    @pytest.mark.parametrize('q,doc,needle,subject,attribute,value',[
+     ('外卖订单多久内可以退款？','KB-013','堂食订单须当场',('外卖订单','堂食订单'),('退款','退款'),TEXT),
+     ('办理外卖退款应当出示什么身份证件？','KB-014','工牌',('外卖','员工'),('身份证件','工牌'),TEXT),
+     ('员工迟到申诉多久能处理完？','KB-016','15',('迟到申诉','迟到'),('处理','记'),duration('多久','15 分钟')),
+     ('外卖订单多久内可以退款？','KB-011','30',('外卖订单','储值本金'),('退款','退回'),duration('多久','30 天')),
+    ])
+    def test_conflicting_anchored_subject_or_attribute(service,q,doc,needle,subject,attribute,value):
+     a,t=execute(service,q,anchored(doc,needle,subject,attribute,value))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:39: AssertionError
+_ test_conflicting_anchored_subject_or_attribute[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-011-30-subject3-attribute3-value3] _
+
+service = <kbqa.service.Service object at 0x108f7c9b0>, q = '外卖订单多久内可以退款？'
+doc = 'KB-011', needle = '30', subject = ('外卖订单', '储值本金')
+attribute = ('退款', '退回')
+value = {'kind': 'duration', 'question': '多久', 'text': '30 天'}
+
+    @pytest.mark.parametrize('q,doc,needle,subject,attribute,value',[
+     ('外卖订单多久内可以退款？','KB-013','堂食订单须当场',('外卖订单','堂食订单'),('退款','退款'),TEXT),
+     ('办理外卖退款应当出示什么身份证件？','KB-014','工牌',('外卖','员工'),('身份证件','工牌'),TEXT),
+     ('员工迟到申诉多久能处理完？','KB-016','15',('迟到申诉','迟到'),('处理','记'),duration('多久','15 分钟')),
+     ('外卖订单多久内可以退款？','KB-011','30',('外卖订单','储值本金'),('退款','退回'),duration('多久','30 天')),
+    ])
+    def test_conflicting_anchored_subject_or_attribute(service,q,doc,needle,subject,attribute,value):
+     a,t=execute(service,q,anchored(doc,needle,subject,attribute,value))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:39: AssertionError
+___________ test_omitting_appeal_qualifier_cannot_relabel_attendance ___________
+
+service = <kbqa.service.Service object at 0x108f7c9b0>
+
+    def test_omitting_appeal_qualifier_cannot_relabel_attendance(service):
+     q='迟到申诉多久？'
+     a,t=execute(service,q,anchored('KB-016','15',('迟到','迟到'),('迟到','迟到'),duration('多久','15 分钟')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:59: AssertionError
+_____________ test_cross_clause_subject_attribute_binding_rejected _____________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-362/test_cross_clause_subject_attr0')
+
+    def test_cross_clause_subject_attribute_binding_rejected(tmp_path):
+     kb=tmp_path/'kb';kb.mkdir();(kb/'KB-983.md').write_text('星云订单可以开发票。木星订单退款时限为37分钟。')
+     s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/'var',llm_api_key='',llm_base_url='',llm_model=''))
+     s.rebuild()
+     a,t=execute(s,'星云订单退款时限？',anchored('KB-983','发票。木星',('星云订单','星云订单'),('退款','退款'),duration('时限','37分钟')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:84: AssertionError
+____________ test_omitted_channel_with_same_numeric_shape_rejected _____________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-362/test_omitted_channel_with_same0')
+
+    def test_omitted_channel_with_same_numeric_shape_rejected(tmp_path):
+     kb=tmp_path/'kb';kb.mkdir()
+     (kb/'KB-986.md').write_text('# 退款时限\n\n外送订单退款须在43分钟内提出。\n\n自取订单退款须在89分钟内提出。')
+     s=Service(replace(load_settings(),kb_dir=kb,var_dir=tmp_path/'var',llm_api_key='',llm_base_url='',llm_model=''));s.rebuild()
+     # Both have genuine duration values and the same head '订单'. Deliberately
+     # omit the channel from the model's subject anchor; code sees explicit conflict.
+     a,t=execute(s,'外送订单退款时限？',anchored('KB-986','89',('订单','订单'),('退款','退款'),duration('时限','89分钟')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:125: AssertionError
+_ test_omission_variants_keep_critical_qualifier[\u8fdf\u5230\u7533\u8bc9\u591a\u4e45\uff1f] _
+
+service = <kbqa.service.Service object at 0x108f7c9b0>, question = '迟到申诉多久？'
+
+    @pytest.mark.parametrize('question',['迟到申诉多久？','迟到的申诉多久？','迟到申诉需要多久？'])
+    def test_omission_variants_keep_critical_qualifier(service,question):
+     a,t=execute(service,question,anchored('KB-016','15',('迟到','迟到'),('迟到','迟到'),duration('多久','15 分钟')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:133: AssertionError
+_ test_omission_variants_keep_critical_qualifier[\u8fdf\u5230\u7684\u7533\u8bc9\u591a\u4e45\uff1f] _
+
+service = <kbqa.service.Service object at 0x108f7c9b0>, question = '迟到的申诉多久？'
+
+    @pytest.mark.parametrize('question',['迟到申诉多久？','迟到的申诉多久？','迟到申诉需要多久？'])
+    def test_omission_variants_keep_critical_qualifier(service,question):
+     a,t=execute(service,question,anchored('KB-016','15',('迟到','迟到'),('迟到','迟到'),duration('多久','15 分钟')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:133: AssertionError
+_ test_omission_variants_keep_critical_qualifier[\u8fdf\u5230\u7533\u8bc9\u9700\u8981\u591a\u4e45\uff1f] _
+
+service = <kbqa.service.Service object at 0x108f7c9b0>, question = '迟到申诉需要多久？'
+
+    @pytest.mark.parametrize('question',['迟到申诉多久？','迟到的申诉多久？','迟到申诉需要多久？'])
+    def test_omission_variants_keep_critical_qualifier(service,question):
+     a,t=execute(service,question,anchored('KB-016','15',('迟到','迟到'),('迟到','迟到'),duration('多久','15 分钟')))
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:133: AssertionError
+_______________ test_self_reported_support_boolean_not_a_binding _______________
+
+service = <kbqa.service.Service object at 0x108f7c9b0>
+
+    def test_self_reported_support_boolean_not_a_binding(service):
+     def final(r):
+      e=next(e for e in r['evidence'] if e['doc_id']=='KB-013')
+      return json.dumps({'answer_type':'doc','facts':[{'evidence_id':e['evidence_id'],'binding':{'subject_supported':True,'attribute_supported':True}}]})
+     a,t=execute(service,'外卖订单多久内可以退款？',final)
+>    assert a.answer_type=='refusal' and not a.citations
+E    AssertionError: assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_anchored_selection.py:141: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_arrival_cannot_use_application_window[subject0-attribute0-24]
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_arrival_cannot_use_application_window[subject1-attribute1-24]
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_function_word_cannot_be_subject
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_same_dimension_different_actions_replacement[\u661f\u7802\u8ba2\u5355-\u7b7e\u6536-\u590d\u6838]
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_same_dimension_different_actions_replacement[\u4e91\u5e06\u5de5\u5355-\u5f52\u6863-\u5206\u6d3e]
+FAILED docs/verification/g3-02/review-roles/test_roles.py::test_temporal_modifier_is_not_subject_in_new_material
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_conflicting_anchored_subject_or_attribute[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-013-\u5802\u98df\u8ba2\u5355\u987b\u5f53\u573a-subject0-attribute0-value0]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_conflicting_anchored_subject_or_attribute[\u529e\u7406\u5916\u5356\u9000\u6b3e\u5e94\u5f53\u51fa\u793a\u4ec0\u4e48\u8eab\u4efd\u8bc1\u4ef6\uff1f-KB-014-\u5de5\u724c-subject1-attribute1-value1]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_conflicting_anchored_subject_or_attribute[\u5458\u5de5\u8fdf\u5230\u7533\u8bc9\u591a\u4e45\u80fd\u5904\u7406\u5b8c\uff1f-KB-016-15-subject2-attribute2-value2]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_conflicting_anchored_subject_or_attribute[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-011-30-subject3-attribute3-value3]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_omitting_appeal_qualifier_cannot_relabel_attendance
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_cross_clause_subject_attribute_binding_rejected
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_omitted_channel_with_same_numeric_shape_rejected
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_omission_variants_keep_critical_qualifier[\u8fdf\u5230\u7533\u8bc9\u591a\u4e45\uff1f]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_omission_variants_keep_critical_qualifier[\u8fdf\u5230\u7684\u7533\u8bc9\u591a\u4e45\uff1f]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_omission_variants_keep_critical_qualifier[\u8fdf\u5230\u7533\u8bc9\u9700\u8981\u591a\u4e45\uff1f]
+FAILED docs/verification/g3-02/review-r1-r2/test_anchored_selection.py::test_self_reported_support_boolean_not_a_binding
+17 failed, 30 passed in 3.49s
