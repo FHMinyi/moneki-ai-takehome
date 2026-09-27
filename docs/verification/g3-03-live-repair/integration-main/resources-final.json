@@ -1,0 +1,50 @@
+[
+  {
+    "base": "http://127.0.0.1:53949",
+    "api_pid": 7198,
+    "model_pid": 7192,
+    "api_port": 53949,
+    "model_port": 53948,
+    "var": "/tmp/g303-live-mixed-repair-review/var",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-mixed-repair/moneki-ai-takehome",
+    "mode": "FREE_SAVED_PROVIDER_REPLAY_NO_UPSTREAM"
+  },
+  {
+    "base": "http://127.0.0.1:57804",
+    "api_pid": 18132,
+    "model_pid": 18126,
+    "api_port": 57804,
+    "model_port": 57803,
+    "var": "/tmp/g303-live-mixed-repair-integrated/var",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-mixed-repair/moneki-ai-takehome",
+    "mode": "FREE_SAVED_PROVIDER_REPLAY_NO_UPSTREAM"
+  },
+  {
+    "pid": 18148,
+    "harness_pid": 18141,
+    "api_port": 57812,
+    "model_port": 57811,
+    "base_url": "http://127.0.0.1:57812",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-mixed-repair/moneki-ai-takehome",
+    "var": "/tmp/g303-mixed-doc-date-review/var"
+  },
+  {
+    "pid": 21193,
+    "harness_pid": 21185,
+    "api_port": 58836,
+    "model_port": 58835,
+    "base_url": "http://127.0.0.1:58836",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-mixed-repair/moneki-ai-takehome",
+    "var": "/tmp/g303-mixed-doc-date-final/var"
+  },
+  {
+    "base": "http://127.0.0.1:58844",
+    "api_pid": 21201,
+    "model_pid": 21195,
+    "api_port": 58844,
+    "model_port": 58843,
+    "var": "/tmp/g303-live-mixed-repair-final/var",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-mixed-repair/moneki-ai-takehome",
+    "mode": "FREE_SAVED_PROVIDER_REPLAY_NO_UPSTREAM"
+  }
+]

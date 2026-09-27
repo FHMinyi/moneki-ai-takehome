@@ -1,0 +1,42 @@
+F........F....                                                           [100%]
+=================================== FAILURES ===================================
+____________ test_hybrid_then_changed_date_and_explicit_new_subject ____________
+
+server = ('http://127.0.0.1:57365', {'pid': 17774, 'harness_pid': 17772, 'api_port': 57365, 'model_port': 57363, ...})
+
+    def test_hybrid_then_changed_date_and_explicit_new_subject(server):
+     a,t,_=ask(server,'changes',QUESTIONS['H02']);assert a['answer_type']=='hybrid'
+     p=dict(start='2026-06-19',end='2026-06-19',store_id='S02',product_id='P06')
+     b,u,_=ask(server,'changes','那6月19日销量呢？',data('query_metrics',p,'qty'))
+>    assert b['answer_type']=='data' and b['data_evidence'][0]['params']==p
+E    AssertionError: assert ('refusal' == 'data'
+E      
+E      - data
+E      + refusal)
+
+docs/verification/g3-03/integration-g304/test_cross.py:38: AssertionError
+____________ test_busy_mixed_is_bounded_and_does_not_erase_success _____________
+
+server = ('http://127.0.0.1:57365', {'pid': 17774, 'harness_pid': 17772, 'api_port': 57365, 'model_port': 57363, ...})
+
+    def test_busy_mixed_is_bounded_and_does_not_erase_success(server):
+     sid='busy';q='核对618当天S02牛肉poke销量和目标。';case={**CASES['H02'],'delay':1.1,'query':QUESTIONS['H02']};Model.entered.clear()
+     with ThreadPoolExecutor(max_workers=2) as pool:
+      first=pool.submit(ask,server,sid,q,case);assert Model.entered.wait(3)
+      b,t,elapsed=ask(server,sid,'那7月呢？')
+      assert b['answer_type']=='refusal' and '正在处理' in b['answer'] and elapsed<1
+      assert step(t,'session_busy')['history_changed'] is False
+      a,_,_=first.result();assert a['answer_type']=='hybrid'
+     p=dict(start='2026-06-19',end='2026-06-19',store_id='S02',product_id='P06')
+     c,u,_=ask(server,sid,'那6月19日销量呢？',data('query_metrics',p,'qty'))
+>    assert c['answer_type']=='data' and step(u,'session_context')['history_size']==1
+E    AssertionError: assert ('refusal' == 'data'
+E      
+E      - data
+E      + refusal)
+
+docs/verification/g3-03/integration-g304/test_cross.py:104: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-03/integration-g304/test_cross.py::test_hybrid_then_changed_date_and_explicit_new_subject
+FAILED docs/verification/g3-03/integration-g304/test_cross.py::test_busy_mixed_is_bounded_and_does_not_erase_success
+2 failed, 12 passed in 3.54s

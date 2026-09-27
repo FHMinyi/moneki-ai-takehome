@@ -305,8 +305,24 @@ class Service:
             # is a hard boundary. Periods, implicit scope and comparisons may
             # require model-directed supplemental queries.
             scoped = {"start": plan.window[0], "end": plan.window[1],
-                      "store_id": plan.store_id, "product_id": plan.product_id,
-                      "metric": plan.metric}
+                      "metric": plan.metric, "bound_entities": []}
+            all_entities = {
+                "store_id": any(word in plan.question for word in ("全部门店", "所有门店", "各门店")),
+                "product_id": any(word in plan.question for word in ("全部商品", "所有商品", "各商品")),
+            }
+            for field, explicit_all in all_entities.items():
+                value = getattr(plan, field)
+                if explicit_all:
+                    value = None
+                    setattr(plan, field, None)
+                    plan.slots[field] = None
+                    # Do not persist an inherited entity inside a rewritten
+                    # question after the user explicitly replaced it with all.
+                    plan.standalone = plan.question
+                    plan.search_query = plan.question
+                if value is not None or explicit_all:
+                    scoped[field] = value
+                    scoped["bound_entities"].append(field)
             trace.step("explicit_data_scope", scoped)
 
         def scoped_tool(name, params, *, plan=plan):
@@ -342,12 +358,17 @@ class Service:
         if name not in TOOL_NAMES or not isinstance(params, dict):
             return self.run_tool(name, params)
         if name != "search_kb":
+            # Attached trends bind both dimensions, including an explicit None.
+            # A plain exact-day question binds only known/explicit dimensions;
+            # unresolved entities remain for the same model to interpret.
+            bound = effective.get("bound_entities", ("store_id", "product_id"))
             if name == "compare_periods":
+                if not plan.compare_window:
+                    return {"error": "比较查询与文字明确指定的有效条件不一致"}
                 required = {
                     "start_a": plan.window[0], "end_a": plan.window[1],
-                    "store_id": effective["store_id"],
-                    "product_id": effective.get("product_id"),
                 }
+                required.update({field: effective.get(field) for field in bound})
                 if plan.compare_window:
                     required.update(start_b=plan.compare_window[0], end_b=plan.compare_window[1])
                 if not plan.compare_window or any(params.get(key) != value for key, value in required.items()):
@@ -358,15 +379,15 @@ class Service:
             if params.get("start") != effective["start"] or params.get("end") != effective["end"]:
                 return {"error": "查询日期与已验证的有效条件不一致"}
             properties = next(tool["function"]["parameters"]["properties"] for tool in TOOLS if tool["function"]["name"] == name)
-            if "store_id" not in properties:
-                if effective["store_id"] is not None:
+            if "store_id" in bound and "store_id" not in properties:
+                if effective.get("store_id") is not None:
                     return {"error": "此工具不能按引用门店查询"}
-            elif params.get("store_id") != effective["store_id"]:
+            elif "store_id" in bound and params.get("store_id") != effective.get("store_id"):
                 return {"error": "查询门店与已验证的有效条件不一致"}
-            if "product_id" not in properties:
+            if "product_id" in bound and "product_id" not in properties:
                 if effective.get("product_id") is not None:
                     return {"error": "此工具不能按问题中的商品查询"}
-            elif params.get("product_id") != effective.get("product_id"):
+            elif "product_id" in bound and params.get("product_id") != effective.get("product_id"):
                 return {"error": "查询商品与本轮有效条件不一致"}
         return self.run_tool(name, params, plan=plan) if name == "search_kb" else self.run_tool(name, params)
 

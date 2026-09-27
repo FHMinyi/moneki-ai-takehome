@@ -9,6 +9,7 @@ import json
 import re
 from datetime import date
 from decimal import Decimal
+from calendar import monthrange
 
 from . import render as R
 from .data_answer import render_data
@@ -20,8 +21,6 @@ from .tools import round2
 
 _TARGET = re.compile(r'目标(?P<attribute>净营业额|营业额|销售额|销量|订单数)?(?:为|是|[:：])?[¥￥]?(?P<value>\d[\d,]*(?:\.\d+)?)(?P<unit>份|杯|件|单|元)')
 _PRICE = re.compile(r'(?:调整为|调为|现价|活动价|售价为|售价|价格为)[¥￥]?(?P<value>\d+(?:\.\d+)?)(?:元)?')
-_EVENT = re.compile(r'停业|不营业|闭店|停售|暂停|故障|网络异常|只收现金|现金结算|中断|整改|停电|施工')
-_PRICE_POLICY = re.compile(r'建档价|unit_price|维表')
 
 
 def compact(text):
@@ -32,16 +31,16 @@ def _source(item):
     return ' '.join([item['quote'], item['metadata'].get('title', '')] + [c['quote'] for c in item['context']])
 
 
-def _fact_scope(item, params, catalog, *, product=True):
+def _fact_scope(item, params, catalog, *, product=True, price_subset=False):
     meta = item['metadata']
     named_store, _ = catalog.find_store(item['quote'])
     named_product, _ = catalog.find_product(item['quote'])
     if named_store and params.get('store_id') and named_store != params['store_id']:
         raise ValueError('原文直接主体门店与查询不一致，标题不能覆盖正文')
-    if product and named_product and params.get('product_id') and named_product != params['product_id']:
+    if named_product and params.get('product_id') and named_product != params['product_id']:
         raise ValueError('原文直接主体商品与查询不一致，标题不能覆盖正文')
     stores = meta.get('stores') or []
-    if meta.get('stores_explicit') and (not params.get('store_id') or params['store_id'] not in stores):
+    if meta.get('stores_explicit') and (params.get('store_id') not in stores) and not (price_subset and not params.get('store_id')):
         raise ValueError('文档门店范围不能绑定这次查询')
     if params.get('store_id') and not meta.get('stores_explicit'):
         codes = set(re.findall(r'\bS\d+\b', _source(item), re.I))
@@ -82,9 +81,29 @@ def _event_scope(item, params):
         raise ValueError('事件日期与经营查询区间不相交')
     if not params.get('store_id') and not params.get('product_id'):
         raise ValueError('异常解释需要明确的门店或商品主体')
-    if not _EVENT.search(item['quote']):
-        raise ValueError('所选片段没有可核对的经营事件，不能解释波动')
+    # Relevance/causal interpretation belongs to this same model selection.
+    # Code verifies the source and range; it does not infer semantics from a
+    # vocabulary of event words or claim that those words prove a cause.
     return windows
+
+
+def _supplementary_reason(plan):
+    """Unrequested data may supplement a document reason, never replace it.
+
+    A parser's default range/metric is not an explicit user constraint. Only
+    an unspecified or whole-calendar-month time hint permits a narrower event
+    window; exact dates, comparisons, metrics and attached scope stay strict.
+    """
+    if (plan.needs_data or not plan.slots.get('asks_why') or plan.slots.get('metric_explicit')
+            or plan.slots.get('context_effective') or plan.compare_window):
+        return False
+    spec=parse_time(plan.standalone,plan.as_of)
+    if not spec.windows:
+        return not spec.first_month
+    if len(spec.windows)!=1 or any(re.search(r'日|号|\d{4}[-/]\d{1,2}[-/]\d{1,2}',x) for x in spec.labels):
+        return False
+    a,b=map(date.fromisoformat,spec.window)
+    return a.day==1 and a.year==b.year and a.month==b.month and b.day==monthrange(b.year,b.month)[1]
 
 
 def _validate_query(item, plan, mode):
@@ -96,11 +115,14 @@ def _validate_query(item, plan, mode):
     if mode == 'price':
         if plan.window and (params.get('start'),params.get('end')) != tuple(plan.window):
             raise ValueError('价格成交查询范围与问题不一致')
-        return
+        return False
     window = (params.get('start_b'), params.get('end_b')) if item['tool'] == 'compare_periods' else (params.get('start'), params.get('end'))
     first_month = parse_time(plan.standalone, plan.as_of or date(2026, 9, 1)).first_month
     requested = plan.compare_window if item['tool']=='compare_periods' and plan.compare_window else plan.window
-    if requested and not first_month and tuple(requested) != window:
+    supplementary=mode=='anomaly' and _supplementary_reason(plan)
+    if supplementary and requested and not (requested[0]<=window[0]<=window[1]<=requested[1]):
+        raise ValueError('补充数据窗口必须位于问题的时间范围内')
+    if requested and not first_month and not supplementary and tuple(requested) != window:
         raise ValueError('查询日期或比较方向与问题不一致；当前区间必须是B')
     if item['tool'] == 'compare_periods':
         a = params['start_a'], params['end_a']
@@ -110,6 +132,22 @@ def _validate_query(item, plan, mode):
             raise ValueError('异常基期必须早于当前区间，不能倒置比较')
         if (date.fromisoformat(a[1])-date.fromisoformat(a[0])).days != (date.fromisoformat(window[1])-date.fromisoformat(window[0])).days:
             raise ValueError('异常区间比较必须使用等长基期')
+    return supplementary
+
+
+def _notice_stores(doc,params,catalog):
+    """A scoped notice can accompany an all-store query only as a scoped fact."""
+    stores=doc['metadata'].get('stores') or []
+    if not doc['metadata'].get('stores_explicit'):
+        named,_=catalog.find_store(doc['quote'])
+        stores=[named] if named else []
+    if any(s not in catalog.store_ids() for s in stores):
+        raise ValueError('价格通知包含未知适用门店')
+    if params.get('store_id') and stores and params['store_id'] not in stores:
+        raise ValueError('价格通知不适用于查询门店')
+    if re.search(r'当天|当日',doc['quote']) and doc['scope'].get('as_of')!=doc['metadata'].get('effective_from'):
+        raise ValueError('仅当日价格不能用于其他日期')
+    return stores
 
 
 def _limits(answer):
@@ -139,12 +177,12 @@ def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_p
             raise ValueError('混合操作须选一个明确的查询调用及指标')
         item = next((e for e in evidence if e['_call_id']==refs[0]['call_id']),None)
         if item is None:raise ValueError('查询调用不存在或失败')
-        _validate_query(item,plan,mode)
+        supplementary=_validate_query(item,plan,mode)
         metric, tool, result = refs[0]['metric'], item['tool'], item['result']
         params = dict(item['params'])
         expected_tools = {'target':{'query_metrics'},'anomaly':{'query_metrics','compare_periods'},'payment':{'payment_mix'},'price':{'unit_price_check'}}
         if tool not in expected_tools[mode]:raise ValueError('工具不能用于所选混合操作')
-        if mode=='anomaly' and metric!=plan.metric or mode=='price' and metric!='unit_price' or mode=='payment' and metric not in {'share_orders','share_revenue'}:
+        if mode=='anomaly' and metric!=plan.metric and not supplementary or mode=='price' and metric!='unit_price' or mode=='payment' and metric not in {'share_orders','share_revenue'}:
             raise ValueError('指标与混合操作或问题不一致')
         if mode=='target' and plan.slots.get('metric_explicit') and metric!=plan.metric:
             raise ValueError('目标指标不能替换用户明确询问的实绩指标')
@@ -155,7 +193,7 @@ def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_p
         if tool=='compare_periods':params.update(start=params['start_b'],end=params['end_b'])
         facts = payload['facts']
         if not isinstance(facts,list) or len(facts)>3:raise ValueError('最多选三条相关事实')
-        chosen=[];citations=[];bindings=[];filtered=[]
+        chosen=[];citations=[];bindings=[];filtered=[];subject_context={}
         allowed_roles={'target':{'target'},'anomaly':{'reason'},'payment':{'reason'},'price':{'price','price_policy'}}[mode]
         for ref in facts:
             if not isinstance(ref,dict) or set(ref)!={'evidence_id','role'} or ref['role'] not in allowed_roles:
@@ -169,18 +207,31 @@ def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_p
                     if params.get('store_id') and source_store != params['store_id'] and params['store_id'] not in (doc['metadata'].get('stores') or []):
                         raise ValueError('事件没有支持所问门店的主体依据')
                     event_window=_event_scope(doc,params)
-                    if mode=='payment' and not re.search(r'现金|刷卡|扫码|支付|收款',doc['quote']):
-                        raise ValueError('事件不是支付事件')
                 except ValueError as exc:
                     filtered.append(dict(evidence_id=doc['evidence_id'],reason=str(exc)))
                     continue
                 bindings.append(dict(role='reason',evidence_id=doc['evidence_id'],event_windows=event_window,scope=params))
             else:
-                _fact_scope(doc,params,catalog,product=ref['role']!='price_policy')
-            if ref['role']=='price_policy' and not _PRICE_POLICY.search(doc['quote']):raise ValueError('所选原文不说明建档价口径')
+                _fact_scope(doc,params,catalog,product=ref['role']!='price_policy',price_subset=ref['role']=='price')
+            if ref['role']=='price_policy':
+                if retrieved.facts.index.docs_meta[doc['doc_id']].get('estimates_only'):
+                    raise ValueError('估算材料不能代替价格口径')
+                if doc['scope'].get('as_of')!=(plan.as_of.isoformat() if plan.as_of else None):
+                    raise ValueError('价格口径的核对时点与问题不同')
             chosen.append((ref['role'],doc));citations.append(retrieved.citation(doc))
+            # When the selected clause uses "this product", its actual local
+            # heading is part of the support chain, not an implicit label.
+            pid=params.get('product_id')
+            if pid and catalog.find_product(doc['quote']+' '+doc['metadata'].get('title',''))[0]!=pid:
+                context=next((c for c in reversed(doc['context']) if catalog.find_product(c['quote'])[0]==pid),None)
+                if context:
+                    cite=dict(doc_id=doc['doc_id'],chunk_id=doc['chunk_id'],scope=doc['scope'],metadata=doc['metadata'],**context)
+                    if cite not in citations:citations.append(cite)
+                    subject_context[doc['evidence_id']]=context['quote'].strip('# \n')
         if filtered:
             trace.step('mixed_evidence_filtered',{'rejected':filtered})
+        if supplementary and not chosen:
+            raise ValueError('补充经营数字不能代替没有依据的文档原因')
         public={k:item[k] for k in ('tool','params','result')}
         public['call_id']=item['_call_id']
         calculations=[]
@@ -232,25 +283,36 @@ def render_mixed(payload, evidence, retrieved, plan, catalog, trace, *, search_p
             prices=[d for role,d in chosen if role=='price']
             if len(prices)!=1:raise ValueError('现行价格须选择一个适用价格原文')
             doc=prices[0];matches=list(_PRICE.finditer(compact(doc['quote'])))
-            if any(d['doc_id']!=doc['doc_id'] for role,d in chosen if role=='price_policy'):
-                raise ValueError('建档价说明必须属于同一适用价格文档')
             if len(matches)!=1 or retrieved.facts.index.docs_meta[doc['doc_id']].get('estimates_only'):raise ValueError('售价不明确或只是估算')
+            notice_stores=_notice_stores(doc,params,catalog)
             current=Decimal(matches[0]['value']);latest=result['latest_price'];table=result['table_unit_price']
-            sentence=f"{catalog.product_name(params['product_id'])} 适用通知售价为 {current:.2f} 元。"
+            scope='（适用门店：'+'、'.join(notice_stores)+'）' if notice_stores else ''
+            sentence=f"{catalog.product_name(params['product_id'])}{scope} 适用通知售价为 {current:.2f} 元。"
             if latest is None:sentence+='查询区间没有成交记录，无法核对实收单价。'
+            elif (not params.get('store_id') and notice_stores) or (params['start']==params['end'] and len(result['observed_unit_prices'])>1):
+                # Do not let an arbitrary last transaction stand for all stores.
+                # Every displayed store/price comes from the executed grouping.
+                groups=result.get('by_store') or {}
+                sentence+=f"查询区间 {params['start']} 至 {params['end']}："
+                if groups:
+                    sentence+='；'.join(store+' 实收单价 '+ '、'.join(f'{Decimal(p):.2f}' for p in sorted(bucket,key=Decimal))+' 元' for store,bucket in sorted(groups.items()))+'。'
+                else:
+                    sentence+='已观测实收单价为 '+ '、'.join(f'{Decimal(p):.2f}' for p in sorted(result['observed_unit_prices'],key=Decimal))+' 元；当前结果未提供各门店分组，不能逐店确认与通知一致。'
+                bindings.append(dict(role='price',evidence_id=doc['evidence_id'],notice_stores=notice_stores,query_stores=params.get('store_id') or 'all',observed_price_source='by_store' if groups else 'observed_unit_prices',call_id=item['_call_id']))
             else:sentence+=f"数据库最近成交日 {result['latest_date']} 的一笔实收单价为 {latest:.2f} 元，与通知"+('一致。' if Decimal(str(latest))==current else '不一致；实绩仍以数据库为准，原因需进一步核对。')
             if table is not None:
                 delta=current-Decimal(str(table));sentence+=f'维表建档价为 {table:.2f} 元，通知价减建档价为 {delta:.2f} 元；建档价不能代替实际成交查询。'
-                calculations.append(dict(operation='notice_minus_table_price',notice=dict(evidence_id=doc['evidence_id'],value=float(current)),table=dict(call_id=item['_call_id'],field='table_unit_price',value=table),result=float(delta)))
+                calculations.append(dict(operation='notice_minus_table_price',notice=dict(evidence_id=doc['evidence_id'],value=float(current),stores=notice_stores),table=dict(call_id=item['_call_id'],field='table_unit_price',value=table),result=float(delta)))
         if chosen:
-            sentence+='\n'+ '\n'.join(('同期材料记载' if role=='reason' else '原文依据')+f" {d['doc_id']}："+retrieved.facts.render(d['doc_id'],d['quote']) for role,d in chosen)
+            sources='\n'.join(('材料记载' if supplementary else '同期材料记载' if role=='reason' else '原文依据')+f" {d['doc_id']}"+('（'+subject_context[d['evidence_id']]+'）' if d['evidence_id'] in subject_context else '')+'：'+retrieved.facts.render(d['doc_id'],d['quote']) for role,d in chosen)
+            sentence=(sources+'\n补充数据对照（仅描述查询结果）：'+sentence) if supplementary else sentence+'\n'+sources
             if mode in {'anomaly','payment'}:sentence+='\n以上是材料记载；未据此估算事件对经营数字的因果影响。'
         elif mode in {'anomaly','payment'}:
             if not search_performed or any(f['tool']=='search_kb' for f in tool_failures or []):raise ValueError('未成功检索，不能将工具失败当作原因未知')
             sentence+=('已查得经营数字，但所选材料未能同时核验对象、属性与事件日期，原因无法确定。' if filtered else '知识库中本次未找到可核对的对应原因材料，原因无法确定。')
         public['calculations']=calculations
         answer=_limits(Answer(sentence,'hybrid' if citations else 'data',citations=citations,data_evidence=[public]))
-        trace.step('mixed_binding',dict(mode=mode,source_call=item['_call_id'],bindings=bindings,calculations=calculations,selected=[d['evidence_id'] for _,d in chosen]))
+        trace.step('mixed_binding',dict(mode=mode,supplementary=supplementary,source_call=item['_call_id'],bindings=bindings,calculations=calculations,selected=[d['evidence_id'] for _,d in chosen]))
         return answer
     except (ValueError,TypeError,KeyError,AttributeError,ArithmeticError) as exc:
         raise LLMError('mixed_binding','混合回答未通过来源、指标与关系核验：%s'%exc) from exc

@@ -1,0 +1,210 @@
+{
+  "answer": {
+    "answer": "材料记载 KB-029（议题四：S04 吞拿鱼三明治的去留）：这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。\n补充数据对照（仅描述查询结果）：2026 年 8 月（Arigato Sando S04）（吞拿鱼三明治 P11）的销量为 72 件，2026 年 7 月（Arigato Sando S04）（吞拿鱼三明治 P11）为 236 件，跌了 164（-69.49%）。\n以上是材料记载；未据此估算事件对经营数字的因果影响。",
+    "answer_type": "hybrid",
+    "citations": [
+      {
+        "doc_id": "KB-029",
+        "quote": "这个商品在 S04 已经连续两个月毛利率低于 35%，原料是冷冻吞拿鱼块，拆封后必须当天用完，实际每天都有剩，备货损耗比其他三明治高出一截；销量本身也一直排在三明治里的末位，靠它带客流带不动。",
+        "evidence_id": "doc-b8e004a31e063dca7993",
+        "chunk_id": "KB-029#8",
+        "source_start": 1165,
+        "source_end": 1261,
+        "scope": {
+          "as_of": "2026-09-01",
+          "store_id": "S04",
+          "year": 2026,
+          "historical": false,
+          "window": null
+        },
+        "metadata": {
+          "title": "2026 年 8 月运营例会纪要",
+          "effective_from": "2026-08-05",
+          "status": "现行",
+          "stores": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05"
+          ],
+          "stores_explicit": false,
+          "superseded_by": null
+        }
+      },
+      {
+        "doc_id": "KB-029",
+        "chunk_id": "KB-029#8",
+        "scope": {
+          "as_of": "2026-09-01",
+          "store_id": "S04",
+          "year": 2026,
+          "historical": false,
+          "window": null
+        },
+        "metadata": {
+          "title": "2026 年 8 月运营例会纪要",
+          "effective_from": "2026-08-05",
+          "status": "现行",
+          "stores": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05"
+          ],
+          "stores_explicit": false,
+          "superseded_by": null
+        },
+        "quote": "## 议题四：S04 吞拿鱼三明治的去留\n",
+        "source_start": 1127,
+        "source_end": 1148
+      }
+    ],
+    "data_evidence": [
+      {
+        "tool": "compare_periods",
+        "params": {
+          "start_a": "2026-07-01",
+          "end_a": "2026-07-31",
+          "start_b": "2026-08-01",
+          "end_b": "2026-08-31",
+          "store_id": "S04",
+          "product_id": "P11"
+        },
+        "result": {
+          "period_a": {
+            "start": "2026-07-01",
+            "end": "2026-07-31",
+            "store_id": "S04",
+            "product_id": "P11",
+            "net_revenue": 6136.0,
+            "refund_amount": 52.0,
+            "orders": 152,
+            "aov": 40.37,
+            "qty": 236
+          },
+          "period_b": {
+            "start": "2026-08-01",
+            "end": "2026-08-31",
+            "store_id": "S04",
+            "product_id": "P11",
+            "net_revenue": 1872.0,
+            "refund_amount": 0.0,
+            "orders": 45,
+            "aov": 41.6,
+            "qty": 72
+          },
+          "delta": {
+            "net_revenue": {
+              "delta": -4264.0,
+              "pct": -69.49,
+              "direction": "跌"
+            },
+            "refund_amount": {
+              "delta": -52.0,
+              "pct": -100.0,
+              "direction": "跌"
+            },
+            "orders": {
+              "delta": -107,
+              "pct": -70.39,
+              "direction": "跌"
+            },
+            "aov": {
+              "delta": 1.23,
+              "pct": 3.05,
+              "direction": "涨"
+            },
+            "qty": {
+              "delta": -164,
+              "pct": -69.49,
+              "direction": "跌"
+            }
+          }
+        },
+        "call_id": "call_00_Xn2E3wVUlDosWhogv9qH8774",
+        "calculations": [
+          {
+            "operation": "period_b_minus_period_a",
+            "metric": "qty",
+            "call_id": "call_00_Xn2E3wVUlDosWhogv9qH8774",
+            "a": 236,
+            "b": 72,
+            "result": {
+              "delta": -164,
+              "pct": -69.49,
+              "direction": "跌"
+            }
+          }
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "steps": [
+    {
+      "step": "mixed_evidence_filtered",
+      "at_ms": 0.8,
+      "took_ms": null,
+      "detail": {
+        "rejected": [
+          {
+            "evidence_id": "doc-5191ab2218220e8ad7f6",
+            "reason": "事件日期与经营查询区间不相交"
+          }
+        ]
+      }
+    },
+    {
+      "step": "mixed_binding",
+      "at_ms": 1.0,
+      "took_ms": null,
+      "detail": {
+        "mode": "anomaly",
+        "supplementary": true,
+        "source_call": "call_00_Xn2E3wVUlDosWhogv9qH8774",
+        "bindings": [
+          {
+            "role": "reason",
+            "evidence_id": "doc-b8e004a31e063dca7993",
+            "event_windows": [
+              [
+                "2026-08-05",
+                "2026-08-05"
+              ]
+            ],
+            "scope": {
+              "start_a": "2026-07-01",
+              "end_a": "2026-07-31",
+              "start_b": "2026-08-01",
+              "end_b": "2026-08-31",
+              "store_id": "S04",
+              "product_id": "P11",
+              "start": "2026-08-01",
+              "end": "2026-08-31"
+            }
+          }
+        ],
+        "calculations": [
+          {
+            "operation": "period_b_minus_period_a",
+            "metric": "qty",
+            "call_id": "call_00_Xn2E3wVUlDosWhogv9qH8774",
+            "a": 236,
+            "b": 72,
+            "result": {
+              "delta": -164,
+              "pct": -69.49,
+              "direction": "跌"
+            }
+          }
+        ],
+        "selected": [
+          "doc-b8e004a31e063dca7993"
+        ]
+      }
+    }
+  ],
+  "source": "saved original selection, freshly reexecuted local tools; no provider retry"
+}

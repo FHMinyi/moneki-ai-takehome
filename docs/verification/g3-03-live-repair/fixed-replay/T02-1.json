@@ -1,0 +1,165 @@
+{
+  "answer": {
+    "answer": "材料记载 KB-021：本批次三文鱼到货质检不合格，原料已全部拒收，短期内无法补货。\n补充数据对照（仅描述查询结果）：2026-07-06 至 2026-07-12（全部门店）（三文鱼poke P04）的销量为 0 件，2026-06-29 至 2026-07-05（全部门店）（三文鱼poke P04）为 102 件，跌了 102（-100.00%）。\n以上是材料记载；未据此估算事件对经营数字的因果影响。",
+    "answer_type": "hybrid",
+    "citations": [
+      {
+        "doc_id": "KB-021",
+        "quote": "本批次三文鱼到货质检不合格，原料已全部拒收，短期内无法补货。",
+        "evidence_id": "doc-e8bf4cdd7f184f2d3e6b",
+        "chunk_id": "KB-021#1",
+        "source_start": 53,
+        "source_end": 83,
+        "scope": {
+          "as_of": "2026-09-01",
+          "store_id": null,
+          "year": 2026,
+          "historical": false,
+          "window": null
+        },
+        "metadata": {
+          "title": "三文鱼poke 临时停售通知",
+          "effective_from": "2026-07-06",
+          "status": "现行",
+          "stores": [
+            "S01",
+            "S02",
+            "S05"
+          ],
+          "stores_explicit": false,
+          "superseded_by": null
+        }
+      }
+    ],
+    "data_evidence": [
+      {
+        "tool": "compare_periods",
+        "params": {
+          "start_a": "2026-06-29",
+          "end_a": "2026-07-05",
+          "start_b": "2026-07-06",
+          "end_b": "2026-07-12",
+          "product_id": "P04"
+        },
+        "result": {
+          "period_a": {
+            "start": "2026-06-29",
+            "end": "2026-07-05",
+            "store_id": null,
+            "product_id": "P04",
+            "net_revenue": 3876.0,
+            "refund_amount": 114.0,
+            "orders": 71,
+            "aov": 54.59,
+            "qty": 102
+          },
+          "period_b": {
+            "start": "2026-07-06",
+            "end": "2026-07-12",
+            "store_id": null,
+            "product_id": "P04",
+            "net_revenue": 0.0,
+            "refund_amount": 0.0,
+            "orders": 0,
+            "aov": null,
+            "qty": 0
+          },
+          "delta": {
+            "net_revenue": {
+              "delta": -3876.0,
+              "pct": -100.0,
+              "direction": "跌"
+            },
+            "refund_amount": {
+              "delta": -114.0,
+              "pct": -100.0,
+              "direction": "跌"
+            },
+            "orders": {
+              "delta": -71,
+              "pct": -100.0,
+              "direction": "跌"
+            },
+            "aov": {
+              "delta": null,
+              "pct": null,
+              "direction": "未知"
+            },
+            "qty": {
+              "delta": -102,
+              "pct": -100.0,
+              "direction": "跌"
+            }
+          }
+        },
+        "call_id": "call_00_6YyNxRF1ZWwT1SwODHp26690",
+        "calculations": [
+          {
+            "operation": "period_b_minus_period_a",
+            "metric": "qty",
+            "call_id": "call_00_6YyNxRF1ZWwT1SwODHp26690",
+            "a": 102,
+            "b": 0,
+            "result": {
+              "delta": -102,
+              "pct": -100.0,
+              "direction": "跌"
+            }
+          }
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "steps": [
+    {
+      "step": "mixed_binding",
+      "at_ms": 0.5,
+      "took_ms": null,
+      "detail": {
+        "mode": "anomaly",
+        "supplementary": true,
+        "source_call": "call_00_6YyNxRF1ZWwT1SwODHp26690",
+        "bindings": [
+          {
+            "role": "reason",
+            "evidence_id": "doc-e8bf4cdd7f184f2d3e6b",
+            "event_windows": [
+              [
+                "2026-07-06",
+                "2026-07-06"
+              ]
+            ],
+            "scope": {
+              "start_a": "2026-06-29",
+              "end_a": "2026-07-05",
+              "start_b": "2026-07-06",
+              "end_b": "2026-07-12",
+              "product_id": "P04",
+              "start": "2026-07-06",
+              "end": "2026-07-12"
+            }
+          }
+        ],
+        "calculations": [
+          {
+            "operation": "period_b_minus_period_a",
+            "metric": "qty",
+            "call_id": "call_00_6YyNxRF1ZWwT1SwODHp26690",
+            "a": 102,
+            "b": 0,
+            "result": {
+              "delta": -102,
+              "pct": -100.0,
+              "direction": "跌"
+            }
+          }
+        ],
+        "selected": [
+          "doc-e8bf4cdd7f184f2d3e6b"
+        ]
+      }
+    }
+  ],
+  "source": "saved original selection, freshly reexecuted local tools; no provider retry"
+}
