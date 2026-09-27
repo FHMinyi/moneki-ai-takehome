@@ -22,4 +22,10 @@
 
 `browser/multiturn-{1280,1440,390}.json` 保存实际浏览器逐轮请求、响应与后端 trace；同名 PNG 保存聊天视图。`frontend/tests/g3-session-context.spec.ts` 同时核验新对话 ID、无上文澄清、旧请求迟到不进入新会话。看板筛选仍只由用户显式附加趋势引用进入聊天。刷新/服务重启后内存上下文不保证存在，欢迎页提示用户补全条件。
 
-会话历史上限 500 个 ID、每 ID 6 轮；拒答及执行异常清空该 ID 上下文，防止后续省略主语时回退到更旧且可能不相关的主题。澄清只保留中性缺项状态。真实模型样本属于独立的有限付费验证，结果在 `live/` 另行记录。
+会话历史上限 500 个 ID、每 ID 6 轮；拒答及执行异常清空该 ID 上下文，防止后续省略主语时回退到更旧且可能不相关的主题。澄清只保留中性缺项状态。
+
+## 固定业务提交后的付费抽样
+
+业务提交 `4b687cc7222854deabf43de0aaa49dd6e93b0cc7`，原 T01 在同一 `session_id` 逐轮调用真实 DeepSeek `deepseek-flash`：`live/chat-1.json` 至 `chat-3.json` 含每轮 HTTP 请求/响应/trace，trace 的 `llm_calls` 含 6 次实际 API 的完整脱敏 request、response 和 usage。逐次预留与结算在 `live/ledger.json`；凭据只从共享主树 `.env.live` 只读载入，从未写入本工作树。执行器 `run_live_samples.py` 限本票 3 chat / 10 元，并在每次对外 API 前预留 2.20 元，未知 usage 保留全额。价格依据 [DeepSeek 官方价格表](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/) 的 `deepseek-flash` 高峰全未缓存输入 2 元/百万 token、输出 8 元/百万 token；按最大上下文 1,048,576 和输出 4096 计算单次上界约 2.12992 元，2.20 元预留含余量。账本仅为保守估算，`billing_confirmed=false`，不等同实际账单。
+
+3 chat 共 6 次 API，全部 HTTP 200、usage 齐全；本票估算 0.050206 元。第三关此前估算 1.167168 元，加本票为 1.217374 元；定向 chat 池由 9/18 增为 12/18。本票 chat 名额已用完，未继续调用。`.venv/bin/python docs/verification/g3-04/audit_live.py` 独立重查 SQLite 并逐轮核对账本与响应：6 月 156757.00、7 月 162414.00、两月客单价差 0.17；trace 历史轮数 0/1/2，工具分别为 `query_metrics`、`query_metrics`、`compare_periods`。T02/T03/V03 的真实模型语义仍未验证，它们目前只有上述无 Key、受控和真实检索证据。
