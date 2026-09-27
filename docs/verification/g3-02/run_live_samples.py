@@ -1,4 +1,4 @@
-"""Authorized G3-02 execution only: fixed official provider, 8 CNY / 5 chats (initially 4; one same-question retry authorized).
+"""Authorized G3-02 execution only: fixed official provider, 8 CNY / 6 chats (initially 4; two individually authorized same-question retries).
 
 Every outbound attempt reserves 2.20 CNY BEFORE sending. Complete usage releases
 the difference at peak cache-miss prices; missing usage keeps the entire reserve.
@@ -46,7 +46,7 @@ class Proxy(BaseHTTPRequestHandler):
             self.respond(400,b'{"error":{"message":"execution guard: configuration or size"}}');return
         with lock:
             reserved=sum(c['accounted_cny'] for c in ledger['calls'])
-            if reserved+2.20>8 or sum(c['chat'] == ledger['chat_count'] for c in ledger['calls'])>=10:
+            if reserved+2.20>8 or sum(c['chat'] == ledger['chat_count'] for c in ledger['calls'])>=14:
                 self.respond(402,b'{"error":{"message":"execution budget exhausted"}}');return
             entry={'chat':ledger['chat_count'],'attempt':len(ledger['calls'])+1,'request_bytes':len(raw),'accounted_cny':2.20,'status':'reserved','started_at':time.time()}
             ledger['calls'].append(entry);save()
@@ -81,10 +81,11 @@ def main():
     with socket.socket() as s:s.bind(('127.0.0.1',0));port=s.getsockname()[1]
     env={**os.environ,'LLM_BASE_URL':f'http://127.0.0.1:{proxy.server_port}/guard','LLM_API_KEY':'local-execution-dummy','LLM_MODEL':'deepseek-flash','VAR_DIR':'/tmp/moneki-g3-02-paid-var'}
     for name in ('DATA_DIR','KB_DIR'):env.pop(name,None)
-    assert ledger['chat_count']==4, 'Only the one authorized same-question retry remains'
-    ledger['authorization_update']={'from_chat_limit':4,'to_chat_limit':5,'amount_limit_unchanged':8,
-      'source':'2026-09-27 coordinator 01a0dc94-4947-7a93-84b9-46b5c7249dfa authorized one retry of original identity-document question from shared 18-chat pool; no second retry.'}
-    ledger['chat_limit']=5
+    assert ledger['chat_count']==5, 'Only the user-authorized six-tool-round same-question retry remains'
+    ledger.setdefault('authorization_updates', []).append({
+      'from_chat_limit':5,'to_chat_limit':6,'amount_limit_unchanged':8,
+      'source':'2026-09-27 user explicitly requested MAX_TOOL_ROUNDS 4 to 6 via coordinator 01a0dc94-4947-7a93-84b9-46b5c7249dfa; exactly one original identity-document question retry from shared 18-chat pool; no further retry.'})
+    ledger['chat_limit']=6
     questions=['外卖退款是否要求顾客出示身份证？']
     with (OUT/'service.txt').open('a') as log:
         p=subprocess.Popen([str(ROOT/'starter/.venv/bin/python'),'-m','uvicorn','kbqa.server:app','--port',str(port)],cwd=ROOT/'starter',env=env,stdout=log,stderr=log)
@@ -97,7 +98,7 @@ def main():
             assert not any(c.get('status')=='reserved' for c in ledger['calls']), 'Unresolved prior reservation'
             for question in questions:
                 with lock:
-                    assert ledger['chat_count']<5 and sum(c['accounted_cny'] for c in ledger['calls'])+2.20<=8
+                    assert ledger['chat_count']<6 and sum(c['accounted_cny'] for c in ledger['calls'])+2.20<=8
                     ledger['chat_count']+=1; n=ledger['chat_count'];save()
                 response=request(base+'/api/chat',{'session_id':f'paid-{n}','question':question})
                 trace=request(base+'/api/trace/'+response['trace_id'])

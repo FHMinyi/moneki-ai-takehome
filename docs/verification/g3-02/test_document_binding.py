@@ -139,3 +139,42 @@ def test_scope_is_part_of_evidence_identity(service):
     assert len(joint.add(first.public()))==len(first.items)
     assert not joint.add(first.public())
     assert len(joint.add(other.public()))==len(other.items)
+
+@pytest.mark.parametrize('rounds',[5,6,7])
+def test_six_tool_round_boundary(service,rounds):
+    client=Mock();calls=[];tool_runs=[]
+    def tool(name,params,**kwargs):
+        tool_runs.append(name);return service.run_tool(name,params,**kwargs)
+    def respond(messages,*args,**kwargs):
+        n=len(calls);calls.append(n)
+        if n<rounds:
+            tc=[{'id':f'search-{n}','type':'function','function':{'name':'search_kb','arguments':json.dumps({'query':'外卖订单多久内可以退款？'})}}]
+            return LLMReply({'role':'assistant','content':'','tool_calls':tc},'tool_calls','',tc,0)
+        first=next(json.loads(m['content'])['result'] for m in messages if m['role']=='tool')
+        content=select(first,'KB-013','24')
+        return LLMReply({'role':'assistant','content':content},'stop',content,[],0)
+    client.chat_with_retry.side_effect=respond;trace=Trace('rounds','外卖订单多久内可以退款？')
+    engine=LiveEngine(client,service.answerer,tool,'2026-09-01',service.data_period)
+    if rounds==7:
+        with pytest.raises(LLMError,match='tool_loop'):engine.answer(service.planner.plan(trace.question),trace,[])
+        assert len(tool_runs)==6 and len(calls)==7
+    else:
+        assert engine.answer(service.planner.plan(trace.question),trace,[]).answer_type=='doc'
+        assert len(tool_runs)==rounds and len(calls)==rounds+1
+
+
+def test_slow_repeated_tools_still_stop_at_total_budget(service,monkeypatch):
+    import kbqa.live as live
+    from types import SimpleNamespace
+    clock=[0];budgets=[]
+    monkeypatch.setattr(live,'time',SimpleNamespace(perf_counter=lambda:clock[0]))
+    client=Mock()
+    def respond(messages,*args,**kwargs):
+        budgets.append(kwargs['budget']);clock[0]+=40
+        tc=[{'id':'search-'+str(len(budgets)),'type':'function','function':{'name':'search_kb','arguments':json.dumps({'query':'外卖退款时限是多少？'})}}]
+        return LLMReply({'role':'assistant','content':'','tool_calls':tc},'tool_calls','',tc,0)
+    client.chat_with_retry.side_effect=respond
+    trace=Trace('budget','外卖退款时限是多少？')
+    engine=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period,budget=150)
+    with pytest.raises(LLMError,match='budget'):engine.answer(service.planner.plan(trace.question),trace,[])
+    assert budgets==[150,110,70,30]

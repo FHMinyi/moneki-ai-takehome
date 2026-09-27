@@ -173,3 +173,13 @@ def test_repeated_search_http_transmits_each_identity_once(tmp_path,qid):
         assert sizes[-1]-sizes[1]<3000,sizes
         assert len([s for s in t['steps'] if s['step']=='search'])==3
         assert a['citations'][0]['evidence_id'] in ids
+
+@pytest.mark.parametrize('rounds',[5,6,7])
+def test_round_boundary_real_http(tmp_path,rounds):
+    with runtime(tmp_path,{'doc':'KB-013','needle':'24','search_rounds':rounds}) as (r,serve,payload):
+        with serve() as request:a,t=chat(request,QUESTIONS['C01'])
+        executed=[s for s in t['steps'] if s['step']=='tool']
+        assert len(executed)==min(rounds,6)
+        assert len(t['llm_calls'])==min(rounds+1,7)
+        if rounds<=6:assert a['answer_type']=='doc' and '24' in a['answer']
+        else:assert a['answer_type']=='refusal' and not a['citations'] and any('tool_loop' in e['message'] for e in t['errors'])

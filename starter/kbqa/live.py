@@ -15,7 +15,7 @@ from .toolspec import TOOLS
 from .data_answer import render_data
 from .document_evidence import DocumentEvidence
 
-MAX_TOOL_ROUNDS = 4
+MAX_TOOL_ROUNDS = 6
 MAX_BAD_ARGS = 2
 _NUMBER = re.compile(r"-?\d+(?:,\d{3})*(?:\.\d+)?")
 _DATE_LIKE = re.compile(r"\d{4}-\d{2}-\d{2}")
