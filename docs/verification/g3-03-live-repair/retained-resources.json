@@ -1,0 +1,10 @@
+{
+  "base": "http://127.0.0.1:53949",
+  "api_pid": 7198,
+  "model_pid": 7192,
+  "api_port": 53949,
+  "model_port": 53948,
+  "var": "/tmp/g303-live-mixed-repair-review/var",
+  "worktree": "/Users/minyi/.codex/worktrees/g3-mixed-repair/moneki-ai-takehome",
+  "mode": "FREE_SAVED_PROVIDER_REPLAY_NO_UPSTREAM"
+}

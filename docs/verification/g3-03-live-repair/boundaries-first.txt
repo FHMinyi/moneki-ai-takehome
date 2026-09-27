@@ -1,0 +1,27 @@
+..............F..                                                        [100%]
+=================================== FAILURES ===================================
+__________ test_missing_by_store_does_not_claim_uniform_scoped_price ___________
+
+service = <kbqa.service.Service object at 0x107686c30>
+
+    def test_missing_by_store_does_not_claim_uniform_scoped_price(service):
+     plan,ev,pool,p=prepared(service,'T03-2');e=next(x for x in ev if x['_call_id']==p['results'][0]['call_id'])
+     e['result']={**e['result'],'by_store':{},'observed_unit_prices':{'42.00':6},'latest_price':42.0}
+     a=render_mixed(p,ev,pool,plan,service.catalog,Trace('no-groups','q'),search_performed=True)
+     assert '适用门店：S02' in a.answer and '不能逐店确认' in a.answer
+>    assert 'S02 实收单价 29.00' not in a.answer and '与通知一致' not in a.answer
+E    AssertionError: assert ('S02 实收单价 29.00' not in '牛肉poke（适用门店...用它当作某一天的成交价。'
+E      
+E      'S02 实收单价 29.00' is contained here:
+E        它当作某一天的成交价。 and '与通知一致' not in '牛肉poke（适用门店...用它当作某一天的成交价。'
+E      
+E      '与通知一致' is contained here:
+E        店分组，不能逐店确认与通知一致。维表建档价为 42.00 元，通知价减建档价为 -13.00 元；建档价不能代替实际成交查询。
+E      ?           +++++
+E        原文依据 KB-023：1. **牛肉poke 活动价 ¥29**，仅限当天。
+E        原文依据 KB-001：3. 商品的现行售价以调价通知为准。`products` 表里的 `unit_price` 是建档价，由财务在月底统一更新，可能滞后于实际售价，不能用它当作某一天的成交价。)
+
+docs/verification/g3-03-live-repair/test_boundaries.py:47: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-03-live-repair/test_boundaries.py::test_missing_by_store_does_not_claim_uniform_scoped_price
+1 failed, 16 passed in 0.78s

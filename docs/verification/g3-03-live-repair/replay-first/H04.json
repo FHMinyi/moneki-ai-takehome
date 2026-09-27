@@ -1,0 +1,156 @@
+{
+  "answer": {
+    "answer": "牛肉poke 适用通知售价为 45.00 元。数据库最近成交日 2026-08-31 的一笔实收单价为 45.00 元，与通知一致。维表建档价为 42.00 元，通知价减建档价为 3.00 元；建档价不能代替实际成交查询。\n原文依据 KB-025：**牛肉poke 售价由 ¥42 调整为 ¥45，自 2026 年 7 月 1 日起执行**，五家门店同步，堂食、自提、外卖自营渠道一致。\n原文依据 KB-001：3. 商品的现行售价以调价通知为准。`products` 表里的 `unit_price` 是建档价，由财务在月底统一更新，可能滞后于实际售价，不能用它当作某一天的成交价。",
+    "answer_type": "hybrid",
+    "citations": [
+      {
+        "doc_id": "KB-025",
+        "quote": "**牛肉poke 售价由 ¥42 调整为 ¥45，自 2026 年 7 月 1 日起执行**，五家门店同步，堂食、自提、外卖自营渠道一致。",
+        "evidence_id": "doc-9dab4b84adea7b012433",
+        "chunk_id": "KB-025#2",
+        "source_start": 158,
+        "source_end": 227,
+        "scope": {
+          "as_of": "2026-09-01",
+          "store_id": null,
+          "year": 2026,
+          "historical": false,
+          "window": null
+        },
+        "metadata": {
+          "title": "2026 年 7 月调价通知",
+          "effective_from": "2026-07-01",
+          "status": "现行",
+          "stores": [],
+          "stores_explicit": false,
+          "superseded_by": null
+        }
+      },
+      {
+        "doc_id": "KB-001",
+        "quote": "3. 商品的现行售价以调价通知为准。`products` 表里的 `unit_price` 是建档价，由财务在月底统一更新，可能滞后于实际售价，不能用它当作某一天的成交价。",
+        "evidence_id": "doc-64670c217ed68ffce71a",
+        "chunk_id": "KB-001#12",
+        "source_start": 1588,
+        "source_end": 1674,
+        "scope": {
+          "as_of": "2026-09-01",
+          "store_id": null,
+          "year": 2026,
+          "historical": false,
+          "window": null
+        },
+        "metadata": {
+          "title": "指标口径手册 v3",
+          "effective_from": "2026-05-01",
+          "status": "现行",
+          "stores": [
+            "S01"
+          ],
+          "stores_explicit": false,
+          "superseded_by": null
+        }
+      }
+    ],
+    "data_evidence": [
+      {
+        "tool": "unit_price_check",
+        "params": {
+          "product_id": "P06",
+          "start": "2026-05-01",
+          "end": "2026-08-31"
+        },
+        "result": {
+          "product_id": "P06",
+          "start": "2026-05-01",
+          "end": "2026-08-31",
+          "store_id": null,
+          "observed_unit_prices": {
+            "42.00": 606,
+            "29.00": 53,
+            "45.00": 589
+          },
+          "by_store": {
+            "S02": {
+              "42.00": 393,
+              "29.00": 53,
+              "45.00": 371
+            },
+            "S05": {
+              "42.00": 110,
+              "45.00": 94
+            },
+            "S04": {
+              "42.00": 31,
+              "45.00": 52
+            },
+            "S01": {
+              "42.00": 30,
+              "45.00": 34
+            },
+            "S03": {
+              "42.00": 42,
+              "45.00": 38
+            }
+          },
+          "rows": 1248,
+          "latest_price": 45.0,
+          "latest_date": "2026-08-31",
+          "table_unit_price": 42.0
+        },
+        "call_id": "call_00_97E5RGRueCPDvJaeXCAV4615",
+        "calculations": [
+          {
+            "operation": "notice_minus_table_price",
+            "notice": {
+              "evidence_id": "doc-9dab4b84adea7b012433",
+              "value": 45.0,
+              "stores": []
+            },
+            "table": {
+              "call_id": "call_00_97E5RGRueCPDvJaeXCAV4615",
+              "field": "table_unit_price",
+              "value": 42.0
+            },
+            "result": 3.0
+          }
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "steps": [
+    {
+      "step": "mixed_binding",
+      "at_ms": 0.5,
+      "took_ms": null,
+      "detail": {
+        "mode": "price",
+        "supplementary": false,
+        "source_call": "call_00_97E5RGRueCPDvJaeXCAV4615",
+        "bindings": [],
+        "calculations": [
+          {
+            "operation": "notice_minus_table_price",
+            "notice": {
+              "evidence_id": "doc-9dab4b84adea7b012433",
+              "value": 45.0,
+              "stores": []
+            },
+            "table": {
+              "call_id": "call_00_97E5RGRueCPDvJaeXCAV4615",
+              "field": "table_unit_price",
+              "value": 42.0
+            },
+            "result": 3.0
+          }
+        ],
+        "selected": [
+          "doc-9dab4b84adea7b012433",
+          "doc-64670c217ed68ffce71a"
+        ]
+      }
+    }
+  ],
+  "source": "saved original selection, freshly reexecuted local tools; no provider retry"
+}

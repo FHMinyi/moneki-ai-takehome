@@ -1,0 +1,21 @@
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' test tests/g3-mixed-live-repair.spec.ts --workers=1 --output=../docs/verification/g3-03-live-repair/browser-runtime
+
+Running 12 tests using 1 worker
+
+(node:7744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair C07 1280 (942ms)
+  ✓   2 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair T02-1 1280 (848ms)
+  ✓   3 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair H04 1280 (816ms)
+  ✓   4 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair T03-2 1280 (868ms)
+  ✓   5 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair C07 1440 (796ms)
+  ✓   6 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair T02-1 1440 (835ms)
+  ✓   7 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair H04 1440 (797ms)
+  ✓   8 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair T03-2 1440 (871ms)
+  ✓   9 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair C07 390 (797ms)
+  ✓  10 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair T02-1 390 (807ms)
+  ✓  11 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair H04 390 (786ms)
+  ✓  12 tests/g3-mixed-live-repair.spec.ts:13:2 › saved mixed repair T03-2 390 (849ms)
+
+  12 passed (10.5s)

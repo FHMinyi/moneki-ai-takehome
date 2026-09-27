@@ -1,0 +1,160 @@
+{
+  "answer": {
+    "answer": "牛肉poke（适用门店：S02） 适用通知售价为 29.00 元。查询区间 2026-06-18 至 2026-06-18：S02 实收单价 29.00 元；S03 实收单价 42.00 元；S05 实收单价 42.00 元。维表建档价为 42.00 元，通知价减建档价为 -13.00 元；建档价不能代替实际成交查询。\n原文依据 KB-023：1. **牛肉poke 活动价 ¥29**，仅限当天。\n原文依据 KB-001：3. 商品的现行售价以调价通知为准。`products` 表里的 `unit_price` 是建档价，由财务在月底统一更新，可能滞后于实际售价，不能用它当作某一天的成交价。",
+    "answer_type": "hybrid",
+    "citations": [
+      {
+        "doc_id": "KB-023",
+        "quote": "1. **牛肉poke 活动价 ¥29**，仅限当天。",
+        "evidence_id": "doc-77c184ba4225d4f77230",
+        "chunk_id": "KB-023#3",
+        "source_start": 202,
+        "source_end": 229,
+        "scope": {
+          "as_of": "2026-06-18",
+          "store_id": null,
+          "year": 2026,
+          "historical": false,
+          "window": null
+        },
+        "metadata": {
+          "title": "2026 年 618 活动方案",
+          "effective_from": "2026-06-18",
+          "status": "现行",
+          "stores": [
+            "S02"
+          ],
+          "stores_explicit": true,
+          "superseded_by": null
+        }
+      },
+      {
+        "doc_id": "KB-001",
+        "quote": "3. 商品的现行售价以调价通知为准。`products` 表里的 `unit_price` 是建档价，由财务在月底统一更新，可能滞后于实际售价，不能用它当作某一天的成交价。",
+        "evidence_id": "doc-efb15eebaa09e47d0f4b",
+        "chunk_id": "KB-001#12",
+        "source_start": 1588,
+        "source_end": 1674,
+        "scope": {
+          "as_of": "2026-06-18",
+          "store_id": null,
+          "year": 2026,
+          "historical": false,
+          "window": null
+        },
+        "metadata": {
+          "title": "指标口径手册 v3",
+          "effective_from": "2026-05-01",
+          "status": "现行",
+          "stores": [
+            "S01"
+          ],
+          "stores_explicit": false,
+          "superseded_by": null
+        }
+      }
+    ],
+    "data_evidence": [
+      {
+        "tool": "unit_price_check",
+        "params": {
+          "product_id": "P06",
+          "start": "2026-06-18",
+          "end": "2026-06-18"
+        },
+        "result": {
+          "product_id": "P06",
+          "start": "2026-06-18",
+          "end": "2026-06-18",
+          "store_id": null,
+          "observed_unit_prices": {
+            "29.00": 53,
+            "42.00": 6
+          },
+          "by_store": {
+            "S02": {
+              "29.00": 53
+            },
+            "S05": {
+              "42.00": 5
+            },
+            "S03": {
+              "42.00": 1
+            }
+          },
+          "rows": 59,
+          "latest_price": 29.0,
+          "latest_date": "2026-06-18",
+          "table_unit_price": 42.0
+        },
+        "call_id": "call_00_lGLYkqUgYse6UBLKukZh2907",
+        "calculations": [
+          {
+            "operation": "notice_minus_table_price",
+            "notice": {
+              "evidence_id": "doc-77c184ba4225d4f77230",
+              "value": 29.0,
+              "stores": [
+                "S02"
+              ]
+            },
+            "table": {
+              "call_id": "call_00_lGLYkqUgYse6UBLKukZh2907",
+              "field": "table_unit_price",
+              "value": 42.0
+            },
+            "result": -13.0
+          }
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "steps": [
+    {
+      "step": "mixed_binding",
+      "at_ms": 0.5,
+      "took_ms": null,
+      "detail": {
+        "mode": "price",
+        "supplementary": false,
+        "source_call": "call_00_lGLYkqUgYse6UBLKukZh2907",
+        "bindings": [
+          {
+            "role": "price",
+            "evidence_id": "doc-77c184ba4225d4f77230",
+            "notice_stores": [
+              "S02"
+            ],
+            "query_stores": "all",
+            "observed_price_source": "by_store",
+            "call_id": "call_00_lGLYkqUgYse6UBLKukZh2907"
+          }
+        ],
+        "calculations": [
+          {
+            "operation": "notice_minus_table_price",
+            "notice": {
+              "evidence_id": "doc-77c184ba4225d4f77230",
+              "value": 29.0,
+              "stores": [
+                "S02"
+              ]
+            },
+            "table": {
+              "call_id": "call_00_lGLYkqUgYse6UBLKukZh2907",
+              "field": "table_unit_price",
+              "value": 42.0
+            },
+            "result": -13.0
+          }
+        ],
+        "selected": [
+          "doc-77c184ba4225d4f77230",
+          "doc-efb15eebaa09e47d0f4b"
+        ]
+      }
+    }
+  ],
+  "source": "saved original selection, freshly reexecuted local tools; no provider retry"
+}
