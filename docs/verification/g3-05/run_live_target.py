@@ -13,8 +13,8 @@ from pathlib import Path
 
 import httpx
 
-if os.environ.get("G305_CHAT_LIMIT") != "2":
-    raise RuntimeError("Target runner requires G305_CHAT_LIMIT=2")
+if os.environ.get("G305_CHAT_LIMIT") not in {"1", "2"}:
+    raise RuntimeError("Target runner requires G305_CHAT_LIMIT=1 or 2")
 
 import run_live_eval as guard
 
@@ -35,7 +35,7 @@ def main():
                   LLM_API_KEY="local-guard-dummy", LLM_MODEL="deepseek-flash")
     with (guard.OUT / "service.log").open("w") as log:
         service = subprocess.Popen(
-            [str(guard.FRESH / "starter/.venv/bin/python"), "-m", "uvicorn",
+            [str(guard.PYTHON), "-m", "uvicorn",
              "kbqa.server:app", "--host", "127.0.0.1", "--port", "8133"],
             cwd=guard.FRESH / "starter", env=config, stdout=log,
             stderr=subprocess.STDOUT,
@@ -52,7 +52,7 @@ def main():
                     raise RuntimeError("Target service did not start")
             assert health["llm_mode"] == "live"
             (guard.OUT / "health.json").write_text(json.dumps(health, ensure_ascii=False, indent=2) + "\n")
-            ready = {"base_url": "http://127.0.0.1:8132", "max_chats": 2,
+            ready = {"base_url": "http://127.0.0.1:8132", "max_chats": guard.CHAT_LIMIT,
                      "baseline": guard.BASELINE,
                      "prior_conservative_cny": guard.PRIOR}
             (guard.OUT / "target-ready.json").write_text(json.dumps(ready, ensure_ascii=False, indent=2) + "\n")

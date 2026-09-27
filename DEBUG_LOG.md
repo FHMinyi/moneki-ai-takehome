@@ -393,6 +393,13 @@ G3-05 的首轮业务固定点为 `4591fab`，原官方 55 题不改评分器。
 
 独立替换还验证目标 10→6 时同一 7 份销售从未达标变已达标、现行/历史退款原文随新内容/时效取用，KB 新增/删除后索引文档数 36→35；新增事件可检索但 mock 问答拒答，因此只算摄取/检索，不算事件问答完成。受控模型与 mock 证据均不代替真实模型泛化。
 
+### 最终集成 `c7084d6` 的收口探针
+
+- 趋势自然问句“这段时间的净营业额为什么比前一周低？”带 S03 2026-06-08～14 的主动引用时，mock plan 将问题列为 doc、`compare_window=null`；不能单凭 mock 推定 live 不会查数。追加一次**免费受控真实 HTTP live 路径**强制模型提出前周 A=6/1～7、当前 B=6/8～14 的 `compare_periods`，工具实际返回“比较查询与文字明确指定的有效条件不一致”，见 [原始证据](docs/verification/g3-05/final-c7084d6/fresh/controlled-prevweek.json)。该定向真实模型调用未执行，记录为范围功能限制，而非一次模型真实失败；没有临时改问句或在验收票增加产品架构。
+- 退款到账自然负例在 `c7084d6` 的一次真实浏览器调用中，模型两次先发 `search_kb(top_k=15)`，工具上限 10，因此 trace 留有工具错误；即使随后 top_k=10 检索真实 KB-013 退回渠道，最终仍以 `tool_failure` 技术拒答。它没有输出错误到账数字，但不是经过语义核验的拒答成功。完整 [浏览器记录](docs/verification/g3-05/final-c7084d6/target/policy-browser.json)、[模型往返与费用](docs/verification/g3-05/final-c7084d6/target/ledger.json)保留；不为挑选更好响应重发第二次定向。
+
+同一最终提交在唯一完整真实 55 题复验取得 **94/100、52/55**，原始检查见 [报告](docs/verification/g3-05/final-c7084d6/eval-live/report.json)。本轮剩余 C07：模型错误引用 data 结果触发 `data_binding` 技术拒答；V03 第二轮：模型真实检索到旧版 KB-010 仍以 typed `insufficient_evidence` 拒答；H06：工具失败后混合关系不能核验而拒答，且 trace 大于官方 2 MB 上限造成 `trace_required` 失败。三项都是真实回归限制，未在验收票中新修代码或重跑挑选结果。分别的请求、模型输出、工具结果和错误在 [失败索引](docs/verification/g3-05/final-c7084d6/eval-live/failure-summary.json)及完整逐轮记录。第四关按用户选择只提供 [本地 trace 调试流程](docs/DEBUG_WORKFLOW.md)，没有把它改造成面板或自动根因系统。
+
 ### PR34独立审查P1与G304集成增量
 
 - 主会话发现支付金额正文操作数丢失角分。623b38c正常merge G304后，替换实际SQLite并走HTTP：9.99/10.49、9.99/0、-9.99/10.49三个实际红灯，b8b8f4d保存；20fe53a仅将金额格式化改为R.money、订单仍R.count，退款净额与计算关系保持，六项HTTP通过。

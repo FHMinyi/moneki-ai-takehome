@@ -18,6 +18,7 @@ import httpx
 
 ROOT = Path(__file__).resolve().parents[3]
 FRESH = Path(os.environ.get("G305_FRESH", "/tmp/moneki-g305-fresh-4591fab"))
+PYTHON = Path(os.environ.get("G305_PYTHON", str(FRESH / "starter/.venv/bin/python")))
 OUT = Path(os.environ.get("G305_OUT", str(ROOT / "docs/verification/g3-05/eval-live")))
 BASELINE = os.environ.get("G305_BASELINE", "4591fab9a80ef63c440b9a117dbbc4fcbf03c430")
 ORIGINAL_BASELINE = "4591fab9a80ef63c440b9a117dbbc4fcbf03c430"
@@ -253,7 +254,7 @@ def main():
                   LLM_API_KEY="local-guard-dummy", LLM_MODEL="deepseek-flash")
     service_log = (OUT / "service.log").open("w")
     service = subprocess.Popen(
-        [str(FRESH / "starter/.venv/bin/python"), "-m", "uvicorn", "kbqa.server:app",
+        [str(PYTHON), "-m", "uvicorn", "kbqa.server:app",
          "--host", "127.0.0.1", "--port", "8133"],
         cwd=FRESH / "starter", env=config, stdout=service_log,
         stderr=subprocess.STDOUT,
@@ -270,7 +271,7 @@ def main():
                 raise RuntimeError("Live service did not start")
         assert health["llm_mode"] == "live"
         (OUT / "health.json").write_text(json.dumps(health, ensure_ascii=False, indent=2) + "\n")
-        command = [str(FRESH / "starter/.venv/bin/python"),
+        command = [str(PYTHON),
                    str(FRESH / "eval/run_eval.py"),
                    "--base-url", "http://127.0.0.1:8132",
                    "--questions", str(FRESH / "eval/public_questions.jsonl"),

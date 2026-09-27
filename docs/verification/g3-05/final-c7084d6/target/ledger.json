@@ -1,0 +1,169 @@
+{
+  "baseline_commit": "c7084d6f841d150c6672410719a4785b4a7696b1",
+  "prior_conservative_cny": 3.458894,
+  "total_authorized_cny": 50.0,
+  "reserve_per_attempt_cny": 2.2,
+  "price_peak_cache_miss_input_cny_per_m": 2.0,
+  "price_peak_output_cny_per_m": 8.0,
+  "billing_confirmed": false,
+  "attempts": [
+    {
+      "attempt": 1,
+      "chat": 1,
+      "started_at_unix": 1790506072.364796,
+      "request_bytes": 13480,
+      "status": 200,
+      "accounted_cny": 0.007898,
+      "elapsed_seconds": 1.051,
+      "usage": {
+        "prompt_tokens": 3609,
+        "completion_tokens": 85,
+        "total_tokens": 3694,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 21
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 3609
+      }
+    },
+    {
+      "attempt": 2,
+      "chat": 1,
+      "started_at_unix": 1790506073.461219,
+      "request_bytes": 33488,
+      "status": 200,
+      "accounted_cny": 0.021182,
+      "elapsed_seconds": 1.572,
+      "usage": {
+        "prompt_tokens": 9931,
+        "completion_tokens": 165,
+        "total_tokens": 10096,
+        "prompt_tokens_details": {
+          "cached_tokens": 3584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 39
+        },
+        "prompt_cache_hit_tokens": 3584,
+        "prompt_cache_miss_tokens": 6347
+      }
+    },
+    {
+      "attempt": 3,
+      "chat": 1,
+      "started_at_unix": 1790506075.090954,
+      "request_bytes": 52692,
+      "status": 200,
+      "accounted_cny": 0.033068,
+      "elapsed_seconds": 1.581,
+      "usage": {
+        "prompt_tokens": 15838,
+        "completion_tokens": 174,
+        "total_tokens": 16012,
+        "prompt_tokens_details": {
+          "cached_tokens": 9984
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 46
+        },
+        "prompt_cache_hit_tokens": 9984,
+        "prompt_cache_miss_tokens": 5854
+      }
+    },
+    {
+      "attempt": 4,
+      "chat": 1,
+      "started_at_unix": 1790506076.7412548,
+      "request_bytes": 76687,
+      "status": 200,
+      "accounted_cny": 0.048136,
+      "elapsed_seconds": 2.064,
+      "usage": {
+        "prompt_tokens": 23276,
+        "completion_tokens": 198,
+        "total_tokens": 23474,
+        "prompt_tokens_details": {
+          "cached_tokens": 16000
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 73
+        },
+        "prompt_cache_hit_tokens": 16000,
+        "prompt_cache_miss_tokens": 7276
+      }
+    },
+    {
+      "attempt": 5,
+      "chat": 1,
+      "started_at_unix": 1790506078.871823,
+      "request_bytes": 102514,
+      "status": 200,
+      "accounted_cny": 0.064628,
+      "elapsed_seconds": 1.323,
+      "usage": {
+        "prompt_tokens": 31522,
+        "completion_tokens": 198,
+        "total_tokens": 31720,
+        "prompt_tokens_details": {
+          "cached_tokens": 23424
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 83
+        },
+        "prompt_cache_hit_tokens": 23424,
+        "prompt_cache_miss_tokens": 8098
+      }
+    },
+    {
+      "attempt": 6,
+      "chat": 1,
+      "started_at_unix": 1790506080.203952,
+      "request_bytes": 103727,
+      "status": 200,
+      "accounted_cny": 0.064678,
+      "elapsed_seconds": 0.994,
+      "usage": {
+        "prompt_tokens": 31851,
+        "completion_tokens": 122,
+        "total_tokens": 31973,
+        "prompt_tokens_details": {
+          "cached_tokens": 31616
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 31616,
+        "prompt_cache_miss_tokens": 235
+      }
+    },
+    {
+      "attempt": 7,
+      "chat": 1,
+      "started_at_unix": 1790506081.2583401,
+      "request_bytes": 138552,
+      "status": 200,
+      "accounted_cny": 0.083004,
+      "elapsed_seconds": 1.83,
+      "usage": {
+        "prompt_tokens": 40910,
+        "completion_tokens": 148,
+        "total_tokens": 41058,
+        "prompt_tokens_details": {
+          "cached_tokens": 1920
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 133
+        },
+        "prompt_cache_hit_tokens": 1920,
+        "prompt_cache_miss_tokens": 38990
+      }
+    }
+  ],
+  "chat_count": 1,
+  "active_chat": 1,
+  "conservative_committed_cny": 3.781488,
+  "remaining_cny": 46.218512
+}

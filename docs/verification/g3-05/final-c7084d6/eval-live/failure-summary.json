@@ -1,0 +1,180 @@
+{
+  "baseline": "c7084d6f841d150c6672410719a4785b4a7696b1",
+  "failed_turns": [
+    {
+      "id": "C07",
+      "turn": 1,
+      "question": "S04 为什么不卖吞拿鱼三明治了？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0013",
+      "failed_checks": [
+        {
+          "name": "answer_type_in",
+          "passed": false,
+          "expected": [
+            "doc",
+            "hybrid"
+          ],
+          "actual": "refusal",
+          "reason": "answer_type 应是 doc/hybrid 之一"
+        },
+        {
+          "name": "fact_all",
+          "passed": false,
+          "expected": {
+            "docs": [
+              "KB-029"
+            ],
+            "all_of": [
+              "35"
+            ]
+          },
+          "actual": {
+            "answer": "模型服务这次没有正常返回（data_binding），为了不给出没有依据的数字，这个问题先不回答。可以稍后重试；失败的真实原因记在 trace 里。",
+            "quoted": []
+          },
+          "reason": "回答里没提到，KB-029 的 quote 里也没有：35"
+        },
+        {
+          "name": "fact_any",
+          "passed": false,
+          "expected": {
+            "docs": [
+              "KB-029"
+            ],
+            "any_of": [
+              "毛利率"
+            ]
+          },
+          "actual": {
+            "answer": "模型服务这次没有正常返回（data_binding），为了不给出没有依据的数字，这个问题先不回答。可以稍后重试；失败的真实原因记在 trace 里。",
+            "quoted": []
+          },
+          "reason": "回答里没提到，KB-029 的 quote 里也没有：毛利率"
+        },
+        {
+          "name": "cite_all",
+          "passed": false,
+          "expected": [
+            "KB-029"
+          ],
+          "actual": [],
+          "reason": "没有引用 KB-029"
+        }
+      ],
+      "errors": [
+        {
+          "type": "LLMError",
+          "message": "data_binding: 数据回答未通过字段与查询绑定：数据回答必须使用 data 结果引用"
+        }
+      ]
+    },
+    {
+      "id": "V03",
+      "turn": 2,
+      "question": "那 6 月的时候呢？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0018",
+      "failed_checks": [
+        {
+          "name": "answer_type_in",
+          "passed": false,
+          "expected": [
+            "doc",
+            "hybrid"
+          ],
+          "actual": "refusal",
+          "reason": "answer_type 应是 doc/hybrid 之一"
+        },
+        {
+          "name": "fact_all",
+          "passed": false,
+          "expected": {
+            "docs": [
+              "KB-010"
+            ],
+            "all_of": [
+              "50"
+            ]
+          },
+          "actual": {
+            "answer": "本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。",
+            "quoted": []
+          },
+          "reason": "回答里没提到，KB-010 的 quote 里也没有：50"
+        },
+        {
+          "name": "cite_all",
+          "passed": false,
+          "expected": [
+            "KB-010"
+          ],
+          "actual": [],
+          "reason": "没有引用 KB-010"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "H06",
+      "turn": 1,
+      "question": "S02 在 8 月 17 日到 19 日为什么一分钱营业额都没有？",
+      "answer_type": "refusal",
+      "trace_id": "t-20260901-0024",
+      "failed_checks": [
+        {
+          "name": "numbers_all",
+          "passed": false,
+          "expected": [
+            0.0
+          ],
+          "actual": [],
+          "reason": "回答里没有出现 0"
+        },
+        {
+          "name": "text_any",
+          "passed": false,
+          "expected": [
+            "没有找到",
+            "未找到",
+            "没有查到",
+            "未查到",
+            "找不到",
+            "没有说明",
+            "没有记录",
+            "未说明",
+            "无法确定",
+            "没有相关",
+            "查不到",
+            "不清楚",
+            "没有任何",
+            "无法解释",
+            "不知道"
+          ],
+          "actual": "模型服务这次没有正常返回（混合证据或计算关系无法核验），为了不给出没有依据的数字，这个问题先不回答。可以稍后重试；失败的真实原因记在 trace 里。",
+          "reason": "回答里一个期望说法都没有"
+        },
+        {
+          "name": "evidence_required",
+          "passed": false,
+          "expected": "非空的 data_evidence",
+          "actual": [],
+          "reason": "回答里的数字没有给出对应的数据库查询"
+        },
+        {
+          "name": "trace_required",
+          "passed": false,
+          "expected": "GET /api/trace/{trace_id} 返回 200 + JSON",
+          "actual": null,
+          "reason": "取 trace 失败：响应体超过 2 MB，已中断"
+        }
+      ],
+      "errors": [
+        {
+          "type": "LLMError",
+          "message": "mixed_binding: 混合回答未通过来源、指标与关系核验：未成功检索，不能将工具失败当作原因未知"
+        }
+      ]
+    }
+  ]
+}
