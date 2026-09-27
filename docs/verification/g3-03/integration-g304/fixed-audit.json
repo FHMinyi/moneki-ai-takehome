@@ -1,0 +1,35 @@
+{
+  "business_sha": "d9a69ab8c078cd0545ea8d6855eff7166c6a1a74",
+  "main_merge": "623b38c12ee688eb8d41ac9366674c4d73064e08",
+  "incoming_main": "bb7883cd94cbad02fd53234b7e7beb978129cc57",
+  "preservation": {
+    "bb7883cd94cbad02fd53234b7e7beb978129cc57": {
+      "checked": 108,
+      "changes": []
+    },
+    "996ebb9": {
+      "checked": 603,
+      "changes": []
+    }
+  },
+  "credential_leaks": [],
+  "live_chats_unchanged": 4,
+  "live_api_unchanged": 11,
+  "g303_estimate_cny": 0.223182,
+  "directed_pool": 16,
+  "sha256": {
+    "starter/kbqa/live.py": "2c8e01eec4bd2b7a8552326c125fb2511408967616a767c80533f4490bbe722f",
+    "starter/kbqa/service.py": "553e9960339f6d2739417814405c395d9e0876744def433ba80adbf8a668aebf",
+    "starter/kbqa/sessions.py": "53737d9988b149a9f12b323c9c1ff7c146e5a9ac844a1987efc86db1d7f81f9a",
+    "starter/kbqa/trend_context.py": "0827e25f8ddb34892a30d1d50f79553ba9186a4b36261fb2ae590a5d3036aed5",
+    "starter/kbqa/mixed_answer.py": "dfe8e5e3b45adcd61b391c0b138ad8ebac5e6aabe95f5784c80b9c75fc47ec57",
+    "starter/kbqa/followup.py": "b41f8183fd5b2a4d5e67c67a9ee9ac8f7a946b386b1c009af8f1d408854f6558",
+    "frontend/src/ChatSidebar.tsx": "01e0e84a2d9d1bf3e0baae73812565fccad045e0c983d0f56b372063d1e60fce",
+    "starter/kbqa/tools.py": "e4d349d6857cd9600847dba12f1d25fa9c325560cd81df5cb3a048c43a93d76d",
+    "starter/kbqa/toolspec.py": "884abf4e8d4febf83198f4a260a716a1a59d646c32328caca8eea75ac3f7674c"
+  },
+  "initial_eb064fb_protection": {
+    "checked": 4209,
+    "changes": []
+  }
+}

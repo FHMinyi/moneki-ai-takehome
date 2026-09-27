@@ -1,5 +1,7 @@
 # G3-03 mixed answer verification
 
+> Latest integration: normal merge623b38c of accepted main bb7883c; P1 monetary-format repair20fe53a; final business d9a69ab. 217 affected checks,14 actual HTTP cross cases,53 separate original backend and7 visible-mouse browser cases passed; no-key94/100,53/55. No additional paid calls. See [integration and review repair evidence](integration-g304/README.md). The original delivery below retains its historical SHAs/results.
+
 Source: Issue #26 (body and all comments), inherited continuous-delivery authorization. Only this reused worktree was modified. Review baseline `eb064fb1954b8d4d241c974a65f83be3420cefaf`; branch `codex/g3-03-mixed-answer`. Final business implementation: `603c611`; the later evidence commit does not change product code. `fixed-source-delivery.json` records exact final hashes; `fixed-source-final.json` preserves the preceding aa72140 snapshot.
 
 Implementation and controlled self-verification are complete; independent coordinator acceptance is pending. **Real-model semantics are only partially verified:** H02 and H04 succeeded at their recorded commits; H01 and H05 failed at theirs. Their saved choices pass free replay after filtering repairs; that is not a new provider run. H03/H06 have not been called live. No merge, Issue closure, deployment, new model judge, or full paid 55-case evaluation was performed.

@@ -1,0 +1,20 @@
+[
+  {
+    "pid": 85058,
+    "harness_pid": 85044,
+    "api_port": 56077,
+    "model_port": 56076,
+    "base_url": "http://127.0.0.1:56077",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome",
+    "var": "/tmp/g303-g304-review-runtime/var"
+  },
+  {
+    "pid": 85525,
+    "harness_pid": 85518,
+    "api_port": 56398,
+    "model_port": 56396,
+    "base_url": "http://127.0.0.1:56398",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome",
+    "var": "/tmp/g303-g304-d9a69ab-runtime/var"
+  }
+]

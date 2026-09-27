@@ -1,0 +1,16 @@
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' test tests/g3-mixed-session.spec.ts tests/g3-session-context.spec.ts --grep 混合后|混合价格|旧请求迟到 --workers=1 --output=../docs/verification/g3-03/integration-g304/browser-keyboard-runtime
+
+Running 7 tests using 1 worker
+
+(node:87287) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/g3-mixed-session.spec.ts:19:2 › 混合后趋势引用与文字覆盖 1280 (2.8s)
+  ✓  2 tests/g3-mixed-session.spec.ts:47:2 › 混合价格追问重新取证 1280 (829ms)
+  ✓  3 tests/g3-mixed-session.spec.ts:19:2 › 混合后趋势引用与文字覆盖 1440 (2.8s)
+  ✓  4 tests/g3-mixed-session.spec.ts:47:2 › 混合价格追问重新取证 1440 (895ms)
+  ✓  5 tests/g3-mixed-session.spec.ts:19:2 › 混合后趋势引用与文字覆盖 390 (2.8s)
+  ✓  6 tests/g3-mixed-session.spec.ts:47:2 › 混合价格追问重新取证 390 (818ms)
+  ✓  7 tests/g3-session-context.spec.ts:55:1 › 旧请求迟到后不进入新会话 (670ms)
+
+  7 passed (12.0s)

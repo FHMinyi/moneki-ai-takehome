@@ -1,0 +1,14 @@
+{
+  "business_sha": "d9a69ab8c078cd0545ea8d6855eff7166c6a1a74",
+  "merge_sha": "623b38c12ee688eb8d41ac9366674c4d73064e08",
+  "incoming_main": "bb7883cd94cbad02fd53234b7e7beb978129cc57",
+  "results": {
+    "affected-final.txt": 217,
+    "cross-fixed.txt": 14,
+    "original.txt": 53,
+    "browser-mouse.txt": 7,
+    "no-key/eval/report.md": "94/100;53/55"
+  },
+  "paid_calls_added": 0,
+  "scope": "controlled model outputs over actual HTTP/SQLite/BM25; no provider semantic retry"
+}
