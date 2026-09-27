@@ -1,0 +1,11 @@
+{
+  "commit": "1c65ef1b704e0136910e870c479918434afd4ca6",
+  "sha256": {
+    "starter/kbqa/mixed_answer.py": "15feb747dc06bfa7c314bb446eeaca345937ef5d2fcb75a1cdf6601a850bb3b6",
+    "starter/kbqa/live.py": "b428cc7226a4b6fbe403137bd67622a4f3e09e09cb0c26994f6d01ce6be5994b",
+    "starter/kbqa/tools.py": "e4d349d6857cd9600847dba12f1d25fa9c325560cd81df5cb3a048c43a93d76d",
+    "starter/kbqa/toolspec.py": "884abf4e8d4febf83198f4a260a716a1a59d646c32328caca8eea75ac3f7674c",
+    "starter/kbqa/service.py": "5f341a88cd2d78add0dcc070e768619aa5a5d9b62f21175118c77a1ffb483567",
+    "frontend/src/ChatSidebar.tsx": "c8bb255ccfeae437b1beac1593d13dc371c785bdf91ecd0d53835c3e7fa1d329"
+  }
+}

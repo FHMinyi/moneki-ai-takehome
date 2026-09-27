@@ -1,0 +1,169 @@
+{
+  "response": {
+    "answer": "2026-08-03 至 2026-08-03 Super Tetsudo：现金按订单数占比 100.00%（27 / 27 单）。\n同期材料记载 KB-027：**2026-08-03 10:40 起**，Super Tetsudo（S05，上海·黄浦）的刷卡与扫码支付终端全部无法连到支付网关，刷卡、微信、支付宝、会员储值都提示网络异常，收银机本身能正常开单打单。\n同期材料记载 KB-027：门店 **11:00 按时开门，当天从开门到打烊全程只收现金**，收银台和门口各贴一张告知，排队的顾客提前口头告知，附近有取现网点的位置也一并告知。\n以上是材料记载；未据此估算事件对经营数字的因果影响。",
+    "answer_type": "hybrid",
+    "citations": [
+      {
+        "doc_id": "KB-027",
+        "quote": "**2026-08-03 10:40 起**，Super Tetsudo（S05，上海·黄浦）的刷卡与扫码支付终端全部无法连到支付网关，刷卡、微信、支付宝、会员储值都提示网络异常，收银机本身能正常开单打单。",
+        "evidence_id": "doc-b8c66bf28de3178ff8cf",
+        "chunk_id": "KB-027#3",
+        "source_start": 90,
+        "source_end": 193,
+        "scope": {
+          "as_of": "2026-08-03",
+          "store_id": "S05",
+          "year": 2026,
+          "historical": false,
+          "window": null
+        },
+        "metadata": {
+          "title": "S05 Super Tetsudo POS 终端故障报告",
+          "effective_from": "2026-08-03",
+          "status": "现行",
+          "stores": [
+            "S05"
+          ],
+          "stores_explicit": true,
+          "superseded_by": null
+        }
+      },
+      {
+        "doc_id": "KB-027",
+        "quote": "门店 **11:00 按时开门，当天从开门到打烊全程只收现金**，收银台和门口各贴一张告知，排队的顾客提前口头告知，附近有取现网点的位置也一并告知。",
+        "evidence_id": "doc-98685a844c2d52a62fce",
+        "chunk_id": "KB-027#3",
+        "source_start": 313,
+        "source_end": 387,
+        "scope": {
+          "as_of": "2026-08-03",
+          "store_id": "S05",
+          "year": 2026,
+          "historical": false,
+          "window": null
+        },
+        "metadata": {
+          "title": "S05 Super Tetsudo POS 终端故障报告",
+          "effective_from": "2026-08-03",
+          "status": "现行",
+          "stores": [
+            "S05"
+          ],
+          "stores_explicit": true,
+          "superseded_by": null
+        }
+      }
+    ],
+    "data_evidence": [
+      {
+        "tool": "payment_mix",
+        "params": {
+          "start": "2026-08-03",
+          "end": "2026-08-03",
+          "store_id": "S05"
+        },
+        "result": {
+          "start": "2026-08-03",
+          "end": "2026-08-03",
+          "store_id": "S05",
+          "total_orders": 27,
+          "total_net_revenue": 973.0,
+          "payments": {
+            "现金": {
+              "orders": 27,
+              "qty": 40,
+              "net_revenue": 973.0,
+              "share_orders": 1.0,
+              "share_revenue": 1.0
+            }
+          }
+        },
+        "call_id": "call_00_IwczLSdFQBbrxVHDq1Fo5868",
+        "calculations": [
+          {
+            "operation": "share_percent",
+            "call_id": "call_00_IwczLSdFQBbrxVHDq1Fo5868",
+            "numerator_field": "payments.现金.orders",
+            "denominator_field": "total_orders",
+            "numerator": 27,
+            "denominator": 27,
+            "result": 100.0
+          }
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "steps": [
+    {
+      "step": "mixed_evidence_filtered",
+      "at_ms": 13.7,
+      "took_ms": null,
+      "detail": {
+        "rejected": [
+          {
+            "evidence_id": "doc-20a7efcf261b5eb086d5",
+            "reason": "事件不是支付事件"
+          }
+        ]
+      }
+    },
+    {
+      "step": "mixed_binding",
+      "at_ms": 13.7,
+      "took_ms": null,
+      "detail": {
+        "mode": "payment",
+        "source_call": "call_00_IwczLSdFQBbrxVHDq1Fo5868",
+        "bindings": [
+          {
+            "role": "reason",
+            "evidence_id": "doc-b8c66bf28de3178ff8cf",
+            "event_windows": [
+              [
+                "2026-08-03",
+                "2026-08-03"
+              ]
+            ],
+            "scope": {
+              "start": "2026-08-03",
+              "end": "2026-08-03",
+              "store_id": "S05"
+            }
+          },
+          {
+            "role": "reason",
+            "evidence_id": "doc-98685a844c2d52a62fce",
+            "event_windows": [
+              [
+                "2026-08-03",
+                "2026-08-03"
+              ]
+            ],
+            "scope": {
+              "start": "2026-08-03",
+              "end": "2026-08-03",
+              "store_id": "S05"
+            }
+          }
+        ],
+        "calculations": [
+          {
+            "operation": "share_percent",
+            "call_id": "call_00_IwczLSdFQBbrxVHDq1Fo5868",
+            "numerator_field": "payments.现金.orders",
+            "denominator_field": "total_orders",
+            "numerator": 27,
+            "denominator": 27,
+            "result": 100.0
+          }
+        ],
+        "selected": [
+          "doc-b8c66bf28de3178ff8cf",
+          "doc-98685a844c2d52a62fce"
+        ]
+      }
+    }
+  ],
+  "mode": "FREE_REPLAY_NOT_NEW_PROVIDER_CALL"
+}

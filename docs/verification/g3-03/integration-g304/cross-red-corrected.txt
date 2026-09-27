@@ -1,0 +1,20 @@
+......F..                                                                [100%]
+=================================== FAILURES ===================================
+______________ test_invalid_trend_refusal_clears_previous_context ______________
+
+server = ('http://127.0.0.1:55138', {'pid': 83511, 'harness_pid': 83510, 'api_port': 55138, 'model_port': 55137, ...})
+
+    def test_invalid_trend_refusal_clears_previous_context(server):
+     a,_,_=ask(server,'invalid-ref',QUESTIONS['H02']);assert a['answer_type']=='hybrid'
+     b,_,_=ask(server,'invalid-ref','这段时间呢？',context={**REF,'store_id':'S99'});assert b['answer_type']=='refusal'
+     c,t,_=ask(server,'invalid-ref','那7月呢？')
+>    assert c['answer_type']=='clarify' and step(t,'session_context')['history_size']==0
+E    AssertionError: assert ('refusal' == 'clarify'
+E      
+E      - clarify
+E      + refusal)
+
+docs/verification/g3-03/integration-g304/test_cross.py:91: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-03/integration-g304/test_cross.py::test_invalid_trend_refusal_clears_previous_context
+1 failed, 8 passed in 2.83s

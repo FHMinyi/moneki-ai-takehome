@@ -76,8 +76,8 @@ TOOLS = [
     _fn(
         "unit_price_check",
         "某商品的实收单价分布与维表建档价，用来判断现行售价与维表是否一致。",
-        {"product_id": _PRODUCT, "start": _DATE, "end": _DATE},
-        ["product_id"],
+        {"product_id": _PRODUCT, "start": _DATE, "end": _DATE, "store_id": _STORE},
+        ["product_id", "start", "end"],
     ),
     _fn(
         "search_kb",

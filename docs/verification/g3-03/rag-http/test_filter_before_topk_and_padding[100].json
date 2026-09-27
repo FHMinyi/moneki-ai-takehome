@@ -1,0 +1,357 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-285/test_filter_before_topk_and_pa3/starter",
+  "records": [
+    {
+      "command": [
+        "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-285/test_filter_before_topk_and_pa3/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-285/test_filter_before_topk_and_pa3/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：2 篇文档，2 个片段，缓存键 f7eb671282c2\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-285/test_filter_before_topk_and_pa3/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-285/test_filter_before_topk_and_pa3/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "64534"
+      ],
+      "pid": 70992,
+      "port": 64534,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 2,
+            "kb_chunks": 2,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "f7eb671282c2",
+            "kb_warnings": []
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "S02 cooltoken refrigeration规定",
+            "top_k": 100
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-902",
+                "chunk_id": "KB-902#1",
+                "score": 1.2496,
+                "text": "cooltoken refrigeration规定8度。",
+                "retrieval_text": "cooltoken refrigeration规定8度。\ncooltoken refrigeration规定8度。",
+                "source_start": 0,
+                "source_end": 28,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-901",
+                "chunk_id": "KB-901#1",
+                "score": 0.0,
+                "text": "cooltoken cooltoken refrigeration规定4度。",
+                "retrieval_text": "cooltoken cooltoken refrigeration规定4度。\ncooltoken cooltoken refrigeration规定4度。",
+                "source_start": 0,
+                "source_end": 38,
+                "context_spans": [],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": "文档声明只适用于 S01，与问题里的 S02 不符"
+              }
+            ],
+            "diagnostics": {
+              "query": "s02 cooltoken refrigeration规定",
+              "terms": [
+                "s02",
+                "cooltoken",
+                "refrigeration",
+                "规定"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": "S02",
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-902#1",
+                  "doc_id": "KB-902",
+                  "score": 1.2496,
+                  "lexical_score": 0.8049,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "cooltoken",
+                    "refrigeration",
+                    "规定"
+                  ]
+                }
+              ],
+              "expansions": [],
+              "coverage": 0.234,
+              "hits": [
+                {
+                  "doc_id": "KB-902",
+                  "chunk_id": "KB-902#1",
+                  "score": 1.2496,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-901",
+                  "chunk_id": "KB-901#1",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": "文档声明只适用于 S01，与问题里的 S02 不符",
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-901",
+                  "reason": "文档声明只适用于 S01，与问题里的 S02 不符"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "session_id": "scope",
+            "question": "S02 cooltoken refrigeration规定"
+          },
+          "response": {
+            "answer": "KB-902《cooltoken refrigeration规定8度。》：cooltoken refrigeration规定8度。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-902",
+                "quote": "cooltoken refrigeration规定8度。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "scope",
+            "question": "S02 cooltoken refrigeration规定",
+            "started_at": "2026-09-27T16:17:53.977",
+            "total_ms": 1.2,
+            "steps": [
+              {
+                "step": "request",
+                "at_ms": 0.0,
+                "took_ms": null,
+                "detail": {
+                  "session_id": "scope",
+                  "question": "S02 cooltoken refrigeration规定",
+                  "context": null
+                }
+              },
+              {
+                "step": "context_validation",
+                "at_ms": 0.0,
+                "took_ms": null,
+                "detail": {
+                  "valid": true,
+                  "reason": null,
+                  "reference": null
+                }
+              },
+              {
+                "step": "plan",
+                "at_ms": 0.5,
+                "took_ms": 0.5,
+                "detail": {
+                  "question": "S02 cooltoken refrigeration规定",
+                  "standalone_question": "S02 cooltoken refrigeration规定",
+                  "search_query": "S02 cooltoken refrigeration规定 S02 Makai Poke",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": "S02",
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=S02 商品=全部 时间=未指定"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 0.6,
+                "took_ms": 0.1,
+                "detail": {
+                  "query": "s02 cooltoken refrigeration规定 s02 makai poke",
+                  "terms": [
+                    "s02",
+                    "cooltoken",
+                    "refrigeration",
+                    "规定",
+                    "s02",
+                    "makai",
+                    "poke"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": "S02",
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-902#1",
+                      "doc_id": "KB-902",
+                      "score": 1.2496,
+                      "lexical_score": 0.8049,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "cooltoken",
+                        "refrigeration",
+                        "规定"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.092,
+                  "hits": [
+                    {
+                      "doc_id": "KB-902",
+                      "chunk_id": "KB-902#1",
+                      "score": 1.2496,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-901",
+                      "chunk_id": "KB-901#1",
+                      "score": 0.0,
+                      "padded": true,
+                      "exclusion_reason": "文档声明只适用于 S01，与问题里的 S02 不符",
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-901",
+                      "reason": "文档声明只适用于 S01，与问题里的 S02 不符"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 1.2,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": null,
+                  "candidates": [
+                    {
+                      "doc_id": "KB-902",
+                      "chunk_id": "KB-902#1",
+                      "score": 0.8606629658238704,
+                      "text": "cooltoken refrigeration规定8度。"
+                    }
+                  ],
+                  "rejected": [],
+                  "selected": [
+                    {
+                      "evidence_id": "doc-8fa8d8bf5ddad049c512",
+                      "scope": {
+                        "as_of": "2026-09-01",
+                        "store_id": "S02",
+                        "year": 2026,
+                        "historical": false,
+                        "window": null
+                      },
+                      "doc_id": "KB-902",
+                      "chunk_id": "KB-902#1",
+                      "score": 0.8606629658238704,
+                      "source_start": 0,
+                      "source_end": 28,
+                      "quote": "cooltoken refrigeration规定8度。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 1.2,
+                "took_ms": 0.7,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 1.2,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

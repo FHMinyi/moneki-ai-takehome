@@ -1,0 +1,646 @@
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+________________________ test_six_mixed_behaviors[H01] _________________________
+
+content = '{"answer_type": "hybrid", "mode": "anomaly", "results": [{"call_id": "db", "metric": "net_revenue"}], "facts": [{"evidence_id": "doc-b5e17f258d6e52551102", "role": "reason"}]}'
+evidence = [{'_call_id': 'db', 'tool': 'compare_periods', 'params': {'start_a': '2026-06-01', 'end_a': '2026-06-07', 'start_b': '...ders': {'delta': -97, 'pct': -48.74, 'direction': '跌'}, 'aov': {'delta': 4.85, 'pct': 15.78, 'direction': '涨'}, ...}}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+>               raise ValueError('数据回答必须使用 data 结果引用')
+E               ValueError: 数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:14: ValueError
+
+The above exception was the direct cause of the following exception:
+
+service = <kbqa.service.Service object at 0x1071730b0>, qid = 'H01'
+
+    @pytest.mark.parametrize('qid',CASES)
+    def test_six_mixed_behaviors(service,qid):
+>    a,t=run(service,QUESTIONS[qid],CASES[qid])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py:50: in run
+    a=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(question),trace,[])
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:84: in answer
+    return self._finalise(plan, reply.content, evidence, retrieved, trace, tool_failures)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:194: in _finalise
+    answer = render_data(content, evidence, self.answerer.catalog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+content = '{"answer_type": "hybrid", "mode": "anomaly", "results": [{"call_id": "db", "metric": "net_revenue"}], "facts": [{"evidence_id": "doc-b5e17f258d6e52551102", "role": "reason"}]}'
+evidence = [{'_call_id': 'db', 'tool': 'compare_periods', 'params': {'start_a': '2026-06-01', 'end_a': '2026-06-07', 'start_b': '...ders': {'delta': -97, 'pct': -48.74, 'direction': '跌'}, 'aov': {'delta': 4.85, 'pct': 15.78, 'direction': '涨'}, ...}}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+                raise ValueError('数据回答必须使用 data 结果引用')
+            selected = payload['results']
+            if not isinstance(selected, list) or not 1 <= len(selected) <= 3:
+                raise ValueError('一次选取 1 至 3 个结果')
+            calls = {e['_call_id']: e for e in evidence}
+            sentences, used = [], []
+            for selection in selected:
+                if not isinstance(selection, dict) or set(selection) != {'call_id', 'metric'}:
+                    raise ValueError('只允许 call_id 与 metric，数值由代码生成')
+                metric = selection['metric']
+                if metric not in R.METRIC_LABELS:
+                    raise ValueError('未知指标')
+                item = calls.get(selection['call_id'])
+                if item is None:
+                    raise ValueError('引用的调用不存在或未成功')
+                params, result, tool = item['params'], item['result'], item['tool']
+                def scope(value):
+                    store = catalog.store_name(value['store_id']) + ' ' + value['store_id'] if value.get('store_id') else '全部门店'
+                    product = catalog.product_name(value['product_id']) + ' ' + value['product_id'] if value.get('product_id') else ''
+                    return R.scope_label((value['start'], value['end']), store, product)
+                if tool == 'query_metrics':
+                    sentence = '%s：%s %s。' % (scope(result), R.METRIC_LABELS[metric], R.metric_value(metric, result))
+                    if metric == 'aov' and result['aov'] is None:
+                        sentence = '%s：没有有效订单，客单价无法计算。' % scope(result)
+                elif tool == 'compare_periods':
+                    sentence = R.describe_compare(result, metric, scope(result['period_a']), scope(result['period_b']))
+                elif tool == 'payment_mix':
+                    sentence = R.describe_payment(result, scope(params))
+                elif tool == 'top_products':
+                    sentence = R.describe_top(result, scope(params), limit=params.get('limit', 3))
+                elif tool == 'by_store':
+                    sentence = R.describe_by_store(result, scope(params))
+                elif tool == 'by_store_category':
+                    sentence = R.describe_category(result, scope(params))
+                elif tool == 'daily_metrics' and metric == 'net_revenue':
+                    sentence = R.describe_daily(result, scope(params))
+                else:
+                    raise ValueError('这个工具结果暂不支持该数据回答，请改用区间指标查询')
+                sentences.append(sentence)
+                public = {k: item[k] for k in ('tool', 'params', 'result')}
+                if public not in used:
+                    used.append(public)
+            text = '\n'.join(sentences)
+            if len(text) > 1200 or len(set(re.findall(r'\d+(?:\.\d+)?', text))) > 20:
+                raise ValueError('回答超过契约容量，请缩小查询范围')
+            if any(len(json.dumps(e['result'], ensure_ascii=False).encode()) > 4096 for e in used):
+                raise ValueError('证据超过契约容量，请缩小查询范围')
+            def count_numbers(value):
+                if isinstance(value, dict):
+                    return sum(count_numbers(v) for v in value.values())
+                if isinstance(value, list):
+                    return sum(count_numbers(v) for v in value)
+                return int(type(value) in (int, float))
+            if sum(count_numbers(e['result']) for e in used) > 60:
+                raise ValueError('证据数字过多，请缩小查询范围')
+            return Answer(text, 'data', data_evidence=used)
+        except (ValueError, TypeError, KeyError, AttributeError) as exc:
+>           raise LLMError('data_binding', '数据回答未通过字段与查询绑定：%s' % exc) from exc
+E           kbqa.llm.LLMError: data_binding: 数据回答未通过字段与查询绑定：数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:71: LLMError
+________________________ test_six_mixed_behaviors[H02] _________________________
+
+content = '{"answer_type": "hybrid", "mode": "target", "results": [{"call_id": "db", "metric": "qty"}], "facts": [{"evidence_id": "doc-dda00cb938820e5671f4", "role": "target"}]}'
+evidence = [{'_call_id': 'db', 'tool': 'query_metrics', 'params': {'start': '2026-06-18', 'end': '2026-06-18', 'store_id': 'S02',...duct_id': 'P06'}, 'result': {'start': '2026-06-18', 'end': '2026-06-18', 'store_id': 'S02', 'product_id': 'P06', ...}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+>               raise ValueError('数据回答必须使用 data 结果引用')
+E               ValueError: 数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:14: ValueError
+
+The above exception was the direct cause of the following exception:
+
+service = <kbqa.service.Service object at 0x1071730b0>, qid = 'H02'
+
+    @pytest.mark.parametrize('qid',CASES)
+    def test_six_mixed_behaviors(service,qid):
+>    a,t=run(service,QUESTIONS[qid],CASES[qid])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py:50: in run
+    a=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(question),trace,[])
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:84: in answer
+    return self._finalise(plan, reply.content, evidence, retrieved, trace, tool_failures)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:194: in _finalise
+    answer = render_data(content, evidence, self.answerer.catalog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+content = '{"answer_type": "hybrid", "mode": "target", "results": [{"call_id": "db", "metric": "qty"}], "facts": [{"evidence_id": "doc-dda00cb938820e5671f4", "role": "target"}]}'
+evidence = [{'_call_id': 'db', 'tool': 'query_metrics', 'params': {'start': '2026-06-18', 'end': '2026-06-18', 'store_id': 'S02',...duct_id': 'P06'}, 'result': {'start': '2026-06-18', 'end': '2026-06-18', 'store_id': 'S02', 'product_id': 'P06', ...}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+                raise ValueError('数据回答必须使用 data 结果引用')
+            selected = payload['results']
+            if not isinstance(selected, list) or not 1 <= len(selected) <= 3:
+                raise ValueError('一次选取 1 至 3 个结果')
+            calls = {e['_call_id']: e for e in evidence}
+            sentences, used = [], []
+            for selection in selected:
+                if not isinstance(selection, dict) or set(selection) != {'call_id', 'metric'}:
+                    raise ValueError('只允许 call_id 与 metric，数值由代码生成')
+                metric = selection['metric']
+                if metric not in R.METRIC_LABELS:
+                    raise ValueError('未知指标')
+                item = calls.get(selection['call_id'])
+                if item is None:
+                    raise ValueError('引用的调用不存在或未成功')
+                params, result, tool = item['params'], item['result'], item['tool']
+                def scope(value):
+                    store = catalog.store_name(value['store_id']) + ' ' + value['store_id'] if value.get('store_id') else '全部门店'
+                    product = catalog.product_name(value['product_id']) + ' ' + value['product_id'] if value.get('product_id') else ''
+                    return R.scope_label((value['start'], value['end']), store, product)
+                if tool == 'query_metrics':
+                    sentence = '%s：%s %s。' % (scope(result), R.METRIC_LABELS[metric], R.metric_value(metric, result))
+                    if metric == 'aov' and result['aov'] is None:
+                        sentence = '%s：没有有效订单，客单价无法计算。' % scope(result)
+                elif tool == 'compare_periods':
+                    sentence = R.describe_compare(result, metric, scope(result['period_a']), scope(result['period_b']))
+                elif tool == 'payment_mix':
+                    sentence = R.describe_payment(result, scope(params))
+                elif tool == 'top_products':
+                    sentence = R.describe_top(result, scope(params), limit=params.get('limit', 3))
+                elif tool == 'by_store':
+                    sentence = R.describe_by_store(result, scope(params))
+                elif tool == 'by_store_category':
+                    sentence = R.describe_category(result, scope(params))
+                elif tool == 'daily_metrics' and metric == 'net_revenue':
+                    sentence = R.describe_daily(result, scope(params))
+                else:
+                    raise ValueError('这个工具结果暂不支持该数据回答，请改用区间指标查询')
+                sentences.append(sentence)
+                public = {k: item[k] for k in ('tool', 'params', 'result')}
+                if public not in used:
+                    used.append(public)
+            text = '\n'.join(sentences)
+            if len(text) > 1200 or len(set(re.findall(r'\d+(?:\.\d+)?', text))) > 20:
+                raise ValueError('回答超过契约容量，请缩小查询范围')
+            if any(len(json.dumps(e['result'], ensure_ascii=False).encode()) > 4096 for e in used):
+                raise ValueError('证据超过契约容量，请缩小查询范围')
+            def count_numbers(value):
+                if isinstance(value, dict):
+                    return sum(count_numbers(v) for v in value.values())
+                if isinstance(value, list):
+                    return sum(count_numbers(v) for v in value)
+                return int(type(value) in (int, float))
+            if sum(count_numbers(e['result']) for e in used) > 60:
+                raise ValueError('证据数字过多，请缩小查询范围')
+            return Answer(text, 'data', data_evidence=used)
+        except (ValueError, TypeError, KeyError, AttributeError) as exc:
+>           raise LLMError('data_binding', '数据回答未通过字段与查询绑定：%s' % exc) from exc
+E           kbqa.llm.LLMError: data_binding: 数据回答未通过字段与查询绑定：数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:71: LLMError
+________________________ test_six_mixed_behaviors[H03] _________________________
+
+content = '{"answer_type": "hybrid", "mode": "target", "results": [{"call_id": "db", "metric": "qty"}], "facts": [{"evidence_id": "doc-d990eda85ae0305bd6a0", "role": "target"}]}'
+evidence = [{'_call_id': 'db', 'tool': 'query_metrics', 'params': {'start': '2026-08-01', 'end': '2026-08-31', 'product_id': 'P21'}, 'result': {'start': '2026-08-01', 'end': '2026-08-31', 'store_id': None, 'product_id': 'P21', ...}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+>               raise ValueError('数据回答必须使用 data 结果引用')
+E               ValueError: 数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:14: ValueError
+
+The above exception was the direct cause of the following exception:
+
+service = <kbqa.service.Service object at 0x1071730b0>, qid = 'H03'
+
+    @pytest.mark.parametrize('qid',CASES)
+    def test_six_mixed_behaviors(service,qid):
+>    a,t=run(service,QUESTIONS[qid],CASES[qid])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py:50: in run
+    a=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(question),trace,[])
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:84: in answer
+    return self._finalise(plan, reply.content, evidence, retrieved, trace, tool_failures)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:194: in _finalise
+    answer = render_data(content, evidence, self.answerer.catalog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+content = '{"answer_type": "hybrid", "mode": "target", "results": [{"call_id": "db", "metric": "qty"}], "facts": [{"evidence_id": "doc-d990eda85ae0305bd6a0", "role": "target"}]}'
+evidence = [{'_call_id': 'db', 'tool': 'query_metrics', 'params': {'start': '2026-08-01', 'end': '2026-08-31', 'product_id': 'P21'}, 'result': {'start': '2026-08-01', 'end': '2026-08-31', 'store_id': None, 'product_id': 'P21', ...}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+                raise ValueError('数据回答必须使用 data 结果引用')
+            selected = payload['results']
+            if not isinstance(selected, list) or not 1 <= len(selected) <= 3:
+                raise ValueError('一次选取 1 至 3 个结果')
+            calls = {e['_call_id']: e for e in evidence}
+            sentences, used = [], []
+            for selection in selected:
+                if not isinstance(selection, dict) or set(selection) != {'call_id', 'metric'}:
+                    raise ValueError('只允许 call_id 与 metric，数值由代码生成')
+                metric = selection['metric']
+                if metric not in R.METRIC_LABELS:
+                    raise ValueError('未知指标')
+                item = calls.get(selection['call_id'])
+                if item is None:
+                    raise ValueError('引用的调用不存在或未成功')
+                params, result, tool = item['params'], item['result'], item['tool']
+                def scope(value):
+                    store = catalog.store_name(value['store_id']) + ' ' + value['store_id'] if value.get('store_id') else '全部门店'
+                    product = catalog.product_name(value['product_id']) + ' ' + value['product_id'] if value.get('product_id') else ''
+                    return R.scope_label((value['start'], value['end']), store, product)
+                if tool == 'query_metrics':
+                    sentence = '%s：%s %s。' % (scope(result), R.METRIC_LABELS[metric], R.metric_value(metric, result))
+                    if metric == 'aov' and result['aov'] is None:
+                        sentence = '%s：没有有效订单，客单价无法计算。' % scope(result)
+                elif tool == 'compare_periods':
+                    sentence = R.describe_compare(result, metric, scope(result['period_a']), scope(result['period_b']))
+                elif tool == 'payment_mix':
+                    sentence = R.describe_payment(result, scope(params))
+                elif tool == 'top_products':
+                    sentence = R.describe_top(result, scope(params), limit=params.get('limit', 3))
+                elif tool == 'by_store':
+                    sentence = R.describe_by_store(result, scope(params))
+                elif tool == 'by_store_category':
+                    sentence = R.describe_category(result, scope(params))
+                elif tool == 'daily_metrics' and metric == 'net_revenue':
+                    sentence = R.describe_daily(result, scope(params))
+                else:
+                    raise ValueError('这个工具结果暂不支持该数据回答，请改用区间指标查询')
+                sentences.append(sentence)
+                public = {k: item[k] for k in ('tool', 'params', 'result')}
+                if public not in used:
+                    used.append(public)
+            text = '\n'.join(sentences)
+            if len(text) > 1200 or len(set(re.findall(r'\d+(?:\.\d+)?', text))) > 20:
+                raise ValueError('回答超过契约容量，请缩小查询范围')
+            if any(len(json.dumps(e['result'], ensure_ascii=False).encode()) > 4096 for e in used):
+                raise ValueError('证据超过契约容量，请缩小查询范围')
+            def count_numbers(value):
+                if isinstance(value, dict):
+                    return sum(count_numbers(v) for v in value.values())
+                if isinstance(value, list):
+                    return sum(count_numbers(v) for v in value)
+                return int(type(value) in (int, float))
+            if sum(count_numbers(e['result']) for e in used) > 60:
+                raise ValueError('证据数字过多，请缩小查询范围')
+            return Answer(text, 'data', data_evidence=used)
+        except (ValueError, TypeError, KeyError, AttributeError) as exc:
+>           raise LLMError('data_binding', '数据回答未通过字段与查询绑定：%s' % exc) from exc
+E           kbqa.llm.LLMError: data_binding: 数据回答未通过字段与查询绑定：数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:71: LLMError
+________________________ test_six_mixed_behaviors[H04] _________________________
+
+content = '{"answer_type": "hybrid", "mode": "price", "results": [{"call_id": "db", "metric": "unit_price"}], "facts": [{"evidence_id": "doc-16cfec01d50342383a96", "role": "price"}]}'
+evidence = [{'_call_id': 'db', 'tool': 'unit_price_check', 'params': {'product_id': 'P06', 'start': '2026-05-01', 'end': '2026-08-31'}, 'result': {'product_id': 'P06', 'start': '2026-05-01', 'end': '2026-08-31', 'store_id': None, ...}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+>               raise ValueError('数据回答必须使用 data 结果引用')
+E               ValueError: 数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:14: ValueError
+
+The above exception was the direct cause of the following exception:
+
+service = <kbqa.service.Service object at 0x1071730b0>, qid = 'H04'
+
+    @pytest.mark.parametrize('qid',CASES)
+    def test_six_mixed_behaviors(service,qid):
+>    a,t=run(service,QUESTIONS[qid],CASES[qid])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py:50: in run
+    a=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(question),trace,[])
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:84: in answer
+    return self._finalise(plan, reply.content, evidence, retrieved, trace, tool_failures)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:194: in _finalise
+    answer = render_data(content, evidence, self.answerer.catalog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+content = '{"answer_type": "hybrid", "mode": "price", "results": [{"call_id": "db", "metric": "unit_price"}], "facts": [{"evidence_id": "doc-16cfec01d50342383a96", "role": "price"}]}'
+evidence = [{'_call_id': 'db', 'tool': 'unit_price_check', 'params': {'product_id': 'P06', 'start': '2026-05-01', 'end': '2026-08-31'}, 'result': {'product_id': 'P06', 'start': '2026-05-01', 'end': '2026-08-31', 'store_id': None, ...}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+                raise ValueError('数据回答必须使用 data 结果引用')
+            selected = payload['results']
+            if not isinstance(selected, list) or not 1 <= len(selected) <= 3:
+                raise ValueError('一次选取 1 至 3 个结果')
+            calls = {e['_call_id']: e for e in evidence}
+            sentences, used = [], []
+            for selection in selected:
+                if not isinstance(selection, dict) or set(selection) != {'call_id', 'metric'}:
+                    raise ValueError('只允许 call_id 与 metric，数值由代码生成')
+                metric = selection['metric']
+                if metric not in R.METRIC_LABELS:
+                    raise ValueError('未知指标')
+                item = calls.get(selection['call_id'])
+                if item is None:
+                    raise ValueError('引用的调用不存在或未成功')
+                params, result, tool = item['params'], item['result'], item['tool']
+                def scope(value):
+                    store = catalog.store_name(value['store_id']) + ' ' + value['store_id'] if value.get('store_id') else '全部门店'
+                    product = catalog.product_name(value['product_id']) + ' ' + value['product_id'] if value.get('product_id') else ''
+                    return R.scope_label((value['start'], value['end']), store, product)
+                if tool == 'query_metrics':
+                    sentence = '%s：%s %s。' % (scope(result), R.METRIC_LABELS[metric], R.metric_value(metric, result))
+                    if metric == 'aov' and result['aov'] is None:
+                        sentence = '%s：没有有效订单，客单价无法计算。' % scope(result)
+                elif tool == 'compare_periods':
+                    sentence = R.describe_compare(result, metric, scope(result['period_a']), scope(result['period_b']))
+                elif tool == 'payment_mix':
+                    sentence = R.describe_payment(result, scope(params))
+                elif tool == 'top_products':
+                    sentence = R.describe_top(result, scope(params), limit=params.get('limit', 3))
+                elif tool == 'by_store':
+                    sentence = R.describe_by_store(result, scope(params))
+                elif tool == 'by_store_category':
+                    sentence = R.describe_category(result, scope(params))
+                elif tool == 'daily_metrics' and metric == 'net_revenue':
+                    sentence = R.describe_daily(result, scope(params))
+                else:
+                    raise ValueError('这个工具结果暂不支持该数据回答，请改用区间指标查询')
+                sentences.append(sentence)
+                public = {k: item[k] for k in ('tool', 'params', 'result')}
+                if public not in used:
+                    used.append(public)
+            text = '\n'.join(sentences)
+            if len(text) > 1200 or len(set(re.findall(r'\d+(?:\.\d+)?', text))) > 20:
+                raise ValueError('回答超过契约容量，请缩小查询范围')
+            if any(len(json.dumps(e['result'], ensure_ascii=False).encode()) > 4096 for e in used):
+                raise ValueError('证据超过契约容量，请缩小查询范围')
+            def count_numbers(value):
+                if isinstance(value, dict):
+                    return sum(count_numbers(v) for v in value.values())
+                if isinstance(value, list):
+                    return sum(count_numbers(v) for v in value)
+                return int(type(value) in (int, float))
+            if sum(count_numbers(e['result']) for e in used) > 60:
+                raise ValueError('证据数字过多，请缩小查询范围')
+            return Answer(text, 'data', data_evidence=used)
+        except (ValueError, TypeError, KeyError, AttributeError) as exc:
+>           raise LLMError('data_binding', '数据回答未通过字段与查询绑定：%s' % exc) from exc
+E           kbqa.llm.LLMError: data_binding: 数据回答未通过字段与查询绑定：数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:71: LLMError
+________________________ test_six_mixed_behaviors[H05] _________________________
+
+content = '{"answer_type": "hybrid", "mode": "payment", "results": [{"call_id": "db", "metric": "share_orders"}], "facts": [{"evidence_id": "doc-98685a844c2d52a62fce", "role": "reason"}]}'
+evidence = [{'_call_id': 'db', 'tool': 'payment_mix', 'params': {'start': '2026-08-03', 'end': '2026-08-03', 'store_id': 'S05'}, 'result': {'start': '2026-08-03', 'end': '2026-08-03', 'store_id': 'S05', 'total_orders': 27, ...}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+>               raise ValueError('数据回答必须使用 data 结果引用')
+E               ValueError: 数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:14: ValueError
+
+The above exception was the direct cause of the following exception:
+
+service = <kbqa.service.Service object at 0x1071730b0>, qid = 'H05'
+
+    @pytest.mark.parametrize('qid',CASES)
+    def test_six_mixed_behaviors(service,qid):
+>    a,t=run(service,QUESTIONS[qid],CASES[qid])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py:50: in run
+    a=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(question),trace,[])
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:84: in answer
+    return self._finalise(plan, reply.content, evidence, retrieved, trace, tool_failures)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:194: in _finalise
+    answer = render_data(content, evidence, self.answerer.catalog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+content = '{"answer_type": "hybrid", "mode": "payment", "results": [{"call_id": "db", "metric": "share_orders"}], "facts": [{"evidence_id": "doc-98685a844c2d52a62fce", "role": "reason"}]}'
+evidence = [{'_call_id': 'db', 'tool': 'payment_mix', 'params': {'start': '2026-08-03', 'end': '2026-08-03', 'store_id': 'S05'}, 'result': {'start': '2026-08-03', 'end': '2026-08-03', 'store_id': 'S05', 'total_orders': 27, ...}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+                raise ValueError('数据回答必须使用 data 结果引用')
+            selected = payload['results']
+            if not isinstance(selected, list) or not 1 <= len(selected) <= 3:
+                raise ValueError('一次选取 1 至 3 个结果')
+            calls = {e['_call_id']: e for e in evidence}
+            sentences, used = [], []
+            for selection in selected:
+                if not isinstance(selection, dict) or set(selection) != {'call_id', 'metric'}:
+                    raise ValueError('只允许 call_id 与 metric，数值由代码生成')
+                metric = selection['metric']
+                if metric not in R.METRIC_LABELS:
+                    raise ValueError('未知指标')
+                item = calls.get(selection['call_id'])
+                if item is None:
+                    raise ValueError('引用的调用不存在或未成功')
+                params, result, tool = item['params'], item['result'], item['tool']
+                def scope(value):
+                    store = catalog.store_name(value['store_id']) + ' ' + value['store_id'] if value.get('store_id') else '全部门店'
+                    product = catalog.product_name(value['product_id']) + ' ' + value['product_id'] if value.get('product_id') else ''
+                    return R.scope_label((value['start'], value['end']), store, product)
+                if tool == 'query_metrics':
+                    sentence = '%s：%s %s。' % (scope(result), R.METRIC_LABELS[metric], R.metric_value(metric, result))
+                    if metric == 'aov' and result['aov'] is None:
+                        sentence = '%s：没有有效订单，客单价无法计算。' % scope(result)
+                elif tool == 'compare_periods':
+                    sentence = R.describe_compare(result, metric, scope(result['period_a']), scope(result['period_b']))
+                elif tool == 'payment_mix':
+                    sentence = R.describe_payment(result, scope(params))
+                elif tool == 'top_products':
+                    sentence = R.describe_top(result, scope(params), limit=params.get('limit', 3))
+                elif tool == 'by_store':
+                    sentence = R.describe_by_store(result, scope(params))
+                elif tool == 'by_store_category':
+                    sentence = R.describe_category(result, scope(params))
+                elif tool == 'daily_metrics' and metric == 'net_revenue':
+                    sentence = R.describe_daily(result, scope(params))
+                else:
+                    raise ValueError('这个工具结果暂不支持该数据回答，请改用区间指标查询')
+                sentences.append(sentence)
+                public = {k: item[k] for k in ('tool', 'params', 'result')}
+                if public not in used:
+                    used.append(public)
+            text = '\n'.join(sentences)
+            if len(text) > 1200 or len(set(re.findall(r'\d+(?:\.\d+)?', text))) > 20:
+                raise ValueError('回答超过契约容量，请缩小查询范围')
+            if any(len(json.dumps(e['result'], ensure_ascii=False).encode()) > 4096 for e in used):
+                raise ValueError('证据超过契约容量，请缩小查询范围')
+            def count_numbers(value):
+                if isinstance(value, dict):
+                    return sum(count_numbers(v) for v in value.values())
+                if isinstance(value, list):
+                    return sum(count_numbers(v) for v in value)
+                return int(type(value) in (int, float))
+            if sum(count_numbers(e['result']) for e in used) > 60:
+                raise ValueError('证据数字过多，请缩小查询范围')
+            return Answer(text, 'data', data_evidence=used)
+        except (ValueError, TypeError, KeyError, AttributeError) as exc:
+>           raise LLMError('data_binding', '数据回答未通过字段与查询绑定：%s' % exc) from exc
+E           kbqa.llm.LLMError: data_binding: 数据回答未通过字段与查询绑定：数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:71: LLMError
+________________________ test_six_mixed_behaviors[H06] _________________________
+
+content = '{"answer_type": "hybrid", "mode": "anomaly", "results": [{"call_id": "db", "metric": "net_revenue"}], "facts": []}'
+evidence = [{'_call_id': 'db', 'tool': 'query_metrics', 'params': {'start': '2026-08-17', 'end': '2026-08-19', 'store_id': 'S02'}, 'result': {'start': '2026-08-17', 'end': '2026-08-19', 'store_id': 'S02', 'product_id': None, ...}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+>               raise ValueError('数据回答必须使用 data 结果引用')
+E               ValueError: 数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:14: ValueError
+
+The above exception was the direct cause of the following exception:
+
+service = <kbqa.service.Service object at 0x1071730b0>, qid = 'H06'
+
+    @pytest.mark.parametrize('qid',CASES)
+    def test_six_mixed_behaviors(service,qid):
+>    a,t=run(service,QUESTIONS[qid],CASES[qid])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py:50: in run
+    a=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(question),trace,[])
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:84: in answer
+    return self._finalise(plan, reply.content, evidence, retrieved, trace, tool_failures)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:194: in _finalise
+    answer = render_data(content, evidence, self.answerer.catalog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+content = '{"answer_type": "hybrid", "mode": "anomaly", "results": [{"call_id": "db", "metric": "net_revenue"}], "facts": []}'
+evidence = [{'_call_id': 'db', 'tool': 'query_metrics', 'params': {'start': '2026-08-17', 'end': '2026-08-19', 'store_id': 'S02'}, 'result': {'start': '2026-08-17', 'end': '2026-08-19', 'store_id': 'S02', 'product_id': None, ...}}]
+catalog = Catalog(stores=[{'store_id': 'S01', 'store_name': 'Super Souper', 'category': '拉面', 'district': '上海·徐汇'}, {'store_id':...1', 'Makai Poke': 'S02', 'Juicy Bao Bao': 'S03', 'Arigato Sando': 'S04', 'Super Tetsudo': 'S05'}, source_doc='KB-003'))
+
+    def render_data(content: str, evidence: list[dict], catalog) -> Answer:
+        try:
+            payload = json.loads(content)
+            if set(payload) != {'answer_type', 'results'} or payload['answer_type'] != 'data':
+                raise ValueError('数据回答必须使用 data 结果引用')
+            selected = payload['results']
+            if not isinstance(selected, list) or not 1 <= len(selected) <= 3:
+                raise ValueError('一次选取 1 至 3 个结果')
+            calls = {e['_call_id']: e for e in evidence}
+            sentences, used = [], []
+            for selection in selected:
+                if not isinstance(selection, dict) or set(selection) != {'call_id', 'metric'}:
+                    raise ValueError('只允许 call_id 与 metric，数值由代码生成')
+                metric = selection['metric']
+                if metric not in R.METRIC_LABELS:
+                    raise ValueError('未知指标')
+                item = calls.get(selection['call_id'])
+                if item is None:
+                    raise ValueError('引用的调用不存在或未成功')
+                params, result, tool = item['params'], item['result'], item['tool']
+                def scope(value):
+                    store = catalog.store_name(value['store_id']) + ' ' + value['store_id'] if value.get('store_id') else '全部门店'
+                    product = catalog.product_name(value['product_id']) + ' ' + value['product_id'] if value.get('product_id') else ''
+                    return R.scope_label((value['start'], value['end']), store, product)
+                if tool == 'query_metrics':
+                    sentence = '%s：%s %s。' % (scope(result), R.METRIC_LABELS[metric], R.metric_value(metric, result))
+                    if metric == 'aov' and result['aov'] is None:
+                        sentence = '%s：没有有效订单，客单价无法计算。' % scope(result)
+                elif tool == 'compare_periods':
+                    sentence = R.describe_compare(result, metric, scope(result['period_a']), scope(result['period_b']))
+                elif tool == 'payment_mix':
+                    sentence = R.describe_payment(result, scope(params))
+                elif tool == 'top_products':
+                    sentence = R.describe_top(result, scope(params), limit=params.get('limit', 3))
+                elif tool == 'by_store':
+                    sentence = R.describe_by_store(result, scope(params))
+                elif tool == 'by_store_category':
+                    sentence = R.describe_category(result, scope(params))
+                elif tool == 'daily_metrics' and metric == 'net_revenue':
+                    sentence = R.describe_daily(result, scope(params))
+                else:
+                    raise ValueError('这个工具结果暂不支持该数据回答，请改用区间指标查询')
+                sentences.append(sentence)
+                public = {k: item[k] for k in ('tool', 'params', 'result')}
+                if public not in used:
+                    used.append(public)
+            text = '\n'.join(sentences)
+            if len(text) > 1200 or len(set(re.findall(r'\d+(?:\.\d+)?', text))) > 20:
+                raise ValueError('回答超过契约容量，请缩小查询范围')
+            if any(len(json.dumps(e['result'], ensure_ascii=False).encode()) > 4096 for e in used):
+                raise ValueError('证据超过契约容量，请缩小查询范围')
+            def count_numbers(value):
+                if isinstance(value, dict):
+                    return sum(count_numbers(v) for v in value.values())
+                if isinstance(value, list):
+                    return sum(count_numbers(v) for v in value)
+                return int(type(value) in (int, float))
+            if sum(count_numbers(e['result']) for e in used) > 60:
+                raise ValueError('证据数字过多，请缩小查询范围')
+            return Answer(text, 'data', data_evidence=used)
+        except (ValueError, TypeError, KeyError, AttributeError) as exc:
+>           raise LLMError('data_binding', '数据回答未通过字段与查询绑定：%s' % exc) from exc
+E           kbqa.llm.LLMError: data_binding: 数据回答未通过字段与查询绑定：数据回答必须使用 data 结果引用
+
+starter/kbqa/data_answer.py:71: LLMError
+=========================== short test summary info ============================
+FAILED ../../../../../../../var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py::test_six_mixed_behaviors[H01]
+FAILED ../../../../../../../var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py::test_six_mixed_behaviors[H02]
+FAILED ../../../../../../../var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py::test_six_mixed_behaviors[H03]
+FAILED ../../../../../../../var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py::test_six_mixed_behaviors[H04]
+FAILED ../../../../../../../var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py::test_six_mixed_behaviors[H05]
+FAILED ../../../../../../../var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-red-o2z54dqs/docs/verification/g3-03/test_mixed.py::test_six_mixed_behaviors[H06]
+6 failed in 0.43s

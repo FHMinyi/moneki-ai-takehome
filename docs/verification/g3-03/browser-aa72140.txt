@@ -1,0 +1,27 @@
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' test tests/g3-mixed.spec.ts --workers=1 --output=../docs/verification/g3-03/browser-aa72140-runtime
+
+Running 18 tests using 1 worker
+
+(node:76327) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/g3-mixed.spec.ts:15:2 › anomaly mixed evidence 1280 (829ms)
+  ✓   2 tests/g3-mixed.spec.ts:15:2 › target mixed evidence 1280 (788ms)
+  ✓   3 tests/g3-mixed.spec.ts:15:2 › month-target mixed evidence 1280 (726ms)
+  ✓   4 tests/g3-mixed.spec.ts:15:2 › price mixed evidence 1280 (772ms)
+  ✓   5 tests/g3-mixed.spec.ts:15:2 › zero mixed evidence 1280 (707ms)
+  ✓   6 tests/g3-mixed.spec.ts:15:2 › payment mixed evidence 1280 (757ms)
+  ✓   7 tests/g3-mixed.spec.ts:15:2 › anomaly mixed evidence 1440 (744ms)
+  ✓   8 tests/g3-mixed.spec.ts:15:2 › target mixed evidence 1440 (723ms)
+  ✓   9 tests/g3-mixed.spec.ts:15:2 › month-target mixed evidence 1440 (729ms)
+  ✓  10 tests/g3-mixed.spec.ts:15:2 › price mixed evidence 1440 (758ms)
+  ✓  11 tests/g3-mixed.spec.ts:15:2 › zero mixed evidence 1440 (713ms)
+  ✓  12 tests/g3-mixed.spec.ts:15:2 › payment mixed evidence 1440 (758ms)
+  ✓  13 tests/g3-mixed.spec.ts:15:2 › anomaly mixed evidence 390 (719ms)
+  ✓  14 tests/g3-mixed.spec.ts:15:2 › target mixed evidence 390 (725ms)
+  ✓  15 tests/g3-mixed.spec.ts:15:2 › month-target mixed evidence 390 (781ms)
+  ✓  16 tests/g3-mixed.spec.ts:15:2 › price mixed evidence 390 (743ms)
+  ✓  17 tests/g3-mixed.spec.ts:15:2 › zero mixed evidence 390 (748ms)
+  ✓  18 tests/g3-mixed.spec.ts:15:2 › payment mixed evidence 390 (777ms)
+
+  18 passed (13.8s)

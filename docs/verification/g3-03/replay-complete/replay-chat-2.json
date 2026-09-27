@@ -1,0 +1,179 @@
+{
+  "response": {
+    "answer": "2026-06-08 至 2026-06-14（Juicy Bao Bao S03）的净营业额为 3630.00 元，2026-06-01 至 2026-06-07（Juicy Bao Bao S03）为 6117.00 元，跌了 2487.00 元（-40.66%）。\n同期材料记载 KB-020：1. **S03 自 2026-06-08 起停业 4 天，即 6 月 8 日至 6 月 11 日不营业**，堂食、外卖、预订全部暂停。\n以上是材料记载；未据此估算事件对经营数字的因果影响。",
+    "answer_type": "hybrid",
+    "citations": [
+      {
+        "doc_id": "KB-020",
+        "quote": "1. **S03 自 2026-06-08 起停业 4 天，即 6 月 8 日至 6 月 11 日不营业**，堂食、外卖、预订全部暂停。",
+        "evidence_id": "doc-b5e17f258d6e52551102",
+        "chunk_id": "KB-020#2",
+        "source_start": 190,
+        "source_end": 258,
+        "scope": {
+          "as_of": "2026-09-01",
+          "store_id": "S03",
+          "year": 2026,
+          "historical": false,
+          "window": null
+        },
+        "metadata": {
+          "title": "S03 Juicy Bao Bao 临时停业通知",
+          "effective_from": "2026-06-08",
+          "status": "现行",
+          "stores": [
+            "S03"
+          ],
+          "stores_explicit": true,
+          "superseded_by": null
+        }
+      }
+    ],
+    "data_evidence": [
+      {
+        "tool": "compare_periods",
+        "params": {
+          "start_a": "2026-06-01",
+          "end_a": "2026-06-07",
+          "start_b": "2026-06-08",
+          "end_b": "2026-06-14",
+          "store_id": "S03"
+        },
+        "result": {
+          "period_a": {
+            "start": "2026-06-01",
+            "end": "2026-06-07",
+            "store_id": "S03",
+            "product_id": null,
+            "net_revenue": 6117.0,
+            "refund_amount": 80.0,
+            "orders": 199,
+            "aov": 30.74,
+            "qty": 288
+          },
+          "period_b": {
+            "start": "2026-06-08",
+            "end": "2026-06-14",
+            "store_id": "S03",
+            "product_id": null,
+            "net_revenue": 3630.0,
+            "refund_amount": 0.0,
+            "orders": 102,
+            "aov": 35.59,
+            "qty": 165
+          },
+          "delta": {
+            "net_revenue": {
+              "delta": -2487.0,
+              "pct": -40.66,
+              "direction": "跌"
+            },
+            "refund_amount": {
+              "delta": -80.0,
+              "pct": -100.0,
+              "direction": "跌"
+            },
+            "orders": {
+              "delta": -97,
+              "pct": -48.74,
+              "direction": "跌"
+            },
+            "aov": {
+              "delta": 4.85,
+              "pct": 15.78,
+              "direction": "涨"
+            },
+            "qty": {
+              "delta": -123,
+              "pct": -42.71,
+              "direction": "跌"
+            }
+          }
+        },
+        "call_id": "call_00_CApKsF1WR4wtDtNLjYhO9926",
+        "calculations": [
+          {
+            "operation": "period_b_minus_period_a",
+            "metric": "net_revenue",
+            "call_id": "call_00_CApKsF1WR4wtDtNLjYhO9926",
+            "a": 6117.0,
+            "b": 3630.0,
+            "result": {
+              "delta": -2487.0,
+              "pct": -40.66,
+              "direction": "跌"
+            }
+          }
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "steps": [
+    {
+      "step": "mixed_evidence_filtered",
+      "at_ms": 6.0,
+      "took_ms": null,
+      "detail": {
+        "rejected": [
+          {
+            "evidence_id": "doc-6931d6ebf8b0f03c7cb5",
+            "reason": "事件日期与经营查询区间不相交"
+          }
+        ]
+      }
+    },
+    {
+      "step": "mixed_binding",
+      "at_ms": 6.1,
+      "took_ms": null,
+      "detail": {
+        "mode": "anomaly",
+        "source_call": "call_00_CApKsF1WR4wtDtNLjYhO9926",
+        "bindings": [
+          {
+            "role": "reason",
+            "evidence_id": "doc-b5e17f258d6e52551102",
+            "event_windows": [
+              [
+                "2026-06-08",
+                "2026-06-08"
+              ],
+              [
+                "2026-06-08",
+                "2026-06-11"
+              ]
+            ],
+            "scope": {
+              "start_a": "2026-06-01",
+              "end_a": "2026-06-07",
+              "start_b": "2026-06-08",
+              "end_b": "2026-06-14",
+              "store_id": "S03",
+              "start": "2026-06-08",
+              "end": "2026-06-14"
+            }
+          }
+        ],
+        "calculations": [
+          {
+            "operation": "period_b_minus_period_a",
+            "metric": "net_revenue",
+            "call_id": "call_00_CApKsF1WR4wtDtNLjYhO9926",
+            "a": 6117.0,
+            "b": 3630.0,
+            "result": {
+              "delta": -2487.0,
+              "pct": -40.66,
+              "direction": "跌"
+            }
+          }
+        ],
+        "selected": [
+          "doc-b5e17f258d6e52551102"
+        ]
+      }
+    }
+  ],
+  "mode": "FREE_REPLAY_NOT_NEW_PROVIDER_CALL"
+}

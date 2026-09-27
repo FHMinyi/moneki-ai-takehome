@@ -1,0 +1,11 @@
+
+==================================== ERRORS ====================================
+____________ ERROR collecting docs/verification/g3-03/test_mixed.py ____________
+docs/verification/g3-03/test_mixed.py:14: in <module>
+    QUESTIONS={q['id']:q['turns'][0]['question'] for q in map(json.loads,(ROOT/'eval/public_questions.jsonl').read_text().splitlines())}
+                       ^^^^^^^^^^
+E   KeyError: 'turns'
+=========================== short test summary info ============================
+ERROR docs/verification/g3-03/test_mixed.py - KeyError: 'turns'
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.09s

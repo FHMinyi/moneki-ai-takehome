@@ -1,0 +1,100 @@
+{
+  "H01": {
+    "a": {
+      "sql": "SELECT SUM(amount_cents), SUM(CASE WHEN amount_cents>0 THEN qty WHEN amount_cents<0 THEN -qty ELSE 0 END), COUNT(DISTINCT CASE WHEN amount_cents>0 THEN order_id END) FROM sales_clean WHERE date BETWEEN ? AND ? AND store_id=?",
+      "params": [
+        "2026-06-01",
+        "2026-06-07",
+        "S03"
+      ],
+      "net_revenue": 6117.0,
+      "qty": 288,
+      "orders": 199
+    },
+    "b": {
+      "sql": "SELECT SUM(amount_cents), SUM(CASE WHEN amount_cents>0 THEN qty WHEN amount_cents<0 THEN -qty ELSE 0 END), COUNT(DISTINCT CASE WHEN amount_cents>0 THEN order_id END) FROM sales_clean WHERE date BETWEEN ? AND ? AND store_id=?",
+      "params": [
+        "2026-06-08",
+        "2026-06-14",
+        "S03"
+      ],
+      "net_revenue": 3630.0,
+      "qty": 165,
+      "orders": 102
+    },
+    "delta": -2487.0,
+    "pct": -40.66
+  },
+  "H02": {
+    "actual": {
+      "sql": "SELECT SUM(amount_cents), SUM(CASE WHEN amount_cents>0 THEN qty WHEN amount_cents<0 THEN -qty ELSE 0 END), COUNT(DISTINCT CASE WHEN amount_cents>0 THEN order_id END) FROM sales_clean WHERE date BETWEEN ? AND ? AND store_id=? AND product_id=?",
+      "params": [
+        "2026-06-18",
+        "2026-06-18",
+        "S02",
+        "P06"
+      ],
+      "net_revenue": 3625.0,
+      "qty": 125,
+      "orders": 53
+    },
+    "target_source": "KB-023: 当天牛肉poke 目标销量 120 份",
+    "goal": 120,
+    "delta": 5
+  },
+  "H03": {
+    "actual": {
+      "sql": "SELECT SUM(amount_cents), SUM(CASE WHEN amount_cents>0 THEN qty WHEN amount_cents<0 THEN -qty ELSE 0 END), COUNT(DISTINCT CASE WHEN amount_cents>0 THEN order_id END) FROM sales_clean WHERE date BETWEEN ? AND ? AND product_id=?",
+      "params": [
+        "2026-08-01",
+        "2026-08-31",
+        "P21"
+      ],
+      "net_revenue": 11024.0,
+      "qty": 689,
+      "orders": 461
+    },
+    "target_source": "KB-028: 首月（8 月 1 日至 8 月 31 日）全门店合计目标销量 900 杯",
+    "goal": 900,
+    "delta": -211
+  },
+  "H04": {
+    "latest": [
+      "2026-08-31",
+      45.0
+    ],
+    "table_price": 42.0
+  },
+  "H05": {
+    "total": {
+      "sql": "SELECT SUM(amount_cents), SUM(CASE WHEN amount_cents>0 THEN qty WHEN amount_cents<0 THEN -qty ELSE 0 END), COUNT(DISTINCT CASE WHEN amount_cents>0 THEN order_id END) FROM sales_clean WHERE date BETWEEN ? AND ? AND store_id=?",
+      "params": [
+        "2026-08-03",
+        "2026-08-03",
+        "S05"
+      ],
+      "net_revenue": 973.0,
+      "qty": 40,
+      "orders": 27
+    },
+    "payment_sql": "SELECT payment, COUNT(DISTINCT CASE WHEN amount_cents>0 THEN order_id END), SUM(amount_cents)/100.0 FROM sales_clean WHERE date='2026-08-03' AND store_id='S05' GROUP BY payment",
+    "rows": [
+      [
+        "现金",
+        27,
+        973.0
+      ]
+    ]
+  },
+  "H06": {
+    "sql": "SELECT SUM(amount_cents), SUM(CASE WHEN amount_cents>0 THEN qty WHEN amount_cents<0 THEN -qty ELSE 0 END), COUNT(DISTINCT CASE WHEN amount_cents>0 THEN order_id END) FROM sales_clean WHERE date BETWEEN ? AND ? AND store_id=?",
+    "params": [
+      "2026-08-17",
+      "2026-08-19",
+      "S02"
+    ],
+    "net_revenue": 0.0,
+    "qty": 0,
+    "orders": 0
+  }
+}

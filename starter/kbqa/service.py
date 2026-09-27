@@ -197,6 +197,8 @@ class Service:
             reference, problem = validate_trend_context(context, self.catalog, self.data_period)
             trace.step("context_validation", {"valid": problem is None, "reason": problem, "reference": reference})
             if problem:
+                self.sessions.forget(session_id)
+                trace.step("session_context_cleared", {"reason": "invalid_trend_reference"})
                 return Answer(answer=problem, answer_type="refusal")
             if not question.strip():
                 return Answer(answer="没有收到问题内容，请再说一次。", answer_type="clarify")
@@ -375,5 +377,6 @@ def _reason_cn(exc: LLMError) -> str:
         "tool_loop": "工具调用没有收敛",
         "tool_failure": "工具执行失败",
         "clarification_binding": "澄清结构无效",
+        "mixed_binding": "混合证据或计算关系无法核验",
     }
     return mapping.get(exc.kind, exc.kind)

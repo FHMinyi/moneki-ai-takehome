@@ -1,0 +1,62 @@
+{
+  "request": {
+    "session_id": "busy",
+    "question": "那7月呢？"
+  },
+  "response": {
+    "answer": "当前对话正在处理上一条问题，请稍后重试。",
+    "answer_type": "refusal",
+    "citations": [],
+    "data_evidence": [],
+    "trace_id": "t-20260901-0021"
+  },
+  "trace": {
+    "trace_id": "t-20260901-0021",
+    "session_id": "busy",
+    "question": "那7月呢？",
+    "started_at": "2026-09-27T16:49:50.457",
+    "total_ms": 255.1,
+    "steps": [
+      {
+        "step": "request",
+        "at_ms": 0.0,
+        "took_ms": null,
+        "detail": {
+          "session_id": "busy",
+          "question": "那7月呢？",
+          "context": null
+        }
+      },
+      {
+        "step": "session_busy",
+        "at_ms": 255.0,
+        "took_ms": null,
+        "detail": {
+          "wait_limit_ms": 250,
+          "history_changed": false
+        }
+      },
+      {
+        "step": "response",
+        "at_ms": 255.1,
+        "took_ms": null,
+        "detail": {
+          "answer_type": "refusal",
+          "notes": []
+        }
+      }
+    ],
+    "llm_calls": [],
+    "errors": []
+  },
+  "elapsed": 0.2568675830261782,
+  "resources": {
+    "pid": 83764,
+    "harness_pid": 83763,
+    "api_port": 55249,
+    "model_port": 55248,
+    "base_url": "http://127.0.0.1:55249",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome",
+    "var": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-336/g303-cross0/var"
+  }
+}

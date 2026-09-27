@@ -1,0 +1,18 @@
+npm notice run moneki-workspace@0.1.0 npx
+npm notice run 'playwright' test tests/g3-mixed.spec.ts --workers=1 --output=../docs/verification/g3-03/browser-runtime-results
+
+Running 9 tests using 1 worker
+
+(node:70114) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/g3-mixed.spec.ts:12:2 › target mixed evidence 1280 (910ms)
+  ✓  2 tests/g3-mixed.spec.ts:12:2 › zero mixed evidence 1280 (800ms)
+  ✓  3 tests/g3-mixed.spec.ts:12:2 › payment mixed evidence 1280 (814ms)
+  ✓  4 tests/g3-mixed.spec.ts:12:2 › target mixed evidence 1440 (815ms)
+  ✓  5 tests/g3-mixed.spec.ts:12:2 › zero mixed evidence 1440 (780ms)
+  ✓  6 tests/g3-mixed.spec.ts:12:2 › payment mixed evidence 1440 (851ms)
+  ✓  7 tests/g3-mixed.spec.ts:12:2 › target mixed evidence 390 (773ms)
+  ✓  8 tests/g3-mixed.spec.ts:12:2 › zero mixed evidence 390 (771ms)
+  ✓  9 tests/g3-mixed.spec.ts:12:2 › payment mixed evidence 390 (789ms)
+
+  9 passed (7.7s)

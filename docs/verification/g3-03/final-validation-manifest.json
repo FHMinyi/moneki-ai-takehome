@@ -1,0 +1,47 @@
+{
+  "business_sha": "aa721401327ce28175c94a6060d5d730570af077",
+  "tests": [
+    {
+      "log": "final-checks.txt",
+      "result": "53 passed",
+      "scope": "45 mixed + 6 genuine HTTP + 2 free saved-response replays"
+    },
+    {
+      "log": "original-final.txt",
+      "result": "53 passed",
+      "scope": "original backend in separate process"
+    },
+    {
+      "log": "regression-final.txt",
+      "result": "139 passed",
+      "scope": "G301/G302/G306 boundaries"
+    },
+    {
+      "log": "budget-final.txt",
+      "result": "10 passed",
+      "scope": "offline accounting and fake HTTP transport"
+    },
+    {
+      "log": "browser-aa72140.txt",
+      "result": "18 passed",
+      "scope": "six H behaviors, widths 1280/1440/390; controlled provider"
+    },
+    {
+      "log": "no-key-final/eval/report.json",
+      "result": "88.5/100;49/55",
+      "scope": "no real model key"
+    },
+    {
+      "log": "rag-final.txt",
+      "result": "199 passed",
+      "scope": "genuine RAG, aa72140"
+    }
+  ],
+  "pending": [],
+  "delivery_business_sha": "603c611996384448b2ea0f82c8612593115db972",
+  "delivery_checks": {
+    "log": "delivery-complete.txt",
+    "result": "57 passed",
+    "scope": "46 mixed + 9 actual HTTP + 2 free response replays, business603c611"
+  }
+}

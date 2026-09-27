@@ -157,9 +157,9 @@ class DataTools:
         rows = self.conn.execute(
             """
             SELECT payment,
-                   COUNT(DISTINCT CASE WHEN is_refund=0 THEN order_id END),
+                   COUNT(DISTINCT CASE WHEN amount_cents>0 THEN order_id END),
                    COALESCE(SUM(amount_cents), 0),
-                   COALESCE(SUM(CASE WHEN is_refund=0 THEN qty ELSE -qty END), 0)
+                   COALESCE(SUM(CASE WHEN amount_cents>0 THEN qty WHEN amount_cents<0 THEN -qty ELSE 0 END), 0)
             FROM sales_clean WHERE %s GROUP BY payment
             """
             % where,
@@ -281,7 +281,7 @@ class DataTools:
         rows = self.conn.execute(
             """
             SELECT date, amount_cents, qty, store_id FROM sales_clean
-            WHERE product_id = ? AND is_refund = 0 AND qty > 0 AND date >= ? AND date <= ?%s
+            WHERE product_id = ? AND amount_cents > 0 AND qty > 0 AND date >= ? AND date <= ?%s
             ORDER BY date
             """
             % clause,

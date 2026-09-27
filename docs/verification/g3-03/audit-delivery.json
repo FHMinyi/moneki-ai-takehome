@@ -1,0 +1,57 @@
+{
+  "business_sha": "603c611996384448b2ea0f82c8612593115db972",
+  "protected_count": 4209,
+  "protected_changes": [],
+  "credential_leaks": [],
+  "chats": [
+    {
+      "chat": 1,
+      "commit": "cc4bcdd8f27aad557530133c9e3da28d413861d9",
+      "answer_type": "hybrid",
+      "api_calls": 2,
+      "errors": []
+    },
+    {
+      "chat": 2,
+      "commit": "cc4bcdd8f27aad557530133c9e3da28d413861d9",
+      "answer_type": "refusal",
+      "api_calls": 4,
+      "errors": [
+        "mixed_binding: 混合回答未通过来源、指标与关系核验：事件日期与经营查询区间不相交"
+      ]
+    },
+    {
+      "chat": 3,
+      "commit": "1c65ef1b704e0136910e870c479918434afd4ca6",
+      "answer_type": "refusal",
+      "api_calls": 2,
+      "errors": [
+        "mixed_binding: 混合回答未通过来源、指标与关系核验：事件不是支付事件"
+      ]
+    },
+    {
+      "chat": 4,
+      "commit": "bb03e5a01a28db67436d8efbf6f75cee8cd59575",
+      "answer_type": "hybrid",
+      "api_calls": 3,
+      "errors": []
+    }
+  ],
+  "actual_api_count": 11,
+  "prompt_tokens": 98879,
+  "completion_tokens": 3178,
+  "peak_cache_miss_estimate_cny": 0.223182,
+  "billing_confirmed": false,
+  "pending_reserves": 0,
+  "other_g3_estimate_reported_by_coordinator": 1.217374,
+  "total_g3_estimate_cny": 1.440556,
+  "directed_pool_used_after_this_ticket": 16,
+  "directed_pool_breakdown": {
+    "G302": 7,
+    "G306": 2,
+    "G304": 3,
+    "G303": 4
+  },
+  "initial_G301_chats_outside_directed_pool": 3,
+  "directed_pool_correction": "Coordinator correction: previous 13 omitted 3 concurrent G3-04 chats; provider attempts, usage and cost unchanged."
+}

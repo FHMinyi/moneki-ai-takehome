@@ -1,0 +1,285 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-317/test_public_positive_R05_0/starter",
+  "records": [
+    {
+      "command": [
+        "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-317/test_public_positive_R05_0/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-317/test_public_positive_R05_0/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 ad371edd68a0\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-317/test_public_positive_R05_0/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-317/test_public_positive_R05_0/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "51749"
+      ],
+      "pid": 77324,
+      "port": 51749,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "ad371edd68a0",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/retrieve",
+          "body": {
+            "query": "发票怎么开",
+            "top_k": 5
+          },
+          "response": {
+            "results": [
+              {
+                "doc_id": "KB-061",
+                "chunk_id": "KB-061#1",
+                "score": 20.4195,
+                "text": "合味餐饮\n首页 门店 菜单 会员 常见问题 加盟合作 关于我们\n常见问题 FAQ\n最后更新：2026-03-01 | 维护：总部市场部 | 适用范围：Super Souper、Makai Poke、Juicy Bao Bao、Arigato Sando、Super Tetsudo 五家门店\n怎么开发票？\n发票小程序\n发票在小程序“我的订单”里自助开具。找到对应订单点“开发票”，填抬头和税号后提交，电子发票会发到填写的邮箱，通常几分钟内到，最长不超过 24 小时。\n门店不提供纸质发票，也不代开。订单超过 90 天的无法自助开具，请联系客服处理。\n可以带宠物进店吗？\n宠物就餐规则\n",
+                "retrieval_text": "常见问题 FAQ - 合味餐饮\n合味餐饮\n首页 门店 菜单 会员 常见问题 加盟合作 关于我们\n常见问题 FAQ\n最后更新：2026-03-01 | 维护：总部市场部 | 适用范围：Super Souper、Makai Poke、Juicy Bao Bao、Arigato Sando、Super Tetsudo 五家门店\n怎么开发票？\n发票小程序\n发票在小程序“我的订单”里自助开具。找到对应订单点“开发票”，填抬头和税号后提交，电子发票会发到填写的邮箱，通常几分钟内到，最长不超过 24 小时。\n门店不提供纸质发票，也不代开。订单超过 90 天的无法自助开具，请联系客服处理。\n可以带宠物进店吗？\n宠物就餐规则\n",
+                "source_start": 0,
+                "source_end": 292,
+                "context_spans": [],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-061",
+                "chunk_id": "KB-061#3",
+                "score": 8.3038,
+                "text": "可以预订座位吗？\n预订\n小桌不接受预订，到店取号。8 人以上的聚餐可以提前一天电话预订，由门店安排拼桌，门店电话见“门店”页面。\n东西落在店里了怎么办？\n失物\n请尽快联系门店。拾到的物品由门店登记保管 7 天，贵重物品会交商场服务台或就近派出所，领取时需要说明物品特征。\n可以用会员储值余额在外卖平台付款吗？\n会员\n不可以。第三方外卖平台的订单只能用平台自己的支付方式，会员储值余额可以在门店堂食、自提和小程序自营外卖使用。\n",
+                "retrieval_text": "常见问题 FAQ - 合味餐饮\n可以预订座位吗？\n预订\n小桌不接受预订，到店取号。8 人以上的聚餐可以提前一天电话预订，由门店安排拼桌，门店电话见“门店”页面。\n东西落在店里了怎么办？\n失物\n请尽快联系门店。拾到的物品由门店登记保管 7 天，贵重物品会交商场服务台或就近派出所，领取时需要说明物品特征。\n可以用会员储值余额在外卖平台付款吗？\n会员\n不可以。第三方外卖平台的订单只能用平台自己的支付方式，会员储值余额可以在门店堂食、自提和小程序自营外卖使用。\n",
+                "source_start": 588,
+                "source_end": 801,
+                "context_spans": [],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-053",
+                "chunk_id": "KB-053#3",
+                "score": 5.6059,
+                "text": "## 闭店准备\n\n外摆的两张桌子和立牌都收进来了，地漏清了，遮阳棚收好了，冷柜和制冰机保持通电，其他设备断电。\n现金全部带走，收银抽屉空着。\n员工十五点前都走了，住得远的那两位我让他们在附近同事家住了一晚，发票已经交上来了。\n\n",
+                "retrieval_text": "S01 店长周报 2026-07-20 至 2026-07-26\n# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n## 闭店准备\n\n外摆的两张桌子和立牌都收进来了，地漏清了，遮阳棚收好了，冷柜和制冰机保持通电，其他设备断电。\n现金全部带走，收银抽屉空着。\n员工十五点前都走了，住得远的那两位我让他们在附近同事家住了一晚，发票已经交上来了。\n\n",
+                "source_start": 304,
+                "source_end": 418,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 49,
+                    "text": "# S01 Super Souper 店长周报（2026-07-20 至 2026-07-26）\n"
+                  },
+                  {
+                    "start": 304,
+                    "end": 312,
+                    "text": "## 闭店准备\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-051",
+                "chunk_id": "KB-051#4",
+                "score": 5.0461,
+                "text": "## 问题\n\n1. 停业期间的鲜货是提前停的，没有浪费，但半成品倒掉了一些，下次可以再早一天开始减量。\n2. 施工那几天后厨断断续续没法用，员工午饭是在外面吃的，这部分怎么算请人事给个说法。\n3. 蒸箱有一个门封条施工时被压到，已经换了新的。\n\n",
+                "retrieval_text": "S03 店长周报 2026-06-08 至 2026-06-14\n# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n## 问题\n\n1. 停业期间的鲜货是提前停的，没有浪费，但半成品倒掉了一些，下次可以再早一天开始减量。\n2. 施工那几天后厨断断续续没法用，员工午饭是在外面吃的，这部分怎么算请人事给个说法。\n3. 蒸箱有一个门封条施工时被压到，已经换了新的。\n\n",
+                "source_start": 443,
+                "source_end": 566,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 50,
+                    "text": "# S03 Juicy Bao Bao 店长周报（2026-06-08 至 2026-06-14）\n"
+                  },
+                  {
+                    "start": 443,
+                    "end": 449,
+                    "text": "## 问题\n"
+                  }
+                ],
+                "padded": false,
+                "evidence_eligible": true,
+                "exclusion_reason": null
+              },
+              {
+                "doc_id": "KB-001",
+                "chunk_id": "KB-001#1",
+                "score": 0.0,
+                "text": "# 指标口径手册 v3\n\n适用范围：总部运营部、财务部、各门店店长，以及所有基于 POS 导出数据出具的经营报表与对外口径。\n本手册自 2026-05-01 起生效，取代 v2（KB-002）。此前的模板、表格、月报里凡与本手册不一致的算法，一律以本手册为准。\n\n",
+                "retrieval_text": "指标口径手册 v3\n# 指标口径手册 v3\n\n适用范围：总部运营部、财务部、各门店店长，以及所有基于 POS 导出数据出具的经营报表与对外口径。\n本手册自 2026-05-01 起生效，取代 v2（KB-002）。此前的模板、表格、月报里凡与本手册不一致的算法，一律以本手册为准。\n\n",
+                "source_start": 0,
+                "source_end": 132,
+                "context_spans": [
+                  {
+                    "start": 0,
+                    "end": 12,
+                    "text": "# 指标口径手册 v3\n"
+                  }
+                ],
+                "padded": true,
+                "evidence_eligible": false,
+                "exclusion_reason": null
+              }
+            ],
+            "diagnostics": {
+              "query": "发票怎么开",
+              "terms": [
+                "发票",
+                "票怎",
+                "么开"
+              ],
+              "scope": {
+                "as_of": "2026-09-01",
+                "store_id": null,
+                "year": 2026,
+                "historical": false,
+                "window": null
+              },
+              "candidates": [
+                {
+                  "chunk_id": "KB-061#1",
+                  "doc_id": "KB-061",
+                  "score": 20.4195,
+                  "lexical_score": 15.1256,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "么开",
+                    "发票"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-061#3",
+                  "doc_id": "KB-061",
+                  "score": 8.3038,
+                  "lexical_score": 3.0099,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                },
+                {
+                  "chunk_id": "KB-053#3",
+                  "doc_id": "KB-053",
+                  "score": 5.6059,
+                  "lexical_score": 4.1525,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": [
+                    "发票"
+                  ]
+                },
+                {
+                  "chunk_id": "KB-051#4",
+                  "doc_id": "KB-051",
+                  "score": 5.0461,
+                  "lexical_score": 3.7378,
+                  "source_focus_boost": 1.0,
+                  "matched_terms": []
+                }
+              ],
+              "expansions": [],
+              "coverage": 0.608,
+              "hits": [
+                {
+                  "doc_id": "KB-061",
+                  "chunk_id": "KB-061#1",
+                  "score": 20.4195,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-061",
+                  "chunk_id": "KB-061#3",
+                  "score": 8.3038,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-053",
+                  "chunk_id": "KB-053#3",
+                  "score": 5.6059,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-051",
+                  "chunk_id": "KB-051#4",
+                  "score": 5.0461,
+                  "padded": false,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                },
+                {
+                  "doc_id": "KB-001",
+                  "chunk_id": "KB-001#1",
+                  "score": 0.0,
+                  "padded": true,
+                  "exclusion_reason": null,
+                  "dropped_instructions": []
+                }
+              ],
+              "filtered": [
+                {
+                  "doc_id": "KB-002",
+                  "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                },
+                {
+                  "doc_id": "KB-010",
+                  "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                },
+                {
+                  "doc_id": "KB-012",
+                  "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

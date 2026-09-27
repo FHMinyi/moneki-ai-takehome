@@ -15,6 +15,16 @@ from .toolspec import TOOLS
 from .data_answer import render_data
 from .document_evidence import DocumentEvidence, insufficient_evidence
 from .clarification import render_clarification
+from .mixed_answer import render_mixed
+
+MIXED_PROMPT = """
+混合问题只返回 {"answer_type":"hybrid","mode":"target或anomaly或payment或price","results":[{"call_id":"实际数据库调用ID","metric":"对应指标"}],"facts":[{"evidence_id":"实际检索证据ID","role":"target或reason或price或price_policy"}]}。
+一个数据库调用、最多三条文档事实，禁止自由答案、数值或运算符。
+target用query_metrics，metric为qty/orders/net_revenue，与目标原文单位一致，目标须同商品/门店/区间且有明确目标数值和日期范围或当天。首月先检索明确目标区间再查询；首次片段没有目标时用商品名加目标销量再次检索。
+anomaly用query_metrics或等长compare_periods，当前异常期为B，较早基期为A；metric为所问经营指标。payment用payment_mix，metric为share_orders（默认订单占比）或share_revenue（明确问金额占比）。reason只选择对应门店/商品/日期的经营或支付事件原文；检索成功但未找到原因时facts为空，仍返回实际查询数字。
+price用unit_price_check并传product_id/start/end，最近成交查整个数据区间、当前文档按今天核对；metric为unit_price，price选择适用售价原文，可另选price_policy说明建档价。
+混合facts用这个角色协议，不用纯doc的binding；代码绑定来源角色与计算。工具参数和引用必须逐字照抄真实目录与返回身份。
+"""
 
 MAX_TOOL_ROUNDS = 6
 MAX_BAD_ARGS = 2
@@ -72,7 +82,7 @@ class LiveEngine:
             if final_turn:
                 messages.append({"role": "system", "content":
                     "检索和查数阶段已结束，这次必须给最终答复，不得再调用工具。"
-                    "只能使用此前真实工具证据，按既定data/doc JSON结构选择已有引用；"
+                    "只能使用此前真实工具证据，按既定data/doc/hybrid JSON结构选择已有引用；"
                     "若证据不足以支持问题的主体与属性，返回{\"answer_type\":\"refusal\",\"reason\":\"insufficient_evidence\"}，不得附加政策说明。"
                     "不能因达到上限就断言资料不存在，不能编造事实或数字。"})
                 trace.step("finalization", {"tool_choice": "none", "executed_tool_rounds": round_index})
@@ -146,6 +156,7 @@ class LiveEngine:
         system = SYSTEM_PROMPT.format(
             today=self.today, start=self.data_period["start"], end=self.data_period["end"]
         )
+        system += MIXED_PROMPT
         system += "\n数据库门店目录：" + json.dumps(self.answerer.catalog.stores, ensure_ascii=False)
         system += "\n数据库商品目录（unit_price 为建档价，不能推算实收）：" + json.dumps(self.answerer.catalog.products, ensure_ascii=False)
         messages = [{"role": "system", "content": system}]
@@ -190,6 +201,9 @@ class LiveEngine:
                 trace.step("clarification_after_tool_failure", {"failures":tool_failures})
                 raise LLMError("tool_failure", "工具执行失败，不能转成用户缺少信息")
             return render_clarification(structured, trace)
+        if isinstance(structured, dict) and structured.get("answer_type") == "hybrid":
+            return render_mixed(structured, evidence, retrieved, plan, self.answerer.catalog, trace,
+                search_performed=any(s["step"] == "search" for s in trace.steps), tool_failures=tool_failures)
         if evidence:
             if plan.slots.get("context_effective"):
                 try:

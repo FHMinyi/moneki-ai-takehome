@@ -1,0 +1,81 @@
+.....FF..                                                                [100%]
+=================================== FAILURES ===================================
+__________________ test_trend_mixed_replaces_previous_product __________________
+
+server = ('http://127.0.0.1:55023', {'pid': 83282, 'harness_pid': 83281, 'api_port': 55023, 'model_port': 55022, ...})
+
+    def test_trend_mixed_replaces_previous_product(server):
+     a,_,_=ask(server,'reference',QUESTIONS['H02']);assert a['answer_type']=='hybrid'
+     p=dict(start=REF['start'],end=REF['end'],store_id='S03')
+     c={**CASES['H01'],'tool':'query_metrics','params':p,'query':'S03六月停业整改通知'}
+     b,u,_=ask(server,'reference','这段时间营业额为什么异常？',c,REF)
+>    assert b['answer_type']=='hybrid',b
+E    AssertionError: {'answer': '模型服务这次没有正常返回（网络异常），为了不给出没有依据的数字，这个问题先不回答。可以稍后重试；失败的真实原因记在 trace 里。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E    assert 'refusal' == 'hybrid'
+E      
+E      - hybrid
+E      + refusal
+
+docs/verification/g3-03/integration-g304/test_cross.py:83: AssertionError
+----------------------------- Captured stderr call -----------------------------
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 55068)
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/docs/verification/g3-03/integration-g304/controller.py", line 35, in do_POST
+    else:content=json.dumps(choose(case,[e for t in done for e in t['result'].get('evidence',[])]))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/docs/verification/g3-03/test_mixed.py", line 31, in choose
+    assert candidates,(case,[(e['doc_id'],e['quote']) for e in items])
+AssertionError: ({'mode': 'anomaly', 'tool': 'query_metrics', 'params': {'start': '2026-06-08', 'end': '2026-06-14', 'store_id': 'S03'...管，无法在营业时间内穿插完成。'), ('KB-020', '经与商场物业、施工方确认，现决定：'), ('KB-020', '整改需要停火作业并拆装部分风管，无法在营业时间内穿插完成。经与商场物业、施工方确认，现决定：'), ...])
+assert []
+----------------------------------------
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 55072)
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/docs/verification/g3-03/integration-g304/controller.py", line 35, in do_POST
+    else:content=json.dumps(choose(case,[e for t in done for e in t['result'].get('evidence',[])]))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/docs/verification/g3-03/test_mixed.py", line 31, in choose
+    assert candidates,(case,[(e['doc_id'],e['quote']) for e in items])
+AssertionError: ({'mode': 'anomaly', 'tool': 'query_metrics', 'params': {'start': '2026-06-08', 'end': '2026-06-14', 'store_id': 'S03'...管，无法在营业时间内穿插完成。'), ('KB-020', '经与商场物业、施工方确认，现决定：'), ('KB-020', '整改需要停火作业并拆装部分风管，无法在营业时间内穿插完成。经与商场物业、施工方确认，现决定：'), ...])
+assert []
+----------------------------------------
+______________ test_invalid_trend_refusal_clears_previous_context ______________
+
+server = ('http://127.0.0.1:55023', {'pid': 83282, 'harness_pid': 83281, 'api_port': 55023, 'model_port': 55022, ...})
+
+    def test_invalid_trend_refusal_clears_previous_context(server):
+     a,_,_=ask(server,'invalid-ref',QUESTIONS['H02']);assert a['answer_type']=='hybrid'
+     b,_,_=ask(server,'invalid-ref','这段时间呢？',context={**REF,'store_id':'S99'});assert b['answer_type']=='refusal'
+     c,t,_=ask(server,'invalid-ref','那7月呢？')
+>    assert c['answer_type']=='clarify' and step(t,'session_context')['history_size']==0
+E    AssertionError: assert ('refusal' == 'clarify'
+E      
+E      - clarify
+E      + refusal)
+
+docs/verification/g3-03/integration-g304/test_cross.py:91: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-03/integration-g304/test_cross.py::test_trend_mixed_replaces_previous_product
+FAILED docs/verification/g3-03/integration-g304/test_cross.py::test_invalid_trend_refusal_clears_previous_context
+2 failed, 7 passed in 3.43s
