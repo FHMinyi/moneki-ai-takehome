@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any, Optional
 from .redaction import redact
+from .trace_refs import compact_trace, expand_trace
 
 
 @dataclass
@@ -83,4 +84,5 @@ class TraceStore:
 
     def get(self, trace_id: str) -> Optional[dict]:
         with self._lock:
-            return self._data.get(trace_id)
+            payload = self._data.get(trace_id)
+            return compact_trace(payload) if payload is not None else None
