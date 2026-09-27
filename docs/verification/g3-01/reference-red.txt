@@ -1,0 +1,57 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+________________ test_tool_result_exposes_actual_call_reference ________________
+
+service = <kbqa.service.Service object at 0x10a7f42f0>
+
+    def test_tool_result_exposes_actual_call_reference(service):
+        params={'start':'2026-06-01','end':'2026-06-30','store_id':'S02','product_id':'P06'}
+        call={'id':'provider-generated-id','type':'function','function':{'name':'query_metrics','arguments':json.dumps(params)}}
+        client=Mock()
+        turns=[]
+        def reply(messages,*args,**kwargs):
+            if not turns:
+                turns.append(True)
+                return LLMReply({'role':'assistant','content':'','tool_calls':[call]},'tool_calls','',[call],0)
+            content=json.loads(messages[-1]['content'])
+            assert content['call_id']=='provider-generated-id'
+            assert content['result']==service.tools.query_metrics(**params)
+            final=json.dumps({'answer_type':'data','results':[{'call_id':content['call_id'],'metric':'qty'}]})
+            return LLMReply({'role':'assistant','content':final},'stop',final,[],0)
+        client.chat_with_retry.side_effect=reply
+        trace=Trace('ref','S02六月牛肉poke销量')
+>       answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(trace.question),trace,[])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-01/test_data_chat.py:131: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+starter/kbqa/live.py:69: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+messages = [{'role': 'system', 'content': '你是一家连锁餐饮公司的经营分析助手，服务对象是运营同事。\n今天固定是 2026-09-01，所有“现在/最近/目前”都以这一天为准。\n数据区间只有 2026-05-01..."S02", "product_id": "P06", "net_revenue": 15889.0, "refund_amount": 168.0, "orders": 246, "aov": 64.59, "qty": 417}'}]
+args = ([{'type': 'function', 'function': {'name': 'query_metrics', 'description': '按 KB-001 口径查一个区间的净营业额、退款金额、有效订单数、客单价、销量。'...', 'properties': {'start': {...}, 'end': {...}}, 'required': ['start', 'end'], 'additionalProperties': False}}}, ...],)
+kwargs = {'budget': 149.99907987494953, 'on_call': <bound method Trace.llm of Trace(trace_id='ref', question='S02六月牛肉poke销量', s...9.0, 'refund_amount': 168.0, 'orders': 246, 'aov': 64.59, 'qty': 417}}}], errors=[], llm_calls=[], _t0=929910.119164)>}
+
+    def reply(messages,*args,**kwargs):
+        if not turns:
+            turns.append(True)
+            return LLMReply({'role':'assistant','content':'','tool_calls':[call]},'tool_calls','',[call],0)
+        content=json.loads(messages[-1]['content'])
+>       assert content['call_id']=='provider-generated-id'
+               ^^^^^^^^^^^^^^^^^^
+E       KeyError: 'call_id'
+
+docs/verification/g3-01/test_data_chat.py:125: KeyError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-01/test_data_chat.py::test_tool_result_exposes_actual_call_reference
+1 failed, 16 deselected in 1.09s

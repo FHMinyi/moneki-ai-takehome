@@ -112,6 +112,26 @@ def test_data_selection_rejects_forged_fields(service, content):
     with pytest.raises(LLMError): run_live(service,json.dumps(content))
 
 
+def test_tool_result_exposes_actual_call_reference(service):
+    params={'start':'2026-06-01','end':'2026-06-30','store_id':'S02','product_id':'P06'}
+    call={'id':'provider-generated-id','type':'function','function':{'name':'query_metrics','arguments':json.dumps(params)}}
+    client=Mock()
+    turns=[]
+    def reply(messages,*args,**kwargs):
+        if not turns:
+            turns.append(True)
+            return LLMReply({'role':'assistant','content':'','tool_calls':[call]},'tool_calls','',[call],0)
+        content=json.loads(messages[-1]['content'])
+        assert content['call_id']=='provider-generated-id'
+        assert content['result']==service.tools.query_metrics(**params)
+        final=json.dumps({'answer_type':'data','results':[{'call_id':content['call_id'],'metric':'qty'}]})
+        return LLMReply({'role':'assistant','content':final},'stop',final,[],0)
+    client.chat_with_retry.side_effect=reply
+    trace=Trace('ref','S02六月牛肉poke销量')
+    answer=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(trace.question),trace,[])
+    assert answer.answer_type=='data'
+
+
 def test_model_error_echo_cannot_retain_credential(monkeypatch):
     from kbqa.llm import LLMError
     monkeypatch.setattr(LLMClient, '_post', lambda *a: httpx.Response(401,json={'error':{'message':'invalid secret-test-key'}}))
