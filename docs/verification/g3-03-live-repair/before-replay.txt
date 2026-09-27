@@ -1,0 +1,148 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_____________________ test_original_selection_replay[C07] ______________________
+
+service = <kbqa.service.Service object at 0x10b2c6b40>, qid = 'C07'
+
+    @pytest.mark.parametrize('qid',['C07','T02-1','H04','T03-2'])
+    def test_original_selection_replay(service,qid):
+>    plan,ev,pool,payload=prepared(service,qid);trace=Trace('free-replay-'+qid,plan.question)
+                          ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-03-live-repair/test_replay.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+service = <kbqa.service.Service object at 0x10b2c6b40>, qid = 'C07'
+
+    def prepared(service,qid):
+     saved=json.loads((HERE/'original'/f'{qid}.json').read_text());t=saved['trace']['response'];raw=next(s['detail'] for s in t['steps'] if s['step']=='plan')
+     plan=service.planner.plan(raw['standalone_question'])
+     for key in ['question','search_query','intent','kind','year','store_id','product_id','metric','needs_data','needs_docs']:
+      setattr(plan,key,raw[key])
+     plan.standalone=raw['standalone_question'];plan.window=tuple(raw['window']) if raw['window'] else None;plan.compare_window=tuple(raw['compare_window']) if raw['compare_window'] else None;plan.as_of=date.fromisoformat(raw['as_of'])
+     evidence=[];pool=DocumentEvidence(service.facts)
+     for step in t['steps']:
+      if step['step']!='tool':continue
+      d=step['detail'];actual=service.run_tool(d['tool'],d['params'],plan=plan) if d['tool']=='search_kb' else service.run_tool(d['tool'],d['params'])
+      assert 'error' not in actual
+      if d['tool']=='search_kb':pool.add(actual['evidence'])
+      else:
+       assert actual==d['result'],(qid,d['tool'])
+       evidence.append(dict(_call_id=d['call_id'],tool=d['tool'],params=d['params'],result=actual))
+     payload=json.loads(t['llm_calls'][-1]['response']['choices'][0]['message']['content'])
+>    assert all(f['evidence_id'] in pool.items for f in payload['facts'])
+E    assert False
+E     +  where False = all(<generator object prepared.<locals>.<genexpr> at 0x10b2a3030>)
+
+docs/verification/g3-03-live-repair/test_replay.py:36: AssertionError
+____________________ test_original_selection_replay[T02-1] _____________________
+
+service = <kbqa.service.Service object at 0x10b2c6b40>, qid = 'T02-1'
+
+    @pytest.mark.parametrize('qid',['C07','T02-1','H04','T03-2'])
+    def test_original_selection_replay(service,qid):
+>    plan,ev,pool,payload=prepared(service,qid);trace=Trace('free-replay-'+qid,plan.question)
+                          ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-03-live-repair/test_replay.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+service = <kbqa.service.Service object at 0x10b2c6b40>, qid = 'T02-1'
+
+    def prepared(service,qid):
+     saved=json.loads((HERE/'original'/f'{qid}.json').read_text());t=saved['trace']['response'];raw=next(s['detail'] for s in t['steps'] if s['step']=='plan')
+     plan=service.planner.plan(raw['standalone_question'])
+     for key in ['question','search_query','intent','kind','year','store_id','product_id','metric','needs_data','needs_docs']:
+      setattr(plan,key,raw[key])
+     plan.standalone=raw['standalone_question'];plan.window=tuple(raw['window']) if raw['window'] else None;plan.compare_window=tuple(raw['compare_window']) if raw['compare_window'] else None;plan.as_of=date.fromisoformat(raw['as_of'])
+     evidence=[];pool=DocumentEvidence(service.facts)
+     for step in t['steps']:
+      if step['step']!='tool':continue
+      d=step['detail'];actual=service.run_tool(d['tool'],d['params'],plan=plan) if d['tool']=='search_kb' else service.run_tool(d['tool'],d['params'])
+      assert 'error' not in actual
+      if d['tool']=='search_kb':pool.add(actual['evidence'])
+      else:
+       assert actual==d['result'],(qid,d['tool'])
+       evidence.append(dict(_call_id=d['call_id'],tool=d['tool'],params=d['params'],result=actual))
+     payload=json.loads(t['llm_calls'][-1]['response']['choices'][0]['message']['content'])
+>    assert all(f['evidence_id'] in pool.items for f in payload['facts'])
+E    assert False
+E     +  where False = all(<generator object prepared.<locals>.<genexpr> at 0x10afa41e0>)
+
+docs/verification/g3-03-live-repair/test_replay.py:36: AssertionError
+_____________________ test_original_selection_replay[H04] ______________________
+
+service = <kbqa.service.Service object at 0x10b2c6b40>, qid = 'H04'
+
+    @pytest.mark.parametrize('qid',['C07','T02-1','H04','T03-2'])
+    def test_original_selection_replay(service,qid):
+>    plan,ev,pool,payload=prepared(service,qid);trace=Trace('free-replay-'+qid,plan.question)
+                          ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-03-live-repair/test_replay.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+service = <kbqa.service.Service object at 0x10b2c6b40>, qid = 'H04'
+
+    def prepared(service,qid):
+     saved=json.loads((HERE/'original'/f'{qid}.json').read_text());t=saved['trace']['response'];raw=next(s['detail'] for s in t['steps'] if s['step']=='plan')
+     plan=service.planner.plan(raw['standalone_question'])
+     for key in ['question','search_query','intent','kind','year','store_id','product_id','metric','needs_data','needs_docs']:
+      setattr(plan,key,raw[key])
+     plan.standalone=raw['standalone_question'];plan.window=tuple(raw['window']) if raw['window'] else None;plan.compare_window=tuple(raw['compare_window']) if raw['compare_window'] else None;plan.as_of=date.fromisoformat(raw['as_of'])
+     evidence=[];pool=DocumentEvidence(service.facts)
+     for step in t['steps']:
+      if step['step']!='tool':continue
+      d=step['detail'];actual=service.run_tool(d['tool'],d['params'],plan=plan) if d['tool']=='search_kb' else service.run_tool(d['tool'],d['params'])
+      assert 'error' not in actual
+      if d['tool']=='search_kb':pool.add(actual['evidence'])
+      else:
+       assert actual==d['result'],(qid,d['tool'])
+       evidence.append(dict(_call_id=d['call_id'],tool=d['tool'],params=d['params'],result=actual))
+     payload=json.loads(t['llm_calls'][-1]['response']['choices'][0]['message']['content'])
+>    assert all(f['evidence_id'] in pool.items for f in payload['facts'])
+E    assert False
+E     +  where False = all(<generator object prepared.<locals>.<genexpr> at 0x10c52b850>)
+
+docs/verification/g3-03-live-repair/test_replay.py:36: AssertionError
+____________________ test_original_selection_replay[T03-2] _____________________
+
+service = <kbqa.service.Service object at 0x10b2c6b40>, qid = 'T03-2'
+
+    @pytest.mark.parametrize('qid',['C07','T02-1','H04','T03-2'])
+    def test_original_selection_replay(service,qid):
+>    plan,ev,pool,payload=prepared(service,qid);trace=Trace('free-replay-'+qid,plan.question)
+                          ^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-03-live-repair/test_replay.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+service = <kbqa.service.Service object at 0x10b2c6b40>, qid = 'T03-2'
+
+    def prepared(service,qid):
+     saved=json.loads((HERE/'original'/f'{qid}.json').read_text());t=saved['trace']['response'];raw=next(s['detail'] for s in t['steps'] if s['step']=='plan')
+     plan=service.planner.plan(raw['standalone_question'])
+     for key in ['question','search_query','intent','kind','year','store_id','product_id','metric','needs_data','needs_docs']:
+      setattr(plan,key,raw[key])
+     plan.standalone=raw['standalone_question'];plan.window=tuple(raw['window']) if raw['window'] else None;plan.compare_window=tuple(raw['compare_window']) if raw['compare_window'] else None;plan.as_of=date.fromisoformat(raw['as_of'])
+     evidence=[];pool=DocumentEvidence(service.facts)
+     for step in t['steps']:
+      if step['step']!='tool':continue
+      d=step['detail'];actual=service.run_tool(d['tool'],d['params'],plan=plan) if d['tool']=='search_kb' else service.run_tool(d['tool'],d['params'])
+      assert 'error' not in actual
+      if d['tool']=='search_kb':pool.add(actual['evidence'])
+      else:
+       assert actual==d['result'],(qid,d['tool'])
+       evidence.append(dict(_call_id=d['call_id'],tool=d['tool'],params=d['params'],result=actual))
+     payload=json.loads(t['llm_calls'][-1]['response']['choices'][0]['message']['content'])
+>    assert all(f['evidence_id'] in pool.items for f in payload['facts'])
+E    assert False
+E     +  where False = all(<generator object prepared.<locals>.<genexpr> at 0x10c7ebc60>)
+
+docs/verification/g3-03-live-repair/test_replay.py:36: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-03-live-repair/test_replay.py::test_original_selection_replay[C07]
+FAILED docs/verification/g3-03-live-repair/test_replay.py::test_original_selection_replay[T02-1]
+FAILED docs/verification/g3-03-live-repair/test_replay.py::test_original_selection_replay[H04]
+FAILED docs/verification/g3-03-live-repair/test_replay.py::test_original_selection_replay[T03-2]
+4 failed in 0.37s
