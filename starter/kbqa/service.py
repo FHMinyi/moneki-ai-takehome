@@ -23,6 +23,7 @@ from .sessions import SessionStore
 from .toolspec import TOOL_NAMES, TOOLS
 from .tools import DataTools
 from .trace import Trace, TraceStore
+from .redaction import redact
 
 _ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 _INT_PARAMS = {"top_k", "limit"}
@@ -160,6 +161,7 @@ class Service:
             trace_id=self.traces.new_id(self.settings.today.isoformat()),
             question=question or "",
             session_id=session_id,
+            secrets=(self.settings.llm_api_key,),
         )
         answer = self._answer(trace, session_id, question or "")
         payload = {
@@ -171,7 +173,7 @@ class Service:
         }
         trace.step("response", {"answer_type": answer.answer_type, "notes": answer.notes})
         self.traces.save(trace)
-        return payload
+        return redact(payload, (self.settings.llm_api_key,))
 
     def _answer(self, trace: Trace, session_id: Optional[str], question: str) -> Answer:
         try:
@@ -184,18 +186,21 @@ class Service:
             answer = self._run_engine(plan, trace, history)
             self.sessions.append(
                 session_id,
-                {
+                redact({
                     "question": question,
                     "standalone": plan.standalone,
                     "slots": plan.slots,
                     "answer": answer.answer,
                     "answer_type": answer.answer_type,
-                },
+                }, (self.settings.llm_api_key,)),
             )
             return answer
         except Exception as exc:  # noqa: BLE001 - preserve the chat response contract
             trace.error("answer", exc)
-            logging.getLogger(__name__).exception("chat failed trace_id=%s", trace.trace_id)
+            # Never attach raw exc_info: logging formatters would recreate the
+            # unsanitized cause/context chain after our diagnostic scrub.
+            logging.getLogger(__name__).error("chat failed trace_id=%s\n%s",
+                redact(trace.trace_id, trace.secrets), trace.errors[-1]["traceback"])
             return Answer(
                 answer="抱歉，我暂时无法回答。",
                 answer_type="refusal",

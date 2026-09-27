@@ -282,3 +282,11 @@ G2-05在新环境替换KB时发现：KB970表格别名翡翠饭/Ivory Bowl，KB9
 ### G3-01 自审：模型澄清类型
 
 自审发现无工具时模型发出的澄清JSON会被当作自由文字refusal展示。新增test_model_can_return_structured_clarification_without_data先失败（clarify-red.txt），再支持严格的clarify/refusal终结结构；不携带未经查询的数字，也不新增追问继承。最终20项通过。真实两样本的调用ID修复与业务数值在354f6d4已验证；这次增加缺项澄清格式，不声称重新验证真实模型的澄清语义。
+
+## G3-01 PR30 P1：上游回显凭证经异常链泄漏
+
+主会话固定fb214b6独立发现：HTTP200非JSON响应在LLMClient._note中脱敏，但bad_json异常详情仍使用原始response.text；Service把异常、traceback和notes写入trace。另查出timeout/transport、未知finish_reason和兜底logger.exception也可能保存原始异常链。最初只验证llm_calls及401正文，未覆盖最终chat/trace/log，是此前“无泄漏”结论的验证缺口。
+
+红灯提交def4475：test_credentials.py用假Key和真实本地HTTP回显非JSON响应，完整经过/api/chat与/api/trace；8项为6失败2通过。修复统一redaction函数；LLMClient在异常边界创建安全LLMError，并在except块外抛出以移除原始cause/context；先脱敏再截断预览。Trace在各记录入口及最终序列化脱敏，Service的session/API输出也脱敏；兜底日志记录安全traceback，不再把raw exc_info交给日志格式化器。保留错误类型、HTTP状态码、非敏感响应内容、完整正常请求/响应及耗时。
+
+最终另补直接诊断写入者绕过本地清洗时的序列化防线、200字预览截断中途切开Key的检查。10项凭证检查+20项本票+53原后端共83通过（credential-regressions.txt）；正常超4000字思考与完整请求/响应/工具字段仍逐字匹配。均为假Key/受控本地调用，未追加付费，累计仍3chat/6API/0.047028元高峰保守估算。

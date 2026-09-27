@@ -78,3 +78,17 @@ verify_http/keepalive需要先按controlled_model.py启动9032并用该地址启
 没有在修改前运行完整第三关起点：只记录2839c67业务字节上的新增9F/1P，其他完整检查是修改后运行。G2历史分数只作参照，不能作为本票前置重跑证据。
 
 最终1608043上重新运行53后端、199真实RAG、55题无Key，见backend-final.txt/rag-final.txt/no-key-final；此前输出继续保留。新调用ID修复不改变mock路径，仍以实际重跑建立最终固定提交对应。
+
+## PR30 P1复审修正
+
+主会话固定fb214b6拒绝验收：上游HTTP200非JSON正文回显凭证时，原llm_calls已脱敏，但bad_json异常详情/异常链/最终trace仍泄漏；原测试未覆盖这一边界，前文初次PASS结论因此不充分。新增红灯提交def4475为6F/2P，保留credential-red.txt。
+
+修复覆盖统一凭证清洗、LLM异常详情及cause/context、最终Trace序列化、session/API输出与兜底日志；先清洗再截断，保留错误类型/状态码/非敏感详情与正常完整trace。验证命令：
+
+```bash
+starter/.venv/bin/python -m pytest docs/verification/g3-01/test_credentials.py docs/verification/g3-01/test_data_chat.py starter/tests -q
+```
+
+10项凭证回归+20项查数/协议+53原后端，共83通过。HTTP200坏JSON用真实本地HTTP假上游回显假Key，FastAPI TestClient经过真实chat/trace路由；相邻timeout/transport/unexpected/finish/HTTP错误、异常链、最终输出及捕获日志也检查。正常完整请求/响应和长诊断保留。没有真实模型复验和新增费用。
+
+非阻塞UX限制：展开证据目前直接展示JSON；消息变化时聊天列表会滚到底部，查看较早历史的体验仍可改进。按主会话要求留待后续证据展示工作，本次不扩大修复。

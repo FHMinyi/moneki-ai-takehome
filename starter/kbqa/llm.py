@@ -14,6 +14,7 @@ from dataclasses import dataclass
 from typing import Any, Optional
 
 import httpx
+from .redaction import redact
 
 #: 契约 §7.3：思考也占输出额度，`max_tokens` 不设或不小于 2048。
 MAX_TOKENS = 4096
@@ -77,6 +78,31 @@ class LLMClient:
         timeout: Optional[float] = None,
         on_call: Optional[Any] = None,
     ) -> LLMReply:
+        """No provider exception or credential-bearing chain crosses this boundary."""
+        started = time.perf_counter()
+        try:
+            return self._chat(messages, tools, timeout, on_call)
+        except LLMError as exc:
+            failure = LLMError(self._redact(exc.kind), self._redact(exc.detail), exc.status)
+        except Exception as exc:
+            detail = self._redact('%s: %s' % (type(exc).__name__, exc))
+            self._note(on_call, {'endpoint': self.endpoint, 'request': self._body(messages, tools),
+                               'error': 'client_error', 'detail': detail}, started)
+            failure = LLMError('client_error', detail)
+        # Raise outside the except suite: the original exception is not retained
+        # as __context__ or __cause__, including when callers log this exception.
+        raise failure from None
+
+    def _redact(self, value):
+        return redact(value, (self.api_key,))
+
+    def _chat(
+        self,
+        messages: list[dict],
+        tools: Optional[list[dict]] = None,
+        timeout: Optional[float] = None,
+        on_call: Optional[Any] = None,
+    ) -> LLMReply:
         started = time.perf_counter()
         body = self._body(messages, tools)
         record: dict[str, Any] = {
@@ -107,7 +133,7 @@ class LLMClient:
             record["response"] = None
         if response.status_code != 200:
             # D13：400/401/402/422/429/500/503 都在这里变成结构化错误。
-            detail = _error_detail(response).replace(self.api_key, "[REDACTED]") if self.api_key else _error_detail(response)
+            detail = _error_detail(response, self._redact)
             record.update(error="http_%d" % response.status_code, detail=detail)
             self._note(on_call, record, started)
             raise LLMError("http_error", detail, status=response.status_code)
@@ -116,9 +142,10 @@ class LLMClient:
         try:
             payload = json.loads(response.text.strip() or "{}")
         except ValueError as exc:
-            record.update(error="bad_json", detail=response.text[:200])
+            detail = self._redact(response.text)[:200]
+            record.update(error="bad_json", detail=detail)
             self._note(on_call, record, started)
-            raise LLMError("bad_json", "模型返回的不是合法 JSON：%s" % response.text[:200]) from exc
+            raise LLMError("bad_json", "模型返回的不是合法 JSON：%s" % detail) from exc
 
         if not isinstance(payload, dict) or not isinstance(payload.get("choices"), list):
             record.update(error="bad_response", detail="响应必须含 choices 数组")
@@ -207,10 +234,7 @@ class LLMClient:
         if on_call is not None:
             record["took_ms"] = round((time.perf_counter() - started) * 1000, 1)
             # Providers can echo credentials in error bodies; never retain those.
-            encoded = json.dumps(record, ensure_ascii=False)
-            if self.api_key:
-                encoded = encoded.replace(self.api_key, "[REDACTED]")
-            on_call(json.loads(encoded))
+            on_call(self._redact(record))
 
 
 def _preview(text: str, limit: int = 4000) -> str:
@@ -218,11 +242,12 @@ def _preview(text: str, limit: int = 4000) -> str:
     return text if len(text) <= limit else text[:limit] + "…（截断，共 %d 字）" % len(text)
 
 
-def _error_detail(response: httpx.Response) -> str:
+def _error_detail(response: httpx.Response, scrub=lambda value: value) -> str:
     try:
         payload = response.json()
     except ValueError:
-        return "HTTP %d：%s" % (response.status_code, response.text[:200])
+        return "HTTP %d：%s" % (response.status_code, scrub(response.text)[:200])
+    payload = scrub(payload)
     error = payload.get("error") if isinstance(payload, dict) else None
     if isinstance(error, dict):
         return "HTTP %d：%s（code=%s）" % (

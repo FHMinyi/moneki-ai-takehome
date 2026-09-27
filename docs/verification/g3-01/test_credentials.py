@@ -113,3 +113,29 @@ def test_final_trace_boundary_and_normal_full_diagnostics(app_client,monkeypatch
     assert trace['llm_calls'][0]['raw_reasoning']==long_reasoning
     assert trace['llm_calls'][0]['request']['tools']
     assert trace['llm_calls'][0]['request']['messages'][-1]['content']=='S02六月牛肉poke销量是多少？'
+
+
+def test_final_output_boundary_covers_direct_diagnostic_writers(app_client,monkeypatch):
+    from kbqa.schemas import Answer
+    client,service=app_client
+    def diagnostic_writer(plan,trace,history):
+        # Independently exercise final serialization, even if a producer bypasses
+        # step()/llm()/error() and forgets its own local redaction.
+        trace.steps.append({'step':'untrusted','detail':SYNTHETIC_KEY})
+        trace.errors.append({'message':SYNTHETIC_KEY,'traceback':'cause '+SYNTHETIC_KEY})
+        trace.llm_calls.append({'request':{'untrusted':SYNTHETIC_KEY}})
+        return Answer('拒答 '+SYNTHETIC_KEY,'refusal',notes=['note '+SYNTHETIC_KEY])
+    monkeypatch.setattr(service,'_run_engine',diagnostic_writer)
+    answer,trace=chat_and_trace(client)
+    assert SYNTHETIC_KEY not in json.dumps({'answer':answer,'trace':trace})
+    assert SYNTHETIC_KEY not in json.dumps(service.sessions.history('credential-check'))
+    assert '[REDACTED]' in answer['answer']
+
+
+def test_redaction_precedes_preview_truncation(app_client,monkeypatch):
+    client,_=app_client
+    monkeypatch.setattr(LLMClient,'_post',lambda *args:httpx.Response(200,text='x'*190+SYNTHETIC_KEY+' invalid JSON'))
+    answer,trace=chat_and_trace(client)
+    # A 200-character preview must not retain even the first ten key characters.
+    assert SYNTHETIC_KEY[:10] not in json.dumps(trace)
+    assert answer['answer_type']=='refusal'

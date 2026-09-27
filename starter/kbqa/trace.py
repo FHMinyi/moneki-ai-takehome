@@ -9,6 +9,7 @@ from collections import OrderedDict
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any, Optional
+from .redaction import redact
 
 
 @dataclass
@@ -16,6 +17,7 @@ class Trace:
     trace_id: str
     question: str
     session_id: Optional[str] = None
+    secrets: tuple[str, ...] = field(default=(), repr=False)
     started_at: str = field(default_factory=lambda: datetime.now().isoformat(timespec="milliseconds"))
     steps: list[dict] = field(default_factory=list)
     errors: list[dict] = field(default_factory=list)
@@ -29,7 +31,7 @@ class Trace:
                 "step": name,
                 "at_ms": round((now - self._t0) * 1000, 1),
                 "took_ms": round((now - started) * 1000, 1) if started else None,
-                "detail": payload,
+                "detail": redact(payload, self.secrets),
             }
         )
 
@@ -39,16 +41,16 @@ class Trace:
             {
                 "where": where,
                 "type": type(exc).__name__,
-                "message": str(exc),
-                "traceback": traceback.format_exc(limit=8),
+                "message": redact(str(exc), self.secrets),
+                "traceback": redact(traceback.format_exc(limit=8), self.secrets),
             }
         )
 
     def llm(self, payload: dict) -> None:
-        self.llm_calls.append(payload)
+        self.llm_calls.append(redact(payload, self.secrets))
 
     def as_dict(self) -> dict:
-        return {
+        return redact({
             "trace_id": self.trace_id,
             "session_id": self.session_id,
             "question": self.question,
@@ -57,7 +59,7 @@ class Trace:
             "steps": self.steps,
             "llm_calls": self.llm_calls,
             "errors": self.errors,
-        }
+        }, self.secrets)
 
 
 class TraceStore:
