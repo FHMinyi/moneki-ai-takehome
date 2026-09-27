@@ -20,6 +20,8 @@
 .chat-evidence pre { background: #f5f8f4; padding: 10px; border-radius: 6px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 11px; max-height: 300px; overflow: auto; }
 .chat-answer blockquote { margin: 12px 0 0; border-left: 3px solid #b9d5b5; padding-left: 12px; font-size: 12px; }
 .chat-composer { padding: 16px 24px; border-top: 1px solid #dce6d8; background: white; }
+.trend-reference { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: 8px 0; padding: 10px 12px; border: 1px solid #b9d5b5; border-radius: 8px; background: #f1f8ef; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.trend-reference span { color: #4e7057; }
 .chat-composer > div:last-child { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 12px; }
 .chat-waiting { color: #246b52; font-size: 13px; }
 @media (max-width: 600px) { .chat-history { padding: 18px; } .chat-composer { padding: 14px 18px; } .chat-launcher { right: 16px; bottom: 16px; } }

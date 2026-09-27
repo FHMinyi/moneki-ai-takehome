@@ -3,6 +3,8 @@
 .daily-heading span, .daily-help { color: #627468; font-size: 12px; line-height: 1.55; }
 .daily-card { min-width: 0; border-color: #e1e9e1; }
 .daily-card .ant-card-body { min-width: 0; padding: 22px 24px; }
+.daily-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.daily-actions span { color: #627468; font-size: 12px; }
 .daily-selected { display: flex; align-items: baseline; gap: 7px 18px; flex-wrap: wrap; font-variant-numeric: tabular-nums; }
 .daily-selected span { color: #526e5c; font-size: 13px; }
 .daily-selected strong { color: #1f6a4b; font-size: 27px; line-height: 1.25; }

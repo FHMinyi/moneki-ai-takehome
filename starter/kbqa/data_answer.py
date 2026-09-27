@@ -28,7 +28,7 @@ def render_data(content: str, evidence: list[dict], catalog) -> Answer:
                 raise ValueError('引用的调用不存在或未成功')
             params, result, tool = item['params'], item['result'], item['tool']
             def scope(value):
-                store = catalog.store_name(value['store_id']) + ' ' + value['store_id'] if value.get('store_id') else ''
+                store = catalog.store_name(value['store_id']) + ' ' + value['store_id'] if value.get('store_id') else '全部门店'
                 product = catalog.product_name(value['product_id']) + ' ' + value['product_id'] if value.get('product_id') else ''
                 return R.scope_label((value['start'], value['end']), store, product)
             if tool == 'query_metrics':
