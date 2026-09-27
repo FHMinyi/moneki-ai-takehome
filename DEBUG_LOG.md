@@ -331,3 +331,12 @@ DeepSeek官方Create Chat Completion文档确认none语义（tool-choice-source.
 
 
 最终协议真实复验chat7（777792a仅runner变更，业务=2dbd863）：模型在第4次主动返回refusal JSON，原文表示未找到身份证要求并无法确认，但附v2/KB-013等说明。旧refusal数字校验触发data_binding，用户最终收到工程失败拒答。所有4次实际request为auto，未进入第7次none阶段，不能称none的真实验收成功；也不能仅凭原始内容语义倾向改善而忽略交付失败。当前PR须处理/决定此拒答协议兼容性，未擅自放宽数字约束或继续付费。最终7chat/25实际API+1本地拒发、输入524805/output4965，保守高峰估算1.089330元，无悬挂预留，非账单；此前失败与授权链完整保留。
+
+
+## PR31 R1/R2独立审查（固定94e21e3）
+
+主会话与独立spec审查证明，本票此前“主体/属性保护通过”的结论覆盖不足：开放问句requested_claim=None，而rank(require_value=False)只需主题重叠，所以外卖退款可误选堂食条款/储值30天、身份证件可误选员工工牌、迟到申诉时限可误选迟到15分钟记次。四个完整LiveEngine→实际search_kb复现已保存review-r1-r2，R1设计需用户确认，不继续加mock语言词表或冒称修复。
+
+同次发现refusal通道双向错误：无检索的无数字政策断言可以直接透出；chat7真实依据不足文字包含版本/文档编号却被data_binding误拒。九项红灯保存red.txt/原测试red-test-source.py，红灯提交d44b4e0。R2修复引入严格{answer_type:refusal,reason:insufficient_evidence}，由代码固定渲染“本次依据不足，无法确定”，没有自由政策陈述字段。旧refusal格式只兼容其状态，整段自由说明均不渲染，绝非只删数字；模型原文留trace，若要展示政策概括必须走doc证据绑定。tool error单列tool_failure，HTTP/模型异常仍保留技术失败，不能改写成资料不存在。
+
+10项R2回归通过，含chat7保存的全部4轮真实响应经本地HTTP回放并重跑真实检索及Service/chat；回放后安全依据不足且没有技术错误，原模型政策说明未传给用户。这是免费回放，不是新的真实模型调用，不证明未来模型选择。83原查数/凭证/后端保持。小修verify_no_key.py传播子进程失败退出码。R1仍有四项红灯，等待设计决定，不能用R2通过推进整票验收。

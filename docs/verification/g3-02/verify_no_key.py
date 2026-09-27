@@ -16,3 +16,4 @@ with (work/'server.log').open('w') as log:
   print(result.stdout,result.stderr)
   (ROOT/'docs/verification/g3-02/no-key-runtime.json').write_text(json.dumps({'work':str(work),'command':cmd,'commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'exit_code':result.returncode,'service_pid':p.pid},indent=2))
  finally:p.terminate();p.wait(timeout=10)
+raise SystemExit(result.returncode)

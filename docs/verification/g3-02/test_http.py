@@ -202,6 +202,6 @@ def test_final_opportunity_disables_tools_in_actual_http(tmp_path,outcome):
         if outcome=='supported':assert a['answer_type']=='doc' and '24' in a['answer']
         else:
             assert a['answer_type']=='refusal' and not a['citations']
-            if outcome=='insufficient':assert a['answer']=='目前检索证据不足以确认所问要求。' and not t['errors']
+            if outcome=='insufficient':assert '无法确定' in a['answer'] and not t['errors'] and any(s['step']=='insufficient_evidence' for s in t['steps'])
             elif outcome=='violation':assert any(s['step']=='finalization_tools_rejected' for s in t['steps'])
             else:assert any('length' in e['message'] for e in t['errors'])

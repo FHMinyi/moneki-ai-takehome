@@ -14,6 +14,13 @@ from .schemas import Answer
 from .sanitize import is_instruction_like
 
 
+def insufficient_evidence(trace, source="model_state"):
+    """A lack-of-support state, never a model-authored policy conclusion."""
+    trace.step("insufficient_evidence", {"source": source, "policy_claims_rendered": False})
+    return Answer("本次没有足够可核对的依据回答这个问题，无法确定。请补充相关资料或明确需要核对的范围。",
+                  "refusal")
+
+
 class DocumentEvidence:
     def __init__(self, facts, result=None, hits=None):
         self.facts = facts

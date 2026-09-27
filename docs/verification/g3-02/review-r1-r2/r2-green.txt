@@ -1,0 +1,96 @@
+FFFF.....                                                                [100%]
+=================================== FAILURES ===================================
+_ test_r1_open_subject_attribute[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-013-\u5802\u98df\u8ba2\u5355\u987b\u5f53\u573a] _
+
+service = <kbqa.service.Service object at 0x1078956d0>, q = '外卖订单多久内可以退款？'
+doc = 'KB-013', needle = '堂食订单须当场'
+
+    @pytest.mark.parametrize('q,doc,needle',[
+     ('外卖订单多久内可以退款？','KB-013','堂食订单须当场'),
+     ('办理外卖退款应当出示什么身份证件？','KB-014','工牌'),
+     ('员工迟到申诉多久能处理完？','KB-016','15'),
+     ('外卖订单多久内可以退款？','KB-011','30'),
+    ])
+    def test_r1_open_subject_attribute(service,q,doc,needle):
+     try:a,t=execute(service,q,pick(doc,needle))
+     except LLMError:return
+>    assert a.answer_type=='refusal' and not a.citations,a
+E    AssertionError: Answer(answer='KB-013《退款政策 v2》：1. 堂食订单须当场提出，顾客离店后不再受理。', answer_type='doc', citations=[{'doc_id': 'KB-013', 'quote': '...6-06-15', 'status': '现行', 'stores': [], 'stores_explicit': False, 'superseded_by': None}}], data_evidence=[], notes=[])
+E    assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_review.py:49: AssertionError
+_ test_r1_open_subject_attribute[\u529e\u7406\u5916\u5356\u9000\u6b3e\u5e94\u5f53\u51fa\u793a\u4ec0\u4e48\u8eab\u4efd\u8bc1\u4ef6\uff1f-KB-014-\u5de5\u724c] _
+
+service = <kbqa.service.Service object at 0x1078956d0>, q = '办理外卖退款应当出示什么身份证件？'
+doc = 'KB-014', needle = '工牌'
+
+    @pytest.mark.parametrize('q,doc,needle',[
+     ('外卖订单多久内可以退款？','KB-013','堂食订单须当场'),
+     ('办理外卖退款应当出示什么身份证件？','KB-014','工牌'),
+     ('员工迟到申诉多久能处理完？','KB-016','15'),
+     ('外卖订单多久内可以退款？','KB-011','30'),
+    ])
+    def test_r1_open_subject_attribute(service,q,doc,needle):
+     try:a,t=execute(service,q,pick(doc,needle))
+     except LLMError:return
+>    assert a.answer_type=='refusal' and not a.citations,a
+E    AssertionError: Answer(answer='KB-014《员工餐与员工折扣制度》：1. 员工可以在任意一家门店使用员工折扣，出示本店工牌即可，由接待门店按本制度执行。', answer_type='doc', citations=[{'doc_id'...5-07-01', 'status': '现行', 'stores': [], 'stores_explicit': False, 'superseded_by': None}}], data_evidence=[], notes=[])
+E    assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_review.py:49: AssertionError
+_ test_r1_open_subject_attribute[\u5458\u5de5\u8fdf\u5230\u7533\u8bc9\u591a\u4e45\u80fd\u5904\u7406\u5b8c\uff1f-KB-016-15] _
+
+service = <kbqa.service.Service object at 0x1078956d0>, q = '员工迟到申诉多久能处理完？'
+doc = 'KB-016', needle = '15'
+
+    @pytest.mark.parametrize('q,doc,needle',[
+     ('外卖订单多久内可以退款？','KB-013','堂食订单须当场'),
+     ('办理外卖退款应当出示什么身份证件？','KB-014','工牌'),
+     ('员工迟到申诉多久能处理完？','KB-016','15'),
+     ('外卖订单多久内可以退款？','KB-011','30'),
+    ])
+    def test_r1_open_subject_attribute(service,q,doc,needle):
+     try:a,t=execute(service,q,pick(doc,needle))
+     except LLMError:return
+>    assert a.answer_type=='refusal' and not a.citations,a
+E    AssertionError: Answer(answer='KB-016《排班与考勤制度》：2. **迟到 15 分钟以上记 1 次**，15 分钟以内为轻微迟到，当月累计 3 次轻微迟到折算为 1 次。', answer_type='doc', citations...5-11-01', 'status': '现行', 'stores': [], 'stores_explicit': False, 'superseded_by': None}}], data_evidence=[], notes=[])
+E    assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_review.py:49: AssertionError
+_ test_r1_open_subject_attribute[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-011-30] _
+
+service = <kbqa.service.Service object at 0x1078956d0>, q = '外卖订单多久内可以退款？'
+doc = 'KB-011', needle = '30'
+
+    @pytest.mark.parametrize('q,doc,needle',[
+     ('外卖订单多久内可以退款？','KB-013','堂食订单须当场'),
+     ('办理外卖退款应当出示什么身份证件？','KB-014','工牌'),
+     ('员工迟到申诉多久能处理完？','KB-016','15'),
+     ('外卖订单多久内可以退款？','KB-011','30'),
+    ])
+    def test_r1_open_subject_attribute(service,q,doc,needle):
+     try:a,t=execute(service,q,pick(doc,needle))
+     except LLMError:return
+>    assert a.answer_type=='refusal' and not a.citations,a
+E    AssertionError: Answer(answer='KB-011《会员储值政策 v2》：1. 未消费的储值本金余额，自最后一次充值之日起 30 天内可无理由申请退回，原路退到原支付渠道。', answer_type='doc', citations=[{'d...6-07-01', 'status': '现行', 'stores': [], 'stores_explicit': False, 'superseded_by': None}}], data_evidence=[], notes=[])
+E    assert ('doc' == 'refusal'
+E      
+E      - refusal
+E      + doc)
+
+docs/verification/g3-02/review-r1-r2/test_review.py:49: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-02/review-r1-r2/test_review.py::test_r1_open_subject_attribute[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-013-\u5802\u98df\u8ba2\u5355\u987b\u5f53\u573a]
+FAILED docs/verification/g3-02/review-r1-r2/test_review.py::test_r1_open_subject_attribute[\u529e\u7406\u5916\u5356\u9000\u6b3e\u5e94\u5f53\u51fa\u793a\u4ec0\u4e48\u8eab\u4efd\u8bc1\u4ef6\uff1f-KB-014-\u5de5\u724c]
+FAILED docs/verification/g3-02/review-r1-r2/test_review.py::test_r1_open_subject_attribute[\u5458\u5de5\u8fdf\u5230\u7533\u8bc9\u591a\u4e45\u80fd\u5904\u7406\u5b8c\uff1f-KB-016-15]
+FAILED docs/verification/g3-02/review-r1-r2/test_review.py::test_r1_open_subject_attribute[\u5916\u5356\u8ba2\u5355\u591a\u4e45\u5185\u53ef\u4ee5\u9000\u6b3e\uff1f-KB-011-30]
+4 failed, 5 passed in 0.37s

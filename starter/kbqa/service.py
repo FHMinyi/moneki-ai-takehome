@@ -268,5 +268,6 @@ def _reason_cn(exc: LLMError) -> str:
         "budget": "整体耗时接近时限",
         "transport": "网络异常",
         "tool_loop": "工具调用没有收敛",
+        "tool_failure": "工具执行失败",
     }
     return mapping.get(exc.kind, exc.kind)
