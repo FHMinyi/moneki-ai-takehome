@@ -1,0 +1,76 @@
+{
+  "request": {
+    "session_id": "invalid-ref",
+    "question": "这段时间呢？",
+    "context": {
+      "type": "daily_trend",
+      "start": "2026-06-08",
+      "end": "2026-06-14",
+      "store_id": "S99",
+      "metric": "net_revenue"
+    }
+  },
+  "response": {
+    "answer": "趋势引用门店不存在。",
+    "answer_type": "refusal",
+    "citations": [],
+    "data_evidence": [],
+    "trace_id": "t-20260901-0016"
+  },
+  "trace": {
+    "trace_id": "t-20260901-0016",
+    "session_id": "invalid-ref",
+    "question": "这段时间呢？",
+    "started_at": "2026-09-27T16:49:09.614",
+    "total_ms": 0.0,
+    "steps": [
+      {
+        "step": "request",
+        "at_ms": 0.0,
+        "took_ms": null,
+        "detail": {
+          "session_id": "invalid-ref",
+          "question": "这段时间呢？",
+          "context": {
+            "type": "daily_trend",
+            "start": "2026-06-08",
+            "end": "2026-06-14",
+            "store_id": "S99",
+            "metric": "net_revenue"
+          }
+        }
+      },
+      {
+        "step": "context_validation",
+        "at_ms": 0.0,
+        "took_ms": null,
+        "detail": {
+          "valid": false,
+          "reason": "趋势引用门店不存在。",
+          "reference": null
+        }
+      },
+      {
+        "step": "response",
+        "at_ms": 0.0,
+        "took_ms": null,
+        "detail": {
+          "answer_type": "refusal",
+          "notes": []
+        }
+      }
+    ],
+    "llm_calls": [],
+    "errors": []
+  },
+  "elapsed": 0.0009731670143082738,
+  "resources": {
+    "pid": 83511,
+    "harness_pid": 83510,
+    "api_port": 55138,
+    "model_port": 55137,
+    "base_url": "http://127.0.0.1:55138",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome",
+    "var": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-335/g303-cross0/var"
+  }
+}

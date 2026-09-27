@@ -32,9 +32,9 @@ def port():
  with socket.socket() as s:s.bind(('127.0.0.1',0));return s.getsockname()[1]
 
 @contextmanager
-def runtime(path,data_dir=None,kb_dir=None):
+def runtime(path,data_dir=None,kb_dir=None,handler=Controlled):
  path=Path(path);path.mkdir(parents=True,exist_ok=True)
- model=ThreadingHTTPServer(('127.0.0.1',0),Controlled);threading.Thread(target=model.serve_forever,daemon=True).start()
+ model=ThreadingHTTPServer(('127.0.0.1',0),handler);threading.Thread(target=model.serve_forever,daemon=True).start()
  api_port=port();base=f'http://127.0.0.1:{api_port}'
  env={**os.environ,'VAR_DIR':str(path/'var'),'LLM_BASE_URL':f'http://127.0.0.1:{model.server_port}/controlled','LLM_API_KEY':'controlled-not-a-secret','LLM_MODEL':'controlled','PYTHONPATH':str(ROOT/'starter')}
  if data_dir:env['DATA_DIR']=str(data_dir)

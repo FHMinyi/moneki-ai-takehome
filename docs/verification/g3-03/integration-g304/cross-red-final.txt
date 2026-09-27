@@ -1,0 +1,40 @@
+.......FF..                                                              [100%]
+=================================== FAILURES ===================================
+_ test_trend_mixed_replaces_previous_product[\u90a3\u8fd9\u6bb5\u65f6\u95f4\u5462\uff1f] _
+
+server = ('http://127.0.0.1:55386', {'pid': 83956, 'harness_pid': 83955, 'api_port': 55386, 'model_port': 55385, ...})
+question = '那这段时间呢？'
+
+    @pytest.mark.parametrize('question',['这段时间营业额为什么异常？','那这段时间营业额为什么异常？','那这段时间呢？'])
+    def test_trend_mixed_replaces_previous_product(server,question):
+     a,_,_=ask(server,'reference'+question,QUESTIONS['H02']);assert a['answer_type']=='hybrid'
+     p=dict(start=REF['start'],end=REF['end'],store_id='S03')
+     c={**CASES['H01'],'tool':'query_metrics','params':p,'query':QUESTIONS['H01']}
+     b,u,_=ask(server,'reference'+question,question,c,REF)
+>    assert b['answer_type']=='hybrid',b
+E    AssertionError: {'answer': '模型服务这次没有正常返回（混合证据或计算关系无法核验），为了不给出没有依据的数字，这个问题先不回答。可以稍后重试；失败的真实原因记在 trace 里。', 'answer_type': 'refusal', 'citations': [], 'data_evidence': [], ...}
+E    assert 'refusal' == 'hybrid'
+E      
+E      - hybrid
+E      + refusal
+
+docs/verification/g3-03/integration-g304/test_cross.py:84: AssertionError
+______________ test_invalid_trend_refusal_clears_previous_context ______________
+
+server = ('http://127.0.0.1:55386', {'pid': 83956, 'harness_pid': 83955, 'api_port': 55386, 'model_port': 55385, ...})
+
+    def test_invalid_trend_refusal_clears_previous_context(server):
+     a,_,_=ask(server,'invalid-ref',QUESTIONS['H02']);assert a['answer_type']=='hybrid'
+     b,_,_=ask(server,'invalid-ref','这段时间呢？',context={**REF,'store_id':'S99'});assert b['answer_type']=='refusal'
+     c,t,_=ask(server,'invalid-ref','那7月呢？')
+>    assert c['answer_type']=='clarify' and step(t,'session_context')['history_size']==0
+E    AssertionError: assert ('refusal' == 'clarify'
+E      
+E      - clarify
+E      + refusal)
+
+docs/verification/g3-03/integration-g304/test_cross.py:92: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-03/integration-g304/test_cross.py::test_trend_mixed_replaces_previous_product[\u90a3\u8fd9\u6bb5\u65f6\u95f4\u5462\uff1f]
+FAILED docs/verification/g3-03/integration-g304/test_cross.py::test_invalid_trend_refusal_clears_previous_context
+2 failed, 9 passed in 3.04s
