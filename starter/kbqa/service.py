@@ -189,12 +189,21 @@ class Service:
             started = time.perf_counter()
             plan = self.planner.plan(question)
             effective = None
-            if reference and plan.intent not in {"refusal", "clarify"}:
+            # Keep G3-01's live semantic route for heuristic out_of_scope:
+            # a business request can have an unrelated preamble. Only hard
+            # safety/identity failures and required clarifications stop here.
+            hard_stop = {"prohibited_request", "need_context", "need_month", "unknown_entity", "out_of_period"}
+            if reference and plan.kind not in hard_stop:
                 resolution = resolve_trend_context(plan, question, reference, self.catalog, self.settings.today)
                 trace.step("context_resolution", resolution)
                 effective = resolution["effective"]
+            elif reference and plan.kind in {"unknown_entity", "out_of_period"}:
+                plan.slots["trend_reference_rejection"] = True
             trace.step("plan", plan.as_trace(), started=started)
-            answer = self._run_engine(plan, trace, history, effective)
+            # Preserve the original three-argument execution seam for ordinary
+            # chat and diagnostic writers. Only a resolved trend adds scope.
+            answer = (self._run_engine(plan, trace, history, effective)
+                      if effective else self._run_engine(plan, trace, history))
             if not self.settings.live:
                 for item in answer.data_evidence:
                     trace.step("tool", item)
@@ -221,7 +230,9 @@ class Service:
             )
 
     def _run_engine(self, plan, trace: Trace, history: list[dict], effective: dict | None = None) -> Answer:
-        if not self.settings.live or plan.intent in {"refusal", "clarify"}:
+        if (not self.settings.live or
+                plan.kind in {"prohibited_request", "need_context", "need_month", "trend_ambiguous_time"} or
+                plan.slots.get("trend_reference_rejection")):
             started = time.perf_counter()
             answer = self.answerer.answer(plan, trace)
             trace.step("answer_mock", {"answer_type": answer.answer_type}, started=started)

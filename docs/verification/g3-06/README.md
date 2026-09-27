@@ -38,3 +38,11 @@
 2026-09-27 06:42:23 UTC 核对 [DeepSeek 官方中文价格页](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/)：`deepseek-flash` 上下文长度 1M；高峰时段缓存未命中输入 2 元/百万 tokens，输出 8 元/百万 tokens。按 1,048,576 输入与本地 `max_tokens=4096` 上限，峰时全未命中估算 `2.12992` 元/次出站，故先预留 `2.20` 元。30,000 字节仅为请求体大小限制，不能换算成 token 硬上界。完整 usage 才按峰时全未命中价格释放差额；无 usage、超时或不确定状态保留预留。当前仅授权本票总 6 元、最多两次 chat；每 chat 最多六次出站是本票更紧的测试执行限制，并非产品最大调用链承诺。`run_live_samples.py` 使用独立账本、VAR_DIR 和本地代理，真实 Key 只从共享 `.env.live` 只读加载且不写入证据。
 
 两次真实样本均在固定 `64c3291` 发起。第一题“这段时间净营业额是多少？”使用引用的 2026-06-01 至 2026-06-30 / S02，工具 `query_metrics` 查得净营业额 43655.00 元；第二题“7月 S01 的净营业额是多少？”由文字覆盖为 2026-07-01 至 2026-07-31 / S01，查得 30986.00 元。`live/independent-sql-audit.json` 证明两个实际结果与只读 SQL 一致，非仅核对 `answer_type`。账本记录 4 次出站均 HTTP 200、合计输入 12993 / 输出 603 tokens；以官方峰时全部输入未命中价格保守估算本票 0.03081 元，余下本票 5.96919 元。按主会话此前保守累计 1.136358 元相加，第三关累计估算 1.167168 元、总预算剩余 48.832832 元。**这些是 usage 估算，实际提供方账单尚未核实。**所有 `live/` 文本均检查过不含真实 Key；没有额外真实样本或余额/模型列表探测。
+
+## PR #32 独立审查后的路由修正
+
+主会话在固定 `59f6ce1` 上发现两处回归。`route-review-red.txt` 保存新增 2 项失败：`预测模型训练前，请查询S02六月牛肉poke净营业额。` 原本应由 G3-01 的 live 模型解释并调用工具，却在有/无引用时均被过宽的 `intent` 门禁直接拒绝。`credential-review-red.txt` 保存既有 G3-01 凭证诊断测试的 1 项失败：无引用调用被强制改为四参数，注入的三参数诊断写入者没有真正执行。
+
+修正后，无引用请求继续走原有三参数 `_run_engine` 和固定 `plan.kind` 安全名单；趋势的未锚定时间另以 `trend_ambiguous_time` 澄清。对有引用且被启发式误判为 `out_of_scope` 的明确查询，从原问题补足已解析的日期、门店、指标，并在 live 工具入口约束生效条件。明确未知门店、越界日期仍不得借引用变成全量查询。`test_route_regression.py` 保留红灯及 5 项绿色回归，其中一项验证带引用路径的最终凭证脱敏、两项验证未知门店和越界日期不会触发模型。
+
+免费复核：`starter/.venv/bin/python -m pytest docs/verification/g3-06/test_route_regression.py docs/verification/g3-06/test_trend_context.py docs/verification/g3-06/test_live_budget.py docs/verification/g3-01/test_data_chat.py docs/verification/g3-01/test_credentials.py starter/tests -q` → **106 passed**；`starter/.venv/bin/python docs/verification/g3-06/verify_review_routes.py` → 无引用、有引用真实 HTTP 工具链 **2/2**，均有两次受控模型往返且工具结果等于独立 metrics API；请求/响应/trace 见 `review-r1/routes.json`。在当前代码后端 `:8038` 重跑 `G306_MODEL_URL=http://127.0.0.1:9036 G306_EVIDENCE_DIR=../docs/verification/g3-06/review-r1/browser-controlled BROWSER_BASE_URL=http://127.0.0.1:8038 npm run test:browser -- tests/g3-trend-context.spec.ts --workers=1` → **7 passed**。未增加真实模型调用，也未修改旧 G3-01 证据。

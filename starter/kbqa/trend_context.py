@@ -52,9 +52,13 @@ def resolve(plan, question: str, context: dict, catalog, today: date) -> dict:
         plan.window = (context["start"], context["end"])
         source["window"] = "reference"
     else:
+        if plan.window is None and spec.window:
+            plan.window = spec.window
         source["window"] = "question"
     all_stores = any(word in question for word in ("全部门店", "所有门店", "各门店"))
     if explicit_store or all_stores:
+        if explicit_store:
+            plan.store_id = explicit_store
         if all_stores and not explicit_store:
             plan.store_id = None
         source["store_id"] = "question"
@@ -62,6 +66,7 @@ def resolve(plan, question: str, context: dict, catalog, today: date) -> dict:
         plan.store_id = context["store_id"]
         source["store_id"] = "reference"
     if explicit_metric:
+        plan.metric = explicit_metric
         source["metric"] = "question"
     else:
         plan.metric = context["metric"]
