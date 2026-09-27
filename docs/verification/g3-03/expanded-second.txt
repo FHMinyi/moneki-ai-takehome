@@ -1,0 +1,19 @@
+.....................................F                                   [100%]
+=================================== FAILURES ===================================
+_________________ test_notice_conflict_does_not_replace_actual _________________
+
+tmp_path = PosixPath('/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-287/test_notice_conflict_does_not_0')
+
+    def test_notice_conflict_does_not_replace_actual(tmp_path):
+     s=independent_service(tmp_path)
+     (s.settings.kb_dir/'KB-982.md').write_text('---\ntitle: 牛肉poke调价通知\neffective_from: 2026-06-01\n---\n牛肉poke售价调整为47元。')
+     s.rebuild();c={**CASES['H04'],'doc':'KB-982','needle':'调整为','query':'牛肉poke售价调价'}
+     a,t=run(s,QUESTIONS['H04'],c)
+     assert '不一致' in a.answer
+>    assert a.data_evidence[0]['result']['latest_price']==30
+E    assert 0.0 == 30
+
+docs/verification/g3-03/test_mixed.py:179: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-03/test_mixed.py::test_notice_conflict_does_not_replace_actual
+1 failed, 37 passed in 2.97s

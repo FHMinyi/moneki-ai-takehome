@@ -1,0 +1,986 @@
+{
+  "source": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-317/test_natural_supported_attribu1/starter",
+  "records": [
+    {
+      "command": [
+        "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "kbqa.rebuild"
+      ],
+      "cwd": "/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-317/test_natural_supported_attribu1/starter",
+      "exit_code": 0,
+      "stdout": "数据目录：/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/data\n知识库目录：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-317/test_natural_supported_attribu1/kb\n清洗完成：{\"raw_rows\": 18628, \"removed\": {\"1_unparseable_date\": 8, \"2_empty_amount\": 150, \"3_qty_le_zero\": 30, \"4_store_not_in_stores\": 10, \"5_product_not_in_products\": 40, \"6_duplicate_row\": 100}, \"removed_rows\": 338, \"kept_rows\": 18290, \"kept_sales_rows\": 18196, \"kept_refund_rows\": 94}\n索引完成：35 篇文档，215 个片段，缓存键 9c7660032d18\n告警：跳过没有 KB 编号的文件：README.md\n告警：使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt\n产物：/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-317/test_natural_supported_attribu1/var/clean.db、/private/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/pytest-of-minyi/pytest-317/test_natural_supported_attribu1/starter/.cache/index.json（0.1 秒）\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/.venv/bin/python",
+        "-m",
+        "uvicorn",
+        "kbqa.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "52841"
+      ],
+      "pid": 78312,
+      "port": 52841,
+      "requests": [
+        {
+          "path": "/api/health",
+          "body": null,
+          "response": {
+            "status": "ok",
+            "llm_mode": "mock",
+            "kb_docs": 35,
+            "kb_chunks": 215,
+            "valid_sales_rows": 18290,
+            "today": "2026-09-01",
+            "data_period": {
+              "start": "2026-05-01",
+              "end": "2026-08-31"
+            },
+            "cleaning_report": {
+              "raw_rows": 18628,
+              "removed": {
+                "1_unparseable_date": 8,
+                "2_empty_amount": 150,
+                "3_qty_le_zero": 30,
+                "4_store_not_in_stores": 10,
+                "5_product_not_in_products": 40,
+                "6_duplicate_row": 100
+              },
+              "removed_rows": 338,
+              "kept_rows": 18290,
+              "kept_sales_rows": 18196,
+              "kept_refund_rows": 94
+            },
+            "index_key": "9c7660032d18",
+            "kb_warnings": [
+              "跳过没有 KB 编号的文件：README.md",
+              "使用 GBK 解码：KB-062_旧OA导出_营业时间调整通知.txt"
+            ]
+          }
+        },
+        {
+          "path": "/api/chat",
+          "body": {
+            "question": "员工折扣能和促销活动叠加吗？",
+            "session_id": "single"
+          },
+          "response": {
+            "answer": "KB-014《员工餐与员工折扣制度》：2. **员工折扣不与活动叠加**，活动期间的活动商品按活动价结算，不再打折。",
+            "answer_type": "doc",
+            "citations": [
+              {
+                "doc_id": "KB-014",
+                "quote": "2. **员工折扣不与活动叠加**，活动期间的活动商品按活动价结算，不再打折。"
+              }
+            ],
+            "data_evidence": [],
+            "trace_id": "t-20260901-0001"
+          }
+        },
+        {
+          "path": "/api/trace/t-20260901-0001",
+          "body": null,
+          "response": {
+            "trace_id": "t-20260901-0001",
+            "session_id": "single",
+            "question": "员工折扣能和促销活动叠加吗？",
+            "started_at": "2026-09-27T16:34:13.814",
+            "total_ms": 19.2,
+            "steps": [
+              {
+                "step": "request",
+                "at_ms": 0.0,
+                "took_ms": null,
+                "detail": {
+                  "session_id": "single",
+                  "question": "员工折扣能和促销活动叠加吗？",
+                  "context": null
+                }
+              },
+              {
+                "step": "context_validation",
+                "at_ms": 0.0,
+                "took_ms": null,
+                "detail": {
+                  "valid": true,
+                  "reason": null,
+                  "reference": null
+                }
+              },
+              {
+                "step": "plan",
+                "at_ms": 5.7,
+                "took_ms": 5.7,
+                "detail": {
+                  "question": "员工折扣能和促销活动叠加吗？",
+                  "standalone_question": "员工折扣能和促销活动叠加吗？",
+                  "search_query": "员工折扣能和促销活动叠加吗？",
+                  "intent": "doc",
+                  "kind": "doc",
+                  "window": [
+                    "2026-05-01",
+                    "2026-08-31"
+                  ],
+                  "compare_window": null,
+                  "as_of": "2026-09-01",
+                  "year": 2026,
+                  "store_id": null,
+                  "product_id": null,
+                  "metric": "net_revenue",
+                  "needs_data": false,
+                  "needs_docs": true,
+                  "refusal": null,
+                  "notes": [
+                    "识别：指标=未指定 门店=全部 商品=全部 时间=未指定",
+                    "事件/报告的时间用于主题检索，资料适用时点使用今天。"
+                  ]
+                }
+              },
+              {
+                "step": "search",
+                "at_ms": 11.4,
+                "took_ms": 5.7,
+                "detail": {
+                  "query": "员工折扣能和促销活动叠加吗?",
+                  "terms": [
+                    "员工",
+                    "工折",
+                    "折扣",
+                    "扣能",
+                    "和促",
+                    "促销",
+                    "销活",
+                    "活动",
+                    "动叠",
+                    "叠加",
+                    "加吗"
+                  ],
+                  "scope": {
+                    "as_of": "2026-09-01",
+                    "store_id": null,
+                    "year": 2026,
+                    "historical": false,
+                    "window": null
+                  },
+                  "candidates": [
+                    {
+                      "chunk_id": "KB-014#3",
+                      "doc_id": "KB-014",
+                      "score": 41.3862,
+                      "lexical_score": 30.6565,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "动叠",
+                        "叠加",
+                        "员工",
+                        "工折",
+                        "折扣",
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#1",
+                      "doc_id": "KB-014",
+                      "score": 27.4953,
+                      "lexical_score": 16.7656,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工",
+                        "工折",
+                        "折扣"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#4",
+                      "doc_id": "KB-014",
+                      "score": 26.5249,
+                      "lexical_score": 15.7952,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工",
+                        "工折",
+                        "折扣"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#5",
+                      "doc_id": "KB-014",
+                      "score": 25.953,
+                      "lexical_score": 15.2233,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工",
+                        "工折",
+                        "折扣"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#3",
+                      "doc_id": "KB-023",
+                      "score": 24.6245,
+                      "lexical_score": 18.2403,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "叠加",
+                        "员工",
+                        "工折",
+                        "折扣",
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-014#2",
+                      "doc_id": "KB-014",
+                      "score": 23.9467,
+                      "lexical_score": 13.217,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工",
+                        "工折",
+                        "折扣"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-025#4",
+                      "doc_id": "KB-025",
+                      "score": 12.086,
+                      "lexical_score": 8.9526,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "促销",
+                        "和促"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#1",
+                      "doc_id": "KB-023",
+                      "score": 10.8332,
+                      "lexical_score": 4.449,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#6",
+                      "doc_id": "KB-023",
+                      "score": 10.679,
+                      "lexical_score": 4.2949,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#4",
+                      "doc_id": "KB-023",
+                      "score": 10.4174,
+                      "lexical_score": 4.0333,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#2",
+                      "doc_id": "KB-023",
+                      "score": 10.3529,
+                      "lexical_score": 3.9687,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-023#5",
+                      "doc_id": "KB-023",
+                      "score": 9.7699,
+                      "lexical_score": 3.3858,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#9",
+                      "doc_id": "KB-029",
+                      "score": 7.0335,
+                      "lexical_score": 5.21,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "促销",
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#3",
+                      "doc_id": "KB-024",
+                      "score": 6.5698,
+                      "lexical_score": 19.4661,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "叠加",
+                        "员工",
+                        "工折",
+                        "折扣",
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-061#2",
+                      "doc_id": "KB-061",
+                      "score": 6.048,
+                      "lexical_score": 4.48,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-020#2",
+                      "doc_id": "KB-020",
+                      "score": 5.7522,
+                      "lexical_score": 4.2609,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "促销",
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#3",
+                      "doc_id": "KB-011",
+                      "score": 5.2206,
+                      "lexical_score": 3.8671,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "叠加"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-029#11",
+                      "doc_id": "KB-029",
+                      "score": 4.7534,
+                      "lexical_score": 2.9299,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#3",
+                      "doc_id": "KB-050",
+                      "score": 4.1853,
+                      "lexical_score": 3.1002,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-011#6",
+                      "doc_id": "KB-011",
+                      "score": 4.1736,
+                      "lexical_score": 2.8201,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "折扣"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-028#5",
+                      "doc_id": "KB-028",
+                      "score": 4.1133,
+                      "lexical_score": 3.0469,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "折扣"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-001#12",
+                      "doc_id": "KB-001",
+                      "score": 3.3904,
+                      "lexical_score": 2.5114,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-031#4",
+                      "doc_id": "KB-031",
+                      "score": 3.3236,
+                      "lexical_score": 2.462,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-053#3",
+                      "doc_id": "KB-053",
+                      "score": 3.0896,
+                      "lexical_score": 2.2886,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-015#5",
+                      "doc_id": "KB-015",
+                      "score": 3.0214,
+                      "lexical_score": 2.238,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#4",
+                      "doc_id": "KB-051",
+                      "score": 3.0081,
+                      "lexical_score": 2.2282,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-050#2",
+                      "doc_id": "KB-050",
+                      "score": 2.9533,
+                      "lexical_score": 1.8683,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#6",
+                      "doc_id": "KB-024",
+                      "score": 2.9397,
+                      "lexical_score": 4.9456,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-026#3",
+                      "doc_id": "KB-026",
+                      "score": 2.8814,
+                      "lexical_score": 2.1343,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#1",
+                      "doc_id": "KB-024",
+                      "score": 2.8257,
+                      "lexical_score": 4.4898,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#2",
+                      "doc_id": "KB-024",
+                      "score": 2.7455,
+                      "lexical_score": 4.1689,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#4",
+                      "doc_id": "KB-024",
+                      "score": 2.7368,
+                      "lexical_score": 4.1342,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-051#2",
+                      "doc_id": "KB-051",
+                      "score": 2.5552,
+                      "lexical_score": 1.7754,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-024#5",
+                      "doc_id": "KB-024",
+                      "score": 2.5498,
+                      "lexical_score": 3.386,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "活动"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-021#2",
+                      "doc_id": "KB-021",
+                      "score": 2.4838,
+                      "lexical_score": 1.8398,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    },
+                    {
+                      "chunk_id": "KB-052#2",
+                      "doc_id": "KB-052",
+                      "score": 1.9466,
+                      "lexical_score": 1.4419,
+                      "source_focus_boost": 1.0,
+                      "matched_terms": [
+                        "员工"
+                      ]
+                    }
+                  ],
+                  "expansions": [],
+                  "coverage": 0.425,
+                  "hits": [
+                    {
+                      "doc_id": "KB-014",
+                      "chunk_id": "KB-014#3",
+                      "score": 41.3862,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-023",
+                      "chunk_id": "KB-023#3",
+                      "score": 24.6245,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-025",
+                      "chunk_id": "KB-025#4",
+                      "score": 12.086,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-029",
+                      "chunk_id": "KB-029#9",
+                      "score": 7.0335,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    },
+                    {
+                      "doc_id": "KB-024",
+                      "chunk_id": "KB-024#3",
+                      "score": 6.5698,
+                      "padded": false,
+                      "exclusion_reason": null,
+                      "dropped_instructions": []
+                    }
+                  ],
+                  "filtered": [
+                    {
+                      "doc_id": "KB-002",
+                      "reason": "该版本自 2026-05-01 起已被 KB-001 取代"
+                    },
+                    {
+                      "doc_id": "KB-010",
+                      "reason": "该版本自 2026-07-01 起已被 KB-011 取代"
+                    },
+                    {
+                      "doc_id": "KB-012",
+                      "reason": "该版本自 2026-06-15 起已被 KB-013 取代"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "evidence",
+                "at_ms": 19.2,
+                "took_ms": null,
+                "detail": {
+                  "required_claim": {
+                    "subject": "员工折扣",
+                    "attribute": "促销活动叠加",
+                    "subject_terms": [
+                      "员工",
+                      "工折",
+                      "折扣"
+                    ],
+                    "attribute_terms": [
+                      "促销",
+                      "活动",
+                      "动叠",
+                      "叠加"
+                    ],
+                    "subject_entities": []
+                  },
+                  "candidates": [
+                    {
+                      "doc_id": "KB-014",
+                      "chunk_id": "KB-014#3",
+                      "score": 0.6177359395485228,
+                      "text": "2. **员工折扣不与活动叠加**，活动期间的活动商品按活动价结算，不再打折。"
+                    }
+                  ],
+                  "rejected": [
+                    {
+                      "doc_id": "KB-014",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "3. 员工折扣同样不与会员券、储值赠送、平台补贴叠加。"
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "5. 员工折扣限本人及同行不超过 3 人的一桌，单日不超过 2 次。"
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "1. 员工本人到店消费享 7 折，出示工牌，由当班店员在收银时选择“员工折扣”。"
+                    },
+                    {
+                      "doc_id": "KB-014",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "4. 折后金额就是实收金额，照常进 POS，按实收入账。"
+                    },
+                    {
+                      "doc_id": "KB-023",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "4. 不与员工折扣、会员券叠加；储值支付正常使用，按实收入账。"
+                    },
+                    {
+                      "doc_id": "KB-023",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "1. **牛肉poke 活动价 ¥29**，仅限当天。"
+                    },
+                    {
+                      "doc_id": "KB-023",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "3. 仅限堂食与自提，第三方外卖平台不参与。"
+                    },
+                    {
+                      "doc_id": "KB-023",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "2. **每单限购 3 份**，超出的部分按日常售价结算。"
+                    },
+                    {
+                      "doc_id": "KB-025",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "2. 不做“涨价前最后一天”之类的预告和促销。"
+                    },
+                    {
+                      "doc_id": "KB-029",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "会议决定，S04 自 2026 年 8 月 10 日起下架吞拿鱼三明治，不再销售。现有库存在 8 月 9 日前用完，剩余部分做员工餐消化，不做促销清货；8 月 10 日当天由店长在 POS 和外卖平台同步下架，菜单贴纸由市场部 8 月 8 日前寄到。"
+                    },
+                    {
+                      "doc_id": "KB-024",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "4. 不与员工折扣叠加。"
+                    },
+                    {
+                      "doc_id": "KB-024",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "3. 堂食、自提、外卖自营渠道均可参与，第三方外卖平台另按平台活动执行。"
+                    },
+                    {
+                      "doc_id": "KB-024",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "2. 每单限购 2 份。"
+                    },
+                    {
+                      "doc_id": "KB-024",
+                      "reason": "unsupported_attribute",
+                      "required_claim": {
+                        "subject": "员工折扣",
+                        "attribute": "促销活动叠加",
+                        "subject_terms": [
+                          "员工",
+                          "工折",
+                          "折扣"
+                        ],
+                        "attribute_terms": [
+                          "促销",
+                          "活动",
+                          "动叠",
+                          "叠加"
+                        ],
+                        "subject_entities": []
+                      },
+                      "text": "1. **三文鱼poke 特价 ¥25**，仅限当天。"
+                    }
+                  ],
+                  "selected": [
+                    {
+                      "evidence_id": "doc-98e8d27a7e5977df74cd",
+                      "scope": {
+                        "as_of": "2026-09-01",
+                        "store_id": null,
+                        "year": 2026,
+                        "historical": false,
+                        "window": null
+                      },
+                      "doc_id": "KB-014",
+                      "chunk_id": "KB-014#3",
+                      "score": 0.6177359395485228,
+                      "source_start": 246,
+                      "source_end": 431,
+                      "quote": "2. **员工折扣不与活动叠加**，活动期间的活动商品按活动价结算，不再打折。"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "answer_mock",
+                "at_ms": 19.2,
+                "took_ms": 13.5,
+                "detail": {
+                  "answer_type": "doc"
+                }
+              },
+              {
+                "step": "response",
+                "at_ms": 19.2,
+                "took_ms": null,
+                "detail": {
+                  "answer_type": "doc",
+                  "notes": []
+                }
+              }
+            ],
+            "llm_calls": [],
+            "errors": []
+          }
+        }
+      ],
+      "stopped": true
+    }
+  ]
+}

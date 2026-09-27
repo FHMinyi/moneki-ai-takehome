@@ -1,0 +1,105 @@
+F.F.F.                                                                   [100%]
+=================================== FAILURES ===================================
+________________________ test_six_mixed_behaviors[H01] _________________________
+
+service = <kbqa.service.Service object at 0x1089d14f0>, qid = 'H01'
+
+    @pytest.mark.parametrize('qid',CASES)
+    def test_six_mixed_behaviors(service,qid):
+     a,t=run(service,QUESTIONS[qid],CASES[qid])
+     assert a.answer_type==('data' if qid=='H06' else 'hybrid'),a
+>    assert CASES[qid]['expected'] in a.answer,a
+E    AssertionError: Answer(answer='2026-06-08 至 2026-06-14（Juicy Bao Bao S03）的净营业额为 3630.00 元，2026-06-01 至 2026-06-07（Juicy Bao Bao S03）为 ...'call_id': 'db', 'a': 6117.0, 'b': 3630.0, 'result': {'delta': -2487.0, 'pct': -40.66, 'direction': '跌'}}]}], notes=[])
+E    assert '3,630' in '2026-06-08 至 2026-06-14（Juicy Bao Bao S03）的净营业额为 3630.00 元，2026-06-01 至 2026-06-07（Juicy Bao Bao S03）为 6117.00 元，跌了 2....66%）。\n同期材料记载 KB-020：1. **S03 自 2026-06-08 起停业 4 天，即 6 月 8 日至 6 月 11 日不营业**，堂食、外卖、预订全部暂停。\n以上是材料记载；未据此估算事件对经营数字的因果影响。'
+E     +  where '2026-06-08 至 2026-06-14（Juicy Bao Bao S03）的净营业额为 3630.00 元，2026-06-01 至 2026-06-07（Juicy Bao Bao S03）为 6117.00 元，跌了 2....66%）。\n同期材料记载 KB-020：1. **S03 自 2026-06-08 起停业 4 天，即 6 月 8 日至 6 月 11 日不营业**，堂食、外卖、预订全部暂停。\n以上是材料记载；未据此估算事件对经营数字的因果影响。' = Answer(answer='2026-06-08 至 2026-06-14（Juicy Bao Bao S03）的净营业额为 3630.00 元，2026-06-01 至 2026-06-07（Juicy Bao Bao S03）为 ...'call_id': 'db', 'a': 6117.0, 'b': 3630.0, 'result': {'delta': -2487.0, 'pct': -40.66, 'direction': '跌'}}]}], notes=[]).answer
+
+docs/verification/g3-03/test_mixed.py:57: AssertionError
+________________________ test_six_mixed_behaviors[H03] _________________________
+
+service = <kbqa.service.Service object at 0x1089d14f0>, qid = 'H03'
+
+    @pytest.mark.parametrize('qid',CASES)
+    def test_six_mixed_behaviors(service,qid):
+>    a,t=run(service,QUESTIONS[qid],CASES[qid])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-03/test_mixed.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-03/test_mixed.py:50: in run
+    a=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(question),trace,[])
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:80: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-03/test_mixed.py:45: in respond
+    p=choose(case,items)
+      ^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+case = {'mode': 'target', 'tool': 'query_metrics', 'params': {'start': '2026-08-01', 'end': '2026-08-31', 'product_id': 'P21'}, 'metric': 'qty', ...}
+items = [{'evidence_id': 'doc-0adc3153c7f9673ff869', 'doc_id': 'KB-028', 'chunk_id': 'KB-028#1', 'quote': '发布部门：总部市场部 / 运营部', ...029', 'chunk_id': 'KB-029#6', 'quote': '项怡通报，冷萃乌龙茶 8 月 1 日上市，首周出杯的势头还可以，S05 和 S02 相对突出，S03 偏弱，估计和早餐客群结构有关。', ...}, ...]
+
+    def choose(case,items):
+     facts=[]
+     if case.get('doc'):
+      candidates=[e for e in items if e['doc_id']==case['doc'] and case['needle'] in e['quote']]
+>     assert candidates,(case,[(e['doc_id'],e['quote']) for e in items])
+E     AssertionError: ({'mode': 'target', 'tool': 'query_metrics', 'params': {'start': '2026-08-01', 'end': '2026-08-31', 'product_id': 'P21...的无糖茶。经三轮试品和两周门店试销，冷萃乌龙茶定版上市。'), ('KB-029', '项怡通报，冷萃乌龙茶 8 月 1 日上市，首周出杯的势头还可以，S05 和 S02 相对突出，S03 偏弱，估计和早餐客群结构有关。'), ...])
+E     assert []
+
+docs/verification/g3-03/test_mixed.py:31: AssertionError
+________________________ test_six_mixed_behaviors[H05] _________________________
+
+service = <kbqa.service.Service object at 0x1089d14f0>, qid = 'H05'
+
+    @pytest.mark.parametrize('qid',CASES)
+    def test_six_mixed_behaviors(service,qid):
+>    a,t=run(service,QUESTIONS[qid],CASES[qid])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs/verification/g3-03/test_mixed.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+docs/verification/g3-03/test_mixed.py:50: in run
+    a=LiveEngine(client,service.answerer,service.run_tool,'2026-09-01',service.data_period).answer(service.planner.plan(question),trace,[])
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+starter/kbqa/live.py:80: in answer
+    reply = self.client.chat_with_retry(
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+docs/verification/g3-03/test_mixed.py:45: in respond
+    p=choose(case,items)
+      ^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+case = {'mode': 'payment', 'tool': 'payment_mix', 'params': {'start': '2026-08-03', 'end': '2026-08-03', 'store_id': 'S05'}, 'metric': 'share_orders', ...}
+items = [{'evidence_id': 'doc-b8c66bf28de3178ff8cf', 'doc_id': 'KB-027', 'chunk_id': 'KB-027#3', 'quote': '**2026-08-03 10:40 ...3', 'doc_id': 'KB-034', 'chunk_id': 'KB-034#3', 'quote': '五家店里座位最多、品类最全的一家，主食、点心、小食、饮料都做，晚市有酒水，啤酒和梅子酒卖得最好。', ...}, ...]
+
+    def choose(case,items):
+     facts=[]
+     if case.get('doc'):
+      candidates=[e for e in items if e['doc_id']==case['doc'] and case['needle'] in e['quote']]
+>     assert candidates,(case,[(e['doc_id'],e['quote']) for e in items])
+E     AssertionError: ({'mode': 'payment', 'tool': 'payment_mix', 'params': {'start': '2026-08-03', 'end': '2026-08-03', 'store_id': 'S05'},...现金**，收银台和门口各贴一张告知，排队的顾客提前口头告知，附近有取现网点的位置也一并告知。'), ('KB-034', '五家店里座位最多、品类最全的一家，主食、点心、小食、饮料都做，晚市有酒水，啤酒和梅子酒卖得最好。'), ...])
+E     assert []
+
+docs/verification/g3-03/test_mixed.py:31: AssertionError
+=========================== short test summary info ============================
+FAILED docs/verification/g3-03/test_mixed.py::test_six_mixed_behaviors[H01]
+FAILED docs/verification/g3-03/test_mixed.py::test_six_mixed_behaviors[H03]
+FAILED docs/verification/g3-03/test_mixed.py::test_six_mixed_behaviors[H05]
+3 failed, 3 passed in 0.44s

@@ -1,0 +1,38 @@
+[
+  {
+    "pid": 69621,
+    "harness_pid": 69615,
+    "api_port": 63628,
+    "model_port": 63627,
+    "base_url": "http://127.0.0.1:63628",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome",
+    "var": "/tmp/g303-browser-runtime/var"
+  },
+  {
+    "pid": 75031,
+    "harness_pid": 75025,
+    "api_port": 50487,
+    "model_port": 50486,
+    "base_url": "http://127.0.0.1:50487",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome",
+    "var": "/tmp/g303-final-browser-runtime/var"
+  },
+  {
+    "pid": 76104,
+    "harness_pid": 76098,
+    "api_port": 50959,
+    "model_port": 50958,
+    "base_url": "http://127.0.0.1:50959",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome",
+    "var": "/tmp/g303-aa72140-browser-runtime/var"
+  },
+  {
+    "pid": 79232,
+    "harness_pid": 79223,
+    "api_port": 53503,
+    "model_port": 53502,
+    "base_url": "http://127.0.0.1:53503",
+    "worktree": "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome",
+    "var": "/tmp/g303-603c611-review-runtime/var"
+  }
+]

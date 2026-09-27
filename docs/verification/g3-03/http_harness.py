@@ -7,17 +7,19 @@ import httpx
 from test_mixed import ROOT, CASES, QUESTIONS, choose
 
 class Controlled(BaseHTTPRequestHandler):
+ extra_cases={}
  def log_message(self,*args):pass
  def do_POST(self):
   body=json.loads(self.rfile.read(int(self.headers['Content-Length'])))
   messages=body['messages'];question=next(m['content'] for m in reversed(messages) if m['role']=='user')
   qid=next((q for q in CASES if QUESTIONS[q] in question),None)
-  if not qid:
+  extra=type(self).extra_cases.get(question)
+  if not qid and not extra:
    content=json.dumps(dict(answer_type='refusal',reason='insufficient_evidence'));calls=[]
   else:
-   c=CASES[qid];done=[json.loads(m['content']) for m in messages if m['role']=='tool']
+   c=extra or CASES[qid];done=[json.loads(m['content']) for m in messages if m['role']=='tool']
    if not done:
-    calls=[dict(id='db',type='function',function=dict(name=c['tool'],arguments=json.dumps(c['params']))),dict(id='kb',type='function',function=dict(name='search_kb',arguments=json.dumps(dict(query=c.get('query',QUESTIONS[qid]),top_k=10))))];content=''
+    calls=[dict(id='db',type='function',function=dict(name=c['tool'],arguments=json.dumps(c['params']))),dict(id='kb',type='function',function=dict(name='search_kb',arguments=json.dumps(dict(query=c.get('query',question),top_k=10))))];content=''
    else:
     items=[e for t in done for e in t['result'].get('evidence',[])]
     content=json.dumps(choose(c,items));calls=[]
@@ -30,11 +32,13 @@ def port():
  with socket.socket() as s:s.bind(('127.0.0.1',0));return s.getsockname()[1]
 
 @contextmanager
-def runtime(path):
+def runtime(path,data_dir=None,kb_dir=None):
  path=Path(path);path.mkdir(parents=True,exist_ok=True)
  model=ThreadingHTTPServer(('127.0.0.1',0),Controlled);threading.Thread(target=model.serve_forever,daemon=True).start()
  api_port=port();base=f'http://127.0.0.1:{api_port}'
  env={**os.environ,'VAR_DIR':str(path/'var'),'LLM_BASE_URL':f'http://127.0.0.1:{model.server_port}/controlled','LLM_API_KEY':'controlled-not-a-secret','LLM_MODEL':'controlled','PYTHONPATH':str(ROOT/'starter')}
+ if data_dir:env['DATA_DIR']=str(data_dir)
+ if kb_dir:env['KB_DIR']=str(kb_dir)
  log=(path/'server.log').open('w');p=subprocess.Popen([sys.executable,'-m','uvicorn','kbqa.server:app','--host','127.0.0.1','--port',str(api_port)],cwd=ROOT/'starter',env=env,stdout=log,stderr=log)
  record=dict(pid=p.pid,harness_pid=os.getpid(),api_port=api_port,model_port=model.server_port,base_url=base,worktree=str(ROOT),var=str(path/'var'))
  try:

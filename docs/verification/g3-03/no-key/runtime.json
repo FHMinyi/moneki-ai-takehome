@@ -1,0 +1,49 @@
+{
+  "work": "/var/folders/7v/j4gtct8n0mzg1p_8h3jscjgh0000gn/T/g303-nokey-tnrxsdy7",
+  "command": [
+    "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/starter/.venv/bin/python",
+    "eval/run_eval.py",
+    "--base-url",
+    "http://127.0.0.1:63896",
+    "--questions",
+    "eval/public_questions.jsonl",
+    "--out",
+    "/Users/minyi/.codex/worktrees/g3-06-trend-context/moneki-ai-takehome/docs/verification/g3-03/no-key/eval"
+  ],
+  "commit": "d0f1faa4d5771d47401eb9fa71af8822c0439a27",
+  "health": {
+    "status": "ok",
+    "llm_mode": "mock",
+    "kb_docs": 35,
+    "kb_chunks": 215,
+    "valid_sales_rows": 18290,
+    "today": "2026-09-01",
+    "data_period": {
+      "start": "2026-05-01",
+      "end": "2026-08-31"
+    },
+    "cleaning_report": {
+      "raw_rows": 18628,
+      "removed": {
+        "1_unparseable_date": 8,
+        "2_empty_amount": 150,
+        "3_qty_le_zero": 30,
+        "4_store_not_in_stores": 10,
+        "5_product_not_in_products": 40,
+        "6_duplicate_row": 100
+      },
+      "removed_rows": 338,
+      "kept_rows": 18290,
+      "kept_sales_rows": 18196,
+      "kept_refund_rows": 94
+    },
+    "index_key": "95bbdff1905e",
+    "kb_warnings": [
+      "\u8df3\u8fc7\u6ca1\u6709 KB \u7f16\u53f7\u7684\u6587\u4ef6\uff1aREADME.md",
+      "\u4f7f\u7528 GBK \u89e3\u7801\uff1aKB-062_\u65e7OA\u5bfc\u51fa_\u8425\u4e1a\u65f6\u95f4\u8c03\u6574\u901a\u77e5.txt"
+    ]
+  },
+  "exit_code": 0,
+  "pid": 70328,
+  "stopped": true
+}
